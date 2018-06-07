@@ -1,4 +1,4 @@
-Package: shinydashboard2
+Package: bs4Dash
 Type: Package
 Title: A 'bootstrap 4' version of 'shinydashboard'
 Version: 0.1.0
