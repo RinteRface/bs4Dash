@@ -4,15 +4,15 @@
 \alias{bs4DashPage}
 \title{Create a Boostrap 4 dashboard page}
 \usage{
-bs4DashPage(..., navbar = NULL, sidebar = NULL, controlbar = NULL,
-  footer = NULL, title = NULL)
+bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
+  controlbar = NULL, footer = NULL, title = NULL)
 }
 \arguments{
-\item{...}{Body content.}
-
 \item{navbar}{Bootstrap 4 dashboard navbar.}
 
 \item{sidebar}{Bootstrap 4 dashboard main sidebar.}
+
+\item{body}{Bootstrap 4 dashboard body wrapper.}
 
 \item{controlbar}{Bootstrap 4 dashboard control sidebar (right side).}
 
@@ -33,7 +33,8 @@ if(interactive()){
     sidebar = bs4DashSidebar(),
     controlbar = bs4DashControlbar(),
     footer = bs4DashFooter(),
-    title = "test"
+    title = "test",
+    body = bs4DashBody()
    ),
    server = function(input, output) {}
  )

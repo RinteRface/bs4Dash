@@ -4,7 +4,7 @@
 \alias{bs4DashSidebar}
 \title{Create a Boostrap 4 dashboard main sidebar}
 \usage{
-bs4DashSidebar(..., title, skin = "dark", status = "primary",
+bs4DashSidebar(..., title = NULL, skin = "dark", status = "primary",
   brandColor = NULL, url = NULL, src = NULL, elevation = 4,
   opacity = 0.8)
 }

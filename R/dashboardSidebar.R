@@ -16,23 +16,23 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashSidebar <- function(..., title, skin = "dark", status = "primary",
+bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
                                 brandColor = NULL, url = NULL, src = NULL,
                                 elevation = 4, opacity = .8) {
 
-  stopifnot(!is.null(title))
-
   # brand logo
-  brandTag <- shiny::tags$a(
-    class = if (!is.null(brandColor)) paste0("brand-link bg-", brandColor) else "brand-link",
-    href = url,
-    shiny::tags$img(
-      src = src,
-      class = "brand-image img-circle elevation-3",
-      style = paste0("opacity: ", opacity)
-    ),
-    shiny::tags$span(class = "brand-text font-weight-light", title)
-  )
+  brandTag <- if (!is.null(title)) {
+    shiny::tags$a(
+      class = if (!is.null(brandColor)) paste0("brand-link bg-", brandColor) else "brand-link",
+      href = url,
+      shiny::tags$img(
+        src = src,
+        class = "brand-image img-circle elevation-3",
+        style = paste0("opacity: ", opacity)
+      ),
+      shiny::tags$span(class = "brand-text font-weight-light", title)
+    )
+  }
 
   # sidebar content
   contentTag <- shiny::tags$div(

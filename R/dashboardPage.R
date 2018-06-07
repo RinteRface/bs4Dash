@@ -2,9 +2,9 @@
 #'
 #' Build an adminLTE3 dashboard page
 #'
-#' @param ... Body content.
 #' @param navbar Bootstrap 4 dashboard navbar.
 #' @param sidebar Bootstrap 4 dashboard main sidebar.
+#' @param body Bootstrap 4 dashboard body wrapper.
 #' @param controlbar Bootstrap 4 dashboard control sidebar (right side).
 #' @param footer Bootstrap 4 dashboard footer.
 #' @param title App title.
@@ -19,7 +19,8 @@
 #'     sidebar = bs4DashSidebar(),
 #'     controlbar = bs4DashControlbar(),
 #'     footer = bs4DashFooter(),
-#'     title = "test"
+#'     title = "test",
+#'     body = bs4DashBody()
 #'    ),
 #'    server = function(input, output) {}
 #'  )
@@ -28,7 +29,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashPage <- function(..., navbar = NULL, sidebar = NULL, controlbar = NULL, footer = NULL, title = NULL){
+bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, controlbar = NULL, footer = NULL, title = NULL){
 
   shiny::tags$html(
     # Head
@@ -63,10 +64,7 @@ bs4DashPage <- function(..., navbar = NULL, sidebar = NULL, controlbar = NULL, f
         navbar,
         sidebar,
         # page content
-        shiny::tags$div(
-          class = "content-wrapper",
-          ...
-        ),
+        body,
         controlbar,
         footer
       )
