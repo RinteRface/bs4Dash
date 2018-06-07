@@ -1,14 +1,15 @@
-if(interactive()){
+if (interactive()) {
   library(shiny)
   library(shinyWidgets)
 
   shiny::shinyApp(
-    ui = bs4DashboardPage(
-      navbar = bs4DashboardNavbar(
+    ui = bs4DashPage(
+      navbar = bs4DashNavbar(
+        status = "primary",
         "I can write text in the navbar!"
       ),
-      sidebar = bs4DashboardSidebar(
-        title = "shinydashboard2",
+      sidebar = bs4DashSidebar(
+        title = "bs4Dash",
         brandColor = "primary",
         url = "http://www.google.fr",
         src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
@@ -38,13 +39,13 @@ if(interactive()){
           )
         )
       ),
-      controlbar = bs4DashboardControlbar(
+      controlbar = bs4DashControlbar(
         title = "My right sidebar",
         sliderInput("obs", "Number of observations:",
                     min = 0, max = 1000, value = 500
         )
       ),
-      footer = bs4DashboardFooter(
+      footer = bs4DashFooter(
         copyrights = "@DavidNojnarg",
         right_text = "2018"
       ),

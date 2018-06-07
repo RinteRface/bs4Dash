@@ -13,12 +13,10 @@
 #' @param elevation Sidebar elevation. 4 by default.
 #' @param opacity Sidebar opacity. From 0 to 1. 0.8 by default.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashboardSidebar <- function(..., title, skin = "dark", status = "primary",
+bs4DashSidebar <- function(..., title, skin = "dark", status = "primary",
                                 brandColor = NULL, url = NULL, src = NULL,
                                 elevation = 4, opacity = .8) {
 
@@ -63,8 +61,6 @@ bs4DashboardSidebar <- function(..., title, skin = "dark", status = "primary",
 #'
 #' @param ... Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -91,8 +87,6 @@ bs4SidebarMenu <- function(...) {
 #' @param open Whether to display the item list in an open state. FALSE by default.
 #' @param active Whether the section is active. FALSE by default.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -107,10 +101,10 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
     shiny::tags$a(
       href = "#",
       class = if (isTRUE(active)) "nav-link active" else "nav-link",
-      shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
+      shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
         name,
-        shiny::tags$i(class = "right fa fa-angle-left")
+        shiny::tags$i(class = "right fas fa-angle-left")
       )
     ),
     shiny::tags$ul(
@@ -132,8 +126,6 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
 #' @param icon Item icon.
 #' @param active Whether the item is active. FALSE by default.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -144,7 +136,7 @@ bs4SidebarMenuItem <- function(..., name = NULL, icon = NULL, active = FALSE) {
     shiny::tags$a(
       href = "#",
       class = if (isTRUE(active)) "nav-link active" else "nav-link",
-      shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
+      shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
         name,
         ...

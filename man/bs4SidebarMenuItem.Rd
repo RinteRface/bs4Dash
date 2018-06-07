@@ -18,9 +18,6 @@ bs4SidebarMenuItem(..., name = NULL, icon = NULL, active = FALSE)
 \description{
 Build an adminLTE3 dashboard main sidebar menu item
 }
-\examples{
-
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

@@ -12,12 +12,10 @@
 #' @param leftUi Custom left Ui content. Any Ui element.
 #' @param rightUi Custom right Ui content. Any Ui element.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashboardNavbar <- function(..., skin = "dark", status = "white", border = TRUE,
+bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
                                sidebarIcon = "bars", controlbarIcon = "th-large",
                                leftUi = NULL, rightUi = NULL) {
 
@@ -36,7 +34,7 @@ bs4DashboardNavbar <- function(..., skin = "dark", status = "white", border = TR
           class = "nav-link",
           `data-widget` = "pushmenu",
           href = "#",
-          shiny::tags$i(class = paste0("fa fa-", sidebarIcon))
+          shiny::tags$i(class = paste0("fas fa-", sidebarIcon))
         )
       ),
       leftUi
@@ -58,7 +56,7 @@ bs4DashboardNavbar <- function(..., skin = "dark", status = "white", border = TR
           `data-widget` = "control-sidebar",
           `data-slide` = "true",
           href = "#",
-          shiny::tags$i(class = paste0("fa fa-", controlbarIcon))
+          shiny::tags$i(class = paste0("fas fa-", controlbarIcon))
         )
       )
     )

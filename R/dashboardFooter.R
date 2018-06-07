@@ -5,13 +5,11 @@
 #' @param ... Left text.
 #' @param copyrights Copyrights, if any.
 #' @param right_text Right text.
-#'
-#' @examples
-#'
+#' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashboardFooter <- function(..., copyrights = NULL, right_text = NULL) {
+bs4DashFooter <- function(..., copyrights = NULL, right_text = NULL) {
 
   shiny::tags$footer(
     class = "main-footer",

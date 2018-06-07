@@ -6,12 +6,10 @@
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
 #'
-#' @examples
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashboardControlbar <- function(..., skin = "dark", title = NULL) {
+bs4DashControlbar <- function(..., skin = "dark", title = NULL) {
 
   shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),

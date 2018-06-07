@@ -12,9 +12,6 @@ bs4SidebarMenu(...)
 \description{
 Build an adminLTE3 dashboard main sidebar menu
 }
-\examples{
-
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
