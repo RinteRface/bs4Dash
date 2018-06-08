@@ -8,6 +8,8 @@
 #' @param status The status of the item This determines the item's background
 #'   color. "primary", "success", "warning", "danger". NULL by default.
 #' @param solidHeader Should the header be shown with a solid color background?
+#' @param headerBorder Whether to display a border between the header and body.
+#' TRUE by default
 #' @param gradientColor If NULL (the default), the background of the box will be
 #'   white. Otherwise, a color string. "primary", "success", "warning" or "danger".
 #' @param width The width of the box, using the Bootstrap grid system. This is
@@ -98,8 +100,8 @@
 #'
 #' @export
 bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
-                    solidHeader = FALSE, gradientColor = NULL, width = 6, 
-                    height = NULL, collapsible = TRUE, collapsed = FALSE, 
+                    solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
+                    width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench") {
   
@@ -171,7 +173,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   
   # header
   headerTag <- shiny::tags$div(
-    class = "card-header",
+    class = if (isTRUE(headerBorder)) "card-header" else "card-header no-border",
     shiny::tags$h3(class = "card-title", title)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
@@ -575,7 +577,7 @@ bs4TabCard <- function(..., title = NULL, width = 6, height = NULL) {
 
 #' Create a tabSetPanel
 #' 
-#' Imported by bs4TabCard
+#' Imported by bs4TabCard. Do not use outside!
 #'
 #' @param ... Slot for bs4TabPanel.
 #' 

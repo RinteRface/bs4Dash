@@ -5,10 +5,10 @@
 \title{Create a Boostrap 4 card}
 \usage{
 bs4Card(..., title = NULL, footer = NULL, status = NULL,
-  solidHeader = FALSE, gradientColor = NULL, width = 6, height = NULL,
-  collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-  labelStatus = NULL, labelText = NULL, labelTooltip = NULL,
-  dropdownMenu = NULL, dropdownIcon = "wrench")
+  solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
+  width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE,
+  closable = TRUE, labelStatus = NULL, labelText = NULL,
+  labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench")
 }
 \arguments{
 \item{...}{Contents of the box.}
@@ -21,6 +21,9 @@ bs4Card(..., title = NULL, footer = NULL, status = NULL,
 color. "primary", "success", "warning", "danger". NULL by default.}
 
 \item{solidHeader}{Should the header be shown with a solid color background?}
+
+\item{headerBorder}{Whether to display a border between the header and body.
+TRUE by default}
 
 \item{gradientColor}{If NULL (the default), the background of the box will be
 white. Otherwise, a color string. "primary", "success", "warning" or "danger".}

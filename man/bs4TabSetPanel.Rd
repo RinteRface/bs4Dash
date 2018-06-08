@@ -10,7 +10,7 @@ bs4TabSetPanel(...)
 \item{...}{Slot for bs4TabPanel.}
 }
 \description{
-Imported by bs4TabCard
+Imported by bs4TabCard. Do not use outside!
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
