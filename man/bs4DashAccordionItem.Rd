@@ -13,7 +13,7 @@ bs4DashAccordionItem(..., id, title = NULL, status = NULL, width = 12)
 
 \item{title}{Item title.}
 
-\item{status}{Item color. "primary", "success", "warning", "danger". NULL by default.}
+\item{status}{Item color. "primary", "success", "warning", "danger" or "info". NULL by default.}
 
 \item{width}{The width of the accordion.}
 }

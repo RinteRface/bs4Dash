@@ -123,7 +123,7 @@ bs4DashAccordion <- function(...) {
 #' @param ... Item content.
 #' @param id Item unique id.
 #' @param title Item title.
-#' @param status Item color. "primary", "success", "warning", "danger". NULL by default.
+#' @param status Item color. "primary", "success", "warning", "danger" or "info". NULL by default.
 #' @param width The width of the accordion.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -304,4 +304,104 @@ bs4DashCarouselItem <- function(active = FALSE, src = NULL) {
       src = src
     )
   )
+}
+
+
+
+
+#' Create a Bootstrap 4 progress bar
+#' 
+#' AdminLTE3 progress bar
+#'
+#' @param value Progress bar value
+#' @param min Progress bar minimum value.
+#' @param max Progress bar maximum value.
+#' @param striped Whether the progress bar is striped or not. FALSE by default.
+#' @param vertical Whether to display the progress bar in vertical mode. FALSE by default.
+#' @param status Progress bar status. "primary", "success", "warning", "danger" or "info".
+#' @param width Progress bar width (only if vertical is FALSE).
+#' @param height Progress bar height (only if vertical is TRUE).
+#' 
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'        title = "Carousel",
+#'        bs4Card(
+#'         title = "Progress bars",
+#'         footer = tagList(
+#'           bs4ProgressBar(
+#'           value = 5,
+#'           striped = FALSE,
+#'           status = "info"
+#'          ),
+#'          bs4ProgressBar(
+#'           value = 5,
+#'           striped = TRUE,
+#'           status = "warning",
+#'           width = "20%"
+#'          )
+#'         ),
+#'         bs4ProgressBar(
+#'          value = 80,
+#'          vertical = TRUE,
+#'          status = "success"
+#'         ),
+#'         bs4ProgressBar(
+#'          value = 100,
+#'          vertical = TRUE,
+#'          striped = TRUE,
+#'          status = "danger",
+#'          height = "80%"
+#'         )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped = FALSE,
+                           status = c("primary", "warning", "danger", "info", "success"),
+                           width = "80%", height = "40%") {
+  
+  status <- match.arg(status)
+  stopifnot(value >= min)
+  stopifnot(value <= max)
+  
+  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+  barCl <- "progress-bar"
+  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+  if (isTRUE(striped)) barCl <- paste0(barCl, " progress-bar-striped")
+  
+  barTag <- shiny::tags$div(
+    class = barCl,
+    role = "progressbar",
+    `aria-valuenow` = value,
+    `aria-valuemin` = min,
+    `aria-valuemax` = max,
+    style = if (vertical) {
+      paste0("height: ", height)
+    } else {
+      paste0("width: ", height)
+    },
+    shiny::tags$span(class = "sr-only", paste0(value, "%"))
+  )
+  
+  progressTag <- shiny::tags$div(class = progressCl)
+  progressTag <- shiny::tagAppendChild(progressTag, barTag)
+  progressTag
+  
 }

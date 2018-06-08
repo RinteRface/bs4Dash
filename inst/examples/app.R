@@ -248,6 +248,36 @@ shiny::shinyApp(
                 )
               )
             )
+          ),
+          fluidRow(
+            bs4Card(
+              title = "Progress bars",
+              footer = tagList(
+                bs4ProgressBar(
+                  value = 5,
+                  striped = FALSE,
+                  status = "info"
+                ),
+                bs4ProgressBar(
+                  value = 5,
+                  striped = TRUE,
+                  status = "warning",
+                  width = "20%"
+                )
+              ),
+              bs4ProgressBar(
+                value = 80,
+                vertical = TRUE,
+                status = "success"
+              ),
+              bs4ProgressBar(
+                value = 100,
+                vertical = TRUE,
+                striped = TRUE,
+                status = "danger",
+                height = "80%"
+              )
+            )
           )
         ),
         bs4TabItem(
