@@ -27,6 +27,8 @@
 #' @param labelTooltip Label tooltip displayed on hover.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use dropdownItemList().
 #' @param dropdownIcon Dropdown icon. "wrench" by default.
+#' 
+#' @family cards
 #'
 #' @examples
 #' if(interactive()){
@@ -244,4 +246,99 @@ dropdownItem <- function(url = NULL, name = NULL) {
 #' @export
 dropdownDivider <- function() {
   shiny::tags$a(class = "divider")
+}
+
+
+
+
+
+#' Boostrap 4 value box
+#'
+#' A beautiful AdminLTE3 value box.
+#'
+#' @param value The value to display in the box. Usually a number or short text.
+#' @param subtitle Subtitle text.
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
+#' @param width The width of the box, using the Bootstrap grid system. This is
+#'   used for row-based layouts. The overall width of a region is 12, so the
+#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   layouts, use \code{NULL} for the width; the width is set by the column that
+#'   contains the box.
+#' @param href An optional URL to link to. 
+#'
+#' @family cards
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       fluidRow(
+#'        bs4ValueBox(
+#'         value = 150,
+#'         subtitle = "New orders",
+#'         status = "primary",
+#'         icon = "shopping-cart",
+#'         href = "#"
+#'        ),
+#'        bs4ValueBox(
+#'         value = "53%",
+#'         subtitle = "New orders",
+#'         status = "danger",
+#'         icon = "cogs"
+#'        ),
+#'        bs4ValueBox(
+#'         value = "44",
+#'         subtitle = "User Registrations",
+#'         status = "warning",
+#'         icon = "sliders"
+#'        )
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4ValueBox <- function(value, subtitle, icon = NULL, 
+                        status = NULL, width = 3, href = "#") {
+ 
+  valueBoxCl <- "small-box"
+  if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
+  
+  innerTag <- shiny::tags$div(
+    class = "inner",
+    value,
+    shiny::tags$p(subtitle)
+  )
+  
+  iconTag <- shiny::tags$div(
+    class = "icon",
+    shiny::icon(icon)
+  )
+    
+  footerTag <- shiny::tags$a(
+      href = href,
+      class = "small-box-footer",
+      "More info",
+      shiny::icon("arrow-circle-right")
+    )
+    
+  valueBoxTag <- shiny::tags$div(
+    class = valueBoxCl
+  )
+  valueBoxTag <- shiny::tagAppendChildren(valueBoxTag, innerTag, iconTag, footerTag)
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    valueBoxTag
+  )
 }

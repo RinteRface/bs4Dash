@@ -105,7 +105,7 @@ if(interactive()){
      )
      ),
      bs4Card(
-       title = "Closable Box with gradient", 
+       title = "Closable Box with solidHeader", 
        closable = TRUE, 
        width = 6,
        solidHeader = TRUE, 
@@ -119,6 +119,9 @@ if(interactive()){
  )
 }
 
+}
+\seealso{
+Other cards: \code{\link{bs4ValueBox}}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
