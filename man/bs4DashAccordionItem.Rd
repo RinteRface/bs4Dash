@@ -4,7 +4,7 @@
 \alias{bs4DashAccordionItem}
 \title{Create a Bootstrap 4 accordion item}
 \usage{
-bs4DashAccordionItem(..., id, title = NULL, status = NULL, width = 6)
+bs4DashAccordionItem(..., id, title = NULL, status = NULL, width = 12)
 }
 \arguments{
 \item{...}{Item content.}

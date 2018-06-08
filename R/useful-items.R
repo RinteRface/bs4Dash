@@ -129,7 +129,7 @@ bs4DashAccordion <- function(...) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 6) {
+bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
   
   
   accordionItemCl <- "card"
@@ -166,5 +166,142 @@ bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 6
     class = if (!is.null(width)) paste0("col-sm-", width),
     accordionItemTag
   )
+}
+
+
+
+#' Create a Bootstrap 4 carousel
+#' 
+#' Beautiful carousel from AdminLTE3 
+#'
+#' @param ... Slot for bs4DashCarouselItem.
+#' @param id Unique carousel id.
+#' @param width Carousel width. Between 1 and 12.
+#' 
+#' @examples 
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       title = "Carousel",
+#'       bs4DashCarousel(
+#'        id = "mycarousel",
+#'        width = 6,
+#'        bs4DashCarouselItem(
+#'         active = TRUE,
+#'         src = "http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
+#'        ),
+#'        bs4DashCarouselItem(
+#'         active = FALSE,
+#'         src = "http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
+#'        ),
+#'        bs4DashCarouselItem(
+#'         active = FALSE,
+#'         src = "http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
+#'        )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4DashCarousel <- function(..., id, width = 12) {
   
+  items <- list(...)
+  
+  generateCarouselNav <- function(items) {
+    lapply(1:length(items), FUN = function(i) {
+      active <- sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
+      
+      shiny::tags$li(
+        `data-target` = paste0("#",id),
+        `data-slide-to` = i - 1,
+        class = if (isTRUE(active)) "active" else NULL
+      )
+    })
+  }
+  
+  indicatorsTag <- shiny::tags$ol(
+    class = "carousel-indicators",
+    generateCarouselNav(items)
+  )
+  
+  bodyTag <- shiny::tags$div(
+    class = "carousel-inner",
+    ...
+  )
+  
+  controlButtons <- shiny::tagList(
+    # previous
+    shiny::tags$a(
+      class = "carousel-control-prev",
+      href = paste0("#", id),
+      role = "button",
+      `data-slide` = "prev",
+      shiny::tags$span(
+        class = "carousel-control-prev-icon",
+        `aria-hidden` = "true"
+      ),
+      shiny::tags$span(class = "sr-only", "Previous")
+    ),
+    # next
+    shiny::tags$a(
+      class = "carousel-control-next",
+      href = paste0("#", id),
+      role = "button",
+      `data-slide` = "next",
+      shiny::tags$span(
+        class = "carousel-control-next-icon",
+        `aria-hidden` = "true"
+      ),
+      shiny::tags$span(class = "sr-only", "Next")
+    )
+  )
+  
+  carouselTag <- shiny::tags$div(
+    class = "carousel slide",
+    `data-ride` = "carousel",
+    id = id
+  )
+  
+  carouselTag <- shiny::tagAppendChildren(carouselTag, indicatorsTag, bodyTag, controlButtons)
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    carouselTag
+  )
+  
+}
+
+
+
+#' Create a Bootstrap 4 carousel item
+#' 
+#' To insert in a bs4DashCarousel
+#'
+#' @param active Whether the item is active or not at start.
+#' @param src Item path or url.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4DashCarouselItem <- function(active = FALSE, src = NULL) {
+  shiny::tags$div(
+    class = if (isTRUE(active)) "carousel-item active" else "carousel-item",
+    shiny::tags$img(
+      class = "d-block w-100", 
+      src = src
+    )
+  )
 }
