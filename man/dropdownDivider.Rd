@@ -12,3 +12,6 @@ Create a box dropdown divider
 \note{
 Useful to separate 2 sections of dropdown items.
 }
+\author{
+David Granjon, \email{dgranjon@ymail.com}
+}

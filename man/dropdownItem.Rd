@@ -14,3 +14,6 @@ dropdownItem(url = NULL, name = NULL)
 \description{
 Create a box dropdown item
 }
+\author{
+David Granjon, \email{dgranjon@ymail.com}
+}

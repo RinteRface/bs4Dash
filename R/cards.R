@@ -192,12 +192,15 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     style <- paste0("height: ", shiny::validateCssUnit(height))
   }
   
-  cardTag <- shiny::tags$div(class = cardCl)
+  cardTag <- shiny::tags$div(
+    class = cardCl,
+    style = if (!is.null(style)) style
+  )
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
-   cardTag
+    cardTag
   )
     
 }
@@ -210,6 +213,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 #' Can be used to add dropdown items to a cardtool.
 #'
 #' @param ... Slot for dropdownItem.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 dropdownItemList <- function(...) {
@@ -226,6 +231,8 @@ dropdownItemList <- function(...) {
 #'
 #' @param url Target url or page.
 #' @param name Item name.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 dropdownItem <- function(url = NULL, name = NULL) {
@@ -242,6 +249,8 @@ dropdownItem <- function(url = NULL, name = NULL) {
 #' Create a box dropdown divider 
 #'
 #' @note Useful to separate 2 sections of dropdown items.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 dropdownDivider <- function() {
@@ -266,6 +275,8 @@ dropdownDivider <- function() {
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param href An optional URL to link to. 
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @family cards
 #' @examples
@@ -363,6 +374,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL,
 #'   default valueBox width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
+#'   
+#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @family cards
 #' @examples
@@ -455,4 +468,168 @@ bs4InfoBox <- function(..., title, value = NULL,
     class = if (!is.null(width)) paste0("col-sm-", width),
     infoBoxTag
   )
+}
+
+
+
+
+#' Create a Boostrap 4 card
+#'
+#' Build an adminLTE3 card
+#'
+#' @param ... Contents of the box: should be bs4TabPanel.
+#' @param title TabCard title.
+#' @param width The width of the box, using the Bootstrap grid system. This is
+#'   used for row-based layouts. The overall width of a region is 12, so the
+#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   layouts, use \code{NULL} for the width; the width is set by the column that
+#'   contains the box.
+#' @param height The height of a box, in pixels or other CSS unit. By default
+#'   the height scales automatically with the content.
+#' 
+#' @family cards
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter(),
+#'     title = "test",
+#'     body = bs4DashBody(
+#'      bs4TabCard(
+#'       title = "A card with tabs",
+#'       bs4TabPanel(
+#'        title = "Tab1", 
+#'        active = FALSE,
+#'        "Content 1"
+#'       ),
+#'       bs4TabPanel(
+#'        title = "Tab2", 
+#'        active = TRUE,
+#'        "Content 2"
+#'       ),
+#'       bs4TabPanel(
+#'        title = "Tab3", 
+#'        active = FALSE,
+#'        "Content 3"
+#'       )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4TabCard <- function(..., title = NULL, width = 6, height = NULL) {
+  
+  tabCardCl <- "card"
+  
+  # header
+  headerTag <- shiny::tags$div(
+    class = "card-header d-flex p-0",
+    shiny::tags$h3(class = "card-title p-3", title),
+    
+    # tab menu
+    bs4TabSetPanel(...)
+  )
+  
+  # body
+  panels <- list(...)
+  bodyTag <- shiny::tags$div(
+    class = "card-body",
+    shiny::tags$div(
+      class = "tab-content",
+      lapply(1:length(panels), FUN = function(i) {
+        panels[[i]][[2]]
+      })
+    )
+  )
+  
+  style <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height))
+  }
+  
+  tabCardTag <- shiny::tags$div(
+    class = tabCardCl,
+    style = if (!is.null(style)) style
+  )
+  
+  tabCardTag <- shiny::tagAppendChildren(tabCardTag, headerTag, bodyTag)
+  
+  shiny::tags$div(
+    class = paste0("col-sm-", width),
+    tabCardTag
+  )
+}
+
+
+
+#' Create a tabSetPanel
+#' 
+#' Imported by bs4TabCard
+#'
+#' @param ... Slot for bs4TabPanel.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4TabSetPanel <- function(...) {
+  
+  tabs <- list(...)
+  
+  # handle tabs
+  tabSetPanelItem <- lapply(1:length(tabs), FUN = function(i) {
+    
+    title <- tabs[[i]][[1]]
+    tabsTag <- tabs[[i]][[2]]
+    
+    id <- tabsTag$attribs$id
+    active <- sum(grep(x = tabsTag$attribs$class, pattern = "active")) == 1
+    
+    shiny::tags$li(
+      class = "nav-item",
+      shiny::tags$a(
+        class = if (active == 1) "nav-link active" else "nav-link",
+        href = paste0("#", id),
+        `data-toggle` = "tab",
+        title
+      )
+    )
+  })
+
+  tabsetTag <- shiny::tags$ul(class = "nav nav-pills ml-auto p-2")
+  tabsetTag <- shiny::tagAppendChildren(tabsetTag, tabSetPanelItem)
+  tabsetTag
+}
+
+
+
+#' Create a tabPanel
+#' 
+#' To be included in a bs4TabCard
+#'
+#' @param ... Tab content
+#' @param title Tab title: it will be also passed as the id argument. Should be unique.
+#' @param active Whether the tab is active or not. FALSE bu default.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4TabPanel <- function(..., title, active = FALSE) {
+  
+  tabPanelTag <- shiny::tags$div(
+    class = if (isTRUE(active)) "tab-pane active" else "tab-pane",
+    id = title,
+    ...
+  )
+  return(list(title, tabPanelTag))
 }

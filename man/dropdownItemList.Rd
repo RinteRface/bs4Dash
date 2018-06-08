@@ -12,3 +12,6 @@ dropdownItemList(...)
 \description{
 Can be used to add dropdown items to a cardtool.
 }
+\author{
+David Granjon, \email{dgranjon@ymail.com}
+}
