@@ -7,7 +7,7 @@
 bs4DashBadge(..., position = c("left", "right"), status)
 }
 \arguments{
-\item{...}{BDage content.}
+\item{...}{Badge content.}
 
 \item{position}{Badge position: "left" or "right".}
 
