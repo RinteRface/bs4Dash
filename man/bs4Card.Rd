@@ -121,7 +121,8 @@ if(interactive()){
 
 }
 \seealso{
-Other cards: \code{\link{bs4ValueBox}}
+Other cards: \code{\link{bs4InfoBox}},
+  \code{\link{bs4ValueBox}}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

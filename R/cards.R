@@ -342,3 +342,117 @@ bs4ValueBox <- function(value, subtitle, icon = NULL,
     valueBoxTag
   )
 }
+
+
+
+#' Boostrap 4 info box
+#'
+#' A beautiful AdminLTE3 info box.
+#'
+#' @param ... Any extra UI element.
+#' @param title Info box title.
+#' @param value The value to display in the box. Usually a number or short text.
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param iconStatus Icon status. See status for valid colors.
+#' @param iconElevation Icon elevation compared to the main content (relief). 3 by default.
+#' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
+#' @param gradientColor If NULL (the default), the background of the box will be
+#'   white. Otherwise, a color string. "primary", "success", "warning" or "danger".
+#' @param width The width of the box, using the Bootstrap grid system. This is
+#'   used for row-based layouts. The overall width of a region is 12, so the
+#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   layouts, use \code{NULL} for the width; the width is set by the column that
+#'   contains the box.
+#'
+#' @family cards
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       fluidRow(
+#'        bs4InfoBox(
+#'         title = "Messages",
+#'         iconStatus = "success",
+#'         value = 1410,
+#'         icon = "envelope-o"
+#'        ),
+#'        bs4InfoBox(
+#'         title = "Bookmarks",
+#'         status = "info",
+#'         value = 240,
+#'         icon = "bookmark-o"
+#'        ),
+#'        bs4InfoBox(
+#'         title = "Comments",
+#'         gradientColor = "danger",
+#'         value = 41410,
+#'         icon = "comments-o"
+#'        )
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4InfoBox <- function(..., title, value = NULL,
+                       icon = NULL, iconStatus = NULL, 
+                       iconElevation = 3, status = NULL, 
+                       gradientColor = NULL, width = 4) {
+  
+
+  infoBoxCl <- if (!is.null(gradientColor)) {
+    paste0("info-box bg-", gradientColor, "-gradient")
+  } else {
+    if (is.null(status)) {
+      "info-box"
+    } else {
+      paste0("info-box bg-", status)
+    }
+  }
+  
+  iconTag <- shiny::tags$span(
+    class = if (!is.null(status) || !is.null(gradientColor)) {
+      "info-box-icon"
+    } else {
+      if (!is.null(iconStatus)) 
+        paste0("info-box-icon bg-", iconStatus) 
+      else "info-box-icon"
+    },
+    class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
+    shiny::tags$i(class = paste0("fa fa-", icon))
+  )
+  
+  contentTag <- shiny::tags$div(
+    class = "info-box-content",
+    shiny::tags$span(
+      class = "info-box-text",
+      title
+    ),
+    shiny::tags$span(
+      class = "info-box-number",
+      value
+    ),
+    ...
+  )
+  
+  
+  infoBoxTag <- shiny::tags$div(class = infoBoxCl)
+  
+  infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
+
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    infoBoxTag
+  )
+}
