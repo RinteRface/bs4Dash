@@ -54,12 +54,11 @@ bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
 
 
 
-
 #' Create a Boostrap 4 dashboard main sidebar menu
 #'
 #' Build an adminLTE3 dashboard main sidebar menu
 #'
-#' @param ... Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem.
+#' @param ... Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem or bs4SidebarHeader
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -100,6 +99,7 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
     class = menuItemCl,
     shiny::tags$a(
       href = "#",
+      `data-toggle` = "tab",
       class = if (isTRUE(active)) "nav-link active" else "nav-link",
       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
@@ -121,26 +121,48 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
 #'
 #' Build an adminLTE3 dashboard main sidebar menu item
 #'
-#' @param ... Any element such as badge.
-#' @param name Item list name.
+#' @param ... Item name.
+#' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param icon Item icon.
 #' @param active Whether the item is active. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4SidebarMenuItem <- function(..., name = NULL, icon = NULL, active = FALSE) {
+bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE) {
+  
+  bs4TabItems()
 
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
-      href = "#",
+      href = paste0("#shiny-tab-", tabName),
+      `data-toggle` = "tab",
+      `data-value` = tabName,
       class = if (isTRUE(active)) "nav-link active" else "nav-link",
       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
-        name,
         ...
       )
     )
+  )
+}
+
+
+
+
+#' Create a Boostrap 4 dashboard main sidebar header
+#'
+#' Build an adminLTE3 dashboard main sidebar header
+#'
+#' @param title SidebarHeader title.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4SidebarHeader <- function(title) {
+  shiny::tags$li(
+    class = "nav-header",
+    title
   )
 }

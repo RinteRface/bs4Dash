@@ -4,12 +4,12 @@
 \alias{bs4TabPanel}
 \title{Create a tabPanel}
 \usage{
-bs4TabPanel(..., title, active = FALSE)
+bs4TabPanel(..., tabName, active = FALSE)
 }
 \arguments{
 \item{...}{Tab content}
 
-\item{title}{Tab title: it will be also passed as the id argument. Should be unique.}
+\item{tabName}{Tab name: it will be also passed as the id argument. Should be unique.}
 
 \item{active}{Whether the tab is active or not. FALSE bu default.}
 }

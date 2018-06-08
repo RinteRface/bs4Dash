@@ -506,17 +506,17 @@ bs4InfoBox <- function(..., title, value = NULL,
 #'      bs4TabCard(
 #'       title = "A card with tabs",
 #'       bs4TabPanel(
-#'        title = "Tab1", 
+#'        tabName = "Tab1", 
 #'        active = FALSE,
 #'        "Content 1"
 #'       ),
 #'       bs4TabPanel(
-#'        title = "Tab2", 
+#'        tabName = "Tab2", 
 #'        active = TRUE,
 #'        "Content 2"
 #'       ),
 #'       bs4TabPanel(
-#'        title = "Tab3", 
+#'        tabName = "Tab3", 
 #'        active = FALSE,
 #'        "Content 3"
 #'       )
@@ -591,7 +591,7 @@ bs4TabSetPanel <- function(...) {
   # handle tabs
   tabSetPanelItem <- lapply(1:length(tabs), FUN = function(i) {
     
-    title <- tabs[[i]][[1]]
+    tabName <- tabs[[i]][[1]]
     tabsTag <- tabs[[i]][[2]]
     
     id <- tabsTag$attribs$id
@@ -603,7 +603,7 @@ bs4TabSetPanel <- function(...) {
         class = if (active == 1) "nav-link active" else "nav-link",
         href = paste0("#", id),
         `data-toggle` = "tab",
-        title
+        tabName
       )
     )
   })
@@ -620,18 +620,18 @@ bs4TabSetPanel <- function(...) {
 #' To be included in a bs4TabCard
 #'
 #' @param ... Tab content
-#' @param title Tab title: it will be also passed as the id argument. Should be unique.
+#' @param tabName Tab name: it will be also passed as the id argument. Should be unique.
 #' @param active Whether the tab is active or not. FALSE bu default.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabPanel <- function(..., title, active = FALSE) {
+bs4TabPanel <- function(..., tabName, active = FALSE) {
   
   tabPanelTag <- shiny::tags$div(
     class = if (isTRUE(active)) "tab-pane active" else "tab-pane",
-    id = title,
+    id = tabName,
     ...
   )
-  return(list(title, tabPanelTag))
+  return(list(tabName, tabPanelTag))
 }

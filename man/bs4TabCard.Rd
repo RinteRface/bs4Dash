@@ -38,17 +38,17 @@ if(interactive()){
      bs4TabCard(
       title = "A card with tabs",
       bs4TabPanel(
-       title = "Tab1", 
+       tabName = "Tab1", 
        active = FALSE,
        "Content 1"
       ),
       bs4TabPanel(
-       title = "Tab2", 
+       tabName = "Tab2", 
        active = TRUE,
        "Content 2"
       ),
       bs4TabPanel(
-       title = "Tab3", 
+       tabName = "Tab3", 
        active = FALSE,
        "Content 3"
       )

@@ -7,7 +7,7 @@
 bs4SidebarMenu(...)
 }
 \arguments{
-\item{...}{Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem.}
+\item{...}{Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem or bs4SidebarHeader}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu

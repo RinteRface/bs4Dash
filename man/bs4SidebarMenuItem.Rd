@@ -4,12 +4,12 @@
 \alias{bs4SidebarMenuItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu item}
 \usage{
-bs4SidebarMenuItem(..., name = NULL, icon = NULL, active = FALSE)
+bs4SidebarMenuItem(..., tabName = NULL, icon = NULL, active = FALSE)
 }
 \arguments{
-\item{...}{Any element such as badge.}
+\item{...}{Item name.}
 
-\item{name}{Item list name.}
+\item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
 \item{icon}{Item icon.}
 

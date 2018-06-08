@@ -7,7 +7,7 @@
 bs4DashBody(...)
 }
 \arguments{
-\item{...}{Body content.}
+\item{...}{Body content, slot for bs4TabItems.}
 }
 \description{
 Build an adminLTE3 dashboard body
