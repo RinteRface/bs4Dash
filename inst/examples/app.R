@@ -33,6 +33,12 @@ shiny::shinyApp(
             active = TRUE
           ),
           bs4SidebarMenuItem(
+            "User cards",
+            tabName = "usercards",
+            icon = "object-ungroup",
+            active = FALSE
+          ),
+          bs4SidebarMenuItem(
             "Tab boxes",
             tabName = "tabcards",
             icon = "picture-o",
@@ -75,7 +81,7 @@ shiny::shinyApp(
           tabName = "cards",
           fluidRow(
             bs4Card(
-              title = "Closable Box with dropdown", 
+              title = "Closable card with dropdown", 
               closable = TRUE, 
               width = 6,
               status = "warning", 
@@ -94,7 +100,7 @@ shiny::shinyApp(
               plotOutput("plot")
             ),
             bs4Card(
-              title = "Closable Box with gradient", 
+              title = "Closable card with gradient", 
               closable = TRUE, 
               width = 6,
               status = "warning", 
@@ -104,7 +110,7 @@ shiny::shinyApp(
               plotOutput("distPlot")
             ),
             bs4Card(
-              title = "Box with solidHeader and elevation", 
+              title = "Card with solidHeader and elevation", 
               elevation = 4,
               closable = TRUE, 
               width = 6,
@@ -112,6 +118,38 @@ shiny::shinyApp(
               status = "primary",
               collapsible = TRUE,
               plot_ly(z = ~volcano) %>% add_surface()
+            )
+          )
+        ),
+        bs4TabItem(
+          tabName = "usercards",
+          fluidRow(
+            bs4UserCard(
+              src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+              status = "info",
+              title = "User card type 1",
+              subtitle = "a subtitle here",
+              elevation = 4,
+              "Any content here"
+            ),
+            bs4UserCard(
+              type = 2,
+              src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+              status = "success",
+              imageElevation = 4,
+              title = "User card type 2",
+              subtitle = "a subtitle here",
+              bs4ProgressBar(
+                value = 5,
+                striped = FALSE,
+                status = "info"
+              ),
+              bs4ProgressBar(
+                value = 5,
+                striped = TRUE,
+                status = "warning",
+                width = "20%"
+              )
             )
           )
         ),

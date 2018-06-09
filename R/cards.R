@@ -646,3 +646,136 @@ bs4TabPanel <- function(..., tabName, active = FALSE) {
   )
   return(list(tabName, tabPanelTag))
 }
+
+
+
+#' @title AdminLTE3 widget user card
+#'
+#' @description Create widget user card
+#'
+#' @param ... footer content.
+#' @param type User card type. Either NULL or 2.
+#' @param status User card color. "primary", "warning", "danger", "info" or "success".
+#' @param src User image url or path.
+#' @param elevation User card elevation (numeric). NULL by default.
+#' @param imageElevation User card image elevation (numeric). NULL by default.
+#' @param title User card title.
+#' @param subtitle User card subtitle.
+#' @param width The width of the card, using the Bootstrap grid system.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       fluidRow(
+#'       bs4UserCard(
+#'         src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'         status = "info",
+#'         title = "User card type 1",
+#'         subtitle = "a subtitle here",
+#'         elevation = 4,
+#'         "Any content here"
+#'        ),
+#'        bs4UserCard(
+#'         type = 2,
+#'         src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+#'         status = "success",
+#'         imageElevation = 4,
+#'         title = "User card type 2",
+#'         subtitle = "a subtitle here",
+#'         bs4ProgressBar(
+#'          value = 5,
+#'          striped = FALSE,
+#'          status = "info"
+#'          ),
+#'         bs4ProgressBar(
+#'           value = 5,
+#'           striped = TRUE,
+#'           status = "warning",
+#'           width = "20%"
+#'         )
+#'        )
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageElevation = NULL,
+                        status = c("primary", "warning", "danger", "info", "success"),
+                        title = NULL, subtitle = NULL, width = 6) {
+  
+  status <- match.arg(status)
+  
+  userCardCl <- "card card-widget"
+  if (!is.null(type)) {
+    userCardCl <- paste0(userCardCl, " widget-user-", type)
+  } else {
+    userCardCl <- paste0(userCardCl, " widget-user") 
+  } 
+  
+  if (!is.null(elevation)) userCardCl <- paste0(userCardCl, " elevation-", elevation)
+  
+  
+  headerCl <- "widget-user-header"
+  if (!is.null(status)) headerCl <- paste0(headerCl, " bg-", status)
+  
+  
+  headerImageTag <- shiny::tags$div(
+    class = "widget-user-image",
+    shiny::tags$img(
+      class = if (!is.null(imageElevation)) {
+        paste0("img-circle elevation-", imageElevation)
+      } else {
+        "img-circle"
+      },
+      src = src
+    )
+  )
+  
+  headerTag <- if (is.null(type)) {
+    shiny::tagList(
+      shiny::tags$div(
+        class = headerCl,
+        # title and subtitle
+        shiny::tags$h3(class = "widget-user-username", title),
+        shiny::tags$h5(class = "widget-user-desc", subtitle)
+      ),
+      headerImageTag
+    )
+  } else {
+    shiny::tags$div(
+      class = headerCl,
+      headerImageTag,
+      # title and subtitle
+      shiny::tags$h3(class = "widget-user-username", title),
+      shiny::tags$h5(class = "widget-user-desc", subtitle)
+    )
+  }
+    
+  
+  footerTag <- shiny::tags$div(
+    class = "card-footer",
+    ...
+  )
+  
+  userCardTag <- shiny::tags$div(class = userCardCl)
+  userCardTag <- shiny::tagAppendChildren(userCardTag, headerTag, footerTag)
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    userCardTag
+  )
+}
