@@ -352,6 +352,68 @@ shiny::shinyApp(
               title = "Loading State",
               bs4DashLoading()
             )
+          ),
+          fluidRow(
+            bs4Card(
+              title = "Timeline",
+              bs4Timeline(
+                width = 12,
+                reversed = TRUE,
+                bs4TimelineEnd(status = "danger"),
+                bs4TimelineLabel("10 Feb. 2014", status = "info"),
+                bs4TimelineItem(
+                  elevation = 4, 
+                  title = "Item 1",
+                  icon = "gears",
+                  status = "success",
+                  time = "now",
+                  footer = "Here is the footer",
+                  "This is the body"
+                ),
+                bs4TimelineItem(
+                  title = "Item 2",
+                  border = FALSE
+                ),
+                bs4TimelineLabel("3 Jan. 2014", status = "primary"),
+                bs4TimelineItem(
+                  elevation = 2,
+                  title = "Item 3",
+                  icon = "paint-brush",
+                  status = "warning",
+                  bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
+                  bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+                ),
+                bs4TimelineStart(status = "danger")
+              )
+            ),
+            bs4Timeline(
+              width = 6,
+              bs4TimelineEnd(status = "danger"),
+              bs4TimelineLabel("10 Feb. 2014", status = "info"),
+              bs4TimelineItem(
+                elevation = 4, 
+                title = "Item 1",
+                icon = "gears",
+                status = "success",
+                time = "now",
+                footer = "Here is the footer",
+                "This is the body"
+              ),
+              bs4TimelineItem(
+                title = "Item 2",
+                border = FALSE
+              ),
+              bs4TimelineLabel("3 Jan. 2014", status = "primary"),
+              bs4TimelineItem(
+                elevation = 2,
+                title = "Item 3",
+                icon = "paint-brush",
+                status = "warning",
+                bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
+                bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+              ),
+              bs4TimelineStart(status = "danger")
+            )
           )
         ),
         bs4TabItem(

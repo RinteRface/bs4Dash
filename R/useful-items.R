@@ -614,3 +614,258 @@ bs4DashLoading <- function() {
     shiny::tags$i(class = "fa fa-refresh fa-spin")
   )
 }
+
+
+
+
+#' @title AdminLTE3 timeline block
+#'
+#' @description Create a timeline block
+#'
+#' @param ... slot for bs4TimelineLabel or bs4TimelineItem.
+#' @param reversed Whether the timeline is reversed or not.
+#' @param width Timeline width. Between 1 and 12.
+#' 
+#' @note reversed is useful when the user wants to use the timeline
+#' inside a box.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter(),
+#'     title = "test",
+#'     body = bs4DashBody(
+#'      bs4Card(
+#'       title = "Timeline",
+#'       bs4Timeline(
+#'        width = 12,
+#'        reversed = TRUE,
+#'        bs4TimelineEnd(status = "danger"),
+#'        bs4TimelineLabel("10 Feb. 2014", status = "info"),
+#'        bs4TimelineItem(
+#'         elevation = 4, 
+#'         title = "Item 1",
+#'         icon = "gears",
+#'         status = "success",
+#'         time = "now",
+#'         footer = "Here is the footer",
+#'         "This is the body"
+#'        ),
+#'        bs4TimelineItem(
+#'         title = "Item 2",
+#'         border = FALSE
+#'        ),
+#'        bs4TimelineLabel("3 Jan. 2014", status = "primary"),
+#'        bs4TimelineItem(
+#'         elevation = 2,
+#'         title = "Item 3",
+#'         icon = "paint-brush",
+#'         status = "warning",
+#'         bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
+#'         bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+#'        ),
+#'        bs4TimelineStart(status = "danger")
+#'       )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4Timeline <- function(..., reversed = TRUE, width = 6) {
+  
+  cl <- "timeline"
+  if (isTRUE(reversed)) cl <- paste0(cl, " timeline-inverse")
+  
+  timelineTag <- shiny::tags$ul(
+    class = cl,
+    ...
+  )
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    timelineTag
+  )
+  
+}
+
+
+#' @title AdminLTE3 timeline label
+#'
+#' @description Create a timeline label
+#'
+#' @param ... any element.
+#' @param status label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+bs4TimelineLabel <- function(..., status = NULL) {
+  
+  cl <- "bg-"
+  if (!is.null(status)) cl <- paste0(cl, status)
+  
+  shiny::tags$li(
+    class = "time-label",
+    shiny::tags$span(
+      class = cl,
+      ...
+    )
+  )
+}
+
+
+#' @title AdminLTE3 timeline item
+#'
+#' @description Create a timeline item
+#'
+#' @param ... any element such as bs4TimeLineItemMedia ...
+#' @param elevation Timeline elevation (numeric). NULL by default.
+#' @param icon item icon such as "clock-o", "times", ...
+#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param time item date or time.
+#' @param title item title.
+#' @param border Whether to display a border between the header and the body. TRUE by default.
+#' @param footer item footer if any.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+bs4TimelineItem <- function(..., elevation = NULL, icon = NULL, 
+                            status = NULL, time = NULL, title = NULL, 
+                            border = TRUE, footer = NULL) {
+  
+  cl <- "fa fa-"
+  if (!is.null(icon)) cl <- paste0(cl, icon)
+  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+
+  itemCl <- "timeline-header no-border"
+  if (isTRUE(border)) itemCl <- "timeline-header"
+  
+  shiny::tags$li(
+    
+    # timelineItem icon and status
+    shiny::tags$i(
+      class = if (!is.null(elevation)) {
+        paste0(cl, " elevation-", elevation)
+      } else {
+        cl
+      }
+    ),
+    
+    # timelineItem container
+    shiny::tags$div(
+      class = "timeline-item",
+      
+      #timelineItem time/date
+      shiny::tags$span(
+        class = "time",
+        shiny::icon("clock-o"),
+        time
+      ),
+      
+      # timelineItem title
+      shiny::tags$h3(
+        class = if (!is.null(elevation)) {
+          paste0(itemCl, " elevation-", elevation)
+        } else {
+          itemCl
+        },
+        title
+      ),
+      
+      # timelineItem body
+      shiny::tags$div(
+        class = "timeline-body",
+        ...
+      ),
+      
+      # timelineItem footer
+      shiny::tags$div(
+        class = "timeline-footer",
+        footer
+      )
+    )
+  )
+}
+
+
+#' @title AdminLTE2 timeline media item
+#'
+#' @description Create a timeline media item
+#'
+#' @param src media url or path.
+#' @param height media height in pixels.
+#' @param width media width in pixels.
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+bs4TimelineItemMedia <- function(src = NULL, height = NULL, width = NULL) {
+  shiny::img(
+    class = "margin", 
+    src = src, 
+    height = height,
+    width = width
+  )
+}
+
+
+
+
+#' @title AdminLTE3 timeline starting point
+#'
+#' @description Create a timeline starting point
+#'
+#' @param icon item icon such as "clock-o", "times", ...
+#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+bs4TimelineStart <- function(icon = "clock-o", status = NULL) {
+  
+  cl <- "fa fa-"
+  if (!is.null(icon)) cl <- paste0(cl, icon)
+  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+  
+  shiny::tags$li(
+    shiny::tags$i(class = cl)
+  )
+}
+
+
+#' @title AdminLTE3 timeline ending point
+#'
+#' @description Create a timeline ending point
+#'
+#' @param icon item icon such as "clock-o", "times", ...
+#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
+  
+  cl <- "fa fa-"
+  if (!is.null(icon)) cl <- paste0(cl, icon)
+  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+  
+  shiny::tagList(
+    shiny::tags$li(
+      shiny::tags$i(class = cl)
+    ),
+    shiny::br(), 
+    shiny::br()
+  )
+}
