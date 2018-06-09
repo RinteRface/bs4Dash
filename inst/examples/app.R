@@ -39,7 +39,7 @@ shiny::shinyApp(
             active = FALSE
           ),
           bs4SidebarMenuItem(
-            "Tab boxes",
+            "Tab cards",
             tabName = "tabcards",
             icon = "picture-o",
             active = FALSE
