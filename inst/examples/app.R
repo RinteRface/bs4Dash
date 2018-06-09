@@ -25,7 +25,7 @@ shiny::shinyApp(
           name = "Cards",
           icon = "gears",
           open = TRUE,
-          active = FALSE,
+          active = TRUE,
           bs4SidebarMenuItem(
             "Basic cards",
             tabName = "cards",
@@ -104,7 +104,8 @@ shiny::shinyApp(
               plotOutput("distPlot")
             ),
             bs4Card(
-              title = "Closable Box with solidHeader", 
+              title = "Box with solidHeader and elevation", 
+              elevation = 4,
               closable = TRUE, 
               width = 6,
               solidHeader = TRUE, 
@@ -118,6 +119,7 @@ shiny::shinyApp(
           tabName = "tabcards",
           bs4TabCard(
             title = "A card with tabs",
+            elevation = 2,
             bs4TabPanel(
               tabName = "Tab1", 
               active = FALSE,
@@ -171,6 +173,7 @@ shiny::shinyApp(
               href = "#"
             ),
             bs4ValueBox(
+              elevation = 4,
               value = "53%",
               subtitle = "New orders",
               status = "danger",
@@ -277,6 +280,39 @@ shiny::shinyApp(
                 status = "danger",
                 height = "80%"
               )
+            ),
+            bs4Card(
+              title = "Alerts",
+              elevation = 4,
+              bs4DashAlert(
+                title = "Be Careful!",
+                status = "danger",
+                closable = TRUE,
+                width = 12,
+                "Danger alert preview. This alert is dismissable. 
+                A wonderful serenity has taken possession of my entire soul, 
+                like these sweet mornings of spring which 
+                I enjoy with my whole heart."
+              )
+            )
+          ),
+          fluidRow(
+            bs4Card(
+              title = "Callouts",
+              bs4DashCallout(
+                title = "I am a danger callout!",
+                elevation = 4,
+                status = "danger",
+                width = 12,
+                "There is a problem that we need to fix. 
+                A wonderful serenity has taken possession of 
+                my entire soul, like these sweet mornings of 
+                spring which I enjoy with my whole heart."
+              )
+            ),
+            bs4Card(
+              title = "Loading State",
+              bs4DashLoading()
             )
           )
         ),

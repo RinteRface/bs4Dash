@@ -5,7 +5,8 @@
 \title{Boostrap 4 info box}
 \usage{
 bs4InfoBox(..., title, value = NULL, icon = NULL, iconStatus = NULL,
-  iconElevation = 3, status = NULL, gradientColor = NULL, width = 4)
+  iconElevation = 3, status = NULL, gradientColor = NULL, width = 4,
+  elevation = NULL)
 }
 \arguments{
 \item{...}{Any extra UI element.}
@@ -30,6 +31,8 @@ used for row-based layouts. The overall width of a region is 12, so the
 default valueBox width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
+
+\item{elevation}{Infobox elevation.}
 }
 \description{
 A beautiful AdminLTE3 info box.

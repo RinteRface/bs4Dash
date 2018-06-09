@@ -405,3 +405,212 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
   progressTag
   
 }
+
+
+
+
+
+#' Create a Bootstrap 4 alert
+#' 
+#' AdminLTE3 alert
+#'
+#' @param ... Alert content.
+#' @param title Alert title.
+#' @param closable Whether to allow the user to close the alert. FALSE by default.
+#' @param width Alert width. Between 1 and 12.
+#' @param elevation Alert elevation.
+#' @param status Alert status. "primary", "success", "warning", "danger" or "info".
+#' 
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'        title = "Alerts",
+#'        bs4DashAlert(
+#'         title = "Be Careful!",
+#'         status = "danger",
+#'         closable = FALSE,
+#'         "Danger alert preview. This alert is not dismissable. 
+#'         A wonderful serenity has taken possession of my entire soul, 
+#'         like these sweet mornings of spring which 
+#'         I enjoy with my whole heart."
+#'        ),
+#'        bs4DashAlert(
+#'         title = "Congratulation!",
+#'         status = "success",
+#'         closable = TRUE,
+#'         elevation = 4,
+#'         "Warning alert preview. This alert is dismissable. 
+#'         A wonderful serenity has taken possession of my entire soul, 
+#'         like these sweet mornings of spring which 
+#'         I enjoy with my whole heart."
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
+                         status = c("primary", "warning", "danger", "info", "success")) {
+  
+  status <- match.arg(status)
+  
+  type <- switch(
+    status,
+    primary = "info",
+    danger = "ban",
+    info = "info",
+    warning = "warning",
+    success = "check"
+  )
+  
+  alertCl <- "alert"
+  if (!is.null(status)) alertCl <- paste0(alertCl, " alert-", status)
+  if (isTRUE(closable)) alertCl <- paste0(alertCl, " alert-dismissible")
+  if (!is.null(elevation)) alertCl <- paste0(alertCl, " elevation-", elevation)
+  
+  alertTag <- shiny::tags$div(
+    class = alertCl,
+    if (closable) shiny::tags$button(
+      type = "button",
+      class = "close",
+      `data-dismiss` = "alert",
+      `aria-hidden` = "true",
+      "x"
+    ),
+    shiny::tags$h5(
+      shiny::tags$i(class = paste0("icon fa fa-", type)),
+      title
+    ),
+    ...
+  )
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    alertTag
+  )
+}
+
+
+
+#' Create a Bootstrap 4 callout
+#' 
+#' AdminLTE3 calout
+#'
+#' @param ... Callout content.
+#' @param title Callout title.
+#' @param width Callout width. Between 1 and 12.
+#' @param elevation Callout elevation.
+#' @param status Callout status. "primary", "success", "warning", "danger" or "info".
+#' 
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'        title = "Callouts",
+#'        bs4DashCallout(
+#'         title = "I am a danger callout!",
+#'         elevation = 4,
+#'         status = "danger",
+#'         "There is a problem that we need to fix. 
+#'         A wonderful serenity has taken possession of 
+#'         my entire soul, like these sweet mornings of 
+#'         spring which I enjoy with my whole heart."
+#'        ),
+#'        bs4DashCallout(
+#'         title = "I am a danger callout!",
+#'         status = "warning",
+#'         "This is a yellow callout."
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4DashCallout <- function(..., title, width = 6, elevation = NULL,
+                           status = c("primary", "warning", "danger", "info", "success")) {
+  
+  status <- match.arg(status)
+  
+  calloutCl <- "callout"
+  if (!is.null(status)) calloutCl <- paste0(calloutCl, " callout-", status)
+  if (!is.null(elevation)) calloutCl <- paste0(calloutCl, " elevation-", elevation)
+  
+  calloutTag <- shiny::tags$div(
+    class = calloutCl,
+    shiny::tags$h5(title),
+    ...
+  )
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    calloutTag
+  )
+}
+
+
+
+#' @title AdminLTE3 loading state element
+#'
+#' @description When a section is still work in progress or a computation is running
+#' 
+#' @note Loading state can be programmatically used when a conputation is running for instance.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'        title = "Callouts",
+#'        bs4Card(
+#'         title = "Loading State",
+#'         bs4DashLoading()
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4DashLoading <- function() {
+  shiny::tags$div(
+    class = "overlay",
+    shiny::tags$i(class = "fa fa-refresh fa-spin")
+  )
+}

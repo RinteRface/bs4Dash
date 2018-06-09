@@ -7,6 +7,7 @@
 #' @param footer Optional footer text.
 #' @param status The status of the item This determines the item's background
 #'   color. "primary", "success", "warning", "danger". NULL by default.
+#' @param elevation Card elevation. 
 #' @param solidHeader Should the header be shown with a solid color background?
 #' @param headerBorder Whether to display a border between the header and body.
 #' TRUE by default
@@ -99,7 +100,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
+bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, labelStatus = NULL, labelText = NULL, 
@@ -120,6 +121,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   }
     
   if (isTRUE(collapsed)) cardCl <- paste0(cardCl, " collapsed-card")
+  if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
   
   cardToolTag <- shiny::tags$div(
     class = "card-tools",
@@ -270,6 +272,7 @@ dropdownDivider <- function() {
 #' @param value The value to display in the box. Usually a number or short text.
 #' @param subtitle Subtitle text.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param elevation Value box elevation. 
 #' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
@@ -321,11 +324,12 @@ dropdownDivider <- function() {
 #' }
 #'
 #' @export
-bs4ValueBox <- function(value, subtitle, icon = NULL, 
+bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
                         status = NULL, width = 3, href = "#") {
  
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
+  if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
   
   innerTag <- shiny::tags$div(
     class = "inner",
@@ -376,6 +380,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL,
 #'   default valueBox width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
+#' @param elevation Infobox elevation.
 #'   
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -422,7 +427,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL,
 bs4InfoBox <- function(..., title, value = NULL,
                        icon = NULL, iconStatus = NULL, 
                        iconElevation = 3, status = NULL, 
-                       gradientColor = NULL, width = 4) {
+                       gradientColor = NULL, width = 4,
+                       elevation = NULL) {
   
 
   infoBoxCl <- if (!is.null(gradientColor)) {
@@ -434,6 +440,8 @@ bs4InfoBox <- function(..., title, value = NULL,
       paste0("info-box bg-", status)
     }
   }
+  
+  if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
   
   iconTag <- shiny::tags$span(
     class = if (!is.null(status) || !is.null(gradientColor)) {
@@ -488,6 +496,7 @@ bs4InfoBox <- function(..., title, value = NULL,
 #'   contains the box.
 #' @param height The height of a box, in pixels or other CSS unit. By default
 #'   the height scales automatically with the content.
+#' @param elevation tabCard elevation. 
 #' 
 #' @family cards
 #'
@@ -530,9 +539,11 @@ bs4InfoBox <- function(..., title, value = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabCard <- function(..., title = NULL, width = 6, height = NULL) {
+bs4TabCard <- function(..., title = NULL, width = 6, 
+                       height = NULL, elevation = NULL) {
   
   tabCardCl <- "card"
+  if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
   
   # header
   headerTag <- shiny::tags$div(

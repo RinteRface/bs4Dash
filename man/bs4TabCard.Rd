@@ -4,7 +4,8 @@
 \alias{bs4TabCard}
 \title{Create a Boostrap 4 card}
 \usage{
-bs4TabCard(..., title = NULL, width = 6, height = NULL)
+bs4TabCard(..., title = NULL, width = 6, height = NULL,
+  elevation = NULL)
 }
 \arguments{
 \item{...}{Contents of the box: should be bs4TabPanel.}
@@ -19,6 +20,8 @@ contains the box.}
 
 \item{height}{The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.}
+
+\item{elevation}{tabCard elevation.}
 }
 \description{
 Build an adminLTE3 card
