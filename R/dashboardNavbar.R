@@ -127,7 +127,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       class = "nav-link",
       `data-toggle` = "dropdown",
       href = "#",
-      shiny::tags$i(class = "fa fa-bell-o"),
+      shiny::tags$i(class = "fa fa-bell"),
       shiny::tags$span(
         class = paste0("badge badge-", status, " navbar-badge"), 
         labelText
@@ -163,24 +163,21 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #'
 #' @param text Item content.
 #' @param date Item date.
-#' @param src Item link to an external ressource.
 #' @param icon Item icon.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenuItem <- function(text, date = NULL, src = NULL, icon = "envelope") {
+bs4DropdownMenuItem <- function(text, date = NULL, icon = "envelope") {
   
   shiny::tagList(
     shiny::tags$a(
       class = "dropdown-item",
-      href = src,
-      shiny::fluidRow(
-        shiny::tags$i(
-          class = paste0("fa fa-", icon, " mr-2")
-        ),
-        shiny::tags$p(class = "text-primary text-sm", text)
+      href = "#",
+      shiny::tags$i(
+        class = paste0("fa fa-", icon, " mr-2")
       ),
+      text,
       shiny::tags$span(
         class = "float-right text-muted text-sm",
         date,

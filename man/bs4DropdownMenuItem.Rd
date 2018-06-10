@@ -4,14 +4,12 @@
 \alias{bs4DropdownMenuItem}
 \title{Create a Boostrap 4 dashboard dropdown menu item}
 \usage{
-bs4DropdownMenuItem(text, date = NULL, src = NULL, icon = "envelope")
+bs4DropdownMenuItem(text, date = NULL, icon = "envelope")
 }
 \arguments{
 \item{text}{Item content.}
 
 \item{date}{Item date.}
-
-\item{src}{Item link to an external ressource.}
 
 \item{icon}{Item icon.}
 }
