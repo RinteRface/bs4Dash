@@ -148,6 +148,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       shiny::tags$a(
         class = "dropdown-item dropdown-footer",
         href = src,
+        target = "_blank",
         "See more"
       )
     )
@@ -168,14 +169,14 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenuItem <- function(text, date = NULL, icon = "envelope") {
+bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
   
   shiny::tagList(
     shiny::tags$a(
       class = "dropdown-item",
       href = "#",
       shiny::tags$i(
-        class = paste0("fa fa-", icon, " mr-2")
+        class = paste0("fas fa-", icon, " mr-2")
       ),
       text,
       shiny::tags$span(

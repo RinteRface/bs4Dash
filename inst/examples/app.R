@@ -9,7 +9,7 @@ library(plotly)
 shiny::shinyApp(
   ui = bs4DashPage(
     navbar = bs4DashNavbar(
-      status = "primary",
+      status = "white",
       "I can write text in the navbar!",
       rightUi = bs4DropdownMenu(
         show = TRUE,
@@ -27,6 +27,8 @@ shiny::shinyApp(
       )
     ),
     sidebar = bs4DashSidebar(
+      skin = "light",
+      status = "primary",
       title = "bs4Dash",
       brandColor = "primary",
       url = "http://www.google.fr",
@@ -44,7 +46,7 @@ shiny::shinyApp(
             "Basic cards",
             tabName = "cards",
             icon = "sliders",
-            active = TRUE
+            active = FALSE
           ),
           bs4SidebarMenuItem(
             "User cards",
@@ -445,6 +447,7 @@ shiny::shinyApp(
       )
     ),
     controlbar = bs4DashControlbar(
+      skin = "light",
       title = "My right sidebar",
       sliderInput("obs", "Number of observations:",
                   min = 0, max = 1000, value = 500
