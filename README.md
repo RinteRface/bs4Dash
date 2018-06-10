@@ -5,6 +5,9 @@
 
 ## Coming Soon ...
 
+![](inst/images/bs4Dash_showcase.png)
+
 ## Issues
 
 There are few issues listed [here](https://github.com/DivadNojnarg/bs4Dash/issues/3).
+
