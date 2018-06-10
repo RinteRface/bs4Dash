@@ -130,8 +130,6 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
 #'
 #' @export
 bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE) {
-  
-  bs4TabItems()
 
   shiny::tags$li(
     class = "nav-item",

@@ -46,7 +46,7 @@ bs4TabItem <- function(tabName = NULL, ...) {
     role = "tabpanel",
     class = "tab-pane container-fluid",
     id = paste0("shiny-tab-", tabName),
-    br(),
+    shiny::br(),
     ...
   )
 }

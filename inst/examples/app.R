@@ -10,7 +10,21 @@ shiny::shinyApp(
   ui = bs4DashPage(
     navbar = bs4DashNavbar(
       status = "primary",
-      "I can write text in the navbar!"
+      "I can write text in the navbar!",
+      rightUi = bs4DropdownMenu(
+        show = TRUE,
+        labelText = "!",
+        status = "danger",
+        src = "http://www.google.fr",
+        bs4DropdownMenuItem(
+          text = "message 1",
+          date = "today"
+        ),
+        bs4DropdownMenuItem(
+          text = "message 2",
+          date = "yesterday"
+        )
+      )
     ),
     sidebar = bs4DashSidebar(
       title = "bs4Dash",
@@ -413,6 +427,15 @@ shiny::shinyApp(
                 bs4TimelineItemMedia(src = "http://placehold.it/150x100")
               ),
               bs4TimelineStart(status = "danger")
+            )
+          ),
+          fluidRow(
+            bs4Card(
+              title = "Stars",
+              bs4Stars(grade = 5),
+              bs4Stars(grade = 5, color = "success"),
+              bs4Stars(grade = 1, color = "danger"),
+              bs4Stars(grade = 3, color = "info")
             )
           )
         ),

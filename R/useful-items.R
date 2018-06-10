@@ -869,3 +869,67 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
     shiny::br()
   )
 }
+
+
+
+
+#' @title AdminLTE3 stars
+#'
+#' @description Create a block of stars (ideal for rating)
+#'
+#' @param maxstar Maximum number of stars by block.
+#' @param grade Current score. Should be positive and lower or equal to maxstar.
+#' @param color Star color: see \code{validColors()} in the documentation.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       bs4Card(
+#'        title = "Stars",
+#'        bs4Stars(grade = 5),
+#'        bs4Stars(grade = 5, color = "success"),
+#'        bs4Stars(grade = 1, color = "danger"),
+#'        bs4Stars(grade = 3, color = "info")
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4Stars <- function(maxstar = 5, grade, color = "warning") {
+  
+  stopifnot(!is.null(grade))
+  stopifnot(grade >= 0)
+  stopifnot(grade <= maxstar)
+  
+  shiny::tags$td(
+    class = "mailbox-star",
+    shiny::tags$a(
+      href = NULL,
+      if (grade > 0) {
+        full_star <- lapply(1:grade, FUN = function(i) {
+          shiny::tags$i(class = paste0("fa text-", color, " fa-star"))
+        })
+      },
+      if (grade < maxstar) {
+        empty_star <- lapply(1:(maxstar - grade), FUN = function(i) {
+          shiny::tags$i(class = paste0("fa text-", color, " fa-star-o"))
+        })
+      }
+    ),
+    shiny::tags$br()
+  )
+}
