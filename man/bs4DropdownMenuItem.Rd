@@ -4,7 +4,7 @@
 \alias{bs4DropdownMenuItem}
 \title{Create a Boostrap 4 dashboard dropdown menu item}
 \usage{
-bs4DropdownMenuItem(text, date = NULL, icon = "envelope")
+bs4DropdownMenuItem(text, date = NULL, icon = "info-circle")
 }
 \arguments{
 \item{text}{Item content.}
