@@ -5,7 +5,8 @@
 #' @param ... Badge content.
 #' @param position Badge position: "left" or "right".
 #' @param status Bdage color. "primary", "danger", "info", "success", "warning",
-#' "secondary", "dark" or "light"
+#' "secondary", "dark" or "light".
+#' @param rounded Whether the badge is rounded instead of square. FALSE by default.
 #'  
 #' @examples 
 #' if(interactive()){
@@ -33,12 +34,13 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashBadge <- function(..., position = c("left", "right"), status) {
+bs4DashBadge <- function(..., position = c("left", "right"), status,
+                         rounded = FALSE) {
   
   position <- match.arg(position)
   
   shiny::tags$span(
-    class = paste0(position, " badge", " badge-", status),
+    class = paste0(position, " badge", " badge-", status, if (rounded) " badge-pill"),
     ...
   )
 }

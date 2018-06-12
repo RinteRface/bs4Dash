@@ -4,7 +4,7 @@
 \alias{bs4DashBadge}
 \title{Create a Bootstrap 4 dashboard badge item}
 \usage{
-bs4DashBadge(..., position = c("left", "right"), status)
+bs4DashBadge(..., position = c("left", "right"), status, rounded = FALSE)
 }
 \arguments{
 \item{...}{Badge content.}
@@ -12,7 +12,9 @@ bs4DashBadge(..., position = c("left", "right"), status)
 \item{position}{Badge position: "left" or "right".}
 
 \item{status}{Bdage color. "primary", "danger", "info", "success", "warning",
-"secondary", "dark" or "light"}
+"secondary", "dark" or "light".}
+
+\item{rounded}{Whether the badge is rounded instead of square. FALSE by default.}
 }
 \description{
 Beautiful badge from AdminLTE3

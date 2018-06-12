@@ -441,7 +441,7 @@ shiny::shinyApp(
         bs4TabItem(
           tabName = "test",
           bs4Jumbotron(
-            title = "Hello, world!",
+            title = "I am a Jumbotron!",
             lead = "This is a simple hero unit, a simple jumbotron-style 
                     component for calling extra attention to featured 
                     content or information.",
@@ -450,8 +450,10 @@ shiny::shinyApp(
             status = "primary",
             href = "http://www.google.fr"
           ),
-          bs4DashBadge(status = "secondary", "blabla"),
-          bs4DashBadge(status = "dark", "blabla")
+          
+          h4("Rounded Badges"),
+          bs4DashBadge(status = "secondary", "blabla", rounded = TRUE),
+          bs4DashBadge(status = "dark", "blabla", rounded = TRUE)
         )
       )
     ),
