@@ -5,7 +5,7 @@
 \title{Create a Boostrap 4 dashboard page}
 \usage{
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
-  controlbar = NULL, footer = NULL, title = NULL)
+  controlbar = NULL, footer = NULL, title = NULL, old_school = FALSE)
 }
 \arguments{
 \item{navbar}{Bootstrap 4 dashboard navbar.}
@@ -19,6 +19,9 @@ bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
 \item{footer}{Bootstrap 4 dashboard footer.}
 
 \item{title}{App title.}
+
+\item{old_school}{Whether to use the wonderful sketchy design for BS4. FALSE
+by default.}
 }
 \description{
 Build an adminLTE3 dashboard page

@@ -8,6 +8,8 @@
 #' @param controlbar Bootstrap 4 dashboard control sidebar (right side).
 #' @param footer Bootstrap 4 dashboard footer.
 #' @param title App title.
+#' @param old_school Whether to use the wonderful sketchy design for BS4. FALSE
+#' by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -29,7 +31,9 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, controlbar = NULL, footer = NULL, title = NULL){
+bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, 
+                        controlbar = NULL, footer = NULL, title = NULL,
+                        old_school = FALSE){
 
   shiny::tags$html(
     # Head
@@ -50,6 +54,10 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, controlbar =
       # AdminLTE3
       shiny::includeCSS(system.file("css/adminlte.min.css", package = "bs4Dash")),
       
+      # Old school design (bootswatch sketchy design)
+      if (old_school) {
+        shiny::tags$link(href = "https://bootswatch.com/4/sketchy/bootstrap.min.css", rel = "stylesheet")
+      },
       shiny::tags$link(href = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700", rel = "stylesheet"),
       # javascript
       shiny::includeScript(system.file("js/bootstrap.bundle.min.js", package = "bs4Dash")),

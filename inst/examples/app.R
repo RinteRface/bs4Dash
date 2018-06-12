@@ -463,13 +463,17 @@ shiny::shinyApp(
       sliderInput("obs", "Number of observations:",
                   min = 0, max = 1000, value = 500
       ),
-      radioButtons(
-        "dist", 
-        "Distribution type:",
-        c("Normal" = "norm",
-          "Uniform" = "unif",
-          "Log-normal" = "lnorm",
-          "Exponential" = "exp")
+      column(
+        width = 12,
+        align = "center",
+        radioButtons(
+          "dist", 
+          "Distribution type:",
+          c("Normal" = "norm",
+            "Uniform" = "unif",
+            "Log-normal" = "lnorm",
+            "Exponential" = "exp")
+        )
       )
     ),
     footer = bs4DashFooter(
