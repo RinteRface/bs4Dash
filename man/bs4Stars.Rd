@@ -4,14 +4,14 @@
 \alias{bs4Stars}
 \title{AdminLTE3 stars}
 \usage{
-bs4Stars(maxstar = 5, grade, color = "warning")
+bs4Stars(maxstar = 5, grade, status = "warning")
 }
 \arguments{
 \item{maxstar}{Maximum number of stars by block.}
 
 \item{grade}{Current score. Should be positive and lower or equal to maxstar.}
 
-\item{color}{Star color: see \code{validColors()} in the documentation.}
+\item{status}{Star color: see \code{validColors()} in the documentation.}
 }
 \description{
 Create a block of stars (ideal for rating)
@@ -31,9 +31,9 @@ if(interactive()){
       bs4Card(
        title = "Stars",
        bs4Stars(grade = 5),
-       bs4Stars(grade = 5, color = "success"),
-       bs4Stars(grade = 1, color = "danger"),
-       bs4Stars(grade = 3, color = "info")
+       bs4Stars(grade = 5, status = "success"),
+       bs4Stars(grade = 1, status = "danger"),
+       bs4Stars(grade = 3, status = "info")
       )
      )
    ),

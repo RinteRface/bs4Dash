@@ -2,9 +2,6 @@ library(shiny)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
-# devtools::install_github(
-#   "DivadNojnarg/bs4Dash",
-#   auth_token = "6ba4d889bd51b7d4225a4cbc1b984b813ad5cb95")
 
 shiny::shinyApp(
   ui = bs4DashPage(
@@ -435,14 +432,26 @@ shiny::shinyApp(
             bs4Card(
               title = "Stars",
               bs4Stars(grade = 5),
-              bs4Stars(grade = 5, color = "success"),
-              bs4Stars(grade = 1, color = "danger"),
-              bs4Stars(grade = 3, color = "info")
+              bs4Stars(grade = 5, status = "success"),
+              bs4Stars(grade = 1, status = "danger"),
+              bs4Stars(grade = 3, status = "info")
             )
           )
         ),
         bs4TabItem(
-          tabName = "test"
+          tabName = "test",
+          bs4Jumbotron(
+            title = "Hello, world!",
+            lead = "This is a simple hero unit, a simple jumbotron-style 
+                    component for calling extra attention to featured 
+                    content or information.",
+            "It uses utility classes for typography and spacing 
+            to space content out within the larger container.",
+            status = "primary",
+            href = "http://www.google.fr"
+          ),
+          bs4DashBadge(status = "secondary", "blabla"),
+          bs4DashBadge(status = "dark", "blabla")
         )
       )
     ),
@@ -483,6 +492,6 @@ shiny::shinyApp(
       
       hist(dist(500))
     })
-    
   }
+  
 )

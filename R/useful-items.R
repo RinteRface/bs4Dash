@@ -4,8 +4,9 @@
 #'
 #' @param ... Badge content.
 #' @param position Badge position: "left" or "right".
-#' @param status Bdage color. "primary", "danger", "info", "success" or "warning"
-#' 
+#' @param status Bdage color. "primary", "danger", "info", "success", "warning",
+#' "secondary", "dark" or "light"
+#'  
 #' @examples 
 #' if(interactive()){
 #'  library(shiny)
@@ -879,7 +880,7 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
 #'
 #' @param maxstar Maximum number of stars by block.
 #' @param grade Current score. Should be positive and lower or equal to maxstar.
-#' @param color Star color: see \code{validColors()} in the documentation.
+#' @param status Star color: see \code{validColors()} in the documentation.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -898,9 +899,9 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
 #'       bs4Card(
 #'        title = "Stars",
 #'        bs4Stars(grade = 5),
-#'        bs4Stars(grade = 5, color = "success"),
-#'        bs4Stars(grade = 1, color = "danger"),
-#'        bs4Stars(grade = 3, color = "info")
+#'        bs4Stars(grade = 5, status = "success"),
+#'        bs4Stars(grade = 1, status = "danger"),
+#'        bs4Stars(grade = 3, status = "info")
 #'       )
 #'      )
 #'    ),
@@ -909,7 +910,7 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
 #' }
 #'
 #' @export
-bs4Stars <- function(maxstar = 5, grade, color = "warning") {
+bs4Stars <- function(maxstar = 5, grade, status = "warning") {
   
   stopifnot(!is.null(grade))
   stopifnot(grade >= 0)
@@ -921,15 +922,89 @@ bs4Stars <- function(maxstar = 5, grade, color = "warning") {
       href = NULL,
       if (grade > 0) {
         full_star <- lapply(1:grade, FUN = function(i) {
-          shiny::tags$i(class = paste0("fa text-", color, " fa-star"))
+          shiny::tags$i(class = paste0("fa text-", status, " fa-star"))
         })
       },
       if (grade < maxstar) {
         empty_star <- lapply(1:(maxstar - grade), FUN = function(i) {
-          shiny::tags$i(class = paste0("fa text-", color, " fa-star-o"))
+          shiny::tags$i(class = paste0("fa text-", status, " fa-star-o"))
         })
       }
     ),
     shiny::tags$br()
+  )
+}
+
+
+
+
+#' @title BS4 jumbotron for AdminLTE3
+#'
+#' @description Create a jumbotron
+#'
+#' @param ... Any content.
+#' @param title Jumbotron title.
+#' @param lead Jumbotron lead.
+#' @param href Jumbrotron external link.
+#' @param status Jumbotron background color. "primary", "success", "warning", "danger" or "info".
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       bs4Jumbotron(
+#'       title = "Hello, world!",
+#'       lead = "This is a simple hero unit, a simple jumbotron-style 
+#'       component for calling extra attention to featured 
+#'       content or information.",
+#'       "It uses utility classes for typography and spacing 
+#'       to space content out within the larger container.",
+#'       status = "primary",
+#'       href = "http://www.google.fr"
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL,
+                          status = c("primary", "warning", "danger", "info", "success")) {
+  
+  status <- match.arg(status)
+  
+  # uncomment below if more status are enabled
+  #if (status == "dark") btnStatus <- "gray" else btnStatus <- "dark"
+  btnStatus <- "secondary"
+  
+  jumboCl <- "jumbotron"
+  if (!is.null(status)) jumboCl <- paste0(jumboCl, " bg-", status)
+  
+  # no need to wrap this tag in an external div to set a custom width
+  # since the jumbotron will take the whole page width
+  shiny::tags$div(
+    class = jumboCl,
+    shiny::tags$h1(class = "display-4", title),
+    shiny::tags$p(class = "lead", lead),
+    shiny::tags$hr(class = "my-4"),
+    shiny::tags$p(...),
+    shiny::tags$a(
+      class = paste0("btn btn-", btnStatus, " btn-lg"),
+      href = href,
+      target = "_blank",
+      role = "button",
+      "More"
+    )
   )
 }

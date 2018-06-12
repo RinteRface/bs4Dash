@@ -11,7 +11,8 @@ bs4DashBadge(..., position = c("left", "right"), status)
 
 \item{position}{Badge position: "left" or "right".}
 
-\item{status}{Bdage color. "primary", "danger", "info", "success" or "warning"}
+\item{status}{Bdage color. "primary", "danger", "info", "success", "warning",
+"secondary", "dark" or "light"}
 }
 \description{
 Beautiful badge from AdminLTE3
