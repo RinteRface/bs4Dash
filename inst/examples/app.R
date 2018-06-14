@@ -43,7 +43,7 @@ shiny::shinyApp(
             "Basic cards",
             tabName = "cards",
             icon = "sliders",
-            active = FALSE
+            active = TRUE
           ),
           bs4SidebarMenuItem(
             "User cards",

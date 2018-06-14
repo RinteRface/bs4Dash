@@ -64,13 +64,86 @@ bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
 #'
 #' @export
 bs4SidebarMenu <- function(...) {
- shiny::tags$ul(
-   class = "nav nav-pills nav-sidebar flex-column",
-   `data-widget` = "treeview",
-   role = "menu",
-   `data-accordion` = "false",
-   ...
- )
+  
+  menuItems <- list(...)
+  navItems <- lapply(X = 1:length(menuItems), FUN = function(i) {
+    # select only items with class nav-item
+    menuItem <- menuItems[[i]]
+    itemClass <- menuItem$attribs[["class"]]
+    if (sum(grep(x = itemClass, pattern = "nav-item")) == 1) {
+      menuItem
+    } else {
+      NULL
+    }
+  })
+  # remove NULL elements
+  navItems <- navItems[!sapply(navItems, is.null)]
+  
+  # handle the case we have a list of items in navItems and store it
+  # in another object
+  for (i in 1:length(navItems)) {
+    subnavItem <- navItems[[i]]
+    subnavItemClass <- subnavItem$attribs[["class"]]
+    if (sum(grep(x = subnavItemClass, pattern = "has-treeview")) == 1) {
+      navItemsList <- subnavItem$children[[2]]$children
+      navItems[[i]] <- NULL
+      break
+    } 
+  }
+  
+  selectedTabIndex1 <- lapply(X = 1:length(navItems), FUN = function(i) {
+    children <- navItems[[i]]$children
+    childrenClass <- children$attribs[["class"]]
+    if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
+  })
+  selectedTabIndex1 <- unlist(selectedTabIndex1[!sapply(selectedTabIndex1, is.null)])
+  selectedTabIndex <- selectedTabIndex1
+  
+  if (is.null(selectedTabIndex1)) {
+    selectedTabIndex2 <- lapply(X = 1:length(navItemsList), FUN = function(i) {
+      children <- navItemsList[[i]]$children[[1]]
+      childrenClass <- children$attribs[["class"]]
+      if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
+    })
+    selectedTabIndex2 <- unlist(selectedTabIndex2[!sapply(selectedTabIndex2, is.null)])
+    selectedTabIndex <- selectedTabIndex2
+    
+    # select the first tab by default if nothing is specified
+    if (is.null(selectedTabIndex)) {
+      link <- 1
+    } else {
+      link <- navItemsList[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
+    }
+  } else {
+    link <- navItemsList[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
+  }
+  
+  # menu Tag
+  sidebarMenuTag <- shiny::tags$ul(
+    class = "nav nav-pills nav-sidebar flex-column",
+    `data-widget` = "treeview",
+    role = "menu",
+    `data-accordion` = "false",
+    ...
+  )
+  
+  # bind the jquery 
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$script(
+          paste0(
+            "$(document).on('shiny:connected', function(event) {
+              $('", link, "').addClass('active show');
+            });
+            "
+          )
+        )
+      )
+    ),
+    sidebarMenuTag
+  )
+  
 }
 
 
@@ -134,10 +207,10 @@ bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE)
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
+      class = if (isTRUE(active)) "nav-link active show" else "nav-link",
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
-      class = if (isTRUE(active)) "nav-link active" else "nav-link",
       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
         ...
