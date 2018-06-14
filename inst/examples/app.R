@@ -4,7 +4,7 @@ library(bs4Dash)
 library(plotly)
 
 shiny::shinyApp(
-  ui = bs4DashPage(
+  ui = bs4DashPage(old_school = TRUE,
     navbar = bs4DashNavbar(
       status = "white",
       "I can write text in the navbar!",
@@ -81,7 +81,7 @@ shiny::shinyApp(
           active = FALSE
         ),
         bs4SidebarMenuItem(
-          "Test",
+          "BS4 extras",
           tabName = "test",
           icon = "map",
           active = FALSE
@@ -451,15 +451,85 @@ shiny::shinyApp(
             href = "http://www.google.fr"
           ),
           
+          br(),
+          
           h4("Rounded Badges"),
-          bs4DashBadge(status = "secondary", "blabla", rounded = TRUE),
-          bs4DashBadge(status = "dark", "blabla", rounded = TRUE)
+          fluidRow(
+            bs4DashBadge(status = "secondary", "blabla", rounded = TRUE),
+            bs4DashBadge(status = "dark", "blabla", rounded = TRUE)
+          ),
+          
+          br(),
+          
+          h4("BS4 list group"),
+          fluidRow(
+            bs4ListGroup(
+              bs4ListGroupItem(
+                type = "basic",
+                "Cras justo odio"
+              ),
+              bs4ListGroupItem(
+                type = "basic",
+                "Dapibus ac facilisis in"
+              ),
+              bs4ListGroupItem(
+                type = "basic",
+                "Morbi leo risus"
+              )
+            ),
+            bs4ListGroup(
+              bs4ListGroupItem(
+                "Cras justo odio",
+                active = TRUE, 
+                disabled = FALSE, 
+                type = "action",
+                src = "http://www.google.fr"
+              ),
+              bs4ListGroupItem(
+                active = FALSE, 
+                disabled = FALSE, 
+                type = "action",
+                "Dapibus ac facilisis in",
+                src = "http://www.google.fr"
+              ),
+              bs4ListGroupItem(
+                "Morbi leo risus",
+                active = FALSE, 
+                disabled = TRUE, 
+                type = "action",
+                src = "http://www.google.fr"
+              )
+            ),
+            bs4ListGroup(
+              bs4ListGroupItem(
+                "Donec id elit non mi porta gravida at eget metus. 
+                Maecenas sed diam eget risus varius blandit.",
+                active = TRUE, 
+                disabled = FALSE, 
+                type = "heading",
+                title = "List group item heading", 
+                subtitle = "3 days ago", 
+                footer = "Donec id elit non mi porta."
+              ),
+              bs4ListGroupItem(
+                "Donec id elit non mi porta gravida at eget metus. 
+                Maecenas sed diam eget risus varius blandit.",
+                active = FALSE, 
+                disabled = FALSE, 
+                type = "heading",
+                title = "List group item heading", 
+                subtitle = "3 days ago", 
+                footer = "Donec id elit non mi porta."
+              )
+            )
+          )
         )
       )
     ),
     controlbar = bs4DashControlbar(
       skin = "light",
       title = "My right sidebar",
+      setSliderColor(sliderId = 1, "black"),
       sliderInput("obs", "Number of observations:",
                   min = 0, max = 1000, value = 500
       ),

@@ -1010,3 +1010,178 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL,
     )
   )
 }
+
+
+
+#' @title BS4 list group for AdminLTE3
+#'
+#' @description Create a list group
+#'
+#' @param ... Slot for bs4ListGroupItem.
+#' @param width List group width. 4 by default. Between 1 and 12.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       fluidRow(
+#'        bs4ListGroup(
+#'        bs4ListGroupItem(
+#'         type = "basic",
+#'         "Cras justo odio"
+#'        ),
+#'        bs4ListGroupItem(
+#'         type = "basic",
+#'         "Dapibus ac facilisis in"
+#'        ),
+#'        bs4ListGroupItem(
+#'         type = "basic",
+#'         "Morbi leo risus"
+#'        )
+#'       ),
+#'       bs4ListGroup(
+#'        bs4ListGroupItem(
+#'         "Cras justo odio",
+#'         active = TRUE, 
+#'         disabled = FALSE, 
+#'         type = "action",
+#'         src = "http://www.google.fr"
+#'        ),
+#'        bs4ListGroupItem(
+#'         active = FALSE, 
+#'         disabled = FALSE, 
+#'         type = "action",
+#'         "Dapibus ac facilisis in",
+#'         src = "http://www.google.fr"
+#'        ),
+#'        bs4ListGroupItem(
+#'         "Morbi leo risus",
+#'         active = FALSE, 
+#'         disabled = TRUE, 
+#'         type = "action",
+#'         src = "http://www.google.fr"
+#'        )
+#'       ),
+#'       bs4ListGroup(
+#'        bs4ListGroupItem(
+#'         "Donec id elit non mi porta gravida at eget metus. 
+#'         Maecenas sed diam eget risus varius blandit.",
+#'         active = TRUE, 
+#'         disabled = FALSE, 
+#'         type = "heading",
+#'         title = "List group item heading", 
+#'         subtitle = "3 days ago", 
+#'         footer = "Donec id elit non mi porta."
+#'        ),
+#'        bs4ListGroupItem(
+#'         "Donec id elit non mi porta gravida at eget metus. 
+#'         Maecenas sed diam eget risus varius blandit.",
+#'         active = FALSE, 
+#'         disabled = FALSE, 
+#'         type = "heading",
+#'         title = "List group item heading", 
+#'         subtitle = "3 days ago", 
+#'         footer = "Donec id elit non mi porta."
+#'        )
+#'       )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+bs4ListGroup <- function(..., width = 4) {
+  
+  listGroupTag <- shiny::tags$ul(
+    class = "list-group",
+    ...
+  )
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    listGroupTag
+  )
+  
+}
+
+
+
+
+#' @title BS4 list group item for AdminLTE3
+#'
+#' @description Create a list group item
+#'
+#' @param ... Item content.
+#' @param active Whether the item is active or not. FALSE by default. 
+#' Only if type is "action" or "heading".
+#' @param disabled Whether the item is disabled or not. FALSE by default. 
+#' Only if type is "action" or "heading".
+#' @param type Item type. Choose between "basic", "action" and "heading".
+#' @param src Item external link.
+#' @param title Item title (only if type is "heading").
+#' @param subtitle Item subtitle (only if type is "heading").
+#' @param footer Item footer content (only if type is "heading").
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4ListGroupItem <- function(..., active = FALSE, disabled = FALSE, 
+                             type = c("basic", "action", "heading"),
+                             src = "#", title = NULL, subtitle = NULL, 
+                             footer = NULL) {
+  
+  if (isTRUE(active) && isTRUE(disabled)) {
+    stop("active and disabled cannot be TRUE at the same time!")
+  }
+  type <- match.arg(type)
+  
+  itemCl <- switch(
+    type,
+    "basic" = "list-group-item d-flex justify-content-between align-items-center",
+    "action" = "list-group-item list-group-item-action",
+    "heading" = "list-group-item list-group-item-action flex-column align-items-start"
+  )
+  if (isTRUE(active)) itemCl <- paste0(itemCl, " active")
+  if (isTRUE(disabled)) itemCl <- paste0(itemCl, " disabled")
+  
+  
+  # item tag
+  if (type == "basic") {
+    shiny::tags$li(
+      class = itemCl,
+      ...
+    )
+  } else if (type == "action") {
+    shiny::tags$a(
+      class = itemCl,
+      href = src,
+      target = "_blank",
+      ...
+    )
+  } else {
+    shiny::tags$a(
+      class = itemCl,
+      href = src,
+      target = "_blank",
+      shiny::tags$div(
+        class = "d-flex w-100 justify-content-between",
+        shiny::tags$h5(class = "mb-1", title),
+        shiny::tags$small(subtitle)
+      ),
+      shiny::tags$p(class = "mb-1", ...),
+      shiny::tags$small(class = if (isTRUE(active)) NULL else "text-muted", footer)
+    )
+  }
+}
