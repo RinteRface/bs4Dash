@@ -136,7 +136,7 @@ bs4SidebarMenu <- function(...) {
           paste0(
             "$(document).on('shiny:connected', function(event) {
               $('", link, "').addClass('active show');
-              $('", target, "').click();
+              $('#", target, "').click();
             });
             "
           )
