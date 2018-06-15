@@ -99,8 +99,6 @@ bs4SidebarMenu <- function(...) {
   })
   selectedTabIndex <- unlist(selectedTabIndex[!sapply(selectedTabIndex, is.null)])
   
-  selectedTabIndex
-  
   # select the first tab by default if nothing is specified
   if (is.null(selectedTabIndex)) {
     link <- navItems[[1]]$children[[1]]$attribs[["href"]]
