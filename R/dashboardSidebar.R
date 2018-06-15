@@ -115,6 +115,10 @@ bs4SidebarMenu <- function(...) {
   
   if (is.null(link)) stop("Only one item should be active in the sidebar")
   
+  # sidebar items hav an id like tab-cards (and body elements #shiny-tab-cards)
+  # useful to simulated a click
+  target <- gsub(x = link , pattern = "#shiny-", replacement = "")
+  
   # menu Tag
   sidebarMenuTag <- shiny::tags$ul(
     class = "nav nav-pills nav-sidebar flex-column",
@@ -132,6 +136,7 @@ bs4SidebarMenu <- function(...) {
           paste0(
             "$(document).on('shiny:connected', function(event) {
               $('", link, "').addClass('active show');
+              $('", target, "').click();
             });
             "
           )
@@ -205,6 +210,7 @@ bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE)
     class = "nav-item",
     shiny::tags$a(
       class = if (isTRUE(active)) "nav-link active show" else "nav-link",
+      id = paste0("tab-", tabName),
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
