@@ -4,8 +4,11 @@ library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
 
+
+
 shiny::shinyApp(
-  ui = bs4DashPage(old_school = TRUE,
+  ui = bs4DashPage(
+    old_school = TRUE,
     navbar = bs4DashNavbar(
       status = "white",
       "I can write text in the navbar!",
@@ -70,7 +73,7 @@ shiny::shinyApp(
           HTML(
             paste(
               "Other stuff", 
-              bs4DashBadge(
+              bs4Badge(
                 "new", 
                 position = "right", 
                 status = "danger"
@@ -267,8 +270,8 @@ shiny::shinyApp(
               title = "Accordions",
               footer = tagList(
                 h4("There is an accordion in the footer!"),
-                bs4DashAccordion(
-                  bs4DashAccordionItem(
+                bs4Accordion(
+                  bs4AccordionItem(
                     id = "item1",
                     title = "Item 1", 
                     status = "danger",
@@ -285,7 +288,7 @@ shiny::shinyApp(
                     raw denim aesthetic synth nesciunt you probably haven't 
                     heard of them accusamus labore sustainable VHS"
                   ),
-                  bs4DashAccordionItem(
+                  bs4AccordionItem(
                     id = "item2",
                     title = "Item 2", 
                     status = "warning",
@@ -307,18 +310,18 @@ shiny::shinyApp(
             ),
             bs4Card(
               title = "Carousel",
-              bs4DashCarousel(
+              bs4Carousel(
                 id = "mycarousel",
                 width = 12,
-                bs4DashCarouselItem(
+                bs4CarouselItem(
                   active = TRUE,
                   src = "http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
                 ),
-                bs4DashCarouselItem(
+                bs4CarouselItem(
                   active = FALSE,
                   src = "http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
                 ),
-                bs4DashCarouselItem(
+                bs4CarouselItem(
                   active = FALSE,
                   src = "http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
                 )
@@ -357,7 +360,7 @@ shiny::shinyApp(
             bs4Card(
               title = "Alerts",
               elevation = 4,
-              bs4DashAlert(
+              bs4Alert(
                 title = "Be Careful!",
                 status = "danger",
                 closable = TRUE,
@@ -372,7 +375,7 @@ shiny::shinyApp(
           fluidRow(
             bs4Card(
               title = "Callouts",
-              bs4DashCallout(
+              bs4Callout(
                 title = "I am a danger callout!",
                 elevation = 4,
                 status = "danger",
@@ -385,7 +388,7 @@ shiny::shinyApp(
             ),
             bs4Card(
               title = "Loading State",
-              bs4DashLoading()
+              bs4Loading()
             )
           ),
           fluidRow(
@@ -477,8 +480,8 @@ shiny::shinyApp(
           
           h4("Rounded Badges"),
           fluidRow(
-            bs4DashBadge(status = "secondary", "blabla", rounded = TRUE),
-            bs4DashBadge(status = "dark", "blabla", rounded = TRUE)
+            bs4Badge(status = "secondary", "blabla", rounded = TRUE),
+            bs4Badge(status = "dark", "blabla", rounded = TRUE)
           ),
           
           br(),

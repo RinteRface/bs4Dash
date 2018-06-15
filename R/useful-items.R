@@ -20,7 +20,7 @@
 #'      footer = bs4DashFooter(),
 #'      title = "test",
 #'      body = bs4DashBody(
-#'       bs4DashBadge(
+#'       bs4Badge(
 #'        position = "right",
 #'        status = "warning",
 #'        "Warning"
@@ -34,7 +34,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashBadge <- function(..., position = c("left", "right"), status,
+bs4Badge <- function(..., position = c("left", "right"), status,
                          rounded = FALSE) {
   
   position <- match.arg(position)
@@ -52,7 +52,7 @@ bs4DashBadge <- function(..., position = c("left", "right"), status,
 #' 
 #' Beautiful accordion from AdminLTE3 
 #'
-#' @param ... Slot for bs4DashAccordionItem.
+#' @param ... Slot for bs4AccordionItem.
 #' 
 #' @examples 
 #' if(interactive()){
@@ -66,8 +66,8 @@ bs4DashBadge <- function(..., position = c("left", "right"), status,
 #'      footer = bs4DashFooter(),
 #'      title = "test",
 #'      body = bs4DashBody(
-#'       bs4DashAccordion(
-#'        bs4DashAccordionItem(
+#'       bs4Accordion(
+#'        bs4AccordionItem(
 #'         id = "item1",
 #'         title = "Item 1", 
 #'         status = "danger",
@@ -84,7 +84,7 @@ bs4DashBadge <- function(..., position = c("left", "right"), status,
 #'         raw denim aesthetic synth nesciunt you probably haven't 
 #'         heard of them accusamus labore sustainable VHS"
 #'        ),
-#'        bs4DashAccordionItem(
+#'        bs4AccordionItem(
 #'         id = "item2",
 #'         title = "Item 2", 
 #'         status = "warning",
@@ -111,7 +111,7 @@ bs4DashBadge <- function(..., position = c("left", "right"), status,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashAccordion <- function(...) {
+bs4Accordion <- function(...) {
   shiny::tags$div(
     class = "accordion",
     ...
@@ -121,7 +121,7 @@ bs4DashAccordion <- function(...) {
 
 #' Create a Bootstrap 4 accordion item
 #' 
-#' To insert in a bs4DashAccordion
+#' To insert in a bs4Accordion
 #'
 #' @param ... Item content.
 #' @param id Item unique id.
@@ -132,7 +132,7 @@ bs4DashAccordion <- function(...) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
+bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
   
   
   accordionItemCl <- "card"
@@ -177,7 +177,7 @@ bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 1
 #' 
 #' Beautiful carousel from AdminLTE3 
 #'
-#' @param ... Slot for bs4DashCarouselItem.
+#' @param ... Slot for bs4CarouselItem.
 #' @param id Unique carousel id.
 #' @param width Carousel width. Between 1 and 12.
 #' 
@@ -194,18 +194,18 @@ bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 1
 #'      title = "test",
 #'      body = bs4DashBody(
 #'       title = "Carousel",
-#'       bs4DashCarousel(
+#'       bs4Carousel(
 #'        id = "mycarousel",
 #'        width = 6,
-#'        bs4DashCarouselItem(
+#'        bs4CarouselItem(
 #'         active = TRUE,
 #'         src = "http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
 #'        ),
-#'        bs4DashCarouselItem(
+#'        bs4CarouselItem(
 #'         active = FALSE,
 #'         src = "http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
 #'        ),
-#'        bs4DashCarouselItem(
+#'        bs4CarouselItem(
 #'         active = FALSE,
 #'         src = "http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
 #'        )
@@ -219,7 +219,7 @@ bs4DashAccordionItem <- function(..., id, title = NULL, status = NULL, width = 1
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashCarousel <- function(..., id, width = 12) {
+bs4Carousel <- function(..., id, width = 12) {
   
   items <- list(...)
   
@@ -291,7 +291,7 @@ bs4DashCarousel <- function(..., id, width = 12) {
 
 #' Create a Bootstrap 4 carousel item
 #' 
-#' To insert in a bs4DashCarousel
+#' To insert in a bs4Carousel
 #'
 #' @param active Whether the item is active or not at start.
 #' @param src Item path or url.
@@ -299,7 +299,7 @@ bs4DashCarousel <- function(..., id, width = 12) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashCarouselItem <- function(active = FALSE, src = NULL) {
+bs4CarouselItem <- function(active = FALSE, src = NULL) {
   shiny::tags$div(
     class = if (isTRUE(active)) "carousel-item active" else "carousel-item",
     shiny::tags$img(
@@ -437,7 +437,7 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
 #'      title = "test",
 #'      body = bs4DashBody(
 #'        title = "Alerts",
-#'        bs4DashAlert(
+#'        bs4Alert(
 #'         title = "Be Careful!",
 #'         status = "danger",
 #'         closable = FALSE,
@@ -446,7 +446,7 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
 #'         like these sweet mornings of spring which 
 #'         I enjoy with my whole heart."
 #'        ),
-#'        bs4DashAlert(
+#'        bs4Alert(
 #'         title = "Congratulation!",
 #'         status = "success",
 #'         closable = TRUE,
@@ -466,7 +466,7 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
+bs4Alert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
                          status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
@@ -511,7 +511,7 @@ bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NUL
 
 #' Create a Bootstrap 4 callout
 #' 
-#' AdminLTE3 calout
+#' AdminLTE3 callout
 #'
 #' @param ... Callout content.
 #' @param title Callout title.
@@ -532,7 +532,7 @@ bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NUL
 #'      title = "test",
 #'      body = bs4DashBody(
 #'        title = "Callouts",
-#'        bs4DashCallout(
+#'        bs4Callout(
 #'         title = "I am a danger callout!",
 #'         elevation = 4,
 #'         status = "danger",
@@ -541,7 +541,7 @@ bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NUL
 #'         my entire soul, like these sweet mornings of 
 #'         spring which I enjoy with my whole heart."
 #'        ),
-#'        bs4DashCallout(
+#'        bs4Callout(
 #'         title = "I am a danger callout!",
 #'         status = "warning",
 #'         "This is a yellow callout."
@@ -556,7 +556,7 @@ bs4DashAlert <- function(..., title, closable = TRUE, width = 6, elevation = NUL
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashCallout <- function(..., title, width = 6, elevation = NULL,
+bs4Callout <- function(..., title, width = 6, elevation = NULL,
                            status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
@@ -602,7 +602,7 @@ bs4DashCallout <- function(..., title, width = 6, elevation = NULL,
 #'        title = "Callouts",
 #'        bs4Card(
 #'         title = "Loading State",
-#'         bs4DashLoading()
+#'         bs4Loading()
 #'        )
 #'      )
 #'    ),
@@ -611,7 +611,7 @@ bs4DashCallout <- function(..., title, width = 6, elevation = NULL,
 #' }
 #'
 #' @export
-bs4DashLoading <- function() {
+bs4Loading <- function() {
   shiny::tags$div(
     class = "overlay",
     shiny::tags$i(class = "fa fa-refresh fa-spin")
