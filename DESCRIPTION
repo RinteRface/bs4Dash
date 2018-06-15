@@ -11,7 +11,8 @@ Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3'.
 License: GPL-2
-Imports: shiny, fontawesome
+Imports: shiny
+Remotes: rstudio/fontawesome
 Suggests: plotly, shinyWidgets
 Encoding: UTF-8
 LazyData: true
