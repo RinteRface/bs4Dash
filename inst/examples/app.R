@@ -39,7 +39,7 @@ shiny::shinyApp(
           name = "Cards",
           icon = "gears",
           open = TRUE,
-          active = TRUE,
+          active = FALSE,
           bs4SidebarMenuItem(
             "Basic cards",
             tabName = "cards",

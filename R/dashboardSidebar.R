@@ -79,44 +79,41 @@ bs4SidebarMenu <- function(...) {
   # remove NULL elements
   navItems <- navItems[!sapply(navItems, is.null)]
   
-  # handle the case we have a list of items in navItems and store it
-  # in another object
+  #handle the case we have a list of items in navItems and store it
+  #in another object
   for (i in 1:length(navItems)) {
     subnavItem <- navItems[[i]]
     subnavItemClass <- subnavItem$attribs[["class"]]
     if (sum(grep(x = subnavItemClass, pattern = "has-treeview")) == 1) {
-      navItemsList <- subnavItem$children[[2]]$children
+      navItems <- append(navItems, subnavItem$children[[2]]$children, i)
       navItems[[i]] <- NULL
       break
-    } 
+    }
   }
+  navItems <- navItems[!sapply(navItems, is.null)]
   
-  selectedTabIndex1 <- lapply(X = 1:length(navItems), FUN = function(i) {
+  selectedTabIndex <- lapply(X = 1:length(navItems), FUN = function(i) {
     children <- navItems[[i]]$children
-    childrenClass <- children$attribs[["class"]]
+    childrenClass <- children[[1]]$attribs[["class"]]
     if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
   })
-  selectedTabIndex1 <- unlist(selectedTabIndex1[!sapply(selectedTabIndex1, is.null)])
-  selectedTabIndex <- selectedTabIndex1
+  selectedTabIndex <- unlist(selectedTabIndex[!sapply(selectedTabIndex, is.null)])
   
-  if (is.null(selectedTabIndex1)) {
-    selectedTabIndex2 <- lapply(X = 1:length(navItemsList), FUN = function(i) {
-      children <- navItemsList[[i]]$children[[1]]
-      childrenClass <- children$attribs[["class"]]
-      if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
-    })
-    selectedTabIndex2 <- unlist(selectedTabIndex2[!sapply(selectedTabIndex2, is.null)])
-    selectedTabIndex <- selectedTabIndex2
-    
-    # select the first tab by default if nothing is specified
-    if (is.null(selectedTabIndex)) {
-      link <- 1
-    } else {
-      link <- navItemsList[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
-    }
+  selectedTabIndex
+  
+  # select the first tab by default if nothing is specified
+  if (is.null(selectedTabIndex)) {
+    link <- navItems[[1]]$children[[1]]$attribs[["href"]]
   } else {
-    link <- navItemsList[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
+    if (length(selectedTabIndex) == 1) {
+      link <- navItems[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
+      # if more than two tabs have the active class
+    } else {
+      link <- NULL
+    }
   }
+  
+  if (is.null(link)) stop("Only one item should be active in the sidebar")
   
   # menu Tag
   sidebarMenuTag <- shiny::tags$ul(
