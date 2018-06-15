@@ -3,7 +3,10 @@ Type: Package
 Title: A 'bootstrap 4' version of 'shinydashboard'
 Version: 0.1.0
 Authors@R: c(
-  person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")))
+  person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
+  person(family = "Almasaeed Studio", role = c("ctb", "cph"), comment = "AdminLTE3 theme for Bootstrap 4"),
+  person("Winston", "Chang", role = c("ctb", "cph"), comment = "Utils functions from shinydashboard"),
+  person("Thomas", "Park", role = c("ctb", "cph"), comment = "Bootswatch Sketchy theme CSS"))
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3'.
