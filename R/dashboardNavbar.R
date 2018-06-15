@@ -34,7 +34,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
           class = "nav-link",
           `data-widget` = "pushmenu",
           href = "#",
-          shiny::tags$i(class = paste0("fas fa-", sidebarIcon))
+          fontawesome::fa(name = sidebarIcon, fill = "black")
         )
       ),
       leftUi
@@ -56,7 +56,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
           `data-widget` = "control-sidebar",
           `data-slide` = "true",
           href = "#",
-          shiny::tags$i(class = paste0("fas fa-", controlbarIcon))
+          fontawesome::fa(name = controlbarIcon, fill = "black")
         )
       )
     )
@@ -127,14 +127,14 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       class = "nav-link",
       `data-toggle` = "dropdown",
       href = "#",
-      shiny::tags$i(class = "fa fa-bell"),
+      fontawesome::fa(name = "bell", fill = "black"),
       shiny::tags$span(
         class = paste0("badge badge-", status, " navbar-badge"), 
         labelText
       )
     ),
     shiny::tags$div(
-      class = if (isTRUE(show)){
+      class = if (isTRUE(show)) {
         "dropdown-menu dropdown-menu-lg dropdown-menu-right show"
       } else {
         "dropdown-menu dropdown-menu-lg dropdown-menu-right"
@@ -175,16 +175,14 @@ bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
     shiny::tags$a(
       class = "dropdown-item",
       href = "#",
-      shiny::tags$i(
-        class = paste0("fas fa-", icon, " mr-2")
-      ),
+      fontawesome::fa(name = icon, fill = "black"),
       text,
       shiny::tags$span(
         class = "float-right text-muted text-sm",
         date,
         shiny::tags$span(
           class = "time",
-          shiny::icon("clock-o")
+          fontawesome::fa(name = "clock", fill = "black")
         )
       )
     ),

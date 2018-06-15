@@ -4,9 +4,8 @@
 \alias{bs4InfoBox}
 \title{Boostrap 4 info box}
 \usage{
-bs4InfoBox(..., title, value = NULL, icon = NULL, iconStatus = NULL,
-  iconElevation = 3, status = NULL, gradientColor = NULL, width = 4,
-  elevation = NULL)
+bs4InfoBox(..., title, value = NULL, icon = NULL, iconElevation = 3,
+  status = NULL, gradientColor = NULL, width = 4, elevation = NULL)
 }
 \arguments{
 \item{...}{Any extra UI element.}
@@ -16,8 +15,6 @@ bs4InfoBox(..., title, value = NULL, icon = NULL, iconStatus = NULL,
 \item{value}{The value to display in the box. Usually a number or short text.}
 
 \item{icon}{An icon tag, created by \code{\link[shiny]{icon}}.}
-
-\item{iconStatus}{Icon status. See status for valid colors.}
 
 \item{iconElevation}{Icon elevation compared to the main content (relief). 3 by default.}
 
@@ -52,21 +49,20 @@ if(interactive()){
       fluidRow(
        bs4InfoBox(
         title = "Messages",
-        iconStatus = "success",
         value = 1410,
-        icon = "envelope-o"
+        icon = "envelope"
        ),
        bs4InfoBox(
         title = "Bookmarks",
         status = "info",
         value = 240,
-        icon = "bookmark-o"
+        icon = "bookmark"
        ),
        bs4InfoBox(
         title = "Comments",
         gradientColor = "danger",
         value = 41410,
-        icon = "comments-o"
+        icon = "comments"
        )
       )
      )

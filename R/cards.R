@@ -370,7 +370,6 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' @param title Info box title.
 #' @param value The value to display in the box. Usually a number or short text.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
-#' @param iconStatus Icon status. See status for valid colors.
 #' @param iconElevation Icon elevation compared to the main content (relief). 3 by default.
 #' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
 #' @param gradientColor If NULL (the default), the background of the box will be
@@ -400,21 +399,20 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #'       fluidRow(
 #'        bs4InfoBox(
 #'         title = "Messages",
-#'         iconStatus = "success",
 #'         value = 1410,
-#'         icon = "envelope-o"
+#'         icon = "envelope"
 #'        ),
 #'        bs4InfoBox(
 #'         title = "Bookmarks",
 #'         status = "info",
 #'         value = 240,
-#'         icon = "bookmark-o"
+#'         icon = "bookmark"
 #'        ),
 #'        bs4InfoBox(
 #'         title = "Comments",
 #'         gradientColor = "danger",
 #'         value = 41410,
-#'         icon = "comments-o"
+#'         icon = "comments"
 #'        )
 #'       )
 #'      )
@@ -425,7 +423,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #'
 #' @export
 bs4InfoBox <- function(..., title, value = NULL,
-                       icon = NULL, iconStatus = NULL, 
+                       icon = NULL, 
                        iconElevation = 3, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
@@ -444,15 +442,22 @@ bs4InfoBox <- function(..., title, value = NULL,
   if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
   
   iconTag <- shiny::tags$span(
-    class = if (!is.null(status) || !is.null(gradientColor)) {
-      "info-box-icon"
-    } else {
-      if (!is.null(iconStatus)) 
-        paste0("info-box-icon bg-", iconStatus) 
-      else "info-box-icon"
-    },
+    class = "info-box-icon",
     class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
-    shiny::tags$i(class = paste0("fa fa-", icon))
+    # icon
+    if (is.null(status)) {
+      if (is.null(gradientColor)) {
+        fontawesome::fa(name = icon, fill = "black")
+      } else {
+        fontawesome::fa(name = icon, fill = "white")
+      }
+    } else {
+      if (status == "white") {
+        fontawesome::fa(name = icon, fill = "black")
+      } else {
+        fontawesome::fa(name = icon, fill = "white")
+      }
+    }
   )
   
   contentTag <- shiny::tags$div(

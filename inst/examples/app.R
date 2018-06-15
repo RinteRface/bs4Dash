@@ -1,4 +1,5 @@
 library(shiny)
+library(fontawesome)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
@@ -58,7 +59,7 @@ shiny::shinyApp(
             active = FALSE
           ),
           bs4SidebarMenuItem(
-            "Value boxes",
+            "Value/Info boxes",
             tabName = "valueboxes",
             icon = "suitcase",
             active = FALSE
@@ -215,6 +216,7 @@ shiny::shinyApp(
         ),
         bs4TabItem(
           tabName = "valueboxes",
+          h4("Value Boxes"),
           fluidRow(
             bs4ValueBox(
               value = 150,
@@ -235,6 +237,26 @@ shiny::shinyApp(
               subtitle = "User Registrations",
               status = "warning",
               icon = "sliders"
+            )
+          ),
+          h4("Info Boxes"),
+          fluidRow(
+            bs4InfoBox(
+              title = "Messages",
+              value = 1410,
+              icon = "envelope"
+            ),
+            bs4InfoBox(
+              title = "Bookmarks",
+              status = "info",
+              value = 240,
+              icon = "bookmark"
+            ),
+            bs4InfoBox(
+              title = "Comments",
+              gradientColor = "danger",
+              value = 41410,
+              icon = "comments"
             )
           )
         ),
