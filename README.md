@@ -1,6 +1,10 @@
 # bs4Dash
 > Bootstrap 4 shinydashboard using AdminLTE3
 
+**This package is still work in progress. Therefore, it is better to wait before converting your existing dashboard with this interface.**
+
+**I am open to any contribution, especially to fix #3. Depending on your amount of work, you will be listed as contributor or even author.**
+
 [![Build Status](https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master)](https://travis-ci.org/DivadNojnarg/bs4Dash)
 
 ## Installation

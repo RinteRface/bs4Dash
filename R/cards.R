@@ -183,11 +183,13 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
+    style = "overflow-y: auto; max-height: 500px;",
     ...
   )
   
   footerTag <- shiny::tags$div(
     class = "card-footer",
+    style = "overflow-y: auto; max-height: 500px;",
     footer
   )
   
@@ -563,6 +565,7 @@ bs4TabCard <- function(..., title = NULL, width = 6,
   panels <- list(...)
   bodyTag <- shiny::tags$div(
     class = "card-body",
+    style = "overflow-y: auto; max-height: 500px;",
     shiny::tags$div(
       class = "tab-content",
       lapply(1:length(panels), FUN = function(i) {
@@ -773,6 +776,7 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
   
   footerTag <- shiny::tags$div(
     class = "card-footer",
+    style = "overflow-y: auto; max-height: 500px;",
     ...
   )
   
