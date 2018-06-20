@@ -61,7 +61,8 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
       shiny::tags$link(href = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700", rel = "stylesheet"),
       # javascript
       shiny::includeScript(system.file("js/bootstrap.bundle.min.js", package = "bs4Dash")),
-      shiny::includeScript(system.file("js/adminlte.min.js", package = "bs4Dash"))
+      shiny::includeScript(system.file("js/adminlte.min.js", package = "bs4Dash")),
+      shiny::includeScript(system.file("js/bs4Dash.js", package = "bs4Dash"))
 
     ),
     # Body

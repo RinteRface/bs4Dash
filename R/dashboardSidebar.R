@@ -121,6 +121,7 @@ bs4SidebarMenu <- function(...) {
   sidebarMenuTag <- shiny::tags$ul(
     class = "nav nav-pills nav-sidebar flex-column",
     `data-widget` = "treeview",
+    id = "mymenu",
     role = "menu",
     `data-accordion` = "false",
     ...
@@ -134,10 +135,23 @@ bs4SidebarMenu <- function(...) {
           paste0(
             "$(document).on('shiny:connected', function(event) {
               $('", link, "').addClass('active show');
-              $('#", target, "').click();
-            });
+             });
             "
-          )
+          )#,
+          # paste0(
+          #   "$(document).ready(function() {
+          #     $('.nav-link').click(function () {
+          #     $('.nav-link').removeClass('active show');
+          #     $(this).addClass('active show');
+          #     //var father = $(this).parent();
+          #     //alert(father);
+          #     //var link_name = $(this).attr('href');
+          #     //$('#' + link_name).addClass('active show');
+          #     //alert(link_name);
+          #     });
+          #   });
+          #   "
+          # ),
         )
       )
     ),
@@ -209,9 +223,12 @@ bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE)
     shiny::tags$a(
       class = if (isTRUE(active)) "nav-link active show" else "nav-link",
       id = paste0("tab-", tabName),
+      #role = "tab",
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
+      #`aria-controls` = tabName,
+      #`data-start-selected` = if (active) 1 else NULL,
       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
         ...

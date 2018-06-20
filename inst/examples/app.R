@@ -38,36 +38,42 @@ shiny::shinyApp(
       opacity = 0.8,
       bs4SidebarMenu(
         bs4SidebarHeader("Main content"),
-        bs4SidebarMenuItemList(
-          name = "Cards",
-          icon = "gears",
-          open = TRUE,
-          active = FALSE,
-          bs4SidebarMenuItem(
-            "Basic cards",
-            tabName = "cards",
-            icon = "sliders",
-            active = TRUE
-          ),
-          bs4SidebarMenuItem(
-            "User cards",
-            tabName = "usercards",
-            icon = "object-ungroup",
-            active = FALSE
-          ),
-          bs4SidebarMenuItem(
-            "Tab cards",
-            tabName = "tabcards",
-            icon = "picture-o",
-            active = FALSE
-          ),
-          bs4SidebarMenuItem(
-            "Value/Info boxes",
-            tabName = "valueboxes",
-            icon = "suitcase",
-            active = FALSE
-          )
+        bs4SidebarMenuItem(
+          "Basic cards",
+          tabName = "cards",
+          icon = "sliders",
+          active = TRUE
         ),
+        # bs4SidebarMenuItemList(
+        #   name = "Cards",
+        #   icon = "gears",
+        #   open = TRUE,
+        #   active = FALSE,
+        #   bs4SidebarMenuItem(
+        #     "Basic cards",
+        #     tabName = "cards",
+        #     icon = "sliders",
+        #     active = TRUE
+        #   ),
+        #   bs4SidebarMenuItem(
+        #     "User cards",
+        #     tabName = "usercards",
+        #     icon = "object-ungroup",
+        #     active = FALSE
+        #   ),
+        #   bs4SidebarMenuItem(
+        #     "Tab cards",
+        #     tabName = "tabcards",
+        #     icon = "picture-o",
+        #     active = FALSE
+        #   ),
+        #   bs4SidebarMenuItem(
+        #     "Value/Info boxes",
+        #     tabName = "valueboxes",
+        #     icon = "suitcase",
+        #     active = FALSE
+        #   )
+        # ),
         bs4SidebarHeader("Bonus"),
         bs4SidebarMenuItem(
           HTML(
