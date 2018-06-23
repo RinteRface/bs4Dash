@@ -132,12 +132,12 @@ bs4SidebarMenu <- function(...) {
     shiny::singleton(
       shiny::tags$head(
         shiny::tags$script(
-          paste0(
-            "$(document).on('shiny:connected', function(event) {
-              $('", link, "').addClass('active show');
-             });
-            "
-          )#,
+          # paste0(
+          #   "$(document).on('shiny:connected', function(event) {
+          #     $('", link, "').addClass('active show');
+          #    });
+          #   "
+          # )#,
           # paste0(
           #   "$(document).ready(function() {
           #     $('.nav-link').click(function () {

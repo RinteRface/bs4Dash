@@ -10,15 +10,15 @@ $(function () {
   var $tabs = $("#mymenu a[data-toggle='tab']");
   var $selectedTab = $tabs.filter(".active.show");
   var $selectedTabLink = $selectedTab.attr("id");
-  var $index = getIndex($selectedTab) - 1;
-  $selectedTab.tab("show");
-
-  console.log($tabs);
-  console.log($selectedTab);
-  console.log($index);
-  $("#mymenu .nav-item:eq(" + $index + ") a").tab("show");
-  //$("#mymenu .nav-item:eq(1) a").tab("show");
-  //$('#mymenu li.nav-item:nth-child(2) a').tab('show');
-  console.log($('#mymenu li.nav-item:eq(0) a'));
-  //console.log($("#mymenu .nav-item:eq(" + $index + ") a:not([href='#'])"));
+  var $index = getIndex($selectedTab);
+  var $indexPane = $index - 1;
+  
+  if ($selectedTab.length === 0) {
+    // If no tab starts selected, use the first one, if present
+    $('#mymenu .nav-item:eq(0) a').tab('show');
+    $('.tab-pane:eq(0)').addClass('active show');
+  } //else {
+    //$("#mymenu .nav-item:eq(" + $indexPane + ") a").tab("show");
+    //$(".tab-pane:eq(" + $indexPane + ")").addClass('active show');
+  //}
 });
