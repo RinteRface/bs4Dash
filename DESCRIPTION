@@ -10,6 +10,8 @@ Authors@R: c(
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3'.
+URL: https://divadnojnarg.github.io/bs4Dash/index.html, https://github.com/DivadNojnarg/bs4Dash
+BugReports: https://github.com/DivadNojnarg/bs4Dash/issues
 License: GPL-2
 Imports: shiny, fontawesome
 Remotes: rstudio/fontawesome
