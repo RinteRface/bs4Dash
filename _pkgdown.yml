@@ -84,7 +84,7 @@ reference:
   
   
 development:
-  mode: auto
+  mode: unreleased
 
 
 template:

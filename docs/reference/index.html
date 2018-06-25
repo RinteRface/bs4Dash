@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -72,6 +72,24 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/bs4Intro.html">How to start?</a>
+    </li>
+    <li>
+      <a href="../articles/bs4Showcase.html">bs4Dash Showcase</a>
+    </li>
+    <li>
+      <a href="../articles/bs4Themes.html">Themes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -208,21 +226,15 @@
       <tr>
         
         <td>
-          <p><code><a href="dropdownDivider.html">dropdownDivider()</a></code> </p>
+          <p><code><a href="bs4DropdownMenu.html">bs4DropdownMenu()</a></code> </p>
         </td>
-        <td><p>Create a box dropdown divider</p></td>
+        <td><p>Create a Boostrap 4 dashboard dropdown menu</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="dropdownItem.html">dropdownItem()</a></code> </p>
+          <p><code><a href="bs4DropdownMenuItem.html">bs4DropdownMenuItem()</a></code> </p>
         </td>
-        <td><p>Create a box dropdown item</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dropdownItemList.html">dropdownItemList()</a></code> </p>
-        </td>
-        <td><p>Create a box dropdown item list</p></td>
+        <td><p>Create a Boostrap 4 dashboard dropdown menu item</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -271,6 +283,52 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-card-tool-components" class="hasAnchor"><a href="#section-card-tool-components" class="anchor"></a>Card Tool components</h2>
+          <p class="section-desc"><p>Build dropdown menu in the tool area (close, collapse)</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="dropdownDivider.html">dropdownDivider()</a></code> </p>
+        </td>
+        <td><p>Create a box dropdown divider</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dropdownItem.html">dropdownItem()</a></code> </p>
+        </td>
+        <td><p>Create a box dropdown item</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dropdownItemList.html">dropdownItemList()</a></code> </p>
+        </td>
+        <td><p>Create a box dropdown item list</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-tab-card-elements" class="hasAnchor"><a href="#section-tab-card-elements" class="anchor"></a>Tab card elements</h2>
+          <p class="section-desc"><p>Functions that are to be used in bs4TabCard</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="bs4TabPanel.html">bs4TabPanel()</a></code> </p>
+        </td>
+        <td><p>Create a tabPanel</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="bs4TabSetPanel.html">bs4TabSetPanel()</a></code> </p>
+        </td>
+        <td><p>Create a tabSetPanel</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-render-functions" class="hasAnchor"><a href="#section-render-functions" class="anchor"></a>Render functions</h2>
           <p class="section-desc"><p>Dynamically generate items</p></p>
         </th>
@@ -291,7 +349,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-other-bs-items-" class="hasAnchor"><a href="#section-other-bs-items-" class="anchor"></a>Other bs4 items`</h2>
+          <h2 id="section-other-bs-items" class="hasAnchor"><a href="#section-other-bs-items" class="anchor"></a>Other bs4 items</h2>
           <p class="section-desc"><p>To better customize your app</p></p>
         </th>
       </tr>
@@ -403,6 +461,12 @@
           <p><code><a href="bs4TimelineLabel.html">bs4TimelineLabel()</a></code> </p>
         </td>
         <td><p>AdminLTE3 timeline label</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="bs4TimelineStart.html">bs4TimelineStart()</a></code> </p>
+        </td>
+        <td><p>AdminLTE3 timeline starting point</p></td>
       </tr>
     </tbody>
     </table>
@@ -416,8 +480,10 @@
       <li><a href="#section-sidebar-content-functions">Sidebar Content functions</a></li>
       <li><a href="#section-navbar-content-functions">Navbar Content functions</a></li>
       <li><a href="#section-cards-and-boxes">Cards and boxes</a></li>
+      <li><a href="#section-card-tool-components">Card Tool components</a></li>
+      <li><a href="#section-tab-card-elements">Tab card elements</a></li>
       <li><a href="#section-render-functions">Render functions</a></li>
-      <li><a href="#section-other-bs-items-">Other bs4 items`</a></li>
+      <li><a href="#section-other-bs-items">Other bs4 items</a></li>
     </ul>
   </div>
 </div>
