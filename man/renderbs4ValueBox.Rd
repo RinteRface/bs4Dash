@@ -2,9 +2,12 @@
 % Please edit documentation in R/render-functions.R
 \name{renderbs4ValueBox}
 \alias{renderbs4ValueBox}
+\alias{renderbs4InfoBox}
 \title{Create a value box (server side)}
 \usage{
 renderbs4ValueBox(expr, env = parent.frame(), quoted = FALSE)
+
+renderbs4InfoBox(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
 \item{expr}{An expression that returns a Shiny tag object, \code{\link{HTML}},
@@ -31,7 +34,10 @@ if(interactive()){
      footer = bs4DashFooter(),
      title = "test",
      body = bs4DashBody(
-      bs4ValueBoxOutput("vbox")
+      fluidRow(
+       bs4ValueBoxOutput("vbox"),
+       bs4InfoBoxOutput("ibox")
+      )
      )
    ),
    server = function(input, output) {
@@ -45,6 +51,16 @@ if(interactive()){
         href = "#"
        )
     })
+    
+    output$ibox <- renderbs4InfoBox({
+      bs4InfoBox(
+       title = "Comments",
+       gradientColor = "success",
+       value = 41410,
+       icon = "comments"
+       )
+    })
+    
    }
  )
 }

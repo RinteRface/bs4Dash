@@ -2,9 +2,12 @@
 % Please edit documentation in R/render-functions.R
 \name{bs4ValueBoxOutput}
 \alias{bs4ValueBoxOutput}
+\alias{bs4InfoBoxOutput}
 \title{Create a value box output (client side)}
 \usage{
 bs4ValueBoxOutput(outputId, width = 4)
+
+bs4InfoBoxOutput(outputId, width = 4)
 }
 \arguments{
 \item{outputId}{Output variable name.}

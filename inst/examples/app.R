@@ -4,8 +4,6 @@ library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
 
-options(shiny.trace = TRUE)
-
 shiny::shinyApp(
   ui = bs4DashPage(
     old_school = TRUE,

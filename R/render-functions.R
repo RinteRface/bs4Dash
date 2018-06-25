@@ -20,7 +20,10 @@
 #'      footer = bs4DashFooter(),
 #'      title = "test",
 #'      body = bs4DashBody(
-#'       bs4ValueBoxOutput("vbox")
+#'       fluidRow(
+#'        bs4ValueBoxOutput("vbox"),
+#'        bs4InfoBoxOutput("ibox")
+#'       )
 #'      )
 #'    ),
 #'    server = function(input, output) {
@@ -34,6 +37,16 @@
 #'         href = "#"
 #'        )
 #'     })
+#'     
+#'     output$ibox <- renderbs4InfoBox({
+#'       bs4InfoBox(
+#'        title = "Comments",
+#'        gradientColor = "success",
+#'        value = 41410,
+#'        icon = "comments"
+#'        )
+#'     })
+#'     
 #'    }
 #'  )
 #' }
@@ -56,6 +69,11 @@ renderbs4ValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 
 
+#' @rdname renderbs4ValueBox
+#' @export
+renderbs4InfoBox <- renderbs4ValueBox
+
+
 
 #' Create a value box output (client side)
 #'
@@ -69,3 +87,9 @@ renderbs4ValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
 bs4ValueBoxOutput <- function(outputId, width = 4) {
   shiny::uiOutput(outputId, class = paste0("col-sm-", width))
 }
+
+
+
+#' @rdname bs4ValueBoxOutput
+#' @export
+bs4InfoBoxOutput <- bs4ValueBoxOutput
