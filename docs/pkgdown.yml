@@ -8,6 +8,75 @@ development:
   mode: unreleased
   
   
+reference:
+  - title: "Basic dashboard functions"
+    desc: >
+      Dashboard skeleton functions
+    contents: 
+      - bs4DashPage
+      - bs4DashNavbar
+      - bs4DashBody
+      - bs4DashFooter
+      - bs4DashSidebar
+      - bs4DashControlbar
+  - title: "Body content functions"
+    desc: "Functions that are to be used in the bs4DashBody."
+    contents:
+      - bs4TabItems
+      - bs4TabItem
+  - title: "Sidebar Content functions"
+    desc: "Functions that are to be used in the bs4DashSidebar."
+    contents:
+      - bs4SidebarMenu
+      - bs4SidebarMenuItem
+      - bs4SidebarHeader
+  - title: "Navbar Content functions"
+    desc: "Functions that are to be used in the bs4DashNavbar."
+    contents:
+      - dropdownDivider
+      - dropdownItem
+      - dropdownItemList
+  - title: "Cards and boxes"
+    desc: "Build cards and boxes."
+    contents:
+      - bs4Box
+      - bs4InfoBox
+      - bs4ValueBox
+      - bs4Card
+      - bs4TabCard
+      - bs4UserCard
+  - title: "Render functions"
+    desc: "Dynamically generate items."
+    contents:
+      - bs4ValueBoxOutput
+      - bs4InfoBoxOutput
+      - renderbs4ValueBox
+      - renderbs4InfoBox
+  - title: "Other bs4 items"
+    desc: "To better customize your app."
+    contents:
+      - bs4Accordion
+      - bs4AccordionItem
+      - bs4Alert
+      - bs4Badge
+      - bs4Callout
+      - bs4Carousel
+      - bs4CarouselItem
+      - bs4Jumbotron
+      - bs4ListGroup
+      - bs4ListGroupItem
+      - bs4Loading
+      - bs4ProgressBar
+      - bs4Stars
+      - bs4Timeline
+      - bs4TimelineEnd
+      - bs4TimelineItem
+      - bs4TimelineItemMedia
+      - bs4TimelineLabel
+      - bs4TimelineStart
+      
+  
+  
 navbar:
   structure:
     left:
