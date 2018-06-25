@@ -788,3 +788,161 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
     userCardTag
   )
 }
+
+
+
+
+
+#' @title AdminLTE3 simple box
+#'
+#' @description Create nice and epurated box
+#'
+#' @param ... Body content.
+#' @param title Box title.
+#' @param width The width of the box, using the Bootstrap grid system.
+#' @param height The height of a box, in pixels or other CSS unit. By default
+#'   the height scales automatically with the content.
+#' 
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(
+#'       bs4SidebarMenu(
+#'        bs4SidebarHeader("Main content"),
+#'        bs4SidebarMenuItem(
+#'          "Basic boxes",
+#'          tabName = "boxes",
+#'          icon = "desktop",
+#'          active = FALSE
+#'        )
+#'       )
+#'      ),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       bs4TabItems(
+#'        bs4TabItem(
+#'          tabName = "boxes",
+#'          fluidRow(
+#'           bs4Box(
+#'            height = "600px",
+#'            title = "Box 1",
+#'            plotOutput("plot"),
+#'            column(
+#'             width = 12,
+#'             align = "center",
+#'             sliderInput(
+#'               "obs",
+#'               "Number of observations:",
+#'               min = 0, max = 1000,
+#'               value = 500
+#'             )
+#'            )
+#'           ),
+#'           bs4Box(
+#'            height = "600px",
+#'            title = "Box 2",
+#'            plotOutput("distPlot"),
+#'            column(
+#'             width = 12,
+#'             align = "center",
+#'             radioButtons(
+#'               "dist", 
+#'               inline = TRUE,
+#'               "Distribution type:",
+#'               c("Norm" = "norm",
+#'                 "Unif" = "unif",
+#'                 "LogNorm" = "lnorm",
+#'                 "Exp" = "exp")
+#'             )
+#'            )
+#'           )
+#'          )
+#'        )
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {
+#'     output$plot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'      })
+#'      
+#'      output$distPlot <- renderPlot({
+#'        dist <- switch(
+#'        input$dist,
+#'        norm = rnorm,
+#'        unif = runif,
+#'        lnorm = rlnorm,
+#'        exp = rexp,
+#'        rnorm
+#'      )
+#'        
+#'        hist(dist(500))
+#'      })
+#'    }
+#'  )
+#' }
+#'
+#' @export
+bs4Box <- function(..., title = NULL, width = 6, height = NULL) {
+  
+  
+  boxHeader <- shiny::tags$div(
+    class = "card-header no-border",
+    shiny::tags$div(
+      class = "d-flex justify-content-between",
+      shiny::tags$h3(class = "card-title", title)
+    )
+  )
+  
+  boxBody <- shiny::tags$div(
+    class = "card-body",
+    style = "overflow-y: auto; max-height: 600px;",
+    ...
+  )
+  
+  style <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height))
+  }
+  
+  boxTag <- shiny::tags$div(class = "card card-box", style = if (!is.null(style)) style)
+  boxTag <- shiny::tagAppendChildren(boxTag, boxHeader, boxBody)
+  
+  boxWrapper <- shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    boxTag
+  )
+  
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            ".card-box {
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              border-radius: 5px; /* 5px rounded corners */
+            }
+            
+            /* On mouse-over, add a deeper shadow */
+            .card-box:hover {
+             box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+            }
+            "
+          )
+        )
+      )
+    ),
+    boxWrapper
+  )
+  
+}
