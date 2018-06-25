@@ -15,15 +15,40 @@ This package is not on CRAN (release soon)
 devtools::install_github("DivadNojnarg/bs4Dash")
 ```
 
-## Coming Soon ...
+## Create a basic page 
 
-![](inst/images/bs4Dash_showcase.png)
+This is the template to create the most basic bs4 dashboard:
+
+```
+library(shiny)
+library(bs4Dash)
+
+ shiny::shinyApp(
+   ui = bs4DashPage(
+    navbar = bs4DashNavbar(),
+    sidebar = bs4DashSidebar(),
+    controlbar = bs4DashControlbar(),
+    footer = bs4DashFooter(),
+    title = "Basic Dashboard",
+    body = bs4DashBody()
+   ),
+   server = function(input, output) {}
+ )
+```
+
+Feed it according to your needs!
+
+For example you might want to create simple and beautiful boxes as below.
+
+![](inst/images/bs4Boxes_example.png)
 
 ## Themes
 
 There are currently two supported themes for bs4Dash: the classic one and an old
 school theme from [bootswatch](https://bootswatch.com/sketchy/). To trigger it,
 just set `old_school = TRUE` in the **bs4DashPage()** function.
+
+![](inst/images/bs4Dash_showcase.png)
 
 ![](inst/images/old_school.png)
 
