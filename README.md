@@ -12,7 +12,7 @@
 
 This package is not on CRAN (release soon)
 
-```
+```r
 devtools::install_github("DivadNojnarg/bs4Dash")
 ```
 
@@ -20,7 +20,7 @@ devtools::install_github("DivadNojnarg/bs4Dash")
 
 This is the template to create the most basic bs4 dashboard:
 
-```
+```r
 library(shiny)
 library(bs4Dash)
 
@@ -63,7 +63,7 @@ I will remove this function anyway to simplify the package.
 
 Below is the code of the showcase available [here](http://130.60.24.205/bs4Dash/).
 
-```
+```r
 library(shiny)
 library(fontawesome)
 library(shinyWidgets)
