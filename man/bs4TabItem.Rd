@@ -8,7 +8,7 @@ bs4TabItem(tabName = NULL, ...)
 }
 \arguments{
 \item{tabName}{The name of a tab. This must correspond to the \code{tabName}
-of a \code{\link{bs4SidebarMenuItem}} or \code{\link{bs4SidebarMenuItemList}}.}
+of a \code{\link{bs4SidebarMenuItem}}.}
 
 \item{...}{Contents of the tab.}
 }

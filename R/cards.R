@@ -819,8 +819,7 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
 #'        bs4SidebarMenuItem(
 #'          "Basic boxes",
 #'          tabName = "boxes",
-#'          icon = "desktop",
-#'          active = FALSE
+#'          icon = "desktop"
 #'        )
 #'       )
 #'      ),

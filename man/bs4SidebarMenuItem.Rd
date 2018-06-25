@@ -4,7 +4,7 @@
 \alias{bs4SidebarMenuItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu item}
 \usage{
-bs4SidebarMenuItem(..., tabName = NULL, icon = NULL, active = FALSE)
+bs4SidebarMenuItem(..., tabName = NULL, icon = NULL)
 }
 \arguments{
 \item{...}{Item name.}
@@ -12,8 +12,6 @@ bs4SidebarMenuItem(..., tabName = NULL, icon = NULL, active = FALSE)
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
 \item{icon}{Item icon.}
-
-\item{active}{Whether the item is active. FALSE by default.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu item

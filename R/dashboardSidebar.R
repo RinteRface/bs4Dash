@@ -65,60 +65,60 @@ bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
 #' @export
 bs4SidebarMenu <- function(...) {
   
-  menuItems <- list(...)
-  navItems <- lapply(X = 1:length(menuItems), FUN = function(i) {
-    # select only items with class nav-item
-    menuItem <- menuItems[[i]]
-    itemClass <- menuItem$attribs[["class"]]
-    if (sum(grep(x = itemClass, pattern = "nav-item")) == 1) {
-      menuItem
-    } else {
-      NULL
-    }
-  })
-  # remove NULL elements
-  navItems <- navItems[!sapply(navItems, is.null)]
-  
-  #handle the case we have a list of items in navItems and store it
-  #in another object
-  for (i in 1:length(navItems)) {
-    subnavItem <- navItems[[i]]
-    subnavItemClass <- subnavItem$attribs[["class"]]
-    if (sum(grep(x = subnavItemClass, pattern = "has-treeview")) == 1) {
-      navItems <- append(navItems, subnavItem$children[[2]]$children, i)
-      navItems[[i]] <- NULL
-      break
-    }
-  }
-  navItems <- navItems[!sapply(navItems, is.null)]
-  
-  selectedTabIndex <- lapply(X = 1:length(navItems), FUN = function(i) {
-    children <- navItems[[i]]$children
-    childrenClass <- children[[1]]$attribs[["class"]]
-    if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
-  })
-  selectedTabIndex <- unlist(selectedTabIndex[!sapply(selectedTabIndex, is.null)])
-  
-  # select the first tab by default if nothing is specified
-  if (is.null(selectedTabIndex)) {
-    link <- navItems[[1]]$children[[1]]$attribs[["href"]]
-  } else {
-    if (length(selectedTabIndex) == 1) {
-      link <- navItems[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
-      # if more than two tabs have the active class
-    } else {
-      link <- NULL
-    }
-  }
-  
-  if (is.null(link)) stop("Only one item should be active in the sidebar")
-  
-  # sidebar items hav an id like tab-cards (and body elements #shiny-tab-cards)
-  # useful to simulated a click
-  target <- gsub(x = link , pattern = "#shiny-", replacement = "")
+  # menuItems <- list(...)
+  # navItems <- lapply(X = 1:length(menuItems), FUN = function(i) {
+  #   # select only items with class nav-item
+  #   menuItem <- menuItems[[i]]
+  #   itemClass <- menuItem$attribs[["class"]]
+  #   if (sum(grep(x = itemClass, pattern = "nav-item")) == 1) {
+  #     menuItem
+  #   } else {
+  #     NULL
+  #   }
+  # })
+  # # remove NULL elements
+  # navItems <- navItems[!sapply(navItems, is.null)]
+  # 
+  # #handle the case we have a list of items in navItems and store it
+  # #in another object
+  # for (i in 1:length(navItems)) {
+  #   subnavItem <- navItems[[i]]
+  #   subnavItemClass <- subnavItem$attribs[["class"]]
+  #   if (sum(grep(x = subnavItemClass, pattern = "has-treeview")) == 1) {
+  #     navItems <- append(navItems, subnavItem$children[[2]]$children, i)
+  #     navItems[[i]] <- NULL
+  #     break
+  #   }
+  # }
+  # navItems <- navItems[!sapply(navItems, is.null)]
+  # 
+  # selectedTabIndex <- lapply(X = 1:length(navItems), FUN = function(i) {
+  #   children <- navItems[[i]]$children
+  #   childrenClass <- children[[1]]$attribs[["class"]]
+  #   if (sum(grep(x = childrenClass, pattern = "active show")) == 1) i
+  # })
+  # selectedTabIndex <- unlist(selectedTabIndex[!sapply(selectedTabIndex, is.null)])
+  # 
+  # # select the first tab by default if nothing is specified
+  # if (is.null(selectedTabIndex)) {
+  #   link <- navItems[[1]]$children[[1]]$attribs[["href"]]
+  # } else {
+  #   if (length(selectedTabIndex) == 1) {
+  #     link <- navItems[[selectedTabIndex]]$children[[1]]$attribs[["href"]]
+  #     # if more than two tabs have the active class
+  #   } else {
+  #     link <- NULL
+  #   }
+  # }
+  # 
+  # if (is.null(link)) stop("Only one item should be active in the sidebar")
+  # 
+  # # sidebar items hav an id like tab-cards (and body elements #shiny-tab-cards)
+  # # useful to simulated a click
+  # target <- gsub(x = link , pattern = "#shiny-", replacement = "")
   
   # menu Tag
-  sidebarMenuTag <- shiny::tags$ul(
+  shiny::tags$ul(
     class = "nav nav-pills nav-sidebar flex-column",
     `data-widget` = "treeview",
     id = "mymenu",
@@ -127,79 +127,48 @@ bs4SidebarMenu <- function(...) {
     ...
   )
   
-  # bind the jquery 
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          # paste0(
-          #   "$(document).on('shiny:connected', function(event) {
-          #     $('", link, "').addClass('active show');
-          #    });
-          #   "
-          # )#,
-          # paste0(
-          #   "$(document).ready(function() {
-          #     $('.nav-link').click(function () {
-          #     $('.nav-link').removeClass('active show');
-          #     $(this).addClass('active show');
-          #     //var father = $(this).parent();
-          #     //alert(father);
-          #     //var link_name = $(this).attr('href');
-          #     //$('#' + link_name).addClass('active show');
-          #     //alert(link_name);
-          #     });
-          #   });
-          #   "
-          # ),
-        )
-      )
-    ),
-    sidebarMenuTag
-  )
-  
 }
 
 
 
 
-#' Create a Boostrap 4 dashboard main sidebar menu item list
-#'
-#' Build an adminLTE3 dashboard main sidebar menu item list
-#'
-#' @param ... Slot for bs4SidebarMenuItem.
-#' @param name Item list name.
-#' @param icon Item list icon.
-#' @param open Whether to display the item list in an open state. FALSE by default.
-#' @param active Whether the section is active. FALSE by default.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
-                                   open = FALSE, active = FALSE) {
-
-  menuItemCl <- "nav-item has-treeview"
-  if (isTRUE(open)) menuItemCl <- paste0(menuItemCl, " menu-open")
-
-  shiny::tags$li(
-    class = menuItemCl,
-    shiny::tags$a(
-      href = "#",
-      `data-toggle` = "tab",
-      class = if (isTRUE(active)) "nav-link active" else "nav-link",
-      shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
-      shiny::tags$p(
-        name,
-        shiny::tags$i(class = "right fas fa-angle-left")
-      )
-    ),
-    shiny::tags$ul(
-      class = "nav nav-treeview",
-      ...
-    )
-  )
-}
+# #' Create a Boostrap 4 dashboard main sidebar menu item list
+# #'
+# #' Build an adminLTE3 dashboard main sidebar menu item list
+# #'
+# #' @param ... Slot for bs4SidebarMenuItem.
+# #' @param name Item list name.
+# #' @param icon Item list icon.
+# #' @param open Whether to display the item list in an open state. FALSE by default.
+# #' @param active Whether the section is active. FALSE by default.
+# #'
+# #' @author David Granjon, \email{dgranjon@@ymail.com}
+# #'
+# #' @export
+# bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
+#                                    open = FALSE, active = FALSE) {
+# 
+#   menuItemCl <- "nav-item has-treeview"
+#   if (isTRUE(open)) menuItemCl <- paste0(menuItemCl, " menu-open")
+# 
+#   shiny::tags$li(
+#     class = menuItemCl,
+#     shiny::tags$a(
+#       href = "#",
+#       `data-toggle` = "tab",
+#       class = if (isTRUE(active)) "nav-link active" else "nav-link",
+#       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
+#       shiny::tags$p(
+#         name,
+#         shiny::tags$i(class = "right fas fa-angle-left")
+#       )
+#     ),
+#     shiny::tags$ul(
+#       class = "nav nav-treeview",
+#       ...
+#     )
+#   )
+# }
 
 
 
@@ -211,24 +180,20 @@ bs4SidebarMenuItemList <- function(..., name = NULL, icon = NULL,
 #' @param ... Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param icon Item icon.
-#' @param active Whether the item is active. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL, active = FALSE) {
+bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL) {
 
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
-      class = if (isTRUE(active)) "nav-link active show" else "nav-link",
+      class = "nav-link",
       id = paste0("tab-", tabName),
-      #role = "tab",
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
-      #`aria-controls` = tabName,
-      #`data-start-selected` = if (active) 1 else NULL,
       shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
       shiny::tags$p(
         ...

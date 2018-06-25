@@ -32,8 +32,7 @@ if(interactive()){
        bs4SidebarMenuItem(
          "Basic boxes",
          tabName = "boxes",
-         icon = "desktop",
-         active = FALSE
+         icon = "desktop"
        )
       )
      ),

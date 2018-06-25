@@ -39,57 +39,23 @@ shiny::shinyApp(
         bs4SidebarMenuItem(
           "Basic cards",
           tabName = "cards",
-          icon = "sliders",
-          active = FALSE
+          icon = "sliders"
         ),
         bs4SidebarMenuItem(
           "User cards",
           tabName = "usercards",
-          icon = "object-ungroup",
-          active = FALSE
+          icon = "object-ungroup"
         ),
         bs4SidebarMenuItem(
           "Tab cards",
           tabName = "tabcards",
-          icon = "picture-o",
-          active = FALSE
+          icon = "picture-o"
         ),
         bs4SidebarMenuItem(
           "Value/Info boxes",
           tabName = "valueboxes",
-          icon = "suitcase",
-          active = FALSE
+          icon = "suitcase"
         ),
-        # bs4SidebarMenuItemList(
-        #   name = "Cards",
-        #   icon = "gears",
-        #   open = TRUE,
-        #   active = FALSE,
-        #   bs4SidebarMenuItem(
-        #     "Basic cards",
-        #     tabName = "cards",
-        #     icon = "sliders",
-        #     active = TRUE
-        #   ),
-        #   bs4SidebarMenuItem(
-        #     "User cards",
-        #     tabName = "usercards",
-        #     icon = "object-ungroup",
-        #     active = FALSE
-        #   ),
-        #   bs4SidebarMenuItem(
-        #     "Tab cards",
-        #     tabName = "tabcards",
-        #     icon = "picture-o",
-        #     active = FALSE
-        #   ),
-        #   bs4SidebarMenuItem(
-        #     "Value/Info boxes",
-        #     tabName = "valueboxes",
-        #     icon = "suitcase",
-        #     active = FALSE
-        #   )
-        # ),
         bs4SidebarHeader("Bonus"),
         bs4SidebarMenuItem(
           HTML(
@@ -103,14 +69,12 @@ shiny::shinyApp(
             )
           ),
           tabName = "bonus",
-          icon = "paint-brush",
-          active = FALSE
+          icon = "paint-brush"
         ),
         bs4SidebarMenuItem(
           "BS4 extras",
           tabName = "test",
-          icon = "map",
-          active = FALSE
+          icon = "map"
         )
       )
     ),
