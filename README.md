@@ -42,7 +42,7 @@ Feed it according to your needs!
 
 For example you might want to create simple and beautiful boxes as below.
 
-![](man/images/bs4Boxes_example.png)
+![](man/figures/bs4Boxes_example.png)
 
 ## Themes
 
@@ -50,9 +50,9 @@ There are currently two supported themes for bs4Dash: the classic one and an old
 school theme from [bootswatch](https://bootswatch.com/sketchy/). To trigger it,
 just set `old_school = TRUE` in the **bs4DashPage()** function.
 
-![](man/images/bs4Dash_showcase.png)
+![](man/figures/bs4Dash_showcase.png)
 
-![](man/images/old_school.png)
+![](man/figures/old_school.png)
 
 ## Issues
 
