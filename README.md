@@ -6,6 +6,8 @@
 **I am open to any contribution. Depending on your amount of work, you will be listed as contributor or even author.**
 
 [![Build Status](https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master)](https://travis-ci.org/DivadNojnarg/bs4Dash)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Project Status](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
 
 ## Installation
@@ -41,7 +43,7 @@ Feed it according to your needs!
 
 For example you might want to create simple and beautiful boxes as below.
 
-![](inst/images/bs4Boxes_example.png)
+![](man/images/bs4Boxes_example.png)
 
 ## Themes
 
@@ -49,9 +51,9 @@ There are currently two supported themes for bs4Dash: the classic one and an old
 school theme from [bootswatch](https://bootswatch.com/sketchy/). To trigger it,
 just set `old_school = TRUE` in the **bs4DashPage()** function.
 
-![](inst/images/bs4Dash_showcase.png)
+![](man/images/bs4Dash_showcase.png)
 
-![](inst/images/old_school.png)
+![](man/images/old_school.png)
 
 ## Issues
 
