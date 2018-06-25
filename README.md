@@ -1,11 +1,12 @@
 # bs4Dash
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-**This package is still work in progress. Therefore, it is better to wait before converting your existing dashboard with this interface.**
+**This package is still work in progress.**
 
 **I am open to any contribution. Depending on your amount of work, you will be listed as contributor or even author.**
 
 [![Build Status](https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master)](https://travis-ci.org/DivadNojnarg/bs4Dash)
+
 
 ## Installation
 
@@ -104,26 +105,22 @@ shiny::shinyApp(
         bs4SidebarMenuItem(
           "Basic cards",
           tabName = "cards",
-          icon = "sliders",
-          active = FALSE
+          icon = "sliders"
         ),
         bs4SidebarMenuItem(
           "User cards",
           tabName = "usercards",
-          icon = "object-ungroup",
-          active = FALSE
+          icon = "object-ungroup"
         ),
         bs4SidebarMenuItem(
           "Tab cards",
           tabName = "tabcards",
-          icon = "picture-o",
-          active = FALSE
+          icon = "picture-o"
         ),
         bs4SidebarMenuItem(
           "Value/Info boxes",
           tabName = "valueboxes",
-          icon = "suitcase",
-          active = FALSE
+          icon = "suitcase"
         ),
         bs4SidebarHeader("Bonus"),
         bs4SidebarMenuItem(
@@ -138,14 +135,12 @@ shiny::shinyApp(
             )
           ),
           tabName = "bonus",
-          icon = "paint-brush",
-          active = FALSE
+          icon = "paint-brush"
         ),
         bs4SidebarMenuItem(
           "BS4 extras",
           tabName = "test",
-          icon = "map",
-          active = FALSE
+          icon = "map"
         )
       )
     ),
