@@ -1,0 +1,127 @@
+reference:
+- title: Basic dashboard functions
+  desc: Dashboard skeleton functions
+  contents: 
+  - '`bs4DashPage`'
+  - '`bs4DashNavbar`'
+  - '`bs4DashBody`'
+  - '`bs4DashFooter`'
+  - '`bs4DashSidebar`'
+  - '`bs4DashControlbar`'
+    
+- title: Body content functions
+  desc: Functions that are to be used in the bs4DashBody
+  contents:
+  - '`bs4TabItems`'
+  - '`bs4TabItem`'
+    
+- title: Sidebar Content functions
+  desc: Functions that are to be used in the bs4DashSidebar
+  contents:
+  - '`bs4SidebarMenu`'
+  - '`bs4SidebarMenuItem`'
+  - '`bs4SidebarHeader`'
+    
+- title: Navbar Content functions
+  desc: Functions that are to be used in the bs4DashNavbar
+  contents:
+  - '`bs4DropdownMenu`'
+  - '`bs4DropdownMenuItem`'
+    
+- title: Cards and boxes
+  desc: Build cards and boxes
+  contents:
+  - '`bs4Box`'
+  - '`bs4InfoBox`'
+  - '`bs4ValueBox`'
+  - '`bs4Card`'
+  - '`bs4TabCard`'
+  - '`bs4UserCard`'
+
+- title: Card Tool components
+  desc: Build dropdown menu in the tool area (close, collapse)
+  contents:
+  - '`dropdownDivider`'
+  - '`dropdownItem`'
+  - '`dropdownItemList`'
+  
+- title: Tab card elements
+  desc: Functions that are to be used in bs4TabCard
+  contents:
+  - '`bs4TabPanel`'
+  - '`bs4TabSetPanel`'
+    
+- title: Render functions
+  desc: Dynamically generate items
+  contents:
+  - '`bs4ValueBoxOutput`'
+  - '`bs4InfoBoxOutput`'
+  - '`renderbs4ValueBox`'
+  - '`renderbs4InfoBox`'
+    
+- title: Other bs4 items
+  desc: To better customize your app
+  contents:
+  - '`bs4Accordion`'
+  - '`bs4AccordionItem`'
+  - '`bs4Alert`'
+  - '`bs4Badge`'
+  - '`bs4Callout`'
+  - '`bs4Carousel`'
+  - '`bs4CarouselItem`'
+  - '`bs4Jumbotron`'
+  - '`bs4ListGroup`'
+  - '`bs4ListGroupItem`'
+  - '`bs4Loading`'
+  - '`bs4ProgressBar`'
+  - '`bs4Stars`'
+  - '`bs4Timeline`'
+  - '`bs4TimelineEnd`'
+  - '`bs4TimelineItem`'
+  - '`bs4TimelineItemMedia`'
+  - '`bs4TimelineLabel`'
+  - '`bs4TimelineStart`'
+  
+  
+development:
+  mode: auto
+
+
+template:
+  params:
+    bootswatch: journal
+    
+    
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: Changelog
+      href: news/index.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/DivadNojnarg/bs4Dash
+      
+
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - '`bs4Intro`'
+  - '`bs4Themes`'
+  - '`bs4Showcase`'
+  

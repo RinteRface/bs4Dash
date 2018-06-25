@@ -1,0 +1,33 @@
+---
+title: "How to start?"
+author: "David Granjon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Create a basic page 
+
+This is the template to start with bs4Dash:
+
+```r
+library(shiny)
+library(bs4Dash)
+
+ shiny::shinyApp(
+   ui = bs4DashPage(
+    navbar = bs4DashNavbar(),
+    sidebar = bs4DashSidebar(),
+    controlbar = bs4DashControlbar(),
+    footer = bs4DashFooter(),
+    title = "Basic Dashboard",
+    body = bs4DashBody()
+   ),
+   server = function(input, output) {}
+ )
+```
+
+Feed it according to your needs!
