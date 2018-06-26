@@ -2,7 +2,7 @@
 % Please edit documentation in R/cards.R
 \name{bs4TabCard}
 \alias{bs4TabCard}
-\title{Create a Boostrap 4 card}
+\title{Create a Boostrap 4 tabCard}
 \usage{
 bs4TabCard(..., title = NULL, width = 6, height = NULL,
   elevation = NULL)
@@ -24,7 +24,7 @@ the height scales automatically with the content.}
 \item{elevation}{tabCard elevation.}
 }
 \description{
-Build an adminLTE3 card
+Build an adminLTE3 card with tabs
 }
 \examples{
 if(interactive()){

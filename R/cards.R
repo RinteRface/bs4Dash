@@ -490,9 +490,9 @@ bs4InfoBox <- function(..., title, value = NULL,
 
 
 
-#' Create a Boostrap 4 card
+#' Create a Boostrap 4 tabCard
 #'
-#' Build an adminLTE3 card
+#' Build an adminLTE3 card with tabs
 #'
 #' @param ... Contents of the box: should be bs4TabPanel.
 #' @param title TabCard title.
