@@ -81,6 +81,11 @@ reference:
   - '`bs4TimelineItemMedia`'
   - '`bs4TimelineLabel`'
   - '`bs4TimelineStart`'
+
+- title: Gallery
+  desc: bs4Dash showcase
+  contents:
+  - '`bs4DashGallery`'
   
   
 development:
