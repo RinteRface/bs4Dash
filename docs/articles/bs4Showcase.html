@@ -121,6 +121,14 @@
 <span class="kw">library</span>(bs4Dash)
 <span class="kw">library</span>(plotly)
 
+<span class="co"># plot 2</span>
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi, <span class="dt">length.out =</span> <span class="dv">1000</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, <span class="dt">y1 =</span> <span class="kw">sin</span>(x), <span class="dt">y2 =</span> <span class="kw">cos</span>(x))
+
+<span class="co"># plot 3</span>
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">200</span>)
+y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">200</span>)
+
 shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(
   <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
     <span class="dt">old_school =</span> <span class="ot">TRUE</span>,
@@ -152,7 +160,7 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
       <span class="dt">elevation =</span> <span class="dv">3</span>,
       <span class="dt">opacity =</span> <span class="fl">0.8</span>,
       <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(
-        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Main content"</span>),
+        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Cards"</span>),
         <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
           <span class="st">"Basic cards"</span>,
           <span class="dt">tabName =</span> <span class="st">"cards"</span>,
@@ -168,16 +176,22 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
           <span class="dt">tabName =</span> <span class="st">"tabcards"</span>,
           <span class="dt">icon =</span> <span class="st">"picture-o"</span>
         ),
+        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Boxes"</span>),
+        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
+          <span class="st">"Basic boxes"</span>,
+          <span class="dt">tabName =</span> <span class="st">"boxes"</span>,
+          <span class="dt">icon =</span> <span class="st">"desktop"</span>
+        ),
         <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
           <span class="st">"Value/Info boxes"</span>,
           <span class="dt">tabName =</span> <span class="st">"valueboxes"</span>,
           <span class="dt">icon =</span> <span class="st">"suitcase"</span>
         ),
-        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Bonus"</span>),
+        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"BS4 gallery"</span>),
         <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
           <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/HTML">HTML</a></span>(
             <span class="kw">paste</span>(
-              <span class="st">"Other stuff"</span>, 
+              <span class="st">"Gallery 1"</span>, 
               <span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(
                 <span class="st">"new"</span>, 
                 <span class="dt">position =</span> <span class="st">"right"</span>, 
@@ -185,12 +199,21 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
               )
             )
           ),
-          <span class="dt">tabName =</span> <span class="st">"bonus"</span>,
+          <span class="dt">tabName =</span> <span class="st">"gallery1"</span>,
           <span class="dt">icon =</span> <span class="st">"paint-brush"</span>
         ),
         <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
-          <span class="st">"BS4 extras"</span>,
-          <span class="dt">tabName =</span> <span class="st">"test"</span>,
+          <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/HTML">HTML</a></span>(
+            <span class="kw">paste</span>(
+              <span class="st">"Gallery 2"</span>, 
+              <span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(
+                <span class="st">"!"</span>, 
+                <span class="dt">position =</span> <span class="st">"right"</span>, 
+                <span class="dt">status =</span> <span class="st">"success"</span>
+              )
+            )
+          ),
+          <span class="dt">tabName =</span> <span class="st">"gallery2"</span>,
           <span class="dt">icon =</span> <span class="st">"map"</span>
         )
       )
@@ -278,6 +301,7 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
           <span class="kw"><a href="../reference/bs4TabCard.html">bs4TabCard</a></span>(
             <span class="dt">title =</span> <span class="st">"A card with tabs"</span>,
             <span class="dt">elevation =</span> <span class="dv">2</span>,
+            <span class="dt">width =</span> <span class="dv">8</span>,
             <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(
               <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,
               <span class="dt">active =</span> <span class="ot">FALSE</span>,
@@ -343,6 +367,12 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
               <span class="dt">subtitle =</span> <span class="st">"User Registrations"</span>,
               <span class="dt">status =</span> <span class="st">"warning"</span>,
               <span class="dt">icon =</span> <span class="st">"sliders"</span>
+            ),
+            <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(
+              <span class="dt">value =</span> <span class="st">"53%"</span>,
+              <span class="dt">subtitle =</span> <span class="st">"Bounce rate"</span>,
+              <span class="dt">status =</span> <span class="st">"success"</span>,
+              <span class="dt">icon =</span> <span class="st">"database"</span>
             )
           ),
           <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/builder">h4</a></span>(<span class="st">"Info Boxes"</span>),
@@ -367,7 +397,22 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
           )
         ),
         <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
-          <span class="dt">tabName =</span> <span class="st">"bonus"</span>,
+          <span class="dt">tabName =</span> <span class="st">"boxes"</span>,
+          <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
+            <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(
+              <span class="dt">height =</span> <span class="st">"600px"</span>,
+              <span class="dt">title =</span> <span class="st">"Box 1"</span>,
+              <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plotly-shiny">plotlyOutput</a></span>(<span class="st">"plot2"</span>)
+            ),
+            <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(
+              <span class="dt">height =</span> <span class="st">"600px"</span>,
+              <span class="dt">title =</span> <span class="st">"Box 2"</span>,
+              <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plotly-shiny">plotlyOutput</a></span>(<span class="st">"plot3"</span>)
+            )
+          )
+        ),
+        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
+          <span class="dt">tabName =</span> <span class="st">"gallery1"</span>,
           <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
             <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(
               <span class="dt">title =</span> <span class="st">"Accordions"</span>,
@@ -567,7 +612,7 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
           )
         ),
         <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
-          <span class="dt">tabName =</span> <span class="st">"test"</span>,
+          <span class="dt">tabName =</span> <span class="st">"gallery2"</span>,
           <span class="kw"><a href="../reference/bs4Jumbotron.html">bs4Jumbotron</a></span>(
             <span class="dt">title =</span> <span class="st">"I am a Jumbotron!"</span>,
             <span class="dt">lead =</span> <span class="st">"This is a simple hero unit, a simple jumbotron-style </span>
@@ -678,7 +723,7 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
       <span class="dt">copyrights =</span> <span class="st">"@DivadNojnarg"</span>,
       <span class="dt">right_text =</span> <span class="st">"2018"</span>
     ),
-    <span class="dt">title =</span> <span class="st">"test"</span>
+    <span class="dt">title =</span> <span class="st">"bs4Dash Showcase"</span>
   ),
   <span class="dt">server =</span> <span class="cf">function</span>(input, output) {
     
@@ -696,8 +741,54 @@ shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
       
       <span class="kw">hist</span>(<span class="kw">dist</span>(<span class="dv">500</span>))
     })
+    
+    output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plotly-shiny">renderPlotly</a></span>({
+      p &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plot_ly">plot_ly</a></span>(df, <span class="dt">x =</span> <span class="op">~</span>x) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/add_trace">add_lines</a></span>(<span class="dt">y =</span> <span class="op">~</span>y1, <span class="dt">name =</span> <span class="st">"A"</span>) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/add_trace">add_lines</a></span>(<span class="dt">y =</span> <span class="op">~</span>y2, <span class="dt">name =</span> <span class="st">"B"</span>, <span class="dt">visible =</span> F) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/layout">layout</a></span>(
+          <span class="dt">xaxis =</span> <span class="kw">list</span>(<span class="dt">domain =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>)),
+          <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">title =</span> <span class="st">"y"</span>),
+          <span class="dt">updatemenus =</span> <span class="kw">list</span>(
+            <span class="kw">list</span>(
+              <span class="dt">y =</span> <span class="fl">0.8</span>,
+              <span class="dt">buttons =</span> <span class="kw">list</span>(
+                
+                <span class="kw">list</span>(<span class="dt">method =</span> <span class="st">"restyle"</span>,
+                     <span class="dt">args =</span> <span class="kw">list</span>(<span class="st">"line.color"</span>, <span class="st">"blue"</span>),
+                     <span class="dt">label =</span> <span class="st">"Blue"</span>),
+                
+                <span class="kw">list</span>(<span class="dt">method =</span> <span class="st">"restyle"</span>,
+                     <span class="dt">args =</span> <span class="kw">list</span>(<span class="st">"line.color"</span>, <span class="st">"red"</span>),
+                     <span class="dt">label =</span> <span class="st">"Red"</span>))),
+            
+            <span class="kw">list</span>(
+              <span class="dt">y =</span> <span class="fl">0.7</span>,
+              <span class="dt">buttons =</span> <span class="kw">list</span>(
+                <span class="kw">list</span>(<span class="dt">method =</span> <span class="st">"restyle"</span>,
+                     <span class="dt">args =</span> <span class="kw">list</span>(<span class="st">"visible"</span>, <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)),
+                     <span class="dt">label =</span> <span class="st">"Sin"</span>),
+                
+                <span class="kw">list</span>(<span class="dt">method =</span> <span class="st">"restyle"</span>,
+                     <span class="dt">args =</span> <span class="kw">list</span>(<span class="st">"visible"</span>, <span class="kw">list</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>)),
+                     <span class="dt">label =</span> <span class="st">"Cos"</span>)))
+          )
+        )
+    })
+    
+    output<span class="op">$</span>plot3 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plotly-shiny">renderPlotly</a></span>({
+      s &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/subplot">subplot</a></span>(
+        <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plot_ly">plot_ly</a></span>(<span class="dt">x =</span> x, <span class="dt">type =</span> <span class="st">"histogram"</span>),
+        <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plotly_empty">plotly_empty</a></span>(),
+        <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plot_ly">plot_ly</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">type =</span> <span class="st">"histogram2dcontour"</span>),
+        <span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/plot_ly">plot_ly</a></span>(<span class="dt">y =</span> y, <span class="dt">type =</span> <span class="st">"histogram"</span>),
+        <span class="dt">nrows =</span> <span class="dv">2</span>, <span class="dt">heights =</span> <span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.8</span>), <span class="dt">widths =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>), <span class="dt">margin =</span> <span class="dv">0</span>,
+        <span class="dt">shareX =</span> <span class="ot">TRUE</span>, <span class="dt">shareY =</span> <span class="ot">TRUE</span>, <span class="dt">titleX =</span> <span class="ot">FALSE</span>, <span class="dt">titleY =</span> <span class="ot">FALSE</span>
+      )
+      p &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/plotly/topics/layout">layout</a></span>(s, <span class="dt">showlegend =</span> <span class="ot">FALSE</span>)
+    })
+    
   }
-  
 )</code></pre></div>
 </div>
   </div>

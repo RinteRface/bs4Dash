@@ -36,6 +36,14 @@ library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
 
+# plot 2
+x <- seq(-2 * pi, 2 * pi, length.out = 1000)
+df <- data.frame(x, y1 = sin(x), y2 = cos(x))
+
+# plot 3
+x <- rnorm(200)
+y <- rnorm(200)
+
 shiny::shinyApp(
   ui = bs4DashPage(
     old_school = TRUE,
@@ -67,7 +75,7 @@ shiny::shinyApp(
       elevation = 3,
       opacity = 0.8,
       bs4SidebarMenu(
-        bs4SidebarHeader("Main content"),
+        bs4SidebarHeader("Cards"),
         bs4SidebarMenuItem(
           "Basic cards",
           tabName = "cards",
@@ -83,16 +91,22 @@ shiny::shinyApp(
           tabName = "tabcards",
           icon = "picture-o"
         ),
+        bs4SidebarHeader("Boxes"),
+        bs4SidebarMenuItem(
+          "Basic boxes",
+          tabName = "boxes",
+          icon = "desktop"
+        ),
         bs4SidebarMenuItem(
           "Value/Info boxes",
           tabName = "valueboxes",
           icon = "suitcase"
         ),
-        bs4SidebarHeader("Bonus"),
+        bs4SidebarHeader("BS4 gallery"),
         bs4SidebarMenuItem(
           HTML(
             paste(
-              "Other stuff", 
+              "Gallery 1", 
               bs4Badge(
                 "new", 
                 position = "right", 
@@ -100,12 +114,21 @@ shiny::shinyApp(
               )
             )
           ),
-          tabName = "bonus",
+          tabName = "gallery1",
           icon = "paint-brush"
         ),
         bs4SidebarMenuItem(
-          "BS4 extras",
-          tabName = "test",
+          HTML(
+            paste(
+              "Gallery 2", 
+              bs4Badge(
+                "!", 
+                position = "right", 
+                status = "success"
+              )
+            )
+          ),
+          tabName = "gallery2",
           icon = "map"
         )
       )
@@ -193,6 +216,7 @@ shiny::shinyApp(
           bs4TabCard(
             title = "A card with tabs",
             elevation = 2,
+            width = 8,
             bs4TabPanel(
               tabName = "Tab1",
               active = FALSE,
@@ -258,6 +282,12 @@ shiny::shinyApp(
               subtitle = "User Registrations",
               status = "warning",
               icon = "sliders"
+            ),
+            bs4ValueBox(
+              value = "53%",
+              subtitle = "Bounce rate",
+              status = "success",
+              icon = "database"
             )
           ),
           h4("Info Boxes"),
@@ -282,7 +312,22 @@ shiny::shinyApp(
           )
         ),
         bs4TabItem(
-          tabName = "bonus",
+          tabName = "boxes",
+          fluidRow(
+            bs4Box(
+              height = "600px",
+              title = "Box 1",
+              plotlyOutput("plot2")
+            ),
+            bs4Box(
+              height = "600px",
+              title = "Box 2",
+              plotlyOutput("plot3")
+            )
+          )
+        ),
+        bs4TabItem(
+          tabName = "gallery1",
           fluidRow(
             bs4Card(
               title = "Accordions",
@@ -482,7 +527,7 @@ shiny::shinyApp(
           )
         ),
         bs4TabItem(
-          tabName = "test",
+          tabName = "gallery2",
           bs4Jumbotron(
             title = "I am a Jumbotron!",
             lead = "This is a simple hero unit, a simple jumbotron-style 
@@ -593,7 +638,7 @@ shiny::shinyApp(
       copyrights = "@DivadNojnarg",
       right_text = "2018"
     ),
-    title = "test"
+    title = "bs4Dash Showcase"
   ),
   server = function(input, output) {
     
@@ -611,7 +656,53 @@ shiny::shinyApp(
       
       hist(dist(500))
     })
+    
+    output$plot2 <- renderPlotly({
+      p <- plot_ly(df, x = ~x) %>%
+        add_lines(y = ~y1, name = "A") %>%
+        add_lines(y = ~y2, name = "B", visible = F) %>%
+        layout(
+          xaxis = list(domain = c(0.1, 1)),
+          yaxis = list(title = "y"),
+          updatemenus = list(
+            list(
+              y = 0.8,
+              buttons = list(
+                
+                list(method = "restyle",
+                     args = list("line.color", "blue"),
+                     label = "Blue"),
+                
+                list(method = "restyle",
+                     args = list("line.color", "red"),
+                     label = "Red"))),
+            
+            list(
+              y = 0.7,
+              buttons = list(
+                list(method = "restyle",
+                     args = list("visible", list(TRUE, FALSE)),
+                     label = "Sin"),
+                
+                list(method = "restyle",
+                     args = list("visible", list(FALSE, TRUE)),
+                     label = "Cos")))
+          )
+        )
+    })
+    
+    output$plot3 <- renderPlotly({
+      s <- subplot(
+        plot_ly(x = x, type = "histogram"),
+        plotly_empty(),
+        plot_ly(x = x, y = y, type = "histogram2dcontour"),
+        plot_ly(y = y, type = "histogram"),
+        nrows = 2, heights = c(0.2, 0.8), widths = c(0.8, 0.2), margin = 0,
+        shareX = TRUE, shareY = TRUE, titleX = FALSE, titleY = FALSE
+      )
+      p <- layout(s, showlegend = FALSE)
+    })
+    
   }
-  
 )
 ```
