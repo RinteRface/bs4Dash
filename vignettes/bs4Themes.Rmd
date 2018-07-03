@@ -11,7 +11,7 @@ vignette: >
 
 There are currently two supported themes for bs4Dash: the classic one and an old
 school theme from [bootswatch](https://bootswatch.com/sketchy/). To trigger it,
-just set `old_school = TRUE` in the **bs4DashPage()** function.
+just set `old_school = TRUE` in the `bs4DashPage()` function.
 
 ## Default theme
 

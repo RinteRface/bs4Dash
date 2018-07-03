@@ -26,6 +26,7 @@ AdminLTE3 alert
 \examples{
 if(interactive()){
  library(shiny)
+ library(bs4Dash)
  
  shiny::shinyApp(
    ui = bs4DashPage(

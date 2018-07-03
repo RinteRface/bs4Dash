@@ -11,6 +11,7 @@
 #' @examples 
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -57,6 +58,7 @@ bs4Badge <- function(..., position = c("left", "right"), status,
 #' @examples 
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -184,6 +186,7 @@ bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
 #' @examples 
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -328,6 +331,7 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -427,6 +431,7 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -522,6 +527,7 @@ bs4Alert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -590,6 +596,7 @@ bs4Callout <- function(..., title, width = 6, elevation = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -637,6 +644,7 @@ bs4Loading <- function() {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -889,6 +897,7 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -955,6 +964,7 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -1025,6 +1035,7 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(

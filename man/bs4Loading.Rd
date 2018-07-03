@@ -15,6 +15,7 @@ Loading state can be programmatically used when a conputation is running for ins
 \examples{
 if(interactive()){
  library(shiny)
+ library(bs4Dash)
  
  shiny::shinyApp(
    ui = bs4DashPage(

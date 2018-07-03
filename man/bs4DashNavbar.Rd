@@ -5,7 +5,7 @@
 \title{Create a Boostrap 4 dashboard navbar}
 \usage{
 bs4DashNavbar(..., skin = "light", status = "white", border = TRUE,
-  sidebarIcon = "bars", controlbarIcon = "th-large", leftUi = NULL,
+  sidebarIcon = "bars", controlbarIcon = "th", leftUi = NULL,
   rightUi = NULL)
 }
 \arguments{

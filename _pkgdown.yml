@@ -130,3 +130,8 @@ articles:
   - '`bs4Themes`'
   - '`bs4Showcase`'
   
+  
+news:
+ releases:
+ - text: "bs4Dash 0.1.0"
+ 

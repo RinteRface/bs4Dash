@@ -12,8 +12,6 @@
 #'
 #' }
 bs4DashGallery <- function() { # nocov start
-  if (!requireNamespace(package = "fontawesome"))
-    message("Package 'fontawesome' is required to run this function")
   if (!requireNamespace(package = "shinyWidgets"))
     message("Package 'shinyWidgets' is required to run this function")
   if (!requireNamespace(package = "plotly"))

@@ -15,7 +15,6 @@ The demo is hosted [here](http://130.60.24.205/bs4Dash/showcase).
 From RStudio, you can also launch the gallery as follows:
 ```r
 library(shiny)
-library(fontawesome)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)

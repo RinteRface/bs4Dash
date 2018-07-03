@@ -16,10 +16,10 @@
 #'
 #' @export
 bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
-                               sidebarIcon = "bars", controlbarIcon = "th-large",
+                               sidebarIcon = "bars", controlbarIcon = "th",
                                leftUi = NULL, rightUi = NULL) {
 
-  shiny::tags$nav(
+  navbarTag <- shiny::tags$nav(
     class = paste0("main-header navbar navbar-expand bg-", status,
                    " navbar-", skin, if (isTRUE(border)) " border-bottom" else NULL),
 
@@ -34,7 +34,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
           class = "nav-link",
           `data-widget` = "pushmenu",
           href = "#",
-          fontawesome::fa(name = sidebarIcon, fill = "black")
+          shiny::icon(sidebarIcon)
         )
       ),
       leftUi
@@ -56,12 +56,33 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
           `data-widget` = "control-sidebar",
           `data-slide` = "true",
           href = "#",
-          fontawesome::fa(name = controlbarIcon, fill = "black")
+          shiny::icon(controlbarIcon)
         )
       )
     )
-
   )
+  
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".fa-", sidebarIcon, "{
+                 color: #000;
+              }
+               .fa-", controlbarIcon, "{
+                 color: #000;
+               }
+              "
+            )
+          )
+        )
+      )
+    ),
+    navbarTag
+  )
+  
 }
 
 
@@ -80,6 +101,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -121,13 +143,13 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
   # remove the divider from the last item
   #items[[n_items]][[2]] <- NULL
   
-  shiny::tags$li(
+  dropdownMenuTag <- shiny::tags$li(
     class = if (isTRUE(show)) "nav-item dropdown show" else "nav-item dropdown",
     shiny::tags$a(
       class = "nav-link",
       `data-toggle` = "dropdown",
       href = "#",
-      fontawesome::fa(name = "bell", fill = "black"),
+      shiny::icon("bell"),
       shiny::tags$span(
         class = paste0("badge badge-", status, " navbar-badge"), 
         labelText
@@ -153,6 +175,25 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       )
     )
   )
+  
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".fa-bell {
+                color: #000;
+               }
+              "
+            )
+          )
+        )
+      )
+    ),
+    dropdownMenuTag
+  )
+  
 }
 
 
@@ -171,22 +212,40 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #' @export
 bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
   
-  shiny::tagList(
+  dropdownItemTag <- shiny::tagList(
     shiny::tags$a(
       class = "dropdown-item",
       href = "#",
-      fontawesome::fa(name = icon, fill = "black"),
+      shiny::icon(icon),
       text,
       shiny::tags$span(
         class = "float-right text-muted text-sm",
         date,
         shiny::tags$span(
           class = "time",
-          fontawesome::fa(name = "clock", fill = "black")
+          shiny::icon(icon)
         )
       )
     ),
     shiny::tags$div(class = "dropdown-divider")
+  )
+  
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".fa-", icon, "{
+                color: #000;
+              }
+              "
+            )
+          )
+        )
+      )
+    ),
+    dropdownItemTag
   )
   
   # shiny::tags$a(

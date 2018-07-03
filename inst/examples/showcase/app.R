@@ -1,5 +1,4 @@
 library(shiny)
-library(fontawesome)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)

@@ -36,6 +36,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -289,6 +290,7 @@ dropdownDivider <- function() {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -389,6 +391,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -447,19 +450,7 @@ bs4InfoBox <- function(..., title, value = NULL,
     class = "info-box-icon",
     class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
     # icon
-    if (is.null(status)) {
-      if (is.null(gradientColor)) {
-        fontawesome::fa(name = icon, fill = "black")
-      } else {
-        fontawesome::fa(name = icon, fill = "white")
-      }
-    } else {
-      if (status == "white") {
-        fontawesome::fa(name = icon, fill = "black")
-      } else {
-        fontawesome::fa(name = icon, fill = "white")
-      }
-    }
+    shiny::icon(icon)
   )
   
   contentTag <- shiny::tags$div(
@@ -479,6 +470,52 @@ bs4InfoBox <- function(..., title, value = NULL,
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
   
   infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
+  
+  # handle icon color (white or black depending on the box background)
+  infoBoxTag <- shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+              if (is.null(status)) {
+                if (is.null(gradientColor)) {
+                  paste0(
+                    ".fa-", icon, "{
+                      color: #000;
+                     }
+                    "
+                  )
+                } else {
+                  paste0(
+                    ".fa-", icon, "{
+                      color: #fff;
+                     }
+                    "
+                  )
+                }
+              } else {
+                if (status == "white") {
+                  paste0(
+                    ".fa-", icon, "{
+                      color: #000;
+                     }
+                    "
+                  )
+                } else {
+                  paste0(
+                    ".fa-", icon, "{
+                      color: #fff;
+                     }
+                    "
+                  )
+                }
+              }
+          )
+        )
+      )
+    ),
+    infoBoxTag
+  )
 
   
   shiny::tags$div(
@@ -510,6 +547,7 @@ bs4InfoBox <- function(..., title, value = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -676,6 +714,7 @@ bs4TabPanel <- function(..., tabName, active = FALSE) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
@@ -809,6 +848,7 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
+#'  library(bs4Dash)
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
