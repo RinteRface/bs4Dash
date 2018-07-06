@@ -86,10 +86,6 @@ reference:
   desc: bs4Dash showcase
   contents:
   - '`bs4DashGallery`'
-  
-  
-development:
-  mode: unreleased
 
 
 template:

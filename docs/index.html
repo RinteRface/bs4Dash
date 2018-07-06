@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="A 'Bootstrap 4' Version of 'shinydashboard'">
-<meta property="og:description" content="Make 'bootstrap 4' dashboards. Use the full power
+<meta property="og:description" content="Make 'Bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
     &lt;https://github.com/almasaeed2010/AdminLTE/tree/v3-dev&gt;.">
 <meta name="twitter:card" content="summary">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bs4Dash</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -110,13 +110,16 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>This package is not on CRAN (release soon)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"DivadNojnarg/bs4Dash"</span>)</code></pre></div>
+<p>This package is on CRAN:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># from CRAN</span>
+<span class="kw">install.packages</span>(<span class="st">"bs4Dash"</span>)
+<span class="co"># latest devel version</span>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"DivadNojnarg/bs4Dash"</span>)</code></pre></div>
 </div>
 <div id="issues" class="section level2">
 <h2 class="hasAnchor">
 <a href="#issues" class="anchor"></a>Issues</h2>
-<p>Issues are listed <a href="https://github.com/DivadNojnarg/bs4Dash/issues">here</a>. At the moment it is better not to use the <strong>bs4SidebarMenuItemList</strong> function. I will remove this function anyway to simplify the package.</p>
+<p>Issues are listed <a href="https://github.com/DivadNojnarg/bs4Dash/issues">here</a>.</p>
 </div>
 </div>
   </div>
@@ -125,6 +128,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=bs4Dash">https://​cloud.r-project.org/​package=bs4Dash</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/DivadNojnarg/bs4Dash">https://​github.com/​DivadNojnarg/​bs4Dash</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/DivadNojnarg/bs4Dash/issues">https://​github.com/​DivadNojnarg/​bs4Dash/​issues</a>
@@ -149,6 +154,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/DivadNojnarg/bs4Dash"><img src="https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=bs4Dash"><img src="http://www.r-pkg.org/badges/version/bs4Dash" alt="version"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg" alt="lifecycle"></a></li>
 <li><a href="http://www.repostatus.org/#wip"><img src="http://www.repostatus.org/badges/latest/wip.svg" alt="Project Status"></a></li>
 </ul>
