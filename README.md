@@ -1,12 +1,20 @@
 # bs4Dash
 [![Build Status](https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master)](https://travis-ci.org/DivadNojnarg/bs4Dash)
 [![version](http://www.r-pkg.org/badges/version/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Project Status](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-**I am open to any contribution. Depending on your amount of work, you will be listed as contributor or even author.**
+<video width="640" height="480" controls style="display: block; margin: 0 auto;">
+  <source src="figures/bs4DashDemo-classic.mp4" type="video/mp4">
+</video>
+
+<br>
+
+<video width="640" height="480" controls style="display: block; margin: 0 auto;">
+  <source src="figures/bs4DashDemo-old_school.mp4" type="video/mp4">
+</video>
 
 ## Installation
 

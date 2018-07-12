@@ -11,7 +11,8 @@ vignette: >
 
 ## Dashboard Demo
 
-The demo is hosted [here](http://130.60.24.205/bs4Dash/showcase).
+The demo is hosted [here](http://130.60.24.205/bs4Dash/showcase/classic) or 
+[here](http://130.60.24.205/bs4Dash/showcase/old_school).
 From RStudio, you can also launch the gallery as follows:
 ```r
 library(shiny)
@@ -22,7 +23,9 @@ library(plotly)
 bs4DashGallery()
 ```
 
-<iframe src="http://130.60.24.205/bs4Dash/showcase" width="100%" height="720px" frameBorder="0">
+Below an embedded demo.
+
+<iframe src="http://130.60.24.205/bs4Dash/showcase/classic" width="100%" height="720px" frameBorder="0">
 
 ## Demo code
 
