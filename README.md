@@ -6,14 +6,14 @@
 
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-<video width="640" height="480" controls style="display: block; margin: 0 auto;">
+<video width="640" height="480" controls style="display: block; margin: 0 auto;" muted>
   <source src="figures/bs4DashDemo-classic.mp4" type="video/mp4">
 </video>
 
 <br>
 
-<video width="640" height="480" controls style="display: block; margin: 0 auto;">
-  <source src="figures/bs4DashDemo-old_school.mp4" type="video/mp4">
+<video width="640" height="480" controls style="display: block; margin: 0 auto;" muted>
+  <source src="figures/bs4DashDemo-old-school.mp4" type="video/mp4">
 </video>
 
 ## Installation

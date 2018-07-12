@@ -15,6 +15,10 @@ just set `old_school = TRUE` in the `bs4DashPage()` function.
 
 ## Default theme
 
+<img src="figures/bs4Dash_showcase.png" width="848" height="964">
+
+<br>
+
 ```r
 library(shiny)
 library(bs4Dash)
@@ -60,9 +64,9 @@ library(bs4Dash)
  )
 ```
 
-<iframe src="http://130.60.24.205/bs4Dash/classic" width="100%" height="720px" frameBorder="0" scrolling= "no">
-
 ## Old school theme
+
+<img src="figures/old_school.png" width="848" height="530">
 
 ```r
 library(shiny)
@@ -109,8 +113,6 @@ library(bs4Dash)
    server = function(input, output) {}
  )
 ```
-
-<iframe src="http://130.60.24.205/bs4Dash/old-school" width="100%" height="720px" frameBorder="0" scrolling= "no">
 
 ## Limitations
 
