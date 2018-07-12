@@ -6,8 +6,6 @@
 
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-**This package is still work in progress.**
-
 **I am open to any contribution. Depending on your amount of work, you will be listed as contributor or even author.**
 
 ## Installation
@@ -19,6 +17,18 @@ This package is on CRAN:
 install.packages("bs4Dash")
 # latest devel version
 devtools::install_github("DivadNojnarg/bs4Dash")
+```
+
+## Demo
+
+See a preview of the package [here](http://130.60.24.205/bs4Dash/showcase/classic) and
+[here](http://130.60.24.205/bs4Dash/showcase/old_school) or run
+```r
+library(bs4Dash)
+# classic theme
+bs4DashGallery()
+# old_school theme
+bs4DashGallery(theme = "old_school")
 ```
 
 ## Issues

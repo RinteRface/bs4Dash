@@ -21,7 +21,7 @@ shiny::shinyApp(
         show = TRUE,
         labelText = "!",
         status = "danger",
-        src = "http://www.google.fr",
+        src = "https://www.google.fr",
         bs4DropdownMenuItem(
           text = "message 1",
           date = "today"
@@ -37,7 +37,7 @@ shiny::shinyApp(
       status = "primary",
       title = "bs4Dash",
       brandColor = "primary",
-      url = "http://www.google.fr",
+      url = "https://www.google.fr",
       src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
       elevation = 3,
       opacity = 0.8,
@@ -117,7 +117,7 @@ shiny::shinyApp(
               labelTooltip = "Hi Bro!",
               dropdownIcon = "wrench",
               dropdownMenu = dropdownItemList(
-                dropdownItem(url = "http://www.google.com", name = "Link to google"),
+                dropdownItem(url = "https://www.google.com", name = "Link to google"),
                 dropdownItem(url = "#", name = "item 2"),
                 dropdownDivider(),
                 dropdownItem(url = "#", name = "item 3")
@@ -345,15 +345,15 @@ shiny::shinyApp(
                 width = 12,
                 bs4CarouselItem(
                   active = TRUE,
-                  src = "http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
+                  src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
                 ),
                 bs4CarouselItem(
                   active = FALSE,
-                  src = "http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
+                  src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
                 ),
                 bs4CarouselItem(
                   active = FALSE,
-                  src = "http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
+                  src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
                 )
               )
             )
@@ -448,8 +448,8 @@ shiny::shinyApp(
                   title = "Item 3",
                   icon = "paint-brush",
                   status = "warning",
-                  bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
-                  bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+                  bs4TimelineItemMedia(src = "https://placehold.it/150x100"),
+                  bs4TimelineItemMedia(src = "https://placehold.it/150x100")
                 ),
                 bs4TimelineStart(status = "danger")
               )
@@ -477,8 +477,8 @@ shiny::shinyApp(
                 title = "Item 3",
                 icon = "paint-brush",
                 status = "warning",
-                bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
-                bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+                bs4TimelineItemMedia(src = "https://placehold.it/150x100"),
+                bs4TimelineItemMedia(src = "https://placehold.it/150x100")
               ),
               bs4TimelineStart(status = "danger")
             )
@@ -503,7 +503,7 @@ shiny::shinyApp(
             "It uses utility classes for typography and spacing 
             to space content out within the larger container.",
             status = "primary",
-            href = "http://www.google.fr"
+            href = "https://www.google.fr"
           ),
           
           br(),
@@ -538,21 +538,21 @@ shiny::shinyApp(
                 active = TRUE, 
                 disabled = FALSE, 
                 type = "action",
-                src = "http://www.google.fr"
+                src = "https://www.google.fr"
               ),
               bs4ListGroupItem(
                 active = FALSE, 
                 disabled = FALSE, 
                 type = "action",
                 "Dapibus ac facilisis in",
-                src = "http://www.google.fr"
+                src = "https://www.google.fr"
               ),
               bs4ListGroupItem(
                 "Morbi leo risus",
                 active = FALSE, 
                 disabled = TRUE, 
                 type = "action",
-                src = "http://www.google.fr"
+                src = "https://www.google.fr"
               )
             ),
             bs4ListGroup(
@@ -602,7 +602,10 @@ shiny::shinyApp(
       )
     ),
     footer = bs4DashFooter(
-      copyrights = "@DivadNojnarg",
+      copyrights = a(
+        href = "https://twitter.com/divadnojnarg", 
+        target = "_blank", "@DivadNojnarg"
+      ),
       right_text = "2018"
     ),
     title = "bs4Dash Showcase"

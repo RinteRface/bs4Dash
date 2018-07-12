@@ -59,12 +59,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
       if (old_school) {
         shiny::tags$link(href = "https://bootswatch.com/4/sketchy/bootstrap.min.css", rel = "stylesheet")
       },
-      shiny::tags$link(href = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700", rel = "stylesheet"),
-      # javascript
-      shiny::includeScript(system.file("js/bootstrap.bundle.min.js", package = "bs4Dash")),
-      shiny::includeScript(system.file("js/adminlte.min.js", package = "bs4Dash")),
-      shiny::includeScript(system.file("js/bs4Dash.js", package = "bs4Dash"))
-
+      shiny::tags$link(href = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700", rel = "stylesheet")
     ),
     # Body
     shiny::tags$body(
@@ -77,7 +72,11 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
         body,
         controlbar,
         footer
-      )
+      ),
+      # javascript
+      shiny::includeScript(system.file("js/bootstrap.bundle.min.js", package = "bs4Dash")),
+      shiny::includeScript(system.file("js/adminlte.min.js", package = "bs4Dash")),
+      shiny::includeScript(system.file("js/bs4Dash.js", package = "bs4Dash"))
     )
   )
 }
