@@ -15,8 +15,9 @@ just set `old_school = TRUE` in the `bs4DashPage()` function.
 
 ## Default theme
 
-<img src="figures/bs4Dash_showcase.png" width="848" height="964">
-
+<video width="640" height="480" controls style="display: block; margin: 0 auto;" muted>
+  <source src="figures/bs4DashDemo-classic.mp4" type="video/mp4">
+</video>
 <br>
 
 ```r
@@ -66,7 +67,10 @@ library(bs4Dash)
 
 ## Old school theme
 
-<img src="figures/old_school.png" width="848" height="530">
+<video width="640" height="480" controls style="display: block; margin: 0 auto;" muted>
+  <source src="figures/bs4DashDemo-old-school.mp4" type="video/mp4">
+</video>
+<br>
 
 ```r
 library(shiny)

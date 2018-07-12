@@ -21,7 +21,7 @@ bs4DashGallery <- function(theme = "classic") { # nocov start
   
   shiny::shinyAppFile(
     system.file(
-      paste0("examples/showcase/", theme, "app.R"), 
+      paste0("examples/showcase/", theme, "/app.R"), 
       package = 'bs4Dash', 
       mustWork = TRUE
     )
