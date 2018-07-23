@@ -6,7 +6,7 @@
 \usage{
 bs4DashNavbar(..., skin = "light", status = "white", border = TRUE,
   sidebarIcon = "bars", controlbarIcon = "th", leftUi = NULL,
-  rightUi = NULL)
+  rightUi = NULL, fixed = FALSE)
 }
 \arguments{
 \item{...}{Any UI element between left and right Ui.}
@@ -25,6 +25,8 @@ bs4DashNavbar(..., skin = "light", status = "white", border = TRUE,
 \item{leftUi}{Custom left Ui content. Any Ui element.}
 
 \item{rightUi}{Custom right Ui content. Any Ui element.}
+
+\item{fixed}{Whether the navbar is fixed to the top. FALSE by default}
 }
 \description{
 Build an adminLTE3 dashboard navbar
