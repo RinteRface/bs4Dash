@@ -5,7 +5,8 @@
 \title{BS4 jumbotron for AdminLTE3}
 \usage{
 bs4Jumbotron(..., title = NULL, lead = NULL, href = NULL,
-  status = c("primary", "warning", "danger", "info", "success"))
+  btn_name = "More", status = c("primary", "warning", "danger", "info",
+  "success"))
 }
 \arguments{
 \item{...}{Any content.}
@@ -15,6 +16,8 @@ bs4Jumbotron(..., title = NULL, lead = NULL, href = NULL,
 \item{lead}{Jumbotron lead.}
 
 \item{href}{Jumbrotron external link.}
+
+\item{btn_name}{Jumbotron button name.}
 
 \item{status}{Jumbotron background color. "primary", "success", "warning", "danger" or "info".}
 }

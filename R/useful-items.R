@@ -957,6 +957,7 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #' @param title Jumbotron title.
 #' @param lead Jumbotron lead.
 #' @param href Jumbrotron external link.
+#' @param btn_name Jumbotron button name.
 #' @param status Jumbotron background color. "primary", "success", "warning", "danger" or "info".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -991,7 +992,7 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #' }
 #'
 #' @export
-bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL,
+bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name = "More",
                           status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
@@ -1016,7 +1017,7 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL,
       href = href,
       target = "_blank",
       role = "button",
-      "More"
+      btn_name
     )
   )
 }
