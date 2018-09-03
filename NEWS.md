@@ -1,5 +1,6 @@
 # bs4Dash 0.2.0.9000
 - update `bs4DashGallery()`. Add a "theme" argument
+- add `ionicon()` (implementation of ionicons)
 - fix vignette titles
 - add a "fixed" argument to the `bs4DashNavbar()` (#7, thanks @theRcast)
 - update Readme

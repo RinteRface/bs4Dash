@@ -4,8 +4,8 @@
 \alias{bs4ValueBox}
 \title{Boostrap 4 value box}
 \usage{
-bs4ValueBox(value, subtitle, icon = NULL, elevation = NULL, status = NULL,
-  width = 3, href = "#")
+bs4ValueBox(value, subtitle, icon = NULL, elevation = NULL,
+  status = NULL, width = 3, href = "#")
 }
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}
@@ -77,3 +77,4 @@ Other cards: \code{\link{bs4Card}},
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{cards}

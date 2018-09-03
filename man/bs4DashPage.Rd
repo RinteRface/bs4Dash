@@ -5,7 +5,8 @@
 \title{Create a Boostrap 4 dashboard page}
 \usage{
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
-  controlbar = NULL, footer = NULL, title = NULL, old_school = FALSE)
+  controlbar = NULL, footer = NULL, title = NULL,
+  old_school = FALSE)
 }
 \arguments{
 \item{navbar}{Bootstrap 4 dashboard navbar.}

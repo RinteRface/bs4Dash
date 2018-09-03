@@ -80,3 +80,4 @@ Other cards: \code{\link{bs4Card}},
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{cards}

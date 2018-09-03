@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BS4 list group item for AdminLTE3 — bs4ListGroupItem • bs4Dash</title>
+<title>BS4 ionicons — ionicon • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="BS4 list group item for AdminLTE3 — bs4ListGroupItem" />
+<meta property="og:title" content="BS4 ionicons — ionicon" />
 
-<meta property="og:description" content="Create a list group item" />
+<meta property="og:description" content="Create a ionicon." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -131,67 +131,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>BS4 list group item for AdminLTE3</h1>
+    <h1>BS4 ionicons</h1>
     <small class="dont-index">Source: <a href='https://github.com/DivadNojnarg/bs4Dash/blob/master/R/useful-items.R'><code>R/useful-items.R</code></a></small>
-    <div class="hidden name"><code>bs4ListGroupItem.Rd</code></div>
+    <div class="hidden name"><code>ionicon.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a list group item</p>
+    <p>Create a ionicon.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4ListGroupItem</span>(<span class='no'>...</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>disabled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"basic"</span>, <span class='st'>"action"</span>, <span class='st'>"heading"</span>), <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"#"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>ionicon</span>(<span class='no'>name</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Item content.</p></td>
-    </tr>
-    <tr>
-      <th>active</th>
-      <td><p>Whether the item is active or not. FALSE by default. 
-Only if type is "action" or "heading".</p></td>
-    </tr>
-    <tr>
-      <th>disabled</th>
-      <td><p>Whether the item is disabled or not. FALSE by default. 
-Only if type is "action" or "heading".</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Item type. Choose between "basic", "action" and "heading".</p></td>
-    </tr>
-    <tr>
-      <th>src</th>
-      <td><p>Item external link.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>Item title (only if type is "heading").</p></td>
-    </tr>
-    <tr>
-      <th>subtitle</th>
-      <td><p>Item subtitle (only if type is "heading").</p></td>
-    </tr>
-    <tr>
-      <th>footer</th>
-      <td><p>Item footer content (only if type is "heading").</p></td>
+      <th>name</th>
+      <td><p>Name of icon. See <a href='https://ionicons.com'>https://ionicons.com</a>.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
+    <p>Similar to the icon function from shiny.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'>interactive</span>()){
+ <span class='fu'>library</span>(<span class='no'>shiny</span>)
+ <span class='fu'>library</span>(<span class='no'>bs4Dash</span>)
+
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
+     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
+     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
+     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
+     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
+      <span class='fu'>ionicon</span>(<span class='kw'>name</span> <span class='kw'>=</span><span class='st'>"heart"</span>),
+      <span class='fu'>ionicon</span>(<span class='kw'>name</span> <span class='kw'>=</span><span class='st'>"beer"</span>)
+    )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+ )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#note">Note</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     

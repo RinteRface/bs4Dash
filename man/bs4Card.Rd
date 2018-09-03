@@ -6,10 +6,10 @@
 \usage{
 bs4Card(..., title = NULL, footer = NULL, status = NULL,
   elevation = NULL, solidHeader = FALSE, headerBorder = TRUE,
-  gradientColor = NULL, width = 6, height = NULL, collapsible = TRUE,
-  collapsed = FALSE, closable = TRUE, labelStatus = NULL,
-  labelText = NULL, labelTooltip = NULL, dropdownMenu = NULL,
-  dropdownIcon = "wrench")
+  gradientColor = NULL, width = 6, height = NULL,
+  collapsible = TRUE, collapsed = FALSE, closable = TRUE,
+  labelStatus = NULL, labelText = NULL, labelTooltip = NULL,
+  dropdownMenu = NULL, dropdownIcon = "wrench")
 }
 \arguments{
 \item{...}{Contents of the box.}
@@ -134,3 +134,4 @@ Other cards: \code{\link{bs4InfoBox}},
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{cards}

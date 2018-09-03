@@ -51,7 +51,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
       # icons
       shiny::includeCSS(system.file("css/font-awesome.min.css", package = "bs4Dash")),
       shiny::tags$link(href = "https://use.fontawesome.com/releases/v5.0.13/css/all.css", rel = "stylesheet"),
-      shiny::tags$link(href = "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css", rel = "stylesheet"),
+      shiny::tags$link(href = "https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css", rel = "stylesheet"),
       # AdminLTE3
       shiny::includeCSS(system.file("css/adminlte.min.css", package = "bs4Dash")),
       

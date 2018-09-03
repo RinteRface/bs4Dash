@@ -1197,3 +1197,44 @@ bs4ListGroupItem <- function(..., active = FALSE, disabled = FALSE,
     )
   }
 }
+
+
+
+
+#' @title BS4 ionicons
+#'
+#' @description Create a ionicon. 
+#'
+#' @param name Name of icon. See \url{https://ionicons.com}.
+#' 
+#' @note Similar to the icon function from shiny.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       ionicon(name ="heart"),
+#'       ionicon(name ="beer")
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @export
+ionicon <- function(name) {
+  if (is.null(name)) stop("Missing icon name")
+  cl <- paste0("icon ion-md-", name)
+  shiny::tags$i(class = cl)
+}

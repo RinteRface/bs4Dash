@@ -81,6 +81,7 @@ reference:
   - '`bs4TimelineItemMedia`'
   - '`bs4TimelineLabel`'
   - '`bs4TimelineStart`'
+  - '`ionicon`'
 
 - title: Gallery
   desc: bs4Dash showcase

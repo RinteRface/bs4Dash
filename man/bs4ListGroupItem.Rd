@@ -4,9 +4,9 @@
 \alias{bs4ListGroupItem}
 \title{BS4 list group item for AdminLTE3}
 \usage{
-bs4ListGroupItem(..., active = FALSE, disabled = FALSE, type = c("basic",
-  "action", "heading"), src = "#", title = NULL, subtitle = NULL,
-  footer = NULL)
+bs4ListGroupItem(..., active = FALSE, disabled = FALSE,
+  type = c("basic", "action", "heading"), src = "#", title = NULL,
+  subtitle = NULL, footer = NULL)
 }
 \arguments{
 \item{...}{Item content.}
