@@ -1,4 +1,5 @@
-# bs4Dash 0.2.0.9000
+# bs4Dash 0.2.0
+- bs4Dash now works on shinyapp.io (previously, there was a problem with tab navigation)
 - update `bs4DashGallery()`. Add a "theme" argument
 - add `ionicon()` (implementation of ionicons)
 - fix vignette titles
