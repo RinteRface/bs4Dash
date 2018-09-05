@@ -56,13 +56,14 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
       shiny::tags$li(
         class = "nav-item",
         shiny::tags$a(
+          id = "controlbar-toggle",
           class = "nav-link",
           `data-widget` = "control-sidebar",
           `data-slide` = "true",
           href = "#",
           shiny::icon(controlbarIcon)
         )
-      )
+      ) 
     )
   )
   

@@ -10,6 +10,7 @@
 #' @param title App title.
 #' @param old_school Whether to use the wonderful sketchy design for BS4. FALSE
 #' by default.
+#' @param sidebar_collapsed Whether the sidebar is collapsed of not at start. FALSE by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -34,7 +35,11 @@
 #' @export
 bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, 
                         controlbar = NULL, footer = NULL, title = NULL,
-                        old_school = FALSE){
+                        old_school = FALSE, sidebar_collapsed = FALSE){
+  
+  if (!is.null(sidebar)) {
+    sidebar_cl <- if (sidebar_collapsed) "sidebar-collapse" else "sidebar-open"
+  }
 
   shiny::tags$html(
     # Head
@@ -63,7 +68,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
     ),
     # Body
     shiny::tags$body(
-      class = "hold-transition sidebar-mini",
+      class = paste0("hold-transition sidebar-mini ", sidebar_cl),
       shiny::tags$div(
         class = "wrapper",
         navbar,

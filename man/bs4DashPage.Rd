@@ -6,7 +6,7 @@
 \usage{
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
   controlbar = NULL, footer = NULL, title = NULL,
-  old_school = FALSE)
+  old_school = FALSE, sidebar_collapsed = FALSE)
 }
 \arguments{
 \item{navbar}{Bootstrap 4 dashboard navbar.}
@@ -23,6 +23,8 @@ bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
 
 \item{old_school}{Whether to use the wonderful sketchy design for BS4. FALSE
 by default.}
+
+\item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
 }
 \description{
 Build an adminLTE3 dashboard page

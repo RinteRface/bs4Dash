@@ -1,5 +1,6 @@
 # bs4Dash 0.2.0
 - bs4Dash now works on shinyapp.io (previously, there was a problem with tab navigation)
+- add sidebar_collapsed argument to `bs4DashPage()` to control the sidebar opening at start
 - update `bs4DashGallery()`. Add a "theme" argument
 - add `ionicon()` (implementation of ionicons)
 - fix vignette titles
