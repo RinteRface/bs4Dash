@@ -5,7 +5,7 @@
 \title{Boostrap 4 value box}
 \usage{
 bs4ValueBox(value, subtitle, icon = NULL, elevation = NULL,
-  status = NULL, width = 3, href = "#")
+  status = NULL, width = 3, href = NULL)
 }
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}

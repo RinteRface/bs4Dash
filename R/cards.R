@@ -177,9 +177,9 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   # header
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header" else "card-header no-border",
-    shiny::tags$h3(class = "card-title", title)
+    if (!is.null(title)) shiny::tags$h3(class = "card-title", title) else NULL
   )
-  headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
+  headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
   
   # body
   bodyTag <- shiny::tags$div(
@@ -329,7 +329,7 @@ dropdownDivider <- function() {
 #'
 #' @export
 bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
-                        status = NULL, width = 3, href = "#") {
+                        status = NULL, width = 3, href = NULL) {
  
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
@@ -347,11 +347,12 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   )
     
   footerTag <- shiny::tags$a(
-      href = href,
-      class = "small-box-footer",
-      "More info",
-      shiny::icon("arrow-circle-right")
-    )
+    href = href,
+    target = "_blank",
+    class = "small-box-footer",
+    if (!is.null(href)) "More info" else NULL,
+    if (!is.null(href)) shiny::icon("arrow-circle-right") else shiny::br()
+  )
     
   valueBoxTag <- shiny::tags$div(
     class = valueBoxCl
@@ -427,8 +428,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4InfoBox <- function(..., title, value = NULL,
-                       icon = NULL, 
+bs4InfoBox <- function(..., title, value = NULL, icon = NULL, 
                        iconElevation = 3, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
@@ -944,7 +944,7 @@ bs4Box <- function(..., title = NULL, width = 6, height = NULL) {
   
   boxBody <- shiny::tags$div(
     class = "card-body",
-    style = "overflow-y: auto; max-height: 600px;",
+    style = "overflow-y: auto; max-height: 800px;",
     ...
   )
   
@@ -983,5 +983,4 @@ bs4Box <- function(..., title = NULL, width = 6, height = NULL) {
     ),
     boxWrapper
   )
-  
 }
