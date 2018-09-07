@@ -1,5 +1,10 @@
 # bs4Dash 0.2.0
+## Major changes
 - bs4Dash now works on shinyapp.io (previously, there was a problem with tab navigation)
+- major update of all dependencies (bootstrap 4, fontawesome, ionicons, ...) with
+htmltools
+
+## Minor changes
 - close and collapse buttons not shown when the title is NULL in `bs4Card()`
 - `bs4ValueBox()` footer is not shown when the external link is NULL
 - `bs4ValueBox()` external link opens in a new page

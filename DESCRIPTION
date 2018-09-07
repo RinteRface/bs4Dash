@@ -14,7 +14,7 @@ Description: Make 'Bootstrap 4' dashboards. Use the full power
 URL: https://divadnojnarg.github.io/bs4Dash/index.html, https://github.com/DivadNojnarg/bs4Dash
 BugReports: https://github.com/DivadNojnarg/bs4Dash/issues
 License: GPL-2
-Imports: shiny
+Imports: shiny, htmltools
 Suggests: plotly, shinyWidgets,
     knitr,
     rmarkdown
