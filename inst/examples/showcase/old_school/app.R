@@ -13,6 +13,7 @@ y <- rnorm(200)
 
 shiny::shinyApp(
   ui = bs4DashPage(
+    sidebar_collapsed = TRUE,
     old_school = TRUE,
     navbar = bs4DashNavbar(
       status = "white",

@@ -15,9 +15,7 @@ just set `old_school = TRUE` in the `bs4DashPage()` function.
 
 ## Default theme
 
-<video width="640" height="480" controls style="display: block; margin: 0 auto;" muted>
-  <source src="figures/bs4DashDemo-classic.mp4" type="video/mp4">
-</video>
+<img src="figures/bs4DashClassic.png">
 <br>
 
 ```r

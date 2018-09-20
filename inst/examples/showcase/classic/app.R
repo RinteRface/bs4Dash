@@ -13,6 +13,7 @@ y <- rnorm(200)
 
 shiny::shinyApp(
   ui = bs4DashPage(
+    sidebar_collapsed = TRUE,
     navbar = bs4DashNavbar(
       status = "white",
       "I can write text in the navbar!",
