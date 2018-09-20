@@ -8,3 +8,5 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs
 
+## Re-submission
+Make sure that doc < 5 MB

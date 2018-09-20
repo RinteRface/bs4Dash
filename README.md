@@ -6,7 +6,7 @@
 
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-<img src="man/figures/bs4DashClassic.png" width="848" height="530">
+<img src="man/figures/bs4DashClassic.png">
 <br>
 
 ## Important note
