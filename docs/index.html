@@ -107,62 +107,7 @@
 <p>Bootstrap 4 shinydashboard using AdminLTE3</p>
 </blockquote>
 <p><img src="reference/figures/bs4DashClassic.png"><br></p>
-<div id="important-note" class="section level2">
-<h2 class="hasAnchor">
-<a href="#important-note" class="anchor"></a>Important note</h2>
-<p>bs4Dash needs the following code to be added in the header in order to work on shinyapps.io:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">head</span>(
-  shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">script</span>(
-    <span class="st">"// handle shinyapps.io: we need to extract the worker id and</span>
-<span class="st">     // paste it in the url so that the apps works correctly</span>
-<span class="st">     // get the shiny app.io workerId</span>
-<span class="st">     var workerId = $('base').attr('href');</span>
-<span class="st">     // ensure that this code does not run on shiny server/pro and locally</span>
-<span class="st">     if (typeof workerId != 'undefined') {</span>
-<span class="st">       // get the initial page url</span>
-<span class="st">       var url = window.location.href;</span>
-<span class="st">       // get the name of the first selected tab</span>
-<span class="st">       // replace the url by the url for shinyapp.io</span>
-<span class="st">       window.location.replace(url + workerId);</span>
-<span class="st">     }</span>
-<span class="st">    "</span>
-  )
-)</code></pre></div>
-<p>This code has to be embeded as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
-<span class="kw">library</span>(bs4Dash)
-
-shiny<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(
-  <span class="dt">ui =</span> <span class="kw"><a href="reference/bs4DashPage.html">bs4DashPage</a></span>(
-    <span class="dt">navbar =</span> <span class="kw"><a href="reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),
-    <span class="dt">sidebar =</span> <span class="kw"><a href="reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),
-    <span class="dt">controlbar =</span> <span class="kw"><a href="reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),
-    <span class="dt">footer =</span> <span class="kw"><a href="reference/bs4DashFooter.html">bs4DashFooter</a></span>(),
-    <span class="dt">title =</span> <span class="st">"test"</span>,
-    <span class="dt">body =</span> <span class="kw"><a href="reference/bs4DashBody.html">bs4DashBody</a></span>(
-      shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">head</span>(
-        shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">script</span>(
-          <span class="st">"// handle shinyapps.io: we need to extract the worker id and</span>
-<span class="st">           // paste it in the url so that the apps works correctly</span>
-<span class="st">           // get the shiny app.io workerId</span>
-<span class="st">           var workerId = $('base').attr('href');</span>
-<span class="st">           // ensure that this code does not run on shiny server/pro and locally</span>
-<span class="st">           if (typeof workerId != 'undefined') {</span>
-<span class="st">             // get the initial page url</span>
-<span class="st">             var url = window.location.href;</span>
-<span class="st">             // get the name of the first selected tab</span>
-<span class="st">             // replace the url by the url for shinyapp.io</span>
-<span class="st">             window.location.replace(url + workerId);</span>
-<span class="st">           }</span>
-<span class="st">          "</span>
-        )
-    )
-  ),
-  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}
-)</code></pre></div>
-<p>This issue is <strong>fixed</strong> on the new github version but you need to <strong>wait for the next CRAN release</strong> (next week) since shinyapps.io uses the latest CRAN version.</p>
 <p>See a working example <a href="https://dgranjon.shinyapps.io/bs4DashDemo/">here</a>.</p>
-</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
