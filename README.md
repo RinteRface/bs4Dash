@@ -8,10 +8,32 @@
 
 > Bootstrap 4 shinydashboard using AdminLTE3
 
-<img src="man/figures/bs4DashClassic.png">
+<div class="row">
+<div class="col-sm-4" align="center">
+<div class="card">
+<a href="http://130.60.24.205/Lorenz_parameters/" target="_blank"><img src="man/figures/bs4Dash_Lorenz.png"></a>
+</div>
+</div>
+<div class="col-sm-4" align="center">
+<div class="card">
+<a href="http://130.60.24.205/Lotka_bdd/" target="_blank"><img src="man/figures/bs4Dash_Lotka.png"></a>
+</div>
+</div>
+<div class="col-sm-4" align="center">
+<div class="card">
+<a href="http://130.60.24.205/dreamRs_ratp/" target="_blank"><img src="man/figures/bs4Dash_ratp.png"></a>
+</div>
+</div>
+</div>
+
 <br>
 
 See a working example [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
+
+## Useful Informations (if any)
+
+Issue [Compatibility with shinyWidgets pickerInput #12](https://github.com/DivadNojnarg/bs4Dash/issues/12) is fixed in the last devel
+version of [shinyWidgets](https://github.com/dreamRs/shinyWidgets) thanks to [@pvictorr](https://twitter.com/_pvictorr).
 
 ## Installation
 
