@@ -130,6 +130,7 @@ articles:
   
 news:
  releases:
+ - text: "bs4Dash 0.3.0.9000"
  - text: "bs4Dash 0.2.0"
  - text: "bs4Dash 0.1.0"
  

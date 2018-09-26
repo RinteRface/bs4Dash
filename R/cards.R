@@ -587,6 +587,8 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 bs4TabCard <- function(..., title = NULL, width = 6, 
                        height = NULL, elevation = NULL) {
   
+  found_active <- FALSE
+  
   tabCardCl <- "card"
   if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
   
@@ -607,6 +609,34 @@ bs4TabCard <- function(..., title = NULL, width = 6,
     shiny::tags$div(
       class = "tab-content",
       lapply(1:length(panels), FUN = function(i) {
+        
+        panelName <- panels[[i]][[1]]
+        panelTag <- panels[[i]][[2]]
+        
+        panelClass <- panelTag$attribs$class
+        
+        # make sure that if the user set 2 tabs active at the same time, 
+        # only the first one is selected
+        if (!found_active) {
+          active <- sum(grep(x = panelClass, pattern = "active")) == 1
+          if (active) found_active <<- TRUE
+        } else {
+          # we also need to remove the active class
+          # from each panel associated to the wrong tabs
+          active <- sum(grep(x = panelClass, pattern = "active")) == 1
+          if (active) {
+            panels[[i]][[2]]$attribs$class <- gsub(
+              x = gsub(
+                x = "tab-pane active", 
+                pattern = "active", 
+                replacement = ""
+              ), 
+              pattern = " ", 
+              replacement = ""
+            )
+            active <- FALSE
+          }
+        }
         panels[[i]][[2]]
       })
     )
@@ -644,6 +674,7 @@ bs4TabCard <- function(..., title = NULL, width = 6,
 bs4TabSetPanel <- function(...) {
   
   tabs <- list(...)
+  found_active <- FALSE
   
   # handle tabs
   tabSetPanelItem <- lapply(1:length(tabs), FUN = function(i) {
@@ -652,12 +683,22 @@ bs4TabSetPanel <- function(...) {
     tabsTag <- tabs[[i]][[2]]
     
     id <- tabsTag$attribs$id
-    active <- sum(grep(x = tabsTag$attribs$class, pattern = "active")) == 1
+    tabClass <- tabsTag$attribs$class
+    
+    # make sure that if the user set 2 tabs active at the same time, 
+    # only the first one is selected
+    if (!found_active) {
+      active <- sum(grep(x = tabClass, pattern = "active")) == 1
+      if (active) found_active <<- TRUE
+      # if there is already an active panel, set all other to inactive
+    } else {
+      active <- FALSE
+    }
     
     shiny::tags$li(
       class = "nav-item",
       shiny::tags$a(
-        class = if (active == 1) "nav-link active" else "nav-link",
+        class = if (active) "nav-link active" else "nav-link",
         href = paste0("#", id),
         `data-toggle` = "tab",
         tabName
@@ -684,6 +725,9 @@ bs4TabSetPanel <- function(...) {
 #'
 #' @export
 bs4TabPanel <- function(..., tabName, active = FALSE) {
+  
+  # handle tab names with space
+  tabName <- gsub(x = tabName, pattern = " ", replacement = "")
   
   tabPanelTag <- shiny::tags$div(
     class = if (isTRUE(active)) "tab-pane active" else "tab-pane",
