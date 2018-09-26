@@ -1,7 +1,7 @@
 # bs4Dash 0.3.0.9000
 ## Bug fix
 - fix #8: Compatibility with shinyWidgets pickerInput. Thanks @pvictor.
-- fix #13 in `bs4TabItem`: handle tabName with space. Thanks @stephLH.
+- fix #13 in `bs4TabItem`: handle tabName with space and with punctuation characters. Thanks @stephLH.
 - fix `bs4TabCard`: when the user set 2 or more tabs active at the same time, only 
 the first one is selected
 

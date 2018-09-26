@@ -726,12 +726,16 @@ bs4TabSetPanel <- function(...) {
 #' @export
 bs4TabPanel <- function(..., tabName, active = FALSE) {
   
+  
+  id <- tabName
+  # handle punctuation
+  id <- gsub(x = id, pattern = "[[:punct:]]", replacement = "")
   # handle tab names with space
-  tabName <- gsub(x = tabName, pattern = " ", replacement = "")
+  id <- gsub(x = id, pattern = " ", replacement = "")
   
   tabPanelTag <- shiny::tags$div(
     class = if (isTRUE(active)) "tab-pane active" else "tab-pane",
-    id = tabName,
+    id = id,
     ...
   )
   return(list(tabName, tabPanelTag))
