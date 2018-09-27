@@ -605,7 +605,7 @@ bs4TabCard <- function(..., title = NULL, width = 6,
   panels <- list(...)
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = "overflow-y: auto; max-height: 500px;",
+    style = "overflow-y: auto;",
     shiny::tags$div(
       class = "tab-content",
       lapply(1:length(panels), FUN = function(i) {

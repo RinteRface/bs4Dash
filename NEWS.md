@@ -1,8 +1,10 @@
 # bs4Dash 0.3.0.9000
+## Minor changes
+- fix #14: remove `bs4TabCard` max-height attribute. Thanks @stephLH
 ## Bug fix
-- fix #8: Compatibility with shinyWidgets pickerInput. Thanks @pvictor.
-- fix #13 in `bs4TabItem`: handle tabName with space and with punctuation characters. Thanks @stephLH.
-- fix `bs4TabCard`: when the user set 2 or more tabs active at the same time, only 
+- fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
+- fix #13 in `bs4TabPanel`: handle tabName with space and with punctuation characters. Thanks @stephLH
+- fix `bs4TabCard`: when the user set 2 or more active tabs at the same time, only 
 the first one is selected
 
 
