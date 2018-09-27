@@ -4,7 +4,7 @@
 \alias{bs4DashControlbar}
 \title{Create a Boostrap 4 dashboard right sidebar}
 \usage{
-bs4DashControlbar(..., skin = "dark", title = NULL)
+bs4DashControlbar(..., skin = "dark", title = NULL, width = 250)
 }
 \arguments{
 \item{...}{Any UI element.}
@@ -12,6 +12,8 @@ bs4DashControlbar(..., skin = "dark", title = NULL)
 \item{skin}{Controlbar skin. "dark" or "light".}
 
 \item{title}{Controlbar title.}
+
+\item{width}{COntrolbar width. 250 px by default.}
 }
 \description{
 Build an adminLTE3 dashboard right sidebar

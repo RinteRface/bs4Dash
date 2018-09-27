@@ -1,10 +1,14 @@
 # bs4Dash 0.3.0.9000
+## Major changes
+- add `bs4SidebarUserPanel()`
+
 ## Minor changes
-- fix #14: remove `bs4TabCard` max-height attribute. Thanks @stephLH
+- fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
+- fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
 ## Bug fix
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
-- fix #13 in `bs4TabPanel`: handle tabName with space and with punctuation characters. Thanks @stephLH
-- fix `bs4TabCard`: when the user set 2 or more active tabs at the same time, only 
+- fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH
+- fix `bs4TabCard()`: when the user set 2 or more active tabs at the same time, only 
 the first one is selected
 
 

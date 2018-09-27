@@ -24,7 +24,7 @@ bs4DashSidebar(..., title = NULL, skin = "dark", status = "primary",
 
 \item{src}{Sidebar brand image.}
 
-\item{elevation}{Sidebar elevation. 4 by default.}
+\item{elevation}{Sidebar elevation. 4 by default (until 5).}
 
 \item{opacity}{Sidebar opacity. From 0 to 1. 0.8 by default.}
 }

@@ -21,6 +21,7 @@ reference:
   - '`bs4SidebarMenu`'
   - '`bs4SidebarMenuItem`'
   - '`bs4SidebarHeader`'
+  - '`bs4SidebarUserPanel`'
     
 - title: Navbar Content functions
   desc: Functions that are to be used in the bs4DashNavbar
