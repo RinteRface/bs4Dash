@@ -38,8 +38,9 @@ reference:
   - '`bs4Card`'
   - '`bs4TabCard`'
   - '`bs4UserCard`'
+  - '`bs4SocialCard`'
 
-- title: Card Tool components
+- title: Card Toolbar components
   desc: Build dropdown menu in the tool area (close, collapse)
   contents:
   - '`dropdownDivider`'
@@ -51,6 +52,13 @@ reference:
   contents:
   - '`bs4TabPanel`'
   - '`bs4TabSetPanel`'
+  
+- title: Card extra elements
+  desc: Add more shiny elements to your cards
+  contents:
+  - '`cardProfile`'
+  - '`cardProfileItemList`'
+  - '`cardProfileItem`'
     
 - title: Render functions
   desc: Dynamically generate items

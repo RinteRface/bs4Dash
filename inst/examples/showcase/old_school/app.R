@@ -59,6 +59,11 @@ shiny::shinyApp(
           tabName = "tabcards",
           icon = "picture-o"
         ),
+        bs4SidebarMenuItem(
+          "Other cards",
+          tabName = "othercards",
+          icon = "id-card"
+        ),
         bs4SidebarHeader("Boxes"),
         bs4SidebarMenuItem(
           "Basic boxes",
@@ -224,6 +229,50 @@ shiny::shinyApp(
               the release of Letraset sheets containing Lorem Ipsum passages,
               and more recently with desktop publishing software like Aldus
               PageMaker including versions of Lorem Ipsum."
+            )
+          )
+        ),
+        bs4TabItem(
+          tabName = "othercards",
+          fluidRow(
+            bs4SocialCard(
+              title = "Social Card",
+              subtitle = "example-01.05.2018",
+              src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+              "Some text here!",
+              comments = tagList(
+                lapply(X = 1:10, FUN = function(i) {
+                  list(
+                    paste0("The ", i, "-th comment"),
+                    br()
+                  )
+                })
+              ),
+              footer = "The footer here!"
+            ),
+            bs4Card(
+              status = "primary",
+              solidHeader = TRUE,
+              cardProfile(
+                src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+                title = "Nina Mcintire",
+                subtitle = "Software Engineer",
+                cardProfileItemList(
+                  bordered = TRUE,
+                  cardProfileItem(
+                    title = "Followers",
+                    description = 1322
+                  ),
+                  cardProfileItem(
+                    title = "Following",
+                    description = 543
+                  ),
+                  cardProfileItem(
+                    title = "Friends",
+                    description = 13287
+                  )
+                )
+              )
             )
           )
         ),

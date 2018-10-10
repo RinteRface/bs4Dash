@@ -18,8 +18,7 @@ bs4Card(..., title = NULL, footer = NULL, status = NULL,
 
 \item{footer}{Optional footer text.}
 
-\item{status}{The status of the item This determines the item's background
-color. "primary", "success", "warning", "danger". NULL by default.}
+\item{status}{The status of the card header. "primary", "success", "warning", "danger". NULL by default.}
 
 \item{elevation}{Card elevation.}
 

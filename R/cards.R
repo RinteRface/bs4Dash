@@ -5,8 +5,7 @@
 #' @param ... Contents of the box.
 #' @param title Optional title.
 #' @param footer Optional footer text.
-#' @param status The status of the item This determines the item's background
-#'   color. "primary", "success", "warning", "danger". NULL by default.
+#' @param status The status of the card header. "primary", "success", "warning", "danger". NULL by default.
 #' @param elevation Card elevation. 
 #' @param solidHeader Should the header be shown with a solid color background?
 #' @param headerBorder Whether to display a border between the header and body.
@@ -1030,5 +1029,274 @@ bs4Box <- function(..., title = NULL, width = 6, height = NULL) {
       )
     ),
     boxWrapper
+  )
+}
+
+
+
+#' @title AdminLTE3 card profile
+#'
+#' @description Create card profile
+#'
+#' @param ... any element such as cardProfileItemList.
+#' @param src profile image, if any.
+#' @param title title.
+#' @param subtitle subtitle.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(
+#'       bs4SidebarMenu(
+#'        bs4SidebarHeader("Main content"),
+#'        bs4SidebarMenuItem(
+#'          "Profile Card",
+#'          tabName = "profile_card",
+#'          icon = "desktop"
+#'        )
+#'       )
+#'      ),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'       bs4TabItems(
+#'        bs4TabItem(
+#'          tabName = "profile_card",
+#'          bs4Card(
+#'           status = "primary",
+#'           solidHeader = TRUE,
+#'           cardProfile(
+#'            src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+#'            title = "Nina Mcintire",
+#'            subtitle = "Software Engineer",
+#'            cardProfileItemList(
+#'             bordered = TRUE,
+#'             cardProfileItem(
+#'              title = "Followers",
+#'              description = 1322
+#'             ),
+#'             cardProfileItem(
+#'              title = "Following",
+#'              description = 543
+#'             ),
+#'             cardProfileItem(
+#'              title = "Friends",
+#'              description = 13287
+#'             )
+#'            )
+#'           )
+#'         )
+#'        )
+#'       )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#' 
+#' @export
+cardProfile <- function(..., src = NULL, title = NULL, subtitle = NULL) {
+  
+  shiny::tags$div(
+    class = "card-body card-profile",
+    shiny::tags$div(
+      class = "text-center",
+      shiny::img(class = "profile-user-img img-fluid img-circle", src = src)
+    ),
+    shiny::h3(class = "profile-username text-center", title),
+    shiny::p(class = "text-muted text-center", subtitle),
+    ...
+  ) 
+}
+
+#' @title AdminLTE3 card profile item container
+#'
+#' @description Create card profile item list
+#'
+#' @param ... slot for cardProfileItem.
+#' @param bordered Whether the container should have a border or not. FALSE by default.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+cardProfileItemList <- function(..., bordered = FALSE) {
+  
+  cl <- if (isTRUE(bordered)) "list-group mb-3" else "list-group list-group-unbordered mb-3"
+  
+  shiny::tags$ul(
+    class = cl,
+    ...
+  )
+}
+
+#' @title AdminLTE3 card profile item 
+#'
+#' @description Create card profile item 
+#'
+#' @param title item title.
+#' @param description item info.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+cardProfileItem <- function(title = NULL, description = NULL) {
+  shiny::tags$li(
+    class = "list-group-item",
+    shiny::strong(title),
+    shiny::a(class = "float-right", description)
+  )
+}
+
+
+
+
+#' @title AdminLTE3 social card
+#'
+#' @description Create social card
+#'
+#' @param ... body content. May include attachmentBlock for instance.
+#' @param src header image, if any.
+#' @param title card title.
+#' @param subtitle card subtitle.
+#' @param width card width (between 1 and 12). 
+#' @param height card height.
+#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the card. 
+#' @param closable If TRUE, display a button in the upper right that allows the user to close the card.
+#' @param comments slot for boxComments.
+#' @param footer card footer, if any.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(),
+#'     sidebar = bs4DashSidebar(
+#'      bs4SidebarMenu(
+#'        bs4SidebarHeader("Main content"),
+#'        bs4SidebarMenuItem(
+#'          "Social Card",
+#'          tabName = "social_card",
+#'          icon = "desktop"
+#'        )
+#'       )
+#'     ),
+#'     footer = bs4DashFooter(),
+#'     body = bs4DashBody(
+#'      bs4TabItems(
+#'        bs4TabItem(
+#'          tabName = "profile_card",
+#'          bs4SocialCard(
+#'          title = "Social Card",
+#'          subtitle = "example-01.05.2018",
+#'          src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+#'          "Some text here!",
+#'          comments = tagList(
+#'           lapply(X = 1:10, FUN = function(i) {
+#'             list(
+#'              paste0("The ", i, "-th comment"),
+#'              br()
+#'             )
+#'            })
+#'          ),
+#'          footer = "The footer here!"
+#'         )
+#'       )
+#'      )
+#'    ),
+#'    title = "socialCard"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL, 
+                      width = 6, height = NULL, collapsible = TRUE,
+                      closable = TRUE, comments = NULL, footer = NULL) {
+  
+  style <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height), ";")
+  }
+  
+  shiny::column(
+    width = width,
+    shiny::tags$div(
+      class = "card card-widget",
+      style = paste0(style, " display: block;"),
+      
+      # header
+      shiny::tags$div(
+        class = "card-header",
+        
+        # userblock
+        shiny::tags$div(
+          class = "user-block",
+          shiny::img(class = "img-circle", src = src),
+          shiny::tags$span(
+            class = "username",
+            shiny::a(href = "javascript:void(0)", title)
+          ),
+          shiny::tags$span(class = "description", subtitle)
+        ),
+        
+        # cardTool
+        shiny::tags$div(
+          class = "card-tools",
+          if (collapsible) {
+            shiny::tags$button(
+              class = "btn btn-tool",
+              `data-widget` = "collapse",
+              type = "button",
+              shiny::tags$i(class = "fa fa-minus")
+            )
+          },
+          if (closable) {
+            shiny::tags$button(
+              class = "btn btn-tool",
+              `data-widget` = "remove",
+              type = "button",
+              shiny::tags$i(class = "fa fa-times")
+            )
+          }
+        )
+      ),
+      
+      # card body
+      shiny::tags$div(
+        class = "card-body",
+        ...
+      ),
+      
+      # card comments
+      if (!is.null(comments)) {
+        shiny::tags$div(
+          class = "card-footer card-comments",
+          style = "overflow-y: auto; max-height: 150px; display: block;",
+          comments
+        ) 
+      },
+      
+      # footer
+      if (!is.null(footer)) {
+        shiny::tags$div(
+          class = "card-footer", 
+          style = "display: block;",
+          footer
+        ) 
+      }
+    )
   )
 }

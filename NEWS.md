@@ -1,10 +1,13 @@
 # bs4Dash 0.3.0.9000
 ## Major changes
 - add `bs4SidebarUserPanel()`
+- add `cardProfile()`, `cardProfileItemList()` and `cardProfileItem()`
+- add `bs4SocialCard()`
 
 ## Minor changes
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
+
 ## Bug fix
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
 - fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH
