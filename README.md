@@ -1,4 +1,5 @@
-# bs4Dash
+# bs4Dash <img src="man/figures/bs4Dash1.png" width=200 align="right" />
+
 [![Build Status](https://travis-ci.org/DivadNojnarg/bs4Dash.svg?branch=master)](https://travis-ci.org/DivadNojnarg/bs4Dash)
 [![version](http://www.r-pkg.org/badges/version/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#stable)
@@ -7,6 +8,8 @@
 [![Project Status](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
 > Bootstrap 4 shinydashboard using AdminLTE3
+
+<br>
 
 <div class="row">
 <div class="col-sm-4" align="center">
