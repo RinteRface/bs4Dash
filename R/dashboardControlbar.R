@@ -16,6 +16,7 @@ bs4DashControlbar <- function(..., skin = "dark", title = NULL, width = 250) {
     class = paste0("control-sidebar control-sidebar-", skin),
     shiny::tags$div(
       class = "p-3",
+      id = 'controlbarTitle',
       shiny::tags$h5(title),
       ...
     )
