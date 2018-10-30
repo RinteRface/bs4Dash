@@ -8,6 +8,7 @@
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
 - add hex icon
+- add menuIcon arg and align arg to `bs4DropdownMenu()`, add id arg to `bs4DashControlbar()` PR by @bjornlind 
 
 ## Bug fix
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
