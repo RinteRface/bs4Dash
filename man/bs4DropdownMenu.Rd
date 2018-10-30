@@ -5,7 +5,8 @@
 \title{Create a Boostrap 4 dashboard dropdown menu}
 \usage{
 bs4DropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
-  status = c("primary", "warning", "danger", "info", "success"))
+  status = c("primary", "warning", "danger", "info", "success"),
+  menuIcon = "bell", align = "right")
 }
 \arguments{
 \item{...}{Slot for bs4Notification or bs4Message.}
@@ -17,6 +18,10 @@ bs4DropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
 \item{src}{Dropdown link to an external ressource.}
 
 \item{status}{Dropdown menu status. "primary", "success", "warning", "danger" or "info".}
+
+\item{menuIcon}{Fontawesome icon (default = "bell")}
+
+\item{align}{Menu alignment (default = "right")}
 }
 \description{
 Build an adminLTE3 dashboard dropdown menu

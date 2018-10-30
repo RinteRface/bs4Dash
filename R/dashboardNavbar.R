@@ -102,6 +102,8 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #' @param status Dropdown menu status. "primary", "success", "warning", "danger" or "info".
 #' @param labelText Dropdown label text.,
 #' @param src Dropdown link to an external ressource.
+#' @param menuIcon Fontawesome icon (default = "bell")
+#' @param align Menu alignment (default = "right")
 #' 
 #' @examples
 #' if(interactive()){
@@ -140,7 +142,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #'
 #' @export
 bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
-                            status = c("primary", "warning", "danger", "info", "success")) {
+                            status = c("primary", "warning", "danger", "info", "success"), menuIcon = 'bell', align = 'right') {
   
   status <- match.arg(status)
   items <- list(...)
@@ -154,7 +156,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       class = "nav-link",
       `data-toggle` = "dropdown",
       href = "#",
-      shiny::icon("bell"),
+      shiny::icon(menuIcon),
       shiny::tags$span(
         class = paste0("badge badge-", status, " navbar-badge"), 
         labelText
@@ -162,9 +164,9 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
     ),
     shiny::tags$div(
       class = if (isTRUE(show)) {
-        "dropdown-menu dropdown-menu-lg dropdown-menu-right show"
+        sprintf("dropdown-menu dropdown-menu-lg dropdown-menu-%s show", align)
       } else {
-        "dropdown-menu dropdown-menu-lg dropdown-menu-right"
+        sprintf("dropdown-menu dropdown-menu-lg dropdown-menu-%s", align)
       },
       shiny::tags$span(
         class = "dropdown-item dropdown-header", 
@@ -186,12 +188,12 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       shiny::tags$head(
         shiny::tags$style(
           shiny::HTML(
-            paste0(
-              ".fa-bell {
+            sprintf(
+              ".fa-%s {
                 color: #000;
                }
               "
-            )
+            , menuIcon)
           )
         )
       )
