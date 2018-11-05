@@ -31,7 +31,7 @@ $(function () {
   if ($selectedTab.length === 0) {
     // If no tab starts selected, use the first one, if present
     $('#mymenu .nav-item:eq(0) a').tab('show');
-    $('.tab-pane:eq(0)').addClass('active show');
+    $('.container-fluid.tab-pane:eq(0)').addClass('active show');
   } //else {
     //$("#mymenu .nav-item:eq(" + $indexPane + ") a").tab("show");
     //$(".tab-pane:eq(" + $indexPane + ")").addClass('active show');

@@ -13,7 +13,7 @@ bs4DashControlbar(..., skin = "dark", title = NULL, width = 250)
 
 \item{title}{Controlbar title.}
 
-\item{width}{COntrolbar width. 250 px by default.}
+\item{width}{Controlbar width. 250 px by default.}
 }
 \description{
 Build an adminLTE3 dashboard right sidebar

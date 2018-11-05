@@ -4,10 +4,13 @@
 \alias{bs4TabSetPanel}
 \title{Create a tabSetPanel}
 \usage{
-bs4TabSetPanel(...)
+bs4TabSetPanel(..., side)
 }
 \arguments{
-\item{...}{Slot for bs4TabPanel.}
+\item{...}{Slot for \link{bs4TabPanel}.}
+
+\item{side}{Side of the box the tabs should be on (\code{"left"} or
+\code{"right"}).}
 }
 \description{
 Imported by bs4TabCard. Do not use outside!

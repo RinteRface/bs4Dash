@@ -9,7 +9,7 @@ bs4DashSidebar(..., title = NULL, skin = "dark", status = "primary",
   opacity = 0.8)
 }
 \arguments{
-\item{...}{Slot for bs4SidebarMenu.}
+\item{...}{Slot for \link{bs4SidebarMenu}.}
 
 \item{title}{Sidebar title.}
 

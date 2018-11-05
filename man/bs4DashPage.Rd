@@ -9,19 +9,19 @@ bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
   old_school = FALSE, sidebar_collapsed = FALSE)
 }
 \arguments{
-\item{navbar}{Bootstrap 4 dashboard navbar.}
+\item{navbar}{Slot for \link{bs4DashNavbar}.}
 
-\item{sidebar}{Bootstrap 4 dashboard main sidebar.}
+\item{sidebar}{Slot for \link{bs4DashSidebar}.}
 
-\item{body}{Bootstrap 4 dashboard body wrapper.}
+\item{body}{Slot for \link{bs4DashBody}.}
 
-\item{controlbar}{Bootstrap 4 dashboard control sidebar (right side).}
+\item{controlbar}{Slot for \link{bs4DashControlbar} (right side).}
 
-\item{footer}{Bootstrap 4 dashboard footer.}
+\item{footer}{Slot for \link{bs4DashFooter}.}
 
 \item{title}{App title.}
 
-\item{old_school}{Whether to use the wonderful sketchy design for BS4. FALSE
+\item{old_school}{Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 by default.}
 
 \item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}

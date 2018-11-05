@@ -7,13 +7,13 @@
 cardProfile(..., src = NULL, title = NULL, subtitle = NULL)
 }
 \arguments{
-\item{...}{any element such as cardProfileItemList.}
+\item{...}{Any element such as \link{cardProfileItemList}.}
 
-\item{src}{profile image, if any.}
+\item{src}{Profile image, if any.}
 
-\item{title}{title.}
+\item{title}{Title.}
 
-\item{subtitle}{subtitle.}
+\item{subtitle}{Subtitle.}
 }
 \description{
 Create card profile

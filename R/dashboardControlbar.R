@@ -5,7 +5,7 @@
 #' @param ... Any UI element.
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
-#' @param width COntrolbar width. 250 px by default.
+#' @param width Controlbar width. 250 px by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

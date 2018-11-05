@@ -7,7 +7,7 @@
 bs4Carousel(..., id, width = 12)
 }
 \arguments{
-\item{...}{Slot for bs4CarouselItem.}
+\item{...}{Slot for \link{bs4CarouselItem}.}
 
 \item{id}{Unique carousel id.}
 

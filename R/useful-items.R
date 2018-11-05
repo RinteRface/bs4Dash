@@ -53,7 +53,7 @@ bs4Badge <- function(..., position = c("left", "right"), status,
 #' 
 #' Beautiful accordion from AdminLTE3 
 #'
-#' @param ... Slot for bs4AccordionItem.
+#' @param ... Slot for \link{bs4AccordionItem}.
 #' 
 #' @examples 
 #' if(interactive()){
@@ -179,7 +179,7 @@ bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
 #' 
 #' Beautiful carousel from AdminLTE3 
 #'
-#' @param ... Slot for bs4CarouselItem.
+#' @param ... Slot for \link{bs4CarouselItem}.
 #' @param id Unique carousel id.
 #' @param width Carousel width. Between 1 and 12.
 #' 
@@ -294,7 +294,7 @@ bs4Carousel <- function(..., id, width = 12) {
 
 #' Create a Bootstrap 4 carousel item
 #' 
-#' To insert in a bs4Carousel
+#' To insert in a \link{bs4Carousel}
 #'
 #' @param active Whether the item is active or not at start.
 #' @param src Item path or url.
@@ -632,7 +632,7 @@ bs4Loading <- function() {
 #'
 #' @description Create a timeline block
 #'
-#' @param ... slot for bs4TimelineLabel or bs4TimelineItem.
+#' @param ... slot for \link{bs4TimelineLabel} or \link{bs4TimelineItem}.
 #' @param reversed Whether the timeline is reversed or not.
 #' @param width Timeline width. Between 1 and 12.
 #' 
@@ -715,8 +715,8 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 #'
 #' @description Create a timeline label
 #'
-#' @param ... any element.
-#' @param status label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param ... Any element.
+#' @param status Label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -740,14 +740,14 @@ bs4TimelineLabel <- function(..., status = NULL) {
 #'
 #' @description Create a timeline item
 #'
-#' @param ... any element such as bs4TimeLineItemMedia ...
+#' @param ... Any element such as \link{bs4TimelineItemMedia} ...
 #' @param elevation Timeline elevation (numeric). NULL by default.
-#' @param icon item icon such as "clock-o", "times", ...
-#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-#' @param time item date or time.
-#' @param title item title.
+#' @param icon Item icon such as "clock-o", "times", ...
+#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param time Item date or time.
+#' @param title Item title.
 #' @param border Whether to display a border between the header and the body. TRUE by default.
-#' @param footer item footer if any.
+#' @param footer Item footer if any.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -815,9 +815,9 @@ bs4TimelineItem <- function(..., elevation = NULL, icon = NULL,
 #'
 #' @description Create a timeline media item
 #'
-#' @param src media url or path.
-#' @param height media height in pixels.
-#' @param width media width in pixels.
+#' @param src Media url or path.
+#' @param height Media height in pixels.
+#' @param width Media width in pixels.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -838,8 +838,8 @@ bs4TimelineItemMedia <- function(src = NULL, height = NULL, width = NULL) {
 #'
 #' @description Create a timeline starting point
 #'
-#' @param icon item icon such as "clock-o", "times", ...
-#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param icon Item icon such as "clock-o", "times", ...
+#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -860,8 +860,8 @@ bs4TimelineStart <- function(icon = "clock-o", status = NULL) {
 #'
 #' @description Create a timeline ending point
 #'
-#' @param icon item icon such as "clock-o", "times", ...
-#' @param status item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param icon Item icon such as "clock-o", "times", ...
+#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1028,7 +1028,7 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name =
 #'
 #' @description Create a list group
 #'
-#' @param ... Slot for bs4ListGroupItem.
+#' @param ... Slot for \link{bs4ListGroupItem}.
 #' @param width List group width. 4 by default. Between 1 and 12.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}

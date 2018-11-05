@@ -5,6 +5,7 @@
 - add `bs4SocialCard()`
 
 ## Minor changes
+- fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
 - add hex icon
@@ -15,7 +16,8 @@
 - fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH
 - fix `bs4TabCard()`: when the user set 2 or more active tabs at the same time, only 
 the first one is selected
-
+- related to #16: modify bs4Dash.js file so that only the first body content tab is selected
+ and not that of the `bs4TabCard()`, as they have the same class (tab-pane).
 
 # bs4Dash 0.2.0
 ## Major changes

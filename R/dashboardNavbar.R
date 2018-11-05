@@ -97,7 +97,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #'
 #' Build an adminLTE3 dashboard dropdown menu
 #'
-#' @param ... Slot for bs4Notification or bs4Message.
+#' @param ... Slot for \link{bs4DropdownMenuItem}.
 #' @param show Whether to start with the dropdown open. FALSE by default.
 #' @param status Dropdown menu status. "primary", "success", "warning", "danger" or "info".
 #' @param labelText Dropdown label text.,

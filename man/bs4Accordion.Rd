@@ -7,7 +7,7 @@
 bs4Accordion(...)
 }
 \arguments{
-\item{...}{Slot for bs4AccordionItem.}
+\item{...}{Slot for \link{bs4AccordionItem}.}
 }
 \description{
 Beautiful accordion from AdminLTE3

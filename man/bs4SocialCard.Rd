@@ -9,25 +9,25 @@ bs4SocialCard(..., src = NULL, title = NULL, subtitle = NULL,
   comments = NULL, footer = NULL)
 }
 \arguments{
-\item{...}{body content. May include attachmentBlock for instance.}
+\item{...}{Body content. May include attachmentBlock for instance.}
 
-\item{src}{header image, if any.}
+\item{src}{Header image, if any.}
 
-\item{title}{card title.}
+\item{title}{Card title.}
 
 \item{subtitle}{card subtitle.}
 
-\item{width}{card width (between 1 and 12).}
+\item{width}{Card width (between 1 and 12).}
 
-\item{height}{card height.}
+\item{height}{Card height.}
 
 \item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the card.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the card.}
 
-\item{comments}{slot for boxComments.}
+\item{comments}{Slot for boxComments.}
 
-\item{footer}{card footer, if any.}
+\item{footer}{Card footer, if any.}
 }
 \description{
 Create social card

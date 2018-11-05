@@ -12,7 +12,7 @@ bs4CarouselItem(active = FALSE, src = NULL)
 \item{src}{Item path or url.}
 }
 \description{
-To insert in a bs4Carousel
+To insert in a \link{bs4Carousel}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

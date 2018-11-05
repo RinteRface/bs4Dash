@@ -14,7 +14,7 @@
 #'   white. Otherwise, a color string. "primary", "success", "warning" or "danger".
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   default width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param height The height of a box, in pixels or other CSS unit. By default
@@ -27,7 +27,7 @@
 #' @param labelStatus status of the box label: "danger", "success", "primary", "warning".
 #' @param labelText Label text.
 #' @param labelTooltip Label tooltip displayed on hover.
-#' @param dropdownMenu List of items in the the boxtool dropdown menu. Use dropdownItemList().
+#' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param dropdownIcon Dropdown icon. "wrench" by default.
 #' 
 #' @family cards
@@ -218,7 +218,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
 #'
 #' Can be used to add dropdown items to a cardtool.
 #'
-#' @param ... Slot for dropdownItem.
+#' @param ... Slot for \link{dropdownItem}.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -278,7 +278,7 @@ dropdownDivider <- function() {
 #' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   default width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param href An optional URL to link to. 
@@ -380,7 +380,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #'   white. Otherwise, a color string. "primary", "success", "warning" or "danger".
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   default width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param elevation Infobox elevation.
@@ -530,16 +530,18 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 #'
 #' Build an adminLTE3 card with tabs
 #'
-#' @param ... Contents of the box: should be bs4TabPanel.
+#' @param ... Contents of the box: should be \link{bs4TabPanel}.
 #' @param title TabCard title.
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   default width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param height The height of a box, in pixels or other CSS unit. By default
 #'   the height scales automatically with the content.
 #' @param elevation tabCard elevation. 
+#' @param side Side of the box the tabs should be on (\code{"left"} or
+#'   \code{"right"}).
 #' 
 #' @family cards
 #'
@@ -559,17 +561,17 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 #'      bs4TabCard(
 #'       title = "A card with tabs",
 #'       bs4TabPanel(
-#'        tabName = "Tab1", 
+#'        tabName = "Tab 1", 
 #'        active = FALSE,
 #'        "Content 1"
 #'       ),
 #'       bs4TabPanel(
-#'        tabName = "Tab2", 
+#'        tabName = "Tab 2", 
 #'        active = TRUE,
 #'        "Content 2"
 #'       ),
 #'       bs4TabPanel(
-#'        tabName = "Tab3", 
+#'        tabName = "Tab 3", 
 #'        active = FALSE,
 #'        "Content 3"
 #'       )
@@ -584,9 +586,11 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 #'
 #' @export
 bs4TabCard <- function(..., title = NULL, width = 6, 
-                       height = NULL, elevation = NULL) {
+                       height = NULL, elevation = NULL, 
+                       side = c("left", "right")) {
   
   found_active <- FALSE
+  side <- match.arg(side)
   
   tabCardCl <- "card"
   if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
@@ -594,10 +598,20 @@ bs4TabCard <- function(..., title = NULL, width = 6,
   # header
   headerTag <- shiny::tags$div(
     class = "card-header d-flex p-0",
-    shiny::tags$h3(class = "card-title p-3", title),
+    if (side == "right") {
+      shiny::tagList(
+        shiny::tags$h3(class = "card-title p-3", title),
+        # tab menu
+        bs4TabSetPanel(..., side = side)
+      )
+    } else {
+      shiny::tagList(
+        # tab menu
+        bs4TabSetPanel(..., side = side),
+        shiny::tags$h3(class = "card-title p-3 ml-auto", title)
+      )
+    }
     
-    # tab menu
-    bs4TabSetPanel(...)
   )
   
   # body
@@ -626,7 +640,7 @@ bs4TabCard <- function(..., title = NULL, width = 6,
           if (active) {
             panels[[i]][[2]]$attribs$class <- gsub(
               x = gsub(
-                x = "tab-pane active", 
+                x = panelClass, 
                 pattern = "active", 
                 replacement = ""
               ), 
@@ -665,12 +679,14 @@ bs4TabCard <- function(..., title = NULL, width = 6,
 #' 
 #' Imported by bs4TabCard. Do not use outside!
 #'
-#' @param ... Slot for bs4TabPanel.
+#' @param ... Slot for \link{bs4TabPanel}.
+#' @param side Side of the box the tabs should be on (\code{"left"} or
+#'   \code{"right"}).
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabSetPanel <- function(...) {
+bs4TabSetPanel <- function(..., side) {
   
   tabs <- list(...)
   found_active <- FALSE
@@ -705,7 +721,13 @@ bs4TabSetPanel <- function(...) {
     )
   })
 
-  tabsetTag <- shiny::tags$ul(class = "nav nav-pills ml-auto p-2")
+  tabsetTag <- shiny::tags$ul(
+    class = if (side == "right") {
+      "nav nav-pills ml-auto p-2"
+    } else {
+      "nav nav-pills p-2"
+    }
+  )
   tabsetTag <- shiny::tagAppendChildren(tabsetTag, tabSetPanelItem)
   tabsetTag
 }
@@ -733,7 +755,7 @@ bs4TabPanel <- function(..., tabName, active = FALSE) {
   id <- gsub(x = id, pattern = " ", replacement = "")
   
   tabPanelTag <- shiny::tags$div(
-    class = if (isTRUE(active)) "tab-pane active" else "tab-pane",
+    class = if (active) "tab-pane active" else "tab-pane",
     id = id,
     ...
   )
@@ -746,7 +768,7 @@ bs4TabPanel <- function(..., tabName, active = FALSE) {
 #'
 #' @description Create widget user card
 #'
-#' @param ... footer content.
+#' @param ... Footer content.
 #' @param type User card type. Either NULL or 2.
 #' @param status User card color. "primary", "warning", "danger", "info" or "success".
 #' @param src User image url or path.
@@ -1038,10 +1060,10 @@ bs4Box <- function(..., title = NULL, width = 6, height = NULL) {
 #'
 #' @description Create card profile
 #'
-#' @param ... any element such as cardProfileItemList.
-#' @param src profile image, if any.
-#' @param title title.
-#' @param subtitle subtitle.
+#' @param ... Any element such as \link{cardProfileItemList}.
+#' @param src Profile image, if any.
+#' @param title Title.
+#' @param subtitle Subtitle.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1121,7 +1143,7 @@ cardProfile <- function(..., src = NULL, title = NULL, subtitle = NULL) {
 #'
 #' @description Create card profile item list
 #'
-#' @param ... slot for cardProfileItem.
+#' @param ... Slot for \link{cardProfileItem}.
 #' @param bordered Whether the container should have a border or not. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1141,8 +1163,8 @@ cardProfileItemList <- function(..., bordered = FALSE) {
 #'
 #' @description Create card profile item 
 #'
-#' @param title item title.
-#' @param description item info.
+#' @param title Item title.
+#' @param description Item info.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1162,16 +1184,16 @@ cardProfileItem <- function(title = NULL, description = NULL) {
 #'
 #' @description Create social card
 #'
-#' @param ... body content. May include attachmentBlock for instance.
-#' @param src header image, if any.
-#' @param title card title.
+#' @param ... Body content. May include attachmentBlock for instance.
+#' @param src Header image, if any.
+#' @param title Card title.
 #' @param subtitle card subtitle.
-#' @param width card width (between 1 and 12). 
-#' @param height card height.
+#' @param width Card width (between 1 and 12). 
+#' @param height Card height.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the card. 
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the card.
-#' @param comments slot for boxComments.
-#' @param footer card footer, if any.
+#' @param comments Slot for boxComments.
+#' @param footer Card footer, if any.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

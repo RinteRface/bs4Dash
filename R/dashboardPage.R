@@ -2,13 +2,13 @@
 #'
 #' Build an adminLTE3 dashboard page
 #'
-#' @param navbar Bootstrap 4 dashboard navbar.
-#' @param sidebar Bootstrap 4 dashboard main sidebar.
-#' @param body Bootstrap 4 dashboard body wrapper.
-#' @param controlbar Bootstrap 4 dashboard control sidebar (right side).
-#' @param footer Bootstrap 4 dashboard footer.
+#' @param navbar Slot for \link{bs4DashNavbar}.
+#' @param sidebar Slot for \link{bs4DashSidebar}.
+#' @param body Slot for \link{bs4DashBody}.
+#' @param controlbar Slot for \link{bs4DashControlbar} (right side).
+#' @param footer Slot for \link{bs4DashFooter}.
 #' @param title App title.
-#' @param old_school Whether to use the wonderful sketchy design for BS4. FALSE
+#' @param old_school Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 #' by default.
 #' @param sidebar_collapsed Whether the sidebar is collapsed of not at start. FALSE by default.
 #'

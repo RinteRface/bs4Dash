@@ -25,7 +25,7 @@ white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
-default valueBox width of 4 occupies 1/3 of that width. For column-based
+default width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 

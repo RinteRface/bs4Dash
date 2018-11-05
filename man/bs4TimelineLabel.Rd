@@ -7,9 +7,9 @@
 bs4TimelineLabel(..., status = NULL)
 }
 \arguments{
-\item{...}{any element.}
+\item{...}{Any element.}
 
-\item{status}{label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
+\item{status}{Label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
 }
 \description{
 Create a timeline label
