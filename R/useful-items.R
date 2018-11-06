@@ -341,7 +341,7 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #'      footer = bs4DashFooter(),
 #'      title = "test",
 #'      body = bs4DashBody(
-#'        title = "Carousel",
+#'        title = "Progress bars",
 #'        bs4Card(
 #'         title = "Progress bars",
 #'         footer = tagList(
@@ -1237,4 +1237,563 @@ ionicon <- function(name) {
   if (is.null(name)) stop("Missing icon name")
   cl <- paste0("icon ion-md-", name)
   shiny::tags$i(class = cl)
+}
+
+
+
+#' @title AdminLTE3 attachment container
+#'
+#' @description Create an attachment container, nice to wrap articles...
+#'
+#' @param ... Any element.
+#' @param src Url or path to the image.
+#' @param title Attachment title.
+#' @param title_url External link.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     bs4DashNavbar(),
+#'     bs4DashSidebar(),
+#'     bs4DashControlbar(),
+#'     bs4DashBody(
+#'      bs4Card(
+#'       title = "Attachment example",
+#'       attachmentBlock(
+#'        src = "http://kiev.carpediem.cd/data/afisha/o/2d/c7/2dc7670333.jpg",
+#'        title = "Test",
+#'        title_url = "http://google.com",
+#'        "This is the content"
+#'       )
+#'      )
+#'     ),
+#'     title = "AttachmentBlock"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+attachmentBlock <- function(..., src = NULL, title = NULL, title_url = NULL) {
+  shiny::tags$div(
+    class = "attachment-block clearfix",
+    shiny::img(
+      class = "attachment-img",
+      src = src
+    ),
+    shiny::tags$div(
+      class = "attachment-pushed",
+      shiny::tags$h4(
+        class = "attachment-heading",
+        shiny::tags$a(
+          href = title_url,
+          target = "_blank",
+          title
+        )
+      ),
+      shiny::tags$div(
+        class = "attachment-text",
+        ...
+      )
+    )
+  )
+}
+
+
+
+#' @title AdminLTE3 description block
+#'
+#' @description Create a description block, perfect for writing statistics
+#'
+#' @param number Any number.
+#' @param number_color Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param number_icon Number icon, if any. Should be written like "fa fa-times".
+#' @param header Bold text.
+#' @param text Additional text.
+#' @param right_border TRUE by default. Whether to display a right border to
+#'   separate two blocks. The last block on the right should not have a right border.
+#' @param margin_bottom FALSE by default. Set it to TRUE when the
+#'   descriptionBlock is used in a \link{cardPad} context.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     bs4DashNavbar(),
+#'     bs4DashSidebar(),
+#'     bs4DashControlbar(),
+#'     bs4DashBody(
+#'      bs4Card(
+#'       solidHeader = FALSE,
+#'       title = "Status summary",
+#'       background = NULL,
+#'       width = 4,
+#'       status = "danger",
+#'       footer = fluidRow(
+#'         column(
+#'           width = 6,
+#'           descriptionBlock(
+#'             number = "17%", 
+#'             number_color = "success", 
+#'             number_icon = "fa fa-caret-up",
+#'             header = "$35,210.43", 
+#'             text = "TOTAL REVENUE", 
+#'             right_border = TRUE,
+#'             margin_bottom = FALSE
+#'           )
+#'         ),
+#'         column(
+#'           width = 6,
+#'           descriptionBlock(
+#'             number = "18%", 
+#'             number_color = "danger", 
+#'             number_icon = "fa fa-caret-down",
+#'             header = "1200", 
+#'             text = "GOAL COMPLETION", 
+#'             right_border = FALSE,
+#'             margin_bottom = FALSE
+#'           )
+#'         )
+#'       )
+#'      )
+#'     ),
+#'     title = "Description Blocks"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+descriptionBlock <- function(number = NULL, number_color = NULL, number_icon = NULL,
+                             header = NULL, text = NULL, right_border = TRUE,
+                             margin_bottom = FALSE) {
+  
+  cl <- "description-block"
+  if (isTRUE(right_border)) cl <- paste0(cl, " border-right")
+  if (isTRUE(margin_bottom)) cl <- paste0(cl, " mb-4")
+  
+  numcl <- "description-percentage"
+  if (!is.null(number_color)) numcl <- paste0(numcl, " text-", number_color)
+  
+  shiny::tags$div(
+    class = cl,
+    shiny::tags$span(
+      class = numcl, 
+      number,
+      if (!is.null(number_icon)) shiny::tags$i(class = number_icon)
+    ),
+    shiny::tags$h5(class = "description-header", header),
+    shiny::tags$span(class = "description-text", text)
+  )
+}
+
+
+
+#' @title AdminLTE3 vertical block container
+#'
+#' @description Create a vertical container for \link{descriptionBlock} or other elements
+#'
+#' @param ... Any element such as \link{descriptionBlock}.
+#' @param color Background color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param style Custom CSS, if any.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     bs4DashNavbar(),
+#'     bs4DashSidebar(),
+#'     bs4DashControlbar(),
+#'     bs4DashBody(
+#'      bs4Card(
+#'       title = "Box with right pad",
+#'       status = "warning",
+#'       fluidRow(
+#'         column(width = 6),
+#'         column(
+#'           width = 6,
+#'           cardPad(
+#'             color = "info",
+#'             descriptionBlock(
+#'               header = "8390", 
+#'               text = "VISITS", 
+#'               right_border = FALSE,
+#'               margin_bottom = TRUE
+#'             ),
+#'             descriptionBlock(
+#'               header = "30%", 
+#'               text = "REFERRALS", 
+#'               right_border = FALSE,
+#'               margin_bottom = TRUE
+#'             ),
+#'             descriptionBlock(
+#'               header = "70%", 
+#'               text = "ORGANIC", 
+#'               right_border = FALSE,
+#'               margin_bottom = FALSE
+#'             )
+#'           )
+#'         )
+#'       )
+#'      )
+#'     ),
+#'     title = "cardPad"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+cardPad <- function(..., color = NULL, style = NULL) {
+  cl <- "card-pane-right pt-2 pb-2 pl-4 pr-4"
+  if (!is.null(color)) cl <- paste0(cl, " bg-", color)
+  
+  shiny::tags$div(
+    class = cl,
+    style = style,
+    ...
+  )
+}
+
+
+
+#' @title AdminLTE3 user message container
+#'
+#' @description Create a user message container
+#'
+#' @param ... Slot for \link{userMessage}.
+#' @param status Messages status. See here for a list of valid colors 
+#' \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param width Container width: between 1 and 12.
+#' 
+#' @note Better to include in a \link{bs4Card}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     bs4DashNavbar(),
+#'     bs4DashSidebar(),
+#'     bs4DashControlbar(),
+#'     bs4DashBody(
+#'      userMessages(
+#'       status = "success",
+#'       userMessage(
+#'        author = "Alexander Pierce",
+#'        date = "20 Jan 2:00 pm",
+#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'        side = NULL,
+#'        "Is this template really for free? That's unbelievable!"
+#'       )
+#'      )
+#'     ),
+#'     title = "user Message"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+userMessages <- function(..., status, width = 4) {
+  cl <- "direct-chat-messages direct-chat"
+  if (!is.null(status)) cl <- paste0(cl, " direct-chat-", status)
+  msgtag <- shiny::tags$div(class = cl, ...)
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    msgtag
+  )
+  
+}
+
+#' @title AdminLTE3 user message 
+#'
+#' @description Create a user message
+#'
+#' @param ... Message text.
+#' @param author Message author.
+#' @param date Message date.
+#' @param src Message author image path or url.
+#' @param side Side where author is displayed: NULL (left) or "right".
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+userMessage <- function(..., author = NULL, date = NULL, 
+                        src = NULL, side = c(NULL, "right")) {
+  
+  side <- match.arg(side)
+  
+  messageCl <- "direct-chat-msg"
+  if (!is.null(side)) messageCl <- paste0(messageCl, " right")
+  
+  # message info
+  messageInfo <- shiny::tags$div(
+    class = "direct-chat-info clearfix",
+    shiny::tags$span(class = "direct-chat-name float-left", author),
+    shiny::tags$span(class = "direct-chat-timestamp float-right", date)
+  )
+  
+  # message Text
+  messageTxt <- shiny::tags$div(class = "direct-chat-text", ...)
+  
+  # message author image
+  messageImg <- shiny::tags$img(class = "direct-chat-img", src = src)
+  
+  shiny::tags$div(
+    class = messageCl,
+    messageInfo,
+    messageImg, 
+    messageTxt
+  )
+}
+
+
+
+#' @title AdminLTE3 user post
+#'
+#' @description Create a user post
+#'
+#' @param ... Post content, slot for \link{userPostTagItems}, \link{userPostMedia}.
+#' @param id Unique id of the post.
+#' @param src Profile image, if any.
+#' @param author Post author.
+#' @param description Post description.
+#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
+#' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     bs4DashNavbar(),
+#'     bs4DashSidebar(),
+#'     bs4DashControlbar(),
+#'     bs4DashBody(
+#'      bs4Card(
+#'       title = "Box with user comment",
+#'       status = "primary",
+#'       userPost(
+#'        id = 1,
+#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'        author = "Jonathan Burke Jr.",
+#'        description = "Shared publicly - 7:30 PM today",
+#'        "Lorem ipsum represents a long-held tradition for designers, 
+#'        typographers and the like. Some people hate it and argue for 
+#'        its demise, but others ignore the hate as they create awesome 
+#'        tools to help create filler text for everyone from bacon 
+#'        lovers to Charlie Sheen fans.",
+#'        userPostTagItems(
+#'         userPostTagItem(bs4Badge("item 1", status = "warning")),
+#'         userPostTagItem(bs4Badge("item 2", status = "danger"))
+#'        )
+#'       ),
+#'       userPost(
+#'        id = 2,
+#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
+#'        author = "Adam Jones",
+#'        description = "Shared publicly - 5 days ago",
+#'        userPostMedia(src = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
+#'        userPostTagItems(
+#'         userPostTagItem(bs4Badge("item 1", status = "info")),
+#'         userPostTagItem(bs4Badge("item 2", status = "danger"))
+#'        )
+#'       )
+#'      )
+#'     ),
+#'     title = "userPost"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#' 
+#' @export
+userPost <- function(..., id = NULL, src = NULL, author = NULL, 
+                     description = NULL, collapsible = TRUE, 
+                     collapsed = FALSE) {
+  
+  cl <- "collapse"
+  if (!isTRUE(collapsed)) cl <- paste0(cl, " in")
+  if (collapsed) collapsed <- "false" else collapsed <- "true"
+  
+  shiny::tags$div(
+    class = "post",
+    
+    shiny::tags$div(
+      class = "user-block",
+      shiny::img(class = "img-circle img-bordered-sm", src = src),
+      shiny::tags$span(
+        class = "username", 
+        author,
+        
+        # box tool
+        if (collapsible) {
+          shiny::tags$button(
+            class = "float-right btn-box-tool",
+            `data-toggle` = "collapse",
+            `data-target` = paste0("#", id),
+            `aria-expanded` = collapsed,
+            type = "button",
+            shiny::tags$i(class = "fa fa-eye")
+          )
+        }
+        
+      ),
+      shiny::tags$span(class = "description", description)
+    ),
+    shiny::tags$p(
+      class = cl,
+      id = id,
+      `aria-expanded` = collapsed,
+      ...
+    )
+  )
+  
+}
+
+
+
+
+#' @title AdminLTE3 user post tool item container
+#'
+#' @description Create a user post tool item container
+#'
+#' @param ... Slot for \link{userPostTagItem}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+userPostTagItems<- function(...) {
+  
+  shiny::tags$ul(
+    class = "list-inline d-flex",
+    ...
+  )
+}
+
+
+
+
+#' @title AdminLTE3 user post tool item
+#'
+#' @description Create a user post tool item
+#'
+#' @param ... Tool content such as label, button, ...
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+userPostTagItem <- function(...) {
+  
+  shiny::tags$li(
+    class = "mx-2",
+    ...
+  )
+}
+
+
+
+#' @title AdminLTE2 user post media
+#'
+#' @description Create a user post media (image)
+#'
+#' @param src Image path or url ...
+#' @param height Media height in pixels.
+#' @param width Media width in pixels.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+userPostMedia <- function(src = NULL, height = NULL, width = NULL) {
+  shiny::img(
+    style = "margin: auto;",
+    class = "img-fluid", 
+    src = src,
+    height = height,
+    width = width
+  )
+}
+
+
+
+#' @title BS4 sortable section
+#'
+#' @description Create a sortable UI section
+#'
+#' @param ... Slot for UI elements such as \link{bs4Card}.
+#' @param width Section width: between 1 and 12.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @examples 
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shiny::shinyApp(
+#'   ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter(),
+#'     title = "test",
+#'     body = bs4DashBody(
+#'       bs4TabItems(
+#'         bs4TabItem(
+#'           tabName = "sortabled",
+#'           fluidRow(
+#'             lapply(1:3, FUN = function(i) {
+#'               bs4Sortable(
+#'                 width = 4,
+#'                 p(class = "text-center", paste("Column", i)),
+#'                 lapply(1:2, FUN = function(j) {
+#'                   bs4Card(
+#'                     title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+#'                     width = 12,
+#'                     "Click on my header"
+#'                   )
+#'                 })
+#'               )
+#'             })
+#'           )
+#'         )
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }  
+#' 
+#' @export
+bs4Sortable <- function(..., width = NULL) {
+  
+  sectionCl <- "connectedSortable ui-sortable"
+  if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
+  
+  shiny::fluidRow(
+    shiny::tags$section(
+      class = sectionCl,
+      ...
+    ) 
+  )
 }

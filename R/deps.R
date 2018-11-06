@@ -16,6 +16,7 @@ addDeps <- function(x, theme) {
   adminLTE3_js <- "adminlte.min.js"
   bs4Dash_js <- "bs4Dash.js"
   adminLTE3_css <- "adminlte.min.css"
+  jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
   old_school_css <- "https://bootswatch.com/4/sketchy/"
   fontawesome_css <- "https://use.fontawesome.com/releases/v5.0.13/css/"
@@ -23,6 +24,13 @@ addDeps <- function(x, theme) {
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
   
   dashboardDeps <- list(
+    # jquery UI deps for sortable elements
+    htmltools::htmlDependency(
+      name = "jquery-ui", 
+      version = "1.12.1",
+      src = c(file = system.file("jquery-ui-1.12.1", package = "bs4Dash")),
+      script = jquery_ui_js
+    ),
     # bootstrap deps
     htmltools::htmlDependency(
       name = "bootstrap", 

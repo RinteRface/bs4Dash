@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AdminLTE3 social card — bs4SocialCard • bs4Dash</title>
+<title>AdminLTE3 user post — userPost • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="AdminLTE3 social card — bs4SocialCard" />
+<meta property="og:title" content="AdminLTE3 user post — userPost" />
 
-<meta property="og:description" content="Create social card" />
+<meta property="og:description" content="Create a user post" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,63 +134,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AdminLTE3 social card</h1>
-    <small class="dont-index">Source: <a href='https://github.com/DivadNojnarg/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a></small>
-    <div class="hidden name"><code>bs4SocialCard.Rd</code></div>
+    <h1>AdminLTE3 user post</h1>
+    <small class="dont-index">Source: <a href='https://github.com/DivadNojnarg/bs4Dash/blob/master/R/useful-items.R'><code>R/useful-items.R</code></a></small>
+    <div class="hidden name"><code>userPost.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create social card</p>
+    <p>Create a user post</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4SocialCard</span>(<span class='no'>...</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>comments</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>userPost</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>author</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>description</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Body content. May include <a href='attachmentBlock.html'>attachmentBlock</a> for instance.</p></td>
+      <td><p>Post content, slot for <a href='userPostTagItems.html'>userPostTagItems</a>, <a href='userPostMedia.html'>userPostMedia</a>.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>Unique id of the post.</p></td>
     </tr>
     <tr>
       <th>src</th>
-      <td><p>Header image, if any.</p></td>
+      <td><p>Profile image, if any.</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>Card title.</p></td>
+      <th>author</th>
+      <td><p>Post author.</p></td>
     </tr>
     <tr>
-      <th>subtitle</th>
-      <td><p>card subtitle.</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>Card width (between 1 and 12).</p></td>
-    </tr>
-    <tr>
-      <th>height</th>
-      <td><p>Card height.</p></td>
+      <th>description</th>
+      <td><p>Post description.</p></td>
     </tr>
     <tr>
       <th>collapsible</th>
-      <td><p>If TRUE, display a button in the upper right that allows the user to collapse the card.</p></td>
+      <td><p>If TRUE, display a button in the upper right that allows the user to collapse the comment.</p></td>
     </tr>
     <tr>
-      <th>closable</th>
-      <td><p>If TRUE, display a button in the upper right that allows the user to close the card.</p></td>
-    </tr>
-    <tr>
-      <th>comments</th>
-      <td><p>Slot for <a href='cardComment.html'>cardComment</a>.</p></td>
-    </tr>
-    <tr>
-      <th>footer</th>
-      <td><p>Card footer, if any.</p></td>
+      <th>collapsed</th>
+      <td><p>Whether the comment is collapsed when the application starts, FALSE by default.</p></td>
     </tr>
     </table>
     
@@ -201,43 +188,42 @@
  <span class='fu'>library</span>(<span class='no'>bs4Dash</span>)
  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-    <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
-     <span class='fu'><a href='bs4SidebarMenu.html'>bs4SidebarMenu</a></span>(
-       <span class='fu'><a href='bs4SidebarHeader.html'>bs4SidebarHeader</a></span>(<span class='st'>"Main content"</span>),
-       <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-         <span class='st'>"Social Card"</span>,
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"social_card"</span>,
-         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"desktop"</span>
+    <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
+    <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
+    <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
+    <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
+     <span class='fu'><a href='bs4Card.html'>bs4Card</a></span>(
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Box with user comment"</span>,
+      <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
+      <span class='fu'>userPost</span>(
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+       <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,
+       <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"Jonathan Burke Jr."</span>,
+       <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Shared publicly - 7:30 PM today"</span>,
+       <span class='st'>"Lorem ipsum represents a long-held tradition for designers, 
+       typographers and the like. Some people hate it and argue for 
+       its demise, but others ignore the hate as they create awesome 
+       tools to help create filler text for everyone from bacon 
+       lovers to Charlie Sheen fans."</span>,
+       <span class='fu'><a href='userPostTagItems.html'>userPostTagItems</a></span>(
+        <span class='fu'><a href='userPostTagItem.html'>userPostTagItem</a></span>(<span class='fu'><a href='bs4Badge.html'>bs4Badge</a></span>(<span class='st'>"item 1"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>)),
+        <span class='fu'><a href='userPostTagItem.html'>userPostTagItem</a></span>(<span class='fu'><a href='bs4Badge.html'>bs4Badge</a></span>(<span class='st'>"item 2"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>))
+       )
+      ),
+      <span class='fu'>userPost</span>(
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+       <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg"</span>,
+       <span class='kw'>author</span> <span class='kw'>=</span> <span class='st'>"Adam Jones"</span>,
+       <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Shared publicly - 5 days ago"</span>,
+       <span class='fu'><a href='userPostMedia.html'>userPostMedia</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"</span>),
+       <span class='fu'><a href='userPostTagItems.html'>userPostTagItems</a></span>(
+        <span class='fu'><a href='userPostTagItem.html'>userPostTagItem</a></span>(<span class='fu'><a href='bs4Badge.html'>bs4Badge</a></span>(<span class='st'>"item 1"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"info"</span>)),
+        <span class='fu'><a href='userPostTagItem.html'>userPostTagItem</a></span>(<span class='fu'><a href='bs4Badge.html'>bs4Badge</a></span>(<span class='st'>"item 2"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>))
        )
       )
-    ),
-    <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-     <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
-       <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"profile_card"</span>,
-         <span class='fu'>bs4SocialCard</span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Social Card"</span>,
-         <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"example-01.05.2018"</span>,
-         <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,
-         <span class='st'>"Some text here!"</span>,
-         <span class='kw'>comments</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-          <span class='fu'>lapply</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) {
-            <span class='fu'><a href='cardComment.html'>cardComment</a></span>(
-             <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg"</span>,
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>paste</span>(<span class='st'>"Comment"</span>, <span class='no'>i</span>),
-             <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"01.05.2018"</span>,
-             <span class='fu'>paste0</span>(<span class='st'>"The "</span>, <span class='no'>i</span>, <span class='st'>"-th comment"</span>)
-            )
-           })
-         ),
-         <span class='kw'>footer</span> <span class='kw'>=</span> <span class='st'>"The footer here!"</span>
-        )
-      )
      )
-   ),
-   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"socialCard"</span>
+    ),
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"userPost"</span>
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) { }
  )

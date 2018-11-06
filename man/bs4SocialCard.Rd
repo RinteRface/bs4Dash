@@ -9,7 +9,7 @@ bs4SocialCard(..., src = NULL, title = NULL, subtitle = NULL,
   comments = NULL, footer = NULL)
 }
 \arguments{
-\item{...}{Body content. May include attachmentBlock for instance.}
+\item{...}{Body content. May include \link{attachmentBlock} for instance.}
 
 \item{src}{Header image, if any.}
 

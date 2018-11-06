@@ -1184,7 +1184,7 @@ cardProfileItem <- function(title = NULL, description = NULL) {
 #'
 #' @description Create social card
 #'
-#' @param ... Body content. May include attachmentBlock for instance.
+#' @param ... Body content. May include \link{attachmentBlock} for instance.
 #' @param src Header image, if any.
 #' @param title Card title.
 #' @param subtitle card subtitle.
