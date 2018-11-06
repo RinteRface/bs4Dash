@@ -25,7 +25,7 @@ bs4SocialCard(..., src = NULL, title = NULL, subtitle = NULL,
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the card.}
 
-\item{comments}{Slot for boxComments.}
+\item{comments}{Slot for \link{cardComment}.}
 
 \item{footer}{Card footer, if any.}
 }
@@ -61,9 +61,11 @@ if (interactive()) {
          "Some text here!",
          comments = tagList(
           lapply(X = 1:10, FUN = function(i) {
-            list(
-             paste0("The ", i, "-th comment"),
-             br()
+            cardComment(
+             src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+             title = paste("Comment", i),
+             date = "01.05.2018",
+             paste0("The ", i, "-th comment")
             )
            })
          ),

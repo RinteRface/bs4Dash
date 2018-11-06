@@ -1192,7 +1192,7 @@ cardProfileItem <- function(title = NULL, description = NULL) {
 #' @param height Card height.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the card. 
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the card.
-#' @param comments Slot for boxComments.
+#' @param comments Slot for \link{cardComment}.
 #' @param footer Card footer, if any.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1226,9 +1226,11 @@ cardProfileItem <- function(title = NULL, description = NULL) {
 #'          "Some text here!",
 #'          comments = tagList(
 #'           lapply(X = 1:10, FUN = function(i) {
-#'             list(
-#'              paste0("The ", i, "-th comment"),
-#'              br()
+#'             cardComment(
+#'              src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'              title = paste("Comment", i),
+#'              date = "01.05.2018",
+#'              paste0("The ", i, "-th comment")
 #'             )
 #'            })
 #'          ),
@@ -1319,6 +1321,36 @@ bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL,
           footer
         ) 
       }
+    )
+  )
+}
+
+
+
+#' @title BS4 card comment container
+#'
+#' @description Create a card comment to insert in \link{bs4SocialCard}
+#'
+#' @param ... Comment content.
+#' @param src Author image, if any.
+#' @param title Comment title.
+#' @param date Date of publication.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @export
+cardComment <- function(..., src = NULL, title = NULL, date = NULL) {
+  shiny::tags$div(
+    class = "card-comment",
+    shiny::img(class = "img-circle img-sm", src = src),
+    shiny::tags$div(
+      class = "comment-text",
+      shiny::tags$span(
+        class = "username", 
+        title,
+        shiny::tags$span(class = "text-muted float-right", date)
+      ),
+      ...
     )
   )
 }

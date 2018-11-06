@@ -2,7 +2,7 @@
 ## Major changes
 - add `bs4SidebarUserPanel()`
 - add `cardProfile()`, `cardProfileItemList()` and `cardProfileItem()`
-- add `bs4SocialCard()`
+- add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
 - fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH

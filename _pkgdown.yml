@@ -56,6 +56,7 @@ reference:
 - title: Card extra elements
   desc: Add more shiny elements to your cards
   contents:
+  - '`cardComment`'
   - '`cardProfile`'
   - '`cardProfileItemList`'
   - '`cardProfileItem`'
