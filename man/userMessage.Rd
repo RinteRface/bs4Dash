@@ -5,7 +5,7 @@
 \title{AdminLTE3 user message}
 \usage{
 userMessage(..., author = NULL, date = NULL, src = NULL,
-  side = c(NULL, "right"))
+  side = NULL)
 }
 \arguments{
 \item{...}{Message text.}
@@ -16,7 +16,7 @@ userMessage(..., author = NULL, date = NULL, src = NULL,
 
 \item{src}{Message author image path or url.}
 
-\item{side}{Side where author is displayed: NULL (left) or "right".}
+\item{side}{Side where author is displayed: NULL (left, by default) or "right".}
 }
 \description{
 Create a user message

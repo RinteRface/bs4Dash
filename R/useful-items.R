@@ -1531,15 +1531,13 @@ userMessages <- function(..., status, width = 4) {
 #' @param author Message author.
 #' @param date Message date.
 #' @param src Message author image path or url.
-#' @param side Side where author is displayed: NULL (left) or "right".
+#' @param side Side where author is displayed: NULL (left, by default) or "right".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 userMessage <- function(..., author = NULL, date = NULL, 
-                        src = NULL, side = c(NULL, "right")) {
-  
-  side <- match.arg(side)
+                        src = NULL, side = NULL) {
   
   messageCl <- "direct-chat-msg"
   if (!is.null(side)) messageCl <- paste0(messageCl, " right")
@@ -1547,8 +1545,22 @@ userMessage <- function(..., author = NULL, date = NULL,
   # message info
   messageInfo <- shiny::tags$div(
     class = "direct-chat-info clearfix",
-    shiny::tags$span(class = "direct-chat-name float-left", author),
-    shiny::tags$span(class = "direct-chat-timestamp float-right", date)
+    shiny::tags$span(
+      class = if (!is.null(side)) {
+        "direct-chat-name float-left"
+      } else {
+        "direct-chat-name float-right"
+      }, 
+      author
+    ),
+    shiny::tags$span(
+      class = if (!is.null(side)) {
+        "direct-chat-timestamp float-right"
+      } else {
+        "direct-chat-timestamp float-left"
+      }, 
+      date
+    )
   )
   
   # message Text
@@ -1790,10 +1802,8 @@ bs4Sortable <- function(..., width = NULL) {
   sectionCl <- "connectedSortable ui-sortable"
   if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
   
-  shiny::fluidRow(
-    shiny::tags$section(
-      class = sectionCl,
-      ...
-    ) 
-  )
+  shiny::tags$section(
+    class = sectionCl,
+    ...
+  ) 
 }

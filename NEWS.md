@@ -3,7 +3,7 @@
 - add `bs4Sortable()` and all necessary javascript dependencies
 - add `userPost()`, `userPostMedia()`, `userPostTagItems()` and `userPostTagItem()`
 - add `userMessages()` and `userMessage()`
-- add `descriptionBlock`, `attachmentBlock` and `cardPad()`
+- add `descriptionBlock()`, `attachmentBlock()` and `cardPad()`
 - add `bs4SidebarUserPanel()`
 - add `cardProfile()`, `cardProfileItemList()` and `cardProfileItem()`
 - add `bs4SocialCard()` and `cardComment()`

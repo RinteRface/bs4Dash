@@ -55,23 +55,23 @@ if (interactive()) {
        bs4TabItem(
          tabName = "profile_card",
          bs4SocialCard(
-         title = "Social Card",
-         subtitle = "example-01.05.2018",
-         src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-         "Some text here!",
-         comments = tagList(
-          lapply(X = 1:10, FUN = function(i) {
-            cardComment(
-             src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-             title = paste("Comment", i),
-             date = "01.05.2018",
-             paste0("The ", i, "-th comment")
-            )
-           })
-         ),
-         footer = "The footer here!"
-        )
-      )
+          title = "Social Card",
+          subtitle = "example-01.05.2018",
+          src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+          "Some text here!",
+          comments = tagList(
+           lapply(X = 1:10, FUN = function(i) {
+             cardComment(
+              src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+              title = paste("Comment", i),
+              date = "01.05.2018",
+              paste0("The ", i, "-th comment")
+             )
+            })
+          ),
+          footer = "The footer here!"
+         )
+       )
      )
    ),
    title = "socialCard"
