@@ -251,6 +251,8 @@ corresponding `bs4SidebarMenuItem()`, so that the navigation between tabs work. 
 
 Below is the code for your first bs4Dash application:
 
+<details>
+<summary>Code</summary>
 ```r
 library(shiny)
 library(bs4Dash)
@@ -397,6 +399,8 @@ shiny::shinyApp(
   server = function(input, output) {}
 )
 ```
+</details>
+<br>
 
 <img src="figures/bs4Dash_wrapup.png">
 <br>

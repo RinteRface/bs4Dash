@@ -149,7 +149,8 @@ articles:
   contents:
   - '`bs4Intro`'
   - '`bs4Themes`'
-  - '`bs4Showcase`'
+  - '`bs4cards`'
+  - '`bs4sortable`'
   
   
 news:
