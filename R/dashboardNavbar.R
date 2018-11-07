@@ -100,7 +100,7 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #' @param ... Slot for \link{bs4DropdownMenuItem}.
 #' @param show Whether to start with the dropdown open. FALSE by default.
 #' @param status Dropdown menu status. "primary", "success", "warning", "danger" or "info".
-#' @param labelText Dropdown label text.,
+#' @param labelText Dropdown label text.
 #' @param src Dropdown link to an external ressource.
 #' @param menuIcon Fontawesome icon (default = "bell")
 #' @param align Menu alignment (default = "right")
@@ -142,13 +142,16 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
 #'
 #' @export
 bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
-                            status = c("primary", "warning", "danger", "info", "success"), menuIcon = 'bell', align = 'right') {
+                            status = c("primary", "warning", "danger", "info", "success"), 
+                            menuIcon = "bell", align = "right") {
   
   status <- match.arg(status)
   items <- list(...)
   n_items <- length(items)
   # remove the divider from the last item
   #items[[n_items]][[2]] <- NULL
+  
+  labelText <- n_items
   
   dropdownMenuTag <- shiny::tags$li(
     class = if (isTRUE(show)) "nav-item dropdown show" else "nav-item dropdown",
@@ -170,7 +173,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       },
       shiny::tags$span(
         class = "dropdown-item dropdown-header", 
-        paste0(n_items, " Notifications")
+        paste0(n_items, " Items")
       ),
       shiny::tags$div(class = "dropdown-divider"),
       ...,

@@ -11,6 +11,7 @@
 #' @param old_school Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 #' by default.
 #' @param sidebar_collapsed Whether the sidebar is collapsed of not at start. FALSE by default.
+#' @param controlbar_collapsed Whether the sidebar is collapsed of not at start. TRUE by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -35,10 +36,16 @@
 #' @export
 bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, 
                         controlbar = NULL, footer = NULL, title = NULL,
-                        old_school = FALSE, sidebar_collapsed = FALSE){
+                        old_school = FALSE, sidebar_collapsed = FALSE,
+                        controlbar_collapsed = TRUE){
   
   if (!is.null(sidebar)) {
     sidebar_cl <- if (sidebar_collapsed) "sidebar-collapse" else "sidebar-open"
+  }
+  if(!is.null(controlbar)) {
+    if (!controlbar_collapsed) {
+      sidebar_cl <- paste0(sidebar_cl, " control-sidebar-slide-open")
+    }
   }
 
   shiny::tags$html(
@@ -65,7 +72,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
           # page content
           body,
           controlbar,
-          footer
+          if (!is.null(footer)) footer
         )
       )
     )

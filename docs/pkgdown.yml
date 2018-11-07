@@ -1,8 +1,7 @@
-pandoc: 2.3.1
+pandoc: '2.2'
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   bs4Intro: bs4Intro.html
-  bs4Showcase: bs4Showcase.html
   bs4Themes: bs4Themes.html
 

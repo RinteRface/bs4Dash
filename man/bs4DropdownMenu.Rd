@@ -13,7 +13,7 @@ bs4DropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
 
 \item{show}{Whether to start with the dropdown open. FALSE by default.}
 
-\item{labelText}{Dropdown label text.,}
+\item{labelText}{Dropdown label text.}
 
 \item{src}{Dropdown link to an external ressource.}
 

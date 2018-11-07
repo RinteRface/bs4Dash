@@ -9,6 +9,7 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
+- add controlbar_collapsed argument to `bs4DashPage()`
 - fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
@@ -16,6 +17,7 @@
 - add menuIcon arg and align arg to `bs4DropdownMenu()`, add id arg to `bs4DashControlbar()` PR by @bjornlind 
 
 ## Bug fix
+- fix various issues in `bs4DropdownMenu()` 
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
 - fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH
 - fix `bs4TabCard()`: when the user set 2 or more active tabs at the same time, only 

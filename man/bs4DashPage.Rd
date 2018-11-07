@@ -6,7 +6,8 @@
 \usage{
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
   controlbar = NULL, footer = NULL, title = NULL,
-  old_school = FALSE, sidebar_collapsed = FALSE)
+  old_school = FALSE, sidebar_collapsed = FALSE,
+  controlbar_collapsed = TRUE)
 }
 \arguments{
 \item{navbar}{Slot for \link{bs4DashNavbar}.}
@@ -25,6 +26,8 @@ bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
 by default.}
 
 \item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
+
+\item{controlbar_collapsed}{Whether the sidebar is collapsed of not at start. TRUE by default.}
 }
 \description{
 Build an adminLTE3 dashboard page
