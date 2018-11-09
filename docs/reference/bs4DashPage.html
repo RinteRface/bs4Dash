@@ -89,10 +89,13 @@
       <a href="../articles/bs4Intro.html">How to start?</a>
     </li>
     <li>
-      <a href="../articles/bs4Showcase.html">bs4Dash Showcase</a>
+      <a href="../articles/bs4Themes.html">Themes</a>
     </li>
     <li>
-      <a href="../articles/bs4Themes.html">Themes</a>
+      <a href="../articles/bs4cards.html">Cards</a>
+    </li>
+    <li>
+      <a href="../articles/bs4sortable.html">Sortable Elements</a>
     </li>
   </ul>
 </li>
@@ -147,30 +150,31 @@
 
     <pre class="usage"><span class='fu'>bs4DashPage</span>(<span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>navbar</th>
-      <td><p>Bootstrap 4 dashboard navbar.</p></td>
+      <td><p>Slot for <a href='bs4DashNavbar.html'>bs4DashNavbar</a>.</p></td>
     </tr>
     <tr>
       <th>sidebar</th>
-      <td><p>Bootstrap 4 dashboard main sidebar.</p></td>
+      <td><p>Slot for <a href='bs4DashSidebar.html'>bs4DashSidebar</a>.</p></td>
     </tr>
     <tr>
       <th>body</th>
-      <td><p>Bootstrap 4 dashboard body wrapper.</p></td>
+      <td><p>Slot for <a href='bs4DashBody.html'>bs4DashBody</a>.</p></td>
     </tr>
     <tr>
       <th>controlbar</th>
-      <td><p>Bootstrap 4 dashboard control sidebar (right side).</p></td>
+      <td><p>Slot for <a href='bs4DashControlbar.html'>bs4DashControlbar</a> (right side).</p></td>
     </tr>
     <tr>
       <th>footer</th>
-      <td><p>Bootstrap 4 dashboard footer.</p></td>
+      <td><p>Slot for <a href='bs4DashFooter.html'>bs4DashFooter</a>.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -178,12 +182,16 @@
     </tr>
     <tr>
       <th>old_school</th>
-      <td><p>Whether to use the wonderful sketchy design for BS4. FALSE
+      <td><p>Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 by default.</p></td>
     </tr>
     <tr>
       <th>sidebar_collapsed</th>
       <td><p>Whether the sidebar is collapsed of not at start. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>controlbar_collapsed</th>
+      <td><p>Whether the sidebar is collapsed of not at start. TRUE by default.</p></td>
     </tr>
     </table>
     

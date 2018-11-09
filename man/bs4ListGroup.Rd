@@ -7,7 +7,7 @@
 bs4ListGroup(..., width = 4)
 }
 \arguments{
-\item{...}{Slot for bs4ListGroupItem.}
+\item{...}{Slot for \link{bs4ListGroupItem}.}
 
 \item{width}{List group width. 4 by default. Between 1 and 12.}
 }

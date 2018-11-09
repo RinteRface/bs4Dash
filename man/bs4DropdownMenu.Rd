@@ -9,11 +9,11 @@ bs4DropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
   menuIcon = "bell", align = "right")
 }
 \arguments{
-\item{...}{Slot for bs4Notification or bs4Message.}
+\item{...}{Slot for \link{bs4DropdownMenuItem}.}
 
 \item{show}{Whether to start with the dropdown open. FALSE by default.}
 
-\item{labelText}{Dropdown label text.,}
+\item{labelText}{Dropdown label text.}
 
 \item{src}{Dropdown link to an external ressource.}
 

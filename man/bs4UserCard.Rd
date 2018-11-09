@@ -9,7 +9,7 @@ bs4UserCard(..., type = NULL, src = NULL, elevation = NULL,
   "info", "success"), title = NULL, subtitle = NULL, width = 6)
 }
 \arguments{
-\item{...}{footer content.}
+\item{...}{Footer content.}
 
 \item{type}{User card type. Either NULL or 2.}
 

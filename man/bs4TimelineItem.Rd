@@ -8,21 +8,21 @@ bs4TimelineItem(..., elevation = NULL, icon = NULL, status = NULL,
   time = NULL, title = NULL, border = TRUE, footer = NULL)
 }
 \arguments{
-\item{...}{any element such as bs4TimeLineItemMedia ...}
+\item{...}{Any element such as \link{bs4TimelineItemMedia} ...}
 
 \item{elevation}{Timeline elevation (numeric). NULL by default.}
 
-\item{icon}{item icon such as "clock-o", "times", ...}
+\item{icon}{Item icon such as "clock-o", "times", ...}
 
-\item{status}{item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
+\item{status}{Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
 
-\item{time}{item date or time.}
+\item{time}{Item date or time.}
 
-\item{title}{item title.}
+\item{title}{Item title.}
 
 \item{border}{Whether to display a border between the header and the body. TRUE by default.}
 
-\item{footer}{item footer if any.}
+\item{footer}{Item footer if any.}
 }
 \description{
 Create a timeline item

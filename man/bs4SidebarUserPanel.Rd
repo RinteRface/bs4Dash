@@ -7,9 +7,9 @@
 bs4SidebarUserPanel(img = NULL, text = NULL)
 }
 \arguments{
-\item{img}{User panel image path or url}
+\item{img}{User panel image path or url.}
 
-\item{text}{User panel text}
+\item{text}{User panel text.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar user panel

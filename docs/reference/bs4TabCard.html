@@ -89,10 +89,13 @@
       <a href="../articles/bs4Intro.html">How to start?</a>
     </li>
     <li>
-      <a href="../articles/bs4Showcase.html">bs4Dash Showcase</a>
+      <a href="../articles/bs4Themes.html">Themes</a>
     </li>
     <li>
-      <a href="../articles/bs4Themes.html">Themes</a>
+      <a href="../articles/bs4cards.html">Cards</a>
+    </li>
+    <li>
+      <a href="../articles/bs4sortable.html">Sortable Elements</a>
     </li>
   </ul>
 </li>
@@ -146,14 +149,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>bs4TabCard</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Contents of the box: should be bs4TabPanel.</p></td>
+      <td><p>Contents of the box: should be <a href='bs4TabPanel.html'>bs4TabPanel</a>.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -163,7 +166,7 @@
       <th>width</th>
       <td><p>The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
-default valueBox width of 4 occupies 1/3 of that width. For column-based
+default width of 4 occupies 1/3 of that width. For column-based
 layouts, use <code>NULL</code> for the width; the width is set by the column that
 contains the box.</p></td>
     </tr>
@@ -175,6 +178,11 @@ the height scales automatically with the content.</p></td>
     <tr>
       <th>elevation</th>
       <td><p>tabCard elevation.</p></td>
+    </tr>
+    <tr>
+      <th>side</th>
+      <td><p>Side of the box the tabs should be on (<code>"left"</code> or
+<code>"right"</code>).</p></td>
     </tr>
     </table>
     
@@ -200,17 +208,17 @@ the height scales automatically with the content.</p></td>
      <span class='fu'>bs4TabCard</span>(
       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A card with tabs"</span>,
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab1"</span>,
+       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='st'>"Content 1"</span>
       ),
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab2"</span>,
+       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='st'>"Content 2"</span>
       ),
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab3"</span>,
+       <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='st'>"Content 3"</span>
       )

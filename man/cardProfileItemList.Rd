@@ -7,7 +7,7 @@
 cardProfileItemList(..., bordered = FALSE)
 }
 \arguments{
-\item{...}{slot for cardProfileItem.}
+\item{...}{Slot for \link{cardProfileItem}.}
 
 \item{bordered}{Whether the container should have a border or not. FALSE by default.}
 }

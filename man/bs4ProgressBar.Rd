@@ -41,7 +41,7 @@ if(interactive()){
      footer = bs4DashFooter(),
      title = "test",
      body = bs4DashBody(
-       title = "Carousel",
+       title = "Progress bars",
        bs4Card(
         title = "Progress bars",
         footer = tagList(

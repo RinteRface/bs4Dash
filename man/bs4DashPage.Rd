@@ -6,25 +6,28 @@
 \usage{
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
   controlbar = NULL, footer = NULL, title = NULL,
-  old_school = FALSE, sidebar_collapsed = FALSE)
+  old_school = FALSE, sidebar_collapsed = FALSE,
+  controlbar_collapsed = TRUE)
 }
 \arguments{
-\item{navbar}{Bootstrap 4 dashboard navbar.}
+\item{navbar}{Slot for \link{bs4DashNavbar}.}
 
-\item{sidebar}{Bootstrap 4 dashboard main sidebar.}
+\item{sidebar}{Slot for \link{bs4DashSidebar}.}
 
-\item{body}{Bootstrap 4 dashboard body wrapper.}
+\item{body}{Slot for \link{bs4DashBody}.}
 
-\item{controlbar}{Bootstrap 4 dashboard control sidebar (right side).}
+\item{controlbar}{Slot for \link{bs4DashControlbar} (right side).}
 
-\item{footer}{Bootstrap 4 dashboard footer.}
+\item{footer}{Slot for \link{bs4DashFooter}.}
 
 \item{title}{App title.}
 
-\item{old_school}{Whether to use the wonderful sketchy design for BS4. FALSE
+\item{old_school}{Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 by default.}
 
 \item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
+
+\item{controlbar_collapsed}{Whether the sidebar is collapsed of not at start. TRUE by default.}
 }
 \description{
 Build an adminLTE3 dashboard page

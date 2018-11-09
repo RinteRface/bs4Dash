@@ -7,7 +7,7 @@
 bs4Timeline(..., reversed = TRUE, width = 6)
 }
 \arguments{
-\item{...}{slot for bs4TimelineLabel or bs4TimelineItem.}
+\item{...}{slot for \link{bs4TimelineLabel} or \link{bs4TimelineItem}.}
 
 \item{reversed}{Whether the timeline is reversed or not.}
 

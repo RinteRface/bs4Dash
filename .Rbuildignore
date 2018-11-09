@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^CRAN-RELEASE$
 ^.*\.Rproj$
 ^\.Rproj\.user$

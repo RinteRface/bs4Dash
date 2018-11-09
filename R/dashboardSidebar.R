@@ -2,7 +2,7 @@
 #'
 #' Build an adminLTE3 dashboard main sidebar
 #'
-#' @param ... Slot for bs4SidebarMenu.
+#' @param ... Slot for \link{bs4SidebarMenu}.
 #' @param title Sidebar title.
 #' @param skin Sidebar skin. "dark" or "light"
 #' @param status Sidebar status. "primary", "danger", "warning", "success", "info".
@@ -98,7 +98,7 @@ bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
 #'
 #' Build an adminLTE3 dashboard main sidebar menu
 #'
-#' @param ... Slot for bs4SidebarMenuItemList or bs4SidebarMenuItem or bs4SidebarHeader
+#' @param ... Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -267,8 +267,8 @@ bs4SidebarHeader <- function(title) {
 #'
 #' Build an adminLTE3 dashboard main sidebar user panel
 #'
-#' @param img User panel image path or url
-#' @param text User panel text
+#' @param img User panel image path or url.
+#' @param text User panel text.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

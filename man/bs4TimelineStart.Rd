@@ -7,9 +7,9 @@
 bs4TimelineStart(icon = "clock-o", status = NULL)
 }
 \arguments{
-\item{icon}{item icon such as "clock-o", "times", ...}
+\item{icon}{Item icon such as "clock-o", "times", ...}
 
-\item{status}{item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
+\item{status}{Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
 }
 \description{
 Create a timeline starting point

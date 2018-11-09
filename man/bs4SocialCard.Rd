@@ -9,25 +9,25 @@ bs4SocialCard(..., src = NULL, title = NULL, subtitle = NULL,
   comments = NULL, footer = NULL)
 }
 \arguments{
-\item{...}{body content. May include attachmentBlock for instance.}
+\item{...}{Body content. May include \link{attachmentBlock} for instance.}
 
-\item{src}{header image, if any.}
+\item{src}{Header image, if any.}
 
-\item{title}{card title.}
+\item{title}{Card title.}
 
 \item{subtitle}{card subtitle.}
 
-\item{width}{card width (between 1 and 12).}
+\item{width}{Card width (between 1 and 12).}
 
-\item{height}{card height.}
+\item{height}{Card height.}
 
 \item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the card.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the card.}
 
-\item{comments}{slot for boxComments.}
+\item{comments}{Slot for \link{cardComment}.}
 
-\item{footer}{card footer, if any.}
+\item{footer}{Card footer, if any.}
 }
 \description{
 Create social card
@@ -55,21 +55,23 @@ if (interactive()) {
        bs4TabItem(
          tabName = "profile_card",
          bs4SocialCard(
-         title = "Social Card",
-         subtitle = "example-01.05.2018",
-         src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-         "Some text here!",
-         comments = tagList(
-          lapply(X = 1:10, FUN = function(i) {
-            list(
-             paste0("The ", i, "-th comment"),
-             br()
-            )
-           })
-         ),
-         footer = "The footer here!"
-        )
-      )
+          title = "Social Card",
+          subtitle = "example-01.05.2018",
+          src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+          "Some text here!",
+          comments = tagList(
+           lapply(X = 1:10, FUN = function(i) {
+             cardComment(
+              src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+              title = paste("Comment", i),
+              date = "01.05.2018",
+              paste0("The ", i, "-th comment")
+             )
+            })
+          ),
+          footer = "The footer here!"
+         )
+       )
      )
    ),
    title = "socialCard"

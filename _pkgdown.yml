@@ -56,9 +56,18 @@ reference:
 - title: Card extra elements
   desc: Add more shiny elements to your cards
   contents:
+  - '`attachmentBlock`'
+  - '`descriptionBlock`' 
+  - '`cardComment`'
+  - '`cardPad`'
   - '`cardProfile`'
   - '`cardProfileItemList`'
   - '`cardProfileItem`'
+  
+- title: Sortable UI
+  desc: Sort elements such as cards
+  contents:
+  - '`bs4Sortable`'
     
 - title: Render functions
   desc: Dynamically generate items
@@ -91,6 +100,12 @@ reference:
   - '`bs4TimelineLabel`'
   - '`bs4TimelineStart`'
   - '`ionicon`'
+  - '`userMessage`'
+  - '`userMessages`'
+  - '`userPost`'
+  - '`userPostTagItems`'
+  - '`userPostTagItem`'
+  - '`userPostMedia`'
 
 - title: Gallery
   desc: bs4Dash showcase
@@ -134,7 +149,8 @@ articles:
   contents:
   - '`bs4Intro`'
   - '`bs4Themes`'
-  - '`bs4Showcase`'
+  - '`bs4cards`'
+  - '`bs4sortable`'
   
   
 news:

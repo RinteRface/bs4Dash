@@ -7,7 +7,7 @@
 dropdownItemList(...)
 }
 \arguments{
-\item{...}{Slot for dropdownItem.}
+\item{...}{Slot for \link{dropdownItem}.}
 }
 \description{
 Can be used to add dropdown items to a cardtool.

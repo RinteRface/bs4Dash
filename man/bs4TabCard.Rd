@@ -5,16 +5,16 @@
 \title{Create a Boostrap 4 tabCard}
 \usage{
 bs4TabCard(..., title = NULL, width = 6, height = NULL,
-  elevation = NULL)
+  elevation = NULL, side = c("left", "right"))
 }
 \arguments{
-\item{...}{Contents of the box: should be bs4TabPanel.}
+\item{...}{Contents of the box: should be \link{bs4TabPanel}.}
 
 \item{title}{TabCard title.}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
-default valueBox width of 4 occupies 1/3 of that width. For column-based
+default width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
@@ -22,6 +22,9 @@ contains the box.}
 the height scales automatically with the content.}
 
 \item{elevation}{tabCard elevation.}
+
+\item{side}{Side of the box the tabs should be on (\code{"left"} or
+\code{"right"}).}
 }
 \description{
 Build an adminLTE3 card with tabs
@@ -42,17 +45,17 @@ if(interactive()){
      bs4TabCard(
       title = "A card with tabs",
       bs4TabPanel(
-       tabName = "Tab1", 
+       tabName = "Tab 1", 
        active = FALSE,
        "Content 1"
       ),
       bs4TabPanel(
-       tabName = "Tab2", 
+       tabName = "Tab 2", 
        active = TRUE,
        "Content 2"
       ),
       bs4TabPanel(
-       tabName = "Tab3", 
+       tabName = "Tab 3", 
        active = FALSE,
        "Content 3"
       )

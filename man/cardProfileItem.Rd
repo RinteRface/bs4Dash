@@ -7,9 +7,9 @@
 cardProfileItem(title = NULL, description = NULL)
 }
 \arguments{
-\item{title}{item title.}
+\item{title}{Item title.}
 
-\item{description}{item info.}
+\item{description}{Item info.}
 }
 \description{
 Create card profile item

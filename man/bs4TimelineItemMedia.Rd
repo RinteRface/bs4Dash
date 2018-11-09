@@ -7,11 +7,11 @@
 bs4TimelineItemMedia(src = NULL, height = NULL, width = NULL)
 }
 \arguments{
-\item{src}{media url or path.}
+\item{src}{Media url or path.}
 
-\item{height}{media height in pixels.}
+\item{height}{Media height in pixels.}
 
-\item{width}{media width in pixels.}
+\item{width}{Media width in pixels.}
 }
 \description{
 Create a timeline media item

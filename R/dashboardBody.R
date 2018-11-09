@@ -2,7 +2,7 @@
 #'
 #' Build an adminLTE3 dashboard body
 #'
-#' @param ... Body content, slot for bs4TabItems.
+#' @param ... Body content, slot for \link{bs4TabItems}.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

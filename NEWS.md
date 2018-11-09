@@ -1,20 +1,29 @@
 # bs4Dash 0.3.0.9000
 ## Major changes
+- add `bs4Sortable()` and all necessary javascript dependencies
+- add `userPost()`, `userPostMedia()`, `userPostTagItems()` and `userPostTagItem()`
+- add `userMessages()` and `userMessage()`
+- add `descriptionBlock()`, `attachmentBlock()` and `cardPad()`
 - add `bs4SidebarUserPanel()`
 - add `cardProfile()`, `cardProfileItemList()` and `cardProfileItem()`
-- add `bs4SocialCard()`
+- add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
+- add controlbar_collapsed argument to `bs4DashPage()`
+- fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
 - add hex icon
+- add menuIcon arg and align arg to `bs4DropdownMenu()`, add id arg to `bs4DashControlbar()` PR by @bjornlind 
 
 ## Bug fix
+- fix various issues in `bs4DropdownMenu()` 
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
 - fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH
 - fix `bs4TabCard()`: when the user set 2 or more active tabs at the same time, only 
 the first one is selected
-
+- related to #16: modify bs4Dash.js file so that only the first body content tab is selected
+ and not that of the `bs4TabCard()`, as they have the same class (tab-pane).
 
 # bs4Dash 0.2.0
 ## Major changes
