@@ -5,8 +5,8 @@
 \title{BS4 jumbotron for AdminLTE3}
 \usage{
 bs4Jumbotron(..., title = NULL, lead = NULL, href = NULL,
-  btn_name = "More", status = c("primary", "warning", "danger", "info",
-  "success"))
+  btn_name = NULL, status = c("primary", "secondary", "success",
+  "danger", "warning", "info", "light", "dark"))
 }
 \arguments{
 \item{...}{Any content.}
@@ -45,6 +45,7 @@ if(interactive()){
       "It uses utility classes for typography and spacing 
       to space content out within the larger container.",
       status = "primary",
+      btn_name = 'Read more'
       href = "http://www.google.fr"
       )
      )

@@ -983,6 +983,7 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #'       "It uses utility classes for typography and spacing 
 #'       to space content out within the larger container.",
 #'       status = "primary",
+#'       btn_name = 'Read more'
 #'       href = "http://www.google.fr"
 #'       )
 #'      )
@@ -992,8 +993,8 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #' }
 #'
 #' @export
-bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name = "More",
-                          status = c("primary", "warning", "danger", "info", "success")) {
+bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name = NULL,
+                          status = c("primary", "secondary", "success", "danger", "warning", "info", "light", 'dark')) {
   
   status <- match.arg(status)
   
@@ -1012,13 +1013,17 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name =
     shiny::tags$p(class = "lead", lead),
     shiny::tags$hr(class = "my-4"),
     shiny::tags$p(...),
-    shiny::tags$a(
-      class = paste0("btn btn-", btnStatus, " btn-lg"),
-      href = href,
-      target = "_blank",
-      role = "button",
-      btn_name
-    )
+    # Check link input 
+    if(!is.null(btn_name)){
+      # Init default link
+      shiny::tags$a(
+        class = paste0("btn btn-", btnStatus, " btn-lg"),
+        href = href,
+        target = "_blank",
+        role = "button",
+        btn_name
+      )
+    }
   )
 }
 
