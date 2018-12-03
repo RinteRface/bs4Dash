@@ -50,7 +50,7 @@ devtools::install_github("RinteRface/bs4Dash")
 ## Demo
 
 See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic/) and
-[here](https://rinterface.com/shiny/bs4Dash/classic/old_school) or run
+[here](https://rinterface.com/shiny/bs4Dash/old_school/) or run
 
 ```r
 library(bs4Dash)
