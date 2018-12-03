@@ -140,7 +140,7 @@ navbar:
       href: news/index.html
     github:
       icon: fa-github fa-lg
-      href: https://github.com/DivadNojnarg/bs4Dash
+      href: https://github.com/RinteRface/bs4Dash
       
 
 articles:
@@ -155,7 +155,7 @@ articles:
   
 news:
  releases:
- - text: "bs4Dash 0.3.0.9000"
+ - text: "bs4Dash 0.3.0"
  - text: "bs4Dash 0.2.0"
  - text: "bs4Dash 0.1.0"
  

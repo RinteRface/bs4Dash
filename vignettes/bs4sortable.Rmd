@@ -12,6 +12,7 @@ vignette: >
 ## Sortable Containers
 
 With bs4Dash, it is possible to sort elements by row and columns without the need of any external package.
+This does not work on mobiles.
 
 <img src="figures/bs4Sortable.gif">
 <br>

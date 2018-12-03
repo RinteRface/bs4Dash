@@ -1,5 +1,6 @@
-# bs4Dash 0.3.0.9000
+# bs4Dash 0.3.0
 ## Major changes
+- move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
 - add `userPost()`, `userPostMedia()`, `userPostTagItems()` and `userPostTagItem()`
 - add `userMessages()` and `userMessage()`
@@ -9,6 +10,7 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
+- add licence
 - add controlbar_collapsed argument to `bs4DashPage()`
 - fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH
 - fix #11: add width arg to `bs4DashControlbar()`. Thanks @stephLH
