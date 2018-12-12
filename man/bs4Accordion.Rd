@@ -4,10 +4,12 @@
 \alias{bs4Accordion}
 \title{Create a Bootstrap 4 accordion}
 \usage{
-bs4Accordion(...)
+bs4Accordion(..., id)
 }
 \arguments{
 \item{...}{Slot for \link{bs4AccordionItem}.}
+
+\item{id}{Unique accordion id.}
 }
 \description{
 Beautiful accordion from AdminLTE3
@@ -26,6 +28,7 @@ if(interactive()){
      title = "test",
      body = bs4DashBody(
       bs4Accordion(
+       id = "accordion",
        bs4AccordionItem(
         id = "item1",
         title = "Item 1", 

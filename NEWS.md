@@ -10,6 +10,8 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
+- patch for `bs4Accordion`: click on 1 item collapse all other items in the same accordion.
+add an id argument.
 - add licence
 - add controlbar_collapsed argument to `bs4DashPage()`
 - fix #16: add side argument to `bs4TabCard()`. Thanks @stephLH

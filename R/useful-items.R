@@ -54,6 +54,7 @@ bs4Badge <- function(..., position = c("left", "right"), status,
 #' Beautiful accordion from AdminLTE3 
 #'
 #' @param ... Slot for \link{bs4AccordionItem}.
+#' @param id Unique accordion id. 
 #' 
 #' @examples 
 #' if(interactive()){
@@ -69,6 +70,7 @@ bs4Badge <- function(..., position = c("left", "right"), status,
 #'      title = "test",
 #'      body = bs4DashBody(
 #'       bs4Accordion(
+#'        id = "accordion",
 #'        bs4AccordionItem(
 #'         id = "item1",
 #'         title = "Item 1", 
@@ -113,10 +115,21 @@ bs4Badge <- function(..., position = c("left", "right"), status,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Accordion <- function(...) {
+bs4Accordion <- function(..., id) {
+  
+  items <- list(...)
+  len <- length(items)
+  
+  # patch that enables a proper accordion behavior
+  # we add the data-parent non standard attribute to each
+  # item. Each accordion must have a unique id.
+  lapply(1:len, FUN = function(i) {
+    items[[i]]$children[[1]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id, "accordion") 
+  })
+  
   shiny::tags$div(
-    class = "accordion",
-    ...
+    id = paste0(id, "accordion"),
+    items
   )
 }
 
@@ -143,12 +156,14 @@ bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
   # header
   headerTag <- shiny::tags$div(
     class = "card-header",
+    id = paste0("header_", id),
     shiny::tags$h4(
       class = "card-title",
       shiny::tags$a(
         href = paste0("#", id),
+        `aria-controls` = id,
+        `data-target` = paste0("#", id),
         `data-toggle` = "collapse",
-        `data-parent` = "accordion",
         title
       )
     )
@@ -156,8 +171,9 @@ bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
   
   # body
   bodyTag <- shiny::tags$div(
-    class = "panel-collapse collapse in",
+    `aria-labelledby` = paste0("header_", id),
     id = id,
+    class = "panel-collapse collapse in",
     shiny::tags$div(
       class = "card-body",
       ...
