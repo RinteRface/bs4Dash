@@ -10,7 +10,9 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
-- patch for `bs4Accordion`: click on 1 item collapse all other items in the same accordion.
+- add overflow argument to `bs4Card` to enable or disable overflow
+- hide `bs4Card` footer when footer is NULL
+- patch for `bs4Accordion`: click on 1 item collapse all other items in the same accordion
 add an id argument.
 - add licence
 - add controlbar_collapsed argument to `bs4DashPage()`

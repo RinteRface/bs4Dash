@@ -29,6 +29,7 @@
 #' @param labelTooltip Label tooltip displayed on hover.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param dropdownIcon Dropdown icon. "wrench" by default.
+#' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' 
 #' @family cards
 #'
@@ -104,7 +105,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, labelStatus = NULL, labelText = NULL, 
-                    labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench") {
+                    labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
+                    overflow = FALSE) {
   
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-", gradientColor, "-gradient")
@@ -183,15 +185,17 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = "overflow-y: auto; max-height: 500px;",
+    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
     ...
   )
   
-  footerTag <- shiny::tags$div(
-    class = "card-footer",
-    style = "overflow-y: auto; max-height: 500px;",
-    footer
-  )
+  footerTag <- if (!is.null(footer)) {
+    shiny::tags$div(
+      class = "card-footer",
+      style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
+      footer
+    ) 
+  }
   
   style <- NULL
   if (!is.null(height)) {

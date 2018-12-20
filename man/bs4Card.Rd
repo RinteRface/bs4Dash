@@ -9,7 +9,7 @@ bs4Card(..., title = NULL, footer = NULL, status = NULL,
   gradientColor = NULL, width = 6, height = NULL,
   collapsible = TRUE, collapsed = FALSE, closable = TRUE,
   labelStatus = NULL, labelText = NULL, labelTooltip = NULL,
-  dropdownMenu = NULL, dropdownIcon = "wrench")
+  dropdownMenu = NULL, dropdownIcon = "wrench", overflow = FALSE)
 }
 \arguments{
 \item{...}{Contents of the box.}
@@ -56,6 +56,8 @@ the user to collapse the box.}
 \item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
 
 \item{dropdownIcon}{Dropdown icon. "wrench" by default.}
+
+\item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
 }
 \description{
 Build an adminLTE3 card
