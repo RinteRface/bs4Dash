@@ -471,6 +471,7 @@ gallery_1_tab <- bs4TabItem(
       footer = tagList(
         h4("There is an accordion in the footer!"),
         bs4Accordion(
+          id = "accordion1",
           bs4AccordionItem(
             id = "item1",
             title = "Item 1", 
