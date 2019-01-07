@@ -10,6 +10,7 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
+- add glyphicons (BS3 old dependency) thanks to @ntncmch.
 - add overflow argument to `bs4Card` to enable or disable overflow
 - hide `bs4Card` footer when footer is NULL
 - patch for `bs4Accordion`: click on 1 item collapse all other items in the same accordion
