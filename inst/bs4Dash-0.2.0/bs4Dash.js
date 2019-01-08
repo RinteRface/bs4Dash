@@ -36,7 +36,7 @@ $(function () {
     // prevent from infinitely loading
     if (url !== redirect) {
       // replace the url by the url for shinyapp.io
-      window.location.replace(redirect);  
+      one(window.location.replace(redirect));  
     }
   }
   
