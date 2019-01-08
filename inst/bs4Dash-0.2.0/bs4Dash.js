@@ -35,11 +35,7 @@ $(function () {
      // get the initial page url
     var url = window.location.href;
     var redirect = url + workerId + $tablink;
-    // prevent from infinitely loading
-    if (url !== redirect) {
-      // replace the url by the url for shinyapp.io
-      one(window.location.replace(redirect));  
-    }
+    one(window.location.replace(redirect));  
   }
   
   if ($selectedTab.length === 0) {
