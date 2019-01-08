@@ -30,10 +30,15 @@ $(function () {
   var workerId = $('base').attr('href');
   // ensure that this code does not run on shiny server/pro and locally
   if (typeof workerId != "undefined") {
-    // get the initial page url
+    // prevent this from being infinitely loaded
+    var counter = 0;
+    if (counter === 0) {
+     // get the initial page url
     var url = window.location.href;
     // replace the url by the url for shinyapp.io
-    window.location.replace(url + workerId);
+    window.location.replace(url + workerId); 
+    counter += 1;
+    }
   }
   
   if ($selectedTab.length === 0) {
