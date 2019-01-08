@@ -35,7 +35,7 @@ $(function () {
      // get the initial page url
     var url = window.location.href;
     var redirect = url + workerId + $tablink;
-    one(window.location.replace(redirect));  
+    window.location.replace(redirect);  
   }
   
   if ($selectedTab.length === 0) {
