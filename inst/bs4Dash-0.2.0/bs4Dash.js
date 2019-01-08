@@ -30,9 +30,11 @@ $(function () {
   var workerId = $('base').attr('href');
   // ensure that this code does not run on shiny server/pro and locally
   if (typeof workerId != "undefined") {
+    // get the name of the first selected tab		
+     $tablink = $('#mymenu .nav-item:eq(0) a').attr('href');
      // get the initial page url
     var url = window.location.href;
-    var redirect = url + workerId;
+    var redirect = url + workerId + $tablink;
     // prevent from infinitely loading
     if (url !== redirect) {
       // replace the url by the url for shinyapp.io
