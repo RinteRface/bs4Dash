@@ -32,10 +32,8 @@ $(function () {
   if (typeof workerId != "undefined") {
     // get the initial page url
     var url = window.location.href;
-    // get the name of the first selected tab
-    $tablink = $('#mymenu .nav-item:eq(0) a').attr('href');
     // replace the url by the url for shinyapp.io
-    window.location.replace(url + workerId + $tablink);
+    window.location.replace(url + workerId);
   }
   
   if ($selectedTab.length === 0) {
