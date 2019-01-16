@@ -122,7 +122,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
     }
   }
     
-  if (isTRUE(collapsed)) cardCl <- paste0(cardCl, " collapsed-card")
+  if (isTRUE(collapsible) & isTRUE(collapsed)) cardCl <- paste0(cardCl, " collapsed-card")
   if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
   
   cardToolTag <- shiny::tags$div(
