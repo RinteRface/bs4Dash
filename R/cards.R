@@ -176,6 +176,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   )
   
   # header
+  if (is.null(title) & (isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header" else "card-header no-border",
     if (!is.null(title)) shiny::tags$h3(class = "card-title", title) else NULL
