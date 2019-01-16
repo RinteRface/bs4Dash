@@ -24,6 +24,9 @@ add an id argument.
 - add menuIcon arg and align arg to `bs4DropdownMenu()`, add id arg to `bs4DashControlbar()` PR by @bjornlind 
 
 ## Bug fix
+- Fix #19: Whenever a `bs4Card()` starts on a collapsed state, the content is displayed when
+ uncollapsed is pressed. Thanks @stanmap for the remark. (See [here](https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f) for a similar issue)
+- `bs4Card()`: the collapse icon changes to + and - depending on the current collapse status.
 - fix various issues in `bs4DropdownMenu()` 
 - fix #12: Compatibility with shinyWidgets pickerInput. Thanks @pvictor
 - fix #13 in `bs4TabPanel()`: handle tabName with space and with punctuation characters. Thanks @stephLH

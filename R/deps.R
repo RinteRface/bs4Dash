@@ -13,7 +13,7 @@ appendDependencies <- function(x, value) {
 addDeps <- function(x, theme) {
   
   # put all necessary ressources here
-  adminLTE3_js <- "adminlte.min.js"
+  adminLTE3_js <- "adminlte.js"
   bs4Dash_js <- "bs4Dash.js"
   adminLTE3_css <- "adminlte.min.css"
   jquery_ui_js <- "jquery-ui.min.js"
