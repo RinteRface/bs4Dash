@@ -4,6 +4,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^pkgdown$
 ^_pkgdown\.yml$
 ^docs$
 ^cran-comments\.md$
