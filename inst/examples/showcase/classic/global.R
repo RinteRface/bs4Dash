@@ -12,7 +12,7 @@ df <- data.frame(x, y1 = sin(x), y2 = cos(x))
 x <- rnorm(200)
 y <- rnorm(200)
 
-
+#' basic_cards_tab ----
 basic_cards_tab <- bs4TabItem(
   tabName = "cards",
   fluidRow(
@@ -58,7 +58,7 @@ basic_cards_tab <- bs4TabItem(
   )
 )
 
-
+#' social_cards_tab ----
 social_cards_tab <- bs4TabItem(
   tabName = "socialcards",
   fluidRow(
@@ -190,7 +190,7 @@ social_cards_tab <- bs4TabItem(
   )
 )
 
-
+# tab_cards_tab ----
 tab_cards_tab <- bs4TabItem(
   tabName = "tabcards",
   fluidRow(
@@ -249,6 +249,8 @@ tab_cards_tab <- bs4TabItem(
         side = "right",
         elevation = 2,
         width = 12,
+        status = "warning",
+        tabStatus = c("dark", "danger", "transparent"),
         bs4TabPanel(
           tabName = "Tab 4",
           active = FALSE,
@@ -295,7 +297,7 @@ tab_cards_tab <- bs4TabItem(
 )
 
 
-
+# sortable_cards_tab ----
 sortable_cards_tab <- bs4TabItem(
   tabName = "sortablecards",
   fluidRow(
@@ -316,7 +318,7 @@ sortable_cards_tab <- bs4TabItem(
 )
 
 
-
+# statsboxes_tab ----
 statsboxes_tab <- bs4TabItem(
   tabName = "statsboxes",
   fluidRow(
@@ -388,7 +390,7 @@ statsboxes_tab <- bs4TabItem(
 )
 
 
-
+# boxes_tab ----
 boxes_tab <- bs4TabItem(
   tabName = "boxes",
   fluidRow(
@@ -407,7 +409,7 @@ boxes_tab <- bs4TabItem(
 
 
 
-
+# value_boxes_tab ----
 value_boxes_tab <- bs4TabItem(
   tabName = "valueboxes",
   h4("Value Boxes"),
@@ -462,7 +464,7 @@ value_boxes_tab <- bs4TabItem(
 )
 
 
-
+# gallery_1_tab ----
 gallery_1_tab <- bs4TabItem(
   tabName = "gallery1",
   fluidRow(
@@ -676,7 +678,7 @@ gallery_1_tab <- bs4TabItem(
 )
 
 
-
+# gallery_2_tab ----
 gallery_2_tab <- bs4TabItem(
   tabName = "gallery2",
   bs4Jumbotron(

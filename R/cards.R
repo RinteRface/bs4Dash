@@ -5,7 +5,7 @@
 #' @param ... Contents of the box.
 #' @param title Optional title.
 #' @param footer Optional footer text.
-#' @param status The status of the card header. "primary", "success", "warning", "danger". NULL by default.
+#' @param status The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.
 #' @param elevation Card elevation. 
 #' @param solidHeader Should the header be shown with a solid color background?
 #' @param headerBorder Whether to display a border between the header and body.
@@ -24,7 +24,7 @@
 #' @param collapsed If TRUE, start collapsed. This must be used with
 #'   \code{collapsible=TRUE}.
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
-#' @param labelStatus status of the box label: "danger", "success", "primary", "warning".
+#' @param labelStatus status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 #' @param labelText Label text.
 #' @param labelTooltip Label tooltip displayed on hover.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
@@ -548,6 +548,9 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 #' @param elevation tabCard elevation. 
 #' @param side Side of the box the tabs should be on (\code{"left"} or
 #'   \code{"right"}).
+#'   
+#' @inheritParams bs4Card
+#' @inheritParams bs4TabSetPanel
 #' 
 #' @family cards
 #'
@@ -591,30 +594,44 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabCard <- function(..., title = NULL, width = 6, 
-                       height = NULL, elevation = NULL, 
+bs4TabCard <- function(..., title = NULL, status = NULL, elevation = NULL, 
+                       solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
+                       tabStatus = NULL,
+                       width = 6, height = NULL,  
                        side = c("left", "right")) {
   
   found_active <- FALSE
   side <- match.arg(side)
   
-  tabCardCl <- "card"
+  tabCardCl <- if (!is.null(gradientColor)) {
+    paste0("card bg-", gradientColor, "-gradient")
+  } else {
+    if (is.null(status)) {
+      "card card-default"
+    } else {
+      if (isTRUE(solidHeader)) {
+        paste0("card card-outline card-", status)
+      } else {
+        paste0("card card-", status)
+      }
+    }
+  }
   if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
   
   # header
   headerTag <- shiny::tags$div(
-    class = "card-header d-flex p-0",
+    class = if (isTRUE(headerBorder)) "card-header d-flex p-0" else "card-header d-flex p-0 no-border",
     if (side == "right") {
       shiny::tagList(
-        shiny::tags$h3(class = "card-title p-3", title),
+        if (!is.null(title)) shiny::tags$h3(class = "card-title p-3", title) else NULL,
         # tab menu
-        bs4TabSetPanel(..., side = side)
+        bs4TabSetPanel(..., side = side, tabStatus = tabStatus)
       )
     } else {
       shiny::tagList(
         # tab menu
-        bs4TabSetPanel(..., side = side),
-        shiny::tags$h3(class = "card-title p-3 ml-auto", title)
+        bs4TabSetPanel(..., side = side, tabStatus = tabStatus),
+        if (!is.null(title)) shiny::tags$h3(class = "card-title p-3 ml-auto", title) else NULL
       )
     }
     
@@ -688,15 +705,20 @@ bs4TabCard <- function(..., title = NULL, width = 6,
 #' @param ... Slot for \link{bs4TabPanel}.
 #' @param side Side of the box the tabs should be on (\code{"left"} or
 #'   \code{"right"}).
+#' @param tabStatus The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
+#'  NULL by default, "light" if status is set.   
+#'  A vector is possible with a colour for each tab button
+#' 
+#' @inheritParams bs4Card
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabSetPanel <- function(..., side) {
+bs4TabSetPanel <- function(..., side, status = NULL, tabStatus = NULL) {
   
   tabs <- list(...)
   found_active <- FALSE
-  
+  tabStatus <- rep(tabStatus, length.out = length(tabs))
   # handle tabs
   tabSetPanelItem <- lapply(1:length(tabs), FUN = function(i) {
     
@@ -717,9 +739,19 @@ bs4TabSetPanel <- function(..., side) {
     }
     
     shiny::tags$li(
-      class = "nav-item",
+      class = if (!is.null(status) & is.null(tabStatus[i])) {
+        "nav-item bg-light"
+      } else if (!is.null(tabStatus[i])) {
+        paste0("nav-item bg-", tabStatus[i])
+      } else {
+        "nav-item"
+      },
       shiny::tags$a(
-        class = if (active) "nav-link active" else "nav-link",
+        class = if (active) {
+          "nav-link active"
+          } else {
+            "nav-link"
+          },
         href = paste0("#", id),
         `data-toggle` = "tab",
         tabName

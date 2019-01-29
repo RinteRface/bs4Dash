@@ -4,13 +4,19 @@
 \alias{bs4TabSetPanel}
 \title{Create a tabSetPanel}
 \usage{
-bs4TabSetPanel(..., side)
+bs4TabSetPanel(..., side, status = NULL, tabStatus = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}
+
+\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark". NULL by default.}
+
+\item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark".
+NULL by default, "light" if status is set.   
+A vector is possible with a colour for each tab button}
 }
 \description{
 Imported by bs4TabCard. Do not use outside!
