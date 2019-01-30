@@ -22,6 +22,7 @@ add an id argument.
 - fix #14: remove `bs4TabCard()` max-height attribute. Thanks @stephLH
 - add hex icon
 - add menuIcon arg and align arg to `bs4DropdownMenu()`, add id arg to `bs4DashControlbar()` PR by @bjornlind 
+- add background and header colours like cards to `bs4TabCard()`. PR by @statnmap
 
 ## Bug fix
 - Fix #19: Whenever a `bs4Card()` starts on a collapsed state, the content is displayed when

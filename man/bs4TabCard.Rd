@@ -4,13 +4,31 @@
 \alias{bs4TabCard}
 \title{Create a Boostrap 4 tabCard}
 \usage{
-bs4TabCard(..., title = NULL, width = 6, height = NULL,
-  elevation = NULL, side = c("left", "right"))
+bs4TabCard(..., title = NULL, status = NULL, elevation = NULL,
+  solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
+  tabStatus = NULL, width = 6, height = NULL, side = c("left",
+  "right"))
 }
 \arguments{
 \item{...}{Contents of the box: should be \link{bs4TabPanel}.}
 
 \item{title}{TabCard title.}
+
+\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark". NULL by default.}
+
+\item{elevation}{tabCard elevation.}
+
+\item{solidHeader}{Should the header be shown with a solid color background?}
+
+\item{headerBorder}{Whether to display a border between the header and body.
+TRUE by default}
+
+\item{gradientColor}{If NULL (the default), the background of the box will be
+white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
+
+\item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark".
+NULL by default, "light" if status is set.   
+A vector is possible with a colour for each tab button}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
@@ -20,8 +38,6 @@ contains the box.}
 
 \item{height}{The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.}
-
-\item{elevation}{tabCard elevation.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}
