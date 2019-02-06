@@ -30,7 +30,7 @@
 
 <br>
 
-See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
+See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/) and on RStudio connect [here](http://130.60.24.205:3939/bs4DashDemo/).
 
 ## Useful Informations (if any)
 

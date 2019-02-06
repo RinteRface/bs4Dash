@@ -14,7 +14,7 @@ bs4TabCard(..., title = NULL, status = NULL, elevation = NULL,
 
 \item{title}{TabCard title.}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark". NULL by default.}
+\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
 
 \item{elevation}{tabCard elevation.}
 
@@ -26,7 +26,7 @@ TRUE by default}
 \item{gradientColor}{If NULL (the default), the background of the box will be
 white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
 
-\item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark".
+\item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 NULL by default, "light" if status is set.   
 A vector is possible with a colour for each tab button}
 

@@ -18,7 +18,7 @@ bs4Card(..., title = NULL, footer = NULL, status = NULL,
 
 \item{footer}{Optional footer text.}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark". NULL by default.}
+\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
 
 \item{elevation}{Card elevation.}
 
@@ -47,7 +47,7 @@ the user to collapse the box.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
-\item{labelStatus}{status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark".}
+\item{labelStatus}{status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".}
 
 \item{labelText}{Label text.}
 
