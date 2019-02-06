@@ -27,15 +27,14 @@ $(function () {
   // handle shinyapps.io: w need to extract the worker id and
   // paste it in the url so that the apps works correctly
   // get the shiny app.io workerId
+  // handles shinyapps.io
   var workerId = $('base').attr('href');
-  // ensure that this code does not run on shiny server/pro and locally
+  // ensure that this code does not locally
   if (typeof workerId != "undefined") {
-    // get the initial page url
-    var url = window.location.href;
-    // get the name of the first selected tab
-    $tablink = $('#mymenu .nav-item:eq(0) a').attr('href');
-    // replace the url by the url for shinyapp.io
-    window.location.replace(url + workerId + $tablink);
+    var pathname = window.location.pathname;
+    var newpath = pathname + workerId;
+    console.log(newpath);
+    window.history.replaceState( {} , 'newpath', newpath);
   }
   
   if ($selectedTab.length === 0) {
