@@ -234,7 +234,7 @@ bs4SidebarMenuItem <- function(..., tabName = NULL, icon = NULL) {
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
-      shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
+      shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
       shiny::tags$p(
         ...
       )

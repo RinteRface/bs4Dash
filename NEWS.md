@@ -25,6 +25,7 @@ add an id argument.
 - add background and header colours like cards to `bs4TabCard()`. PR by @statnmap
 
 ## Bug fix
+- Fix icon rendering issue due to a change in shiny 1.2.0 dependencies (font awesome)
 - Fix #19: Whenever a `bs4Card()` starts on a collapsed state, the content is displayed when
  uncollapsed is pressed. Thanks @stanmap for the remark. (See [here](https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f) for a similar issue)
 - `bs4Card()`: the collapse icon changes to + and - depending on the current collapse status.
