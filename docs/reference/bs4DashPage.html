@@ -153,7 +153,8 @@
     <pre class="usage"><span class='fu'>bs4DashPage</span>(<span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>loading_background</span> <span class='kw'>=</span> <span class='st'>"#1E90FF"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,6 +196,19 @@ by default.</p></td>
       <th>controlbar_collapsed</th>
       <td><p>Whether the sidebar is collapsed of not at start. TRUE by default.</p></td>
     </tr>
+    <tr>
+      <th>enable_preloader</th>
+      <td><p>Whether to enable a page loader. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>loading_duration</th>
+      <td><p>Loader duration in seconds. 2s by default.</p></td>
+    </tr>
+    <tr>
+      <th>loading_background</th>
+      <td><p>Background color during page startup. Blue by default: 
+<a href='https://www.w3schools.com/cssref/css_colors.asp'>https://www.w3schools.com/cssref/css_colors.asp</a>.</p></td>
+    </tr>
     </table>
     
 
@@ -205,6 +219,7 @@ by default.</p></td>
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>bs4DashPage</span>(
+    <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),

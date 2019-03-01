@@ -1,5 +1,6 @@
 # bs4Dash 0.3.0
 ## Major changes
+- add preloader options to `bs4DashPage`
 - move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
 - add `userPost()`, `userPostMedia()`, `userPostTagItems()` and `userPostTagItem()`
