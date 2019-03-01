@@ -57,6 +57,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
   # create the body content
   bodyContent <- shiny::tags$div(
     class = "wrapper",
+    style = "visibility: hidden;",
     navbar,
     sidebar,
     # page content
@@ -122,10 +123,10 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
           duration <- loading_duration * 1000
           paste0(
             "$(document).ready(function() {
-              $('.wrapper').hide();
               setTimeout(function(){
                 $('.pre').remove();
-                $('.wrapper').show();
+                $('.wrapper').css('visibility', 'visible');
+                $('body').css('background', '#fff');
                 }, ", duration, ");
             });
             "
