@@ -57,7 +57,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
   # create the body content
   bodyContent <- shiny::tags$div(
     class = "wrapper",
-    style = "visibility: hidden;",
+    style = if (enable_preloader) "visibility: hidden;" else NULL,
     navbar,
     sidebar,
     # page content
