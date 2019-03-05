@@ -1,6 +1,10 @@
 # bs4Dash 0.3.0
+
+## Breaking change
+- rework  `bs4TabSetPanel()` and `bs4TabCard()`. `bs4TabSetPanel()` can now be used independently of `bs4TabCard()`
+
 ## Major changes
-- add preloader options to `bs4DashPage`
+- add preloader options to `bs4DashPage()`
 - move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
 - add `userPost()`, `userPostMedia()`, `userPostTagItems()` and `userPostTagItem()`
@@ -12,9 +16,9 @@
 
 ## Minor changes
 - add glyphicons (BS3 old dependency) thanks to @ntncmch.
-- add overflow argument to `bs4Card` to enable or disable overflow
-- hide `bs4Card` footer when footer is NULL
-- patch for `bs4Accordion`: click on 1 item collapse all other items in the same accordion
+- add overflow argument to `bs4Card()` to enable or disable overflow
+- hide `bs4Card()` footer when footer is NULL
+- patch for `bs4Accordion()`: click on 1 item collapse all other items in the same accordion
 add an id argument.
 - add licence
 - add controlbar_collapsed argument to `bs4DashPage()`

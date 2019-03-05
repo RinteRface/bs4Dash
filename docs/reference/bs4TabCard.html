@@ -150,7 +150,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabCard</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>bs4TabCard</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>,
   <span class='st'>"right"</span>))</pre>
@@ -161,6 +161,10 @@
     <tr>
       <th>...</th>
       <td><p>Contents of the box: should be <a href='bs4TabPanel.html'>bs4TabPanel</a>.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>Unique <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -234,6 +238,7 @@ the height scales automatically with the content.</p></td>
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
      <span class='fu'>bs4TabCard</span>(
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabcard"</span>,
       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A card with tabs"</span>,
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,

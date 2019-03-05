@@ -4,13 +4,15 @@
 \alias{bs4TabCard}
 \title{Create a Boostrap 4 tabCard}
 \usage{
-bs4TabCard(..., title = NULL, status = NULL, elevation = NULL,
+bs4TabCard(..., id, title = NULL, status = NULL, elevation = NULL,
   solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
   tabStatus = NULL, width = 6, height = NULL, side = c("left",
   "right"))
 }
 \arguments{
 \item{...}{Contents of the box: should be \link{bs4TabPanel}.}
+
+\item{id}{Unique \link{bs4TabSetPanel} id.}
 
 \item{title}{TabCard title.}
 
@@ -59,6 +61,7 @@ if(interactive()){
     title = "test",
     body = bs4DashBody(
      bs4TabCard(
+      id = "tabcard",
       title = "A card with tabs",
       bs4TabPanel(
        tabName = "Tab 1", 

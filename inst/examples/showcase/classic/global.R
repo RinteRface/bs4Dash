@@ -199,6 +199,7 @@ tab_cards_tab <- bs4TabItem(
       bs4TabCard(
         title = "A card with tabs",
         elevation = 2,
+        id = "tabcard1",
         width = 12,
         bs4TabPanel(
           tabName = "Tab 1",
@@ -247,6 +248,7 @@ tab_cards_tab <- bs4TabItem(
       bs4TabCard(
         title = "A card with tabs",
         side = "right",
+        id = "tabcard2",
         elevation = 2,
         width = 12,
         status = "warning",

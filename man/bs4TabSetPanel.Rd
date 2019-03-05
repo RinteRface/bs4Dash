@@ -4,10 +4,13 @@
 \alias{bs4TabSetPanel}
 \title{Create a tabSetPanel}
 \usage{
-bs4TabSetPanel(..., side, status = NULL, tabStatus = NULL)
+bs4TabSetPanel(..., id, side, status = NULL, tabStatus = NULL,
+  .list = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}
+
+\item{id}{Unique \link{bs4TabSetPanel} id.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}
@@ -17,9 +20,65 @@ bs4TabSetPanel(..., side, status = NULL, tabStatus = NULL)
 \item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 NULL by default, "light" if status is set.   
 A vector is possible with a colour for each tab button}
+
+\item{.list}{When elements are programmatically added, pass them here instead of in ...}
 }
 \description{
-Imported by bs4TabCard. Do not use outside!
+Imported by \link{bs4TabCard} but can be used alone.
+}
+\examples{
+if(interactive()){
+ library(shiny)
+ library(bs4Dash)
+
+ shiny::shinyApp(
+   ui = bs4DashPage(
+    navbar = bs4DashNavbar(),
+    sidebar = bs4DashSidebar(),
+    controlbar = bs4DashControlbar(),
+    footer = bs4DashFooter(),
+    title = "test",
+    body = bs4DashBody(
+     
+     # manually inserted panels
+     bs4TabSetPanel(
+      id = "tabcard",
+      side = "left",
+      bs4TabPanel(
+       tabName = "Tab 1", 
+       active = FALSE,
+       "Content 1"
+      ),
+      bs4TabPanel(
+       tabName = "Tab 2", 
+       active = TRUE,
+       "Content 2"
+      ),
+      bs4TabPanel(
+       tabName = "Tab 3", 
+       active = FALSE,
+       "Content 3"
+      )
+     ),
+     
+     # programmatically inserted panels
+     bs4TabSetPanel(
+       id = "tabset",
+       side = "left",
+       .list = lapply(1:3, function(i) {
+         bs4TabPanel(
+           tabName = paste0("Tab", i), 
+           active = FALSE,
+           paste("Content", i)
+         )
+       })
+      )
+    )
+   ),
+   server = function(input, output) {}
+ )
+}
+
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
