@@ -4,6 +4,8 @@
 - rework  `bs4TabSetPanel()` and `bs4TabCard()`. `bs4TabSetPanel()` can now be used independently of `bs4TabCard()`
 
 ## Major changes
+- update adminLTE3 to the latest release
+- update to bootstrap 4.3.1
 - add preloader options to `bs4DashPage()`
 - move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
@@ -15,7 +17,8 @@
 - add `bs4SocialCard()` and `cardComment()`
 
 ## Minor changes
-- add glyphicons (BS3 old dependency) thanks to @ntncmch.
+- add collapse_status argument to `userPost()`
+- add glyphicons (BS3 old dependency) thanks to @ntncmch
 - add overflow argument to `bs4Card()` to enable or disable overflow
 - hide `bs4Card()` footer when footer is NULL
 - patch for `bs4Accordion()`: click on 1 item collapse all other items in the same accordion

@@ -18,11 +18,6 @@
 </div>
 <div class="col-sm-4" align="center">
 <div class="card">
-<a href="https://rinterface.com/shiny/showcase/lotkaVolterra/" target="_blank"><img src="man/figures/bs4Dash_Lotka.png"></a>
-</div>
-</div>
-<div class="col-sm-4" align="center">
-<div class="card">
 <a href="https://rinterface.com/shiny/showcase/ratp/" target="_blank"><img src="man/figures/bs4Dash_ratp.png"></a>
 </div>
 </div>

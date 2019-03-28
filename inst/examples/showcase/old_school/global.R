@@ -694,10 +694,12 @@ gallery_2_tab <- bs4TabItem(
   
   br(),
   
-  h4("Rounded Badges"),
   fluidRow(
-    bs4Badge(status = "secondary", "blabla", rounded = TRUE),
-    bs4Badge(status = "dark", "blabla", rounded = TRUE)
+    bs4Card(
+      title = "Badges",
+      bs4Badge(status = "secondary", "blabla", rounded = TRUE),
+      bs4Badge(status = "info", "blabla", rounded = TRUE)
+    )
   ),
   
   br(),
