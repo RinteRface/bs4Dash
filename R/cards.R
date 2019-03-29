@@ -598,6 +598,7 @@ bs4TabCard <- function(..., title = NULL, status = NULL, elevation = NULL,
                        solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
                        tabStatus = NULL,
                        width = 6, height = NULL,  
+                       collapsible = TRUE, collapsed = FALSE, closable = TRUE,
                        side = c("left", "right")) {
   
   found_active <- FALSE
@@ -616,9 +617,44 @@ bs4TabCard <- function(..., title = NULL, status = NULL, elevation = NULL,
       }
     }
   }
+  if (isTRUE(collapsible) & isTRUE(collapsed)) tabCardCl <- paste0(tabCardCl, " collapsed-card")
   if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
   
+  # tools collapse/closable
+  if (isTRUE(closable) | isTRUE(collapsible)) {
+  cardToolTag <- shiny::tags$div(
+    class = "tools pt-3 pb-3 pr-2 mr-2",
+
+    # collapse
+    if (isTRUE(collapsible)) {
+      collapseIcon <- if (collapsed) 
+        "plus"
+      else "minus"
+      shiny::tags$button(
+        type = "button",
+        class = "btn btn-tool pb-0 pt-0",
+        `data-widget` = "collapse",
+        shiny::icon(collapseIcon)
+      )
+    },
+    
+    # close
+    if (isTRUE(closable)) {
+      shiny::tags$button(
+        type = "button",
+        class = "btn btn-tool pb-0 pt-0",
+        `data-widget` = "remove",
+        shiny::tags$i(class = "fa fa-times")
+      )
+    }
+  )
+  } else {
+    cardToolTag <- shiny::tags$div()
+  }
+  
   # header
+  if (is.null(title) & (isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header d-flex p-0" else "card-header d-flex p-0 no-border",
     if (side == "right") {
@@ -631,11 +667,13 @@ bs4TabCard <- function(..., title = NULL, status = NULL, elevation = NULL,
       shiny::tagList(
         # tab menu
         bs4TabSetPanel(..., side = side, tabStatus = tabStatus),
-        if (!is.null(title)) shiny::tags$h3(class = "card-title p-3 ml-auto", title) else NULL
+          if (!is.null(title)) shiny::tags$h3(class = "card-title p-3 ml-auto", title) else NULL
       )
     }
     
   )
+  headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
+  
   
   # body
   panels <- list(...)

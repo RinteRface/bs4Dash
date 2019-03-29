@@ -1,5 +1,6 @@
 # bs4Dash 0.3.0
 ## Major changes
+- add collapsible and closable to `bs4TabCard()`. Buttons visible by default. PR by @statnmap
 - add preloader options to `bs4DashPage`
 - move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
