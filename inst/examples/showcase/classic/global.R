@@ -200,6 +200,7 @@ tab_cards_tab <- bs4TabItem(
         title = "A card with tabs",
         elevation = 2,
         width = 12,
+        collapsible = FALSE, closable = TRUE,
         bs4TabPanel(
           tabName = "Tab 1",
           active = FALSE,
@@ -245,12 +246,12 @@ tab_cards_tab <- bs4TabItem(
     column(
       width = 6,
       bs4TabCard(
-        title = "A card with tabs",
+        title = "A card with tabs on right",
         side = "right",
         elevation = 2,
         width = 12,
         status = "warning",
-        tabStatus = c("dark", "danger", "transparent"),
+        tabStatus = c("dark", "danger", "primary"),
         bs4TabPanel(
           tabName = "Tab 4",
           active = FALSE,

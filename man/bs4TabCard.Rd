@@ -6,8 +6,8 @@
 \usage{
 bs4TabCard(..., title = NULL, status = NULL, elevation = NULL,
   solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
-  tabStatus = NULL, width = 6, height = NULL, side = c("left",
-  "right"))
+  tabStatus = NULL, width = 6, height = NULL, collapsible = TRUE,
+  collapsed = FALSE, closable = TRUE, side = c("left", "right"))
 }
 \arguments{
 \item{...}{Contents of the box: should be \link{bs4TabPanel}.}
@@ -38,6 +38,14 @@ contains the box.}
 
 \item{height}{The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.}
+
+\item{collapsible}{If TRUE, display a button in the upper right that allows
+the user to collapse the box.}
+
+\item{collapsed}{If TRUE, start collapsed. This must be used with
+\code{collapsible=TRUE}.}
+
+\item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}
