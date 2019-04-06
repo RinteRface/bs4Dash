@@ -1,11 +1,14 @@
 # bs4Dash 0.3.0
 
 ## Breaking change
-- rework  `bs4TabSetPanel()` and `bs4TabCard()`. `bs4TabSetPanel()` can now be used independently of `bs4TabCard()`
+- rework `bs4TabSetPanel()` and `bs4TabCard()`. `bs4TabSetPanel()` can now be used independently of `bs4TabCard()`. 
+Need to provide id argument to `bs4TabCard()`.
 
 ## Major changes
 - update adminLTE3 to the latest release
 - update to bootstrap 4.3.1
+- add preloader options to `bs4DashPage()`
+- add collapsible and closable to `bs4TabCard()`. Buttons visible by default. PR by @statnmap
 - add preloader options to `bs4DashPage()`
 - move to RinteRface
 - add `bs4Sortable()` and all necessary javascript dependencies
