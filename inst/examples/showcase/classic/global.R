@@ -113,6 +113,7 @@ social_cards_tab <- bs4TabItem(
       status = "primary",
       userPost(
         id = 1,
+        collapse_status = "secondary",
         src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
         author = "Jonathan Burke Jr.",
         description = "Shared publicly - 7:30 PM today",
@@ -128,6 +129,7 @@ social_cards_tab <- bs4TabItem(
       ),
       userPost(
         id = 2,
+        collapse_status = "secondary",
         src = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
         author = "Adam Jones",
         description = "Shared publicly - 5 days ago",
@@ -199,6 +201,7 @@ tab_cards_tab <- bs4TabItem(
       bs4TabCard(
         title = "A card with tabs",
         elevation = 2,
+        id = "tabcard1",
         width = 12,
         collapsible = FALSE, closable = TRUE,
         bs4TabPanel(
@@ -248,6 +251,7 @@ tab_cards_tab <- bs4TabItem(
       bs4TabCard(
         title = "A card with tabs on right",
         side = "right",
+        id = "tabcard2",
         elevation = 2,
         width = 12,
         status = "warning",
@@ -695,10 +699,12 @@ gallery_2_tab <- bs4TabItem(
   
   br(),
   
-  h4("Rounded Badges"),
   fluidRow(
-    bs4Badge(status = "secondary", "blabla", rounded = TRUE),
-    bs4Badge(status = "dark", "blabla", rounded = TRUE)
+    bs4Card(
+      title = "Badges",
+      bs4Badge(status = "secondary", "blabla", rounded = TRUE),
+      bs4Badge(status = "info", "blabla", rounded = TRUE)
+    )
   ),
   
   br(),

@@ -199,6 +199,7 @@ tab_cards_tab <- bs4TabItem(
       bs4TabCard(
         title = "A card with tabs",
         elevation = 2,
+        id = "tabcard1",
         width = 12,
         bs4TabPanel(
           tabName = "Tab 1",
@@ -248,6 +249,7 @@ tab_cards_tab <- bs4TabItem(
         title = "A card with tabs",
         side = "right",
         elevation = 2,
+        id = "tabcard2",
         width = 12,
         bs4TabPanel(
           tabName = "Tab 4",
@@ -692,10 +694,12 @@ gallery_2_tab <- bs4TabItem(
   
   br(),
   
-  h4("Rounded Badges"),
   fluidRow(
-    bs4Badge(status = "secondary", "blabla", rounded = TRUE),
-    bs4Badge(status = "dark", "blabla", rounded = TRUE)
+    bs4Card(
+      title = "Badges",
+      bs4Badge(status = "secondary", "blabla", rounded = TRUE),
+      bs4Badge(status = "info", "blabla", rounded = TRUE)
+    )
   ),
   
   br(),

@@ -5,7 +5,8 @@
 \title{AdminLTE3 user post}
 \usage{
 userPost(..., id = NULL, src = NULL, author = NULL,
-  description = NULL, collapsible = TRUE, collapsed = FALSE)
+  description = NULL, collapsible = TRUE, collapsed = FALSE,
+  collapse_status = NULL)
 }
 \arguments{
 \item{...}{Post content, slot for \link{userPostTagItems}, \link{userPostMedia}.}
@@ -21,6 +22,9 @@ userPost(..., id = NULL, src = NULL, author = NULL,
 \item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the comment.}
 
 \item{collapsed}{Whether the comment is collapsed when the application starts, FALSE by default.}
+
+\item{collapse_status}{Color of the collapse button. NULL by default but also "primary", "info",
+"danger", "warning", "success", "secondary" ...}
 }
 \description{
 Create a user post

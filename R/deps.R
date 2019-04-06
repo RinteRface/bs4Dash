@@ -13,10 +13,10 @@ appendDependencies <- function(x, value) {
 addDeps <- function(x, theme) {
   
   # put all necessary ressources here
-  adminLTE3_js <- "adminlte.js"
+  adminLTE3_js <- "adminlte.min.js"
+  adminLTE3_css <- "adminlte.min.css"
   bs4Dash_js <- "bs4Dash.js"
   bs4Dash_css <- "bs4Dash.css"
-  adminLTE3_css <- "adminlte.min.css"
   jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
   old_school_css <- "https://bootswatch.com/4/sketchy/"
@@ -35,8 +35,8 @@ addDeps <- function(x, theme) {
     # bootstrap deps
     htmltools::htmlDependency(
       name = "bootstrap", 
-      version = "4.1.0",
-      src = c(file = system.file("bootstrap-4.1.0", package = "bs4Dash")),
+      version = "4.3.1",
+      src = c(file = system.file("bootstrap-4.3.1", package = "bs4Dash")),
       script = bootstrap_js
     ),
     # adminLTE3 deps

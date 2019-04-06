@@ -1606,6 +1606,8 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' @param description Post description.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
+#' @param collapse_status Color of the collapse button. NULL by default but also "primary", "info",
+#' "danger", "warning", "success", "secondary" ...
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1659,11 +1661,13 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' @export
 userPost <- function(..., id = NULL, src = NULL, author = NULL, 
                      description = NULL, collapsible = TRUE, 
-                     collapsed = FALSE) {
+                     collapsed = FALSE, collapse_status = NULL) {
   
   cl <- "collapse"
-  if (!isTRUE(collapsed)) cl <- paste0(cl, " in")
-  if (collapsed) collapsed <- "false" else collapsed <- "true"
+  id <- paste0("post-", id)
+  
+  btnCl <- "btn float-right"
+  if(!is.null(collapse_status)) btnCl <- paste0(btnCl, " btn-", collapse_status)
   
   shiny::tags$div(
     class = "post",
@@ -1678,11 +1682,12 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
         # box tool
         if (collapsible) {
           shiny::tags$button(
-            class = "float-right btn-box-tool",
+            class = btnCl,
+            type = "button",
             `data-toggle` = "collapse",
             `data-target` = paste0("#", id),
-            `aria-expanded` = collapsed,
-            type = "button",
+            `aria-expanded` = tolower(!collapsed),
+            `aria-controls` = id,
             shiny::tags$i(class = "fa fa-eye")
           )
         }
@@ -1690,11 +1695,10 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
       ),
       shiny::tags$span(class = "description", description)
     ),
-    shiny::tags$p(
+    shiny::tags$div(
       class = cl,
       id = id,
-      `aria-expanded` = collapsed,
-      ...
+      shiny::tags$p(...) 
     )
   )
   
