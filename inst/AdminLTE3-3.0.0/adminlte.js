@@ -715,6 +715,7 @@ var Widget = function ($) {
 
       this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
         _this._parent.addClass(ClassName.COLLAPSED);
+        _this._parent.trigger("hidden.bs.collapse");
       });
 
       this._element.children(Selector.COLLAPSE_ICON).addClass(ClassName.EXPAND_ICON).removeClass(ClassName.COLLAPSE_ICON);
@@ -728,6 +729,7 @@ var Widget = function ($) {
       var _this2 = this;
 
       this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+        _this2._parent.trigger("shown.bs.collapse");
         _this2._parent.removeClass(ClassName.COLLAPSED);
       });
 
