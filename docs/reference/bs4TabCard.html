@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -109,6 +109,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">bs4Dash 0.4.0.9000</li>
     <li class="dropdown-header">bs4Dash 0.3.0</li>
     <li class="dropdown-header">bs4Dash 0.2.0</li>
     <li class="dropdown-header">bs4Dash 0.1.0</li>
@@ -152,8 +153,8 @@
 
     <pre class="usage"><span class='fu'>bs4TabCard</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>,
-  <span class='st'>"right"</span>))</pre>
+  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -210,6 +211,20 @@ contains the box.</p></td>
       <th>height</th>
       <td><p>The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.</p></td>
+    </tr>
+    <tr>
+      <th>collapsible</th>
+      <td><p>If TRUE, display a button in the upper right that allows
+the user to collapse the box.</p></td>
+    </tr>
+    <tr>
+      <th>collapsed</th>
+      <td><p>If TRUE, start collapsed. This must be used with
+<code>collapsible=TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>closable</th>
+      <td><p>If TRUE, display a button in the upper right that allows the user to close the box.</p></td>
     </tr>
     <tr>
       <th>side</th>

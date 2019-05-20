@@ -5,7 +5,7 @@
  *   License: Open source - MIT <http://opensource.org/licenses/MIT>
  */
 /*!
- * Bootstrap v4.1.2 (https://getbootstrap.com/)
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -10181,6 +10181,9 @@ body,
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-header {
     display: none;
   }
+  .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p {
+     width: 0;
+   }
   .sidebar-mini.sidebar-collapse .sidebar .user-panel > .info,
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .brand-text {
@@ -11661,6 +11664,11 @@ label:not(.form-check-label):not(.custom-file-label) {
  * Component: Table
  * ----------------
  */
+ 
+ .table {
+   color: inherit;
+ }
+ 
 .table.no-border,
 .table.no-border td,
 .table.no-border th {
@@ -13070,6 +13078,10 @@ a.text-muted:hover {
 .flex-1 {
   flex: 1;
 }
+
+.tooltip {
+   z-index: 1170;
+ }
 
 /*
  * Misc: print

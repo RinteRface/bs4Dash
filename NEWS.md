@@ -1,3 +1,12 @@
+# bs4Dash 0.4.0.9000
+
+## Bug Fix
+- fix #24: No right border on collapsed sidebar menu items. Thanks @aldomann
+- Tooltips z-index is lower than sidebar's z-index, this cause tooltips are not showing up 
+(see https://github.com/ColorlibHQ/AdminLTE/pull/2105)
+- after Bootstrap 4.3.1 update the table color in the green calendar widget changed to black, caused by bootstrap (see https://github.com/ColorlibHQ/AdminLTE/pull/2105)
+
+
 # bs4Dash 0.3.0
 
 ## Breaking change

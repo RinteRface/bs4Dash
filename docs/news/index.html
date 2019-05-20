@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -106,6 +106,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">bs4Dash 0.4.0.9000</li>
     <li class="dropdown-header">bs4Dash 0.3.0</li>
     <li class="dropdown-header">bs4Dash 0.2.0</li>
     <li class="dropdown-header">bs4Dash 0.1.0</li>
@@ -140,16 +141,29 @@
       <small>Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="bs4dash-0-4-0-9000" class="section level1">
+<h1 class="page-header">
+<a href="#bs4dash-0-4-0-9000" class="anchor"></a>bs4Dash 0.4.0.9000<small> Unreleased </small>
+</h1>
+<div id="bug-fix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
+<ul>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/24'>#24</a>: No right border on collapsed sidebar menu items. Thanks <a href='https://github.com/aldomann'>@aldomann</a></li>
+<li>Tooltips z-index is lower than sidebar’s z-index, this cause tooltips are not showing up (see <a href="https://github.com/ColorlibHQ/AdminLTE/pull/2105" class="uri">https://github.com/ColorlibHQ/AdminLTE/pull/2105</a>)</li>
+<li>after Bootstrap 4.3.1 update the table color in the green calendar widget changed to black, caused by bootstrap (see <a href="https://github.com/ColorlibHQ/AdminLTE/pull/2105" class="uri">https://github.com/ColorlibHQ/AdminLTE/pull/2105</a>)</li>
+</ul>
+</div>
+</div>
     <div id="bs4dash-0-3-0" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-3-0" class="anchor"></a>bs4Dash 0.3.0<small> Unreleased </small>
+<a href="#bs4dash-0-3-0" class="anchor"></a>bs4Dash 0.3.0<small> 2019-04-06 </small>
 </h1>
 <div id="breaking-change" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-change" class="anchor"></a>Breaking change</h2>
 <ul>
-<li>rework <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>
-</li>
+<li>rework <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</li>
 </ul>
 </div>
 <div id="major-changes" class="section level2">
@@ -158,6 +172,9 @@
 <ul>
 <li>update adminLTE3 to the latest release</li>
 <li>update to bootstrap 4.3.1</li>
+<li>add preloader options to <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code>
+</li>
+<li>add collapsible and closable to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Buttons visible by default. PR by <a href='https://github.com/statnmap'>@statnmap</a></li>
 <li>add preloader options to <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code>
 </li>
 <li>move to RinteRface</li>
@@ -197,9 +214,9 @@
 <li>add background and header colours like cards to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. PR by <a href='https://github.com/statnmap'>@statnmap</a></li>
 </ul>
 </div>
-<div id="bug-fix" class="section level2">
+<div id="bug-fix-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix" class="anchor"></a>Bug fix</h2>
+<a href="#bug-fix-1" class="anchor"></a>Bug fix</h2>
 <ul>
 <li>Fix icon rendering issue due to a change in shiny 1.2.0 dependencies (font awesome)</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/19'>#19</a>: Whenever a <code><a href="../reference/bs4Card.html">bs4Card()</a></code> starts on a collapsed state, the content is displayed when uncollapsed is pressed. Thanks <a href='https://github.com/stanmap'>@stanmap</a> for the remark. (See <a href="https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f">here</a> for a similar issue)</li>
@@ -259,6 +276,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bs4dash-0-4-0-9000">0.4.0.9000</a></li>
         <li><a href="#bs4dash-0-3-0">0.3.0</a></li>
         <li><a href="#bs4dash-0-2-0">0.2.0</a></li>
         <li><a href="#bs4dash-0-1-0">0.1.0</a></li>
