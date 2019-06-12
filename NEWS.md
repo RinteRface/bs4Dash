@@ -1,5 +1,16 @@
 # bs4Dash 0.4.0.9000
 
+## Major changes
+- add `bs4SidebarMenuSubItem()`
+
+## Breaking changes
+- add text arg to `bs4SidebarMenuItem()`
+- Now the ... arg is for `bs4SidebarMenuSubItem()`
+
+## Minor Changes
+- add startExpanded arg to `bs4SidebarMenuItem()`
+- add `bs4TabSetPanel()` to the gallery
+
 ## Bug Fix
 - fix #24: No right border on collapsed sidebar menu items. Thanks @aldomann
 - Tooltips z-index is lower than sidebar's z-index, this cause tooltips are not showing up 

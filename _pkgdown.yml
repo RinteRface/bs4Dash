@@ -20,6 +20,7 @@ reference:
   contents:
   - '`bs4SidebarMenu`'
   - '`bs4SidebarMenuItem`'
+  - '`bs4SidebarMenuSubItem`'
   - '`bs4SidebarHeader`'
   - '`bs4SidebarUserPanel`'
     
