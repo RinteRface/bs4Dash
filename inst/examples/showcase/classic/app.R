@@ -70,32 +70,37 @@ shiny::shinyApp(
         ),
         bs4SidebarHeader("BS4 gallery"),
         bs4SidebarMenuItem(
-          HTML(
-            paste(
-              "Gallery 1", 
-              bs4Badge(
-                "new", 
-                position = "right", 
-                status = "danger"
+          text = "Galleries",
+          icon = "cubes",
+          startExpanded = FALSE,
+          bs4SidebarMenuSubItem(
+            text = HTML(
+              paste(
+                "Gallery 1", 
+                bs4Badge(
+                  "new", 
+                  position = "right", 
+                  status = "danger"
+                )
               )
-            )
+            ),
+            tabName = "gallery1",
+            icon = "circle-thin"
           ),
-          tabName = "gallery1",
-          icon = "paint-brush"
-        ),
-        bs4SidebarMenuItem(
-          HTML(
-            paste(
-              "Gallery 2", 
-              bs4Badge(
-                "!", 
-                position = "right", 
-                status = "success"
+          bs4SidebarMenuSubItem(
+            text = HTML(
+              paste(
+                "Gallery 2", 
+                bs4Badge(
+                  "!", 
+                  position = "right", 
+                  status = "success"
+                )
               )
-            )
-          ),
-          tabName = "gallery2",
-          icon = "map"
+            ),
+            tabName = "gallery2",
+            icon = "circle-thin"
+          )
         )
       )
     ),

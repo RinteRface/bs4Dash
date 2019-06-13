@@ -1,13 +1,15 @@
 $(function () {
   
-  // select the first treeview by default
-  var firstTriview = $(".has-treeview > a")[0];
-  if (firstTriview != "undefined") {
-   $(firstTriview).addClass("active"); 
+  // select the first sidebar item by default
+  var firsSidebarItem = $("#mymenu").children[0];
+  if (firsSidebarItem != "undefined") {
+   $(firsSidebarItem).addClass("active"); 
   }
   
   // when click on treeview, collapse all other treeviews
   $(".has-treeview").on('click', function() {
+    
+    // take care of all other treeviews 
     var navItems = $(this).siblings();
     var res;
     var ul;
@@ -16,7 +18,7 @@ $(function () {
       // but we are only interested in the other
       // treeviews. If found, we remove the menu-open class
       // from the li wrapper and set display none to the ul children.
-      // ul is the second children of the li wrapper.
+      // ul is the second children of the li wrapper, hence index 1.
       if ($(navItems[i]).hasClass("has-treeview")) {
         res = navItems[i];
         ul = res.children[1];
@@ -24,20 +26,21 @@ $(function () {
         $(ul).css("display", "none");
       }
     }
-    
-    //$(".has-treeview").removeClass("menu-open");
-    //$(".has-treeview > ul").css("display", "none");
-    //$(this).addClass("menu-open");
-    //$(this).siblings()[0].children[0].css("display", "block");
   });
   
   // Select treeview link on click
+  // the treeview li element cannot be active itself thus
+  // we take the related link a.
   $(".has-treeview > a").on("click", function() {
+    var treeview = $(".has-treeview > a");
     var activeTreeviews = $(".has-treeview > a.active");
     // set all other nav-links to inactive
     $("#mymenu .nav-link").removeClass("active");
     // set all other treeviews to inactive
-    $(activeTreeviews).removeClass("active");
+    // if there are more than 1 treeview
+    if (treeview.length > 1) {
+      $(activeTreeviews).removeClass("active");
+    }
     $(this).addClass("active");
     
     // when click on a treeview, select its first element
@@ -51,6 +54,20 @@ $(function () {
   // when click on a navitem, deselect all other navitems
   $("#mymenu a[data-toggle='tab']").on("click", function() {
     $("#mymenu .nav-link").removeClass("active");
+    
+    
+    // collapse all treeviews elements when click on a link
+    // that is not a treeview
+    var treeviews =  $(".has-treeview");
+    if (!$(this).parents().hasClass("has-treeview")) {
+      $(treeviews).removeClass("menu-open");
+      for (i = 0; i < treeviews.length; i++) {
+        $(treeviews[i].children[1]).css("display", "none");
+      }
+    }
+    
+    // if click on an item part of a treeview, select the treeview parent
+    // by default
     var treeViewLi = $(this).parents()[2];
     var treeViewLiLink = treeViewLi.children[0];
     $(treeViewLiLink).addClass("active");

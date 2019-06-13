@@ -209,7 +209,6 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
 #'            text = "Item List",
 #'            icon = "bars",
 #'            startExpanded = TRUE,
-#'            #active = FALSE,
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 1",
 #'              tabName = "item1",
