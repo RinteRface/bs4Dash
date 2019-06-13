@@ -733,6 +733,48 @@ gallery_1_tab <- bs4TabItem(
         "This is the content"
       )
     )
+  ),
+  h4("bs4Table"),
+  fluidRow(
+    bs4Table(
+      cardWrap = TRUE,
+      bordered = TRUE,
+      striped = TRUE,
+      headTitles = c(
+        "PROJECT",
+        "BUDGET",
+        "STATUS",
+        "USERS",
+        "COMPLETION",
+        ""
+      ),
+      bs4TableItems(
+        bs4TableItem("bs4 Design System"),
+        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
+        bs4TableItem(
+          dataCell = TRUE, 
+          bs4Badge(
+            "Pending",
+            position = "right",
+            status = "danger",
+            rounded = TRUE
+          )
+        ),
+        bs4TableItem(
+          progressBar(id = "pb1", value = 50, size = "xxs")
+        ),
+        bs4TableItem(
+          dataCell = TRUE, 
+          "test"
+        ),
+        bs4TableItem(
+          actionButton(
+            "go",
+            "Go"
+          )
+        )
+      )
+    )
   )
 )
 

@@ -2,6 +2,7 @@
 
 ## Major changes
 - add `bs4SidebarMenuSubItem()`
+- add `bs4Table()`, `bs4TableItems()` and `bs4TableItem()`
 
 ## Breaking changes
 - add text arg to `bs4SidebarMenuItem()`

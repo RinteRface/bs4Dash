@@ -36,7 +36,7 @@
 #'
 #' @export
 bs4Badge <- function(..., position = c("left", "right"), status,
-                         rounded = FALSE) {
+                     rounded = FALSE) {
   
   position <- match.arg(position)
   
@@ -488,7 +488,7 @@ bs4ProgressBar <- function(value, min = 0, max = 100, vertical = FALSE, striped 
 #'
 #' @export
 bs4Alert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
-                         status = c("primary", "warning", "danger", "info", "success")) {
+                     status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
   
@@ -579,7 +579,7 @@ bs4Alert <- function(..., title, closable = TRUE, width = 6, elevation = NULL,
 #'
 #' @export
 bs4Callout <- function(..., title, width = 6, elevation = NULL,
-                           status = c("primary", "warning", "danger", "info", "success")) {
+                       status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
   
@@ -775,7 +775,7 @@ bs4TimelineItem <- function(..., elevation = NULL, icon = NULL,
   cl <- "fa fa-"
   if (!is.null(icon)) cl <- paste0(cl, icon)
   if (!is.null(status)) cl <- paste0(cl, " bg-", status)
-
+  
   itemCl <- "timeline-header no-border"
   if (isTRUE(border)) itemCl <- "timeline-header"
   
@@ -1009,7 +1009,7 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
 #'
 #' @export
 bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btn_name = "More",
-                          status = c("primary", "warning", "danger", "info", "success")) {
+                         status = c("primary", "warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
   
@@ -1826,4 +1826,158 @@ bs4Sortable <- function(..., width = NULL) {
     class = sectionCl,
     ...
   ) 
+}
+
+
+
+
+
+
+#' Create a Boostrap 4 table container
+#'
+#' Build an argon table container
+#'
+#' @param ... \link{bs4TableItems}.
+#' @param cardWrap Whether to wrap the table in a card. FALSE by default.
+#' @param headTitles Table header names. Must have the same length as the number of 
+#' \link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.
+#' @param bordered Whether to display border between elements. FALSE by default.
+#' @param striped Whether to displayed striped in elements. FALSE by default.
+#' @param width Table width. 12 by default.
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(), 
+#'     sidebar = bs4DashSidebar(),
+#'     body = bs4DashBody(
+#'      bs4Table(
+#'       cardWrap = TRUE,
+#'       bordered = TRUE,
+#'       striped = TRUE,
+#'       headTitles = c(
+#'        "PROJECT",
+#'        "BUDGET",
+#'        "STATUS",
+#'        "USERS",
+#'        "COMPLETION",
+#'        ""
+#'       ),
+#'       bs4TableItems(
+#'        bs4TableItem("bs4 Design System"),
+#'        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
+#'        bs4TableItem(
+#'         dataCell = TRUE, 
+#'         bs4Badge(
+#'          "Pending",
+#'          position = "right",
+#'          status = "danger",
+#'          rounded = TRUE
+#'         )
+#'        ),
+#'        bs4TableItem(
+#'         progressBar(id = "pb1", value = 50, size = "xxs")
+#'        ),
+#'        bs4TableItem(
+#'         dataCell = TRUE, 
+#'         "test"
+#'        ),
+#'        bs4TableItem(
+#'         actionButton(
+#'          "go",
+#'          "Go"
+#'         )
+#'        )
+#'       )
+#'      )
+#'     ), 
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#' 
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE, 
+                     striped = FALSE, width = 12) {
+  
+  # handle theme
+  tableCl <- "table"
+  if (bordered) tableCl <- paste0(tableCl, " table-bordered")
+  if (striped) tableCl <- paste0(tableCl, " table-striped")
+  
+  # column headers
+  tableHead <- shiny::tags$thead(
+    shiny::tags$tr(
+      lapply(seq_along(headTitles), function(i) shiny::tags$th(headTitles[[i]])) 
+    )
+  )
+  
+  # body rows
+  tableBody <- shiny::tags$tbody(...)
+  
+  # table tag
+  tableTag <- shiny::tags$table(
+    class = tableCl,
+    tableHead,
+    tableBody
+  )
+  
+  # card wrapper or not
+  if (cardWrap) {
+    shiny::column(
+      width = width,
+      shiny::tags$div(
+        class = "card",
+        shiny::tags$div(
+          class = "card-body",
+          tableTag
+        )
+      )
+    )
+  } else {
+    tableTag
+  }
+}
+
+
+
+
+#' Create a Boostrap 4 table item row
+#'
+#' Build an bs4 table item row
+#'
+#' @param ... Slot for \link{bs4TableItem}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4TableItems <- function(...) {
+  shiny::tags$tr(...)
+}
+
+
+
+#' Create a Boostrap 4 table item
+#'
+#' Build an bs4 table item
+#'
+#' @param ... Any HTML element.
+#' @param dataCell Whether the cell should be contain data or text. <td> by default.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4TableItem <- function(..., dataCell = FALSE) {
+  if (dataCell) {
+    shiny::tags$td(...)
+  } else {
+    shiny::tags$th(...)
+  }
 }
