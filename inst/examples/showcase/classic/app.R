@@ -3,6 +3,8 @@ source("global.R")
 shiny::shinyApp(
   ui = bs4DashPage(
     sidebar_collapsed = TRUE,
+    enable_preloader = TRUE,
+    loading_duration = 3,
     navbar = bs4DashNavbar(
       status = "white",
       "I can write text in the navbar!",
