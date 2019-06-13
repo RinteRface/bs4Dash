@@ -151,14 +151,19 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4SidebarMenuItem</span>(<span class='no'>...</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>bs4SidebarMenuItem</span>(<span class='no'>text</span>, <span class='no'>...</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
+      <th>text</th>
       <td><p>Item name.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a>.</p></td>
     </tr>
     <tr>
       <th>tabName</th>
@@ -167,6 +172,10 @@
     <tr>
       <th>icon</th>
       <td><p>Item icon.</p></td>
+    </tr>
+    <tr>
+      <th>startExpanded</th>
+      <td><p>Whether to expand the bs4SidebarMenuItem at start.</p></td>
     </tr>
     </table>
     
