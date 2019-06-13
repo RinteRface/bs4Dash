@@ -12,6 +12,7 @@
 - add `bs4TabSetPanel()` to the gallery
 
 ## Bug Fix
+- fix wrong url in `attachmentBlock()` image (and replace http by https)
 - fix #24: No right border on collapsed sidebar menu items. Thanks @aldomann
 - Tooltips z-index is lower than sidebar's z-index, this cause tooltips are not showing up 
 (see https://github.com/ColorlibHQ/AdminLTE/pull/2105)

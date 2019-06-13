@@ -710,7 +710,7 @@ gallery_1_tab <- bs4TabItem(
     bs4Card(
       title = "Attachment example",
       attachmentBlock(
-        src = "http://kiev.carpediem.cd/data/afisha/o/2d/c7/2dc7670333.jpg",
+        src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
         title = "Test",
         title_url = "http://google.com",
         "This is the content"
