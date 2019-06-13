@@ -4,14 +4,19 @@
 \alias{bs4SidebarMenuItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu item}
 \usage{
-bs4SidebarMenuItem(..., tabName = NULL, icon = NULL)
+bs4SidebarMenuItem(text, ..., tabName = NULL, icon = NULL,
+  startExpanded = FALSE)
 }
 \arguments{
-\item{...}{Item name.}
+\item{text}{Item name.}
+
+\item{...}{\link{bs4SidebarMenuSubItem}.}
 
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
 \item{icon}{Item icon.}
+
+\item{startExpanded}{Whether to expand the \link{bs4SidebarMenuItem} at start.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu item

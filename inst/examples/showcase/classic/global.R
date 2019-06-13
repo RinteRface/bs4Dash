@@ -3,6 +3,18 @@ library(shiny)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
+library(echarts4r)
+
+# river charts 
+dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+
+river <- data.frame(
+  dates = dates,
+  apples = runif(length(dates)),
+  bananas = runif(length(dates)),
+  pears = runif(length(dates))
+)
+
 
 # plot 2
 x <- seq(-2 * pi, 2 * pi, length.out = 1000)
@@ -43,7 +55,7 @@ basic_cards_tab <- bs4TabItem(
       solidHeader = FALSE, 
       gradientColor = "success",
       collapsible = TRUE,
-      plotOutput("distPlot")
+      echarts4rOutput("riverPlot")
     ),
     bs4Card(
       title = "Card with solidHeader and elevation", 
@@ -296,6 +308,48 @@ tab_cards_tab <- bs4TabItem(
           and more recently with desktop publishing software like Aldus
           PageMaker including versions of Lorem Ipsum."
         )
+      )
+    )
+  ),
+  fluidRow(
+    # manually inserted panels
+    column(
+      width = 6,
+      bs4TabSetPanel(
+        id = "tabcard",
+        side = "left",
+        bs4TabPanel(
+          tabName = "Tab 1", 
+          active = FALSE,
+          "Content 1"
+        ),
+        bs4TabPanel(
+          tabName = "Tab 2", 
+          active = TRUE,
+          "Content 2"
+        ),
+        bs4TabPanel(
+          tabName = "Tab 3", 
+          active = FALSE,
+          "Content 3"
+        )
+      )
+    ),
+    
+    # programmatically inserted panels
+    column(
+      width = 6,
+      bs4TabSetPanel(
+        id = "tabset",
+        side = "left",
+        tabStatus = "warning",
+        .list = lapply(1:3, function(i) {
+          bs4TabPanel(
+            tabName = paste0("Tab", i), 
+            active = FALSE,
+            paste("Content", i)
+          )
+        })
       )
     )
   )
