@@ -3,6 +3,18 @@ library(shiny)
 library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
+library(echarts4r)
+
+# river charts 
+dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+
+river <- data.frame(
+  dates = dates,
+  apples = runif(length(dates)),
+  bananas = runif(length(dates)),
+  pears = runif(length(dates))
+)
+
 
 # plot 2
 x <- seq(-2 * pi, 2 * pi, length.out = 1000)
@@ -43,7 +55,7 @@ basic_cards_tab <- bs4TabItem(
       solidHeader = FALSE, 
       gradientColor = "success",
       collapsible = TRUE,
-      plotOutput("distPlot")
+      echarts4rOutput("riverPlot")
     ),
     bs4Card(
       title = "Card with solidHeader and elevation", 

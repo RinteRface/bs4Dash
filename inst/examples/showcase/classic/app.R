@@ -156,15 +156,16 @@ shiny::shinyApp(
       hist(rnorm(input$obs))
     })
     
-    output$distPlot <- renderPlot({
-      dist <- switch(input$dist,
-                     norm = rnorm,
-                     unif = runif,
-                     lnorm = rlnorm,
-                     exp = rexp,
-                     rnorm)
-      
-      hist(dist(500))
+    # this is not reactive but just for fixing the plot size on the client side.
+    output$riverPlot <- renderEcharts4r({
+      river %>% 
+        e_charts(dates) %>% 
+        e_river(apples) %>% 
+        e_river(bananas) %>% 
+        e_river(pears) %>% 
+        e_tooltip(trigger = "axis") %>% 
+        e_title("River charts", "(Streamgraphs)") %>%
+        e_theme("shine")
     })
     
     output$plot2 <- renderPlotly({
