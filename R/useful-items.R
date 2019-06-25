@@ -1669,6 +1669,27 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
   btnCl <- "btn float-right"
   if(!is.null(collapse_status)) btnCl <- paste0(btnCl, " btn-", collapse_status)
   
+  
+  # if the input tag is an image, it is better to center it...
+  items <- list(...)
+  items <- lapply(seq_along(items), function(i) {
+    # do not apply to other things than tags
+    if (class(items[[i]]) == "shiny.tag") {
+      if (items[[i]]$name == "img") {
+        # wrap the image item in a div to align its content
+        shiny::tags$div(
+          style = "text-align: center;",
+          items[[i]]
+        )
+      } else {
+        items[[i]]
+      }
+    } else {
+      items[[i]]
+    }
+  })
+  
+  
   shiny::tags$div(
     class = "post",
     
@@ -1698,7 +1719,7 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
     shiny::tags$div(
       class = cl,
       id = id,
-      shiny::tags$p(...) 
+      items 
     )
   )
   

@@ -9,6 +9,7 @@
 - Now the ... arg is for `bs4SidebarMenuSubItem()`
 
 ## Minor Changes
+- images are centered in `userPost()`
 - add startExpanded arg to `bs4SidebarMenuItem()`
 - add `bs4TabSetPanel()` to the gallery
 
