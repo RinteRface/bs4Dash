@@ -716,6 +716,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'  NULL by default, "light" if status is set.   
 #'  A vector is possible with a colour for each tab button
 #' @param .list When elements are programmatically added, pass them here instead of in ...
+#' @param vertical Whether to display tabs in a vertical mode. FALSE by default.
 #' 
 #' @inheritParams bs4Card
 #' 
@@ -754,10 +755,26 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'       )
 #'      ),
 #'      
+#'      br(), br(),
 #'      # programmatically inserted panels
 #'      bs4TabSetPanel(
 #'        id = "tabset",
 #'        side = "left",
+#'        .list = lapply(1:3, function(i) {
+#'          bs4TabPanel(
+#'            tabName = paste0("Tab", i), 
+#'            active = FALSE,
+#'            paste("Content", i)
+#'          )
+#'        })
+#'       ),
+#'       
+#'       br(), br(),
+#'       # vertical tabset
+#'       bs4TabSetPanel(
+#'        id = "verttabset",
+#'        side = "left",
+#'        vertical = TRUE,
 #'        .list = lapply(1:3, function(i) {
 #'          bs4TabPanel(
 #'            tabName = paste0("Tab", i), 
@@ -775,7 +792,8 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, .list = NULL) {
+bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, 
+                           .list = NULL, vertical = FALSE) {
   
   # to make tab ids in the namespace of the tabSetPanel
   ns <- shiny::NS(id)
@@ -829,13 +847,18 @@ bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, .list
     )
   })
   
+  # support vertical tabs
+  tabSetCl <- if (side == "right") {
+    "nav nav-pills ml-auto p-2"
+  } else {
+    "nav nav-pills p-2"
+  }
+  if (vertical) tabSetCl <- paste0(tabSetCl, " flex-column")
+  
   tabSetMenu <- shiny::tags$ul(
     id = id,
-    class = if (side == "right") {
-      "nav nav-pills ml-auto p-2"
-    } else {
-      "nav nav-pills p-2"
-    }
+    class = tabSetCl,
+    `aria-orientation` = if (vertical) "vertical" else NULL
   )
   tabSetMenu <- shiny::tagAppendChildren(tabSetMenu, tabSetPanelItem)
   
@@ -850,22 +873,38 @@ bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, .list
     })
   )
   
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function () {
+  # tabSet JS wrapper to handle vertical 
+  tabSetJS <- shiny::singleton(
+    shiny::tags$head(
+      shiny::tags$script(
+        paste0(
+          "$(function () {
               $('#", id," li:eq(", selected,") a').tab('show');
             })
             "
-          )
         )
       )
-    ),
-    tabSetMenu, tabSetContent
+    )
   )
   
+  # Wrapper
+  if (vertical) {
+    if (side == "left") {
+      shiny::fluidRow(
+        tabSetJS,
+        shiny::column(width = 3, tabSetMenu),
+        shiny::column(width = 9, tabSetContent)
+      )
+    } else {
+      shiny::fluidRow(
+        tabSetJS,
+        shiny::column(width = 9, tabSetContent),
+        shiny::column(width = 3, tabSetMenu)
+      )
+    }
+  } else {
+    shiny::tagList(tabSetJS, tabSetMenu, tabSetContent)
+  }
 }
 
 

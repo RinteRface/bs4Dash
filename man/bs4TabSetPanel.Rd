@@ -5,7 +5,7 @@
 \title{Create a tabSetPanel}
 \usage{
 bs4TabSetPanel(..., id, side, status = NULL, tabStatus = NULL,
-  .list = NULL)
+  .list = NULL, vertical = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}
@@ -22,6 +22,8 @@ NULL by default, "light" if status is set.
 A vector is possible with a colour for each tab button}
 
 \item{.list}{When elements are programmatically added, pass them here instead of in ...}
+
+\item{vertical}{Whether to display tabs in a vertical mode. FALSE by default.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone.
@@ -61,10 +63,26 @@ if(interactive()){
       )
      ),
      
+     br(), br(),
      # programmatically inserted panels
      bs4TabSetPanel(
        id = "tabset",
        side = "left",
+       .list = lapply(1:3, function(i) {
+         bs4TabPanel(
+           tabName = paste0("Tab", i), 
+           active = FALSE,
+           paste("Content", i)
+         )
+       })
+      ),
+      
+      br(), br(),
+      # vertical tabset
+      bs4TabSetPanel(
+       id = "verttabset",
+       side = "left",
+       vertical = TRUE,
        .list = lapply(1:3, function(i) {
          bs4TabPanel(
            tabName = paste0("Tab", i), 
