@@ -311,6 +311,7 @@ tab_cards_tab <- bs4TabItem(
       )
     )
   ),
+  br(), br(),
   fluidRow(
     # manually inserted panels
     column(
@@ -343,6 +344,42 @@ tab_cards_tab <- bs4TabItem(
         id = "tabset",
         side = "left",
         tabStatus = "warning",
+        .list = lapply(1:3, function(i) {
+          bs4TabPanel(
+            tabName = paste0("Tab", i), 
+            active = FALSE,
+            paste("Content", i)
+          )
+        })
+      )
+    )
+  ),
+  br(), br(),
+  # Vertical panels
+  fluidRow(
+    column(
+      width = 6,
+      # vertical tabset
+      bs4TabSetPanel(
+        id = "verttabset",
+        side = "left",
+        vertical = TRUE,
+        .list = lapply(1:3, function(i) {
+          bs4TabPanel(
+            tabName = paste0("Tab", i), 
+            active = FALSE,
+            paste("Content", i)
+          )
+        })
+      )
+    ),
+    column(
+      width = 6,
+      # vertical tabset
+      bs4TabSetPanel(
+        id = "verttabset2",
+        side = "right",
+        vertical = TRUE,
         .list = lapply(1:3, function(i) {
           bs4TabPanel(
             tabName = paste0("Tab", i), 

@@ -109,7 +109,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
                     overflow = FALSE) {
   
   cardCl <- if (!is.null(gradientColor)) {
-    paste0("card bg-", gradientColor, "-gradient")
+    paste0("card bg-gradient-", gradientColor)
   } else {
     if (is.null(status)) {
       "card card-default"
