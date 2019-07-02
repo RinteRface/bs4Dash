@@ -1,6 +1,8 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- update adminLTE dependencies
+- add vertical mode to `bs4TabSetPanel()`
 - add `bs4SidebarMenuSubItem()`
 - add `bs4Table()`, `bs4TableItems()` and `bs4TableItem()`
 
@@ -14,6 +16,7 @@
 - add `bs4TabSetPanel()` to the gallery
 
 ## Bug Fix
+- update adminLTE dependencies (fix sidebar horizontal overflow, ...)
 - hide the `bs4DashControlbar()` toggle if no `bs4DashControlbar()` is given in `bs4DashPage()`
 - fix wrong url in `attachmentBlock()` image (and replace http by https)
 - fix #24: No right border on collapsed sidebar menu items. Thanks @aldomann
