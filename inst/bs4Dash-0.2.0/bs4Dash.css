@@ -41,3 +41,15 @@
 .bg-transparent .nav-link.active {
     background-color: transparent!important
 }
+
+
+/* Support shinyFiles modals */
+.fade:not(.show) {opacity: 1;}
+.sF-modalContainer {
+    z-index: 1600 !important;
+    
+}
+.sF-modalBackdrop {
+    opacity: 0.5 !important;
+    
+}

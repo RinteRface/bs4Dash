@@ -5519,6 +5519,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   pointer-events: none;
 }
 
+/* Remove for shinyFiles support
 .modal.fade .modal-dialog {
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
@@ -5526,6 +5527,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   -webkit-transform: translate(0, -50px);
   transform: translate(0, -50px);
 }
+*/
 
 @media (prefers-reduced-motion: reduce) {
   .modal.fade .modal-dialog {
@@ -5616,9 +5618,12 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .modal-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  
+  /* Remove for shinyFiles support */
+  
+  /* display: flex; */
+  /* align-items: flex-start; */
+  /* justify-content: space-between */
   padding: 1rem;
   border-bottom: 1px solid #e9ecef;
   border-top-left-radius: 0.3rem;
