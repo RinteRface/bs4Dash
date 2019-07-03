@@ -4,10 +4,13 @@
 \alias{bs4DashControlbar}
 \title{Create a Boostrap 4 dashboard right sidebar}
 \usage{
-bs4DashControlbar(..., skin = "dark", title = NULL, width = 250)
+bs4DashControlbar(..., disable = FALSE, skin = "dark", title = NULL,
+  width = 250)
 }
 \arguments{
 \item{...}{Any UI element.}
+
+\item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 
 \item{skin}{Controlbar skin. "dark" or "light".}
 

@@ -3,6 +3,7 @@
 #' Build an adminLTE3 dashboard right sidebar
 #'
 #' @param ... Any UI element.
+#' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
@@ -10,10 +11,11 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashControlbar <- function(..., skin = "dark", title = NULL, width = 250) {
+bs4DashControlbar <- function(..., disable = FALSE, skin = "dark", title = NULL, width = 250) {
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
+    style = if (disable) "display: none;",
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
