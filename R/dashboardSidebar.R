@@ -3,6 +3,7 @@
 #' Build an adminLTE3 dashboard main sidebar
 #'
 #' @param ... Slot for \link{bs4SidebarMenu}.
+#' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param title Sidebar title.
 #' @param skin Sidebar skin. "dark" or "light"
 #' @param status Sidebar status. "primary", "danger", "warning", "success", "info".
@@ -17,7 +18,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
+bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", status = "primary",
                                 brandColor = NULL, url = NULL, src = NULL,
                                 elevation = 4, opacity = .8) {
 
@@ -48,11 +49,23 @@ bs4DashSidebar <- function(..., title = NULL, skin = "dark", status = "primary",
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation
-    )
+    ),
+    style = if (disable) "display: none;"
    )
 
   sidebarTag <- shiny::tagAppendChildren(sidebarTag, brandTag, contentTag)
   sidebarTag
+  
+  customCSS <- shiny::singleton(
+    shiny::tags$style(
+      ".content-wrapper, .main-footer, .main-header {
+          margin-left: 0px;
+       }
+      "
+    )
+  )
+  
+  if (disable) shiny::tagList(customCSS, sidebarTag) else sidebarTag
   
   
   ## change sidebar width

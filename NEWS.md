@@ -11,6 +11,7 @@
 - Now the ... arg is for `bs4SidebarMenuSubItem()`
 
 ## Minor Changes
+- Fix #41: add disable argument to `bs4DashSidebar()`. Thanks @jamiebono 
 - images are centered in `userPost()`
 - add startExpanded arg to `bs4SidebarMenuItem()`
 - add `bs4TabSetPanel()` to the gallery

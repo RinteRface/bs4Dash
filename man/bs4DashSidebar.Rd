@@ -4,12 +4,14 @@
 \alias{bs4DashSidebar}
 \title{Create a Boostrap 4 dashboard main sidebar}
 \usage{
-bs4DashSidebar(..., title = NULL, skin = "dark", status = "primary",
-  brandColor = NULL, url = NULL, src = NULL, elevation = 4,
-  opacity = 0.8)
+bs4DashSidebar(..., disable = FALSE, title = NULL, skin = "dark",
+  status = "primary", brandColor = NULL, url = NULL, src = NULL,
+  elevation = 4, opacity = 0.8)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenu}.}
+
+\item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 
 \item{title}{Sidebar title.}
 

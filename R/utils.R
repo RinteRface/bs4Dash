@@ -53,3 +53,26 @@ validateTabName <- function(name) {
     stop("tabName must not have a '.' in it.")
   }
 }
+
+
+
+# This function takes a DOM element/tag object and reccurs within it until
+# it finds a child which has an attribute called `attr` and with value `val`
+# (and returns TRUE). If it finds an element with an attribute called `attr`
+# whose value is NOT `val`, it returns FALSE. If it exhausts all children
+# and it doesn't find an element with an attribute called `attr`, it also
+# returns FALSE
+findAttribute <- function(x, attr, val) {
+  if (is.atomic(x)) return(FALSE) # exhausted this branch of the tree
+  
+  if (!is.null(x$attribs[[attr]])) { # found attribute called `attr`
+    if (identical(x$attribs[[attr]], val)) return(TRUE)
+    else return(FALSE)
+  }
+  
+  if (length(x$children) > 0) { # recursion
+    return(any(unlist(lapply(x$children, findAttribute, attr, val))))
+  }
+  
+  return(FALSE) # found no attribute called `attr`
+}
