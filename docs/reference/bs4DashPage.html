@@ -141,7 +141,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a Boostrap 4 dashboard page</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardPage.R'><code>R/dashboardPage.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardPage.R'><code>R/dashboardPage.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>bs4DashPage.Rd</code></div>
     </div>
 
@@ -152,6 +152,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>bs4DashPage</span>(<span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>loading_background</span> <span class='kw'>=</span> <span class='st'>"#1E90FF"</span>)
+
+<span class='fu'>dashboardPage</span>(<span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -229,6 +235,79 @@ by default.</p></td>
     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>()
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+ )
+}
+
+<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>bs4Dash</span>)
+
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>dashboardPage</span>(
+   <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span>(),
+   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(),
+   <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tableOutput'>tableOutput</a></span>(<span class='st'>"data"</span>)),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/textOutput'>textOutput</a></span>(<span class='st'>"result"</span>))
+     )
+   ),
+   <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span>(
+     <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
+     <span class='fu'><a href='bs4TabSetPanel.html'>tabsetPanel</a></span>(
+       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabsetpanel"</span>,
+       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(
+           <span class='st'>"obs"</span>,
+           <span class='st'>"Number of observations:"</span>,
+           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
+         )
+       ),
+       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/checkboxGroupInput'>checkboxGroupInput</a></span>(
+           <span class='st'>"variable"</span>,
+           <span class='st'>"Variables to show:"</span>,
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
+             <span class='st'>"Transmission"</span> <span class='kw'>=</span> <span class='st'>"am"</span>,
+             <span class='st'>"Gears"</span> <span class='kw'>=</span> <span class='st'>"gear"</span>)
+         )
+       ),
+       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/selectInput'>selectInput</a></span>(
+           <span class='st'>"state"</span>,
+           <span class='st'>"Choose a state:"</span>,
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>`East Coast`</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"NY"</span>, <span class='st'>"NJ"</span>, <span class='st'>"CT"</span>),
+                <span class='kw'>`West Coast`</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"WA"</span>, <span class='st'>"OR"</span>, <span class='st'>"CA"</span>),
+                <span class='kw'>`Midwest`</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"MN"</span>, <span class='st'>"WI"</span>, <span class='st'>"IA"</span>)
+           )
+         )
+       )
+     )
+    )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
+    })
+
+    <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderTable'>renderTable</a></span>({
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>mtcars</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>])
+    }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+    <span class='no'>output</span>$<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>({
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"You chose"</span>, <span class='no'>input</span>$<span class='no'>state</span>)
+    })
+   }
  )
 }</div></pre>
   </div>

@@ -1,6 +1,8 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). 
+For instance `bs4DashPage()` can also be `dashboardPage()`
 - update adminLTE dependencies
 - add vertical mode to `bs4TabSetPanel()`
 - add `bs4SidebarMenuSubItem()`
