@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One tab to put inside a tab items container — bs4TabItem • bs4Dash</title>
+<title>Alias to <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a>
+See <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a> for full details — renderInfoBox • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +33,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="One tab to put inside a tab items container — bs4TabItem" />
+<meta property="og:title" content="Alias to <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a>
+See <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a> for full details — renderInfoBox" />
 
-<meta property="og:description" content="One tab to put inside a tab items container
-Alias to bs4TabItem
-See bs4TabItem for full details" />
+<meta property="og:description" content="Alias to renderbs4InfoBox
+See renderbs4InfoBox for full details" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -142,34 +143,37 @@ See bs4TabItem for full details" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>One tab to put inside a tab items container</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardBody.R'><code>R/dashboardBody.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>bs4TabItem.Rd</code></div>
+    <h1>Alias to <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a>
+See <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a> for full details</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>renderbs4InfoBox.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>One tab to put inside a tab items container</p>
-<p>Alias to bs4TabItem
-See bs4TabItem for full details</p>
+    <p>Alias to <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a>
+See <a href='renderbs4ValueBox.html'>renderbs4InfoBox</a> for full details</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabItem</span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
-<span class='fu'>tabItem</span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>renderInfoBox</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tabName</th>
-      <td><p>The name of a tab. This must correspond to the <code>tabName</code>
-of a <code><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></code>.</p></td>
+      <th>expr</th>
+      <td><p>An expression that returns a Shiny tag object, <code>HTML</code>,
+or a list of such objects.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Contents of the tab.</p></td>
+      <th>env</th>
+      <td><p>The environment in which to evaluate <code>expr</code>.</p></td>
+    </tr>
+    <tr>
+      <th>quoted</th>
+      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote()</a></code>)? This
+is useful if you want to save an expression in a variable.</p></td>
     </tr>
     </table>
     

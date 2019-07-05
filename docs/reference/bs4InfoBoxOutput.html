@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One tab to put inside a tab items container — bs4TabItem • bs4Dash</title>
+<title>Alias to <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a>
+See <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a> for full details — infoBoxOutput • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +33,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="One tab to put inside a tab items container — bs4TabItem" />
+<meta property="og:title" content="Alias to <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a>
+See <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a> for full details — infoBoxOutput" />
 
-<meta property="og:description" content="One tab to put inside a tab items container
-Alias to bs4TabItem
-See bs4TabItem for full details" />
+<meta property="og:description" content="Alias to bs4InfoBoxOutput
+See bs4InfoBoxOutput for full details" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -142,34 +143,35 @@ See bs4TabItem for full details" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>One tab to put inside a tab items container</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardBody.R'><code>R/dashboardBody.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>bs4TabItem.Rd</code></div>
+    <h1>Alias to <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a>
+See <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a> for full details</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>bs4InfoBoxOutput.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>One tab to put inside a tab items container</p>
-<p>Alias to bs4TabItem
-See bs4TabItem for full details</p>
+    <p>Alias to <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a>
+See <a href='bs4ValueBoxOutput.html'>bs4InfoBoxOutput</a> for full details</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabItem</span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
-<span class='fu'>tabItem</span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>infoBoxOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tabName</th>
-      <td><p>The name of a tab. This must correspond to the <code>tabName</code>
-of a <code><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></code>.</p></td>
+      <th>outputId</th>
+      <td><p>Output variable name.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Contents of the tab.</p></td>
+      <th>width</th>
+      <td><p>The width of the box, using the Bootstrap grid system. This is
+used for row-based layouts. The overall width of a region is 12, so the
+default width of 4 occupies 1/3 of that width. For column-based
+layouts, use <code>NULL</code> for the width; the width is set by the column that
+contains the box.</p></td>
     </tr>
     </table>
     
