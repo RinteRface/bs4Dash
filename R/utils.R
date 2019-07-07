@@ -76,3 +76,5 @@ findAttribute <- function(x, attr, val) {
   
   return(FALSE) # found no attribute called `attr`
 }
+
+"%OR%" <- function(a, b) if (!is.null(a)) a else b

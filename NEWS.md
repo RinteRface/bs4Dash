@@ -1,6 +1,8 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- Fix #8: add input binding to the `bs4SidebarMenu()`. Now by adding an id to the menu,
+the user can recover the currently selected tab. Thanks @rpodcast
 - add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). 
 For instance `bs4DashPage()` can also be `dashboardPage()`
 - update adminLTE dependencies

@@ -112,12 +112,75 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 #' Build an adminLTE3 dashboard main sidebar menu
 #'
 #' @param ... Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.
+#' @param id For \link{bs4SidebarMenu}, if \code{id} is present, this id will be
+#'   used for a Shiny input value, and it will report which tab is selected. For
+#'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
+#'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'    ui = bs4DashPage(
+#'      sidebar_collapsed = TRUE,
+#'      controlbar_collapsed = TRUE,
+#'      enable_preloader = FALSE,
+#'      loading_duration =  2,
+#'      navbar = bs4DashNavbar(skin = "light"),
+#'      body = bs4DashBody(
+#'        
+#'      ),
+#'      sidebar = bs4DashSidebar(
+#'        skin = "light",
+#'        bs4SidebarMenu(
+#'          id = "test",
+#'          bs4SidebarMenuItem(
+#'            tabName = "tab1",
+#'            text = "Tab 1"
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            tabName = "tab2",
+#'            text = "Tab 2"
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            text = "Click me pleaaaaase",
+#'            bs4SidebarMenuSubItem(
+#'              tabName = "subtab1",
+#'              text = "Tab 3"
+#'            ),bs4SidebarMenuSubItem(
+#'              tabName = "subtab2",
+#'              text = "Tab 4"
+#'            )
+#'          )
+#'        )
+#'      ),
+#'      controlbar = bs4DashControlbar(skin = "light"),
+#'      footer = bs4DashFooter()
+#'    ),
+#'    server = function(input, output, session) {
+#'      observeEvent(input$test, {
+#'        if (input$test == "subtab1") {
+#'          showModal(modalDialog(
+#'            title = "Thank you so much",
+#'            "You clicked me! This event is the result of
+#'            an input bound to the menu. By adding an id to the
+#'            bs4SidebarMenu, input$id will give the currently selected
+#'            tab. This is useful to trigger some events.",
+#'            easyClose = TRUE,
+#'            footer = NULL
+#'          ))
+#'        }
+#'      })
+#'    }
+#'  )
+#' }
 #'
 #' @export
-bs4SidebarMenu <- function(...) {
-  
+bs4SidebarMenu <- function(..., id = NULL) {
   # menu Tag
   shiny::tags$ul(
     class = "nav nav-pills nav-sidebar flex-column",
@@ -125,7 +188,14 @@ bs4SidebarMenu <- function(...) {
     id = "mymenu",
     role = "menu",
     `data-accordion` = "false",
-    ...
+    ...,
+    # This is a 0 height div, whose only purpose is to hold the tabName of the currently
+    # selected menuItem in its `data-value` attribute. This is the DOM element that is
+    # bound to tabItemInputBinding in the JS side.
+    shiny::tags$div(
+      id = id, class = "sidebarMenuSelectedTabItem", 
+      `data-value` = "null"
+    )
   )
   
 }

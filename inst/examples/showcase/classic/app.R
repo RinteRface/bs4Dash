@@ -33,6 +33,7 @@ shiny::shinyApp(
       elevation = 3,
       opacity = 0.8,
       bs4SidebarMenu(
+        id = "current_tab",
         bs4SidebarHeader("Cards"),
         bs4SidebarMenuItem(
           "Basic cards",
@@ -214,6 +215,21 @@ shiny::shinyApp(
         shareX = TRUE, shareY = TRUE, titleX = FALSE, titleY = FALSE
       )
       p <- layout(s, showlegend = FALSE)
+    })
+    
+    
+    observeEvent(input$current_tab, {
+      if (input$current_tab == "cards") {
+        showModal(modalDialog(
+          title = "This event only triggers for the first tab!",
+          "You clicked me! This event is the result of
+          an input bound to the menu. By adding an id to the
+          bs4SidebarMenu, input$id will give the currently selected
+          tab. This is useful to trigger some events.",
+          easyClose = TRUE,
+          footer = NULL
+        ))
+      }
     })
     
   }
