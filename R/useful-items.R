@@ -123,7 +123,7 @@ bs4Accordion <- function(..., id) {
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
-  lapply(1:len, FUN = function(i) {
+  lapply(seq_len(len), FUN = function(i) {
     items[[i]]$children[[1]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id, "accordion") 
   })
   
