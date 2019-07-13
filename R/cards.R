@@ -24,6 +24,7 @@
 #' @param collapsed If TRUE, start collapsed. This must be used with
 #'   \code{collapsible=TRUE}.
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
+#' @param maximizable If TRUE, the card can be displayed in full screen mode.
 #' @param labelStatus status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 #' @param labelText Label text.
 #' @param labelTooltip Label tooltip displayed on hover.
@@ -83,7 +84,8 @@
 #'       )
 #'      )
 #'      ),
-#'      bs4Card(
+#'      fluidRow(
+#'       bs4Card(
 #'        title = "Closable Box with solidHeader", 
 #'        closable = TRUE, 
 #'        width = 6,
@@ -91,10 +93,27 @@
 #'        status = "primary",
 #'        collapsible = TRUE,
 #'        p("Box Content")
+#'       ),
+#'       bs4Card(
+#'        title = "Maximizable Card", 
+#'        width = 6,
+#'        status = "warning", 
+#'        closable = FALSE,
+#'        maximizable = TRUE, 
+#'        collapsible = FALSE,
+#'        sliderInput("obs", "Number of observations:",
+#'                    min = 0, max = 1000, value = 500
+#'        ),
+#'        plotOutput("distPlot")
 #'       )
+#'      )
 #'     )
 #'    ),
-#'    server = function(input, output) {}
+#'    server = function(input, output) {
+#'     output$distPlot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'     })
+#'    }
 #'  )
 #' }
 #'
@@ -104,7 +123,7 @@
 bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
-                    closable = TRUE, labelStatus = NULL, labelText = NULL, 
+                    closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
                     overflow = FALSE) {
   
@@ -172,11 +191,21 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
         `data-widget` = "remove",
         shiny::tags$i(class = "fa fa-times")
       )
+    },
+    
+    # maximize
+    if (maximizable) {
+      shiny::tags$button(
+        type = "button",
+        class = "btn btn-tool",
+        `data-widget` = "maximize",
+        shiny::tags$i(class = "fa fa-expand")
+      )
     }
   )
   
   # header
-  if (is.null(title) & (isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  if (is.null(title) & (isTRUE(maximizable) | isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
   
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header" else "card-header no-border",

@@ -155,15 +155,17 @@
   <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>, <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>box</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>, <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,6 +230,10 @@ the user to collapse the box.</p></td>
     <tr>
       <th>closable</th>
       <td><p>If TRUE, display a button in the upper right that allows the user to close the box.</p></td>
+    </tr>
+    <tr>
+      <th>maximizable</th>
+      <td><p>If TRUE, the card can be displayed in full screen mode.</p></td>
     </tr>
     <tr>
       <th>labelStatus</th>
@@ -311,7 +317,8 @@ the user to collapse the box.</p></td>
       )
      )
      ),
-     <span class='fu'>bs4Card</span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
+      <span class='fu'>bs4Card</span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable Box with solidHeader"</span>,
        <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
@@ -319,10 +326,27 @@ the user to collapse the box.</p></td>
        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
        <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Box Content"</span>)
+      ),
+      <span class='fu'>bs4Card</span>(
+       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Maximizable Card"</span>,
+       <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
+       <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+       <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations:"</span>,
+                   <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
+       ),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
       )
+     )
     )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
+    })
+   }
  )
 }</div></pre>
   </div>

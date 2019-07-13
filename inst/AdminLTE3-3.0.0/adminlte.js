@@ -800,6 +800,8 @@
               'height': 'inherit',
               'width': 'inherit'
             });
+            // tells shiny to resize the content
+            $(this).trigger('shown');
 
             if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
               $(this).removeClass(ClassName.WAS_COLLAPSED);
@@ -813,11 +815,14 @@
           this._parent.css({
             'height': this._parent.height(),
             'width': this._parent.width(),
-            'transition': 'all .15s'
+            //'transition': 'all .15s'
           }).delay(150).queue(function () {
             $(this).addClass(ClassName.MAXIMIZED);
             $('html').addClass(ClassName.MAXIMIZED);
             $(this).trigger(Event.MAXIMIZED);
+            
+            // tells shiny to resize the content
+            $(this).trigger('shown');
 
             if ($(this).hasClass(ClassName.COLLAPSED)) {
               $(this).addClass(ClassName.WAS_COLLAPSED);

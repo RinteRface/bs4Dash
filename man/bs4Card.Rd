@@ -9,15 +9,17 @@ bs4Card(..., title = NULL, footer = NULL, status = NULL,
   elevation = NULL, solidHeader = FALSE, headerBorder = TRUE,
   gradientColor = NULL, width = 6, height = NULL,
   collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-  labelStatus = NULL, labelText = NULL, labelTooltip = NULL,
-  dropdownMenu = NULL, dropdownIcon = "wrench", overflow = FALSE)
+  maximizable = FALSE, labelStatus = NULL, labelText = NULL,
+  labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
+  overflow = FALSE)
 
 box(..., title = NULL, footer = NULL, status = NULL,
   elevation = NULL, solidHeader = FALSE, headerBorder = TRUE,
   gradientColor = NULL, width = 6, height = NULL,
   collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-  labelStatus = NULL, labelText = NULL, labelTooltip = NULL,
-  dropdownMenu = NULL, dropdownIcon = "wrench", overflow = FALSE)
+  maximizable = FALSE, labelStatus = NULL, labelText = NULL,
+  labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
+  overflow = FALSE)
 }
 \arguments{
 \item{...}{Contents of the box.}
@@ -54,6 +56,8 @@ the user to collapse the box.}
 \code{collapsible=TRUE}.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
+
+\item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
 \item{labelStatus}{status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".}
 
@@ -120,7 +124,8 @@ if(interactive()){
       )
      )
      ),
-     bs4Card(
+     fluidRow(
+      bs4Card(
        title = "Closable Box with solidHeader", 
        closable = TRUE, 
        width = 6,
@@ -128,10 +133,27 @@ if(interactive()){
        status = "primary",
        collapsible = TRUE,
        p("Box Content")
+      ),
+      bs4Card(
+       title = "Maximizable Card", 
+       width = 6,
+       status = "warning", 
+       closable = FALSE,
+       maximizable = TRUE, 
+       collapsible = FALSE,
+       sliderInput("obs", "Number of observations:",
+                   min = 0, max = 1000, value = 500
+       ),
+       plotOutput("distPlot")
       )
+     )
     )
    ),
-   server = function(input, output) {}
+   server = function(input, output) {
+    output$distPlot <- renderPlot({
+     hist(rnorm(input$obs))
+    })
+   }
  )
 }
 
