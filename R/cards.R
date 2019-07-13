@@ -440,7 +440,7 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
   
   
   infoBoxCl <- if (!is.null(gradientColor)) {
-    paste0("info-box bg-", gradientColor, "-gradient")
+    paste0("info-box bg-gradient-", gradientColor)
   } else {
     if (is.null(status)) {
       "info-box"
