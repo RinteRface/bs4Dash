@@ -8,12 +8,14 @@
 bs4TabCard(..., id, title = NULL, status = NULL, elevation = NULL,
   solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
   tabStatus = NULL, width = 6, height = NULL, collapsible = TRUE,
-  collapsed = FALSE, closable = TRUE, side = c("left", "right"))
+  collapsed = FALSE, closable = TRUE, maximizable = FALSE,
+  side = c("left", "right"))
 
 tabBox(..., id, title = NULL, status = NULL, elevation = NULL,
   solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
   tabStatus = NULL, width = 6, height = NULL, collapsible = TRUE,
-  collapsed = FALSE, closable = TRUE, side = c("left", "right"))
+  collapsed = FALSE, closable = TRUE, maximizable = FALSE,
+  side = c("left", "right"))
 }
 \arguments{
 \item{...}{Contents of the box: should be \link{bs4TabPanel}.}
@@ -54,6 +56,8 @@ the user to collapse the box.}
 \code{collapsible=TRUE}.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
+
+\item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}

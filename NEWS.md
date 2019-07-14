@@ -1,7 +1,7 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
-- add maximizable option for `bs4Card()`. In other words, allow full screen option
+- add maximizable option for `bs4Card()` and `bs4TabCard()`. In other words, allow full screen option
 - Fix #8: add input binding to the `bs4SidebarMenu()`. Now by adding an id to the menu,
 the user can recover the currently selected tab. Thanks @rpodcast
 - add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). 

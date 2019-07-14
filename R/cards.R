@@ -629,7 +629,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
                        solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
                        tabStatus = NULL, width = 6, height = NULL,  
                        collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-                       side = c("left", "right")) {
+                       maximizable = FALSE, side = c("left", "right")) {
   
   found_active <- FALSE
   side <- match.arg(side)
@@ -675,6 +675,16 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
         class = "btn btn-tool pb-0 pt-0",
         `data-widget` = "remove",
         shiny::tags$i(class = "fa fa-times")
+      )
+    },
+    
+    # maximize
+    if (maximizable) {
+      shiny::tags$button(
+        type = "button",
+        class = "btn btn-tool",
+        `data-widget` = "maximize",
+        shiny::tags$i(class = "fa fa-expand")
       )
     }
   )
