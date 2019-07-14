@@ -651,7 +651,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
   
   # tools collapse/closable
-  if (isTRUE(closable) | isTRUE(collapsible)) {
+  if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
   cardToolTag <- shiny::tags$div(
     class = "tools pt-3 pb-3 pr-2 mr-2",
 
