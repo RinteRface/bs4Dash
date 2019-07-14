@@ -155,6 +155,10 @@ shiny::shinyApp(
   ),
   server = function(input, output) {
     
+    output$bigPlot <- renderPlot({
+      hist(rnorm(input$bigObs))
+    })
+    
     output$plot <- renderPlot({
       hist(rnorm(input$obs))
     })

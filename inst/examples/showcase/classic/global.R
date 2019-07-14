@@ -56,7 +56,9 @@ basic_cards_tab <- bs4TabItem(
       gradientColor = "success",
       collapsible = TRUE,
       echarts4rOutput("riverPlot")
-    ),
+    )
+  ),
+  fluidRow(
     bs4Card(
       title = "Card with solidHeader and elevation", 
       elevation = 4,
@@ -66,6 +68,18 @@ basic_cards_tab <- bs4TabItem(
       status = "primary",
       collapsible = TRUE,
       plot_ly(z = ~volcano) %>% add_surface()
+    ),
+    bs4Card(
+      title = "Maximizable Card", 
+      width = 6,
+      status = "danger", 
+      closable = FALSE,
+      maximizable = TRUE, 
+      collapsible = FALSE,
+      sliderInput("bigObs", "Number of observations:",
+                  min = 0, max = 1000, value = 500
+      ),
+      plotOutput("bigPlot")
     )
   )
 )
@@ -215,7 +229,8 @@ tab_cards_tab <- bs4TabItem(
         elevation = 2,
         id = "tabcard1",
         width = 12,
-        collapsible = FALSE, closable = TRUE,
+        collapsible = FALSE, 
+        closable = FALSE,
         bs4TabPanel(
           tabName = "Tab 1",
           active = FALSE,
@@ -268,6 +283,9 @@ tab_cards_tab <- bs4TabItem(
         width = 12,
         status = "warning",
         tabStatus = c("dark", "danger", "primary"),
+        maximizable = TRUE,
+        collapsible = TRUE, 
+        closable = TRUE,
         bs4TabPanel(
           tabName = "Tab 4",
           active = FALSE,
