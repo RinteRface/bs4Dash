@@ -8,6 +8,12 @@ reference:
   - '`bs4DashFooter`'
   - '`bs4DashSidebar`'
   - '`bs4DashControlbar`'
+  
+
+- title: Update functions
+  desc: Dynamically update UI elements
+  contents: 
+  - '`updatebs4TabSetPanel`'
     
 - title: Body content functions
   desc: Functions that are to be used in the bs4DashBody

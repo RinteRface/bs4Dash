@@ -78,3 +78,7 @@ findAttribute <- function(x, attr, val) {
 }
 
 "%OR%" <- function(a, b) if (!is.null(a)) a else b
+
+dropNulls <- function(x) {
+  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+}

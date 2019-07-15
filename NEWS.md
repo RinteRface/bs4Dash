@@ -1,6 +1,8 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- add `updatebs4TabSetPanel()` and `updateTabsetPanel()` (aliases) to dynamically update `bs4TabSetPanel()` from
+the server side
 - add maximizable option for `bs4Card()` and `bs4TabCard()`. In other words, allow full screen option
 - Fix #8: add input binding to the `bs4SidebarMenu()`. Now by adding an id to the menu,
 the user can recover the currently selected tab. Thanks @rpodcast

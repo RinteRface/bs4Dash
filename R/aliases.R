@@ -6,6 +6,7 @@
 #' @include dashboardSidebar.R
 #' @include cards.R
 #' @include render-functions.R
+#' @include update-functions.R
 NULL
 
 
@@ -401,3 +402,16 @@ valueBoxOutput <- bs4ValueBoxOutput
 #'
 #' @export
 renderValueBox <- renderbs4ValueBox
+
+
+
+
+
+#' Alias to \link{updatebs4TabSetPanel}
+#' See \link{updatebs4TabSetPanel} for full details
+#'
+#' @inheritParams updatebs4TabSetPanel
+#' @rdname updatebs4TabSetPanel
+#'
+#' @export
+updateTabsetPanel <- updatebs4TabSetPanel
