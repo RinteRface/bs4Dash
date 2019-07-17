@@ -635,7 +635,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   side <- match.arg(side)
   
   tabCardCl <- if (!is.null(gradientColor)) {
-    paste0("card bg-", gradientColor, "-gradient")
+    paste0("card bg-gradient-", gradientColor)
   } else {
     if (is.null(status)) {
       "card card-default"
@@ -694,7 +694,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   
   # header
   tabMenu <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[[2]]
-  if (is.null(title) & (isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  if (is.null(title) & (isTRUE(maximizable) | isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
   
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header d-flex p-0" else "card-header d-flex p-0 no-border",
