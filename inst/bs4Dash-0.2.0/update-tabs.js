@@ -46,7 +46,6 @@ $(function() {
   
   // call the function ...
   getAllSidebarIds();
-  console.log(sidebarIds);
   
   // As mentioned previously, we create a customMessageHandler
   // for the sidebar. We handle the case of multiple menus.
@@ -58,7 +57,6 @@ $(function() {
       // trigger a click on the corresponding the tab button. This will enable the body content
       // to be shown. Otherwise, shiny does not know if the element needs to be
       // rendered...
-      console.log($('a[href="#shiny-' + selectedTab +'"]'));
       $('a[href="#shiny-' + selectedTab +'"]').trigger('click');
       $('#shiny-' + selectedTab).addClass('active show');
       
