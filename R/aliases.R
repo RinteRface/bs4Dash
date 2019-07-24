@@ -415,3 +415,15 @@ renderValueBox <- renderbs4ValueBox
 #'
 #' @export
 updateTabsetPanel <- updatebs4TabSetPanel
+
+
+
+
+#' Alias to \link{ updatebs4TabItems}
+#' See \link{updatebs4TabItems} for full details
+#'
+#' @inheritParams  updatebs4TabItems
+#' @rdname  updatebs4TabItems
+#'
+#' @export
+updateTabItems <- updatebs4TabItems

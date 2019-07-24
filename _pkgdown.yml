@@ -13,6 +13,7 @@ reference:
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
+  - '`updatebs4TabItems`'
   - '`updatebs4TabSetPanel`'
     
 - title: Body content functions

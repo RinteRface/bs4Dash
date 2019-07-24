@@ -34,4 +34,37 @@ $(function() {
       $('div[id="' + selectedTab + '"]').siblings().removeClass('active show');
     });
   });
+  
+  
+  // handle the sidebar tabs if needed
+  var sidebarIds = [];
+  getAllSidebarIds = function() {
+    $('.sidebarMenuSelectedTabItem').each(function() {
+      sidebarIds.push(this.id);
+    });  
+  };
+  
+  // call the function ...
+  getAllSidebarIds();
+  console.log(sidebarIds);
+  
+  // As mentioned previously, we create a customMessageHandler
+  // for the sidebar. We handle the case of multiple menus.
+  sidebarIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      var sidebarSiblings = $('#' + index).siblings().find('a');
+      var selectedIdx = message.value - 1;
+      var selectedTab = $(sidebarSiblings[selectedIdx]).attr('id');
+      // trigger a click on the corresponding the tab button. This will enable the body content
+      // to be shown. Otherwise, shiny does not know if the element needs to be
+      // rendered...
+      console.log($('a[href="#shiny-' + selectedTab +'"]'));
+      $('a[href="#shiny-' + selectedTab +'"]').trigger('click');
+      $('#shiny-' + selectedTab).addClass('active show');
+      
+      // remove active class from ul menu + the body content (tab content)
+      $('a[href!="#shiny-' + selectedTab +'"]').removeClass('active');
+      $('div[id="shiny-' + index + '"]').siblings().removeClass('active show');
+    });
+  });
 });

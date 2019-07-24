@@ -1,6 +1,8 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- add `updatebs4TabItems()` and `updateTabItems()` to programatically update the selected
+sidebar tab and the corresponding body tab
 - add `updatebs4TabSetPanel()` and `updateTabsetPanel()` (aliases) to dynamically update `bs4TabSetPanel()` from
 the server side
 - add maximizable option for `bs4Card()` and `bs4TabCard()`. In other words, allow full screen option
