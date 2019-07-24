@@ -1,6 +1,7 @@
 # bs4Dash 0.4.0.9000
 
 ## Major changes
+- add `bs4DashControlbarMenu()`, `bs4DashControlbarItem()` and `updatebs4ControlbarMenu()`
 - add `updatebs4TabItems()` and `updateTabItems()` to programatically update the selected
 sidebar tab and the corresponding body tab
 - add `updatebs4TabSetPanel()` and `updateTabsetPanel()` (aliases) to dynamically update `bs4TabSetPanel()` from

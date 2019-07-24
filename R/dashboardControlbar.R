@@ -47,3 +47,24 @@ bs4DashControlbar <- function(..., disable = FALSE, skin = "dark", title = NULL,
   )
   
 }
+
+
+
+
+#' @rdname bs4TabSetPanel
+#' @export
+bs4DashControlbarMenu <- bs4TabSetPanel
+
+
+
+
+#' @rdname bs4TabPanel
+#' @export
+bs4DashControlbarItem <- bs4TabPanel
+
+
+
+
+#' @rdname updatebs4TabSetPanel
+#' @export
+updatebs4ControlbarMenu <- updatebs4TabSetPanel

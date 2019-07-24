@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a tabPanel — bs4TabPanel • bs4Dash</title>
+<title>Alias to <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a>
+See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details — controlbarMenu • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +33,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a tabPanel — bs4TabPanel" />
+<meta property="og:title" content="Alias to <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a>
+See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details — controlbarMenu" />
 
-<meta property="og:description" content="To be included in a bs4TabCard" />
+<meta property="og:description" content="Alias to bs4DashControlbarMenu
+See bs4DashControlbarMenu for full details" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -140,37 +143,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a tabPanel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardControlbar.R'><code>R/dashboardControlbar.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>bs4TabPanel.Rd</code></div>
+    <h1>Alias to <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a>
+See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>bs4DashControlbarMenu.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>To be included in a bs4TabCard</p>
+    <p>Alias to <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a>
+See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabPanel</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>bs4DashControlbarItem</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>tabPanel</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>controlbarMenu</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='no'>side</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>.list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Tab content</p></td>
+      <td><p>Slot for <a href='bs4TabPanel.html'>bs4TabPanel</a>.</p></td>
     </tr>
     <tr>
-      <th>tabName</th>
-      <td><p>Tab name: it will be also passed as the id argument. Should be unique.</p></td>
+      <th>id</th>
+      <td><p>Unique <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id.</p></td>
     </tr>
     <tr>
-      <th>active</th>
-      <td><p>Whether the tab is active or not. FALSE bu default.</p></td>
+      <th>side</th>
+      <td><p>Side of the box the tabs should be on (<code>"left"</code> or
+<code>"right"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>status</th>
+      <td><p>The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.</p></td>
+    </tr>
+    <tr>
+      <th>tabStatus</th>
+      <td><p>The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
+NULL by default, "light" if status is set.   
+A vector is possible with a colour for each tab button</p></td>
+    </tr>
+    <tr>
+      <th>.list</th>
+      <td><p>When elements are programmatically added, pass them here instead of in ...</p></td>
+    </tr>
+    <tr>
+      <th>vertical</th>
+      <td><p>Whether to display tabs in a vertical mode. FALSE by default.</p></td>
     </tr>
     </table>
     
@@ -182,8 +203,6 @@
       <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

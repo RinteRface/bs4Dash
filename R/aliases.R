@@ -148,6 +148,44 @@ dashboardControlbar <- bs4DashControlbar
 
 
 
+#' Alias to \link{bs4DashControlbarMenu}
+#' See \link{bs4DashControlbarMenu} for full details
+#'
+#' @inheritParams bs4DashControlbarMenu
+#' @rdname bs4DashControlbarMenu
+#'
+#' @export
+controlbarMenu <- bs4DashControlbarMenu
+
+
+
+
+#' Alias to \link{bs4DashControlbarItem}
+#' See \link{bs4DashControlbarItem} for full details
+#'
+#' @inheritParams bs4DashControlbarItem
+#' @rdname bs4DashControlbarItem
+#'
+#' @export
+controlbarItem <- bs4DashControlbarItem 
+
+
+
+
+
+#' Alias to \link{updatebs4ControlbarMenu}
+#' See \link{updatebs4ControlbarMenu} for full details
+#'
+#' @inheritParams updatebs4ControlbarMenu 
+#' @rdname updatebs4ControlbarMenu 
+#'
+#' @export
+updateControlbarMenu <- updatebs4ControlbarMenu 
+
+
+
+
+
 #' Alias to \link{bs4DashFooter}
 #' See \link{bs4DashFooter} for full details
 #'

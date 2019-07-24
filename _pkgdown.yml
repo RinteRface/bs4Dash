@@ -8,11 +8,14 @@ reference:
   - '`bs4DashFooter`'
   - '`bs4DashSidebar`'
   - '`bs4DashControlbar`'
+  - '`bs4DashControlbarItem`'
+  - '`bs4DashControlbarMenu`'
   
 
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
+  - '`updatebs4ControlbarMenu`'
   - '`updatebs4TabItems`'
   - '`updatebs4TabSetPanel`'
     

@@ -36,7 +36,39 @@ $(function() {
   });
   
   
-  // handle the sidebar tabs if needed
+  // handle the right controlbar 
+  var controlbarIds = [];
+  getAllControlbarIds = function() {
+    $('.control-sidebar ul').each(function() {
+      controlbarIds.push(this.id);
+    });  
+  };
+  
+  getAllControlbarIds();
+  
+  
+  // As mentioned previously, we create a customMessageHandler
+  // for each tabSet. The unique id will allow for multiple
+  // update call at the same time.
+  controlbarIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      var selectedIdx = message.value;
+      var selectedTab = index + '-Tab' + selectedIdx;
+      
+      // trigger a click on corresponding the tab button. This will enable the body content
+      // to be shown. Otherwise, shiny does not know if the element needs to be
+      // rendered...
+      $('#' + index + ' a[href="#' + selectedTab +'"]').trigger('click');
+      $('#' + selectedTab).addClass('active show');
+      
+      // remove active class from ul menu + the body content (tab content)
+      $('#' + index + ' a[href!="#' + selectedTab +'"]').removeClass('active');
+      $('div[id="' + selectedTab + '"]').siblings().removeClass('active show');
+    });
+  });
+  
+  
+  // handle the left sidebar tabs if needed
   var sidebarIds = [];
   getAllSidebarIds = function() {
     $('.sidebarMenuSelectedTabItem').each(function() {

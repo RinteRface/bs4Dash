@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a tabPanel — bs4TabPanel • bs4Dash</title>
+<title>Alias to <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a>
+See <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a> for full details — updateControlbarMenu • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +33,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a tabPanel — bs4TabPanel" />
+<meta property="og:title" content="Alias to <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a>
+See <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a> for full details — updateControlbarMenu" />
 
-<meta property="og:description" content="To be included in a bs4TabCard" />
+<meta property="og:description" content="Alias to updatebs4ControlbarMenu
+See updatebs4ControlbarMenu for full details" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -140,37 +143,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a tabPanel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardControlbar.R'><code>R/dashboardControlbar.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>bs4TabPanel.Rd</code></div>
+    <h1>Alias to <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a>
+See <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a> for full details</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>updatebs4ControlbarMenu.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>To be included in a bs4TabCard</p>
+    <p>Alias to <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a>
+See <a href='updatebs4TabSetPanel.html'>updatebs4ControlbarMenu</a> for full details</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabPanel</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>bs4DashControlbarItem</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>tabPanel</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>updateControlbarMenu</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Tab content</p></td>
+      <th>session</th>
+      <td><p>shiny session.</p></td>
     </tr>
     <tr>
-      <th>tabName</th>
-      <td><p>Tab name: it will be also passed as the id argument. Should be unique.</p></td>
+      <th>inputId</th>
+      <td><p><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> unique id.</p></td>
     </tr>
     <tr>
-      <th>active</th>
-      <td><p>Whether the tab is active or not. FALSE bu default.</p></td>
+      <th>selected</th>
+      <td><p>the tab to be selected.</p></td>
     </tr>
     </table>
     
@@ -182,8 +183,6 @@
       <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 
