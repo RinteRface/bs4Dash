@@ -27,6 +27,7 @@ For instance `bs4DashPage()` can also be `dashboardPage()`
 - add `bs4TabSetPanel()` to the gallery
 
 ## Bug Fix
+- fix overflow-y issue in `bs4TabCard()`
 - fix #44: update `bs4InfoBox()` class. Thanks @henry090.
 - update adminLTE dependencies (fix sidebar horizontal overflow, ...)
 - hide the `bs4DashControlbar()` toggle if no `bs4DashControlbar()` is given in `bs4DashPage()`

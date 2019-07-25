@@ -629,7 +629,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
                        solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
                        tabStatus = NULL, width = 6, height = NULL,  
                        collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-                       maximizable = FALSE, side = c("left", "right")) {
+                       maximizable = FALSE, overflow = FALSE, side = c("left", "right")) {
   
   found_active <- FALSE
   side <- match.arg(side)
@@ -719,7 +719,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[c(1, 3)]
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = "overflow-y: auto;",
+    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
     panelContent
   )
   

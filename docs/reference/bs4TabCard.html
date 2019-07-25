@@ -155,13 +155,13 @@
   <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))
 
 <span class='fu'>tabBox</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))</pre>
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -236,6 +236,10 @@ the user to collapse the box.</p></td>
     <tr>
       <th>maximizable</th>
       <td><p>If TRUE, the card can be displayed in full screen mode.</p></td>
+    </tr>
+    <tr>
+      <th>overflow</th>
+      <td><p>Whether to enable overflow in the card body and footer. FALSE by default.</p></td>
     </tr>
     <tr>
       <th>side</th>
