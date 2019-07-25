@@ -1,4 +1,4 @@
-# bs4Dash 0.4.0.9000
+# bs4Dash 0.4.0
 
 ## Major changes
 - add `bs4DashControlbarMenu()`, `bs4DashControlbarItem()` and `updatebs4ControlbarMenu()`
