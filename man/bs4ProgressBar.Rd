@@ -6,7 +6,7 @@
 \usage{
 bs4ProgressBar(value, min = 0, max = 100, vertical = FALSE,
   striped = FALSE, status = c("primary", "warning", "danger", "info",
-  "success"), width = "80\%", height = "40\%")
+  "success"), size = NULL)
 }
 \arguments{
 \item{value}{Progress bar value}
@@ -21,9 +21,7 @@ bs4ProgressBar(value, min = 0, max = 100, vertical = FALSE,
 
 \item{status}{Progress bar status. "primary", "success", "warning", "danger" or "info".}
 
-\item{width}{Progress bar width (only if vertical is FALSE).}
-
-\item{height}{Progress bar height (only if vertical is TRUE).}
+\item{size}{Progress bar size. NULL, "sm", "xs" or "xxs".}
 }
 \description{
 AdminLTE3 progress bar
@@ -47,14 +45,14 @@ if(interactive()){
         footer = tagList(
           bs4ProgressBar(
           value = 5,
+          size = "xxs",
           striped = FALSE,
           status = "info"
          ),
          bs4ProgressBar(
-          value = 5,
+          value = 25,
           striped = TRUE,
-          status = "warning",
-          width = "20\%"
+          status = "warning"
          )
         ),
         bs4ProgressBar(
@@ -66,8 +64,8 @@ if(interactive()){
          value = 100,
          vertical = TRUE,
          striped = TRUE,
-         status = "danger",
-         height = "80\%"
+         size = "sm",
+         status = "danger"
         )
        )
      )

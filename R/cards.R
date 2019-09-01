@@ -31,6 +31,12 @@
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param dropdownIcon Dropdown icon. "wrench" by default.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
+#' @param enable_sidebar Whether to display the box sidebar. FALSE by default.
+#' @param sidebar_content Box sidebar content, if any.
+#' @param sidebar_width Box sidebar width in percentage. 25\% by default. Numeric value between 0 and 100.
+#' @param sidebar_background Box sidebar background color. Dark by default.
+#' @param sidebar_start_open Whether the box sidebar is open at start. FALSE by default.
+#' @param sidebar_icon Box sidebar icon. 
 #' 
 #' @family cards
 #'
@@ -125,7 +131,9 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
-                    overflow = FALSE) {
+                    overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL, 
+                    sidebar_width = 25, sidebar_background = "#333a40", 
+                    sidebar_start_open = FALSE, sidebar_icon = "cogs") {
   
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-gradient-", gradientColor)
@@ -138,6 +146,14 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
       } else {
         paste0("card card-", status)
       }
+    }
+  }
+  
+  if (enable_sidebar) {
+    if (sidebar_start_open) {
+      cardCl <- paste0(cardCl, " direct-chat direct-chat-contacts-open")
+    } else {
+      cardCl <- paste0(cardCl, " direct-chat")
     }
   }
   
@@ -201,6 +217,19 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
         `data-widget` = "maximize",
         shiny::tags$i(class = "fa fa-expand")
       )
+    },
+    
+    # sidebar
+    if (enable_sidebar) {
+      sidebarTag <- shiny::tags$button(
+        class = "btn btn-tool",
+        `data-widget` = "chat-pane-toggle",
+        `data-toggle` = "tooltip",
+        `data-original-title` = "More",
+        title = NA,
+        type = "button",
+        shiny::icon(sidebar_icon)
+      )
     }
   )
   
@@ -217,7 +246,20 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   bodyTag <- shiny::tags$div(
     class = "card-body",
     style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
-    ...
+    ...,
+    if (enable_sidebar) {
+      shiny::tags$div(
+        style = "z-index: 10000;",
+        class = "direct-chat-contacts",
+        shiny::tags$ul(
+          class = "contacts-list", 
+          shiny::tags$li(
+            style = paste0("width: ", sidebar_width, "%;"), 
+            sidebar_content
+          )
+        )
+      )
+    }
   )
   
   footerTag <- if (!is.null(footer)) {
@@ -239,9 +281,47 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   )
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
-  shiny::tags$div(
+  cardWrapper <- shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     cardTag
+  )
+  
+  # for the sidebar
+  translation_rate <- paste0(100 - sidebar_width, "%")
+  
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".direct-chat-contacts {
+                 -webkit-transform: translate(100%, 0);
+                 -ms-transform: translate(100%, 0);
+                 -o-transform: translate(100%, 0);
+                 transform: translate(100%, 0);
+                 position: absolute;
+                 top: 0;
+                 bottom: 0;
+                 height: 100%;
+                 width: 100%;
+                 background: ", sidebar_background, ";
+                 color: #fff;
+                 overflow: auto;
+              }
+              .direct-chat-contacts-open .direct-chat-contacts {
+                -webkit-transform: translate(", translation_rate, ", 0);
+                -ms-transform: translate(", translation_rate, ", 0);
+                -o-transform: translate(", translation_rate, ", 0);
+                transform: translate(", translation_rate, ", 0);
+              }
+              "
+            )
+          )
+        )
+      )
+    ),
+    cardWrapper
   )
   
 }

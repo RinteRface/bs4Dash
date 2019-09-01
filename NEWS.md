@@ -1,3 +1,13 @@
+# bs4Dash 0.5.0.9000
+
+## New features
+- add sidebar in `bs4Card()`
+
+## Bug Fix
+- when btn_name is NULL in `bs4Jumbotron()`, do not show a button. Thanks @davidlvb
+- fix `bs4ProgressBar()`: remove height and width parameters. Add size parameter. This
+fix the progress behaviour which was wrong
+
 # bs4Dash 0.4.0
 
 ## Major changes
