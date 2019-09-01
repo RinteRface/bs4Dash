@@ -12,6 +12,13 @@ $(function() {
     $("#controlbar-toggle").hide();
   }
   
+  // controlbar slide
+  controlbarSlide = ($(".control-sidebar").attr("data-slide"));
+  console.log(controlbarSlide);
+  if (controlbarSlide) {
+    $("#controlbar-toggle").attr('data-controlsidebar-slide', controlbarSlide);
+  }
+  
   // when the sidebar is disabled, hide the sidebar toggle
   disableSidebar = ($(".main-sidebar").css("display") == "none");
   if (disableSidebar) {

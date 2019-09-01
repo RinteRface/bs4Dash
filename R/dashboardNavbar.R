@@ -59,7 +59,6 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
           id = "controlbar-toggle",
           class = "nav-link",
           `data-widget` = "control-sidebar",
-          `data-slide` = "true",
           href = "#",
           shiny::icon(controlbarIcon)
         )

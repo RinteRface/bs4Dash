@@ -6,10 +6,10 @@
 \title{Create a Boostrap 4 dashboard right sidebar}
 \usage{
 bs4DashControlbar(..., disable = FALSE, skin = "dark", title = NULL,
-  width = 250)
+  width = 250, slide = TRUE)
 
 dashboardControlbar(..., disable = FALSE, skin = "dark",
-  title = NULL, width = 250)
+  title = NULL, width = 250, slide = TRUE)
 }
 \arguments{
 \item{...}{Any UI element.}
@@ -21,6 +21,9 @@ dashboardControlbar(..., disable = FALSE, skin = "dark",
 \item{title}{Controlbar title.}
 
 \item{width}{Controlbar width. 250 px by default.}
+
+\item{slider}{Whether the sidebar should slide over the content or 
+push the content to make space for itself.}
 }
 \description{
 Build an adminLTE3 dashboard right sidebar
