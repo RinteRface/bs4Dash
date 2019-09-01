@@ -83,10 +83,9 @@ social_cards_tab <- bs4TabItem(
         status = "info"
       ),
       bs4ProgressBar(
-        value = 5,
+        value = 20,
         striped = TRUE,
-        status = "warning",
-        width = "20%"
+        status = "warning"
       )
     )
   ),
@@ -583,10 +582,9 @@ gallery_1_tab <- bs4TabItem(
           status = "info"
         ),
         bs4ProgressBar(
-          value = 5,
+          value = 20,
           striped = TRUE,
-          status = "warning",
-          width = "20%"
+          status = "warning"
         )
       ),
       bs4ProgressBar(
@@ -598,8 +596,7 @@ gallery_1_tab <- bs4TabItem(
         value = 100,
         vertical = TRUE,
         striped = TRUE,
-        status = "danger",
-        height = "80%"
+        status = "danger"
       )
     ),
     bs4Card(
