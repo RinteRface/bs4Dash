@@ -15,7 +15,7 @@ bs4DashControlbar <- function(..., disable = FALSE, skin = "dark", title = NULL,
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
-    style = if (disable) "display: none;",
+    `data-show` = if (disable) "false" else "true",
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
