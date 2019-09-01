@@ -715,7 +715,7 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
   cl <- "timeline"
   if (isTRUE(reversed)) cl <- paste0(cl, " timeline-inverse")
   
-  timelineTag <- shiny::tags$ul(
+  timelineTag <- shiny::tags$div(
     class = cl,
     ...
   )
@@ -743,7 +743,7 @@ bs4TimelineLabel <- function(..., status = NULL) {
   cl <- "bg-"
   if (!is.null(status)) cl <- paste0(cl, status)
   
-  shiny::tags$li(
+  shiny::tags$div(
     class = "time-label",
     shiny::tags$span(
       class = cl,
@@ -780,7 +780,7 @@ bs4TimelineItem <- function(..., elevation = NULL, icon = NULL,
   itemCl <- "timeline-header no-border"
   if (isTRUE(border)) itemCl <- "timeline-header"
   
-  shiny::tags$li(
+  shiny::tags$div(
     
     # timelineItem icon and status
     shiny::tags$i(
@@ -867,7 +867,7 @@ bs4TimelineStart <- function(icon = "clock-o", status = NULL) {
   if (!is.null(icon)) cl <- paste0(cl, icon)
   if (!is.null(status)) cl <- paste0(cl, " bg-", status)
   
-  shiny::tags$li(
+  shiny::tags$div(
     shiny::tags$i(class = cl)
   )
 }
@@ -890,7 +890,7 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
   if (!is.null(status)) cl <- paste0(cl, " bg-", status)
   
   shiny::tagList(
-    shiny::tags$li(
+    shiny::tags$div(
       shiny::tags$i(class = cl)
     ),
     shiny::br(), 
