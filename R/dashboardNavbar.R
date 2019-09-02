@@ -17,20 +17,20 @@
 #'
 #' @export
 bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
-                               sidebarIcon = "bars", controlbarIcon = "th",
-                               leftUi = NULL, rightUi = NULL, fixed = FALSE) {
-
+                          sidebarIcon = "bars", controlbarIcon = "th",
+                          leftUi = NULL, rightUi = NULL, fixed = FALSE) {
+  
   navbarTag <- shiny::tags$nav(
     class = paste0(
       "main-header navbar navbar-expand bg-", status,
       " navbar-", skin, if (isTRUE(border)) " border-bottom" else NULL,
       if (fixed) " fixed-top" else NULL
     ),
-
+    
     # left sidebar elements
     shiny::tags$ul(
       class = "navbar-nav",
-
+      
       # sidebar toggle (left)
       shiny::tags$li(
         class = "nav-item",
@@ -43,15 +43,15 @@ bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
       ),
       leftUi
     ),
-
+    
     # in between content
     ...,
-
+    
     # right sidebar elements
     shiny::tags$ul(
       class = "navbar-nav ml-auto",
       rightUi,
-
+      
       # controlbar toggle
       shiny::tags$li(
         class = "nav-item",
@@ -195,7 +195,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
                 color: #000;
                }
               "
-            , menuIcon)
+              , menuIcon)
           )
         )
       )
@@ -284,4 +284,80 @@ bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
   #   )
   # )
   
+}
+
+
+
+
+
+#' Create a Bootstrap 4 user profile.
+#'
+#' @param ... Body content.
+#' @param name User name.
+#' @param src User profile picture.
+#' @param title A title.
+#' @param subtitle A subtitle.
+#' @param footer Footer is any.
+#' @param status Ribbon status: "primary", "danger", "success", "warning", "info" and 
+#' "secondary".
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     navbar = dashboardHeader(
+#'       rightUi = bs4UserMenu(
+#'        name = "Divad Nojnarg", 
+#'        status = "primary",
+#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+#'        title = "bs4Dash",
+#'        subtitle = "Author", 
+#'        footer = p("The footer", class = "text-center"),
+#'        "This is the menu content."
+#'       )
+#'     ),
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(),
+#'     title = "bs4UserMenu"
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }
+#' 
+#' @export
+bs4UserMenu <- function(..., name = NULL, src = NULL, title = NULL,
+                        subtitle = NULL, footer = NULL,
+                        status = c("primary", "danger", "success", "warning", "info", "secondary")) {
+  
+  status <- match.arg(status)
+  
+  shiny::tags$li(
+    class = "nav-item dropdown user-menu",
+    shiny::tags$a(
+      href = "#",
+      class = "nav-link dropdown-toggle",
+      `data-toggle` = "dropdown",
+      `aria-expanded` = "false",
+      shiny::tags$img(
+        src = src,
+        class = "user-image img-circle elevation-2",
+        alt = "User Image"),
+      shiny::tags$span(class = "d-none d-md-inline", name)
+    ),
+    shiny::tags$ul(
+      class = "dropdown-menu dropdown-menu-lg dropdown-menu-right",
+      shiny::tags$li(
+        class = paste0("user-header bg-", status),
+        shiny::tags$img(
+          src = src,
+          class = "img-circle elevation-2",
+          alt = "User Image"),
+        shiny::tags$p(title, shiny::tags$small(subtitle))),
+      shiny::tags$li(class = "user-body", ...),
+      if(!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
+    )
+  )
 }

@@ -2133,3 +2133,124 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #   )
 #   
 # }#
+
+
+
+
+#' Create a Boostrap 4 ribbon
+#'
+#' Build a bootstrap 4 ribbon
+#'
+#' @param text Ribbon text.
+#' @param status Ribbon status: "primary", "danger", "success", "warning", "info" and 
+#' "secondary".
+#' @param size NULL by default: "lg" or "xl".
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(), 
+#'     sidebar = bs4DashSidebar(),
+#'     body = bs4DashBody(
+#'      fluidRow(
+#'       bs4Box(
+#'        width = 4,
+#'        title = "Normal ribbon",
+#'        bs4Ribbon(
+#'         text = "New",
+#'         status = "primary"
+#'        )
+#'       ),
+#'       bs4Box(
+#'        width = 4,
+#'        title = "Large ribbon",
+#'        bs4Ribbon(
+#'         text = "New",
+#'         status = "secondary",
+#'         size = "lg"
+#'        )
+#'       ),
+#'       bs4Box(
+#'        width = 4,
+#'        title = "XLarge ribbon",
+#'        bs4Ribbon(
+#'         text = "New",
+#'         status = "danger",
+#'         size = "xl"
+#'        )
+#'       )
+#'      )
+#'     ), 
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#' 
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4Ribbon <- function(text, status = c("primary", "danger", "success", "warning", "info", "secondary"),
+                      size = NULL) {
+  status <- match.arg(status)
+  ribbonCl <- paste0("ribbon bg-", status) 
+  ribbonWrapperCl <- "ribbon-wrapper"
+  if (!is.null(size)) {
+    ribbonWrapperCl <- paste0(ribbonWrapperCl, " ribbon-", size)
+    ribbonCl <- paste0(ribbonCl, " text-", size)
+  }
+  shiny::tags$div(
+    class = ribbonWrapperCl,
+    shiny::tags$div(class = ribbonCl, text)
+  )
+}
+
+
+
+
+#' Create a Boostrap 4 block quote
+#'
+#' Build a bootstrap 4 block quote
+#'
+#' @param ... Content.
+#' @param status Block status: "primary", "danger", "success", "warning", "info" and 
+#' "secondary" or any other supported colors. See \url{https://adminlte.io/themes/dev/AdminLTE/pages/UI/general.html}.
+#' 
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     navbar = bs4DashNavbar(), 
+#'     sidebar = bs4DashSidebar(),
+#'     body = bs4DashBody(
+#'      fluidRow(
+#'       bs4Quote("Blablabla", status = "indigo"),
+#'       bs4Quote("Blablabla", status = "danger"),
+#'       bs4Quote("Blablabla", status = "teal"),
+#'       bs4Quote("Blablabla", status = "orange"),
+#'       bs4Quote("Blablabla", status = "warning"),
+#'       bs4Quote("Blablabla", status = "fuchsia")
+#'      )
+#'     ), 
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#' 
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4Quote <- function(..., status) {
+  shiny::tags$blockquote(
+    class = paste0("quote-", status),
+    ...
+  )
+}

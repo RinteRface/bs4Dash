@@ -39,6 +39,7 @@ reference:
   contents:
   - '`bs4DropdownMenu`'
   - '`bs4DropdownMenuItem`'
+  - '`bs4UserMenu`'
     
 - title: Cards and boxes
   desc: Build cards and boxes
@@ -74,6 +75,7 @@ reference:
   - '`cardProfile`'
   - '`cardProfileItemList`'
   - '`cardProfileItem`'
+  - '`bs4Ribbon`'
   
 - title: Sortable UI
   desc: Sort elements such as cards
@@ -103,6 +105,7 @@ reference:
   - '`bs4ListGroupItem`'
   - '`bs4Loading`'
   - '`bs4ProgressBar`'
+  - '`bs4Quote`'
   - '`bs4Stars`'
   - '`bs4Table`'
   - '`bs4TableItem`'

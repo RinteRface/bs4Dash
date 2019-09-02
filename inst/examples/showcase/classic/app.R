@@ -8,18 +8,29 @@ shiny::shinyApp(
     navbar = bs4DashNavbar(
       status = "white",
       "I can write text in the navbar!",
-      rightUi = bs4DropdownMenu(
-        show = FALSE,
-        labelText = "!",
-        status = "danger",
-        src = "https://www.google.fr",
-        bs4DropdownMenuItem(
-          text = "message 1",
-          date = "today"
+      rightUi = tagList(
+        bs4DropdownMenu(
+          show = FALSE,
+          labelText = "!",
+          status = "danger",
+          src = "https://www.google.fr",
+          bs4DropdownMenuItem(
+            text = "message 1",
+            date = "today"
+          ),
+          bs4DropdownMenuItem(
+            text = "message 2",
+            date = "yesterday"
+          )
         ),
-        bs4DropdownMenuItem(
-          text = "message 2",
-          date = "yesterday"
+        bs4UserMenu(
+          name = "Divad Nojnarg", 
+          status = "primary",
+          src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+          title = "bs4Dash",
+          subtitle = "Author", 
+          footer = p("The footer", class = "text-center"),
+          "This is the menu content."
         )
       )
     ),

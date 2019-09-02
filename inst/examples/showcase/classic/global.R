@@ -510,11 +510,20 @@ boxes_tab <- bs4TabItem(
     bs4Box(
       height = "600px",
       title = "Box 1",
+      bs4Ribbon(
+        text = "Plot 1",
+        status = "success"
+      ),
       plotlyOutput("plot2")
     ),
     bs4Box(
       height = "600px",
       title = "Box 2",
+      bs4Ribbon(
+        text = "Plot 2",
+        status = "danger",
+        size = "xl"
+      ),
       plotlyOutput("plot3")
     )
   )
@@ -641,6 +650,19 @@ gallery_1_tab <- bs4TabItem(
           active = FALSE,
           src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
         )
+      )
+    )
+  ),
+  fluidRow(
+    bs4Card(
+      title = "bs4Quote",
+      fluidRow(
+        bs4Quote("Blablabla", status = "indigo"),
+        bs4Quote("Blablabla", status = "danger"),
+        bs4Quote("Blablabla", status = "teal"),
+        bs4Quote("Blablabla", status = "orange"),
+        bs4Quote("Blablabla", status = "warning"),
+        bs4Quote("Blablabla", status = "fuchsia")
       )
     )
   ),

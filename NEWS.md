@@ -2,6 +2,9 @@
 
 ## New features
 - add sidebar in `bs4Card()`
+- add `bs4UserMenu()` for `bs4DashNavbar()`
+- add `bs4Ribbon()`, a sort of enhanced label for cards or any content
+- add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
 - when btn_name is NULL in `bs4Jumbotron()`, do not show a button. Thanks @davidlvb

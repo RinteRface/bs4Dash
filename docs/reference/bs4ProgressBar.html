@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -109,6 +109,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">bs4Dash 0.5.0.9000</li>
     <li class="dropdown-header">bs4Dash 0.4.0</li>
     <li class="dropdown-header">bs4Dash 0.3.0</li>
     <li class="dropdown-header">bs4Dash 0.2.0</li>
@@ -153,7 +154,7 @@
 
     <pre class="usage"><span class='fu'>bs4ProgressBar</span>(<span class='no'>value</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"primary"</span>, <span class='st'>"warning"</span>, <span class='st'>"danger"</span>, <span class='st'>"info"</span>,
-  <span class='st'>"success"</span>), <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"80%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"40%"</span>)</pre>
+  <span class='st'>"success"</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,12 +184,8 @@
       <td><p>Progress bar status. "primary", "success", "warning", "danger" or "info".</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>Progress bar width (only if vertical is FALSE).</p></td>
-    </tr>
-    <tr>
-      <th>height</th>
-      <td><p>Progress bar height (only if vertical is TRUE).</p></td>
+      <th>size</th>
+      <td><p>Progress bar size. NULL, "sm", "xs" or "xxs".</p></td>
     </tr>
     </table>
     
@@ -212,14 +209,14 @@
         <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
           <span class='fu'>bs4ProgressBar</span>(
           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+          <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"xxs"</span>,
           <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
           <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"info"</span>
          ),
          <span class='fu'>bs4ProgressBar</span>(
-          <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+          <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>25</span>,
           <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-          <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"20%"</span>
+          <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>
          )
         ),
         <span class='fu'>bs4ProgressBar</span>(
@@ -231,8 +228,8 @@
          <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>100</span>,
          <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
          <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-         <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"80%"</span>
+         <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"sm"</span>,
+         <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>
         )
        )
      )
