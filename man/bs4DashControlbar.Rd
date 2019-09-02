@@ -22,7 +22,7 @@ dashboardControlbar(..., disable = FALSE, skin = "dark",
 
 \item{width}{Controlbar width. 250 px by default.}
 
-\item{slider}{Whether the sidebar should slide over the content or 
+\item{slide}{Whether the sidebar should slide over the content or 
 push the content to make space for itself.}
 }
 \description{
