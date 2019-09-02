@@ -1089,6 +1089,7 @@
 
         this._parent.children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
           _this._parent.addClass(ClassName.COLLAPSED);
+          _this._parent.trigger("hidden.bs.collapse");
         });
 
         this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon).addClass(this._settings.expandIcon).removeClass(this._settings.collapseIcon);
@@ -1102,6 +1103,7 @@
         var _this2 = this;
 
         this._parent.children(Selector.CARD_BODY + ", " + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+          _this2._parent.trigger("shown.bs.collapse");
           _this2._parent.removeClass(ClassName.COLLAPSED);
         });
 
@@ -1139,6 +1141,9 @@
         }).delay(150).queue(function () {
           $(this).addClass(ClassName.MAXIMIZED);
           $('html').addClass(ClassName.MAXIMIZED);
+          
+          // tells shiny to resize the content
+          $(this).trigger('shown');
 
           if ($(this).hasClass(ClassName.COLLAPSED)) {
             $(this).addClass(ClassName.WAS_COLLAPSED);
@@ -1162,6 +1167,9 @@
             'height': 'inherit',
             'width': 'inherit'
           });
+          
+          // tells shiny to resize the content
+          $(this).trigger('shown');
 
           if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
             $(this).removeClass(ClassName.WAS_COLLAPSED);
@@ -1242,7 +1250,7 @@
       if (event) {
         event.preventDefault();
       }
-
+      
       CardWidget._jQueryInterface.call($(this), 'toggleMaximize');
     });
     /**

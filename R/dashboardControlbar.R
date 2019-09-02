@@ -7,7 +7,7 @@
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
-#' @param slider Whether the sidebar should slide over the content or 
+#' @param slide Whether the sidebar should slide over the content or 
 #' push the content to make space for itself.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -30,23 +30,23 @@ bs4DashControlbar <- function(..., disable = FALSE, skin = "dark",
   
   # change controlbar width
   shiny::tagList(
-    #shiny::singleton(
-    #  shiny::tags$head(
-    #    shiny::tags$style(
-    #      shiny::HTML(
-    #        paste0(
-    #          ".control-sidebar, .control-sidebar:before {
-    #            width: ", width, "px;
-    #            right: ", -width, "px;
-    #            bottom: 0;
-    #            transition: right 0.3s ease-in-out;
-    #          }
-    #          "
-    #        )
-    #      )
-    #    )
-    #  )
-    #),
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".control-sidebar, .control-sidebar:before {
+                width: ", width, "px;
+                right: ", -width, "px;
+                bottom: 0;
+                transition: right 0.3s ease-in-out;
+              }
+              "
+            )
+          )
+        )
+      )
+    ),
     controlbarTag
   )
   

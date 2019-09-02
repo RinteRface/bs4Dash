@@ -14,7 +14,6 @@ $(function() {
   
   // controlbar slide
   controlbarSlide = ($(".control-sidebar").attr("data-slide"));
-  console.log(controlbarSlide);
   if (controlbarSlide) {
     $("#controlbar-toggle").attr('data-controlsidebar-slide', controlbarSlide);
   }
