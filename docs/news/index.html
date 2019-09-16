@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -106,6 +106,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">bs4Dash 0.5.0.9000</li>
     <li class="dropdown-header">bs4Dash 0.4.0</li>
     <li class="dropdown-header">bs4Dash 0.3.0</li>
     <li class="dropdown-header">bs4Dash 0.2.0</li>
@@ -141,9 +142,30 @@
       <small>Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="bs4dash-0-5-0-9000" class="section level1">
+<h1 class="page-header">
+<a href="#bs4dash-0-5-0-9000" class="anchor"></a>bs4Dash 0.5.0.9000<small> Unreleased </small>
+</h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>add sidebar in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+</li>
+</ul>
+</div>
+<div id="bug-fix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
+<ul>
+<li>when btn_name is NULL in <code><a href="../reference/bs4Jumbotron.html">bs4Jumbotron()</a></code>, do not show a button. Thanks <a href='https://github.com/davidlvb'>@davidlvb</a></li>
+<li>fix <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>: remove height and width parameters. Add size parameter. This fix the progress behaviour which was wrong</li>
+</ul>
+</div>
+</div>
     <div id="bs4dash-0-4-0" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-4-0" class="anchor"></a>bs4Dash 0.4.0<small> Unreleased </small>
+<a href="#bs4dash-0-4-0" class="anchor"></a>bs4Dash 0.4.0<small> 2019-07-25 </small>
 </h1>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -188,9 +210,9 @@
 <li>add <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> to the gallery</li>
 </ul>
 </div>
-<div id="bug-fix" class="section level2">
+<div id="bug-fix-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
+<a href="#bug-fix-1" class="anchor"></a>Bug Fix</h2>
 <ul>
 <li>fix overflow-y issue in <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>
 </li>
@@ -264,9 +286,9 @@
 <li>add background and header colours like cards to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. PR by <a href='https://github.com/statnmap'>@statnmap</a></li>
 </ul>
 </div>
-<div id="bug-fix-1" class="section level2">
+<div id="bug-fix-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix-1" class="anchor"></a>Bug fix</h2>
+<a href="#bug-fix-2" class="anchor"></a>Bug fix</h2>
 <ul>
 <li>Fix icon rendering issue due to a change in shiny 1.2.0 dependencies (font awesome)</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/19'>#19</a>: Whenever a <code><a href="../reference/bs4Card.html">bs4Card()</a></code> starts on a collapsed state, the content is displayed when uncollapsed is pressed. Thanks <a href='https://github.com/stanmap'>@stanmap</a> for the remark. (See <a href="https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f">here</a> for a similar issue)</li>
@@ -326,6 +348,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bs4dash-0-5-0-9000">0.5.0.9000</a></li>
         <li><a href="#bs4dash-0-4-0">0.4.0</a></li>
         <li><a href="#bs4dash-0-3-0">0.3.0</a></li>
         <li><a href="#bs4dash-0-2-0">0.2.0</a></li>

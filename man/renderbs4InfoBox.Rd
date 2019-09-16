@@ -8,7 +8,7 @@ See \link{renderbs4InfoBox} for full details}
 renderInfoBox(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
-\item{expr}{An expression that returns a Shiny tag object, \code{\link[=HTML]{HTML()}},
+\item{expr}{An expression that returns a Shiny tag object, \code{\link{HTML}},
 or a list of such objects.}
 
 \item{env}{The environment in which to evaluate \code{expr}.}
