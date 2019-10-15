@@ -52,7 +52,13 @@ addDeps <- function(x, theme) {
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
       src = c(file = system.file("bs4Dash-0.2.0", package = "bs4Dash")),
-      script = c(bs4Dash_js, "leftSidebar.js", "navbar.js", "update-tabs.js"),
+      script = c(
+        bs4Dash_js, 
+        "leftSidebar.js", 
+        "navbar.js", 
+        "update-tabs.js", 
+        "controlbar.js"
+      ),
       stylesheet = bs4Dash_css
     ),
     # fontawesome

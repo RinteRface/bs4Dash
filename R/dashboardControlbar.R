@@ -3,23 +3,24 @@
 #' Build an adminLTE3 dashboard right sidebar
 #'
 #' @param ... Any UI element.
+#' @param inputId To acces the current state of the controlbar. Open is TRUE, closed
+#' is FALSE. NULL by default.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
-#' @param slide Whether the sidebar should slide over the content or 
-#' push the content to make space for itself.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashControlbar <- function(..., disable = FALSE, skin = "dark", 
-                              title = NULL, width = 250, slide = TRUE) {
+bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
+                              title = NULL, width = 250) {
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
+    id = inputId,
     `data-show` = if (disable) "false" else "true",
-    `data-slide` = as.character(tolower(slide)),
+    `data-slide` = "true",
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
@@ -72,3 +73,20 @@ bs4DashControlbarItem <- bs4TabPanel
 #' @rdname updatebs4TabSetPanel
 #' @export
 updatebs4ControlbarMenu <- updatebs4TabSetPanel
+
+
+
+
+#' Function to programmatically toggle the state of the controlbar
+#'
+#' @param inputId Controlbar id.
+#' @param session Shiny ession object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#' 
+#' }
+updatebs4Controlbar <- function(inputId, session) {
+  session$sendInputMessage(inputId, NULL)
+}

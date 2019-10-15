@@ -5,14 +5,17 @@
 \alias{dashboardControlbar}
 \title{Create a Boostrap 4 dashboard right sidebar}
 \usage{
-bs4DashControlbar(..., disable = FALSE, skin = "dark", title = NULL,
-  width = 250, slide = TRUE)
+bs4DashControlbar(..., inputId = NULL, disable = FALSE,
+  skin = "dark", title = NULL, width = 250)
 
-dashboardControlbar(..., disable = FALSE, skin = "dark",
-  title = NULL, width = 250, slide = TRUE)
+dashboardControlbar(..., inputId = NULL, disable = FALSE,
+  skin = "dark", title = NULL, width = 250)
 }
 \arguments{
 \item{...}{Any UI element.}
+
+\item{inputId}{To acces the current state of the controlbar. Open is TRUE, closed
+is FALSE. NULL by default.}
 
 \item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 
@@ -21,9 +24,6 @@ dashboardControlbar(..., disable = FALSE, skin = "dark",
 \item{title}{Controlbar title.}
 
 \item{width}{Controlbar width. 250 px by default.}
-
-\item{slide}{Whether the sidebar should slide over the content or 
-push the content to make space for itself.}
 }
 \description{
 Build an adminLTE3 dashboard right sidebar
