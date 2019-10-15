@@ -45,6 +45,9 @@ shiny::shinyApp(
       opacity = 0.8,
       bs4SidebarMenu(
         id = "current_tab",
+        flat = TRUE,
+        compact = FALSE,
+        child_indent = TRUE,
         bs4SidebarHeader("Cards"),
         bs4SidebarMenuItem(
           "Basic cards",

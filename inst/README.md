@@ -889,7 +889,9 @@ adminlte.css file:
 ## Tell shiny to resize the content of the box when click on maximize
 AdminLTE3 introduces a nice feature called "maximize". However, shiny does not
 know when the content needs to be resized after toggle maximize.
-We need to add the following code `$(this).trigger('shown')` to each prototype in adminlte.js:
+We need to add the following code `$(this).trigger('shown')` to each prototype in adminlte.js. 
+Moreover, so that the input binding works well, we have to remove the delay function for
+maximize and minimize events.
 
 ```javascript
 _proto.maximize = function maximize() {

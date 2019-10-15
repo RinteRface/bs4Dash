@@ -13,7 +13,7 @@ appendDependencies <- function(x, value) {
 addDeps <- function(x, theme) {
   
   # put all necessary ressources here
-  adminLTE3_js <- "adminlte.min.js"
+  adminLTE3_js <- "adminlte.js"
   adminLTE3_css <- "adminlte.min.css"
   bs4Dash_js <- "bs4Dash.js"
   bs4Dash_css <- "bs4Dash.css"
@@ -57,7 +57,8 @@ addDeps <- function(x, theme) {
         "leftSidebar.js", 
         "navbar.js", 
         "update-tabs.js", 
-        "controlbar.js"
+        "controlbar.js",
+        "cards.js"
       ),
       stylesheet = bs4Dash_css
     ),

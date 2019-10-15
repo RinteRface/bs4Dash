@@ -13,7 +13,6 @@
 #' @param src Sidebar brand image.
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar opacity. From 0 to 1. 0.8 by default.
-# #' @param width Sidebar width. 250 px by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -116,6 +115,9 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 #'   used for a Shiny input value, and it will report which tab is selected. For
 #'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
 #'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
+#' @param flat Whether sidebar items should have a flat design. FALSE by default.
+#' @param compact Whether items should be compacted. FALSE by default.
+#' @param child_indent Whether to indent children. TRUE by default
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -180,10 +182,17 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 #' }
 #'
 #' @export
-bs4SidebarMenu <- function(..., id = NULL) {
+bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
+                           compact = FALSE, child_indent = TRUE) {
+  
+  menuCl <- "nav nav-pills nav-sidebar flex-column"
+  if (flat) menuCl <- paste0(menuCl, " nav-flat")
+  if (compact) menuCl <- paste0(menuCl, " nav-compact")
+  if (child_indent) menuCl <- paste0(menuCl, " nav-child-indent")
+  
   # menu Tag
   shiny::tags$ul(
-    class = "nav nav-pills nav-sidebar flex-column",
+    class = menuCl,
     `data-widget` = "treeview",
     id = "mymenu",
     role = "menu",

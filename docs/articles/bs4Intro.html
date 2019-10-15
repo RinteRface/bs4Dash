@@ -109,7 +109,7 @@
       <h1>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-09-02</h4>
+            <h4 class="date">2019-10-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Intro.Rmd"><code>vignettes/bs4Intro.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Intro.Rmd</code></div>
@@ -140,7 +140,7 @@
 <a class="sourceLine" id="cb1-15" data-line-number="15">  ),</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
 <a class="sourceLine" id="cb1-17" data-line-number="17">)</a></code></pre></div>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_basicPage.png"><br></p>
+<p><img src="figures/bs4Dash_basicPage.png"><br></p>
 <p>The <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> takes optional argument such as <em>old_school</em>, which is FALSE by default. Whenever it is TRUE, the page will have a fancy old design. The <em>sidebar_collapsed</em> argument enables to control how the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> is displayed when the app starts. Similarly, <em>controlbar_collapsed</em> allow you to decide whether to display the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. Finally, you can also give a <em>title</em> to the page.</p>
 <p>Now, it is time to fill this template!</p>
 </div>
@@ -177,7 +177,7 @@
 <a class="sourceLine" id="cb2-27" data-line-number="27">)</a></code></pre></div>
 <p>A lot of options are available: * two skins are available, namely “light” or “dark”. I recommand using the “light” one. * the title is only displayed when the sidebar is uncollapsed! * the sidebar status determins which color <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code> have. There are 5 different colors: “primary”, “danger”, “warning”, “success”, “info”. * brandColor: bakground color of the sidebar brand. I recommand using the same color as that chosen for status. * src: sidebar brand image. SVGs, JPEG, PNG accepted.</p>
 <p>I do not recommand to change the <em>elevation</em> nor <em>opacity</em>, altough possible.</p>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_sidebar.png"><br></p>
+<p><img src="figures/bs4Dash_sidebar.png"><br></p>
 </div>
 <div id="navbar-setup" class="section level2">
 <h2 class="hasAnchor">
@@ -211,7 +211,7 @@
 <a class="sourceLine" id="cb3-26" data-line-number="26">   )</a>
 <a class="sourceLine" id="cb3-27" data-line-number="27"> )</a>
 <a class="sourceLine" id="cb3-28" data-line-number="28">)</a></code></pre></div>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_navbar.png"><br></p>
+<p><img src="figures/bs4Dash_navbar.png"><br></p>
 <p><code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> allow you to change the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> toggle icon, as well as that for the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. Even though available, I do not recommand using the status option. 3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a <code>bs4DropdownMenu</code> in the leftUI slot, you better have to change the <em>align</em> argument to “left”, otherwise, the dropdown will open in the sidebar, which is not elegant. You can insert any content between the leftUI and rightUI slots. However, be careful not to overload the navbar.</p>
 </div>
 <div id="right-sidebar-setup" class="section level2">
@@ -241,7 +241,7 @@
 <a class="sourceLine" id="cb4-21" data-line-number="21">   )</a>
 <a class="sourceLine" id="cb4-22" data-line-number="22"> )</a>
 <a class="sourceLine" id="cb4-23" data-line-number="23">)</a></code></pre></div>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_controlbar.png"><br></p>
+<p><img src="figures/bs4Dash_controlbar.png"><br></p>
 <p>I also advise the user not to add to many elements inside the controlbar. By default, the controlbar covers the dashboard body, when uncollapsed. A future option will enable the user to push the body content instead.</p>
 </div>
 <div id="footer-setup" class="section level2">
@@ -308,7 +308,7 @@
 <a class="sourceLine" id="cb6-45" data-line-number="45">   )</a>
 <a class="sourceLine" id="cb6-46" data-line-number="46"> )</a>
 <a class="sourceLine" id="cb6-47" data-line-number="47">)</a></code></pre></div>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_body.png"><br></p>
+<p><img src="figures/bs4Dash_body.png"><br></p>
 <p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">bs4DashBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4TabItems.html">bs4TabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4TabItem.html">bs4TabItem()</a></code>. Inportantly, the <em>tabName</em> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for shinydashboard. Therefore, users should not be lost.</p>
 </div>
 <div id="wrap-up" class="section level2">
@@ -461,7 +461,7 @@
 <a class="sourceLine" id="cb7-143" data-line-number="143">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
 <a class="sourceLine" id="cb7-144" data-line-number="144">)</a></code></pre></div>
 </details><p><br></p>
-<p><img src="../../../../../OneDrive%20-%20Novartis%20Pharma%20AG/Desktop/RinteRface/bs4Dash/vignettes/figures/bs4Dash_wrapup.png"><br></p>
+<p><img src="figures/bs4Dash_wrapup.png"><br></p>
 <p>Advanced shiny user would probably design shiny modules to generate this page, which I really encourage. However, how to deal with modules is not the purpose of this article.</p>
 </div>
   </div>

@@ -5,9 +5,11 @@
 \alias{sidebarMenu}
 \title{Create a Boostrap 4 dashboard main sidebar menu}
 \usage{
-bs4SidebarMenu(..., id = NULL)
+bs4SidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE,
+  child_indent = TRUE)
 
-sidebarMenu(..., id = NULL)
+sidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE,
+  child_indent = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.}
@@ -16,6 +18,12 @@ sidebarMenu(..., id = NULL)
 used for a Shiny input value, and it will report which tab is selected. For
 example, if \code{id="tabs"}, then \code{input$tabs} will be the
 \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.}
+
+\item{flat}{Whether sidebar items should have a flat design. FALSE by default.}
+
+\item{compact}{Whether items should be compacted. FALSE by default.}
+
+\item{child_indent}{Whether to indent children. TRUE by default}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu

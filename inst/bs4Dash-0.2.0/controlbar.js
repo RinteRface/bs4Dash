@@ -9,18 +9,22 @@ $.extend(controlbarBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var open = $("body").hasClass("control-sidebar-slide-open");
-    return open;
+    return $("body").hasClass("control-sidebar-slide-open");
   },
 
-  // see updateF7Tabs
+  // see updatebs4Controlbar
   receiveMessage: function(el, data) {
     $("#controlbar-toggle").click();
   },
 
   subscribe: function(el, callback) {
-    $("#controlbar-toggle").on("expanded.lte.controlsidebar collapsed.lte.controlsidebar", function(e) {
-      callback();
+    $("#controlbar-toggle").on("collapsed.lte.controlsidebar expanded.lte.controlsidebar", function(e) {
+      // add a delay so that Shiny get the input value 
+      // after the AdminLTE3 animation is finished!
+      setTimeout(
+        function() {
+          callback();
+        }, 10);
     });
   },
 

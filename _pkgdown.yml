@@ -15,6 +15,8 @@ reference:
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
+  - '`updatebs4Card`'
+  - '`updatebs4Controlbar`'
   - '`updatebs4ControlbarMenu`'
   - '`updatebs4TabItems`'
   - '`updatebs4TabSetPanel`'

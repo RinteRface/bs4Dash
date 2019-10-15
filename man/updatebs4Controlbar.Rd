@@ -16,6 +16,41 @@ Function to programmatically toggle the state of the controlbar
 }
 \examples{
 if (interactive()) {
-
+ library(shiny)
+ library(bs4Dash)
+ 
+ shiny::shinyApp(
+   ui = dashboardPage(
+     controlbar_collapsed = FALSE,
+     controlbar_overlay = TRUE,
+     navbar = dashboardHeader(),
+     sidebar = dashboardSidebar(),
+     body = dashboardBody(
+       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar")
+     ),
+     controlbar = dashboardControlbar(inputId = "controlbar")
+   ),
+   server = function(input, output, session) {
+     
+     observeEvent(input$controlbar, {
+       if (input$controlbar) {
+         showModal(modalDialog(
+           title = "Alert",
+           "The controlbar is opened.",
+           easyClose = TRUE,
+           footer = NULL
+         ))
+       }
+     })
+     
+     observeEvent(input$controlbarToggle, {
+       updatebs4Controlbar(inputId = "controlbar", session = session)
+     })
+     
+     observe({
+       print(input$controlbar)
+     })
+   }
+ )
 }
 }
