@@ -8,14 +8,14 @@
 bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
   controlbar = NULL, footer = NULL, title = NULL,
   old_school = FALSE, sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE, controlbar_overlay = FALSE,
+  controlbar_collapsed = TRUE, controlbar_overlay = TRUE,
   enable_preloader = FALSE, loading_duration = 2,
   loading_background = "#1E90FF")
 
 dashboardPage(navbar = NULL, sidebar = NULL, body = NULL,
   controlbar = NULL, footer = NULL, title = NULL,
   old_school = FALSE, sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE, controlbar_overlay = FALSE,
+  controlbar_collapsed = TRUE, controlbar_overlay = TRUE,
   enable_preloader = FALSE, loading_duration = 2,
   loading_background = "#1E90FF")
 }
@@ -39,7 +39,7 @@ by default.}
 
 \item{controlbar_collapsed}{Whether the sidebar is collapsed of not at start. TRUE by default.}
 
-\item{controlbar_overlay}{Whether the sidebar pushes the content away instead of overlaying the content.
+\item{controlbar_overlay}{Whether the sidebar covers the content when expanded.
 Default to TRUE.}
 
 \item{enable_preloader}{Whether to enable a page loader. FALSE by default.}

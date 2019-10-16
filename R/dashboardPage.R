@@ -12,7 +12,7 @@
 #' by default.
 #' @param sidebar_collapsed Whether the sidebar is collapsed of not at start. FALSE by default.
 #' @param controlbar_collapsed Whether the sidebar is collapsed of not at start. TRUE by default.
-#' @param controlbar_overlay Whether the sidebar pushes the content away instead of overlaying the content.
+#' @param controlbar_overlay Whether the sidebar covers the content when expanded.
 #' Default to TRUE.
 #' @param enable_preloader Whether to enable a page loader. FALSE by default.
 #' @param loading_duration Loader duration in seconds. 2s by default.
@@ -44,7 +44,7 @@
 bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, 
                         controlbar = NULL, footer = NULL, title = NULL,
                         old_school = FALSE, sidebar_collapsed = FALSE,
-                        controlbar_collapsed = TRUE, controlbar_overlay = FALSE, 
+                        controlbar_collapsed = TRUE, controlbar_overlay = TRUE, 
                         enable_preloader = FALSE, loading_duration = 2, 
                         loading_background = "#1E90FF"){
   
@@ -55,7 +55,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
     if (!controlbar_collapsed) {
       sidebar_cl <- paste0(sidebar_cl, " control-sidebar-slide-open")
     }
-    if (controlbar_overlay) {
+    if (!controlbar_overlay) {
       sidebar_cl <- paste0(sidebar_cl, " control-sidebar-push-slide")
     } 
   }

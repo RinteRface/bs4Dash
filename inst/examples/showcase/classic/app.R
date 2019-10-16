@@ -5,7 +5,7 @@ shiny::shinyApp(
     sidebar_collapsed = TRUE,
     enable_preloader = TRUE,
     loading_duration = 3,
-    controlbar_overlay = TRUE,
+    controlbar_overlay = FALSE,
     navbar = bs4DashNavbar(
       status = "white",
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),

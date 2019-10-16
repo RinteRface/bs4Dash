@@ -2,11 +2,12 @@
 
 ## Major Changes
 - upgrade AdminLTE3 version to rc4
-- add `bs4Controlbar` input binding to indicate the state (collapse: FALSE, open: TRUE)
-- add `bs4Card` input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, ...)
+- add `bs4Controlbar()` input binding to indicate the state (collapse: FALSE, open: TRUE)
+- add `bs4Card()` input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, ...)
 
 
 ## New features
+- `bs4DashPage()` has options to change the `bs4Controlbar()` behavior when it expands (see controlbar_overlay)
 - `bs4SidebarMenu()` has 3 new parameters: flat (design effect), child_indent and compact
 - add sidebar in `bs4Card()`
 - add `bs4UserMenu()` for `bs4DashNavbar()`
