@@ -5,9 +5,10 @@ shiny::shinyApp(
     sidebar_collapsed = TRUE,
     enable_preloader = TRUE,
     loading_duration = 3,
+    controlbar_overlay = TRUE,
     navbar = bs4DashNavbar(
       status = "white",
-      "I can write text in the navbar!",
+      actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
         bs4DropdownMenu(
           show = FALSE,
@@ -45,7 +46,7 @@ shiny::shinyApp(
       opacity = 0.8,
       bs4SidebarMenu(
         id = "current_tab",
-        flat = TRUE,
+        flat = FALSE,
         compact = FALSE,
         child_indent = TRUE,
         bs4SidebarHeader("Cards"),
@@ -53,6 +54,11 @@ shiny::shinyApp(
           "Basic cards",
           tabName = "cards",
           icon = "sliders"
+        ),
+        bs4SidebarMenuItem(
+          "Cards API",
+          tabName = "cardsAPI",
+          icon = "laptop-code"
         ),
         bs4SidebarMenuItem(
           "Social cards",
@@ -124,6 +130,7 @@ shiny::shinyApp(
     body = bs4DashBody(
       bs4TabItems(
         basic_cards_tab,
+        cards_api_tab,
         social_cards_tab,
         tab_cards_tab,
         sortable_cards_tab,
@@ -135,6 +142,7 @@ shiny::shinyApp(
       )
     ),
     controlbar = bs4DashControlbar(
+      inputId = "controlbar",
       skin = "light",
       title = "My right sidebar",
       setSliderColor(sliderId = 1, "black"),
@@ -167,7 +175,7 @@ shiny::shinyApp(
     ),
     title = "bs4Dash Showcase"
   ),
-  server = function(input, output) {
+  server = function(input, output, session) {
     
     output$bigPlot <- renderPlot({
       hist(rnorm(input$bigObs))
@@ -248,6 +256,46 @@ shiny::shinyApp(
           footer = NULL
         ))
       }
+    })
+    
+    
+    output$cardAPIPlot <- renderPlot({
+      if (input$mycard$maximized) {
+        hist(rnorm(input$obsAPI)) 
+      }
+    })
+    
+    observeEvent(input$triggerCard, {
+      updatebs4Card(inputId = "mycard", session = session, action = input$cardAction)
+    })
+    
+    observe({
+      print(
+        list(
+          collapsed = input$mycard$collapsed,
+          maximized = input$mycard$maximized,
+          visible = input$mycard$visible
+        )
+      )
+    })
+    
+    observeEvent(input$controlbar, {
+      if (input$controlbar) {
+        showModal(modalDialog(
+          title = "Alert",
+          "The controlbar is opened.",
+          easyClose = TRUE,
+          footer = NULL
+        ))
+      }
+    })
+    
+    observeEvent(input$controlbarToggle, {
+      updatebs4Controlbar(inputId = "controlbar", session = session)
+    })
+    
+    observe({
+      print(input$controlbar)
     })
     
   }

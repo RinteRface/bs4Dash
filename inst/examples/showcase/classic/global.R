@@ -84,6 +84,38 @@ basic_cards_tab <- bs4TabItem(
   )
 )
 
+#' card API
+cards_api_tab <- bs4TabItem(
+  tabName = "cardsAPI",
+  actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
+  selectInput(
+    inputId = "cardAction", 
+    label = "Card action", 
+    choices = c(
+      "remove",
+      "toggle",
+      "toggleMaximize",
+      "restore"
+    )
+  ),
+  
+  bs4Card(
+    inputId = "mycard",
+    title = "The plot is visible when you maximize the card", 
+    closable = TRUE, 
+    maximizable = TRUE,
+    width = 12,
+    status = "warning", 
+    solidHeader = FALSE, 
+    collapsible = TRUE,
+    sliderInput("obsAPI", "Number of observations:",
+                min = 0, max = 1000, value = 500
+    ),
+    plotOutput("cardAPIPlot")
+  )
+)
+
+
 #' social_cards_tab ----
 social_cards_tab <- bs4TabItem(
   tabName = "socialcards",

@@ -2,6 +2,32 @@
 
 Here are some advises to make adminLTE3 working better with shiny.
 
+## Tweaks to fix dropdown link color issue in dark, info, danger, success and primary modes
+
+For instance, for primary cards, we have:
+
+```css
+.card-primary:not(.card-outline) .card-header,		 
+.card-primary:not(.card-outline) .card-header a { 
+   color: #ffffff;
+ }
+```
+
+Remove `.card-primary:not(.card-outline) .card-header a`.
+
+## User post bottom border issue
+
+```css
+.post {
+  /* border-bottom: 1px solid #adb5bd; */
+  color: #666;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+```
+
+Comment out the first line. This feature does not play well with the collapse option.
+
 ## Tweaks to support shinyFiles
 Since shinyFiles is based on Boostrap 3, one may expect conflicts. Here
 is a css tweak to apply to fix modals:

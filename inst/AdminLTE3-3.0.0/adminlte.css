@@ -15339,8 +15339,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-primary:not(.card-outline) > .card-header,
-.card-primary:not(.card-outline) > .card-header a {
+.card-primary:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -15444,8 +15443,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-secondary:not(.card-outline) > .card-header,
-.card-secondary:not(.card-outline) > .card-header a {
+.card-secondary:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -15543,8 +15541,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-success:not(.card-outline) > .card-header,
-.card-success:not(.card-outline) > .card-header a {
+.card-success:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -15648,8 +15645,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-info:not(.card-outline) > .card-header,
-.card-info:not(.card-outline) > .card-header a {
+.card-info:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -15858,8 +15854,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-danger:not(.card-outline) > .card-header,
-.card-danger:not(.card-outline) > .card-header a {
+.card-danger:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -16068,8 +16063,7 @@ html.maximized-card {
   border-bottom: 0;
 }
 
-.card-dark:not(.card-outline) > .card-header,
-.card-dark:not(.card-outline) > .card-header a {
+.card-dark:not(.card-outline) > .card-header {
   color: #ffffff;
 }
 
@@ -22673,7 +22667,7 @@ html.maximized-card {
 }
 
 .post {
-  border-bottom: 1px solid #adb5bd;
+  /* border-bottom: 1px solid #adb5bd; */
   color: #666;
   margin-bottom: 15px;
   padding-bottom: 15px;
