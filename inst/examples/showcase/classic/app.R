@@ -91,6 +91,15 @@ shiny::shinyApp(
           tabName = "valueboxes",
           icon = "suitcase"
         ),
+        
+        bs4SidebarHeader("Colors"),
+        
+        bs4SidebarMenuItem(
+          "Colors",
+          tabName = "colors",
+          icon = "tint"
+        ),
+        
         bs4SidebarHeader("BS4 gallery"),
         bs4SidebarMenuItem(
           text = "Galleries",
@@ -137,6 +146,7 @@ shiny::shinyApp(
         statsboxes_tab,
         boxes_tab,
         value_boxes_tab,
+        colors_tab,
         gallery_1_tab,
         gallery_2_tab
       )

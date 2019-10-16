@@ -5,6 +5,29 @@ library(bs4Dash)
 library(plotly)
 library(echarts4r)
 
+# color statuses
+statusColors <- c(
+  "navy",
+  "gray-dark",
+  "gray",
+  "secondary",
+  "indigo",
+  "purple",
+  "primary",
+  "info",
+  "success",
+  "olive",
+  "teal",
+  "lime",
+  "warning",
+  "orange",
+  "danger",
+  "fuchsia",
+  "maroon",
+  "pink",
+  "light"
+)
+
 # river charts 
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
 
@@ -973,4 +996,20 @@ gallery_2_tab <- bs4TabItem(
       )
     )
   )
+)
+
+# color_tab ----
+colors_tab <- bs4TabItem(
+  tabName = "colors",
+  lapply(seq_along(statusColors), function(i) {
+    fluidRow(
+      bs4Card(
+        status = statusColors[i], 
+        title = paste(statusColors[i], "card"),
+        width = 12,
+        closable = FALSE,
+        collapsible = FALSE
+      )
+    )
+  })
 )
