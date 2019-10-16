@@ -12,6 +12,8 @@
 
 
 ## New features
+- by default, `bs4DashSidebar` has a fixed layout. This prevent from not seeing sidebar items
+if the body contains too many elements
 - `bs4DashPage()` has options to change the `bs4Controlbar()` behavior when it expands (see controlbar_overlay)
 - `bs4SidebarMenu()` has 3 new parameters: flat (design effect), child_indent and compact
 - add sidebar in `bs4Card()`
@@ -20,6 +22,8 @@
 - add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
+- rework `bs4DashBody()` so that when no element is in the sidebar and no tabItems
+are in the body, margin between the sidebar, the controlbar is not 0
 - when btn_name is NULL in `bs4Jumbotron()`, do not show a button. Thanks @davidlvb
 - fix `bs4ProgressBar()`: remove height and width parameters. Add size parameter. This
 fix the progress behaviour which was wrong

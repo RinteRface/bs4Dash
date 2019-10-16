@@ -24,7 +24,9 @@ $.extend(cardBinding, {
   // see updatebs4Card
   receiveMessage: function(el, data) {
     if (data != "restore") {
+      if ($(el).css('display') != 'none') {
         $(el).CardWidget(data);  
+      }
     } else {
         $(el).show();
         // this is needed so that the last event handler is considered

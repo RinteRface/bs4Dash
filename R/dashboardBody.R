@@ -10,7 +10,13 @@
 bs4DashBody <- function(...) {
   shiny::tags$div(
     class = "content-wrapper",
-    ...
+    shiny::tags$section(
+      class = "content", 
+      shiny::tags$div(
+        class = "container-fluid", 
+        ...
+      )
+    )
   )
 }
 

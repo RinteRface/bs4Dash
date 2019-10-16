@@ -160,6 +160,7 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>by default, <code>bs4DashSidebar</code> has a fixed layout. This prevent from not seeing sidebar items if the body contains too many elements</li>
 <li>
 <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has options to change the <code>bs4Controlbar()</code> behavior when it expands (see controlbar_overlay)</li>
 <li>
@@ -176,6 +177,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>rework <code><a href="../reference/bs4DashBody.html">bs4DashBody()</a></code> so that when no element is in the sidebar and no tabItems are in the body, margin between the sidebar, the controlbar is not 0</li>
 <li>when btn_name is NULL in <code><a href="../reference/bs4Jumbotron.html">bs4Jumbotron()</a></code>, do not show a button. Thanks <a href='https://github.com/davidlvb'>@davidlvb</a></li>
 <li>fix <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>: remove height and width parameters. Add size parameter. This fix the progress behaviour which was wrong</li>
 </ul>

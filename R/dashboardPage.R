@@ -119,7 +119,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
     addDeps(
       theme = old_school,
       shiny::tags$body(
-        class = paste0("hold-transition sidebar-mini ", sidebar_cl),
+        class = paste0("layout-fixed sidebar-mini ", sidebar_cl),
         
         # set up a time-out for the preloader
         # The body content disappears first,
