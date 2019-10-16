@@ -3,6 +3,7 @@
 #' Build an adminLTE3 dashboard main sidebar
 #'
 #' @param ... Slot for \link{bs4SidebarMenu}.
+#' @param inputId Recover the state of the sidebar.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param title Sidebar title.
 #' @param skin Sidebar skin. "dark" or "light"
@@ -17,9 +18,10 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", status = "primary",
-                                brandColor = NULL, url = NULL, src = NULL,
-                                elevation = 4, opacity = .8) {
+bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
+                           title = NULL, skin = "dark", status = "primary",
+                           brandColor = NULL, url = NULL, src = NULL,
+                           elevation = 4, opacity = .8) {
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -45,6 +47,7 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
   )
 
   sidebarTag <- shiny::tags$aside(
+    id = inputId,
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation
@@ -103,6 +106,58 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
   #)
   
 }
+
+
+
+
+#' Function to programmatically toggle the state of the sidebar
+#'
+#' @param inputId Sidebar id.
+#' @param session Shiny session object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      controlbar_collapsed = FALSE,
+#'      controlbar_overlay = TRUE,
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(inputId = "sidebar"),
+#'      body = dashboardBody(
+#'        actionButton(inputId = "controlbarToggle", label = "Toggle Sidebar")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      
+#'      observeEvent(input$sidebar, {
+#'        if (input$sidebar) {
+#'          showModal(modalDialog(
+#'            title = "Alert",
+#'            "The sidebar is opened.",
+#'            easyClose = TRUE,
+#'            footer = NULL
+#'          ))
+#'        }
+#'      })
+#'      
+#'      observeEvent(input$controlbarToggle, {
+#'        updatebs4Sidebar(inputId = "sidebar", session = session)
+#'      })
+#'      
+#'      observe({
+#'        print(input$sidebar)
+#'      })
+#'    }
+#'  )
+#' }
+updatebs4Sidebar <- function(inputId, session) {
+  session$sendInputMessage(inputId, NULL)
+}
+
 
 
 

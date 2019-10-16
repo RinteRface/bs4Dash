@@ -9,7 +9,7 @@ updatebs4Controlbar(inputId, session)
 \arguments{
 \item{inputId}{Controlbar id.}
 
-\item{session}{Shiny ession object.}
+\item{session}{Shiny session object.}
 }
 \description{
 Function to programmatically toggle the state of the controlbar

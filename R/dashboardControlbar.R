@@ -80,7 +80,7 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #' Function to programmatically toggle the state of the controlbar
 #'
 #' @param inputId Controlbar id.
-#' @param session Shiny ession object.
+#' @param session Shiny session object.
 #' @export
 #'
 #' @examples

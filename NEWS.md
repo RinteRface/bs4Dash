@@ -2,8 +2,13 @@
 
 ## Major Changes
 - upgrade AdminLTE3 version to rc4
-- add `bs4Controlbar()` input binding to indicate the state (collapse: FALSE, open: TRUE)
-- add `bs4Card()` input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, ...)
+- add `bs4DashSidebar()` input binding to indicate the state (collapse: FALSE, open: TRUE) as well as 
+`updatebs4Sidebar()` to programmatically toggle its state
+- add `bs4Controlbar()` input binding to indicate the state (collapse: FALSE, open: TRUE) as well as 
+`updatebs4Controlbar()` to programmatically toggle its state
+- add `bs4Card()` input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, ...) as well as 
+`updatebs4Card()` to programmatically toggle its state
+
 
 
 ## New features
