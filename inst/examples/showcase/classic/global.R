@@ -5,6 +5,29 @@ library(bs4Dash)
 library(plotly)
 library(echarts4r)
 
+# color statuses
+statusColors <- c(
+  "navy",
+  "gray-dark",
+  "gray",
+  "secondary",
+  "indigo",
+  "purple",
+  "primary",
+  "info",
+  "success",
+  "olive",
+  "teal",
+  "lime",
+  "warning",
+  "orange",
+  "danger",
+  "fuchsia",
+  "maroon",
+  "pink",
+  "light"
+)
+
 # river charts 
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
 
@@ -83,6 +106,38 @@ basic_cards_tab <- bs4TabItem(
     )
   )
 )
+
+#' card API
+cards_api_tab <- bs4TabItem(
+  tabName = "cardsAPI",
+  actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
+  selectInput(
+    inputId = "cardAction", 
+    label = "Card action", 
+    choices = c(
+      "remove",
+      "toggle",
+      "toggleMaximize",
+      "restore"
+    )
+  ),
+  
+  bs4Card(
+    inputId = "mycard",
+    title = "The plot is visible when you maximize the card", 
+    closable = TRUE, 
+    maximizable = TRUE,
+    width = 12,
+    status = "warning", 
+    solidHeader = FALSE, 
+    collapsible = TRUE,
+    sliderInput("obsAPI", "Number of observations:",
+                min = 0, max = 1000, value = 500
+    ),
+    plotOutput("cardAPIPlot")
+  )
+)
+
 
 #' social_cards_tab ----
 social_cards_tab <- bs4TabItem(
@@ -510,11 +565,20 @@ boxes_tab <- bs4TabItem(
     bs4Box(
       height = "600px",
       title = "Box 1",
+      bs4Ribbon(
+        text = "Plot 1",
+        status = "success"
+      ),
       plotlyOutput("plot2")
     ),
     bs4Box(
       height = "600px",
       title = "Box 2",
+      bs4Ribbon(
+        text = "Plot 2",
+        status = "danger",
+        size = "xl"
+      ),
       plotlyOutput("plot3")
     )
   )
@@ -641,6 +705,19 @@ gallery_1_tab <- bs4TabItem(
           active = FALSE,
           src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
         )
+      )
+    )
+  ),
+  fluidRow(
+    bs4Card(
+      title = "bs4Quote",
+      fluidRow(
+        bs4Quote("Blablabla", status = "indigo"),
+        bs4Quote("Blablabla", status = "danger"),
+        bs4Quote("Blablabla", status = "teal"),
+        bs4Quote("Blablabla", status = "orange"),
+        bs4Quote("Blablabla", status = "warning"),
+        bs4Quote("Blablabla", status = "fuchsia")
       )
     )
   ),
@@ -919,4 +996,20 @@ gallery_2_tab <- bs4TabItem(
       )
     )
   )
+)
+
+# color_tab ----
+colors_tab <- bs4TabItem(
+  tabName = "colors",
+  lapply(seq_along(statusColors), function(i) {
+    fluidRow(
+      bs4Card(
+        status = statusColors[i], 
+        title = paste(statusColors[i], "card"),
+        width = 12,
+        closable = FALSE,
+        collapsible = FALSE
+      )
+    )
+  })
 )

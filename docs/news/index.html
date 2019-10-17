@@ -146,18 +146,42 @@
 <h1 class="page-header">
 <a href="#bs4dash-0-5-0-9000" class="anchor"></a>bs4Dash 0.5.0.9000<small> Unreleased </small>
 </h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major Changes</h2>
+<ul>
+<li>upgrade AdminLTE3 version to rc4</li>
+<li>add <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code><a href="../reference/updatebs4Sidebar.html">updatebs4Sidebar()</a></code> to programmatically toggle its state</li>
+<li>add <code>bs4Controlbar()</code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code><a href="../reference/updatebs4Controlbar.html">updatebs4Controlbar()</a></code> to programmatically toggle its state</li>
+<li>add <code><a href="../reference/bs4Card.html">bs4Card()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, …) as well as <code><a href="../reference/updatebs4Card.html">updatebs4Card()</a></code> to programmatically toggle its state</li>
+<li>add <code><a href="../reference/bs4InsertTab.html">bs4InsertTab()</a></code> to programmatically insert <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code> in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+</li>
+<li>add <code><a href="../reference/bs4RemoveTab.html">bs4RemoveTab()</a></code> to programmatically remove <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code> in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+</li>
+</ul>
+</div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>by default, <code>bs4DashSidebar</code> has a fixed layout. This prevent from not seeing sidebar items if the body contains too many elements</li>
+<li>
+<code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has options to change the <code>bs4Controlbar()</code> behavior when it expands (see controlbar_overlay)</li>
+<li>
+<code><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu()</a></code> has 3 new parameters: flat (design effect), child_indent and compact</li>
 <li>add sidebar in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
 </li>
+<li>add <code><a href="../reference/bs4UserMenu.html">bs4UserMenu()</a></code> for <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code>
+</li>
+<li>add <code><a href="../reference/bs4Ribbon.html">bs4Ribbon()</a></code>, a sort of enhanced label for cards or any content</li>
+<li>add <code><a href="../reference/bs4Quote.html">bs4Quote()</a></code>, an improved blockquote tag for Bootstrap 4</li>
 </ul>
 </div>
 <div id="bug-fix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>rework <code><a href="../reference/bs4DashBody.html">bs4DashBody()</a></code> so that when no element is in the sidebar and no tabItems are in the body, margin between the sidebar, the controlbar is not 0</li>
 <li>when btn_name is NULL in <code><a href="../reference/bs4Jumbotron.html">bs4Jumbotron()</a></code>, do not show a button. Thanks <a href='https://github.com/davidlvb'>@davidlvb</a></li>
 <li>fix <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>: remove height and width parameters. Add size parameter. This fix the progress behaviour which was wrong</li>
 </ul>
@@ -167,9 +191,9 @@
 <h1 class="page-header">
 <a href="#bs4dash-0-4-0" class="anchor"></a>bs4Dash 0.4.0<small> 2019-07-25 </small>
 </h1>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li>add <code><a href="../reference/bs4TabSetPanel.html">bs4DashControlbarMenu()</a></code>, <code><a href="../reference/bs4TabPanel.html">bs4DashControlbarItem()</a></code> and <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4ControlbarMenu()</a></code>
 </li>
@@ -238,9 +262,9 @@
 <li>rework <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</li>
 </ul>
 </div>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li>update adminLTE3 to the latest release</li>
 <li>update to bootstrap 4.3.1</li>
@@ -307,9 +331,9 @@
 <h1 class="page-header">
 <a href="#bs4dash-0-2-0" class="anchor"></a>bs4Dash 0.2.0<small> 2018-09-20 </small>
 </h1>
-<div id="major-changes-2" class="section level2">
+<div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
 <ul>
 <li>bs4Dash now works on shinyapp.io (previously, there was a problem with tab navigation)</li>
 <li>major update of all dependencies (bootstrap 4, fontawesome, ionicons, …) with htmltools</li>

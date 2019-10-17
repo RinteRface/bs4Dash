@@ -152,13 +152,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4DashSidebar</span>(<span class='no'>...</span>, <span class='kw'>disable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"dark"</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>, <span class='kw'>brandColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)
+    <pre class="usage"><span class='fu'>bs4DashSidebar</span>(<span class='no'>...</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>disable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>, <span class='kw'>brandColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)
 
-<span class='fu'>dashboardSidebar</span>(<span class='no'>...</span>, <span class='kw'>disable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"dark"</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>, <span class='kw'>brandColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)</pre>
+<span class='fu'>dashboardSidebar</span>(<span class='no'>...</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>disable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>, <span class='kw'>brandColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,6 +166,10 @@
     <tr>
       <th>...</th>
       <td><p>Slot for <a href='bs4SidebarMenu.html'>bs4SidebarMenu</a>.</p></td>
+    </tr>
+    <tr>
+      <th>inputId</th>
+      <td><p>Recover the state of the sidebar.</p></td>
     </tr>
     <tr>
       <th>disable</th>

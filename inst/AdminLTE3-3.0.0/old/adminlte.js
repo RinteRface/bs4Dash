@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v3.0.0-rc.4 (https://adminlte.io)
+ * AdminLTE v3.0.0-rc.1 (https://adminlte.io)
  * Copyright 2014-2019 Colorlib <http://colorlib.com>
  * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
  */
@@ -52,10 +52,6 @@
       FOOTER_LG_FIXED: 'layout-lg-footer-fixed',
       FOOTER_XL_FIXED: 'layout-xl-footer-fixed'
     };
-    /**
-     * Class Definition
-     * ====================================================
-     */
 
     var ControlSidebar =
     /*#__PURE__*/
@@ -297,9 +293,7 @@
       WRAPPER: '.wrapper',
       CONTROL_SIDEBAR: '.control-sidebar',
       LAYOUT_FIXED: '.layout-fixed',
-      FOOTER: '.main-footer',
-      LOGIN_BOX: '.login-box',
-      REGISTER_BOX: '.register-box'
+      FOOTER: '.main-footer'
     };
     var ClassName = {
       HOLD: 'hold-transition',
@@ -308,18 +302,17 @@
       SIDEBAR_FOCUSED: 'sidebar-focused',
       LAYOUT_FIXED: 'layout-fixed',
       NAVBAR_FIXED: 'layout-navbar-fixed',
-      FOOTER_FIXED: 'layout-footer-fixed',
-      LOGIN_PAGE: 'login-page',
-      REGISTER_PAGE: 'register-page'
+      FOOTER_FIXED: 'layout-footer-fixed'
     };
     var Default = {
       scrollbarTheme: 'os-theme-light',
       scrollbarAutoHide: 'l'
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
     };
-    /**
-     * Class Definition
-     * ====================================================
-     */
 
     var Layout =
     /*#__PURE__*/
@@ -337,17 +330,15 @@
       _proto.fixLayoutHeight = function fixLayoutHeight() {
         var heights = {
           window: $(window).height(),
-          header: $(Selector.HEADER).length !== 0 ? $(Selector.HEADER).outerHeight() : 0,
-          footer: $(Selector.FOOTER).length !== 0 ? $(Selector.FOOTER).outerHeight() : 0,
-          sidebar: $(Selector.SIDEBAR).length !== 0 ? $(Selector.SIDEBAR).height() : 0
+          header: $(Selector.HEADER).outerHeight(),
+          footer: $(Selector.FOOTER).outerHeight(),
+          sidebar: $(Selector.SIDEBAR).height()
         };
 
         var max = this._max(heights);
 
-        $(Selector.CONTENT).css('min-height', max - heights.header);
-
         if ($('body').hasClass(ClassName.LAYOUT_FIXED)) {
-          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer);
+          $(Selector.CONTENT).css('min-height', max - heights.header - heights.footer); // $(Selector.SIDEBAR).css('min-height', max - heights.header)
 
           if (typeof $.fn.overlayScrollbars !== 'undefined') {
             $(Selector.SIDEBAR).overlayScrollbars({
@@ -359,6 +350,12 @@
               }
             });
           }
+        } else {
+          if (heights.window > heights.sidebar) {
+            $(Selector.CONTENT).css('min-height', heights.window - heights.header - heights.footer);
+          } else {
+            $(Selector.CONTENT).css('min-height', heights.sidebar - heights.header);
+          }
         }
       } // Private
       ;
@@ -366,7 +363,9 @@
       _proto._init = function _init() {
         var _this = this;
 
-        // Activate layout height watcher
+        // Enable transitions
+        $('body').removeClass(ClassName.HOLD); // Activate layout height watcher
+
         this.fixLayoutHeight();
         $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
           _this.fixLayoutHeight();
@@ -374,15 +373,7 @@
         $(window).resize(function () {
           _this.fixLayoutHeight();
         });
-
-        if (!$('body').hasClass(ClassName.LOGIN_PAGE) && !$('body').hasClass(ClassName.REGISTER_PAGE)) {
-          $('body, html').css('height', 'auto');
-        } else if ($('body').hasClass(ClassName.LOGIN_PAGE) || $('body').hasClass(ClassName.REGISTER_PAGE)) {
-          var box_height = $(Selector.LOGIN_BOX + ', ' + Selector.REGISTER_BOX).height();
-          $('body').css('min-height', box_height);
-        }
-
-        $('body.hold-transition').removeClass('hold-transition');
+        $('body, html').css('height', 'auto');
       };
 
       _proto._max = function _max(numbers) {
@@ -467,7 +458,8 @@
       SHOWN: "shown" + EVENT_KEY
     };
     var Default = {
-      autoCollapseSize: 992,
+      autoCollapseSize: false,
+      screenCollapseSize: 768,
       enableRemember: false,
       noTransitionAfterReload: true
     };
@@ -482,12 +474,14 @@
     var ClassName = {
       SIDEBAR_OPEN: 'sidebar-open',
       COLLAPSED: 'sidebar-collapse',
-      OPEN: 'sidebar-open'
+      OPEN: 'sidebar-open',
+      SIDEBAR_MINI: 'sidebar-mini'
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
     };
-    /**
-     * Class Definition
-     * ====================================================
-     */
 
     var PushMenu =
     /*#__PURE__*/
@@ -496,24 +490,18 @@
         this._element = element;
         this._options = $.extend({}, Default, options);
 
+        this._init();
+
         if (!$(Selector.OVERLAY).length) {
           this._addOverlay();
         }
-
-        this._init();
       } // Public
 
 
       var _proto = PushMenu.prototype;
 
       _proto.show = function show() {
-        if (this._options.autoCollapseSize) {
-          if ($(window).width() <= this._options.autoCollapseSize) {
-            $(Selector.BODY).addClass(ClassName.OPEN);
-          }
-        }
-
-        $(Selector.BODY).removeClass(ClassName.COLLAPSED);
+        $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.OPEN);
@@ -524,13 +512,7 @@
       };
 
       _proto.collapse = function collapse() {
-        if (this._options.autoCollapseSize) {
-          if ($(window).width() <= this._options.autoCollapseSize) {
-            $(Selector.BODY).removeClass(ClassName.OPEN);
-          }
-        }
-
-        $(Selector.BODY).addClass(ClassName.COLLAPSED);
+        $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
 
         if (this._options.enableRemember) {
           localStorage.setItem("remember" + EVENT_KEY, ClassName.COLLAPSED);
@@ -540,8 +522,16 @@
         $(this._element).trigger(collapsedEvent);
       };
 
+      _proto.isShown = function isShown() {
+        if ($(window).width() >= this._options.screenCollapseSize) {
+          return !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
+        } else {
+          return $(Selector.BODY).hasClass(ClassName.OPEN);
+        }
+      };
+
       _proto.toggle = function toggle() {
-        if (!$(Selector.BODY).hasClass(ClassName.COLLAPSED)) {
+        if (this.isShown()) {
           this.collapse();
         } else {
           this.show();
@@ -551,14 +541,12 @@
       _proto.autoCollapse = function autoCollapse() {
         if (this._options.autoCollapseSize) {
           if ($(window).width() <= this._options.autoCollapseSize) {
-            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-              this.collapse();
+            if (this.isShown()) {
+              this.toggle();
             }
           } else {
-            if (!$(Selector.BODY).hasClass(ClassName.OPEN)) {
-              this.show();
-            } else {
-              $(Selector.BODY).removeClass(ClassName.OPEN);
+            if (!this.isShown()) {
+              this.toggle();
             }
           }
         }
@@ -570,21 +558,12 @@
 
           if (toggleState == ClassName.COLLAPSED) {
             if (this._options.noTransitionAfterReload) {
-              $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(50).queue(function () {
+              $("body").addClass('hold-transition').addClass(ClassName.COLLAPSED).delay(10).queue(function () {
                 $(this).removeClass('hold-transition');
                 $(this).dequeue();
               });
             } else {
               $("body").addClass(ClassName.COLLAPSED);
-            }
-          } else {
-            if (this._options.noTransitionAfterReload) {
-              $("body").addClass('hold-transition').removeClass(ClassName.COLLAPSED).delay(50).queue(function () {
-                $(this).removeClass('hold-transition');
-                $(this).dequeue();
-              });
-            } else {
-              $("body").removeClass(ClassName.COLLAPSED);
             }
           }
         }
@@ -706,11 +685,12 @@
       trigger: Selector.DATA_WIDGET + " " + Selector.LINK,
       animationSpeed: 300,
       accordion: true
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
     };
-    /**
-     * Class Definition
-     * ====================================================
-     */
 
     var Treeview =
     /*#__PURE__*/
@@ -758,17 +738,10 @@
 
       _proto.toggle = function toggle(event) {
         var $relativeTarget = $(event.currentTarget);
-        var $parent = $relativeTarget.parent();
-        var treeviewMenu = $parent.find('> ' + Selector.TREEVIEW_MENU);
+        var treeviewMenu = $relativeTarget.next();
 
         if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-          if (!$parent.is(Selector.LI)) {
-            treeviewMenu = $parent.parent().find('> ' + Selector.TREEVIEW_MENU);
-          }
-
-          if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-            return;
-          }
+          return;
         }
 
         event.preventDefault();
@@ -953,11 +926,12 @@
       onUnCheck: function onUnCheck(item) {
         return item;
       }
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
     };
-    /**
-     * Class Definition
-     * ====================================================
-     */
 
     var TodoList =
     /*#__PURE__*/
@@ -1164,7 +1138,7 @@
           'height': this._parent.height(),
           'width': this._parent.width(),
           'transition': 'all .15s'
-        }).queue(function () {
+        }).delay(150).queue(function () {
           $(this).addClass(ClassName.MAXIMIZED);
           $('html').addClass(ClassName.MAXIMIZED);
           
@@ -1186,7 +1160,7 @@
       _proto.minimize = function minimize() {
         this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon).addClass(this._settings.maximizeIcon).removeClass(this._settings.minimizeIcon);
 
-        this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' + 'width:' + this._parent[0].style.width + ' !important; transition: all .15s;').queue(function () {
+        this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' + 'width:' + this._parent[0].style.width + ' !important; transition: all .15s;').delay(10).queue(function () {
           $(this).removeClass(ClassName.MAXIMIZED);
           $('html').removeClass(ClassName.MAXIMIZED);
           $(this).css({
@@ -1276,7 +1250,7 @@
       if (event) {
         event.preventDefault();
       }
-
+      
       CardWidget._jQueryInterface.call($(this), 'toggleMaximize');
     });
     /**
@@ -1558,219 +1532,6 @@
     return Dropdown;
   }(jQuery);
 
-  /**
-   * --------------------------------------------
-   * AdminLTE Toasts.js
-   * License MIT
-   * --------------------------------------------
-   */
-  var Toasts = function ($) {
-    /**
-     * Constants
-     * ====================================================
-     */
-    var NAME = 'Toasts';
-    var DATA_KEY = 'lte.toasts';
-    var EVENT_KEY = "." + DATA_KEY;
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
-    var Event = {
-      INIT: "init" + EVENT_KEY,
-      CREATED: "created" + EVENT_KEY,
-      REMOVED: "removed" + EVENT_KEY
-    };
-    var Selector = {
-      BODY: 'toast-body',
-      CONTAINER_TOP_RIGHT: '#toastsContainerTopRight',
-      CONTAINER_TOP_LEFT: '#toastsContainerTopLeft',
-      CONTAINER_BOTTOM_RIGHT: '#toastsContainerBottomRight',
-      CONTAINER_BOTTOM_LEFT: '#toastsContainerBottomLeft'
-    };
-    var ClassName = {
-      TOP_RIGHT: 'toasts-top-right',
-      TOP_LEFT: 'toasts-top-left',
-      BOTTOM_RIGHT: 'toasts-bottom-right',
-      BOTTOM_LEFT: 'toasts-bottom-left',
-      FADE: 'fade'
-    };
-    var Position = {
-      TOP_RIGHT: 'topRight',
-      TOP_LEFT: 'topLeft',
-      BOTTOM_RIGHT: 'bottomRight',
-      BOTTOM_LEFT: 'bottomLeft'
-    };
-    var Default = {
-      position: Position.TOP_RIGHT,
-      fixed: true,
-      autohide: false,
-      autoremove: true,
-      delay: 1000,
-      fade: true,
-      icon: null,
-      image: null,
-      imageAlt: null,
-      imageHeight: '25px',
-      title: null,
-      subtitle: null,
-      close: true,
-      body: null,
-      class: null
-    };
-    /**
-     * Class Definition
-     * ====================================================
-     */
-
-    var Toasts =
-    /*#__PURE__*/
-    function () {
-      function Toasts(element, config) {
-        this._config = config;
-
-        this._prepareContainer();
-
-        var initEvent = $.Event(Event.INIT);
-        $('body').trigger(initEvent);
-      } // Public
-
-
-      var _proto = Toasts.prototype;
-
-      _proto.create = function create() {
-        var toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"/>');
-        toast.data('autohide', this._config.autohide);
-        toast.data('animation', this._config.fade);
-
-        if (this._config.class) {
-          toast.addClass(this._config.class);
-        }
-
-        if (this._config.delay && this._config.delay != 500) {
-          toast.data('delay', this._config.delay);
-        }
-
-        var toast_header = $('<div class="toast-header">');
-
-        if (this._config.image != null) {
-          var toast_image = $('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt);
-
-          if (this._config.imageHeight != null) {
-            toast_image.height(this._config.imageHeight).width('auto');
-          }
-
-          toast_header.append(toast_image);
-        }
-
-        if (this._config.icon != null) {
-          toast_header.append($('<i />').addClass('mr-2').addClass(this._config.icon));
-        }
-
-        if (this._config.title != null) {
-          toast_header.append($('<strong />').addClass('mr-auto').html(this._config.title));
-        }
-
-        if (this._config.subtitle != null) {
-          toast_header.append($('<small />').html(this._config.subtitle));
-        }
-
-        if (this._config.close == true) {
-          var toast_close = $('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hidden="true">&times;</span>');
-
-          if (this._config.title == null) {
-            toast_close.toggleClass('ml-2 ml-auto');
-          }
-
-          toast_header.append(toast_close);
-        }
-
-        toast.append(toast_header);
-
-        if (this._config.body != null) {
-          toast.append($('<div class="toast-body" />').html(this._config.body));
-        }
-
-        $(this._getContainerId()).prepend(toast);
-        var createdEvent = $.Event(Event.CREATED);
-        $('body').trigger(createdEvent);
-        toast.toast('show');
-
-        if (this._config.autoremove) {
-          toast.on('hidden.bs.toast', function () {
-            $(this).delay(200).remove();
-            var removedEvent = $.Event(Event.REMOVED);
-            $('body').trigger(removedEvent);
-          });
-        }
-      } // Static
-      ;
-
-      _proto._getContainerId = function _getContainerId() {
-        if (this._config.position == Position.TOP_RIGHT) {
-          return Selector.CONTAINER_TOP_RIGHT;
-        } else if (this._config.position == Position.TOP_LEFT) {
-          return Selector.CONTAINER_TOP_LEFT;
-        } else if (this._config.position == Position.BOTTOM_RIGHT) {
-          return Selector.CONTAINER_BOTTOM_RIGHT;
-        } else if (this._config.position == Position.BOTTOM_LEFT) {
-          return Selector.CONTAINER_BOTTOM_LEFT;
-        }
-      };
-
-      _proto._prepareContainer = function _prepareContainer() {
-        if ($(this._getContainerId()).length === 0) {
-          var container = $('<div />').attr('id', this._getContainerId().replace('#', ''));
-
-          if (this._config.position == Position.TOP_RIGHT) {
-            container.addClass(ClassName.TOP_RIGHT);
-          } else if (this._config.position == Position.TOP_LEFT) {
-            container.addClass(ClassName.TOP_LEFT);
-          } else if (this._config.position == Position.BOTTOM_RIGHT) {
-            container.addClass(ClassName.BOTTOM_RIGHT);
-          } else if (this._config.position == Position.BOTTOM_LEFT) {
-            container.addClass(ClassName.BOTTOM_LEFT);
-          }
-
-          $('body').append(container);
-        }
-
-        if (this._config.fixed) {
-          $(this._getContainerId()).addClass('fixed');
-        } else {
-          $(this._getContainerId()).removeClass('fixed');
-        }
-      } // Static
-      ;
-
-      Toasts._jQueryInterface = function _jQueryInterface(option, config) {
-        return this.each(function () {
-          var _config = $.extend({}, Default, config);
-
-          var toast = new Toasts($(this), _config);
-
-          if (option === 'create') {
-            toast[option]();
-          }
-        });
-      };
-
-      return Toasts;
-    }();
-    /**
-     * jQuery API
-     * ====================================================
-     */
-
-
-    $.fn[NAME] = Toasts._jQueryInterface;
-    $.fn[NAME].Constructor = Toasts;
-
-    $.fn[NAME].noConflict = function () {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Toasts._jQueryInterface;
-    };
-
-    return Toasts;
-  }(jQuery);
-
   exports.CardRefresh = CardRefresh;
   exports.CardWidget = CardWidget;
   exports.ControlSidebar = ControlSidebar;
@@ -1778,7 +1539,6 @@
   exports.Dropdown = Dropdown;
   exports.Layout = Layout;
   exports.PushMenu = PushMenu;
-  exports.Toasts = Toasts;
   exports.TodoList = TodoList;
   exports.Treeview = Treeview;
 

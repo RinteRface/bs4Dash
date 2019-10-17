@@ -1,52 +1,51 @@
 $(function () {
   
   // This code makes sure that each time
-    // a tabItem is clicked, we set the value
-    // of the input binding
-var setInputBindingValue = function() {
-  // Trigger event for the tabItemInputBinding
-  var $obj = $('.sidebarMenuSelectedTabItem');
-  var inputBinding = $obj.data('shiny-input-binding');
-  if (typeof inputBinding !== 'undefined') {
-    inputBinding.setValue($obj, $(this).attr('data-value'));
-    $obj.trigger('change');
-  }
-};
+  // a tabItem is clicked, we set the value
+  // of the input binding
+  var setInputBindingValue = function() {
+    // Trigger event for the tabItemInputBinding
+    var $obj = $('.sidebarMenuSelectedTabItem');
+    var inputBinding = $obj.data('shiny-input-binding');
+    if (typeof inputBinding !== 'undefined') {
+      inputBinding.setValue($obj, $(this).attr('data-value'));
+      $obj.trigger('change');
+    }
+  };
 
-$(document).on('shown.bs.tab', '#mymenu a[data-toggle="tab"]',
-               setInputBindingValue);
+  $(document).on('shown.bs.tab', '#mymenu a[data-toggle="tab"]', setInputBindingValue);
   
   
   // When document is ready, if there is a sidebar menu with no activated tabs,
-// activate the one specified by `data-start-selected`, or if that's not
-// present, the first one.
-var ensureActivatedTab = function() {
-    // get the selected tabs
-  var tabs = $("#mymenu a[data-toggle='tab']");
-  var selectedTab = tabs.filter(".active.show");
-  
-  if (selectedTab.length === 0) {
-    // If no tab starts selected, use the first one, if present
-    $(tabs[0]).tab('show');
-    $('.container-fluid.tab-pane:eq(0)').addClass('active show');
-    // This is indirectly setting the value of the Shiny input by setting
-    // an attribute on the html element it is bound to. We cannot use the
-    // inputBinding's setValue() method here because this is called too
-    // early (before Shiny has fully initialized)
-    $('.sidebarMenuSelectedTabItem').attr('data-value',
-      $(tabs[0]).attr('data-value'));
-  
-  
-  
-  } 
-};
+  // activate the one specified by `data-start-selected`, or if that's not
+  // present, the first one.
+  var ensureActivatedTab = function() {
+      // get the selected tabs
+    var tabs = $("#mymenu a[data-toggle='tab']");
+    var selectedTab = tabs.filter(".active.show");
+    
+    if (selectedTab.length === 0) {
+      // If no tab starts selected, use the first one, if present
+      $(tabs[0]).tab('show');
+      $('.container-fluid.tab-pane:eq(0)').addClass('active show');
+      // This is indirectly setting the value of the Shiny input by setting
+      // an attribute on the html element it is bound to. We cannot use the
+      // inputBinding's setValue() method here because this is called too
+      // early (before Shiny has fully initialized)
+      $('.sidebarMenuSelectedTabItem').attr('data-value',
+        $(tabs[0]).attr('data-value'));
+    
+    
+    
+    } 
+  };
 
-ensureActivatedTab();
+  ensureActivatedTab();
   
   // select the first sidebar item by default
   var firsSidebarItem = $("#mymenu").children[0];
   if (firsSidebarItem != "undefined") {
-   $(firsSidebarItem).addClass("active"); 
+    $(firsSidebarItem).addClass("active"); 
   }
   
   // when click on treeview, collapse all other treeviews
@@ -117,56 +116,93 @@ ensureActivatedTab();
   });
   
   
-    //---------------------------------------------------------------------
-// Source file: ../srcjs/input_binding_tabItem.js
+  //---------------------------------------------------------------------
+  // tabItemInputBinding
+  // ------------------------------------------------------------------
+  // Based on Shiny.tabItemInputBinding, but customized for tabItems in
+  // bs4Dash, which have a slightly different structure.
+  var tabItemInputBinding = new Shiny.InputBinding();
+    $.extend(tabItemInputBinding, {
+    find: function(scope) {
+      return $(scope).find('.sidebarMenuSelectedTabItem');
+    },
+    getValue: function(el) {
+      var value = $(el).attr('data-value');
+      if (value === "null") return null;
+      return value;
+    },
+    setValue: function(el, value) {
+      var self = this;
+      var anchors = $(el).parent('#mymenu').find('li:not(.treeview)').children('a');
+      anchors.each(function() { // eslint-disable-line consistent-return
+        if (self._getTabName($(this)) === value) {
+          //$(this).tab('show');
+          $(el).attr('data-value', self._getTabName($(this)));
+          return false;
+        }
+      });
+    },
+    receiveMessage: function(el, data) {
+      if (data.hasOwnProperty('value'))
+        this.setValue(el, data.value);
+    },
+    subscribe: function(el, callback) {
+      // This event is triggered by deactivateOtherTabs, which is triggered by
+      // shown. The deactivation of other tabs must occur before Shiny gets the
+      // input value.
+      $(el).on('change.tabItemInputBinding', function() {
+        callback();
+      });
+    },
+    unsubscribe: function(el) {
+      $(el).off('.tabItemInputBinding');
+    },
+    _getTabName: function(anchor) {
+      return anchor.attr('data-value');
+    }
+  });
 
-/* global Shiny */
-
-// tabItemInputBinding
-// ------------------------------------------------------------------
-// Based on Shiny.tabItemInputBinding, but customized for tabItems in
-// shinydashboard, which have a slightly different structure.
-var tabItemInputBinding = new Shiny.InputBinding();
-$.extend(tabItemInputBinding, {
-  find: function(scope) {
-    return $(scope).find('.sidebarMenuSelectedTabItem');
-  },
-  getValue: function(el) {
-    var value = $(el).attr('data-value');
-    if (value === "null") return null;
-    return value;
-  },
-  setValue: function(el, value) {
-    var self = this;
-    var anchors = $(el).parent('#mymenu').find('li:not(.treeview)').children('a');
-    anchors.each(function() { // eslint-disable-line consistent-return
-      if (self._getTabName($(this)) === value) {
-        //$(this).tab('show');
-        $(el).attr('data-value', self._getTabName($(this)));
-        return false;
-      }
-    });
-  },
-  receiveMessage: function(el, data) {
-    if (data.hasOwnProperty('value'))
-      this.setValue(el, data.value);
-  },
-  subscribe: function(el, callback) {
-    // This event is triggered by deactivateOtherTabs, which is triggered by
-    // shown. The deactivation of other tabs must occur before Shiny gets the
-    // input value.
-    $(el).on('change.tabItemInputBinding', function() {
-      callback();
-    });
-  },
-  unsubscribe: function(el) {
-    $(el).off('.tabItemInputBinding');
-  },
-  _getTabName: function(anchor) {
-    return anchor.attr('data-value');
-  }
-});
-
-Shiny.inputBindings.register(tabItemInputBinding);
+  Shiny.inputBindings.register(tabItemInputBinding);
+  
+  
+  //---------------------------------------------------------------------
+  // sidebarInputBinding
+  // ------------------------------------------------------------------
+  // similar to controlbarInputBinding
+  var sidebarBinding = new Shiny.InputBinding();
+  
+  $.extend(sidebarBinding, {
+  
+    find: function(scope) {
+      return $(scope).find(".main-sidebar");
+    },
+  
+    // Given the DOM element for the input, return the value
+    getValue: function(el) {
+      return $("body").hasClass("sidebar-open");
+    },
+  
+    // see updatebs4Controlbar
+    receiveMessage: function(el, data) {
+      $("[data-widget='pushmenu']").click();
+    },
+  
+    subscribe: function(el, callback) {
+      $("[data-widget='pushmenu']").on("collapsed.lte.pushmenu shown.lte.pushmenu", function(e) {
+        // add a delay so that Shiny get the input value 
+        // after the AdminLTE3 animation is finished!
+        setTimeout(
+          function() {
+            callback();
+          }, 10);
+      });
+    },
+  
+    unsubscribe: function(el) {
+      $(el).off(".sidebarBinding");
+    }
+  });
+  
+  Shiny.inputBindings.register(sidebarBinding);
   
 });

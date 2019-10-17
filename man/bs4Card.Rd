@@ -5,28 +5,32 @@
 \alias{box}
 \title{Create a Boostrap 4 card}
 \usage{
-bs4Card(..., title = NULL, footer = NULL, status = NULL,
-  elevation = NULL, solidHeader = FALSE, headerBorder = TRUE,
-  gradientColor = NULL, width = 6, height = NULL,
-  collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-  maximizable = FALSE, labelStatus = NULL, labelText = NULL,
-  labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
-  overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL,
-  sidebar_width = 25, sidebar_background = "#333a40",
-  sidebar_start_open = FALSE, sidebar_icon = "cogs")
+bs4Card(..., inputId = NULL, title = NULL, footer = NULL,
+  status = NULL, elevation = NULL, solidHeader = FALSE,
+  headerBorder = TRUE, gradientColor = NULL, width = 6,
+  height = NULL, collapsible = TRUE, collapsed = FALSE,
+  closable = TRUE, maximizable = FALSE, labelStatus = NULL,
+  labelText = NULL, labelTooltip = NULL, dropdownMenu = NULL,
+  dropdownIcon = "wrench", overflow = FALSE, enable_sidebar = FALSE,
+  sidebar_content = NULL, sidebar_width = 25,
+  sidebar_background = "#333a40", sidebar_start_open = FALSE,
+  sidebar_icon = "cogs")
 
-box(..., title = NULL, footer = NULL, status = NULL,
-  elevation = NULL, solidHeader = FALSE, headerBorder = TRUE,
-  gradientColor = NULL, width = 6, height = NULL,
-  collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-  maximizable = FALSE, labelStatus = NULL, labelText = NULL,
-  labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
-  overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL,
-  sidebar_width = 25, sidebar_background = "#333a40",
-  sidebar_start_open = FALSE, sidebar_icon = "cogs")
+box(..., inputId = NULL, title = NULL, footer = NULL,
+  status = NULL, elevation = NULL, solidHeader = FALSE,
+  headerBorder = TRUE, gradientColor = NULL, width = 6,
+  height = NULL, collapsible = TRUE, collapsed = FALSE,
+  closable = TRUE, maximizable = FALSE, labelStatus = NULL,
+  labelText = NULL, labelTooltip = NULL, dropdownMenu = NULL,
+  dropdownIcon = "wrench", overflow = FALSE, enable_sidebar = FALSE,
+  sidebar_content = NULL, sidebar_width = 25,
+  sidebar_background = "#333a40", sidebar_start_open = FALSE,
+  sidebar_icon = "cogs")
 }
 \arguments{
 \item{...}{Contents of the box.}
+
+\item{inputId}{Get the state of the card. Optional.}
 
 \item{title}{Optional title.}
 

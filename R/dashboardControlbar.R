@@ -3,6 +3,8 @@
 #' Build an adminLTE3 dashboard right sidebar
 #'
 #' @param ... Any UI element.
+#' @param inputId To acces the current state of the controlbar. Open is TRUE, closed
+#' is FALSE. NULL by default.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
@@ -11,11 +13,14 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashControlbar <- function(..., disable = FALSE, skin = "dark", title = NULL, width = 250) {
+bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
+                              title = NULL, width = 250) {
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
-    style = if (disable) "display: none;",
+    id = inputId,
+    `data-show` = if (disable) "false" else "true",
+    `data-slide` = "true",
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
@@ -68,3 +73,55 @@ bs4DashControlbarItem <- bs4TabPanel
 #' @rdname updatebs4TabSetPanel
 #' @export
 updatebs4ControlbarMenu <- updatebs4TabSetPanel
+
+
+
+
+#' Function to programmatically toggle the state of the controlbar
+#'
+#' @param inputId Controlbar id.
+#' @param session Shiny session object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      controlbar_collapsed = FALSE,
+#'      controlbar_overlay = TRUE,
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'        actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar")
+#'      ),
+#'      controlbar = dashboardControlbar(inputId = "controlbar")
+#'    ),
+#'    server = function(input, output, session) {
+#'      
+#'      observeEvent(input$controlbar, {
+#'        if (input$controlbar) {
+#'          showModal(modalDialog(
+#'            title = "Alert",
+#'            "The controlbar is opened.",
+#'            easyClose = TRUE,
+#'            footer = NULL
+#'          ))
+#'        }
+#'      })
+#'      
+#'      observeEvent(input$controlbarToggle, {
+#'        updatebs4Controlbar(inputId = "controlbar", session = session)
+#'      })
+#'      
+#'      observe({
+#'        print(input$controlbar)
+#'      })
+#'    }
+#'  )
+#' }
+updatebs4Controlbar <- function(inputId, session) {
+  session$sendInputMessage(inputId, NULL)
+}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Boostrap 4 dashboard main sidebar menu — bs4SidebarMenu • bs4Dash</title>
+<title>Function to programmatically toggle the state of the sidebar — updatebs4Sidebar • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Boostrap 4 dashboard main sidebar menu — bs4SidebarMenu" />
+<meta property="og:title" content="Function to programmatically toggle the state of the sidebar — updatebs4Sidebar" />
 
-<meta property="og:description" content="Build an adminLTE3 dashboard main sidebar menu" />
+<meta property="og:description" content="Function to programmatically toggle the state of the sidebar" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,48 +141,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Boostrap 4 dashboard main sidebar menu</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardSidebar.R'><code>R/dashboardSidebar.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>bs4SidebarMenu.Rd</code></div>
+    <h1>Function to programmatically toggle the state of the sidebar</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardSidebar.R'><code>R/dashboardSidebar.R</code></a></small>
+    <div class="hidden name"><code>updatebs4Sidebar.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build an adminLTE3 dashboard main sidebar menu</p>
+    <p>Function to programmatically toggle the state of the sidebar</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4SidebarMenu</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='fu'>sidebarMenu</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>updatebs4Sidebar</span>(<span class='no'>inputId</span>, <span class='no'>session</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for <a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a> or <a href='bs4SidebarHeader.html'>bs4SidebarHeader</a>.</p></td>
+      <th>inputId</th>
+      <td><p>Sidebar id.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>For bs4SidebarMenu, if <code>id</code> is present, this id will be
-used for a Shiny input value, and it will report which tab is selected. For
-example, if <code>id="tabs"</code>, then <code>input$tabs</code> will be the
-<code>tabName</code> of the currently-selected <a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a>.</p></td>
-    </tr>
-    <tr>
-      <th>flat</th>
-      <td><p>Whether sidebar items should have a flat design. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>compact</th>
-      <td><p>Whether items should be compacted. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>child_indent</th>
-      <td><p>Whether to indent children. TRUE by default</p></td>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
     
@@ -192,56 +173,35 @@ example, if <code>id="tabs"</code>, then <code>input$tabs</code> will be the
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-     <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-     <span class='kw'>loading_duration</span> <span class='kw'>=</span>  <span class='fl'>2</span>,
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
-     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-
-     ),
-     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
-       <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-       <span class='fu'>bs4SidebarMenu</span>(
-         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-         <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>,
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>
-         ),
-         <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>,
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>
-         ),
-         <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Click me pleaaaaase"</span>,
-           <span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
-             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"subtab1"</span>,
-             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>
-           ),<span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
-             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"subtab2"</span>,
-             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 4"</span>
-           )
-         )
-       )
-     ),
-     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
-     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>()
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span>(
+     <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+     <span class='kw'>controlbar_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span>(),
+     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sidebar"</span>),
+     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controlbarToggle"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Toggle Sidebar"</span>)
+     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-       <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>test</span> <span class='kw'>==</span> <span class='st'>"subtab1"</span>) {
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>sidebar</span>, {
+       <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>sidebar</span>) {
          <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/showModal'>showModal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/modalDialog'>modalDialog</a></span>(
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Thank you so much"</span>,
-           <span class='st'>"You clicked me! This event is the result of
-           an input bound to the menu. By adding an id to the
-           bs4SidebarMenu, input$id will give the currently selected
-           tab. This is useful to trigger some events."</span>,
+           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Alert"</span>,
+           <span class='st'>"The sidebar is opened."</span>,
            <span class='kw'>easyClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
            <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
          ))
        }
+     })
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controlbarToggle</span>, {
+       <span class='fu'>updatebs4Sidebar</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sidebar"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
+     })
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebar</span>)
      })
    }
  )
@@ -255,8 +215,6 @@ example, if <code>id="tabs"</code>, then <code>input$tabs</code> will be the
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

@@ -3,6 +3,7 @@
 #' Build an adminLTE3 card
 #'
 #' @param ... Contents of the box.
+#' @param inputId Get the state of the card. Optional.
 #' @param title Optional title.
 #' @param footer Optional footer text.
 #' @param status The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.
@@ -126,7 +127,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation = NULL,
+bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
@@ -194,7 +195,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool",
-        `data-widget` = "collapse",
+        `data-card-widget` = "collapse",
         shiny::icon(collapseIcon)
       )
     },
@@ -204,7 +205,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool",
-        `data-widget` = "remove",
+        `data-card-widget` = "remove",
         shiny::tags$i(class = "fa fa-times")
       )
     },
@@ -214,7 +215,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool",
-        `data-widget` = "maximize",
+        `data-card-widget` = "maximize",
         shiny::tags$i(class = "fa fa-expand")
       )
     },
@@ -223,7 +224,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
     if (enable_sidebar) {
       sidebarTag <- shiny::tags$button(
         class = "btn btn-tool",
-        `data-widget` = "chat-pane-toggle",
+        `data-card-widget` = "chat-pane-toggle",
         `data-toggle` = "tooltip",
         `data-original-title` = "More",
         title = NA,
@@ -277,6 +278,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   
   cardTag <- shiny::tags$div(
     class = cardCl,
+    id = inputId,
     style = if (!is.null(style)) style
   )
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
@@ -326,6 +328,84 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, elevation =
   
 }
 
+
+
+
+#' update an AdminLTE3 card from the server side
+#'
+#' @param inputId Card inputId
+#' @param session Shiny session
+#' @param action Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore")}.
+#' 
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      sidebar_collapsed = TRUE,
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'        actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
+#'        selectInput(
+#'          inputId = "cardAction", 
+#'          label = "Card action", 
+#'          choices = c(
+#'            "remove",
+#'            "toggle",
+#'            "toggleMaximize",
+#'            "restore"
+#'          )
+#'        ),
+#'        
+#'        bs4Card(
+#'          inputId = "mycard",
+#'          title = "The plot is visible when you maximize the card", 
+#'          closable = TRUE, 
+#'          maximizable = TRUE,
+#'          width = 12,
+#'          status = "warning", 
+#'          solidHeader = FALSE, 
+#'          collapsible = TRUE,
+#'          sliderInput("obs", "Number of observations:",
+#'                      min = 0, max = 1000, value = 500
+#'          ),
+#'          plotOutput("distPlot")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      
+#'      output$distPlot <- renderPlot({
+#'        if (input$mycard$maximized) {
+#'          hist(rnorm(input$obs)) 
+#'        }
+#'      })
+#'      
+#'      observeEvent(input$triggerCard, {
+#'        updatebs4Card(inputId = "mycard", session = session, action = input$cardAction)
+#'      })
+#'      
+#'      observe({
+#'        print(
+#'          list(
+#'            collapsed = input$mycard$collapsed,
+#'            maximized = input$mycard$maximized,
+#'            visible = input$mycard$visible
+#'          )
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updatebs4Card <- function(inputId, session, action = c("remove", "toggle", "toggleMaximize", "restore")) {
+  action <- match.arg(action)
+  session$sendInputMessage(inputId, action)
+}
 
 
 
@@ -743,7 +823,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool pb-0 pt-0",
-        `data-widget` = "collapse",
+        `data-card-widget` = "collapse",
         shiny::icon(collapseIcon)
       )
     },
@@ -753,7 +833,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool pb-0 pt-0",
-        `data-widget` = "remove",
+        `data-card-widget` = "remove",
         shiny::tags$i(class = "fa fa-times")
       )
     },
@@ -763,7 +843,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
       shiny::tags$button(
         type = "button",
         class = "btn btn-tool",
-        `data-widget` = "maximize",
+        `data-card-widget` = "maximize",
         shiny::tags$i(class = "fa fa-expand")
       )
     }
@@ -1576,7 +1656,7 @@ bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL,
           if (collapsible) {
             shiny::tags$button(
               class = "btn btn-tool",
-              `data-widget` = "collapse",
+              `data-card-widget` = "collapse",
               type = "button",
               shiny::tags$i(class = "fa fa-minus")
             )
@@ -1584,7 +1664,7 @@ bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL,
           if (closable) {
             shiny::tags$button(
               class = "btn btn-tool",
-              `data-widget` = "remove",
+              `data-card-widget` = "remove",
               type = "button",
               shiny::tags$i(class = "fa fa-times")
             )

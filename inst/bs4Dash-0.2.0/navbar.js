@@ -3,13 +3,19 @@ $(function() {
   // if no right sidebar is specified
   noControlbar = ($(".control-sidebar").length === 0);
   if (noControlbar) {
-    $(".nav-item > a[data-widget='control-sidebar']").hide();
+    $("#controlbar-toggle").hide();
   }
   
   // hide the right sidebar toggle if the controlbar is disable
-  disableControlbar = ($(".control-sidebar").css("display") == "none");
-  if (disableControlbar) {
-    $(".nav-item > a[data-widget='control-sidebar']").hide();
+  disableControlbar = ($(".control-sidebar").attr("data-show"));
+  if (!disableControlbar) {
+    $("#controlbar-toggle").hide();
+  }
+  
+  // controlbar slide
+  controlbarSlide = ($(".control-sidebar").attr("data-slide"));
+  if (controlbarSlide) {
+    $("#controlbar-toggle").attr('data-controlsidebar-slide', controlbarSlide);
   }
   
   // when the sidebar is disabled, hide the sidebar toggle

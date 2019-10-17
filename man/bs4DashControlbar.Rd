@@ -5,14 +5,17 @@
 \alias{dashboardControlbar}
 \title{Create a Boostrap 4 dashboard right sidebar}
 \usage{
-bs4DashControlbar(..., disable = FALSE, skin = "dark", title = NULL,
-  width = 250)
+bs4DashControlbar(..., inputId = NULL, disable = FALSE,
+  skin = "dark", title = NULL, width = 250)
 
-dashboardControlbar(..., disable = FALSE, skin = "dark",
-  title = NULL, width = 250)
+dashboardControlbar(..., inputId = NULL, disable = FALSE,
+  skin = "dark", title = NULL, width = 250)
 }
 \arguments{
 \item{...}{Any UI element.}
+
+\item{inputId}{To acces the current state of the controlbar. Open is TRUE, closed
+is FALSE. NULL by default.}
 
 \item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 

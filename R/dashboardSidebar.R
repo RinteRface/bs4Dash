@@ -3,6 +3,7 @@
 #' Build an adminLTE3 dashboard main sidebar
 #'
 #' @param ... Slot for \link{bs4SidebarMenu}.
+#' @param inputId Recover the state of the sidebar.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param title Sidebar title.
 #' @param skin Sidebar skin. "dark" or "light"
@@ -13,14 +14,14 @@
 #' @param src Sidebar brand image.
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar opacity. From 0 to 1. 0.8 by default.
-# #' @param width Sidebar width. 250 px by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", status = "primary",
-                                brandColor = NULL, url = NULL, src = NULL,
-                                elevation = 4, opacity = .8) {
+bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
+                           title = NULL, skin = "dark", status = "primary",
+                           brandColor = NULL, url = NULL, src = NULL,
+                           elevation = 4, opacity = .8) {
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -46,6 +47,7 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
   )
 
   sidebarTag <- shiny::tags$aside(
+    id = inputId,
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation
@@ -107,6 +109,58 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 
 
 
+
+#' Function to programmatically toggle the state of the sidebar
+#'
+#' @param inputId Sidebar id.
+#' @param session Shiny session object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      controlbar_collapsed = FALSE,
+#'      controlbar_overlay = TRUE,
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(inputId = "sidebar"),
+#'      body = dashboardBody(
+#'        actionButton(inputId = "controlbarToggle", label = "Toggle Sidebar")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      
+#'      observeEvent(input$sidebar, {
+#'        if (input$sidebar) {
+#'          showModal(modalDialog(
+#'            title = "Alert",
+#'            "The sidebar is opened.",
+#'            easyClose = TRUE,
+#'            footer = NULL
+#'          ))
+#'        }
+#'      })
+#'      
+#'      observeEvent(input$controlbarToggle, {
+#'        updatebs4Sidebar(inputId = "sidebar", session = session)
+#'      })
+#'      
+#'      observe({
+#'        print(input$sidebar)
+#'      })
+#'    }
+#'  )
+#' }
+updatebs4Sidebar <- function(inputId, session) {
+  session$sendInputMessage(inputId, NULL)
+}
+
+
+
+
 #' Create a Boostrap 4 dashboard main sidebar menu
 #'
 #' Build an adminLTE3 dashboard main sidebar menu
@@ -116,6 +170,9 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 #'   used for a Shiny input value, and it will report which tab is selected. For
 #'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
 #'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
+#' @param flat Whether sidebar items should have a flat design. FALSE by default.
+#' @param compact Whether items should be compacted. FALSE by default.
+#' @param child_indent Whether to indent children. TRUE by default
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -180,10 +237,17 @@ bs4DashSidebar <- function(..., disable = FALSE, title = NULL, skin = "dark", st
 #' }
 #'
 #' @export
-bs4SidebarMenu <- function(..., id = NULL) {
+bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
+                           compact = FALSE, child_indent = TRUE) {
+  
+  menuCl <- "nav nav-pills nav-sidebar flex-column"
+  if (flat) menuCl <- paste0(menuCl, " nav-flat")
+  if (compact) menuCl <- paste0(menuCl, " nav-compact")
+  if (child_indent) menuCl <- paste0(menuCl, " nav-child-indent")
+  
   # menu Tag
   shiny::tags$ul(
-    class = "nav nav-pills nav-sidebar flex-column",
+    class = menuCl,
     `data-widget` = "treeview",
     id = "mymenu",
     role = "menu",

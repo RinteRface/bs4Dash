@@ -15,7 +15,10 @@ reference:
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
+  - '`updatebs4Card`'
+  - '`updatebs4Controlbar`'
   - '`updatebs4ControlbarMenu`'
+  - '`updatebs4Sidebar`'
   - '`updatebs4TabItems`'
   - '`updatebs4TabSetPanel`'
     
@@ -39,6 +42,7 @@ reference:
   contents:
   - '`bs4DropdownMenu`'
   - '`bs4DropdownMenuItem`'
+  - '`bs4UserMenu`'
     
 - title: Cards and boxes
   desc: Build cards and boxes
@@ -61,6 +65,8 @@ reference:
 - title: Tab card elements
   desc: Functions that are to be used in bs4TabCard
   contents:
+  - '`bs4InsertTab`'
+  - '`bs4RemoveTab`'
   - '`bs4TabPanel`'
   - '`bs4TabSetPanel`'
   
@@ -74,6 +80,7 @@ reference:
   - '`cardProfile`'
   - '`cardProfileItemList`'
   - '`cardProfileItem`'
+  - '`bs4Ribbon`'
   
 - title: Sortable UI
   desc: Sort elements such as cards
@@ -103,6 +110,7 @@ reference:
   - '`bs4ListGroupItem`'
   - '`bs4Loading`'
   - '`bs4ProgressBar`'
+  - '`bs4Quote`'
   - '`bs4Stars`'
   - '`bs4Table`'
   - '`bs4TableItem`'
