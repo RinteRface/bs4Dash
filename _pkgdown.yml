@@ -65,6 +65,7 @@ reference:
 - title: Tab card elements
   desc: Functions that are to be used in bs4TabCard
   contents:
+  - '`bs4InsertTab`'
   - '`bs4TabPanel`'
   - '`bs4TabSetPanel`'
   

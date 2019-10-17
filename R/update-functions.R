@@ -154,6 +154,143 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 
 
 
+
+
+#' Insert a \link{bs4TabPanel} in a \link{bs4TabSetPanel}
+#'
+#' @param inputId  \link{bs4TabSetPanel} id.
+#' @param tab \link{bs4TabPanel} to insert.
+#' @param target \link{bs4TabPanel} after of before which the new tab will be inserted.
+#' @param position Insert before or after: \code{c("before", "after")}.
+#' @param select Whether to select the newly inserted tab. FALSE by default.
+#' @param session Shiny session object.
+#' 
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  ui <-  bs4DashPage(
+#'    sidebar_collapsed = T,
+#'    sidebar = bs4DashSidebar(),
+#'    bs4DashFooter(),
+#'    body = bs4DashBody(
+#'      actionButton("add1","ADD tabset 1"),
+#'      bs4TabSetPanel(
+#'        id = "tabset1", 
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "Tab 1",
+#'          active = TRUE,
+#'          p("Text 1"),
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 2",
+#'          active = FALSE,
+#'          p("Text 2"),
+#'        )
+#'      ),
+#'      actionButton("add2","ADD tabset 2"),
+#'      bs4TabSetPanel(
+#'        id = "tabset2", 
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "Tab 1",
+#'          active = TRUE,
+#'          p("Text 1"),
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 2",
+#'          active = FALSE,
+#'          p("Text 2"),
+#'        )
+#'      )
+#'    )
+#'  )
+#'  
+#'  
+#'  server <- function(input, output, session) {
+#'    
+#'    observeEvent(input$add1, {
+#'      bs4InsertTab(
+#'        inputId = "tabset1",
+#'        bs4TabPanel(tabName = "Dynamic", "I am inserted"),
+#'        target = "Tab 1",
+#'        position = "after",
+#'        select = FALSE
+#'      )
+#'    })
+#'    
+#'    observeEvent(input$add2, {
+#'      bs4InsertTab(
+#'        inputId = "tabset2",
+#'        bs4TabPanel(tabName = "Dynamic", "I am inserted and active"),
+#'        target = "Tab 1",
+#'        position = "before",
+#'        select = TRUE
+#'      )
+#'    })
+#'    
+#'  }
+#'  
+#'  shinyApp(ui, server)
+#' }
+bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
+                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
+  
+  if (!(class(tab[[2]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
+  
+  ns <- inputId
+  
+  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
+  # prefix by insert_ makes sense
+  inputId <- paste0("insert_", inputId)
+  
+  position <- match.arg(position)
+  
+  # create the corresponding tablink
+  tabId <- gsub(" ", "", tab[[2]]$attribs$id, fixed = TRUE)
+  
+  tabLink <- shiny::tags$li(
+    class = "nav-item",
+    shiny::a(
+      class = "nav-link",
+      href = paste0("#", ns, "-", tabId),
+      `data-toggle` = "tab",
+      tab[[2]]$attribs$id
+    )
+  )
+  tabLink <- as.character(force(tabLink))
+  
+  # prefix the tab id by the id of the wrapping tabsetpanel
+  tab[[2]]$attribs$id <- paste0(ns, "-", tabId)
+  tabId <- tab[[2]]$attribs$id
+  
+  # force to render shiny.tag and convert it to character
+  # since text does not accept anything else
+  tab <- as.character(force(tab[[2]]))
+  
+  # remove all whitespace from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+  
+  message <- dropNulls(
+    list(
+      value = tab,
+      id = tabId,
+      link = tabLink,
+      target = target,
+      position = position,
+      select = tolower(select),
+      ns = ns
+    )
+  )
+  session$sendCustomMessage(type = inputId, message = message)
+}
+
+
+
 #' Change the selected sidebar tab on the client
 #'
 #' This function controls the active tab of \code{\link{bs4TabItems}} from the
