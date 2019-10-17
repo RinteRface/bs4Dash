@@ -9,6 +9,7 @@
 - add `bs4Card()` input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, ...) as well as 
 `updatebs4Card()` to programmatically toggle its state
 - add `bs4InsertTab()` to programmatically insert `bs4TabPanel()` in `bs4TabSetPanel()`
+- add `bs4RemoveTab()` to programmatically remove `bs4TabPanel()` in `bs4TabSetPanel()`
 
 
 ## New features

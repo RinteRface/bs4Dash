@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Insert a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4InsertTab • bs4Dash</title>
+<title>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4RemoveTab • bs4Dash</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Insert a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4InsertTab" />
+<meta property="og:title" content="Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4RemoveTab" />
 
-<meta property="og:description" content="Insert a bs4TabPanel in a bs4TabSetPanel" />
+<meta property="og:description" content="Remove a bs4TabPanel in a bs4TabSetPanel" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,19 +141,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Insert a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></h1>
+    <h1>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/update-functions.R'><code>R/update-functions.R</code></a></small>
-    <div class="hidden name"><code>bs4InsertTab.Rd</code></div>
+    <div class="hidden name"><code>bs4RemoveTab.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Insert a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></p>
+    <p>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4InsertTab</span>(<span class='no'>inputId</span>, <span class='no'>tab</span>, <span class='no'>target</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"before"</span>, <span class='st'>"after"</span>),
-  <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
+    <pre class="usage"><span class='fu'>bs4RemoveTab</span>(<span class='no'>inputId</span>, <span class='no'>target</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,20 +163,8 @@
       <td><p><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id.</p></td>
     </tr>
     <tr>
-      <th>tab</th>
-      <td><p><a href='bs4TabPanel.html'>bs4TabPanel</a> to insert.</p></td>
-    </tr>
-    <tr>
       <th>target</th>
-      <td><p><a href='bs4TabPanel.html'>bs4TabPanel</a> after of before which the new tab will be inserted.</p></td>
-    </tr>
-    <tr>
-      <th>position</th>
-      <td><p>Insert before or after: <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("before", "after")</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>select</th>
-      <td><p>Whether to select the newly inserted tab. FALSE by default.</p></td>
+      <td><p><a href='bs4TabPanel.html'>bs4TabPanel</a> to remove.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -191,11 +179,11 @@
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>bs4Dash</span>)
 
  <span class='no'>ui</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-   <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='no'>T</span>,
+   <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
    <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"add1"</span>,<span class='st'>"ADD tabset 1"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"remove1"</span>,<span class='st'>"Remove tab 1"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
@@ -210,7 +198,7 @@
          <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Text 2"</span>),
        )
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"add2"</span>,<span class='st'>"ADD tabset 2"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"remove2"</span>,<span class='st'>"Remove tab 2"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
@@ -230,23 +218,17 @@
 
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add1</span>, {
-     <span class='fu'>bs4InsertTab</span>(
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>remove1</span>, {
+     <span class='fu'>bs4RemoveTab</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Dynamic"</span>, <span class='st'>"I am inserted"</span>),
-       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-       <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"after"</span>,
-       <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>
      )
    })
 
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add2</span>, {
-     <span class='fu'>bs4InsertTab</span>(
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>remove2</span>, {
+     <span class='fu'>bs4RemoveTab</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Dynamic"</span>, <span class='st'>"I am inserted and active"</span>),
-       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-       <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"before"</span>,
-       <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
      )
    })
 

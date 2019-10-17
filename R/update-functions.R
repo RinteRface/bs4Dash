@@ -210,7 +210,6 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'    )
 #'  )
 #'  
-#'  
 #'  server <- function(input, output, session) {
 #'    
 #'    observeEvent(input$add1, {
@@ -234,7 +233,6 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'    })
 #'    
 #'  }
-#'  
 #'  shinyApp(ui, server)
 #' }
 bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
@@ -288,6 +286,101 @@ bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
   )
   session$sendCustomMessage(type = inputId, message = message)
 }
+
+
+
+#' Remove a \link{bs4TabPanel} in a \link{bs4TabSetPanel}
+#'
+#' @param inputId  \link{bs4TabSetPanel} id.
+#' @param target \link{bs4TabPanel} to remove.
+#' @param session Shiny session object.
+#' 
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  ui <-  bs4DashPage(
+#'    sidebar_collapsed = TRUE,
+#'    sidebar = bs4DashSidebar(),
+#'    bs4DashFooter(),
+#'    body = bs4DashBody(
+#'      actionButton("remove1","Remove tab 1"),
+#'      bs4TabSetPanel(
+#'        id = "tabset1", 
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "Tab 1",
+#'          active = TRUE,
+#'          p("Text 1"),
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 2",
+#'          active = FALSE,
+#'          p("Text 2"),
+#'        )
+#'      ),
+#'      actionButton("remove2","Remove tab 2"),
+#'      bs4TabSetPanel(
+#'        id = "tabset2", 
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "Tab 1",
+#'          active = TRUE,
+#'          p("Text 1"),
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 2",
+#'          active = FALSE,
+#'          p("Text 2"),
+#'        )
+#'      )
+#'    )
+#'  )
+#'  
+#'  server <- function(input, output, session) {
+#'    
+#'    observeEvent(input$remove1, {
+#'      bs4RemoveTab(
+#'        inputId = "tabset1",
+#'        target = "Tab 1"
+#'      )
+#'    })
+#'    
+#'    observeEvent(input$remove2, {
+#'      bs4RemoveTab(
+#'        inputId = "tabset2",
+#'        target = "Tab 2",
+#'      )
+#'    })
+#'    
+#'  }
+#'  shinyApp(ui, server)
+#' }
+bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
+  
+  # tabsetpanel namespace
+  ns <- inputId
+  
+  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
+  # prefix by remove_ makes sense
+  inputId <- paste0("remove_", inputId)
+  
+  # remove all whitespace from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+  
+  message <- dropNulls(
+    list(
+      target = target,
+      ns = ns
+    )
+  )
+  session$sendCustomMessage(type = inputId, message = message)
+  
+}
+
 
 
 

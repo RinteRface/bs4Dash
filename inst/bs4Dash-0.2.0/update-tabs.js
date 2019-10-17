@@ -42,7 +42,7 @@ $(function() {
       var tabId = message.ns + "-" + message.target;
       if (message.position === "after") {
         // insert after the targeted tag in the tab-panel div
-        $(message.value).insertAfter($("#" +tabId));
+        $(message.value).insertAfter($("#" + tabId));
         // we also need to insert an item in the navigation
         $(message.link).insertAfter($('[href ="#' + tabId + '"]').parent());
       } else if (message.position === "before") {
@@ -62,6 +62,21 @@ $(function() {
         $('#' + index + ' a[href!="#' + message.id +'"]').removeClass('active');
         $('div[id="' +  message.id + '"]').siblings().removeClass('active show');
       }
+    });
+  });
+  
+  
+  // handles the removeTab function
+  tabIds.forEach(function(index) {
+    var id = "remove_" + index;
+    Shiny.addCustomMessageHandler(id, function(message) {
+      var tabId = message.ns + "-" + message.target;
+      $('#' + index + ' a[href="#' +  tabId +'"]').parent().remove();
+      $('#' + tabId).remove();
+      
+      // if only one element remains, select it by default
+      var items = $('#' + index + ' li');
+      if (items.length === 1) $(items).find('a').click();
     });
   });
   
