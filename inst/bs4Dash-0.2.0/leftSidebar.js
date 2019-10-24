@@ -179,7 +179,9 @@ $(function () {
   
     // Given the DOM element for the input, return the value
     getValue: function(el) {
-      return $("body").hasClass("sidebar-open");
+      // Warning: we can't look for sidebar-open since this
+      // class is only generated on mobile devices
+      return !$("body").hasClass("sidebar-collapse");
     },
   
     // see updatebs4Controlbar
@@ -189,8 +191,6 @@ $(function () {
   
     subscribe: function(el, callback) {
       $("[data-widget='pushmenu']").on("collapsed.lte.pushmenu shown.lte.pushmenu", function(e) {
-        // add a delay so that Shiny get the input value 
-        // after the AdminLTE3 animation is finished!
         callback();
       });
     },
