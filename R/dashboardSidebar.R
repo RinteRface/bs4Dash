@@ -14,6 +14,7 @@
 #' @param src Sidebar brand image.
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar opacity. From 0 to 1. 0.8 by default.
+#' @param expand_on_hover Whether to expand the sidebar om hover. TRUE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -21,7 +22,7 @@
 bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
                            title = NULL, skin = "dark", status = "primary",
                            brandColor = NULL, url = NULL, src = NULL,
-                           elevation = 4, opacity = .8) {
+                           elevation = 4, opacity = .8, expand_on_hover = TRUE) {
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -50,7 +51,8 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
     id = inputId,
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
-      status, " elevation-", elevation
+      status, " elevation-", elevation,
+      if (expand_on_hover) NULL else " sidebar-no-expand"
     ),
     style = if (disable) "display: none;"
    )

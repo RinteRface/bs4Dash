@@ -2254,3 +2254,34 @@ bs4Quote <- function(..., status) {
     ...
   )
 }
+
+
+
+#' Get all AdminLTE colors.
+#' @export
+getAdminLTEColors <- function() {
+  return(
+    c(
+      "dark",
+      "navy",
+      "gray-dark",
+      "gray",
+      "secondary",
+      "indigo",
+      "purple",
+      "primary",
+      "info",
+      "success",
+      "olive",
+      "teal",
+      "lime",
+      "warning",
+      "orange",
+      "danger",
+      "fuchsia",
+      "maroon",
+      "pink",
+      "light"
+    )
+  )
+}

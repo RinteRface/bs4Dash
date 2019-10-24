@@ -191,10 +191,7 @@ $(function () {
       $("[data-widget='pushmenu']").on("collapsed.lte.pushmenu shown.lte.pushmenu", function(e) {
         // add a delay so that Shiny get the input value 
         // after the AdminLTE3 animation is finished!
-        setTimeout(
-          function() {
-            callback();
-          }, 10);
+        callback();
       });
     },
   

@@ -7,11 +7,11 @@
 \usage{
 bs4DashSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
   skin = "dark", status = "primary", brandColor = NULL, url = NULL,
-  src = NULL, elevation = 4, opacity = 0.8)
+  src = NULL, elevation = 4, opacity = 0.8, expand_on_hover = TRUE)
 
 dashboardSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
   skin = "dark", status = "primary", brandColor = NULL, url = NULL,
-  src = NULL, elevation = 4, opacity = 0.8)
+  src = NULL, elevation = 4, opacity = 0.8, expand_on_hover = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenu}.}
@@ -36,6 +36,8 @@ dashboardSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
 \item{elevation}{Sidebar elevation. 4 by default (until 5).}
 
 \item{opacity}{Sidebar opacity. From 0 to 1. 0.8 by default.}
+
+\item{expand_on_hover}{Whether to expand the sidebar om hover. TRUE by default.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar

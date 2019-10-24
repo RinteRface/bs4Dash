@@ -1,5 +1,9 @@
 # bs4Dash 0.5.0.9000
 
+## Breaking Changes
+- remove fixed parameters from `bs4DashNavbar()` since it does not exist in the new
+AdminLTE version
+
 ## Major Changes
 - upgrade AdminLTE3 version to rc4
 - add `bs4DashSidebar()` input binding to indicate the state (collapse: FALSE, open: TRUE) as well as 
@@ -13,7 +17,10 @@
 
 
 ## New features
-- by default, `bs4DashSidebar` has a fixed layout. This prevent from not seeing sidebar items
+- add expand_on_hover parameter to `bs4DashSidebar()`
+- add compact parameters to `bs4DashNavbar()` to reduce the navbar size
+- add `getAdminLTEColors()` to preview all available color themes
+- by default, `bs4DashSidebar()` has a fixed layout. This prevent from not seeing sidebar items
 if the body contains too many elements
 - `bs4DashPage()` has options to change the `bs4Controlbar()` behavior when it expands (see controlbar_overlay)
 - `bs4SidebarMenu()` has 3 new parameters: flat (design effect), child_indent and compact
@@ -23,6 +30,7 @@ if the body contains too many elements
 - add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
+- fix `bs4DashNavbar()` background color issue. 
 - rework `bs4DashBody()` so that when no element is in the sidebar and no tabItems
 are in the body, margin between the sidebar, the controlbar is not 0
 - when btn_name is NULL in `bs4Jumbotron()`, do not show a button. Thanks @davidlvb

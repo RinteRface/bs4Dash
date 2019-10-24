@@ -5,33 +5,34 @@
 \alias{dashboardHeader}
 \title{Create a Boostrap 4 dashboard navbar}
 \usage{
-bs4DashNavbar(..., skin = "light", status = "white", border = TRUE,
-  sidebarIcon = "bars", controlbarIcon = "th", leftUi = NULL,
-  rightUi = NULL, fixed = FALSE)
+bs4DashNavbar(..., skin = "light", status = NULL, border = TRUE,
+  sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
+  leftUi = NULL, rightUi = NULL)
 
-dashboardHeader(..., skin = "light", status = "white", border = TRUE,
-  sidebarIcon = "bars", controlbarIcon = "th", leftUi = NULL,
-  rightUi = NULL, fixed = FALSE)
+dashboardHeader(..., skin = "light", status = NULL, border = TRUE,
+  sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
+  leftUi = NULL, rightUi = NULL)
 }
 \arguments{
 \item{...}{Any UI element between left and right Ui.}
 
 \item{skin}{Navbar skin. "dark" or "light".}
 
-\item{status}{Navbar status. "white" by default: "primary", "danger", "warning",
-"success", "info", "white" or "gray-light".}
+\item{status}{Navbar status. "primary", "danger", "warning",
+"success", "info", "white", "gray-light" and all other available colors. See
+\link{getAdminLTEColors}.}
 
 \item{border}{Whether to separate the navbar and body by a border. TRUE by default.}
 
 \item{sidebarIcon}{Icon of the main sidebar toggle.}
+
+\item{compact}{Whether items should be compacted. FALSE by default.}
 
 \item{controlbarIcon}{Icon to toggle the controlbar (left).}
 
 \item{leftUi}{Custom left Ui content. Any Ui element.}
 
 \item{rightUi}{Custom right Ui content. Any Ui element.}
-
-\item{fixed}{Whether the navbar is fixed to the top. FALSE by default}
 }
 \description{
 Build an adminLTE3 dashboard navbar

@@ -152,13 +152,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>bs4DashNavbar</span>(<span class='no'>...</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>, <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>, <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>bs4DashNavbar</span>(<span class='no'>...</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>, <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>,
+  <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>dashboardHeader</span>(<span class='no'>...</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>, <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>, <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>dashboardHeader</span>(<span class='no'>...</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>, <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>,
+  <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,8 +173,9 @@
     </tr>
     <tr>
       <th>status</th>
-      <td><p>Navbar status. "white" by default: "primary", "danger", "warning",
-"success", "info", "white" or "gray-light".</p></td>
+      <td><p>Navbar status. "primary", "danger", "warning",
+"success", "info", "white", "gray-light" and all other available colors. See
+<a href='getAdminLTEColors.html'>getAdminLTEColors</a>.</p></td>
     </tr>
     <tr>
       <th>border</th>
@@ -183,6 +184,10 @@
     <tr>
       <th>sidebarIcon</th>
       <td><p>Icon of the main sidebar toggle.</p></td>
+    </tr>
+    <tr>
+      <th>compact</th>
+      <td><p>Whether items should be compacted. FALSE by default.</p></td>
     </tr>
     <tr>
       <th>controlbarIcon</th>
@@ -195,10 +200,6 @@
     <tr>
       <th>rightUi</th>
       <td><p>Custom right Ui content. Any Ui element.</p></td>
-    </tr>
-    <tr>
-      <th>fixed</th>
-      <td><p>Whether the navbar is fixed to the top. FALSE by default</p></td>
     </tr>
     </table>
     

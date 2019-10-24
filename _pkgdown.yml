@@ -121,6 +121,7 @@ reference:
   - '`bs4TimelineItemMedia`'
   - '`bs4TimelineLabel`'
   - '`bs4TimelineStart`'
+  - '`getAdminLTEColors`'
   - '`ionicon`'
   - '`userMessage`'
   - '`userMessages`'

@@ -4,27 +4,28 @@
 #'
 #' @param ... Any UI element between left and right Ui.
 #' @param skin Navbar skin. "dark" or "light".
-#' @param status Navbar status. "white" by default: "primary", "danger", "warning",
-#' "success", "info", "white" or "gray-light".
+#' @param status Navbar status. "primary", "danger", "warning",
+#' "success", "info", "white", "gray-light" and all other available colors. See
+#' \link{getAdminLTEColors}.
 #' @param border Whether to separate the navbar and body by a border. TRUE by default.
+#' @param compact Whether items should be compacted. FALSE by default.
 #' @param sidebarIcon Icon of the main sidebar toggle.
 #' @param controlbarIcon Icon to toggle the controlbar (left).
 #' @param leftUi Custom left Ui content. Any Ui element.
 #' @param rightUi Custom right Ui content. Any Ui element.
-#' @param fixed Whether the navbar is fixed to the top. FALSE by default
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., skin = "light", status = "white", border = TRUE,
-                          sidebarIcon = "bars", controlbarIcon = "th",
-                          leftUi = NULL, rightUi = NULL, fixed = FALSE) {
+bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
+                          sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
+                          leftUi = NULL, rightUi = NULL) {
   
   navbarTag <- shiny::tags$nav(
     class = paste0(
-      "main-header navbar navbar-expand bg-", status,
-      " navbar-", skin, if (isTRUE(border)) " border-bottom" else NULL,
-      if (fixed) " fixed-top" else NULL
+      "main-header navbar navbar-expand navbar-", status,
+      " navbar-", skin, if (isTRUE(border)) " border-bottom-0" else NULL,
+      if (compact) " text-sm" else NULL
     ),
     
     # left sidebar elements
