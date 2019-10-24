@@ -35,7 +35,7 @@ dashboardSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
 
 \item{elevation}{Sidebar elevation. 4 by default (until 5).}
 
-\item{opacity}{Sidebar opacity. From 0 to 1. 0.8 by default.}
+\item{opacity}{Sidebar brand opacity. From 0 to 1. 0.8 by default.}
 
 \item{expand_on_hover}{Whether to expand the sidebar om hover. TRUE by default.}
 }

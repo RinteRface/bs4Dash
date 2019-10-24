@@ -36,6 +36,7 @@ shiny::shinyApp(
       )
     ),
     sidebar = bs4DashSidebar(
+      expand_on_hover = TRUE,
       skin = "light",
       status = "primary",
       title = "bs4Dash",

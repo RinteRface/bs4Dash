@@ -13,7 +13,7 @@
 #' @param url Sidebar brand link.
 #' @param src Sidebar brand image.
 #' @param elevation Sidebar elevation. 4 by default (until 5).
-#' @param opacity Sidebar opacity. From 0 to 1. 0.8 by default.
+#' @param opacity Sidebar brand opacity. From 0 to 1. 0.8 by default.
 #' @param expand_on_hover Whether to expand the sidebar om hover. TRUE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
