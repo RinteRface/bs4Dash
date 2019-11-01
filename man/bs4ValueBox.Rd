@@ -6,10 +6,10 @@
 \title{Boostrap 4 value box}
 \usage{
 bs4ValueBox(value, subtitle, icon = NULL, elevation = NULL,
-  status = NULL, width = 3, href = NULL)
+  status = NULL, width = 3, footer = NULL, href = NULL)
 
 valueBox(value, subtitle, icon = NULL, elevation = NULL,
-  status = NULL, width = 3, href = NULL)
+  status = NULL, width = 3, footer = NULL, href = NULL)
 }
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}
@@ -28,7 +28,10 @@ default width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
-\item{href}{An optional URL to link to.}
+\item{footer}{Optional html content for the footer of the box.}
+
+\item{href}{An optional URL to link to in the footer. Should both `footer`
+and this parameter be set, `footer` will take precedence.}
 }
 \description{
 A beautiful AdminLTE3 value box.
@@ -58,7 +61,8 @@ if(interactive()){
         value = "53\%",
         subtitle = "New orders",
         status = "danger",
-        icon = "cogs"
+        icon = "cogs",
+        footer = shiny::div("Hello World")
        ),
        bs4ValueBox(
         value = "44",
