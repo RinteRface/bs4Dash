@@ -535,7 +535,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(subtitle)
+    shiny::tags$p(class = paste0(valueBoxCl, "-subtitle"),
+                  subtitle)
   )
   
   iconTag <- shiny::tags$div(
@@ -822,42 +823,42 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   
   # tools collapse/closable
   if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
-  cardToolTag <- shiny::tags$div(
-    class = "tools pt-3 pb-3 pr-2 mr-2",
-
-    # collapse
-    if (isTRUE(collapsible)) {
-      collapseIcon <- if (collapsed) 
-        "plus"
-      else "minus"
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool pb-0 pt-0",
-        `data-card-widget` = "collapse",
-        shiny::icon(collapseIcon)
-      )
-    },
-    
-    # close
-    if (isTRUE(closable)) {
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool pb-0 pt-0",
-        `data-card-widget` = "remove",
-        shiny::tags$i(class = "fa fa-times")
-      )
-    },
-    
-    # maximize
-    if (maximizable) {
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool",
-        `data-card-widget` = "maximize",
-        shiny::tags$i(class = "fa fa-expand")
-      )
-    }
-  )
+    cardToolTag <- shiny::tags$div(
+      class = "tools pt-3 pb-3 pr-2 mr-2",
+      
+      # collapse
+      if (isTRUE(collapsible)) {
+        collapseIcon <- if (collapsed) 
+          "plus"
+        else "minus"
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool pb-0 pt-0",
+          `data-card-widget` = "collapse",
+          shiny::icon(collapseIcon)
+        )
+      },
+      
+      # close
+      if (isTRUE(closable)) {
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool pb-0 pt-0",
+          `data-card-widget` = "remove",
+          shiny::tags$i(class = "fa fa-times")
+        )
+      },
+      
+      # maximize
+      if (maximizable) {
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool",
+          `data-card-widget` = "maximize",
+          shiny::tags$i(class = "fa fa-expand")
+        )
+      }
+    )
   } else {
     cardToolTag <- shiny::tags$div()
   }
