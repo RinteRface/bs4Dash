@@ -535,7 +535,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(class = paste0(valueBoxCl, "-subtitle"),
+    shiny::tags$p(class = "small-box-subtitle",
                   subtitle)
   )
   
