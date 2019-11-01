@@ -224,7 +224,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     if (enable_sidebar) {
       sidebarTag <- shiny::tags$button(
         class = "btn btn-tool",
-        `data-card-widget` = "chat-pane-toggle",
+        `data-widget` = "chat-pane-toggle",
         `data-toggle` = "tooltip",
         `data-original-title` = "More",
         title = NA,
