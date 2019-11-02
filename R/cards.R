@@ -34,7 +34,7 @@
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param enable_sidebar Whether to display the box sidebar. FALSE by default.
 #' @param sidebar_content Box sidebar content, if any.
-#' @param sidebar_width Box sidebar width in percentage. 25\% by default. Numeric value between 0 and 100.
+#' @param sidebar_width Box sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px")
 #' @param sidebar_background Box sidebar background color. Dark by default.
 #' @param sidebar_start_open Whether the box sidebar is open at start. FALSE by default.
 #' @param sidebar_icon Box sidebar icon. 
@@ -133,7 +133,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
                     overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL, 
-                    sidebar_width = 25, sidebar_background = "#333a40", 
+                    sidebar_width = "25%", sidebar_background = "#333a40", 
                     sidebar_start_open = FALSE, sidebar_icon = "cogs") {
   
   cardCl <- if (!is.null(gradientColor)) {
@@ -255,7 +255,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
         shiny::tags$ul(
           class = "contacts-list", 
           shiny::tags$li(
-            style = paste0("width: ", sidebar_width, "%;"), 
+            style = paste0("width: ", sidebar_width, ";"), 
             sidebar_content
           )
         )
@@ -289,7 +289,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   )
   
   # for the sidebar
-  translation_rate <- paste0(100 - sidebar_width, "%")
+  translation_rate <- paste0("calc(100% - ", sidebar_width, ")")
   
   shiny::tagList(
     shiny::singleton(
