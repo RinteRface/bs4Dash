@@ -153,10 +153,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>bs4ValueBox</span>(<span class='no'>value</span>, <span class='no'>subtitle</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>href</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>href</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>valueBox</span>(<span class='no'>value</span>, <span class='no'>subtitle</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>href</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>href</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,8 +190,13 @@ layouts, use <code>NULL</code> for the width; the width is set by the column tha
 contains the box.</p></td>
     </tr>
     <tr>
+      <th>footer</th>
+      <td><p>Optional html content for the footer of the box.</p></td>
+    </tr>
+    <tr>
       <th>href</th>
-      <td><p>An optional URL to link to.</p></td>
+      <td><p>An optional URL to link to in the footer. Should both `footer`
+and this parameter be set, `footer` will take precedence.</p></td>
     </tr>
     </table>
     
@@ -226,7 +231,8 @@ contains the box.</p></td>
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"53%"</span>,
         <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"New orders"</span>,
         <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"cogs"</span>
+        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"cogs"</span>,
+        <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>div</a></span>(<span class='st'>"Hello World"</span>)
        ),
        <span class='fu'>bs4ValueBox</span>(
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"44"</span>,

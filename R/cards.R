@@ -136,6 +136,13 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                     sidebar_width = "25%", sidebar_background = "#333a40", 
                     sidebar_start_open = FALSE, sidebar_icon = "cogs") {
   
+  if (!is.null(height) & overflow) {
+    stop(
+      "overlow and height are not compatible. Please choose only one property. 
+      When overflow is TRUE, the maximum height is 500px"
+    )
+  }
+  
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-gradient-", gradientColor)
   } else {
@@ -243,10 +250,16 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   )
   headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
   
+
+  
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
+    style = if (!is.null(height)) {
+      paste0("height: ", shiny::validateCssUnit(height))
+    } else {
+      if (overflow) "overflow-y: auto; max-height: 500px;" else NULL
+    },
     ...,
     if (enable_sidebar) {
       shiny::tags$div(
@@ -271,15 +284,9 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     ) 
   }
   
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  
   cardTag <- shiny::tags$div(
     class = cardCl,
-    id = inputId,
-    style = if (!is.null(style)) style
+    id = inputId
   )
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   

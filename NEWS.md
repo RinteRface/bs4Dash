@@ -17,6 +17,7 @@ AdminLTE version
 
 
 ## New features
+- `bs4ValueBox()` has a footer argument. It is different from the href parameter. Thanks @stefanfritsch
 - add expand_on_hover parameter to `bs4DashSidebar()`
 - add compact parameters to `bs4DashNavbar()` to reduce the navbar size
 - add `getAdminLTEColors()` to preview all available color themes
@@ -30,6 +31,7 @@ if the body contains too many elements
 - add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
+- fix height issue in `bs4Card()`. Thanks @analytichealth
 - Rework the `column()` function from Shiny to make it work with Bootstrap 4. Thanks @federicomarini
 - fix `bs4DashNavbar()` background color issue. 
 - rework `bs4DashBody()` so that when no element is in the sidebar and no tabItems
