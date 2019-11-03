@@ -34,7 +34,7 @@
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param enable_sidebar Whether to display the box sidebar. FALSE by default.
 #' @param sidebar_content Box sidebar content, if any.
-#' @param sidebar_width Box sidebar width in percentage. 25\% by default. Numeric value between 0 and 100.
+#' @param sidebar_width Box sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px")
 #' @param sidebar_background Box sidebar background color. Dark by default.
 #' @param sidebar_start_open Whether the box sidebar is open at start. FALSE by default.
 #' @param sidebar_icon Box sidebar icon. 
@@ -133,7 +133,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
                     overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL, 
-                    sidebar_width = 25, sidebar_background = "#333a40", 
+                    sidebar_width = "25%", sidebar_background = "#333a40", 
                     sidebar_start_open = FALSE, sidebar_icon = "cogs") {
   
   cardCl <- if (!is.null(gradientColor)) {
@@ -224,7 +224,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     if (enable_sidebar) {
       sidebarTag <- shiny::tags$button(
         class = "btn btn-tool",
-        `data-card-widget` = "chat-pane-toggle",
+        `data-widget` = "chat-pane-toggle",
         `data-toggle` = "tooltip",
         `data-original-title` = "More",
         title = NA,
@@ -255,7 +255,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
         shiny::tags$ul(
           class = "contacts-list", 
           shiny::tags$li(
-            style = paste0("width: ", sidebar_width, "%;"), 
+            style = paste0("width: ", sidebar_width, ";"), 
             sidebar_content
           )
         )
@@ -289,7 +289,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   )
   
   # for the sidebar
-  translation_rate <- paste0(100 - sidebar_width, "%")
+  translation_rate <- paste0("calc(100% - ", sidebar_width, ")")
   
   shiny::tagList(
     shiny::singleton(
@@ -476,7 +476,9 @@ dropdownDivider <- function() {
 #'   default width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
-#' @param href An optional URL to link to. 
+#' @param footer Optional html content for the footer of the box.
+#' @param href An optional URL to link to in the footer. Should both `footer`
+#'   and this parameter be set, `footer` will take precedence. 
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -506,7 +508,8 @@ dropdownDivider <- function() {
 #'         value = "53%",
 #'         subtitle = "New orders",
 #'         status = "danger",
-#'         icon = "cogs"
+#'         icon = "cogs",
+#'         footer = shiny::div("Hello World")
 #'        ),
 #'        bs4ValueBox(
 #'         value = "44",
@@ -523,7 +526,7 @@ dropdownDivider <- function() {
 #'
 #' @export
 bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
-                        status = NULL, width = 3, href = NULL) {
+                        status = NULL, width = 3, footer = NULL, href = NULL) {
   
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
@@ -532,7 +535,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(subtitle)
+    shiny::tags$p(class = "small-box-subtitle",
+                  subtitle)
   )
   
   iconTag <- shiny::tags$div(
@@ -540,13 +544,20 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
     shiny::icon(icon)
   )
   
-  footerTag <- shiny::tags$a(
-    href = href,
-    target = "_blank",
-    class = "small-box-footer",
-    if (!is.null(href)) "More info" else NULL,
-    if (!is.null(href)) shiny::icon("arrow-circle-right") else shiny::br()
-  )
+  if (!is.null(footer)) {
+    footerTag <- shiny::tags$div(
+      class = "small-box-footer",
+      footer
+    )
+  } else {
+    footerTag <- shiny::tags$a(
+      href = href,
+      target = "_blank",
+      class = "small-box-footer",
+      if (!is.null(href)) "More info" else NULL,
+      if (!is.null(href)) shiny::icon("arrow-circle-right") else shiny::br()
+    )
+  }
   
   valueBoxTag <- shiny::tags$div(
     class = valueBoxCl
@@ -812,42 +823,42 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   
   # tools collapse/closable
   if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
-  cardToolTag <- shiny::tags$div(
-    class = "tools pt-3 pb-3 pr-2 mr-2",
-
-    # collapse
-    if (isTRUE(collapsible)) {
-      collapseIcon <- if (collapsed) 
-        "plus"
-      else "minus"
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool pb-0 pt-0",
-        `data-card-widget` = "collapse",
-        shiny::icon(collapseIcon)
-      )
-    },
-    
-    # close
-    if (isTRUE(closable)) {
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool pb-0 pt-0",
-        `data-card-widget` = "remove",
-        shiny::tags$i(class = "fa fa-times")
-      )
-    },
-    
-    # maximize
-    if (maximizable) {
-      shiny::tags$button(
-        type = "button",
-        class = "btn btn-tool",
-        `data-card-widget` = "maximize",
-        shiny::tags$i(class = "fa fa-expand")
-      )
-    }
-  )
+    cardToolTag <- shiny::tags$div(
+      class = "tools pt-3 pb-3 pr-2 mr-2",
+      
+      # collapse
+      if (isTRUE(collapsible)) {
+        collapseIcon <- if (collapsed) 
+          "plus"
+        else "minus"
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool pb-0 pt-0",
+          `data-card-widget` = "collapse",
+          shiny::icon(collapseIcon)
+        )
+      },
+      
+      # close
+      if (isTRUE(closable)) {
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool pb-0 pt-0",
+          `data-card-widget` = "remove",
+          shiny::tags$i(class = "fa fa-times")
+        )
+      },
+      
+      # maximize
+      if (maximizable) {
+        shiny::tags$button(
+          type = "button",
+          class = "btn btn-tool",
+          `data-card-widget` = "maximize",
+          shiny::tags$i(class = "fa fa-expand")
+        )
+      }
+    )
   } else {
     cardToolTag <- shiny::tags$div()
   }
