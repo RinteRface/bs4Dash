@@ -13,6 +13,7 @@
 #' TRUE by default
 #' @param gradientColor If NULL (the default), the background of the box will be
 #'   white. Otherwise, a color string. "primary", "success", "warning" or "danger".
+#' @param class A character string that will be added to the card's list of css classes.
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
 #'   default width of 4 occupies 1/3 of that width. For column-based
@@ -129,7 +130,7 @@
 #' @export
 bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
-                    width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
+                    class = NULL, width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
                     overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL, 
@@ -156,6 +157,10 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
       }
     }
   }
+  
+  if (!is.null(class))
+    cardCl <- paste(cardCl, class)
+    
   
   if (enable_sidebar) {
     if (sidebar_start_open) {

@@ -7,8 +7,8 @@
 \usage{
 bs4Card(..., inputId = NULL, title = NULL, footer = NULL,
   status = NULL, elevation = NULL, solidHeader = FALSE,
-  headerBorder = TRUE, gradientColor = NULL, width = 6,
-  height = NULL, collapsible = TRUE, collapsed = FALSE,
+  headerBorder = TRUE, gradientColor = NULL, class = NULL,
+  width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE,
   closable = TRUE, maximizable = FALSE, labelStatus = NULL,
   labelText = NULL, labelTooltip = NULL, dropdownMenu = NULL,
   dropdownIcon = "wrench", overflow = FALSE, enable_sidebar = FALSE,
@@ -18,8 +18,8 @@ bs4Card(..., inputId = NULL, title = NULL, footer = NULL,
 
 box(..., inputId = NULL, title = NULL, footer = NULL,
   status = NULL, elevation = NULL, solidHeader = FALSE,
-  headerBorder = TRUE, gradientColor = NULL, width = 6,
-  height = NULL, collapsible = TRUE, collapsed = FALSE,
+  headerBorder = TRUE, gradientColor = NULL, class = NULL,
+  width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE,
   closable = TRUE, maximizable = FALSE, labelStatus = NULL,
   labelText = NULL, labelTooltip = NULL, dropdownMenu = NULL,
   dropdownIcon = "wrench", overflow = FALSE, enable_sidebar = FALSE,
@@ -47,6 +47,8 @@ TRUE by default}
 
 \item{gradientColor}{If NULL (the default), the background of the box will be
 white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
+
+\item{class}{A character string that will be added to the card's list of css classes.}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
