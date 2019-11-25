@@ -31,7 +31,8 @@ if the body contains too many elements
 - add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
-- fix remove hardcoded style for navbar icons (fixed in the last adminLTE3 release). Thanks @federicomarini 
+- remove hardcoded style for navbar dropdown icons
+- remove hardcoded style for navbar icons (fixed in the last adminLTE3 release). Thanks @federicomarini 
 - fix height issue in `bs4Card()`. Thanks @analytichealth
 - Rework the `column()` function from Shiny to make it work with Bootstrap 4. Thanks @federicomarini
 - fix `bs4DashNavbar()` background color issue. 
