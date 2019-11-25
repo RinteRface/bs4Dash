@@ -181,7 +181,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #' @export
 bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
   
-  dropdownItemTag <- shiny::tagList(
+  shiny::tagList(
     shiny::tags$a(
       class = "dropdown-item",
       href = "#",
@@ -197,24 +197,6 @@ bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
       )
     ),
     shiny::tags$div(class = "dropdown-divider")
-  )
-  
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$style(
-          shiny::HTML(
-            paste0(
-              ".fa-", icon, "{
-                color: #000;
-              }
-              "
-            )
-          )
-        )
-      )
-    ),
-    dropdownItemTag
   )
   
   # shiny::tags$a(
