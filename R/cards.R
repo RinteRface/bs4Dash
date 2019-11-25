@@ -700,43 +700,6 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
               "
             )
           )
-        ),
-        shiny::tags$style(
-          shiny::HTML(
-            if (is.null(status)) {
-              if (is.null(gradientColor)) {
-                paste0(
-                  ".fa-", icon, "{
-                      color: #000;
-                     }
-                    "
-                )
-              } else {
-                paste0(
-                  ".fa-", icon, "{
-                      color: #fff;
-                     }
-                    "
-                )
-              }
-            } else {
-              if (status == "white") {
-                paste0(
-                  ".fa-", icon, "{
-                      color: #000;
-                     }
-                    "
-                )
-              } else {
-                paste0(
-                  ".fa-", icon, "{
-                      color: #fff;
-                     }
-                    "
-                )
-              }
-            }
-          )
         )
       )
     ),
