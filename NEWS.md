@@ -18,6 +18,8 @@ AdminLTE version
 
 
 ## New features
+- `bs4DashPage()` has a new sidebar_mini parameter. When TRUE, the sidebar has a minimum
+width when collapsed (you still see icons). When false, it behaves like in shinydashboard
 - `bs4InfoBox()` can now navigate between tabs if the tabName parameter is specified. It must however correspond
 to an existing `bs4TabItem()` in the body!
 - `bs4ValueBox()` has a footer argument. It is different from the href parameter. Thanks @stefanfritsch
@@ -34,6 +36,7 @@ if the body contains too many elements
 - add `bs4Quote()`, an improved blockquote tag for Bootstrap 4
 
 ## Bug Fix
+- fix #66 and #71: sidebar_collapsed was not working. Thanks @analytichealth and @federicomarini
 - remove hardcoded style for navbar dropdown icons
 - remove hardcoded style for navbar icons (fixed in the last adminLTE3 release). Thanks @federicomarini 
 - fix height issue in `bs4Card()`. Thanks @analytichealth

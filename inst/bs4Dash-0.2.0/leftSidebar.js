@@ -202,4 +202,11 @@ $(function () {
   
   Shiny.inputBindings.register(sidebarBinding);
   
+  
+  // toggle sidebar at start depending on the body class
+  var sidebarStartsOpen = $('body').attr('sidebar-start-open');
+  if (sidebarStartsOpen === "false") {
+    $('body').addClass('sidebar-collapse');
+  }
+  
 });

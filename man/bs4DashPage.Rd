@@ -13,6 +13,7 @@ bs4DashPage(
   footer = NULL,
   title = NULL,
   old_school = FALSE,
+  sidebar_mini = TRUE,
   sidebar_collapsed = FALSE,
   controlbar_collapsed = TRUE,
   controlbar_overlay = TRUE,
@@ -29,6 +30,7 @@ dashboardPage(
   footer = NULL,
   title = NULL,
   old_school = FALSE,
+  sidebar_mini = TRUE,
   sidebar_collapsed = FALSE,
   controlbar_collapsed = TRUE,
   controlbar_overlay = TRUE,
@@ -52,6 +54,9 @@ dashboardPage(
 
 \item{old_school}{Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 by default.}
+
+\item{sidebar_mini}{Whether to see sidebar icons when \link{bs4DashSidebar}.
+is collapsed. TRUE by default.}
 
 \item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
 

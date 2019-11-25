@@ -36,7 +36,8 @@ dropdownMenuItem(
 
 \item{src}{Item image. Only if type is message.}
 
-\item{status}{Item status. Leave NULL if type is notification.
+\item{status}{Item status. Leave NULL if type is notification. See
+\link{getAdminLTEColors} for valid statuses.
 If not NULL, Indicate the message priority.}
 
 \item{type}{Item type: notification or message.}

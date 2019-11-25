@@ -115,19 +115,21 @@
 <span id="cb1-4"><a href="#cb1-4"></a> shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
 <span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
 <span id="cb1-6"><a href="#cb1-6"></a>   <span class="dt">old_school =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>   <span class="dt">sidebar_collapsed =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb1-8"><a href="#cb1-8"></a>   <span class="dt">controlbar_collapsed =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>   <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>   <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
-<span id="cb1-11"><a href="#cb1-11"></a>   <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>   <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
-<span id="cb1-13"><a href="#cb1-13"></a>   <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
-<span id="cb1-14"><a href="#cb1-14"></a>   <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>()</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  ),</span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
-<span id="cb1-17"><a href="#cb1-17"></a>)</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7"></a>   <span class="dt">sidebar_min =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>   <span class="dt">sidebar_collapsed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>   <span class="dt">controlbar_collapsed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb1-10"><a href="#cb1-10"></a>   <span class="dt">controlbar_overlay =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>   <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>   <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
+<span id="cb1-13"><a href="#cb1-13"></a>   <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</span>
+<span id="cb1-14"><a href="#cb1-14"></a>   <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
+<span id="cb1-15"><a href="#cb1-15"></a>   <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
+<span id="cb1-16"><a href="#cb1-16"></a>   <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>()</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  ),</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
+<span id="cb1-19"><a href="#cb1-19"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_basicPage.png"><br></p>
-<p>The <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> takes optional argument such as <em>old_school</em>, which is FALSE by default. Whenever it is TRUE, the page will have a fancy old design. The <em>sidebar_collapsed</em> argument enables to control how the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> is displayed when the app starts. Similarly, <em>controlbar_collapsed</em> allow you to decide whether to display the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. Finally, you can also give a <em>title</em> to the page.</p>
+<p>The <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> takes optional argument such as <em>old_school</em>, which is FALSE by default. Whenever it is TRUE, the page will have a fancy old design. The <em>sidebar_collapsed</em> argument enables to control how the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> is displayed when the app starts. Similarly, <em>controlbar_collapsed</em> allow you to decide whether to display the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. When <em>sidebar_mini</em> is TRUE, the sidebar icons are visible even when the sidebar is collapsed. Finally, you can also give a <em>title</em> to the page.</p>
 <p>Now, it is time to fill this template!</p>
 </div>
 <div id="sidebar-setup" class="section level2">
@@ -175,30 +177,31 @@
 <span id="cb3-4"><a href="#cb3-4"></a> <span class="dt">border =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb3-5"><a href="#cb3-5"></a> <span class="dt">sidebarIcon =</span> <span class="st">"bars"</span>,</span>
 <span id="cb3-6"><a href="#cb3-6"></a> <span class="dt">controlbarIcon =</span> <span class="st">"th"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a> <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a> <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
-<span id="cb3-9"><a href="#cb3-9"></a>   <span class="dt">show =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb3-10"><a href="#cb3-10"></a>   <span class="dt">align =</span> <span class="st">"left"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11"></a>   <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
-<span id="cb3-12"><a href="#cb3-12"></a>   <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13"></a>   <span class="dt">src =</span> <span class="ot">NULL</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a> ),</span>
-<span id="cb3-15"><a href="#cb3-15"></a> <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
-<span id="cb3-16"><a href="#cb3-16"></a>   <span class="dt">show =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb3-17"><a href="#cb3-17"></a>   <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18"></a>   <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19"></a>   <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
-<span id="cb3-20"><a href="#cb3-20"></a>     <span class="dt">text =</span> <span class="st">"message 1"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21"></a>     <span class="dt">date =</span> <span class="st">"today"</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a> <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb3-8"><a href="#cb3-8"></a>   <span class="dt">show =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>   <span class="dt">align =</span> <span class="st">"left"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>   <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11"></a>   <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>   <span class="dt">src =</span> <span class="ot">NULL</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a> ),</span>
+<span id="cb3-14"><a href="#cb3-14"></a> <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb3-15"><a href="#cb3-15"></a>   <span class="dt">show =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>   <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>   <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>   <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
+<span id="cb3-19"><a href="#cb3-19"></a>     <span class="dt">message =</span> <span class="st">"message 1"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>     <span class="dt">time =</span> <span class="st">"today"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>     <span class="dt">type =</span> <span class="st">"notification"</span></span>
 <span id="cb3-22"><a href="#cb3-22"></a>   ),</span>
 <span id="cb3-23"><a href="#cb3-23"></a>   <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
-<span id="cb3-24"><a href="#cb3-24"></a>     <span class="dt">text =</span> <span class="st">"message 2"</span>,</span>
-<span id="cb3-25"><a href="#cb3-25"></a>     <span class="dt">date =</span> <span class="st">"yesterday"</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a>   )</span>
-<span id="cb3-27"><a href="#cb3-27"></a> )</span>
-<span id="cb3-28"><a href="#cb3-28"></a>)</span></code></pre></div>
+<span id="cb3-24"><a href="#cb3-24"></a>     <span class="dt">message =</span> <span class="st">"message 2"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25"></a>     <span class="dt">time =</span> <span class="st">"yesterday"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>     <span class="dt">type =</span> <span class="st">"notification"</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>   )</span>
+<span id="cb3-28"><a href="#cb3-28"></a> )</span>
+<span id="cb3-29"><a href="#cb3-29"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_navbar.png"><br></p>
-<p><code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> allow you to change the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> toggle icon, as well as that for the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. Even though available, I do not recommand using the status option. 3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a <code>bs4DropdownMenu</code> in the leftUI slot, you better have to change the <em>align</em> argument to “left”, otherwise, the dropdown will open in the sidebar, which is not elegant. You can insert any content between the leftUI and rightUI slots. However, be careful not to overload the navbar.</p>
+<p><code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> allow you to change the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> toggle icon, as well as that for the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. 3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a <code>bs4DropdownMenu</code> in the leftUI slot, you better have to change the <em>align</em> argument to “left”, otherwise, the dropdown will open in the sidebar, which is not elegant. You can insert any content between the leftUI and rightUI slots. However, be careful not to overload the navbar.</p>
 </div>
 <div id="right-sidebar-setup" class="section level2">
 <h2 class="hasAnchor">
@@ -228,7 +231,7 @@
 <span id="cb4-22"><a href="#cb4-22"></a> )</span>
 <span id="cb4-23"><a href="#cb4-23"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_controlbar.png"><br></p>
-<p>I also advise the user not to add to many elements inside the controlbar. By default, the controlbar covers the dashboard body, when uncollapsed. A future option will enable the user to push the body content instead.</p>
+<p>I also advise the user not to add to many elements inside the controlbar. The controlbar_overlay parameter in <code>bs4DashPage</code> allows to push/cover the body content, depending on its value.</p>
 </div>
 <div id="footer-setup" class="section level2">
 <h2 class="hasAnchor">

@@ -164,6 +164,8 @@
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li>
+<code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has a new sidebar_mini parameter. When TRUE, the sidebar has a minimum width when collapsed (you still see icons). When false, it behaves like in shinydashboard</li>
+<li>
 <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> can now navigate between tabs if the tabName parameter is specified. It must however correspond to an existing <code><a href="../reference/bs4TabItem.html">bs4TabItem()</a></code> in the body!</li>
 <li>
 <code><a href="../reference/bs4ValueBox.html">bs4ValueBox()</a></code> has a footer argument. It is different from the href parameter. Thanks <a href='https://github.com/stefanfritsch'>@stefanfritsch</a></li>
@@ -188,6 +190,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/66'>#66</a> and <a href='https://github.com/RinteRface/bs4Dash/issues/71'>#71</a>: sidebar_collapsed was not working. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a> and <a href='https://github.com/federicomarini'>@federicomarini</a></li>
 <li>remove hardcoded style for navbar dropdown icons</li>
 <li>remove hardcoded style for navbar icons (fixed in the last adminLTE3 release). Thanks <a href='https://github.com/federicomarini'>@federicomarini</a></li>
 <li>fix height issue in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a></li>
