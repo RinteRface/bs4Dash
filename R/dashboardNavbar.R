@@ -195,7 +195,7 @@ bs4DropdownMenuItem <- function(message, from = NULL, time = NULL, icon = "info-
       shiny::tags$a(
         class = "dropdown-item",
         href = "#",
-        shiny::icon(icon) %>% shiny::tagAppendAttributes(class = "mr-2"),
+        shiny::tagAppendAttributes(shiny::icon(icon), class = "mr-2"),
         message,
         shiny::tags$span(
           class = "float-right text-muted text-sm",
