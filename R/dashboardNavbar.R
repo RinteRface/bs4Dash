@@ -131,7 +131,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
   
   labelText <- n_items
   
-  dropdownMenuTag <- shiny::tags$li(
+  shiny::tags$li(
     class = if (isTRUE(show)) "nav-item dropdown show" else "nav-item dropdown",
     shiny::tags$a(
       class = "nav-link",
@@ -163,25 +163,6 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
       )
     )
   )
-  
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$style(
-          shiny::HTML(
-            sprintf(
-              ".fa-%s {
-                color: #000;
-               }
-              "
-              , menuIcon)
-          )
-        )
-      )
-    ),
-    dropdownMenuTag
-  )
-  
 }
 
 
