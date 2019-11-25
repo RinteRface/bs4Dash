@@ -21,7 +21,7 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
                           sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
                           leftUi = NULL, rightUi = NULL) {
   
-  navbarTag <- shiny::tags$nav(
+  shiny::tags$nav(
     class = paste0(
       "main-header navbar navbar-expand navbar-", status,
       " navbar-", skin, if (isTRUE(border)) " border-bottom-0" else NULL,
@@ -66,28 +66,6 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
       ) 
     )
   )
-  
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$style(
-          shiny::HTML(
-            paste0(
-              ".fa-", sidebarIcon, "{
-                 color: #000;
-              }
-               .fa-", controlbarIcon, "{
-                 color: #000;
-               }
-              "
-            )
-          )
-        )
-      )
-    ),
-    navbarTag
-  )
-  
 }
 
 

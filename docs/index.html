@@ -5,14 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A 'Bootstrap 4' Version of 'shinydashboard' • bs4Dash</title>
+<title>A Bootstrap 4 Version of shinydashboard • bs4Dash</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="A 'Bootstrap 4' Version of 'shinydashboard'">
-<meta property="og:description" content="Make 'Bootstrap 4' dashboards. Use the full power
-    of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
+<meta property="og:title" content="A Bootstrap 4 Version of shinydashboard">
+<meta property="og:description" content="Make Bootstrap 4 dashboards. Use the full power
+    of AdminLTE3, a dashboard template built on top of Bootstrap 4 
     &lt;https://github.com/almasaeed2010/AdminLTE/tree/v3-dev&gt;.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -69,24 +70,8 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Changelog
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">bs4Dash 0.5.0.9000</li>
-    <li class="dropdown-header">bs4Dash 0.4.0</li>
-    <li class="dropdown-header">bs4Dash 0.3.0</li>
-    <li class="dropdown-header">bs4Dash 0.2.0</li>
-    <li class="dropdown-header">bs4Dash 0.1.0</li>
-    <li class="divider">
-    <li>
-      <a href="news/index.html">Changelog</a>
-    </li>
-  </ul>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -105,11 +90,12 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="bs4dash" class="section level1">
+<div id="bs4dash-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bs4dash" class="anchor"></a>bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right">
+<a href="#bs4dash-" class="anchor"></a>bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right">
 </h1></div>
 
 <blockquote>
@@ -134,20 +120,20 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package is on CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># from CRAN</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"bs4Dash"</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># latest devel version</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"RinteRface/bs4Dash"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># from CRAN</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"bs4Dash"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># latest devel version</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"RinteRface/bs4Dash"</span>)</span></code></pre></div>
 </div>
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
 <p>See a preview of the package <a href="https://rinterface.com/shiny/bs4Dash/classic/">here</a> and <a href="https://rinterface.com/shiny/bs4Dash/old_school/">here</a> or run</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(bs4Dash)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># classic theme</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>()</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># old_school theme</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>(<span class="dt">theme =</span> <span class="st">"old_school"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># classic theme</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>()</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># old_school theme</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>(<span class="dt">theme =</span> <span class="st">"old_school"</span>)</span></code></pre></div>
 <p>An applied example can be found <a href="https://rinterface.com/shiny/showcase/ratp/">here</a> (the original dashboard was made by <a href="https://twitter.com/PhilippineRs">Philippine Rheins</a> from <a href="https://twitter.com/dreamRs_fr">dreamRs</a>).</p>
 </div>
 <div id="issues" class="section level2">
@@ -198,17 +184,20 @@
 </div>
 </div>
 
+
       <footer><div class="copyright">
   <p>Developed by David Granjon.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
