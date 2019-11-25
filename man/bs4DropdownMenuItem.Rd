@@ -5,16 +5,41 @@
 \alias{dropdownMenuItem}
 \title{Create a Boostrap 4 dashboard dropdown menu item}
 \usage{
-bs4DropdownMenuItem(text, date = NULL, icon = "info-circle")
+bs4DropdownMenuItem(
+  message,
+  from = NULL,
+  time = NULL,
+  icon = "info-circle",
+  src = NULL,
+  status = NULL,
+  type = c("notification", "message")
+)
 
-dropdownMenuItem(text, date = NULL, icon = "info-circle")
+dropdownMenuItem(
+  message,
+  from = NULL,
+  time = NULL,
+  icon = "info-circle",
+  src = NULL,
+  status = NULL,
+  type = c("notification", "message")
+)
 }
 \arguments{
-\item{text}{Item content.}
+\item{message}{Item content.}
 
-\item{date}{Item date.}
+\item{from}{Item sender. Only if type is message.}
+
+\item{time}{Item date.}
 
 \item{icon}{Item icon.}
+
+\item{src}{Item image. Only if type is message.}
+
+\item{status}{Item status. Leave NULL if type is notification.
+If not NULL, Indicate the message priority.}
+
+\item{type}{Item type: notification or message.}
 }
 \description{
 Build an adminLTE3 dashboard dropdown menu item

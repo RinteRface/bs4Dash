@@ -16,12 +16,16 @@ shiny::shinyApp(
           status = "danger",
           src = "https://www.google.fr",
           bs4DropdownMenuItem(
-            text = "message 1",
-            date = "today"
+            message = "update your system",
+            time = "today",
+            type = "notification"
           ),
           bs4DropdownMenuItem(
-            text = "message 2",
-            date = "yesterday"
+            src = "https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg",
+            from = "John Doe",
+            message = "Call me whenever you can...",
+            time = "4 Minutes Ago",
+            type = "message"
           )
         ),
         bs4UserMenu(

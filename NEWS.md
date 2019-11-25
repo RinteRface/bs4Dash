@@ -3,6 +3,7 @@
 ## Breaking Changes
 - remove fixed parameters from `bs4DashNavbar()` since it does not exist in the new
 AdminLTE version
+- rework on `bs4DropdownMenuItem`: change text to message, date to time. Add new params: from, src, status and type.
 
 ## Major Changes
 - upgrade AdminLTE3 version to rc4

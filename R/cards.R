@@ -584,7 +584,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' A beautiful AdminLTE3 info box.
 #'
 #' @param ... Any extra UI element.
-#' @param tabName Optional: \link{bs4InfoCard} may be used to navigate between tabs.
+#' @param tabName Optional: \link{bs4InfoBox} may be used to navigate between tabs.
 #' @param title Info box title.
 #' @param value The value to display in the box. Usually a number or short text.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}.

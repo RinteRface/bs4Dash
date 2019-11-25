@@ -34,7 +34,7 @@ infoBox(
 \arguments{
 \item{...}{Any extra UI element.}
 
-\item{tabName}{Optional: \link{bs4InfoCard} may be used to navigate between tabs.}
+\item{tabName}{Optional: \link{bs4InfoBox} may be used to navigate between tabs.}
 
 \item{title}{Info box title.}
 

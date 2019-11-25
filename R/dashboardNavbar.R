@@ -172,59 +172,74 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #'
 #' Build an adminLTE3 dashboard dropdown menu item
 #'
-#' @param text Item content.
-#' @param date Item date.
+#' @param message Item content.
+#' @param from Item sender. Only if type is message.
+#' @param time Item date.
 #' @param icon Item icon.
+#' @param src Item image. Only if type is message.
+#' @param status Item status. Leave NULL if type is notification. See
+#' \link{getAdminLTEColors} for valid statuses.
+#' If not NULL, Indicate the message priority.
+#' @param type Item type: notification or message.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenuItem <- function(text, date = NULL, icon = "info-circle") {
+bs4DropdownMenuItem <- function(message, from = NULL, time = NULL, icon = "info-circle", src = NULL,
+                                status = NULL, type = c("notification", "message")) {
   
-  shiny::tagList(
-    shiny::tags$a(
-      class = "dropdown-item",
-      href = "#",
-      shiny::icon(icon),
-      text,
-      shiny::tags$span(
-        class = "float-right text-muted text-sm",
-        date,
+  type <- match.arg(type)
+  
+  dropdownItemTag <- if (type == "notification") {
+    shiny::tagList(
+      shiny::tags$a(
+        class = "dropdown-item",
+        href = "#",
+        shiny::icon(icon) %>% shiny::tagAppendAttributes(class = "mr-2"),
+        message,
         shiny::tags$span(
-          class = "time",
-          shiny::icon(icon)
+          class = "float-right text-muted text-sm",
+          time,
+          shiny::tags$span(
+            class = "time",
+            shiny::icon(icon)
+          )
+        )
+      ),
+      shiny::tags$div(class = "dropdown-divider")
+    )
+  } else if (type == "message") {
+    shiny::tags$a(
+      href = "#",
+      class = "dropdown-item",
+      shiny::tags$div(
+        class = "media",
+        shiny::tags$img(
+          src = src,
+          class = "img-size-50 mr-3 img-circle"
+        ),
+        shiny::tags$div(
+          class = "media-body",
+          shiny::tags$h3(
+            class = "dropdown-item-title",
+            from,
+            shiny::tags$span(
+              class = paste0("float-right text-sm text-", status),
+              shiny::tags$i(class = "fas fa-star")
+            )
+          ),
+          shiny::tags$p(class = "text-sm", message),
+          shiny::tags$p(
+            class = "text-sm text-muted",
+            shiny::tags$i(class = "far fa-clock mr-1"),
+            time
+          )
         )
       )
-    ),
-    shiny::tags$div(class = "dropdown-divider")
-  )
+    ) 
+  }
   
-  # shiny::tags$a(
-  #   class = "dropdown-item",
-  #   href = src, 
-  #   shiny::tags$div(
-  #     class  = "media",
-  #     shiny::tags$div(
-  #       class = "media-body",
-  #       shiny::tags$h3(
-  #         class = "dropdown-item-title",
-  #         shiny::tags$i(
-  #           class = paste0("fa fa-", icon, " mr-2")
-  #         ),
-  #         shiny::tags$span(
-  #           class = "float-right text-sm text-danger",
-  #           bs4Stars(grade = 1, color = "warning")
-  #         )
-  #       ),
-  #       shiny::tags$p(class = "text-sm", text),
-  #       shiny::tags$p(
-  #         class = "text-sm text-muted",
-  #         shiny::tags$i(class = "fa fa-clock-o mr-1"),
-  #         date
-  #       )
-  #     )
-  #   )
-  # )
+  dropdownItemTag
   
 }
 
