@@ -140,17 +140,45 @@
     <p>Build an adminLTE3 card with tabs</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4TabCard</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))
+    <pre class="usage"><span class='fu'>bs4TabCard</span>(
+  <span class='no'>...</span>,
+  <span class='no'>id</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>)
+)
 
-<span class='fu'>tabBox</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>))</pre>
+<span class='fu'>tabBox</span>(
+  <span class='no'>...</span>,
+  <span class='no'>id</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>headerBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -239,8 +267,10 @@ the user to collapse the box.</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other cards: <code><a href='bs4Card.html'>bs4Card</a></code>,
-  <code><a href='bs4InfoBox.html'>bs4InfoBox</a></code>, <code><a href='bs4ValueBox.html'>bs4ValueBox</a></code></p></div>
+    <div class='dont-index'><p>Other cards: 
+<code><a href='bs4Card.html'>bs4Card</a>()</code>,
+<code><a href='bs4InfoBox.html'>bs4InfoBox</a>()</code>,
+<code><a href='bs4ValueBox.html'>bs4ValueBox</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){

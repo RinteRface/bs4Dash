@@ -5,13 +5,29 @@
 \alias{dashboardHeader}
 \title{Create a Boostrap 4 dashboard navbar}
 \usage{
-bs4DashNavbar(..., skin = "light", status = NULL, border = TRUE,
-  sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
-  leftUi = NULL, rightUi = NULL)
+bs4DashNavbar(
+  ...,
+  skin = "light",
+  status = NULL,
+  border = TRUE,
+  sidebarIcon = "bars",
+  compact = FALSE,
+  controlbarIcon = "th",
+  leftUi = NULL,
+  rightUi = NULL
+)
 
-dashboardHeader(..., skin = "light", status = NULL, border = TRUE,
-  sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
-  leftUi = NULL, rightUi = NULL)
+dashboardHeader(
+  ...,
+  skin = "light",
+  status = NULL,
+  border = TRUE,
+  sidebarIcon = "bars",
+  compact = FALSE,
+  controlbarIcon = "th",
+  leftUi = NULL,
+  rightUi = NULL
+)
 }
 \arguments{
 \item{...}{Any UI element between left and right Ui.}

@@ -471,6 +471,55 @@
 <span id="cb5-48"><a href="#cb5-48"></a>    )</span>
 <span id="cb5-49"><a href="#cb5-49"></a>  )</span></code></pre></div>
 </details><p><br></p>
+<p>bs4InfoCard may now be used to navigate between body tabs, similarly to what happens in the sidebar:</p>
+<details><p><summary>Code</summary></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="dt">enable_preloader =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>      <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>          <span class="dt">text =</span> <span class="st">"Tab 1"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>          <span class="dt">icon =</span> <span class="st">"card"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>        ),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb6-13"><a href="#cb6-13"></a>          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>          <span class="dt">text =</span> <span class="st">"Tab 2"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>          <span class="dt">icon =</span> <span class="st">"card"</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>        )</span>
+<span id="cb6-17"><a href="#cb6-17"></a>      )</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    ),</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="dt">title =</span> <span class="st">"test"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</span>
+<span id="cb6-23"><a href="#cb6-23"></a>      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-25"><a href="#cb6-25"></a>          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb6-27"><a href="#cb6-27"></a>            <span class="dt">title =</span> <span class="st">"Messages"</span>,</span>
+<span id="cb6-28"><a href="#cb6-28"></a>            <span class="dt">value =</span> <span class="st">"You are on Tab 1"</span>,</span>
+<span id="cb6-29"><a href="#cb6-29"></a>            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</span>
+<span id="cb6-30"><a href="#cb6-30"></a>            <span class="dt">tabName =</span> <span class="st">"Tab2"</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>          )</span>
+<span id="cb6-32"><a href="#cb6-32"></a>        ),</span>
+<span id="cb6-33"><a href="#cb6-33"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-34"><a href="#cb6-34"></a>          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb6-36"><a href="#cb6-36"></a>            <span class="dt">title =</span> <span class="st">"Messages"</span>,</span>
+<span id="cb6-37"><a href="#cb6-37"></a>            <span class="dt">value =</span> <span class="st">"You are on Tab 2"</span>,</span>
+<span id="cb6-38"><a href="#cb6-38"></a>            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39"></a>            <span class="dt">tabName =</span> <span class="st">"Tab1"</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>          )</span>
+<span id="cb6-41"><a href="#cb6-41"></a>        )</span>
+<span id="cb6-42"><a href="#cb6-42"></a>      )</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    )</span>
+<span id="cb6-44"><a href="#cb6-44"></a>  ),</span>
+<span id="cb6-45"><a href="#cb6-45"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
+<span id="cb6-46"><a href="#cb6-46"></a>)</span></code></pre></div>
+</details><p><br></p>
 </div>
   </div>
 

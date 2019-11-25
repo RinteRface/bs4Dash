@@ -5,11 +5,27 @@
 \alias{valueBox}
 \title{Boostrap 4 value box}
 \usage{
-bs4ValueBox(value, subtitle, icon = NULL, elevation = NULL,
-  status = NULL, width = 3, footer = NULL, href = NULL)
+bs4ValueBox(
+  value,
+  subtitle,
+  icon = NULL,
+  elevation = NULL,
+  status = NULL,
+  width = 3,
+  footer = NULL,
+  href = NULL
+)
 
-valueBox(value, subtitle, icon = NULL, elevation = NULL,
-  status = NULL, width = 3, footer = NULL, href = NULL)
+valueBox(
+  value,
+  subtitle,
+  icon = NULL,
+  elevation = NULL,
+  status = NULL,
+  width = 3,
+  footer = NULL,
+  href = NULL
+)
 }
 \arguments{
 \item{value}{The value to display in the box. Usually a number or short text.}
@@ -79,8 +95,10 @@ if(interactive()){
 
 }
 \seealso{
-Other cards: \code{\link{bs4Card}},
-  \code{\link{bs4InfoBox}}, \code{\link{bs4TabCard}}
+Other cards: 
+\code{\link{bs4Card}()},
+\code{\link{bs4InfoBox}()},
+\code{\link{bs4TabCard}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

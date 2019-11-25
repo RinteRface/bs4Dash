@@ -21,7 +21,7 @@ Suggests: plotly, shinyWidgets,
     rmarkdown
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 VignetteBuilder: knitr
 Collate: 
     'update-functions.R'

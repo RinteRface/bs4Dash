@@ -5,13 +5,35 @@
 \alias{dashboardSidebar}
 \title{Create a Boostrap 4 dashboard main sidebar}
 \usage{
-bs4DashSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
-  skin = "dark", status = "primary", brandColor = NULL, url = NULL,
-  src = NULL, elevation = 4, opacity = 0.8, expand_on_hover = TRUE)
+bs4DashSidebar(
+  ...,
+  inputId = NULL,
+  disable = FALSE,
+  title = NULL,
+  skin = "dark",
+  status = "primary",
+  brandColor = NULL,
+  url = NULL,
+  src = NULL,
+  elevation = 4,
+  opacity = 0.8,
+  expand_on_hover = TRUE
+)
 
-dashboardSidebar(..., inputId = NULL, disable = FALSE, title = NULL,
-  skin = "dark", status = "primary", brandColor = NULL, url = NULL,
-  src = NULL, elevation = 4, opacity = 0.8, expand_on_hover = TRUE)
+dashboardSidebar(
+  ...,
+  inputId = NULL,
+  disable = FALSE,
+  title = NULL,
+  skin = "dark",
+  status = "primary",
+  brandColor = NULL,
+  url = NULL,
+  src = NULL,
+  elevation = 4,
+  opacity = 0.8,
+  expand_on_hover = TRUE
+)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenu}.}

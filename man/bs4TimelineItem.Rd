@@ -4,8 +4,16 @@
 \alias{bs4TimelineItem}
 \title{AdminLTE3 timeline item}
 \usage{
-bs4TimelineItem(..., elevation = NULL, icon = NULL, status = NULL,
-  time = NULL, title = NULL, border = TRUE, footer = NULL)
+bs4TimelineItem(
+  ...,
+  elevation = NULL,
+  icon = NULL,
+  status = NULL,
+  time = NULL,
+  title = NULL,
+  border = TRUE,
+  footer = NULL
+)
 }
 \arguments{
 \item{...}{Any element such as \link{bs4TimelineItemMedia} ...}

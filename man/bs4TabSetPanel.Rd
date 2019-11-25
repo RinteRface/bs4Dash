@@ -6,14 +6,35 @@
 \alias{tabsetPanel}
 \title{Create a tabSetPanel}
 \usage{
-bs4TabSetPanel(..., id, side, status = NULL, tabStatus = NULL,
-  .list = NULL, vertical = FALSE)
+bs4TabSetPanel(
+  ...,
+  id,
+  side,
+  status = NULL,
+  tabStatus = NULL,
+  .list = NULL,
+  vertical = FALSE
+)
 
-bs4DashControlbarMenu(..., id, side, status = NULL, tabStatus = NULL,
-  .list = NULL, vertical = FALSE)
+bs4DashControlbarMenu(
+  ...,
+  id,
+  side,
+  status = NULL,
+  tabStatus = NULL,
+  .list = NULL,
+  vertical = FALSE
+)
 
-tabsetPanel(..., id, side, status = NULL, tabStatus = NULL,
-  .list = NULL, vertical = FALSE)
+tabsetPanel(
+  ...,
+  id,
+  side,
+  status = NULL,
+  tabStatus = NULL,
+  .list = NULL,
+  vertical = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}

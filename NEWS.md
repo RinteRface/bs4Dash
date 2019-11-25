@@ -17,6 +17,8 @@ AdminLTE version
 
 
 ## New features
+- `bs4InfoBox()` can now navigate between tabs if the tabName parameter is specified. It must however correspond
+to an existing `bs4TabItem()` in the body!
 - `bs4ValueBox()` has a footer argument. It is different from the href parameter. Thanks @stefanfritsch
 - add expand_on_hover parameter to `bs4DashSidebar()`
 - add compact parameters to `bs4DashNavbar()` to reduce the navbar size

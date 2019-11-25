@@ -584,6 +584,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' A beautiful AdminLTE3 info box.
 #'
 #' @param ... Any extra UI element.
+#' @param tabName Optional: \link{bs4InfoCard} may be used to navigate between tabs.
 #' @param title Info box title.
 #' @param value The value to display in the box. Usually a number or short text.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
@@ -640,7 +641,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4InfoBox <- function(..., title, value = NULL, icon = NULL, 
+bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL, 
                        iconElevation = 3, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
@@ -660,6 +661,7 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
   
   iconTag <- shiny::tags$span(
     class = "info-box-icon",
+    id = paste0("icon-", tabName),
     class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
     # icon
     shiny::icon(icon)
@@ -687,6 +689,18 @@ bs4InfoBox <- function(..., title, value = NULL, icon = NULL,
   infoBoxTag <- shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
+        shiny::tags$script(
+          shiny::HTML(
+            paste0(
+              "$(function() {
+                $('#icon-", tabName, "').on('click', function() {
+                  $('#tab-", tabName, "').click();
+                });
+              });
+              "
+            )
+          )
+        ),
         shiny::tags$style(
           shiny::HTML(
             if (is.null(status)) {

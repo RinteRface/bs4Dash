@@ -5,14 +5,36 @@
 \alias{infoBox}
 \title{Boostrap 4 info box}
 \usage{
-bs4InfoBox(..., title, value = NULL, icon = NULL, iconElevation = 3,
-  status = NULL, gradientColor = NULL, width = 4, elevation = NULL)
+bs4InfoBox(
+  ...,
+  tabName = NULL,
+  title,
+  value = NULL,
+  icon = NULL,
+  iconElevation = 3,
+  status = NULL,
+  gradientColor = NULL,
+  width = 4,
+  elevation = NULL
+)
 
-infoBox(..., title, value = NULL, icon = NULL, iconElevation = 3,
-  status = NULL, gradientColor = NULL, width = 4, elevation = NULL)
+infoBox(
+  ...,
+  tabName = NULL,
+  title,
+  value = NULL,
+  icon = NULL,
+  iconElevation = 3,
+  status = NULL,
+  gradientColor = NULL,
+  width = 4,
+  elevation = NULL
+)
 }
 \arguments{
 \item{...}{Any extra UI element.}
+
+\item{tabName}{Optional: \link{bs4InfoCard} may be used to navigate between tabs.}
 
 \item{title}{Info box title.}
 
@@ -78,8 +100,10 @@ if(interactive()){
 
 }
 \seealso{
-Other cards: \code{\link{bs4Card}},
-  \code{\link{bs4TabCard}}, \code{\link{bs4ValueBox}}
+Other cards: 
+\code{\link{bs4Card}()},
+\code{\link{bs4TabCard}()},
+\code{\link{bs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

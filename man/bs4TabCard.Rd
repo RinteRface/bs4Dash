@@ -5,17 +5,45 @@
 \alias{tabBox}
 \title{Create a Boostrap 4 tabCard}
 \usage{
-bs4TabCard(..., id, title = NULL, status = NULL, elevation = NULL,
-  solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
-  tabStatus = NULL, width = 6, height = NULL, collapsible = TRUE,
-  collapsed = FALSE, closable = TRUE, maximizable = FALSE,
-  overflow = FALSE, side = c("left", "right"))
+bs4TabCard(
+  ...,
+  id,
+  title = NULL,
+  status = NULL,
+  elevation = NULL,
+  solidHeader = FALSE,
+  headerBorder = TRUE,
+  gradientColor = NULL,
+  tabStatus = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = TRUE,
+  maximizable = FALSE,
+  overflow = FALSE,
+  side = c("left", "right")
+)
 
-tabBox(..., id, title = NULL, status = NULL, elevation = NULL,
-  solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
-  tabStatus = NULL, width = 6, height = NULL, collapsible = TRUE,
-  collapsed = FALSE, closable = TRUE, maximizable = FALSE,
-  overflow = FALSE, side = c("left", "right"))
+tabBox(
+  ...,
+  id,
+  title = NULL,
+  status = NULL,
+  elevation = NULL,
+  solidHeader = FALSE,
+  headerBorder = TRUE,
+  gradientColor = NULL,
+  tabStatus = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = TRUE,
+  maximizable = FALSE,
+  overflow = FALSE,
+  side = c("left", "right")
+)
 }
 \arguments{
 \item{...}{Contents of the box: should be \link{bs4TabPanel}.}
@@ -107,8 +135,10 @@ if(interactive()){
 
 }
 \seealso{
-Other cards: \code{\link{bs4Card}},
-  \code{\link{bs4InfoBox}}, \code{\link{bs4ValueBox}}
+Other cards: 
+\code{\link{bs4Card}()},
+\code{\link{bs4InfoBox}()},
+\code{\link{bs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

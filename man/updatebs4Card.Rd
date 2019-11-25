@@ -4,8 +4,11 @@
 \alias{updatebs4Card}
 \title{update an AdminLTE3 card from the server side}
 \usage{
-updatebs4Card(inputId, session, action = c("remove", "toggle",
-  "toggleMaximize", "restore"))
+updatebs4Card(
+  inputId,
+  session,
+  action = c("remove", "toggle", "toggleMaximize", "restore")
+)
 }
 \arguments{
 \item{inputId}{Card inputId}

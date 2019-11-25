@@ -5,11 +5,15 @@
 \alias{menuItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu item}
 \usage{
-bs4SidebarMenuItem(text, ..., tabName = NULL, icon = NULL,
-  startExpanded = FALSE)
+bs4SidebarMenuItem(
+  text,
+  ...,
+  tabName = NULL,
+  icon = NULL,
+  startExpanded = FALSE
+)
 
-menuItem(text, ..., tabName = NULL, icon = NULL,
-  startExpanded = FALSE)
+menuItem(text, ..., tabName = NULL, icon = NULL, startExpanded = FALSE)
 }
 \arguments{
 \item{text}{Item name.}

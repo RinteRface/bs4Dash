@@ -4,9 +4,15 @@
 \alias{bs4ProgressBar}
 \title{Create a Bootstrap 4 progress bar}
 \usage{
-bs4ProgressBar(value, min = 0, max = 100, vertical = FALSE,
-  striped = FALSE, status = c("primary", "warning", "danger", "info",
-  "success"), size = NULL)
+bs4ProgressBar(
+  value,
+  min = 0,
+  max = 100,
+  vertical = FALSE,
+  striped = FALSE,
+  status = c("primary", "warning", "danger", "info", "success"),
+  size = NULL
+)
 }
 \arguments{
 \item{value}{Progress bar value}

@@ -4,9 +4,17 @@
 \alias{bs4UserCard}
 \title{AdminLTE3 widget user card}
 \usage{
-bs4UserCard(..., type = NULL, src = NULL, elevation = NULL,
-  imageElevation = NULL, status = c("primary", "warning", "danger",
-  "info", "success"), title = NULL, subtitle = NULL, width = 6)
+bs4UserCard(
+  ...,
+  type = NULL,
+  src = NULL,
+  elevation = NULL,
+  imageElevation = NULL,
+  status = c("primary", "warning", "danger", "info", "success"),
+  title = NULL,
+  subtitle = NULL,
+  width = 6
+)
 }
 \arguments{
 \item{...}{Footer content.}

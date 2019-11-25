@@ -4,9 +4,16 @@
 \alias{userPost}
 \title{AdminLTE3 user post}
 \usage{
-userPost(..., id = NULL, src = NULL, author = NULL,
-  description = NULL, collapsible = TRUE, collapsed = FALSE,
-  collapse_status = NULL)
+userPost(
+  ...,
+  id = NULL,
+  src = NULL,
+  author = NULL,
+  description = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  collapse_status = NULL
+)
 }
 \arguments{
 \item{...}{Post content, slot for \link{userPostTagItems}, \link{userPostMedia}.}

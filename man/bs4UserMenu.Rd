@@ -4,9 +4,15 @@
 \alias{bs4UserMenu}
 \title{Create a Bootstrap 4 user profile.}
 \usage{
-bs4UserMenu(..., name = NULL, src = NULL, title = NULL,
-  subtitle = NULL, footer = NULL, status = c("primary", "danger",
-  "success", "warning", "info", "secondary"))
+bs4UserMenu(
+  ...,
+  name = NULL,
+  src = NULL,
+  title = NULL,
+  subtitle = NULL,
+  footer = NULL,
+  status = c("primary", "danger", "success", "warning", "info", "secondary")
+)
 }
 \arguments{
 \item{...}{Body content.}

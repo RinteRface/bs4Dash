@@ -4,8 +4,13 @@
 \alias{bs4Callout}
 \title{Create a Bootstrap 4 callout}
 \usage{
-bs4Callout(..., title, width = 6, elevation = NULL,
-  status = c("primary", "warning", "danger", "info", "success"))
+bs4Callout(
+  ...,
+  title,
+  width = 6,
+  elevation = NULL,
+  status = c("primary", "warning", "danger", "info", "success")
+)
 }
 \arguments{
 \item{...}{Callout content.}
