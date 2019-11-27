@@ -1,4 +1,4 @@
-# bs4Dash 0.5.0.9000
+# bs4Dash 0.5.0
 
 ## Breaking Changes
 - remove fixed parameters from `bs4DashNavbar()` since it does not exist in the new
@@ -6,6 +6,7 @@ AdminLTE version
 - rework on `bs4DropdownMenuItem`: change text to message, date to time. Add new params: from, src, status and type.
 
 ## Major Changes
+- add link back to https://www.glyphicons.com. Thanks @statnmap
 - upgrade AdminLTE3 version to rc4
 - add `bs4DashSidebar()` input binding to indicate the state (collapse: FALSE, open: TRUE) as well as 
 `updatebs4Sidebar()` to programmatically toggle its state

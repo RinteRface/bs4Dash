@@ -57,3 +57,8 @@ from [dreamRs](https://twitter.com/dreamRs_fr)).
 ## Issues
 
 Issues are listed [here](https://github.com/RinteRface/bs4Dash/issues). 
+
+
+## Akwnowledgement
+
+I warmly thank [Glyphicons](https://www.glyphicons.com) creator for providing them free for Bootstrap. 
