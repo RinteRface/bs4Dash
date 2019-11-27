@@ -11,7 +11,7 @@ Authors@R: c(
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'Bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
-    <https://github.com/almasaeed2010/AdminLTE/tree/v3-dev>.
+    <https://github.com/ColorlibHQ/AdminLTE>.
 URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRface/bs4Dash
 BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
