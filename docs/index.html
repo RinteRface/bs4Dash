@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -93,13 +93,13 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="bs4dash-" class="section level1">
+<div id="bs4dash" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bs4dash-" class="anchor"></a>bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right">
+<a href="#bs4dash" class="anchor"></a>bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right">
 </h1></div>
 
 <blockquote>
-<p>Bootstrap 4 shinydashboard using AdminLTE3</p>
+<p>Bootstrap 4 shinydashboard using <a href="https://github.com/ColorlibHQ/AdminLTE">AdminLTE3</a></p>
 </blockquote>
 <p><br></p>
 <div class="row">
@@ -120,20 +120,20 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package is on CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># from CRAN</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"bs4Dash"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># latest devel version</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"RinteRface/bs4Dash"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># from CRAN</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"bs4Dash"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># latest devel version</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"RinteRface/bs4Dash"</span>)</a></code></pre></div>
 </div>
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
 <p>See a preview of the package <a href="https://rinterface.com/shiny/bs4Dash/classic/">here</a> and <a href="https://rinterface.com/shiny/bs4Dash/old_school/">here</a> or run</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># classic theme</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>()</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># old_school theme</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>(<span class="dt">theme =</span> <span class="st">"old_school"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># classic theme</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># old_school theme</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span>(<span class="dt">theme =</span> <span class="st">"old_school"</span>)</a></code></pre></div>
 <p>An applied example can be found <a href="https://rinterface.com/shiny/showcase/ratp/">here</a> (the original dashboard was made by <a href="https://twitter.com/PhilippineRs">Philippine Rheins</a> from <a href="https://twitter.com/dreamRs_fr">dreamRs</a>).</p>
 </div>
 <div id="issues" class="section level2">

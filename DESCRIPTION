@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 0.5.0
+Version: 0.6.0.9000
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -21,7 +21,7 @@ Suggests: plotly, shinyWidgets,
     rmarkdown
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Collate: 
     'update-functions.R'

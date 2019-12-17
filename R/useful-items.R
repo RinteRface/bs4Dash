@@ -335,13 +335,15 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #' 
 #' AdminLTE3 progress bar
 #'
-#' @param value Progress bar value
+#' @param value Progress bar value.
+#' @param label Progress label. NULL by default.
 #' @param min Progress bar minimum value.
 #' @param max Progress bar maximum value.
 #' @param striped Whether the progress bar is striped or not. FALSE by default.
 #' @param vertical Whether to display the progress bar in vertical mode. FALSE by default.
 #' @param status Progress bar status. "primary", "success", "warning", "danger" or "info".
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
+#' @param animated Whether to animate the progress bar. Default to FALSE.
 #' 
 #' @examples
 #' if(interactive()){
@@ -369,7 +371,8 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #'          bs4ProgressBar(
 #'           value = 25,
 #'           striped = TRUE,
-#'           status = "warning"
+#'           status = "warning",
+#'           label = "25%"
 #'          )
 #'         ),
 #'         bs4ProgressBar(
@@ -382,7 +385,8 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #'          vertical = TRUE,
 #'          striped = TRUE,
 #'          size = "sm",
-#'          status = "danger"
+#'          status = "danger",
+#'          animated = TRUE
 #'         )
 #'        )
 #'      )
@@ -395,22 +399,24 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
+bs4ProgressBar <- function (value, label = NULL, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
                             status = c("primary", "warning", "danger", "info", "success"), 
-                            size = NULL) {
+                            size = NULL, animated = FALSE) {
   status <- match.arg(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
-  progressCl <- if (isTRUE(vertical)) 
-    "progress vertical"
-  else "progress mb-3"
-  if (!is.null(size)) 
-    progressCl <- paste0(progressCl, " progress-", size)
+  
+  # wrapper class
+  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+  if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
+  
+  # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) 
-    barCl <- paste0(barCl, " bg-", status)
-  if (isTRUE(striped)) 
-    barCl <- paste0(barCl, " progress-bar-striped")
+  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+  if (striped) barCl <- paste0(barCl, " progress-bar-striped")
+  if (animated) barCl <- paste0(barCl, " progress-bar-animated")
+  
+  # wrapper
   barTag <- shiny::tags$div(
     class = barCl, 
     role = "progressbar", 
@@ -423,8 +429,9 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     else {
       paste0("width: ", paste0(value, "%"))
     }, 
-    shiny::tags$span(class = "sr-only", paste0(value, "%"))
+    if(!is.null(label)) label
   )
+  
   progressTag <- shiny::tags$div(class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag

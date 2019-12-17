@@ -1,3 +1,6 @@
+# bs4Dash 0.6.0.9000
+- add animated, label parameters to `bs4ProgressBar()`
+
 # bs4Dash 0.5.0
 
 ## Breaking Changes
