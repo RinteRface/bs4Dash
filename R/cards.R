@@ -784,6 +784,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
                        solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
                        tabStatus = NULL, width = 6, height = NULL,  
                        collapsible = TRUE, collapsed = FALSE, closable = TRUE,
+                       dropdownMenu = NULL, dropdownIcon = "wrench",
                        maximizable = FALSE, overflow = FALSE, side = c("left", "right")) {
   
   found_active <- FALSE
@@ -809,6 +810,11 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
     cardToolTag <- shiny::tags$div(
       class = "tools pt-3 pb-3 pr-2 mr-2",
+      if (!is.null(dropdownMenu)) {
+           shiny::tags$div(class = "btn-group", shiny::tags$button(type = "button", 
+            class = "btn btn-tool dropdown-toggle", `data-toggle` = "dropdown", 
+            shiny::icon(dropdownIcon)), dropdownMenu)
+         },
       
       # collapse
       if (isTRUE(collapsible)) {
@@ -874,18 +880,16 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[c(1, 3)]
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
+    style = if (!is.null(height)) {
+      paste0("height: ", shiny::validateCssUnit(height))
+    } else {
+      if (overflow) "overflow-y: auto; max-height: 500px;" else NULL
+    },
     panelContent
   )
   
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  
   tabCardTag <- shiny::tags$div(
-    class = tabCardCl,
-    style = if (!is.null(style)) style
+    class = tabCardCl
   )
   
   tabCardTag <- shiny::tagAppendChildren(tabCardTag, headerTag, bodyTag)
