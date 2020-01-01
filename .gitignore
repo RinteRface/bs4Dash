@@ -6,3 +6,4 @@ doc
 .Ruserdata
 inst/doc
 .DS_Store
+inst/examples/**/rsconnect

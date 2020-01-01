@@ -5,19 +5,39 @@
 \alias{dashboardPage}
 \title{Create a Boostrap 4 dashboard page}
 \usage{
-bs4DashPage(navbar = NULL, sidebar = NULL, body = NULL,
-  controlbar = NULL, footer = NULL, title = NULL,
-  old_school = FALSE, sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE, controlbar_overlay = TRUE,
-  enable_preloader = FALSE, loading_duration = 2,
-  loading_background = "#1E90FF")
+bs4DashPage(
+  navbar = NULL,
+  sidebar = NULL,
+  body = NULL,
+  controlbar = NULL,
+  footer = NULL,
+  title = NULL,
+  old_school = FALSE,
+  sidebar_mini = TRUE,
+  sidebar_collapsed = FALSE,
+  controlbar_collapsed = TRUE,
+  controlbar_overlay = TRUE,
+  enable_preloader = FALSE,
+  loading_duration = 2,
+  loading_background = "#1E90FF"
+)
 
-dashboardPage(navbar = NULL, sidebar = NULL, body = NULL,
-  controlbar = NULL, footer = NULL, title = NULL,
-  old_school = FALSE, sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE, controlbar_overlay = TRUE,
-  enable_preloader = FALSE, loading_duration = 2,
-  loading_background = "#1E90FF")
+dashboardPage(
+  navbar = NULL,
+  sidebar = NULL,
+  body = NULL,
+  controlbar = NULL,
+  footer = NULL,
+  title = NULL,
+  old_school = FALSE,
+  sidebar_mini = TRUE,
+  sidebar_collapsed = FALSE,
+  controlbar_collapsed = TRUE,
+  controlbar_overlay = TRUE,
+  enable_preloader = FALSE,
+  loading_duration = 2,
+  loading_background = "#1E90FF"
+)
 }
 \arguments{
 \item{navbar}{Slot for \link{bs4DashNavbar}.}
@@ -34,6 +54,9 @@ dashboardPage(navbar = NULL, sidebar = NULL, body = NULL,
 
 \item{old_school}{Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 by default.}
+
+\item{sidebar_mini}{Whether to see sidebar icons when \link{bs4DashSidebar}.
+is collapsed. TRUE by default.}
 
 \item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
 

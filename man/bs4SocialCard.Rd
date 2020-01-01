@@ -4,9 +4,18 @@
 \alias{bs4SocialCard}
 \title{AdminLTE3 social card}
 \usage{
-bs4SocialCard(..., src = NULL, title = NULL, subtitle = NULL,
-  width = 6, height = NULL, collapsible = TRUE, closable = TRUE,
-  comments = NULL, footer = NULL)
+bs4SocialCard(
+  ...,
+  src = NULL,
+  title = NULL,
+  subtitle = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  closable = TRUE,
+  comments = NULL,
+  footer = NULL
+)
 }
 \arguments{
 \item{...}{Body content. May include \link{attachmentBlock} for instance.}

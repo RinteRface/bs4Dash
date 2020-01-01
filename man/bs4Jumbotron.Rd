@@ -4,9 +4,14 @@
 \alias{bs4Jumbotron}
 \title{BS4 jumbotron for AdminLTE3}
 \usage{
-bs4Jumbotron(..., title = NULL, lead = NULL, href = NULL,
-  btn_name = "More", status = c("primary", "warning", "danger", "info",
-  "success"))
+bs4Jumbotron(
+  ...,
+  title = NULL,
+  lead = NULL,
+  href = NULL,
+  btn_name = "More",
+  status = c("primary", "warning", "danger", "info", "success")
+)
 }
 \arguments{
 \item{...}{Any content.}

@@ -4,8 +4,14 @@
 \alias{bs4Table}
 \title{Create a Boostrap 4 table container}
 \usage{
-bs4Table(..., cardWrap = FALSE, headTitles, bordered = FALSE,
-  striped = FALSE, width = 12)
+bs4Table(
+  ...,
+  cardWrap = FALSE,
+  headTitles,
+  bordered = FALSE,
+  striped = FALSE,
+  width = 12
+)
 }
 \arguments{
 \item{...}{\link{bs4TableItems}.}

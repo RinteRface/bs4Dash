@@ -4,8 +4,11 @@
 \alias{bs4Ribbon}
 \title{Create a Boostrap 4 ribbon}
 \usage{
-bs4Ribbon(text, status = c("primary", "danger", "success", "warning",
-  "info", "secondary"), size = NULL)
+bs4Ribbon(
+  text,
+  status = c("primary", "danger", "success", "warning", "info", "secondary"),
+  size = NULL
+)
 }
 \arguments{
 \item{text}{Ribbon text.}

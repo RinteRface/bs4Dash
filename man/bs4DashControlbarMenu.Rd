@@ -5,8 +5,15 @@
 \title{Alias to \link{bs4DashControlbarMenu}
 See \link{bs4DashControlbarMenu} for full details}
 \usage{
-controlbarMenu(..., id, side, status = NULL, tabStatus = NULL,
-  .list = NULL, vertical = FALSE)
+controlbarMenu(
+  ...,
+  id,
+  side,
+  status = NULL,
+  tabStatus = NULL,
+  .list = NULL,
+  vertical = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}

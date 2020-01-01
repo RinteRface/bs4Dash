@@ -5,13 +5,25 @@
 \alias{dropdownMenu}
 \title{Create a Boostrap 4 dashboard dropdown menu}
 \usage{
-bs4DropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
+bs4DropdownMenu(
+  ...,
+  show = FALSE,
+  labelText = NULL,
+  src = NULL,
   status = c("primary", "warning", "danger", "info", "success"),
-  menuIcon = "bell", align = "right")
+  menuIcon = "bell",
+  align = "right"
+)
 
-dropdownMenu(..., show = FALSE, labelText = NULL, src = NULL,
+dropdownMenu(
+  ...,
+  show = FALSE,
+  labelText = NULL,
+  src = NULL,
   status = c("primary", "warning", "danger", "info", "success"),
-  menuIcon = "bell", align = "right")
+  menuIcon = "bell",
+  align = "right"
+)
 }
 \arguments{
 \item{...}{Slot for \link{bs4DropdownMenuItem}.}

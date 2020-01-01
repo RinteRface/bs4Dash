@@ -621,15 +621,17 @@ value_boxes_tab <- bs4TabItem(
   h4("Info Boxes"),
   fluidRow(
     bs4InfoBox(
-      title = "Messages",
+      tabName = "cardsAPI",
+      title = "Navigate to Cards API section",
       value = 1410,
-      icon = "envelope"
+      icon = "laptop-code"
     ),
     bs4InfoBox(
-      title = "Bookmarks",
+      tabName = "colors",
+      title = "Navigate to colors section",
       status = "info",
       value = 240,
-      icon = "bookmark"
+      icon = "tint"
     ),
     bs4InfoBox(
       title = "Comments",

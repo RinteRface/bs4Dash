@@ -23,8 +23,10 @@ library(bs4Dash)
  shiny::shinyApp(
   ui = bs4DashPage(
    old_school = FALSE,
+   sidebar_min = TRUE,
    sidebar_collapsed = FALSE,
    controlbar_collapsed = FALSE,
+   controlbar_overlay = TRUE,
    title = "Basic Dashboard",
    navbar = bs4DashNavbar(),
    sidebar = bs4DashSidebar(),
@@ -40,7 +42,9 @@ library(bs4Dash)
 <br>
 
 The `bs4DashPage()` takes optional argument such as *old_school*, which is FALSE by default. Whenever it is 
-TRUE, the page will have a fancy old design. The *sidebar_collapsed* argument enables to control how the `bs4DashSidebar()` is displayed when the app starts. Similarly, *controlbar_collapsed* allow you to decide whether to display the `bs4DashControlbar()`. Finally, you can also give a *title* to the page.
+TRUE, the page will have a fancy old design. The *sidebar_collapsed* argument enables to control how the `bs4DashSidebar()` is displayed when the app starts. Similarly, *controlbar_collapsed* allow you to decide whether to display the `bs4DashControlbar()`.
+When *sidebar_mini* is TRUE, the sidebar icons are visible even when the sidebar is collapsed.
+Finally, you can also give a *title* to the page.
 
 Now, it is time to fill this template!
 
@@ -103,7 +107,6 @@ bs4DashNavbar(
  border = TRUE,
  sidebarIcon = "bars",
  controlbarIcon = "th",
- fixed = FALSE,
  leftUi = bs4DropdownMenu(
    show = TRUE,
    align = "left",
@@ -116,12 +119,14 @@ bs4DashNavbar(
    status = "danger",
    src = "https://www.google.fr",
    bs4DropdownMenuItem(
-     text = "message 1",
-     date = "today"
+     message = "message 1",
+     time = "today",
+     type = "notification"
    ),
    bs4DropdownMenuItem(
-     text = "message 2",
-     date = "yesterday"
+     message = "message 2",
+     time = "yesterday",
+     type = "notification"
    )
  )
 )
@@ -131,8 +136,7 @@ bs4DashNavbar(
 <br>
 
 `bs4DashNavbar()` allow you to change the `bs4DashSidebar()` toggle icon, as well as that for the 
-`bs4DashControlbar()`. Even though available, I do not recommand using the status option. 
-3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a `bs4DropdownMenu` in the leftUI slot, you better have to change the *align* argument
+`bs4DashControlbar()`. 3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a `bs4DropdownMenu` in the leftUI slot, you better have to change the *align* argument
 to "left", otherwise, the dropdown will open in the sidebar, which is not elegant. You can insert any content between the leftUI and rightUI slots. However, be careful not to overload the navbar.
 
 ## Right Sidebar Setup
@@ -168,7 +172,8 @@ bs4DashControlbar(
 <img src="figures/bs4Dash_controlbar.png">
 <br>
 
-I also advise the user not to add to many elements inside the controlbar. By default, the controlbar covers the dashboard body, when uncollapsed. A future option will enable the user to push the body content instead.
+I also advise the user not to add to many elements inside the controlbar. The controlbar_overlay parameter in `bs4DashPage` allows to push/cover the body content,
+depending on its value.
 
 
 ## Footer Setup

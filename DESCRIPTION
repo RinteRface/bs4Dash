@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 0.5.0.9000
+Version: 0.6.0.9000
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -11,7 +11,7 @@ Authors@R: c(
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'Bootstrap 4' dashboards. Use the full power
     of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
-    <https://github.com/almasaeed2010/AdminLTE/tree/v3-dev>.
+    <https://github.com/ColorlibHQ/AdminLTE>.
 URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRface/bs4Dash
 BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
@@ -21,7 +21,7 @@ Suggests: plotly, shinyWidgets,
     rmarkdown
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Collate: 
     'update-functions.R'
@@ -36,5 +36,6 @@ Collate:
     'aliases.R'
     'bs4DashGallery.R'
     'deps.R'
+    'grid.R'
     'useful-items.R'
     'utils.R'

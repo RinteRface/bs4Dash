@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Bootstrap 4 carousel — bs4Carousel • bs4Dash</title>
+<title>Boostrap 4 column system — column • bs4Dash</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Bootstrap 4 carousel — bs4Carousel" />
-<meta property="og:description" content="Beautiful carousel from AdminLTE3" />
+<meta property="og:title" content="Boostrap 4 column system — column" />
+<meta property="og:description" content="This function overwrites that of Shiny since there
+are differences between the Bootstrap 3 and Bootstrap 4 grid systems" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -131,69 +132,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Bootstrap 4 carousel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/useful-items.R'><code>R/useful-items.R</code></a></small>
-    <div class="hidden name"><code>bs4Carousel.Rd</code></div>
+    <h1>Boostrap 4 column system</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/grid.R'><code>R/grid.R</code></a></small>
+    <div class="hidden name"><code>column.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Beautiful carousel from AdminLTE3</p>
+    <p>This function overwrites that of Shiny since there
+are differences between the Bootstrap 3 and Bootstrap 4 grid systems</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4Carousel</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>12</span>)</pre>
+    <pre class="usage"><span class='fu'>column</span>(<span class='no'>width</span>, <span class='no'>...</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for <a href='bs4CarouselItem.html'>bs4CarouselItem</a>.</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p>Unique carousel id.</p></td>
-    </tr>
-    <tr>
       <th>width</th>
-      <td><p>Carousel width. Between 1 and 12.</p></td>
+      <td><p>The grid width of the column (must be between 1 and 12.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Elements to include within the column.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>The number of columns to offset this column from the end of the previous column.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Carousel"</span>,
-      <span class='fu'>bs4Carousel</span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mycarousel"</span>,
-       <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-       <span class='fu'><a href='bs4CarouselItem.html'>bs4CarouselItem</a></span>(
-        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap"</span>
-       ),
-       <span class='fu'><a href='bs4CarouselItem.html'>bs4CarouselItem</a></span>(
-        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap"</span>
-       ),
-       <span class='fu'><a href='bs4CarouselItem.html'>bs4CarouselItem</a></span>(
-        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap"</span>
+ <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
+   <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
+   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(
+     <span class='fu'><a href='bs4SidebarMenu.html'>bs4SidebarMenu</a></span>(
+       <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
+         <span class='st'>"Welcome!"</span>,
+         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab_welcome"</span>,
+         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"home"</span>
        )
      )
-    )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+
+   <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
+     <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
+       <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
+         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab_welcome"</span>,
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+           <span class='fu'>column</span>(
+             <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+             <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>11</span>,
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(
+               <span class='st'>"mybutton"</span>,<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>,<span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"question-circle"</span>)
+             )
+           )
+
+         ),
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h2</a></span>(<span class='st'>"Placeholder"</span>)
+         )
+       )
+     )
+   )
  )
+
+ <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {}
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -203,8 +212,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

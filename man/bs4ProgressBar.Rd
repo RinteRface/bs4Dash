@@ -4,12 +4,22 @@
 \alias{bs4ProgressBar}
 \title{Create a Bootstrap 4 progress bar}
 \usage{
-bs4ProgressBar(value, min = 0, max = 100, vertical = FALSE,
-  striped = FALSE, status = c("primary", "warning", "danger", "info",
-  "success"), size = NULL)
+bs4ProgressBar(
+  value,
+  label = NULL,
+  min = 0,
+  max = 100,
+  vertical = FALSE,
+  striped = FALSE,
+  status = c("primary", "warning", "danger", "info", "success"),
+  size = NULL,
+  animated = FALSE
+)
 }
 \arguments{
-\item{value}{Progress bar value}
+\item{value}{Progress bar value.}
+
+\item{label}{Progress label. NULL by default.}
 
 \item{min}{Progress bar minimum value.}
 
@@ -22,6 +32,8 @@ bs4ProgressBar(value, min = 0, max = 100, vertical = FALSE,
 \item{status}{Progress bar status. "primary", "success", "warning", "danger" or "info".}
 
 \item{size}{Progress bar size. NULL, "sm", "xs" or "xxs".}
+
+\item{animated}{Whether to animate the progress bar. Default to FALSE.}
 }
 \description{
 AdminLTE3 progress bar
@@ -52,7 +64,8 @@ if(interactive()){
          bs4ProgressBar(
           value = 25,
           striped = TRUE,
-          status = "warning"
+          status = "warning",
+          label = "25\%"
          )
         ),
         bs4ProgressBar(
@@ -65,7 +78,8 @@ if(interactive()){
          vertical = TRUE,
          striped = TRUE,
          size = "sm",
-         status = "danger"
+         status = "danger",
+         animated = TRUE
         )
        )
      )

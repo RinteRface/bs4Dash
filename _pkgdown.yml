@@ -11,6 +11,11 @@ reference:
   - '`bs4DashControlbarItem`'
   - '`bs4DashControlbarMenu`'
   
+- title: Layout functions
+  desc: Bootstrap 4 Layout utils
+  contents: 
+  - '`column`'
+  
 
 - title: Update functions
   desc: Dynamically update UI elements
@@ -178,7 +183,8 @@ articles:
   
 news:
  releases:
- - text: "bs4Dash 0.5.0.9000"
+ - text: "bs4Dash 0.6.0.9000"
+ - text: "bs4Dash 0.5.0"
  - text: "bs4Dash 0.4.0"
  - text: "bs4Dash 0.3.0"
  - text: "bs4Dash 0.2.0"

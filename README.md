@@ -6,7 +6,7 @@
 [![cranlogs](https://cranlogs.r-pkg.org/badges/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
 [![total](https://cranlogs.r-pkg.org/badges/grand-total/bs4Dash)](https://www.rpackages.io/package/bs4Dash)
 
-> Bootstrap 4 shinydashboard using AdminLTE3
+> Bootstrap 4 shinydashboard using [AdminLTE3](https://github.com/ColorlibHQ/AdminLTE)
 
 <br>
 
@@ -57,3 +57,8 @@ from [dreamRs](https://twitter.com/dreamRs_fr)).
 ## Issues
 
 Issues are listed [here](https://github.com/RinteRface/bs4Dash/issues). 
+
+
+## Akwnowledgement
+
+I warmly thank [Glyphicons](https://www.glyphicons.com) creator for providing them free for Bootstrap. 

@@ -10,6 +10,8 @@
 #' @param title App title.
 #' @param old_school Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
 #' by default.
+#' @param sidebar_mini Whether to see sidebar icons when \link{bs4DashSidebar}.
+#' is collapsed. TRUE by default.
 #' @param sidebar_collapsed Whether the sidebar is collapsed of not at start. FALSE by default.
 #' @param controlbar_collapsed Whether the sidebar is collapsed of not at start. TRUE by default.
 #' @param controlbar_overlay Whether the sidebar covers the content when expanded.
@@ -43,14 +45,14 @@
 #' @export
 bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL, 
                         controlbar = NULL, footer = NULL, title = NULL,
-                        old_school = FALSE, sidebar_collapsed = FALSE,
-                        controlbar_collapsed = TRUE, controlbar_overlay = TRUE, 
-                        enable_preloader = FALSE, loading_duration = 2, 
-                        loading_background = "#1E90FF"){
+                        old_school = FALSE, sidebar_mini = TRUE, 
+                        sidebar_collapsed = FALSE, controlbar_collapsed = TRUE, 
+                        controlbar_overlay = TRUE, enable_preloader = FALSE, 
+                        loading_duration = 2, loading_background = "#1E90FF"){
   
-  if (!is.null(sidebar)) {
-    sidebar_cl <- if (sidebar_collapsed) "sidebar-collapse" else "sidebar-open"
-  }
+  sidebar_cl <- "layout-fixed"
+  if (sidebar_mini) sidebar_cl <- paste0(sidebar_cl, " sidebar-mini")
+  
   if (!is.null(controlbar)) {
     if (!controlbar_collapsed) {
       sidebar_cl <- paste0(sidebar_cl, " control-sidebar-slide-open")
@@ -119,7 +121,8 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
     addDeps(
       theme = old_school,
       shiny::tags$body(
-        class = paste0("layout-fixed sidebar-mini ", sidebar_cl),
+        class = sidebar_cl,
+        `sidebar-start-open` = tolower(!sidebar_collapsed),
         
         # set up a time-out for the preloader
         # The body content disappears first,

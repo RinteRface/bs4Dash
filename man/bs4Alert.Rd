@@ -4,8 +4,14 @@
 \alias{bs4Alert}
 \title{Create a Bootstrap 4 alert}
 \usage{
-bs4Alert(..., title, closable = TRUE, width = 6, elevation = NULL,
-  status = c("primary", "warning", "danger", "info", "success"))
+bs4Alert(
+  ...,
+  title,
+  closable = TRUE,
+  width = 6,
+  elevation = NULL,
+  status = c("primary", "warning", "danger", "info", "success")
+)
 }
 \arguments{
 \item{...}{Alert content.}

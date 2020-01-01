@@ -4,8 +4,7 @@
 \alias{bs4RemoveTab}
 \title{Remove a \link{bs4TabPanel} in a \link{bs4TabSetPanel}}
 \usage{
-bs4RemoveTab(inputId, target,
-  session = shiny::getDefaultReactiveDomain())
+bs4RemoveTab(inputId, target, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{inputId}{\link{bs4TabSetPanel} id.}

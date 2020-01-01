@@ -5,11 +5,15 @@
 \alias{sidebarMenu}
 \title{Create a Boostrap 4 dashboard main sidebar menu}
 \usage{
-bs4SidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE,
-  child_indent = TRUE)
+bs4SidebarMenu(
+  ...,
+  id = NULL,
+  flat = FALSE,
+  compact = FALSE,
+  child_indent = TRUE
+)
 
-sidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE,
-  child_indent = TRUE)
+sidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE, child_indent = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.}

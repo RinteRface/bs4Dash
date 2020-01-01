@@ -4,8 +4,14 @@
 \alias{bs4InsertTab}
 \title{Insert a \link{bs4TabPanel} in a \link{bs4TabSetPanel}}
 \usage{
-bs4InsertTab(inputId, tab, target, position = c("before", "after"),
-  select = FALSE, session = shiny::getDefaultReactiveDomain())
+bs4InsertTab(
+  inputId,
+  tab,
+  target,
+  position = c("before", "after"),
+  select = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{inputId}{\link{bs4TabSetPanel} id.}
