@@ -1,5 +1,10 @@
 # bs4Dash 0.6.0.9000
+
+## New features
 - add animated, label parameters to `bs4ProgressBar()`
+
+## Bug Fix
+- some vignettes examples were not up to date
 
 # bs4Dash 0.5.0
 

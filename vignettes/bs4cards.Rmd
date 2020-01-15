@@ -221,6 +221,7 @@ fluidRow(
     column(
       width = 6,
       bs4TabCard(
+        id = "tabcard1",
         title = "A card with tabs",
         elevation = 2,
         width = 12,
@@ -269,6 +270,7 @@ fluidRow(
     column(
       width = 6,
       bs4TabCard(
+        id = "tabcard2",
         title = "A card with tabs",
         side = "right",
         elevation = 2,
