@@ -588,6 +588,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' @param title Info box title.
 #' @param value The value to display in the box. Usually a number or short text.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param iconStatus Icon color. Only if status is NULL.
 #' @param iconElevation Icon elevation compared to the main content (relief). 3 by default.
 #' @param status A color for the box. "primary", "info", "success", "warning", "danger" or NULL.
 #' @param gradientColor If NULL (the default), the background of the box will be
@@ -641,8 +642,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL, 
-                       iconElevation = 3, status = NULL, 
+bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
+                       iconStatus = NULL, iconElevation = 3, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
   
@@ -659,8 +660,11 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
   
   if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
   
+  infoBoxIconCl <- "info-box-icon"
+  if (!is.null(iconStatus)) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", iconStatus)
+  
   iconTag <- shiny::tags$span(
-    class = "info-box-icon",
+    class = infoBoxIconCl,
     id = paste0("icon-", tabName),
     class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
     # icon

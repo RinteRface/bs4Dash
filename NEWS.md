@@ -2,6 +2,8 @@
 
 ## New features
 - add animated, label parameters to `bs4ProgressBar()`
+- add iconStatus parameter to `bs4InfoBox()` to allow icon color
+to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Bug Fix
 - some vignettes examples were not up to date
