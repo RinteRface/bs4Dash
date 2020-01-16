@@ -8,6 +8,7 @@ shiny::shinyApp(
     controlbar_overlay = FALSE,
     navbar = bs4DashNavbar(
       status = "white",
+      fixed = TRUE,
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
         bs4DropdownMenu(

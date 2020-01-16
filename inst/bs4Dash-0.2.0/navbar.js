@@ -24,4 +24,9 @@ $(function() {
     $(".nav-item > a[data-widget='pushmenu']").css("visibility", "hidden");
   }
   
+  // handle fixed navbar
+  if ($(".navbar").attr("data-fixed") === "true") {
+    $("body").addClass("layout-navbar-fixed");
+  }
+  
 });

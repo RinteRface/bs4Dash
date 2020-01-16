@@ -13,15 +13,17 @@
 #' @param controlbarIcon Icon to toggle the controlbar (left).
 #' @param leftUi Custom left Ui content. Any Ui element.
 #' @param rightUi Custom right Ui content. Any Ui element.
+#' @param fixed Whether to fix the navbar to the top. FALSE by default
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
                           sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
-                          leftUi = NULL, rightUi = NULL) {
+                          leftUi = NULL, rightUi = NULL, fixed = FALSE) {
   
   shiny::tags$nav(
+    `data-fixed` = tolower(fixed),
     class = paste0(
       "main-header navbar navbar-expand navbar-", status,
       " navbar-", skin, if (isTRUE(border)) " border-bottom-0" else NULL,
