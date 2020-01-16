@@ -6,6 +6,7 @@
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Bug Fix
+- add condition argument to `bs4SidebarMenuItem()`. See https://github.com/RinteRface/bs4Dash/issues/35. Thanks @aldomann
 - some vignettes examples were not up to date
 
 # bs4Dash 0.5.0
