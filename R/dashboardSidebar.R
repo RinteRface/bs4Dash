@@ -15,6 +15,7 @@
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar brand opacity. From 0 to 1. 0.8 by default.
 #' @param expand_on_hover Whether to expand the sidebar om hover. TRUE by default.
+#' @param fixed Whether to fix the sidebar. Default to TRUE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -22,7 +23,8 @@
 bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
                            title = NULL, skin = "dark", status = "primary",
                            brandColor = NULL, url = NULL, src = NULL,
-                           elevation = 4, opacity = .8, expand_on_hover = TRUE) {
+                           elevation = 4, opacity = .8, expand_on_hover = TRUE,
+                           fixed = TRUE) {
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -49,6 +51,7 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
 
   sidebarTag <- shiny::tags$aside(
     id = inputId,
+    `data-fixed` = tolower(fixed),
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation,

@@ -1,6 +1,7 @@
 # bs4Dash 0.6.0.9000
 
 ## New features
+- add fixed parameter to `bs4DashSidebar()`. Thanks @mppallante
 - re-add fixed parameter to `bs4DashNavbar()`. This is reintroduced by adminlte with a new css class name
 - add animated, label parameters to `bs4ProgressBar()`
 - add iconStatus parameter to `bs4InfoBox()` to allow icon color
