@@ -183,6 +183,7 @@ shiny::shinyApp(
       )
     ),
     footer = bs4DashFooter(
+      fixed = TRUE,
       copyrights = a(
         href = "https://twitter.com/divadnojnarg", 
         target = "_blank", "@DivadNojnarg"
