@@ -733,6 +733,8 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
 #' @param elevation tabCard elevation. 
 #' @param side Side of the box the tabs should be on (\code{"left"} or
 #'   \code{"right"}).
+#' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
+#' @param dropdownIcon Dropdown icon. "wrench" by default. 
 #'   
 #' @inheritParams bs4Card
 #' @inheritParams bs4TabSetPanel
