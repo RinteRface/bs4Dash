@@ -285,6 +285,9 @@ tab_cards_tab <- bs4TabItem(
         width = 12,
         collapsible = FALSE, 
         closable = FALSE,
+        type = "tabs",
+        status = "primary",
+        solidHeader = TRUE,
         bs4TabPanel(
           tabName = "Tab 1",
           active = FALSE,

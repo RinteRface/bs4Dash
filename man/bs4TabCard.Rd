@@ -22,7 +22,8 @@ bs4TabCard(
   closable = TRUE,
   maximizable = FALSE,
   overflow = FALSE,
-  side = c("left", "right")
+  side = c("left", "right"),
+  type = NULL
 )
 
 tabBox(
@@ -42,7 +43,8 @@ tabBox(
   closable = TRUE,
   maximizable = FALSE,
   overflow = FALSE,
-  side = c("left", "right")
+  side = c("left", "right"),
+  type = NULL
 )
 }
 \arguments{
@@ -91,6 +93,8 @@ the user to collapse the box.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}
+
+\item{type}{TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.}
 }
 \description{
 Build an adminLTE3 card with tabs

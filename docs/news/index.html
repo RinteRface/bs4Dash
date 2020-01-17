@@ -137,10 +137,21 @@
 <h1 class="page-header">
 <a href="#bs4dash-0609000" class="anchor"></a>bs4Dash 0.6.0.9000<small> Unreleased </small>
 </h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>
+<code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code>: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)</li>
+</ul>
+</div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>
+<code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>: you may access the currently selected tab with input$id</li>
+<li>add type parameter to <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code> so as to select between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)</li>
 <li>add fixed param to <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>
 </li>
 <li>add fixed parameter to <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code>. Thanks <a href='https://github.com/mppallante'>@mppallante</a></li>
@@ -154,6 +165,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/86'>#86</a> : cannot use <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code> with <code>renderUI</code>. Thanks <a href='https://github.com/jyjek'>@jyjek</a></li>
 <li>add condition argument to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>. See <a href="https://github.com/RinteRface/bs4Dash/issues/35" class="uri">https://github.com/RinteRface/bs4Dash/issues/35</a>. Thanks <a href='https://github.com/aldomann'>@aldomann</a></li>
 <li>some vignettes examples were not up to date</li>
 </ul>
@@ -163,9 +175,9 @@
 <h1 class="page-header">
 <a href="#bs4dash-050" class="anchor"></a>bs4Dash 0.5.0<small> 2019-11-27 </small>
 </h1>
-<div id="breaking-changes" class="section level2">
+<div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking Changes</h2>
+<a href="#breaking-changes-1" class="anchor"></a>Breaking Changes</h2>
 <ul>
 <li>remove fixed parameters from <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> since it does not exist in the new AdminLTE version</li>
 <li>rework on <code>bs4DropdownMenuItem</code>: change text to message, date to time. Add new params: from, src, status and type.</li>
@@ -254,9 +266,9 @@
 </li>
 </ul>
 </div>
-<div id="breaking-changes-1" class="section level2">
+<div id="breaking-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>add text arg to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>
 </li>

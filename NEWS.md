@@ -1,6 +1,12 @@
 # bs4Dash 0.6.0.9000
 
+## Breaking changes
+- `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
+
 ## New features
+- `bs4TabSetPanel()`: you may access the currently selected tab with input$id
+- add type parameter to `bs4TabSetPanel()` and `bs4TabCard()` so as to select
+between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)
 - add fixed param to `bs4DashFooter()`
 - add fixed parameter to `bs4DashSidebar()`. Thanks @mppallante
 - re-add fixed parameter to `bs4DashNavbar()`. This is reintroduced by adminlte with a new css class name
@@ -9,6 +15,7 @@
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Bug Fix
+- fix #86 : cannot use `updatebs4TabSetPanel()` with `renderUI`. Thanks @jyjek
 - add condition argument to `bs4SidebarMenuItem()`. See https://github.com/RinteRface/bs4Dash/issues/35. Thanks @aldomann
 - some vignettes examples were not up to date
 

@@ -737,6 +737,7 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
 #' @param elevation tabCard elevation. 
 #' @param side Side of the box the tabs should be on (\code{"left"} or
 #'   \code{"right"}).
+#' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
 #'   
 #' @inheritParams bs4Card
 #' @inheritParams bs4TabSetPanel
@@ -788,21 +789,24 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
                        solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
                        tabStatus = NULL, width = 6, height = NULL,  
                        collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-                       maximizable = FALSE, overflow = FALSE, side = c("left", "right")) {
+                       maximizable = FALSE, overflow = FALSE, side = c("left", "right"),
+                       type = NULL) {
   
   found_active <- FALSE
   side <- match.arg(side)
+  if (is.null(type)) type <- "pills"
   
+  tabCardCl <- "card"
   tabCardCl <- if (!is.null(gradientColor)) {
-    paste0("card bg-gradient-", gradientColor)
+    paste0(tabCardCl, " bg-gradient-", gradientColor)
   } else {
     if (is.null(status)) {
-      "card card-default"
+      paste0(tabCardCl, " card-default card-tabs")
     } else {
       if (isTRUE(solidHeader)) {
-        paste0("card card-outline card-", status)
+        paste0(tabCardCl, " card-outline card-", status, " card-outline-tabs")
       } else {
-        paste0("card card-", status)
+        paste0(tabCardCl, " card-", status, " card-tabs")
       }
     }
   }
@@ -852,7 +856,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   }
   
   # header
-  tabMenu <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[[2]]
+  tabMenu <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus, type = type)[[1]]
   if (is.null(title) & (isTRUE(maximizable) | isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
   
   headerTag <- shiny::tags$div(
@@ -875,7 +879,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   
   
   # body
-  panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[c(1, 3)]
+  panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[[2]]
   bodyTag <- shiny::tags$div(
     class = "card-body",
     style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
@@ -915,6 +919,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'  A vector is possible with a colour for each tab button
 #' @param .list When elements are programmatically added, pass them here instead of in ...
 #' @param vertical Whether to display tabs in a vertical mode. FALSE by default.
+#' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
 #' 
 #' @inheritParams bs4Card
 #' 
@@ -991,7 +996,10 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'
 #' @export
 bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, 
-                           .list = NULL, vertical = FALSE) {
+                           .list = NULL, vertical = FALSE, type = NULL) {
+  
+  # pills are the default
+  if (is.null(type)) type <- "pills"
   
   # to make tab ids in the namespace of the tabSetPanel
   ns <- shiny::NS(id)
@@ -1037,24 +1045,38 @@ bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL,
         "nav-item"
       },
       shiny::tags$a(
-        class = if (active) "nav-link active show" else "nav-link",
+        class = if (active) "nav-link active" else "nav-link",
         href = paste0("#", ns(id)),
+        id = paste0(ns(id), "-tab"),
         `data-toggle` = "tab",
+        role = "tab",
+        `aria-controls` = ns(id),
+        `aria-selected` = if (active) "true" else "false",
         tabName
       )
     )
   })
   
-  # support vertical tabs
-  tabSetCl <- if (side == "right") {
-    "nav nav-pills ml-auto p-2"
-  } else {
-    "nav nav-pills p-2"
+  tabSetCl <- "nav"
+  tabSetCl <- if (type == "tabs") {
+     paste0(tabSetCl, " nav-tabs")
+  } else if (type == "pills") {
+    paste0(tabSetCl, " nav-pills")
   }
+  
+  # side
+  if (side == "right") {
+    tabSetCl <- paste0(tabSetCl, " ml-auto p-2")
+  } else {
+    tabSetCl <- paste0(tabSetCl, " p-2")
+  }
+  
+  # support vertical tabs
   if (vertical) tabSetCl <- paste0(tabSetCl, " flex-column")
   
   tabSetMenu <- shiny::tags$ul(
     id = id,
+    class = "tabsetpanel",
     class = tabSetCl,
     `aria-orientation` = if (vertical) "vertical" else NULL
   )
@@ -1067,41 +1089,26 @@ bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL,
       
       # put the correct namespace on ids
       tabs[[i]][[2]]$attribs$id <- ns(tabs[[i]][[2]]$attribs$id)
+      tabs[[i]][[2]]$attribs$`aria-labelledby` <- ns(tabs[[i]][[2]]$attribs$`aria-labelledby`)
       tabs[[i]][[2]]
     })
-  )
-  
-  # tabSet JS wrapper to handle vertical 
-  tabSetJS <- shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$script(
-        paste0(
-          "$(function () {
-              $('#", id," li:eq(", selected,") a').tab('show');
-            })
-            "
-        )
-      )
-    )
   )
   
   # Wrapper
   if (vertical) {
     if (side == "left") {
       shiny::fluidRow(
-        tabSetJS,
         shiny::column(width = 3, tabSetMenu),
         shiny::column(width = 9, tabSetContent)
       )
     } else {
       shiny::fluidRow(
-        tabSetJS,
         shiny::column(width = 9, tabSetContent),
         shiny::column(width = 3, tabSetMenu)
       )
     }
   } else {
-    shiny::tagList(tabSetJS, tabSetMenu, tabSetContent)
+    shiny::tagList(tabSetMenu, tabSetContent)
   }
 }
 
@@ -1128,8 +1135,10 @@ bs4TabPanel <- function(..., tabName, active = FALSE) {
   id <- gsub(x = id, pattern = " ", replacement = "")
   
   tabPanelTag <- shiny::tags$div(
-    class = if (active) "tab-pane active" else "tab-pane",
+    class = if (active) "tab-pane fade active" else "tab-pane fade",
     id = id,
+    role = "tabpanel",
+    `aria-labelledby` = paste0(id, "-tab"),
     ...
   )
   return(list(tabName, tabPanelTag))
