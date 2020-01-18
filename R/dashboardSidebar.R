@@ -262,7 +262,8 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
     # bound to tabItemInputBinding in the JS side.
     shiny::tags$div(
-      id = id, class = "sidebarMenuSelectedTabItem", 
+      id = id, 
+      class = "sidebarMenuSelectedTabItem", 
       `data-value` = "null"
     )
   )

@@ -91,14 +91,16 @@ if (interactive()) {
    ),
    server = function(input, output, session) {
      
+     observe(print(input$sidebar))
+     
      # update tabset1
      observeEvent(input$controller, {
        updatebs4TabSetPanel(
          session, 
          inputId = "sidebar", 
-         selected = input$controller
+         selected = paste0("tab", input$controller)
        )
-     })
+     }, ignoreInit = TRUE)
      
      output$distPlot <- renderPlot({
        hist(rnorm(input$obs))

@@ -141,6 +141,7 @@ $(function () {
           return false;
         }
       });
+      $('#mymenu' + ' ' + 'a[href="#shiny-tab-' + value + '"]').tab('show');
     },
     receiveMessage: function(el, data) {
       if (data.hasOwnProperty('value'))
