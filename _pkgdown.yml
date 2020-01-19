@@ -16,6 +16,15 @@ reference:
   contents: 
   - '`column`'
   
+  
+- title: Feedback related functions
+  desc: Bootstrap 4 popovers, tooltips, ...
+  contents: 
+  - '`bs4PopoverServer`'
+  - '`bs4PopoverUI`'
+  - '`bs4TooltipServer`'
+  - '`bs4TooltipUI`'
+  
 
 - title: Update functions
   desc: Dynamically update UI elements

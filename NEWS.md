@@ -4,6 +4,7 @@
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 
 ## New features
+- add `bs4PopoverServer()`, `bs4PopoverUI()`, `bs4TooltipUI()` and `bs4TooltipServer()`
 - `bs4TabSetPanel()`: you may access the currently selected tab with input$id
 - add type parameter to `bs4TabSetPanel()` and `bs4TabCard()` so as to select
 between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)

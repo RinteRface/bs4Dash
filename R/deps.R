@@ -58,7 +58,8 @@ addDeps <- function(x, theme) {
         "navbar.js", 
         "update-tabs.js", 
         "controlbar.js",
-        "cards.js"
+        "cards.js",
+        "feedbacks.js"
       ),
       stylesheet = bs4Dash_css
     ),

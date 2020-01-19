@@ -36,6 +36,7 @@ Collate:
     'aliases.R'
     'bs4DashGallery.R'
     'deps.R'
+    'feedbacks.R'
     'grid.R'
     'useful-items.R'
     'utils.R'
