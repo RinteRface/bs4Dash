@@ -30,7 +30,6 @@
 #' @param labelText Label text.
 #' @param labelTooltip Label tooltip displayed on hover.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
-#' @param dropdownIcon Dropdown icon. "wrench" by default.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param sidebar Slot for \link{bs4CardSidebar}.
 #' 
@@ -126,8 +125,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
-                    labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
-                    overflow = FALSE, sidebar = NULL) {
+                    labelTooltip = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
   
   if (!is.null(height) & overflow) {
     stop(
@@ -176,18 +174,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
       )
     },
     
-    if (!is.null(dropdownMenu)) {
-      shiny::tags$div(
-        class = "btn-group",
-        shiny::tags$button(
-          type = "button",
-          class = "btn btn-tool dropdown-toggle",
-          `data-toggle` = "dropdown",
-          shiny::icon(dropdownIcon)
-        ),
-        dropdownMenu
-      )
-    },
+    if (!is.null(dropdownMenu)) dropdownMenu,
     
     # collapse
     if (isTRUE(collapsible)) {
@@ -438,17 +425,35 @@ updatebs4Card <- function(inputId, session, action = c("remove", "toggle", "togg
 #' Can be used to add dropdown items to a cardtool.
 #'
 #' @param ... Slot for \link{dropdownItem}.
+#' @param icon Dropdown menu icon.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-dropdownItemList <- function(...) {
-  shiny::tags$div(
+dropdownItemList <- function(..., icon = "wrench") {
+  
+  contentTag <- shiny::tags$div(
     class = "dropdown-menu dropdown-menu-right",
     role = "menu",
     ...
   )
+  
+  # for bs4Card toolbar
+  toolbarTag <- shiny::tags$div(
+    class = "btn-group",
+    shiny::tags$button(
+      type = "button",
+      class = "btn btn-tool dropdown-toggle",
+      `data-toggle` = "dropdown",
+      shiny::icon(icon)
+    ),
+    contentTag
+  )
+  
+  return(toolbarTag)
+  
 }
+
 
 
 

@@ -4,6 +4,7 @@
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - remove all sidebar related parameters from `bs4Card()`. This is now part of
  the new `bs4CardSidebar()`
+- remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`
 
 ## New features
 - new `bs4CardSidebar`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar

@@ -25,7 +25,6 @@ bs4Card(
   labelText = NULL,
   labelTooltip = NULL,
   dropdownMenu = NULL,
-  dropdownIcon = "wrench",
   overflow = FALSE,
   sidebar = NULL
 )
@@ -50,7 +49,6 @@ box(
   labelText = NULL,
   labelTooltip = NULL,
   dropdownMenu = NULL,
-  dropdownIcon = "wrench",
   overflow = FALSE,
   sidebar = NULL
 )
@@ -102,8 +100,6 @@ the user to collapse the box.}
 \item{labelTooltip}{Label tooltip displayed on hover.}
 
 \item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
-
-\item{dropdownIcon}{Dropdown icon. "wrench" by default.}
 
 \item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
 
