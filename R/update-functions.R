@@ -471,3 +471,57 @@ bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDom
 #' }
 #' @export
 updatebs4TabItems <- updatebs4TabSetPanel
+
+
+
+
+
+#' Programmatically toggle a bs4Card sidebar
+#'
+#' @param session Shiny session object.
+#' @param inputId Card sidebar id.
+#' 
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     sidebar_collapsed = FALSE,
+#'     controlbar_collapsed = TRUE,
+#'     enable_preloader = FALSE,
+#'     navbar = bs4DashNavbar(skin = "dark"),
+#'     body = bs4DashBody(
+#'       bs4Card(
+#'         title = "Closable Box with gradient", 
+#'         closable = TRUE, 
+#'         width = 12,
+#'         height = "500px",
+#'         solidHeader = FALSE, 
+#'         collapsible = TRUE,
+#'         actionButton("update", "Toggle card sidebar"),
+#'         sidebar = bs4CardSidebar(
+#'           inputId = "mycardsidebar",
+#'           p("Sidebar Content")
+#'         )
+#'       )
+#'     ),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$mycardsidebar))
+#'     
+#'     observeEvent(input$update, {
+#'       updatebs4CardSidebar(session, inputId = "mycardsidebar")
+#'     })
+#'     
+#'   }
+#'  )
+#' }
+updatebs4CardSidebar <- function(session, inputId) {
+  session$sendInputMessage(inputId, NULL)
+}

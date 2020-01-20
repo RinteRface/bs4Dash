@@ -32,12 +32,7 @@
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param dropdownIcon Dropdown icon. "wrench" by default.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
-#' @param enable_sidebar Whether to display the box sidebar. FALSE by default.
-#' @param sidebar_content Box sidebar content, if any.
-#' @param sidebar_width Box sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px")
-#' @param sidebar_background Box sidebar background color. Dark by default.
-#' @param sidebar_start_open Whether the box sidebar is open at start. FALSE by default.
-#' @param sidebar_icon Box sidebar icon. 
+#' @param sidebar Slot for \link{bs4CardSidebar}.
 #' 
 #' @family cards
 #'
@@ -132,9 +127,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
                     closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
                     labelTooltip = NULL, dropdownMenu = NULL, dropdownIcon = "wrench",
-                    overflow = FALSE, enable_sidebar = FALSE, sidebar_content = NULL, 
-                    sidebar_width = "25%", sidebar_background = "#333a40", 
-                    sidebar_start_open = FALSE, sidebar_icon = "cogs") {
+                    overflow = FALSE, sidebar = NULL) {
   
   if (!is.null(height) & overflow) {
     stop(
@@ -157,8 +150,10 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     }
   }
   
-  if (enable_sidebar) {
-    if (sidebar_start_open) {
+  if (!is.null(sidebar)) {
+    sidebarToggle <- sidebar[[2]]
+    startOpen <- sidebar[[2]]$attribs$`data-start-open`
+    if (startOpen == "true") {
       cardCl <- paste0(cardCl, " direct-chat direct-chat-contacts-open")
     } else {
       cardCl <- paste0(cardCl, " direct-chat")
@@ -228,17 +223,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     },
     
     # sidebar
-    if (enable_sidebar) {
-      sidebarTag <- shiny::tags$button(
-        class = "btn btn-tool",
-        `data-widget` = "chat-pane-toggle",
-        `data-toggle` = "tooltip",
-        `data-original-title` = "More",
-        title = NA,
-        type = "button",
-        shiny::icon(sidebar_icon)
-      )
-    }
+    if (!is.null(sidebar)) sidebar[[2]]
   )
   
   # header
@@ -261,19 +246,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
       if (overflow) "overflow-y: auto; max-height: 500px;" else NULL
     },
     ...,
-    if (enable_sidebar) {
-      shiny::tags$div(
-        style = "z-index: 10000;",
-        class = "direct-chat-contacts",
-        shiny::tags$ul(
-          class = "contacts-list", 
-          shiny::tags$li(
-            style = paste0("width: ", sidebar_width, ";"), 
-            sidebar_content
-          )
-        )
-      )
-    }
+    if (!is.null(sidebar)) sidebar[c(1, 3)]
   )
   
   footerTag <- if (!is.null(footer)) {
@@ -294,29 +267,74 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     class = if (!is.null(width)) paste0("col-sm-", width),
     cardTag
   )
+  cardWrapper
+}
+
+
+
+
+
+#' Create a sidebar for Boostrap 4 card
+#' 
+#' To insert in the sidebar slot of \link{bs4Card}.
+#'
+#' @param ... Sidebar content.
+#' @param inputId Unique sidebar id. Useful if you want to use \link{updatebs4CardSidebar}.
+#' @param width Sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px").
+#' @param background Sidebar background color. Dark by default.
+#' @param startOpen Whether the sidebar is open at start. FALSE by default.
+#' @param icon Sidebar icon.
+#' 
+#' @export
+#' @rdname updatebs4CardSidebar
+bs4CardSidebar <- function(..., inputId = NULL, width = "25%", background = "#333a40", 
+                           startOpen = FALSE, icon = "cogs") {
   
-  # for the sidebar
-  translation_rate <- paste0("calc(100% - ", sidebar_width, ")")
+  # Toggle to insert in bs4Card
+  toolbarTag <- shiny::tags$button(
+    class = "btn btn-tool",
+    id = inputId,
+    `data-widget` = "chat-pane-toggle",
+    `data-toggle` = "tooltip",
+    `data-original-title` = "More",
+    `data-start-open` = tolower(startOpen),
+    type = "button",
+    shiny::icon(icon)
+  )
   
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$style(
-          shiny::HTML(
-            paste0(
-              ".direct-chat-contacts {
-                 -webkit-transform: translate(100%, 0);
-                 -ms-transform: translate(100%, 0);
-                 -o-transform: translate(100%, 0);
-                 transform: translate(100%, 0);
-                 position: absolute;
-                 top: 0;
-                 bottom: 0;
-                 height: 100%;
-                 width: 100%;
-                 background: ", sidebar_background, ";
-                 color: #fff;
-                 overflow: auto;
+  # sidebar content
+  contentTag <- shiny::tags$div(
+    style = "z-index: 10000;",
+    class = "direct-chat-contacts",
+    shiny::tags$ul(
+      class = "contacts-list", 
+      shiny::tags$li(
+        style = paste0("width: ", width, ";"), 
+        ...
+      )
+    )
+  )
+  
+  # custom CSS
+  translation_rate <- paste0("calc(100% - ", width, ")")
+  sidebarCSS <- shiny::singleton(
+    shiny::tags$head(
+      shiny::tags$style(
+        shiny::HTML(
+          paste0(
+            ".direct-chat-contacts {
+                -webkit-transform: translate(100%, 0);
+                -ms-transform: translate(100%, 0);
+                -o-transform: translate(100%, 0);
+                transform: translate(100%, 0);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                height: 100%;
+                width: 100%;
+                background: ", background, ";
+                color: #fff;
+                overflow: auto;
               }
               .direct-chat-contacts-open .direct-chat-contacts {
                 -webkit-transform: translate(", translation_rate, ", 0);
@@ -325,14 +343,13 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
                 transform: translate(", translation_rate, ", 0);
               }
               "
-            )
           )
         )
       )
-    ),
-    cardWrapper
+    )
   )
   
+  shiny::tagList(sidebarCSS, toolbarTag, contentTag)
 }
 
 

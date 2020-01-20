@@ -2,8 +2,11 @@
 
 ## Breaking changes
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
+- remove all sidebar related parameters from `bs4Card()`. This is now part of
+ the new `bs4CardSidebar()`
 
 ## New features
+- new `bs4CardSidebar`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar
 - add `bs4PopoverServer()`, `bs4PopoverUI()`, `bs4TooltipUI()` and `bs4TooltipServer()`
 - `bs4TabSetPanel()`: you may access the currently selected tab with input$id
 - add type parameter to `bs4TabSetPanel()` and `bs4TabCard()` so as to select

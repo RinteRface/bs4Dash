@@ -162,12 +162,7 @@
   <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>enable_sidebar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_content</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sidebar_width</span> <span class='kw'>=</span> <span class='st'>"25%"</span>,
-  <span class='kw'>sidebar_background</span> <span class='kw'>=</span> <span class='st'>"#333a40"</span>,
-  <span class='kw'>sidebar_start_open</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_icon</span> <span class='kw'>=</span> <span class='st'>"cogs"</span>
+  <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )
 
 <span class='fu'>box</span>(
@@ -192,12 +187,7 @@
   <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>enable_sidebar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_content</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sidebar_width</span> <span class='kw'>=</span> <span class='st'>"25%"</span>,
-  <span class='kw'>sidebar_background</span> <span class='kw'>=</span> <span class='st'>"#333a40"</span>,
-  <span class='kw'>sidebar_start_open</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_icon</span> <span class='kw'>=</span> <span class='st'>"cogs"</span>
+  <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -297,28 +287,8 @@ the user to collapse the box.</p></td>
       <td><p>Whether to enable overflow in the card body and footer. FALSE by default.</p></td>
     </tr>
     <tr>
-      <th>enable_sidebar</th>
-      <td><p>Whether to display the box sidebar. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>sidebar_content</th>
-      <td><p>Box sidebar content, if any.</p></td>
-    </tr>
-    <tr>
-      <th>sidebar_width</th>
-      <td><p>Box sidebar width in percentage. 25% by default. A character value of any width CSS understands (e.g. "100px")</p></td>
-    </tr>
-    <tr>
-      <th>sidebar_background</th>
-      <td><p>Box sidebar background color. Dark by default.</p></td>
-    </tr>
-    <tr>
-      <th>sidebar_start_open</th>
-      <td><p>Whether the box sidebar is open at start. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>sidebar_icon</th>
-      <td><p>Box sidebar icon.</p></td>
+      <th>sidebar</th>
+      <td><p>Slot for <a href='bs4CardSidebar.html'>bs4CardSidebar</a>.</p></td>
     </tr>
     </table>
 

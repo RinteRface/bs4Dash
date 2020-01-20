@@ -27,12 +27,7 @@ bs4Card(
   dropdownMenu = NULL,
   dropdownIcon = "wrench",
   overflow = FALSE,
-  enable_sidebar = FALSE,
-  sidebar_content = NULL,
-  sidebar_width = "25\%",
-  sidebar_background = "#333a40",
-  sidebar_start_open = FALSE,
-  sidebar_icon = "cogs"
+  sidebar = NULL
 )
 
 box(
@@ -57,12 +52,7 @@ box(
   dropdownMenu = NULL,
   dropdownIcon = "wrench",
   overflow = FALSE,
-  enable_sidebar = FALSE,
-  sidebar_content = NULL,
-  sidebar_width = "25\%",
-  sidebar_background = "#333a40",
-  sidebar_start_open = FALSE,
-  sidebar_icon = "cogs"
+  sidebar = NULL
 )
 }
 \arguments{
@@ -117,17 +107,7 @@ the user to collapse the box.}
 
 \item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
 
-\item{enable_sidebar}{Whether to display the box sidebar. FALSE by default.}
-
-\item{sidebar_content}{Box sidebar content, if any.}
-
-\item{sidebar_width}{Box sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px")}
-
-\item{sidebar_background}{Box sidebar background color. Dark by default.}
-
-\item{sidebar_start_open}{Whether the box sidebar is open at start. FALSE by default.}
-
-\item{sidebar_icon}{Box sidebar icon.}
+\item{sidebar}{Slot for \link{bs4CardSidebar}.}
 }
 \description{
 Build an adminLTE3 card

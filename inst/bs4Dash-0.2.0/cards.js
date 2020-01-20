@@ -68,3 +68,47 @@ $.extend(cardBinding, {
 });
 
 Shiny.inputBindings.register(cardBinding);
+
+
+
+// Card sidebar input binding
+var cardSidebarBinding = new Shiny.InputBinding();
+$.extend(cardSidebarBinding, {
+  
+  find: function(scope) {
+    return $(scope).find('[data-widget="chat-pane-toggle"]');
+  },
+  
+  // Given the DOM element for the input, return the value
+  getValue: function(el) {
+    var cardWrapper = $(el).closest(".card");
+    return $(cardWrapper).hasClass("direct-chat-contacts-open");
+  },
+  
+  // see updatebs4Card
+  receiveMessage: function(el, data) {
+    // In theory, adminLTE3 has a builtin function
+    // we could use $(el).DirectChat('toggle');
+    // However, it does not update the related input.
+    // The toggled.lte.directchat event seems to be broken.
+    $(el).trigger('click');
+    $(el).trigger("shown");
+  },
+  
+  subscribe: function(el, callback) {
+    $(el).on('click', function(e) {
+      // set a delay so that Shiny get the input value when the collapse animation
+      // is finished. 
+      setTimeout(
+        function() {
+          callback();
+        }, 10);
+    });
+  },
+  
+  unsubscribe: function(el) {
+    $(el).off(".cardSidebarBinding");
+  }
+});
+
+Shiny.inputBindings.register(cardSidebarBinding);
