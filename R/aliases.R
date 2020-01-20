@@ -440,3 +440,26 @@ updateTabsetPanel <- updatebs4TabSetPanel
 #'
 #' @export
 updateTabItems <- updatebs4TabItems
+
+
+
+
+#' Alias to \link{bs4CardSidebar}
+#' See \link{bs4CardSidebar} for full details
+#'
+#' @rdname bs4CardSidebar
+#'
+#' @export
+cardSidebar <- bs4CardSidebar
+
+
+
+
+
+#' Alias to \link{updatebs4CardSidebar}
+#' See \link{updatebs4CardSidebar} for full details
+#'
+#' @rdname updatebs4CardSidebar
+#'
+#' @export
+updateCardSidebar <- updatebs4CardSidebar
