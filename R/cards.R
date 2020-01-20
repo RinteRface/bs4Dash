@@ -273,7 +273,6 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
 #' @param icon Sidebar icon.
 #' 
 #' @export
-#' @rdname updatebs4CardSidebar
 bs4CardSidebar <- function(..., inputId = NULL, width = "25%", background = "#333a40", 
                            startOpen = FALSE, icon = "cogs") {
   

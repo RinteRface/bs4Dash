@@ -38,7 +38,9 @@
   
 
 <meta property="og:title" content="Programmatically toggle a bs4Card sidebar — updatebs4CardSidebar" />
-<meta property="og:description" content="To insert in the sidebar slot of bs4Card." />
+<meta property="og:description" content="Programmatically toggle a bs4Card sidebar
+Alias to updatebs4CardSidebar
+See updatebs4CardSidebar for full details" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -132,24 +134,17 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Programmatically toggle a bs4Card sidebar</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/update-functions.R'><code>R/update-functions.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/update-functions.R'><code>R/update-functions.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>updatebs4CardSidebar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>To insert in the sidebar slot of <a href='bs4Card.html'>bs4Card</a>.</p>
+    <p>Programmatically toggle a bs4Card sidebar</p>
+<p>Alias to updatebs4CardSidebar
+See updatebs4CardSidebar for full details</p>
     </div>
 
     <pre class="usage"><span class='fu'>updatebs4CardSidebar</span>(<span class='no'>session</span>, <span class='no'>inputId</span>)
-
-<span class='fu'>bs4CardSidebar</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"25%"</span>,
-  <span class='kw'>background</span> <span class='kw'>=</span> <span class='st'>"#333a40"</span>,
-  <span class='kw'>startOpen</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"cogs"</span>
-)
 
 <span class='fu'>updateCardSidebar</span>(<span class='no'>session</span>, <span class='no'>inputId</span>)</pre>
 
@@ -162,27 +157,7 @@
     </tr>
     <tr>
       <th>inputId</th>
-      <td><p>Unique sidebar id. Useful if you want to use updatebs4CardSidebar.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Sidebar content.</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>Sidebar width in percentage. 25% by default. A character value of any width CSS understands (e.g. "100px").</p></td>
-    </tr>
-    <tr>
-      <th>background</th>
-      <td><p>Sidebar background color. Dark by default.</p></td>
-    </tr>
-    <tr>
-      <th>startOpen</th>
-      <td><p>Whether the sidebar is open at start. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>icon</th>
-      <td><p>Sidebar icon.</p></td>
+      <td><p>Card sidebar id.</p></td>
     </tr>
     </table>
 
