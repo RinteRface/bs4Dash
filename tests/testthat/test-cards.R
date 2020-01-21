@@ -106,3 +106,9 @@ test_that("default", {
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card")
 })
+
+test_that("status", {
+  cardTag <- bs4Card(status = "success")
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card card-success")
+})
