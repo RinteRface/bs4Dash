@@ -140,6 +140,12 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     )
   }
   
+  if (!is.null(gradientColor) & !is.null(status)) {
+    stop(
+      "gradientColor is not compatible with status. Please choose only one property."
+    )
+  }
+  
   if (!collapsible & collapsed) {
     stop("Cannot collapse a card that is not collapsible.")
   }
