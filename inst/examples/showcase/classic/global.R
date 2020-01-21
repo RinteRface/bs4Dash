@@ -58,10 +58,11 @@ basic_cards_tab <- bs4TabItem(
       status = "warning", 
       solidHeader = FALSE, 
       collapsible = TRUE,
-      labelText = 1,
-      labelStatus = "danger",
-      labelTooltip = "Hi Bro!",
-      dropdownIcon = "wrench",
+      label = bs4CardLabel(
+        text = 1,
+        status = "danger",
+        tooltip = "Hello!"
+      ),
       dropdownMenu = dropdownItemList(
         dropdownItem(url = "https://www.google.com", name = "Link to google"),
         dropdownItem(url = "#", name = "item 2"),
