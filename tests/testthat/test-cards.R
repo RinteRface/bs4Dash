@@ -206,3 +206,11 @@ test_that("find id", {
   id <- getCardId(cardTag)
   expect_match(id, "test")
 })
+
+test_that("card width", {
+  expect_error(bs4Card(width = "2"))
+  expect_error(bs4Card(width = -1))
+  cardTag <- bs4Card(width = 6)
+  wrapperTagCl <- getCardWrapperCl(cardTag)
+  expect_match(wrapperTagCl, "col-sm-6")
+})
