@@ -112,3 +112,9 @@ test_that("status", {
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card card-success")
 })
+
+test_that("gradientColor", {
+  cardTag <- bs4Card(gradientColor = "danger")
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card bg-gradient-danger")
+})
