@@ -148,3 +148,12 @@ test_that("collapsible and collapsed", {
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card card-default collapsed-card")
 })
+
+test_that("elevation", {
+  cardTag <- bs4Card(elevation = 4)
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card card-default elevation-")
+  expect_error(bs4Card(elevation = 6))
+  expect_error(bs4Card(elevation = -1))
+  expect_error(bs4Card(elevation = "2"))
+})
