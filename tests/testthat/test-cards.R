@@ -157,3 +157,9 @@ test_that("elevation", {
   expect_error(bs4Card(elevation = -1))
   expect_error(bs4Card(elevation = "2"))
 })
+
+test_that("headerBorder", {
+  cardTag <- bs4Card(headerBorder = FALSE)
+  cardHeaderCl <- getCardHeaderCl(cardTag)
+  expect_match(cardHeaderCl, "card-header no-border")
+})
