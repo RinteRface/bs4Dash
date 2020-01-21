@@ -140,3 +140,11 @@ test_that("card sidebar class", {
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card card-default direct-chat direct-chat-contacts-open")
 })
+
+test_that("collapsible and collapsed", {
+  expect_error(bs4Card(collapsible = FALSE, collapsed = TRUE))
+  
+  cardTag <- bs4Card(collapsible = TRUE, collapsed = TRUE)
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card card-default collapsed-card")
+})
