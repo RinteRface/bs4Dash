@@ -43,6 +43,6 @@ getCardTools <- function(card) {
   bs4Dash:::dropNulls(header$children[[2]]$children)
 }
 
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+test_that("is shiny tag?", {
+  expect_is(bs4Card(), "shiny.tag")
 })
