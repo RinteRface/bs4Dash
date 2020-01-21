@@ -190,3 +190,13 @@ test_that("body content", {
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 1)
 })
+
+test_that("card sidebar in card body", {
+  cardTag <- bs4Card(sidebar = bs4CardSidebar())
+  bodyTag <- getCardBody(cardTag)
+  expect_length(bodyTag, 1)
+  
+  cardTag <- bs4Card("prout", sidebar = bs4CardSidebar())
+  bodyTag <- getCardBody(cardTag)
+  expect_length(bodyTag, 2)
+})
