@@ -200,3 +200,9 @@ test_that("card sidebar in card body", {
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 2)
 })
+
+test_that("find id", {
+  cardTag <- bs4Card(inputId = "test")
+  id <- getCardId(cardTag)
+  expect_match(id, "test")
+})
