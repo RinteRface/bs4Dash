@@ -140,6 +140,10 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     )
   }
   
+  if (!collapsible & collapsed) {
+    stop("Cannot collapse a card that is not collapsible.")
+  }
+  
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-gradient-", gradientColor)
   } else {
