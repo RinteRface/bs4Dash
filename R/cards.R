@@ -150,6 +150,13 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     stopifnot(elevation >= 0)
   }
   
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
+  
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-gradient-", gradientColor)
   } else {
