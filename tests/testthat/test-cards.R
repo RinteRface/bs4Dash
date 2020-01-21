@@ -118,3 +118,12 @@ test_that("gradientColor", {
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card bg-gradient-danger")
 })
+
+test_that("solidheader", {
+  
+  expect_error(bs4Card(solidHeader = TRUE, status = NULL))
+  
+  cardTag <- bs4Card(solidHeader = TRUE, status = "warning")
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card card-outline card-warning")
+})
