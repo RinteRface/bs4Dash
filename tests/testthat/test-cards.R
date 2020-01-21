@@ -214,3 +214,15 @@ test_that("card width", {
   wrapperTagCl <- getCardWrapperCl(cardTag)
   expect_match(wrapperTagCl, "col-sm-6")
 })
+
+test_that("footer", {
+  # if no footer is provided, the footer should not
+  # even appear in the card tag
+  cardTag <- bs4Card()
+  expect_error(getCardFooter(cardTag))
+  
+  cardTag <- bs4Card(footer = "prout")
+  cardFooterTag <- getCardFooter(cardTag)
+  expect_match(cardFooterTag$attribs$class, "card-footer")
+  expect_length(cardFooterTag$children, 1)
+})
