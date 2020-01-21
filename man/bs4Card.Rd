@@ -21,9 +21,7 @@ bs4Card(
   collapsed = FALSE,
   closable = TRUE,
   maximizable = FALSE,
-  labelStatus = NULL,
-  labelText = NULL,
-  labelTooltip = NULL,
+  label = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
   sidebar = NULL
@@ -45,9 +43,7 @@ box(
   collapsed = FALSE,
   closable = TRUE,
   maximizable = FALSE,
-  labelStatus = NULL,
-  labelText = NULL,
-  labelTooltip = NULL,
+  label = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
   sidebar = NULL
@@ -93,11 +89,7 @@ the user to collapse the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{labelStatus}{status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".}
-
-\item{labelText}{Label text.}
-
-\item{labelTooltip}{Label tooltip displayed on hover.}
+\item{label}{Slot for \link{bs4CardLabel}.}
 
 \item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
 
@@ -131,10 +123,11 @@ if(interactive()){
        status = "warning", 
        solidHeader = FALSE, 
        collapsible = TRUE,
-       labelText = 1,
-       labelStatus = "danger",
-       labelTooltip = "Hi Bro!",
-       dropdownIcon = "wrench",
+       label = bs4CardLabel(
+        text = 1,
+        status = "danger",
+        tooltip = "Hello!"
+       ),
        dropdownMenu = dropdownItemList(
          dropdownItem(url = "http://www.google.com", name = "Link to google"),
          dropdownItem(url = "#", name = "item 2"),

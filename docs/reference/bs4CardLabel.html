@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Programmatically toggle a bs4Card sidebar — updatebs4CardSidebar • bs4Dash</title>
+<title>Create a label for Boostrap 4 card — bs4CardLabel • bs4Dash</title>
 
 
 <!-- jquery -->
@@ -37,10 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Programmatically toggle a bs4Card sidebar — updatebs4CardSidebar" />
-<meta property="og:description" content="Programmatically toggle a bs4Card sidebar
-Alias to updatebs4CardSidebar
-See updatebs4CardSidebar for full details" />
+<meta property="og:title" content="Create a label for Boostrap 4 card — bs4CardLabel" />
+<meta property="og:description" content="Create a label for Boostrap 4 card" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,81 +131,40 @@ See updatebs4CardSidebar for full details" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Programmatically toggle a bs4Card sidebar</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/update-functions.R'><code>R/update-functions.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>updatebs4CardSidebar.Rd</code></div>
+    <h1>Create a label for Boostrap 4 card</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a></small>
+    <div class="hidden name"><code>bs4CardLabel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Programmatically toggle a bs4Card sidebar</p>
-<p>Alias to updatebs4CardSidebar
-See updatebs4CardSidebar for full details</p>
+    <p>Create a label for Boostrap 4 card</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updatebs4CardSidebar</span>(<span class='no'>session</span>, <span class='no'>inputId</span>)
-
-<span class='fu'>updateCardSidebar</span>(<span class='no'>session</span>, <span class='no'>inputId</span>)</pre>
+    <pre class="usage"><span class='fu'>bs4CardLabel</span>(<span class='no'>text</span>, <span class='no'>status</span>, <span class='kw'>tooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>session</th>
-      <td><p>Shiny session object.</p></td>
+      <th>text</th>
+      <td><p>Label text. In practice only few letters or a number.</p></td>
     </tr>
     <tr>
-      <th>inputId</th>
-      <td><p>Card sidebar id.</p></td>
+      <th>status</th>
+      <td><p>label color status. See <a href='getAdminLTEColors.html'>getAdminLTEColors</a>.</p></td>
+    </tr>
+    <tr>
+      <th>tooltip</th>
+      <td><p>Label tooltip text on hover.</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
-
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-    <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-    <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-    <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"dark"</span>),
-    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-      <span class='fu'><a href='bs4Card.html'>bs4Card</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable Box with gradient"</span>,
-        <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-        <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"500px"</span>,
-        <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"update"</span>, <span class='st'>"Toggle card sidebar"</span>),
-        <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4CardSidebar.html'>bs4CardSidebar</a></span>(
-          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mycardsidebar"</span>,
-          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Sidebar Content"</span>)
-        )
-      )
-    ),
-    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-    <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-    <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>()
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>mycardsidebar</span>))
-
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
-      <span class='fu'>updatebs4CardSidebar</span>(<span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mycardsidebar"</span>)
-    })
-
-  }
- )
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

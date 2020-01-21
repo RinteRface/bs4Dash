@@ -66,6 +66,7 @@ reference:
   - '`bs4InfoBox`'
   - '`bs4ValueBox`'
   - '`bs4Card`'
+  - '`bs4CardLabel`'
   - '`bs4CardSidebar`'
   - '`bs4TabCard`'
   - '`bs4UserCard`'

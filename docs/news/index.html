@@ -143,16 +143,19 @@
 <ul>
 <li>
 <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code>: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)</li>
-<li>remove all sidebar related parameters from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is now part of the new <code><a href="../reference/updatebs4CardSidebar.html">bs4CardSidebar()</a></code>
+<li>remove all sidebar related parameters from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is now part of the new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>
 </li>
 <li>remove dropdownIcon parameter from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. It is now part of the <code><a href="../reference/dropdownItemList.html">dropdownItemList()</a></code>
 </li>
+<li>remove labelStatus, labelText and labelTooltip params from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is to reduce the number of parameters of cards</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>new <code><a href="../reference/bs4CardLabel.html">bs4CardLabel()</a></code> to add text labels in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+</li>
 <li>new <code>bs4CardSidebar</code>: access the status via input$id. Add <code><a href="../reference/updatebs4CardSidebar.html">updatebs4CardSidebar()</a></code> to toggle the card sidebar</li>
 <li>add <code><a href="../reference/bs4PopoverServer.html">bs4PopoverServer()</a></code>, <code><a href="../reference/bs4PopoverUI.html">bs4PopoverUI()</a></code>, <code><a href="../reference/bs4TooltipUI.html">bs4TooltipUI()</a></code> and <code><a href="../reference/bs4TooltipServer.html">bs4TooltipServer()</a></code>
 </li>
