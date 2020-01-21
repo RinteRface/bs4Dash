@@ -167,3 +167,16 @@ test_that("headerBorder", {
 test_that("overflow without height", {
   expect_error(bs4Card(height = "500px", overflow = TRUE))
 })
+
+test_that("height", {
+  # check if shiny::validateCssUnit does its job
+  expect_error(bs4Card(height = "prout"))
+  
+  cardTag <- bs4Card(height = "400px")
+  bodyStyle <- getCardBodyStyle(cardTag)
+  expect_match(bodyStyle, "height: 400px")
+  
+  cardTag <- bs4Card(overflow = TRUE)
+  bodyStyle <- getCardBodyStyle(cardTag)
+  expect_match(bodyStyle, "overflow-y: auto; max-height: 500px;")
+})
