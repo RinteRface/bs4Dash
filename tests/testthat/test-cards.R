@@ -180,3 +180,13 @@ test_that("height", {
   bodyStyle <- getCardBodyStyle(cardTag)
   expect_match(bodyStyle, "overflow-y: auto; max-height: 500px;")
 })
+
+test_that("body content", {
+  cardTag <- bs4Card()
+  bodyTag <- getCardBody(cardTag)
+  expect_length(bodyTag, 0)
+  
+  cardTag <- bs4Card("prout")
+  bodyTag <- getCardBody(cardTag)
+  expect_length(bodyTag, 1)
+})
