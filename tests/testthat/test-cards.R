@@ -63,3 +63,40 @@ test_that("card structure", {
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE, title = "card title"))
   expect_length(cardChildren, 2)
 })
+
+test_that("card tools", {
+  # if collapsible is FALSE, there is no header at all
+  parms <- list(collapsible = FALSE)
+  cardTag <- do.call(bs4Card, parms)
+  expect_error(getCardTools(cardTag))
+  
+  parms$collapsible <- TRUE
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 1)
+  
+  parms$closable <- TRUE
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 2)
+  
+  parms$maximizable <- TRUE
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 3)
+  
+  parms$dropdownMenu <- dropdownItemList()
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 4)
+  
+  parms$sidebar <- bs4CardSidebar()
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 5)
+  
+  parms$label <- bs4CardLabel(text = "label", status = "danger")
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 6)
+})
