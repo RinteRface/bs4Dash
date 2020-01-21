@@ -26,9 +26,7 @@
 #'   \code{collapsible=TRUE}.
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
 #' @param maximizable If TRUE, the card can be displayed in full screen mode.
-#' @param labelStatus status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
-#' @param labelText Label text.
-#' @param labelTooltip Label tooltip displayed on hover.
+#' @param label Slot for \link{bs4CardLabel}.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param sidebar Slot for \link{bs4CardSidebar}.
@@ -58,10 +56,11 @@
 #'        status = "warning", 
 #'        solidHeader = FALSE, 
 #'        collapsible = TRUE,
-#'        labelText = 1,
-#'        labelStatus = "danger",
-#'        labelTooltip = "Hi Bro!",
-#'        dropdownIcon = "wrench",
+#'        label = bs4CardLabel(
+#'         text = 1,
+#'         status = "danger",
+#'         tooltip = "Hello!"
+#'        ),
 #'        dropdownMenu = dropdownItemList(
 #'          dropdownItem(url = "http://www.google.com", name = "Link to google"),
 #'          dropdownItem(url = "#", name = "item 2"),
@@ -124,14 +123,44 @@
 bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
-                    closable = TRUE, maximizable = FALSE, labelStatus = NULL, labelText = NULL, 
-                    labelTooltip = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
+                    closable = FALSE, maximizable = FALSE, label = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
   
   if (!is.null(height) & overflow) {
     stop(
       "overlow and height are not compatible. Please choose only one property. 
       When overflow is TRUE, the maximum height is 500px"
     )
+  }
+  
+  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
+  
+  if (!is.null(gradientColor) & solidHeader) {
+    stop(
+      "gradientColor is not compatible with solideHeader. Please choose only one property."
+    )
+  }
+  
+  if (!is.null(gradientColor) & !is.null(status)) {
+    stop(
+      "gradientColor is not compatible with status. Please choose only one property."
+    )
+  }
+  
+  if (!collapsible & collapsed) {
+    stop("Cannot collapse a card that is not collapsible.")
+  }
+  
+  if (!is.null(elevation)) {
+    stopifnot(is.numeric(elevation))
+    stopifnot(elevation < 6)
+    stopifnot(elevation >= 0)
+  }
+  
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
   }
   
   cardCl <- if (!is.null(gradientColor)) {
@@ -165,15 +194,8 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     class = "card-tools",
     
     # labels
-    if (!is.null(labelText) || !is.null(labelStatus) || !is.null(labelTooltip)) {
-      shiny::tags$span(
-        class = paste0("badge bg-", labelStatus),
-        title = if (!is.null(labelTooltip)) labelTooltip,
-        `data-toggle` = "tooltip",
-        labelText
-      )
-    },
-    
+    if (!is.null(label)) label,
+    # dropdown
     if (!is.null(dropdownMenu)) dropdownMenu,
     
     # collapse
@@ -223,7 +245,6 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
   
 
-  
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
@@ -244,10 +265,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     ) 
   }
   
-  cardTag <- shiny::tags$div(
-    class = cardCl,
-    id = inputId
-  )
+  cardTag <- shiny::tags$div(class = cardCl, id = inputId)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
   cardWrapper <- shiny::tags$div(
@@ -255,6 +273,27 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     cardTag
   )
   cardWrapper
+}
+
+
+
+
+#' Create a label for Boostrap 4 card
+#'
+#' @param text Label text. In practice only few letters or a number.
+#' @param status label color status. See \link{getAdminLTEColors}.
+#' @param tooltip Label tooltip text on hover.
+#' @export
+bs4CardLabel <- function(text, status, tooltip = NULL) {
+  
+  if (nchar(text) > 10) warning("Avoid long texts in avaCardLabel.")
+  
+  shiny::tags$span(
+    class = paste0("badge bg-", status),
+    title = if (!is.null(tooltip)) tooltip,
+    `data-toggle` = if (!is.null(tooltip)) "tooltip",
+    text
+  )
 }
 
 

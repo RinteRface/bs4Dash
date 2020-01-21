@@ -5,8 +5,11 @@
 - remove all sidebar related parameters from `bs4Card()`. This is now part of
  the new `bs4CardSidebar()`
 - remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`
+- remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards
+- By default, closable is now FALSE for `bs4Card()`
 
 ## New features
+- new `bs4CardLabel()` to add text labels in `bs4Card()`
 - new `bs4CardSidebar`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar
 - add `bs4PopoverServer()`, `bs4PopoverUI()`, `bs4TooltipUI()` and `bs4TooltipServer()`
 - `bs4TabSetPanel()`: you may access the currently selected tab with input$id

@@ -154,11 +154,9 @@
   <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
@@ -178,11 +176,9 @@
   <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
@@ -261,16 +257,8 @@ the user to collapse the box.</p></td>
       <td><p>If TRUE, the card can be displayed in full screen mode.</p></td>
     </tr>
     <tr>
-      <th>labelStatus</th>
-      <td><p>status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".</p></td>
-    </tr>
-    <tr>
-      <th>labelText</th>
-      <td><p>Label text.</p></td>
-    </tr>
-    <tr>
-      <th>labelTooltip</th>
-      <td><p>Label tooltip displayed on hover.</p></td>
+      <th>label</th>
+      <td><p>Slot for <a href='bs4CardLabel.html'>bs4CardLabel</a>.</p></td>
     </tr>
     <tr>
       <th>dropdownMenu</th>
@@ -282,7 +270,7 @@ the user to collapse the box.</p></td>
     </tr>
     <tr>
       <th>sidebar</th>
-      <td><p>Slot for <a href='updatebs4CardSidebar.html'>bs4CardSidebar</a>.</p></td>
+      <td><p>Slot for <a href='bs4CardSidebar.html'>bs4CardSidebar</a>.</p></td>
     </tr>
     </table>
 
@@ -316,10 +304,11 @@ the user to collapse the box.</p></td>
        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
        <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-       <span class='kw'>labelStatus</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-       <span class='kw'>labelTooltip</span> <span class='kw'>=</span> <span class='st'>"Hi Bro!"</span>,
-       <span class='kw'>dropdownIcon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
+       <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='bs4CardLabel.html'>bs4CardLabel</a></span>(
+        <span class='kw'>text</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
+        <span class='kw'>tooltip</span> <span class='kw'>=</span> <span class='st'>"Hello!"</span>
+       ),
        <span class='kw'>dropdownMenu</span> <span class='kw'>=</span> <span class='fu'><a href='dropdownItemList.html'>dropdownItemList</a></span>(
          <span class='fu'><a href='dropdownItem.html'>dropdownItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://www.google.com"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Link to google"</span>),
          <span class='fu'><a href='dropdownItem.html'>dropdownItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"#"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"item 2"</span>),
