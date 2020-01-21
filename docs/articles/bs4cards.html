@@ -119,39 +119,40 @@
 <span id="cb1-6"><a href="#cb1-6"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
 <span id="cb1-7"><a href="#cb1-7"></a>      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </span>
 <span id="cb1-8"><a href="#cb1-8"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>      <span class="dt">labelText =</span> <span class="dv">1</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>      <span class="dt">labelStatus =</span> <span class="st">"danger"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>      <span class="dt">labelTooltip =</span> <span class="st">"Hi Bro!"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>      <span class="dt">dropdownIcon =</span> <span class="st">"wrench"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>      <span class="dt">dropdownMenu =</span> <span class="kw"><a href="../reference/dropdownItemList.html">dropdownItemList</a></span>(</span>
-<span id="cb1-14"><a href="#cb1-14"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"https://www.google.com"</span>, <span class="dt">name =</span> <span class="st">"Link to google"</span>),</span>
-<span id="cb1-15"><a href="#cb1-15"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 2"</span>),</span>
-<span id="cb1-16"><a href="#cb1-16"></a>        <span class="kw"><a href="../reference/dropdownDivider.html">dropdownDivider</a></span>(),</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 3"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a>      ),</span>
-<span id="cb1-19"><a href="#cb1-19"></a>      <span class="kw">plotOutput</span>(<span class="st">"plot"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20"></a>    ),</span>
-<span id="cb1-21"><a href="#cb1-21"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
-<span id="cb1-22"><a href="#cb1-22"></a>      <span class="dt">title =</span> <span class="st">"Closable card with gradient"</span>, </span>
-<span id="cb1-23"><a href="#cb1-23"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb1-24"><a href="#cb1-24"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
-<span id="cb1-25"><a href="#cb1-25"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
-<span id="cb1-26"><a href="#cb1-26"></a>      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb1-27"><a href="#cb1-27"></a>      <span class="dt">gradientColor =</span> <span class="st">"success"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb1-29"><a href="#cb1-29"></a>      <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30"></a>    ),</span>
-<span id="cb1-31"><a href="#cb1-31"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
-<span id="cb1-32"><a href="#cb1-32"></a>      <span class="dt">title =</span> <span class="st">"Card with solidHeader and elevation"</span>, </span>
-<span id="cb1-33"><a href="#cb1-33"></a>      <span class="dt">elevation =</span> <span class="dv">4</span>,</span>
-<span id="cb1-34"><a href="#cb1-34"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb1-35"><a href="#cb1-35"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
-<span id="cb1-36"><a href="#cb1-36"></a>      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb1-37"><a href="#cb1-37"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb1-39"><a href="#cb1-39"></a>      <span class="kw">plot_ly</span>(<span class="dt">z =</span> <span class="op">~</span>volcano) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_surface</span>()</span>
-<span id="cb1-40"><a href="#cb1-40"></a>    )</span>
-<span id="cb1-41"><a href="#cb1-41"></a>  )</span></code></pre></div>
+<span id="cb1-9"><a href="#cb1-9"></a>      <span class="dt">label =</span> <span class="kw"><a href="../reference/bs4CardLabel.html">bs4CardLabel</a></span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="dt">text =</span> <span class="dv">1</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="dt">tooltip =</span> <span class="st">"Hello!"</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>      ),</span>
+<span id="cb1-14"><a href="#cb1-14"></a>      <span class="dt">dropdownMenu =</span> <span class="kw"><a href="../reference/dropdownItemList.html">dropdownItemList</a></span>(</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"https://www.google.com"</span>, <span class="dt">name =</span> <span class="st">"Link to google"</span>),</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 2"</span>),</span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="kw"><a href="../reference/dropdownDivider.html">dropdownDivider</a></span>(),</span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 3"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>      ),</span>
+<span id="cb1-20"><a href="#cb1-20"></a>      <span class="kw">plotOutput</span>(<span class="st">"plot"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    ),</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb1-23"><a href="#cb1-23"></a>      <span class="dt">title =</span> <span class="st">"Closable card with gradient"</span>, </span>
+<span id="cb1-24"><a href="#cb1-24"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-25"><a href="#cb1-25"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-26"><a href="#cb1-26"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb1-27"><a href="#cb1-27"></a>      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb1-28"><a href="#cb1-28"></a>      <span class="dt">gradientColor =</span> <span class="st">"success"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>      <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31"></a>    ),</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb1-33"><a href="#cb1-33"></a>      <span class="dt">title =</span> <span class="st">"Card with solidHeader and elevation"</span>, </span>
+<span id="cb1-34"><a href="#cb1-34"></a>      <span class="dt">elevation =</span> <span class="dv">4</span>,</span>
+<span id="cb1-35"><a href="#cb1-35"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-36"><a href="#cb1-36"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-37"><a href="#cb1-37"></a>      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-38"><a href="#cb1-38"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb1-39"><a href="#cb1-39"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-40"><a href="#cb1-40"></a>      <span class="kw">plot_ly</span>(<span class="dt">z =</span> <span class="op">~</span>volcano) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_surface</span>()</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    )</span>
+<span id="cb1-42"><a href="#cb1-42"></a>  )</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="social-cards" class="section level2">
