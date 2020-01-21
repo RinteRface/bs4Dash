@@ -100,3 +100,9 @@ test_that("card tools", {
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 6)
 })
+
+test_that("default", {
+  cardTag <- bs4Card()
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card")
+})
