@@ -132,6 +132,8 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     )
   }
   
+  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
+  
   cardCl <- if (!is.null(gradientColor)) {
     paste0("card bg-gradient-", gradientColor)
   } else {
