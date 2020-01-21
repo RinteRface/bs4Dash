@@ -163,3 +163,7 @@ test_that("headerBorder", {
   cardHeaderCl <- getCardHeaderCl(cardTag)
   expect_match(cardHeaderCl, "card-header no-border")
 })
+
+test_that("overflow without height", {
+  expect_error(bs4Card(height = "500px", overflow = TRUE))
+})
