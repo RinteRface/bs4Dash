@@ -239,7 +239,6 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
   
 
-  
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
@@ -260,10 +259,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     ) 
   }
   
-  cardTag <- shiny::tags$div(
-    class = cardCl,
-    id = inputId
-  )
+  cardTag <- shiny::tags$div(class = cardCl, id = inputId)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
   cardWrapper <- shiny::tags$div(
