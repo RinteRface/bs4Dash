@@ -6,6 +6,7 @@
  the new `bs4CardSidebar()`
 - remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`
 - remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards
+- By default, closable is now FALSE for `bs4Card()`
 
 ## New features
 - new `bs4CardLabel()` to add text labels in `bs4Card()`

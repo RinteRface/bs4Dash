@@ -46,3 +46,20 @@ getCardTools <- function(card) {
 test_that("is shiny tag?", {
   expect_is(bs4Card(), "shiny.tag")
 })
+
+test_that("card structure", {
+  cardChildren <- getCardChildren(bs4Card(footer = "footer"))
+  expect_equal(class(cardChildren), "list")
+  expect_length(cardChildren, 3)
+  
+  cardChildren <- getCardChildren(bs4Card())
+  expect_length(cardChildren, 2)
+  
+  # if collapsible is FALSE, there is no header at all
+  cardChildren <- getCardChildren(bs4Card(collapsible = FALSE))
+  expect_length(cardChildren, 1)
+  
+  # if collapsible is FALSE but title is not NULL, the header is included
+  cardChildren <- getCardChildren(bs4Card(collapsible = FALSE, title = "card title"))
+  expect_length(cardChildren, 2)
+})
