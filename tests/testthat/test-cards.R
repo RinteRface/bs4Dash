@@ -132,3 +132,11 @@ test_that("gradientStatus vs solidHeader vs status", {
   expect_error(bs4Card(gradientColor = "primary", status = "danger"))
   expect_error(bs4Card(gradientColor = "primary", solidHeader = TRUE))
 })
+
+test_that("card sidebar class", {
+  cardTag <- bs4Card(
+    sidebar = bs4CardSidebar(startOpen = TRUE)
+  )
+  cardCl <- getCardCl(cardTag)
+  expect_match(cardCl, "card card-default direct-chat direct-chat-contacts-open")
+})
