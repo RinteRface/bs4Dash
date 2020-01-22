@@ -64,3 +64,13 @@ test_that("status css class", {
   valueBoxCl <- getCardCl(valueBoxTag)
   expect_match(valueBoxCl, "small-box bg-primary")
 })
+
+test_that("box elevation", {
+  valueBoxTag <- bs4ValueBox(2, "Value", elevation = 4)
+  valueBoxCl <- getCardCl(valueBoxTag)
+  expect_match(valueBoxCl, "elevation-4")
+  
+  expect_error(bs4ValueBox(2, "Value", elevation = 6))
+  expect_error(bs4ValueBox(2, "Value", elevation = -1))
+  expect_error(bs4ValueBox(2, "Value", elevation = "2"))
+})
