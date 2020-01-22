@@ -54,3 +54,13 @@ test_that("box width", {
   wrapperTagCl <- getCardWrapperCl(valueBoxTag)
   expect_match(wrapperTagCl, "col-sm-4")
 })
+
+test_that("status css class", {
+  valueBoxTag <- bs4ValueBox(2, "Value")
+  valueBoxCl <- getCardCl(valueBoxTag)
+  expect_match(valueBoxCl, "small-box")
+  
+  valueBoxTag <- bs4ValueBox(2, "Value", status = "primary")
+  valueBoxCl <- getCardCl(valueBoxTag)
+  expect_match(valueBoxCl, "small-box bg-primary")
+})
