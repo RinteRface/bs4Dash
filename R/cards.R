@@ -758,6 +758,11 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
     stopifnot(iconElevation >= 0)
   }
   
+  if (is.null(icon) & 
+      (!is.null(iconStatus) | !is.null(iconElevation) | !is.null(tabName))) {
+    stop("iconStatus/iconElevation/tabName must be set only if icon is not NULL.")
+  }
+  
   infoBoxCl <- if (!is.null(gradientColor)) {
     paste0("info-box bg-gradient-", gradientColor)
   } else {
