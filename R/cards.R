@@ -731,6 +731,26 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
   
+  # checks
+  if (!is.null(gradientColor) & !is.null(status)) {
+    stop(
+      "gradientColor is not compatible with status. Please choose only one property."
+    )
+  }
+  
+  # check conditions
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
+  
+  if (!is.null(elevation)) {
+    stopifnot(is.numeric(elevation))
+    stopifnot(elevation < 6)
+    stopifnot(elevation >= 0)
+  }
   
   infoBoxCl <- if (!is.null(gradientColor)) {
     paste0("info-box bg-gradient-", gradientColor)
