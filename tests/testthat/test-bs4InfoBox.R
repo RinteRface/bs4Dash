@@ -18,7 +18,7 @@ getCardBodyChildren <- function(card) {
 
 
 test_that("Is shiny tag", {
-  expect_shinytag(bs4InfoBox(title = "Infobox", status = "danger", value = 4))
+  golem::expect_shinytag(bs4InfoBox(title = "Infobox", status = "danger", value = 4))
 })
 
 test_that("overall structure", {
@@ -156,7 +156,7 @@ test_that("body structure", {
     title = "Infobox", 
     value = 4,
     icon = "cogs",
-    p("Extra element")
+    shiny::p("Extra element")
   )
   infoBoxBodyChildren <- getCardBodyChildren(infoBoxTag)
   expect_length(infoBoxBodyChildren, 3)
