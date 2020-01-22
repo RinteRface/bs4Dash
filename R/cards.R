@@ -726,7 +726,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
+bs4InfoBox <- function(..., tabName = NULL, title, value, icon = NULL,
                        iconStatus = NULL, iconElevation = 3, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
@@ -807,7 +807,6 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
   
   
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
-  
   infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
   
   # handle icon color (white or black depending on the box background)
