@@ -775,16 +775,22 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
   
   if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
   
-  infoBoxIconCl <- "info-box-icon"
-  if (!is.null(iconStatus)) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", iconStatus)
+  # Only do if icon is specified
+  if(!is.null(icon)) {
+    infoBoxIconCl <- "info-box-icon"
+    if (!is.null(iconStatus)) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", iconStatus)
+    if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
+    
+    iconTag <- shiny::tags$span(
+      class = infoBoxIconCl,
+      id = if(!is.null(tabName)) paste0("icon-", tabName),
+      # icon
+      shiny::icon(icon)
+    )
+  } else {
+    iconTag <- NULL
+  }
   
-  iconTag <- shiny::tags$span(
-    class = infoBoxIconCl,
-    id = paste0("icon-", tabName),
-    class = if (!is.null(iconElevation)) paste0("elevation-", iconElevation),
-    # icon
-    shiny::icon(icon)
-  )
   
   contentTag <- shiny::tags$div(
     class = "info-box-content",
