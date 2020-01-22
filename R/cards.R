@@ -621,33 +621,38 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(class = "small-box-subtitle",
-                  subtitle)
+    shiny::tags$p(class = "small-box-subtitle", subtitle)
   )
   
-  iconTag <- shiny::tags$div(
-    class = "icon",
-    shiny::icon(icon)
-  )
+  iconTag <- if(!is.null(icon)) {
+    shiny::tags$div(
+      class = "icon",
+      shiny::icon(icon)
+    )
+  } else {
+    NULL
+  }
   
-  if (!is.null(footer)) {
-    footerTag <- shiny::tags$div(
+  footerTag <- if (!is.null(footer)) {
+    shiny::tags$div(
       class = "small-box-footer",
       footer
     )
   } else {
-    footerTag <- shiny::tags$a(
-      href = href,
-      target = "_blank",
-      class = "small-box-footer",
-      if (!is.null(href)) "More info" else NULL,
-      if (!is.null(href)) shiny::icon("arrow-circle-right") else shiny::br()
-    )
+    if (!is.null(href)) {
+      shiny::tags$a(
+        href = href,
+        target = "_blank",
+        class = "small-box-footer",
+        "More info",
+        shiny::icon("arrow-circle-right")
+      ) 
+    } else {
+      NULL
+    }
   }
   
-  valueBoxTag <- shiny::tags$div(
-    class = valueBoxCl
-  )
+  valueBoxTag <- shiny::tags$div(class = valueBoxCl)
   valueBoxTag <- shiny::tagAppendChildren(valueBoxTag, innerTag, iconTag, footerTag)
   
   shiny::tags$div(
