@@ -609,6 +609,11 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
     stopifnot(elevation >= 0)
   }
   
+  if (!is.null(footer) & !is.null(href)) {
+    stop("Choose either href or footer.")
+  }
+  
+  
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
   if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
