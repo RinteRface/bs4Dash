@@ -6,7 +6,7 @@ getButtonAttr <- function(sidebarCard){
 
 test_that("structure", {
   sidebarTag <- bs4CardSidebar()
-  expect_shinytaglist(sidebarTag)
+  golem::expect_shinytaglist(sidebarTag)
   expect_length(sidebarTag, 3)
   expect_match(sidebarTag[[1]]$name, "head")
   expect_match(sidebarTag[[2]]$attribs$class, "btn btn-tool")

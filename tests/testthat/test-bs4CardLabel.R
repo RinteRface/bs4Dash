@@ -1,7 +1,7 @@
 context("bs4CardLabel")
 
 test_that("is shiny tag?", {
-  expect_shinytag(bs4CardLabel(text = 1, status = "warning"))
+  golem::expect_shinytag(bs4CardLabel(text = 1, status = "warning"))
 })
 
 test_that("Long text warning", {

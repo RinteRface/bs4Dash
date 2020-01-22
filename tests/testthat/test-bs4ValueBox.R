@@ -14,7 +14,7 @@ getCardChildren <- function(card) {
 
 
 test_that("structure", {
-  expect_shinytag(bs4ValueBox(2, "Value"))
+  golem::expect_shinytag(bs4ValueBox(2, "Value"))
   expect_error(bs4ValueBox(2))
   expect_error(bs4ValueBox(subtitle = "Value"))
   expect_error(bs4ValueBox(2, "Value", href = "ppp", footer = "kkk"))
