@@ -727,7 +727,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
 #'
 #' @export
 bs4InfoBox <- function(..., tabName = NULL, title, value, icon = NULL,
-                       iconStatus = NULL, iconElevation = 3, status = NULL, 
+                       iconStatus = NULL, iconElevation = NULL, status = NULL, 
                        gradientColor = NULL, width = 4,
                        elevation = NULL) {
   
@@ -758,8 +758,7 @@ bs4InfoBox <- function(..., tabName = NULL, title, value, icon = NULL,
     stopifnot(iconElevation >= 0)
   }
   
-  if (is.null(icon) & 
-      (!is.null(iconStatus) | !is.null(iconElevation) | !is.null(tabName))) {
+  if (is.null(icon) & (!is.null(iconStatus) | !is.null(iconElevation) | !is.null(tabName))) {
     stop("iconStatus/iconElevation/tabName must be set only if icon is not NULL.")
   }
   
