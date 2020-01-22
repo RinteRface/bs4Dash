@@ -752,6 +752,12 @@ bs4InfoBox <- function(..., tabName = NULL, title, value = NULL, icon = NULL,
     stopifnot(elevation >= 0)
   }
   
+  if (!is.null(iconElevation)) {
+    stopifnot(is.numeric(iconElevation))
+    stopifnot(iconElevation < 6)
+    stopifnot(iconElevation >= 0)
+  }
+  
   infoBoxCl <- if (!is.null(gradientColor)) {
     paste0("info-box bg-gradient-", gradientColor)
   } else {
