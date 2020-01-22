@@ -595,6 +595,14 @@ dropdownDivider <- function() {
 bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
                         status = NULL, width = 3, footer = NULL, href = NULL) {
   
+  # check conditions
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
+  
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
   if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
