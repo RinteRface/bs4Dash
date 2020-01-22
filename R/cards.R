@@ -603,6 +603,12 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
     stopifnot(width >= 0)
   }
   
+  if (!is.null(elevation)) {
+    stopifnot(is.numeric(elevation))
+    stopifnot(elevation < 6)
+    stopifnot(elevation >= 0)
+  }
+  
   valueBoxCl <- "small-box"
   if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
   if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
