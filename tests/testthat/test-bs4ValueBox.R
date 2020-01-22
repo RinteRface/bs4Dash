@@ -46,3 +46,11 @@ test_that("structure", {
   expect_length(valueBoxChildren, 2)
   expect_match(valueBoxChildren[[2]]$attribs$class, "small-box-footer")
 })
+
+test_that("box width", {
+  expect_error(bs4ValueBox(2, "Value", width = "2"))
+  expect_error(bs4ValueBox(2, "Value", width = -1))
+  valueBoxTag <- bs4ValueBox(2, "Value", width = 4)
+  wrapperTagCl <- getCardWrapperCl(valueBoxTag)
+  expect_match(wrapperTagCl, "col-sm-4")
+})
