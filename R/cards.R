@@ -1001,20 +1001,18 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   
   # body
   panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[[2]]
-  bodyTag <- shiny::tags$div(
+    bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
+    style = if (!is.null(height)) {
+      paste0("height: ", shiny::validateCssUnit(height))
+    } else {
+      if (overflow) "overflow-y: auto; max-height: 500px;" else NULL
+    },
     panelContent
   )
   
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  
   tabCardTag <- shiny::tags$div(
-    class = tabCardCl,
-    style = if (!is.null(style)) style
+    class = tabCardCl
   )
   
   tabCardTag <- shiny::tagAppendChildren(tabCardTag, headerTag, bodyTag)
