@@ -853,7 +853,8 @@ bs4InfoBox <- function(..., tabName = NULL, title, value, icon = NULL,
 #'   contains the box.
 #' @param height The height of a box, in pixels or other CSS unit. By default
 #'   the height scales automatically with the content.
-#' @param elevation tabCard elevation. 
+#' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
+#' @param elevation tabCard elevation.
 #' @param side Side of the box the tabs should be on (\code{"left"} or
 #'   \code{"right"}).
 #' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
@@ -909,7 +910,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
                        tabStatus = NULL, width = 6, height = NULL,  
                        collapsible = TRUE, collapsed = FALSE, closable = TRUE,
                        maximizable = FALSE, overflow = FALSE, side = c("left", "right"),
-                       type = NULL) {
+                       dropdownMenu = NULL, type = NULL) {
   
   found_active <- FALSE
   side <- match.arg(side)
@@ -936,6 +937,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
     cardToolTag <- shiny::tags$div(
       class = "tools pt-3 pb-3 pr-2 mr-2",
+      if (!is.null(dropdownMenu)) dropdownMenu,
       
       # collapse
       if (isTRUE(collapsible)) {
