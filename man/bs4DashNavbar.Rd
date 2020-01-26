@@ -14,7 +14,8 @@ bs4DashNavbar(
   compact = FALSE,
   controlbarIcon = "th",
   leftUi = NULL,
-  rightUi = NULL
+  rightUi = NULL,
+  fixed = FALSE
 )
 
 dashboardHeader(
@@ -26,7 +27,8 @@ dashboardHeader(
   compact = FALSE,
   controlbarIcon = "th",
   leftUi = NULL,
-  rightUi = NULL
+  rightUi = NULL,
+  fixed = FALSE
 )
 }
 \arguments{
@@ -49,6 +51,8 @@ dashboardHeader(
 \item{leftUi}{Custom left Ui content. Any Ui element.}
 
 \item{rightUi}{Custom right Ui content. Any Ui element.}
+
+\item{fixed}{Whether to fix the navbar to the top. FALSE by default}
 }
 \description{
 Build an adminLTE3 dashboard navbar

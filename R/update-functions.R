@@ -47,45 +47,7 @@
 #'          tableOutput("data")
 #'        )
 #'      ),
-#'      bs4TabSetPanel(
-#'        id = "tabset2",
-#'        side = "left",
-#'        vertical = TRUE,
-#'        bs4TabPanel(
-#'          tabName = "Tab 1", 
-#'          active = FALSE,
-#'          sliderInput(
-#'            "obs", 
-#'            "Number of observations:",
-#'            min = 0,
-#'            max = 1000, 
-#'            value = 500
-#'          ),
-#'          plotOutput("distPlot")
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2", 
-#'          active = TRUE,
-#'          radioButtons(
-#'            inline = TRUE,
-#'            "rb", "Choose one:",
-#'            choiceNames = list(
-#'              icon("calendar"),
-#'              HTML("<p style='color:red;'>Red Text</p>"),
-#'              "Normal text"
-#'            ),
-#'            choiceValues = list(
-#'              "icon", "html", "text"
-#'            )
-#'          ),
-#'          textOutput("txt")
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 3", 
-#'          active = FALSE,
-#'          "Content 3"
-#'        )
-#'      )
+#'      uiOutput("tabSetPanel2")
 #'    ),
 #'    sidebar = bs4DashSidebar(
 #'      skin = "light",
@@ -109,24 +71,46 @@
 #'    footer = bs4DashFooter()
 #'  ),
 #'  server = function(input, output, session) {
+#'  
+#'    output$tabSetPanel2 <- renderUI({
+#'     bs4TabSetPanel(
+#'       id = "tabset2",
+#'       side = "left",
+#'       bs4TabPanel(
+#'         tabName = "Tab 1", 
+#'         active = FALSE,
+#'         p("Tab 1 ")
+#'       ),
+#'       bs4TabPanel(
+#'         tabName = "Tab 2", 
+#'         active = FALSE,
+#'         p("Tab 2")
+#'       ),
+#'       bs4TabPanel(
+#'         tabName = "Tab 3", 
+#'         active = FALSE,
+#'         p("Tab 3")
+#'       )
+#'     )
+#'    })
 #'    
 #'    # update tabset1
 #'    observeEvent(input$controller, {
 #'      updatebs4TabSetPanel(
 #'        session, 
 #'        inputId = "tabset1", 
-#'        selected = input$controller
+#'        selected = paste("Tab", input$controller)
 #'      )
-#'    })
+#'    }, ignoreInit = TRUE)
 #'    
 #'    # update tabset 2
 #'    observeEvent(input$controller2, {
 #'      updatebs4TabSetPanel(
 #'        session, 
 #'        inputId = "tabset2", 
-#'        selected = input$controller2
+#'        selected = paste("Tab", input$controller2)
 #'      )
-#'    })
+#'    }, ignoreInit = TRUE)
 #'    
 #'    output$distPlot <- renderPlot({
 #'      hist(rnorm(input$obs))
@@ -149,7 +133,7 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
   message <- dropNulls(list(value = selected))
   # this functions is linked to the 
   # inst/bs4Dash/update-tabs.js function
-  session$sendCustomMessage(type = inputId, message = message)
+  session$sendInputMessage(inputId, message = message)
 }
 
 
@@ -461,14 +445,16 @@ bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDom
 #'    ),
 #'    server = function(input, output, session) {
 #'      
+#'      observe(print(input$sidebar))
+#'      
 #'      # update tabset1
 #'      observeEvent(input$controller, {
 #'        updatebs4TabSetPanel(
 #'          session, 
 #'          inputId = "sidebar", 
-#'          selected = input$controller
+#'          selected = paste0("tab", input$controller)
 #'        )
-#'      })
+#'      }, ignoreInit = TRUE)
 #'      
 #'      output$distPlot <- renderPlot({
 #'        hist(rnorm(input$obs))
@@ -485,3 +471,57 @@ bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDom
 #' }
 #' @export
 updatebs4TabItems <- updatebs4TabSetPanel
+
+
+
+
+
+#' Programmatically toggle a bs4Card sidebar
+#'
+#' @param session Shiny session object.
+#' @param inputId Card sidebar id.
+#' 
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     sidebar_collapsed = FALSE,
+#'     controlbar_collapsed = TRUE,
+#'     enable_preloader = FALSE,
+#'     navbar = bs4DashNavbar(skin = "dark"),
+#'     body = bs4DashBody(
+#'       bs4Card(
+#'         title = "Closable Box with gradient", 
+#'         closable = TRUE, 
+#'         width = 12,
+#'         height = "500px",
+#'         solidHeader = FALSE, 
+#'         collapsible = TRUE,
+#'         actionButton("update", "Toggle card sidebar"),
+#'         sidebar = bs4CardSidebar(
+#'           inputId = "mycardsidebar",
+#'           p("Sidebar Content")
+#'         )
+#'       )
+#'     ),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$mycardsidebar))
+#'     
+#'     observeEvent(input$update, {
+#'       updatebs4CardSidebar(session, inputId = "mycardsidebar")
+#'     })
+#'     
+#'   }
+#'  )
+#' }
+updatebs4CardSidebar <- function(session, inputId) {
+  session$sendInputMessage(inputId, NULL)
+}

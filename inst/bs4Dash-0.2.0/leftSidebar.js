@@ -141,6 +141,7 @@ $(function () {
           return false;
         }
       });
+      $('#mymenu' + ' ' + 'a[href="#shiny-tab-' + value + '"]').tab('show');
     },
     receiveMessage: function(el, data) {
       if (data.hasOwnProperty('value'))
@@ -207,6 +208,11 @@ $(function () {
   var sidebarStartsOpen = $('body').attr('sidebar-start-open');
   if (sidebarStartsOpen === "false") {
     $('body').addClass('sidebar-collapse');
+  }
+  
+  // handle fixed sidebar
+  if ($(".main-sidebar").attr("data-fixed") === "true") {
+    $("body").addClass("layout-fixed");
   }
   
 });

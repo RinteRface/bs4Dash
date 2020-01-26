@@ -5,9 +5,9 @@
 \alias{dashboardFooter}
 \title{Create a Boostrap 4 dashboard footer}
 \usage{
-bs4DashFooter(..., copyrights = NULL, right_text = NULL)
+bs4DashFooter(..., copyrights = NULL, right_text = NULL, fixed = FALSE)
 
-dashboardFooter(..., copyrights = NULL, right_text = NULL)
+dashboardFooter(..., copyrights = NULL, right_text = NULL, fixed = FALSE)
 }
 \arguments{
 \item{...}{Left text.}
@@ -15,6 +15,8 @@ dashboardFooter(..., copyrights = NULL, right_text = NULL)
 \item{copyrights}{Copyrights, if any.}
 
 \item{right_text}{Right text.}
+
+\item{fixed}{Whether to fix the footer. Default to FALSE.}
 }
 \description{
 Build an adminLTE3 dashboard footer

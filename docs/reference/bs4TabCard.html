@@ -157,7 +157,8 @@
   <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>)
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )
 
 <span class='fu'>tabBox</span>(
@@ -177,7 +178,8 @@
   <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>overflow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>)
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -262,6 +264,10 @@ the user to collapse the box.</p></td>
       <th>side</th>
       <td><p>Side of the box the tabs should be on (<code>"left"</code> or
 <code>"right"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.</p></td>
     </tr>
     </table>
 

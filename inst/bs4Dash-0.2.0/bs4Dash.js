@@ -23,4 +23,9 @@ $(function () {
     window.history.replaceState( {} , 'newpath', newpath);
   }
   
+  // footer has fixed layout?
+  if ($(".main-footer").attr("data-fixed") === "true") {
+    $("body").addClass("layout-footer-fixed");
+  }
+  
 });

@@ -50,7 +50,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
                         controlbar_overlay = TRUE, enable_preloader = FALSE, 
                         loading_duration = 2, loading_background = "#1E90FF"){
   
-  sidebar_cl <- "layout-fixed"
+  sidebar_cl <- NULL
   if (sidebar_mini) sidebar_cl <- paste0(sidebar_cl, " sidebar-mini")
   
   if (!is.null(controlbar)) {

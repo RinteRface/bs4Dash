@@ -19,20 +19,12 @@ bs4Card(
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  closable = TRUE,
+  closable = FALSE,
   maximizable = FALSE,
-  labelStatus = NULL,
-  labelText = NULL,
-  labelTooltip = NULL,
+  label = NULL,
   dropdownMenu = NULL,
-  dropdownIcon = "wrench",
   overflow = FALSE,
-  enable_sidebar = FALSE,
-  sidebar_content = NULL,
-  sidebar_width = "25\%",
-  sidebar_background = "#333a40",
-  sidebar_start_open = FALSE,
-  sidebar_icon = "cogs"
+  sidebar = NULL
 )
 
 box(
@@ -49,20 +41,12 @@ box(
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  closable = TRUE,
+  closable = FALSE,
   maximizable = FALSE,
-  labelStatus = NULL,
-  labelText = NULL,
-  labelTooltip = NULL,
+  label = NULL,
   dropdownMenu = NULL,
-  dropdownIcon = "wrench",
   overflow = FALSE,
-  enable_sidebar = FALSE,
-  sidebar_content = NULL,
-  sidebar_width = "25\%",
-  sidebar_background = "#333a40",
-  sidebar_start_open = FALSE,
-  sidebar_icon = "cogs"
+  sidebar = NULL
 )
 }
 \arguments{
@@ -105,29 +89,13 @@ the user to collapse the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{labelStatus}{status of the box label: "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".}
-
-\item{labelText}{Label text.}
-
-\item{labelTooltip}{Label tooltip displayed on hover.}
+\item{label}{Slot for \link{bs4CardLabel}.}
 
 \item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
 
-\item{dropdownIcon}{Dropdown icon. "wrench" by default.}
-
 \item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
 
-\item{enable_sidebar}{Whether to display the box sidebar. FALSE by default.}
-
-\item{sidebar_content}{Box sidebar content, if any.}
-
-\item{sidebar_width}{Box sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px")}
-
-\item{sidebar_background}{Box sidebar background color. Dark by default.}
-
-\item{sidebar_start_open}{Whether the box sidebar is open at start. FALSE by default.}
-
-\item{sidebar_icon}{Box sidebar icon.}
+\item{sidebar}{Slot for \link{bs4CardSidebar}.}
 }
 \description{
 Build an adminLTE3 card
@@ -155,10 +123,11 @@ if(interactive()){
        status = "warning", 
        solidHeader = FALSE, 
        collapsible = TRUE,
-       labelText = 1,
-       labelStatus = "danger",
-       labelTooltip = "Hi Bro!",
-       dropdownIcon = "wrench",
+       label = bs4CardLabel(
+        text = 1,
+        status = "danger",
+        tooltip = "Hello!"
+       ),
        dropdownMenu = dropdownItemList(
          dropdownItem(url = "http://www.google.com", name = "Link to google"),
          dropdownItem(url = "#", name = "item 2"),

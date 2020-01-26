@@ -15,6 +15,7 @@
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar brand opacity. From 0 to 1. 0.8 by default.
 #' @param expand_on_hover Whether to expand the sidebar om hover. TRUE by default.
+#' @param fixed Whether to fix the sidebar. Default to TRUE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -22,7 +23,8 @@
 bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
                            title = NULL, skin = "dark", status = "primary",
                            brandColor = NULL, url = NULL, src = NULL,
-                           elevation = 4, opacity = .8, expand_on_hover = TRUE) {
+                           elevation = 4, opacity = .8, expand_on_hover = TRUE,
+                           fixed = TRUE) {
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -49,6 +51,7 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
 
   sidebarTag <- shiny::tags$aside(
     id = inputId,
+    `data-fixed` = tolower(fixed),
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation,
@@ -259,7 +262,8 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
     # bound to tabItemInputBinding in the JS side.
     shiny::tags$div(
-      id = id, class = "sidebarMenuSelectedTabItem", 
+      id = id, 
+      class = "sidebarMenuSelectedTabItem", 
       `data-value` = "null"
     )
   )
@@ -280,11 +284,55 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param icon Item icon.
 #' @param startExpanded Whether to expand the \link{bs4SidebarMenuItem} at start.
+#' @param condition When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
+#' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @note See examples for a use case of the condition parameter.
 #'
 #' @export
-bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpanded = FALSE) {
+#' @examples 
+#' if (interactive()) {
+#'  # sidebarItem with conditional value
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  ui <- bs4DashPage(
+#'   bs4DashNavbar(),
+#'   bs4DashSidebar(
+#'     bs4SidebarMenu(
+#'       id = "sidebarMenu",
+#'       bs4SidebarMenuItem(
+#'         text = "Tab 1",
+#'         tabName = "tab1"
+#'       ),
+#'       bs4SidebarMenuItem(
+#'         condition = "input.show == true",
+#'         text = "Tab 2",
+#'         tabName = "tab2"
+#'       )
+#'     )
+#'   ),
+#'   bs4DashBody(
+#'     bs4TabItems(
+#'       bs4TabItem(
+#'         tabName = "tab1",
+#'         h1("Welcome!"),
+#'         checkboxInput("show", "Show Tab 2", FALSE)
+#'       ),
+#'       bs4TabItem(
+#'         tabName = "tab2",
+#'         h1("Hey! You found me!")
+#'       )
+#'     )
+#'    )
+#'   )
+#'   server <- function(input, output){}
+#'   shinyApp(ui = ui, server = server)
+#' }
+bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpanded = FALSE,
+                               condition = NULL) {
   
   subitems <- list(...)
   
@@ -293,6 +341,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
     return(
       shiny::tags$li(
         class = "nav-item",
+        `data-display-if` = condition,
         shiny::tags$a(
           class = "nav-link",
           id = paste0("tab-", tabName),

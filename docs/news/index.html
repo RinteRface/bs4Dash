@@ -133,22 +133,63 @@
       <small>Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bs4dash-0-6-0-9000" class="section level1">
+    <div id="bs4dash-0609000" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-6-0-9000" class="anchor"></a>bs4Dash 0.6.0.9000<small> Unreleased </small>
-</h1>
-<ul>
-<li>add animated, label parameters to <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>
-</li>
-</ul>
-</div>
-    <div id="bs4dash-0-5-0" class="section level1">
-<h1 class="page-header">
-<a href="#bs4dash-0-5-0" class="anchor"></a>bs4Dash 0.5.0<small> 2019-11-27 </small>
+<a href="#bs4dash-0609000" class="anchor"></a>bs4Dash 0.6.0.9000<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking Changes</h2>
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>
+<code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code>: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)</li>
+<li>remove all sidebar related parameters from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is now part of the new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>
+</li>
+<li>remove dropdownIcon parameter from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. It is now part of the <code><a href="../reference/dropdownItemList.html">dropdownItemList()</a></code>
+</li>
+<li>remove labelStatus, labelText and labelTooltip params from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is to reduce the number of parameters of cards</li>
+<li>By default, closable is now FALSE for <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+</li>
+</ul>
+</div>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>new <code><a href="../reference/bs4CardLabel.html">bs4CardLabel()</a></code> to add text labels in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+</li>
+<li>new <code>bs4CardSidebar</code>: access the status via input$id. Add <code><a href="../reference/updatebs4CardSidebar.html">updatebs4CardSidebar()</a></code> to toggle the card sidebar</li>
+<li>add <code><a href="../reference/bs4PopoverServer.html">bs4PopoverServer()</a></code>, <code><a href="../reference/bs4PopoverUI.html">bs4PopoverUI()</a></code>, <code><a href="../reference/bs4TooltipUI.html">bs4TooltipUI()</a></code> and <code><a href="../reference/bs4TooltipServer.html">bs4TooltipServer()</a></code>
+</li>
+<li>
+<code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>: you may access the currently selected tab with input$id</li>
+<li>add type parameter to <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code> so as to select between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)</li>
+<li>add fixed param to <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>
+</li>
+<li>add fixed parameter to <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code>. Thanks <a href='https://github.com/mppallante'>@mppallante</a></li>
+<li>re-add fixed parameter to <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code>. This is reintroduced by adminlte with a new css class name</li>
+<li>add animated, label parameters to <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>
+</li>
+<li>add iconStatus parameter to <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> to allow icon color to be independant from the card status (<a href="https://adminlte.io/themes/v3/pages/widgets.html" class="uri">https://adminlte.io/themes/v3/pages/widgets.html</a>). Thanks <a href='https://github.com/rolando-gsw'>@rolando-gsw</a></li>
+</ul>
+</div>
+<div id="bug-fix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
+<ul>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/86'>#86</a> : cannot use <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code> with <code>renderUI</code>. Thanks <a href='https://github.com/jyjek'>@jyjek</a></li>
+<li>add condition argument to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>. See <a href="https://github.com/RinteRface/bs4Dash/issues/35" class="uri">https://github.com/RinteRface/bs4Dash/issues/35</a>. Thanks <a href='https://github.com/aldomann'>@aldomann</a></li>
+<li>some vignettes examples were not up to date</li>
+</ul>
+</div>
+</div>
+    <div id="bs4dash-050" class="section level1">
+<h1 class="page-header">
+<a href="#bs4dash-050" class="anchor"></a>bs4Dash 0.5.0<small> 2019-11-27 </small>
+</h1>
+<div id="breaking-changes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes-1" class="anchor"></a>Breaking Changes</h2>
 <ul>
 <li>remove fixed parameters from <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> since it does not exist in the new AdminLTE version</li>
 <li>rework on <code>bs4DropdownMenuItem</code>: change text to message, date to time. Add new params: from, src, status and type.</li>
@@ -169,9 +210,9 @@
 </li>
 </ul>
 </div>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
 <li>
 <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has a new sidebar_mini parameter. When TRUE, the sidebar has a minimum width when collapsed (you still see icons). When false, it behaves like in shinydashboard</li>
@@ -196,9 +237,9 @@
 <li>add <code><a href="../reference/bs4Quote.html">bs4Quote()</a></code>, an improved blockquote tag for Bootstrap 4</li>
 </ul>
 </div>
-<div id="bug-fix" class="section level2">
+<div id="bug-fix-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
+<a href="#bug-fix-1" class="anchor"></a>Bug Fix</h2>
 <ul>
 <li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/66'>#66</a> and <a href='https://github.com/RinteRface/bs4Dash/issues/71'>#71</a>: sidebar_collapsed was not working. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a> and <a href='https://github.com/federicomarini'>@federicomarini</a></li>
 <li>remove hardcoded style for navbar dropdown icons</li>
@@ -212,9 +253,9 @@
 </ul>
 </div>
 </div>
-    <div id="bs4dash-0-4-0" class="section level1">
+    <div id="bs4dash-040" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-4-0" class="anchor"></a>bs4Dash 0.4.0<small> 2019-07-25 </small>
+<a href="#bs4dash-040" class="anchor"></a>bs4Dash 0.4.0<small> 2019-07-25 </small>
 </h1>
 <div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
@@ -237,9 +278,9 @@
 </li>
 </ul>
 </div>
-<div id="breaking-changes-1" class="section level2">
+<div id="breaking-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>add text arg to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>
 </li>
@@ -259,9 +300,9 @@
 <li>add <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> to the gallery</li>
 </ul>
 </div>
-<div id="bug-fix-1" class="section level2">
+<div id="bug-fix-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix-1" class="anchor"></a>Bug Fix</h2>
+<a href="#bug-fix-2" class="anchor"></a>Bug Fix</h2>
 <ul>
 <li>fix overflow-y issue in <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>
 </li>
@@ -276,9 +317,9 @@
 </ul>
 </div>
 </div>
-    <div id="bs4dash-0-3-0" class="section level1">
+    <div id="bs4dash-030" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-3-0" class="anchor"></a>bs4Dash 0.3.0<small> 2019-04-06 </small>
+<a href="#bs4dash-030" class="anchor"></a>bs4Dash 0.3.0<small> 2019-04-06 </small>
 </h1>
 <div id="breaking-change" class="section level2">
 <h2 class="hasAnchor">
@@ -335,9 +376,9 @@
 <li>add background and header colours like cards to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. PR by <a href='https://github.com/statnmap'>@statnmap</a></li>
 </ul>
 </div>
-<div id="bug-fix-2" class="section level2">
+<div id="bug-fix-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fix-2" class="anchor"></a>Bug fix</h2>
+<a href="#bug-fix-3" class="anchor"></a>Bug fix</h2>
 <ul>
 <li>Fix icon rendering issue due to a change in shiny 1.2.0 dependencies (font awesome)</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/19'>#19</a>: Whenever a <code><a href="../reference/bs4Card.html">bs4Card()</a></code> starts on a collapsed state, the content is displayed when uncollapsed is pressed. Thanks <a href='https://github.com/stanmap'>@stanmap</a> for the remark. (See <a href="https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f">here</a> for a similar issue)</li>
@@ -352,9 +393,9 @@
 </ul>
 </div>
 </div>
-    <div id="bs4dash-0-2-0" class="section level1">
+    <div id="bs4dash-020" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-2-0" class="anchor"></a>bs4Dash 0.2.0<small> 2018-09-20 </small>
+<a href="#bs4dash-020" class="anchor"></a>bs4Dash 0.2.0<small> 2018-09-20 </small>
 </h1>
 <div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
@@ -383,9 +424,9 @@
 </ul>
 </div>
 </div>
-    <div id="bs4dash-0-1-0" class="section level1">
+    <div id="bs4dash-010" class="section level1">
 <h1 class="page-header">
-<a href="#bs4dash-0-1-0" class="anchor"></a>bs4Dash 0.1.0<small> 2018-07-05 </small>
+<a href="#bs4dash-010" class="anchor"></a>bs4Dash 0.1.0<small> 2018-07-05 </small>
 </h1>
 <ul>
 <li>initial release</li>
@@ -397,12 +438,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#bs4dash-0-6-0-9000">0.6.0.9000</a></li>
-        <li><a href="#bs4dash-0-5-0">0.5.0</a></li>
-        <li><a href="#bs4dash-0-4-0">0.4.0</a></li>
-        <li><a href="#bs4dash-0-3-0">0.3.0</a></li>
-        <li><a href="#bs4dash-0-2-0">0.2.0</a></li>
-        <li><a href="#bs4dash-0-1-0">0.1.0</a></li>
+        <li><a href="#bs4dash-0609000">0.6.0.9000</a></li>
+        <li><a href="#bs4dash-050">0.5.0</a></li>
+        <li><a href="#bs4dash-040">0.4.0</a></li>
+        <li><a href="#bs4dash-030">0.3.0</a></li>
+        <li><a href="#bs4dash-020">0.2.0</a></li>
+        <li><a href="#bs4dash-010">0.1.0</a></li>
       </ul>
     </div>
   </div>

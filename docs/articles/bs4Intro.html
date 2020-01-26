@@ -95,7 +95,7 @@
       <h1>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-12-17</h4>
+            <h4 class="date">2020-01-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Intro.Rmd"><code>vignettes/bs4Intro.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Intro.Rmd</code></div>
@@ -109,25 +109,25 @@
 <h2 class="hasAnchor">
 <a href="#create-a-basic-page" class="anchor"></a>Create a basic page</h2>
 <p>This is the template to start with bs4Dash:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"> shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">   <span class="dt">old_school =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">   <span class="dt">sidebar_min =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">   <span class="dt">sidebar_collapsed =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">   <span class="dt">controlbar_collapsed =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">   <span class="dt">controlbar_overlay =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">   <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">   <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">   <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">   <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">   <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">   <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>()</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">  ),</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a> shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
+<span id="cb1-6"><a href="#cb1-6"></a>   <span class="dt">old_school =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>   <span class="dt">sidebar_min =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>   <span class="dt">sidebar_collapsed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>   <span class="dt">controlbar_collapsed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb1-10"><a href="#cb1-10"></a>   <span class="dt">controlbar_overlay =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>   <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>   <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
+<span id="cb1-13"><a href="#cb1-13"></a>   <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</span>
+<span id="cb1-14"><a href="#cb1-14"></a>   <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
+<span id="cb1-15"><a href="#cb1-15"></a>   <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
+<span id="cb1-16"><a href="#cb1-16"></a>   <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>()</span>
+<span id="cb1-17"><a href="#cb1-17"></a>  ),</span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
+<span id="cb1-19"><a href="#cb1-19"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_basicPage.png"><br></p>
 <p>The <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> takes optional argument such as <em>old_school</em>, which is FALSE by default. Whenever it is TRUE, the page will have a fancy old design. The <em>sidebar_collapsed</em> argument enables to control how the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> is displayed when the app starts. Similarly, <em>controlbar_collapsed</em> allow you to decide whether to display the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. When <em>sidebar_mini</em> is TRUE, the sidebar icons are visible even when the sidebar is collapsed. Finally, you can also give a <em>title</em> to the page.</p>
 <p>Now, it is time to fill this template!</p>
@@ -136,33 +136,33 @@
 <h2 class="hasAnchor">
 <a href="#sidebar-setup" class="anchor"></a>Sidebar Setup</h2>
 <p>We will use the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"> <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"> <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"> <span class="dt">title =</span> <span class="st">"bs4Dash"</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"> <span class="dt">brandColor =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"> <span class="dt">url =</span> <span class="st">"https://www.google.fr"</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"> <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"> <span class="dt">elevation =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"> <span class="dt">opacity =</span> <span class="fl">0.8</span>,</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"> <span class="kw"><a href="../reference/bs4SidebarUserPanel.html">bs4SidebarUserPanel</a></span>(</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="dt">img =</span> <span class="st">"https://image.flaticon.com/icons/svg/1149/1149168.svg"</span>, </a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="dt">text =</span> <span class="st">"Welcome Onboard!"</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"> ),</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"> <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">   <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Header 1"</span>),</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">   <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">     <span class="st">"Item 1"</span>,</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">     <span class="dt">tabName =</span> <span class="st">"item1"</span>,</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">     <span class="dt">icon =</span> <span class="st">"sliders"</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">   ),</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">   <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">     <span class="st">"Item 2"</span>,</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">     <span class="dt">tabName =</span> <span class="st">"item2"</span>,</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">     <span class="dt">icon =</span> <span class="st">"id-card"</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">   )</a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"> )</a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a> <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3"></a> <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a> <span class="dt">title =</span> <span class="st">"bs4Dash"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a> <span class="dt">brandColor =</span> <span class="st">"primary"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a> <span class="dt">url =</span> <span class="st">"https://www.google.fr"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a> <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a> <span class="dt">elevation =</span> <span class="dv">3</span>,</span>
+<span id="cb2-9"><a href="#cb2-9"></a> <span class="dt">opacity =</span> <span class="fl">0.8</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a> <span class="kw"><a href="../reference/bs4SidebarUserPanel.html">bs4SidebarUserPanel</a></span>(</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="dt">img =</span> <span class="st">"https://image.flaticon.com/icons/svg/1149/1149168.svg"</span>, </span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">text =</span> <span class="st">"Welcome Onboard!"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a> ),</span>
+<span id="cb2-14"><a href="#cb2-14"></a> <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</span>
+<span id="cb2-15"><a href="#cb2-15"></a>   <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Header 1"</span>),</span>
+<span id="cb2-16"><a href="#cb2-16"></a>   <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb2-17"><a href="#cb2-17"></a>     <span class="st">"Item 1"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>     <span class="dt">tabName =</span> <span class="st">"item1"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>     <span class="dt">icon =</span> <span class="st">"sliders"</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>   ),</span>
+<span id="cb2-21"><a href="#cb2-21"></a>   <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb2-22"><a href="#cb2-22"></a>     <span class="st">"Item 2"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>     <span class="dt">tabName =</span> <span class="st">"item2"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>     <span class="dt">icon =</span> <span class="st">"id-card"</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>   )</span>
+<span id="cb2-26"><a href="#cb2-26"></a> )</span>
+<span id="cb2-27"><a href="#cb2-27"></a>)</span></code></pre></div>
 <p>A lot of options are available: * two skins are available, namely “light” or “dark”. I recommand using the “light” one. * the title is only displayed when the sidebar is uncollapsed! * the sidebar status determins which color <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code> have. There are 5 different colors: “primary”, “danger”, “warning”, “success”, “info”. * brandColor: bakground color of the sidebar brand. I recommand using the same color as that chosen for status. * src: sidebar brand image. SVGs, JPEG, PNG accepted.</p>
 <p>I do not recommand to change the <em>elevation</em> nor <em>opacity</em>, altough possible.</p>
 <p><img src="figures/bs4Dash_sidebar.png"><br></p>
@@ -171,35 +171,42 @@
 <h2 class="hasAnchor">
 <a href="#navbar-setup" class="anchor"></a>Navbar Setup</h2>
 <p>We will use the <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> function:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"> <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"> <span class="dt">status =</span> <span class="st">"white"</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"> <span class="dt">border =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"> <span class="dt">sidebarIcon =</span> <span class="st">"bars"</span>,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"> <span class="dt">controlbarIcon =</span> <span class="st">"th"</span>,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"> <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">   <span class="dt">show =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">   <span class="dt">align =</span> <span class="st">"left"</span>,</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">   <span class="dt">status =</span> <span class="st">"warning"</span>, </a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">   <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">   <span class="dt">src =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"> ),</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"> <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">   <span class="dt">show =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">   <span class="dt">status =</span> <span class="st">"danger"</span>,</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">   <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">   <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">     <span class="dt">message =</span> <span class="st">"message 1"</span>,</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">     <span class="dt">time =</span> <span class="st">"today"</span>,</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">     <span class="dt">type =</span> <span class="st">"notification"</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">   ),</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">   <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">     <span class="dt">message =</span> <span class="st">"message 2"</span>,</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25">     <span class="dt">time =</span> <span class="st">"yesterday"</span>,</a>
-<a class="sourceLine" id="cb3-26" data-line-number="26">     <span class="dt">type =</span> <span class="st">"notification"</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27">   )</a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"> )</a>
-<a class="sourceLine" id="cb3-29" data-line-number="29">)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">status =</span> <span class="st">"white"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">border =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">sidebarIcon =</span> <span class="st">"bars"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">controlbarIcon =</span> <span class="st">"th"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="dt">show =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="dt">align =</span> <span class="st">"left"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="dt">src =</span> <span class="ot">NULL</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>  ),</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="dt">show =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>    <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19"></a>    <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
+<span id="cb3-20"><a href="#cb3-20"></a>      <span class="dt">message =</span> <span class="st">"message 1"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>      <span class="dt">from =</span> <span class="st">"Divad Nojnarg"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23"></a>      <span class="dt">time =</span> <span class="st">"today"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>      <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25"></a>      <span class="dt">type =</span> <span class="st">"message"</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>    ),</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
+<span id="cb3-28"><a href="#cb3-28"></a>      <span class="dt">message =</span> <span class="st">"message 2"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>      <span class="dt">from =</span> <span class="st">"Nono Gueye"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31"></a>      <span class="dt">time =</span> <span class="st">"yesterday"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32"></a>      <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33"></a>      <span class="dt">type =</span> <span class="st">"message"</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>    )</span>
+<span id="cb3-35"><a href="#cb3-35"></a>  )</span>
+<span id="cb3-36"><a href="#cb3-36"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_navbar.png"><br></p>
 <p><code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> allow you to change the <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> toggle icon, as well as that for the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. 3 containers are available: leftUi to embed left UI elements, rightUI does the same thing on the right side. When putting a <code>bs4DropdownMenu</code> in the leftUI slot, you better have to change the <em>align</em> argument to “left”, otherwise, the dropdown will open in the sidebar, which is not elegant. You can insert any content between the leftUI and rightUI slots. However, be careful not to overload the navbar.</p>
 </div>
@@ -207,29 +214,29 @@
 <h2 class="hasAnchor">
 <a href="#right-sidebar-setup" class="anchor"></a>Right Sidebar Setup</h2>
 <p>This is not a mandatory element. We will use <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"> <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"> <span class="dt">title =</span> <span class="st">"My right sidebar"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">   <span class="dt">inputId =</span> <span class="st">"obs"</span>, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">   <span class="dt">label =</span> <span class="st">"Number of observations:"</span>,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">   <span class="dt">min =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">   <span class="dt">max =</span> <span class="dv">1000</span>, </a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">   <span class="dt">value =</span> <span class="dv">500</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"> ),</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"> <span class="kw"><a href="../reference/column.html">column</a></span>(</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">   <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">   <span class="dt">align =</span> <span class="st">"center"</span>,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">   <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">     <span class="dt">inputId =</span> <span class="st">"dist"</span>, </a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">     <span class="dt">label =</span> <span class="st">"Distribution type:"</span>,</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">     <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> =<span class="st"> "norm"</span>,</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">       <span class="st">"Uniform"</span> =<span class="st"> "unif"</span>,</a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">       <span class="st">"Log-normal"</span> =<span class="st"> "lnorm"</span>,</a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">       <span class="st">"Exponential"</span> =<span class="st"> "exp"</span>)</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">   )</a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"> )</a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a> <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a> <span class="dt">title =</span> <span class="st">"My right sidebar"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(</span>
+<span id="cb4-5"><a href="#cb4-5"></a>   <span class="dt">inputId =</span> <span class="st">"obs"</span>, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>   <span class="dt">label =</span> <span class="st">"Number of observations:"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>   <span class="dt">min =</span> <span class="dv">0</span>, </span>
+<span id="cb4-8"><a href="#cb4-8"></a>   <span class="dt">max =</span> <span class="dv">1000</span>, </span>
+<span id="cb4-9"><a href="#cb4-9"></a>   <span class="dt">value =</span> <span class="dv">500</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a> ),</span>
+<span id="cb4-11"><a href="#cb4-11"></a> <span class="kw"><a href="../reference/column.html">column</a></span>(</span>
+<span id="cb4-12"><a href="#cb4-12"></a>   <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb4-13"><a href="#cb4-13"></a>   <span class="dt">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>   <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(</span>
+<span id="cb4-15"><a href="#cb4-15"></a>     <span class="dt">inputId =</span> <span class="st">"dist"</span>, </span>
+<span id="cb4-16"><a href="#cb4-16"></a>     <span class="dt">label =</span> <span class="st">"Distribution type:"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17"></a>     <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> =<span class="st"> "norm"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18"></a>       <span class="st">"Uniform"</span> =<span class="st"> "unif"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19"></a>       <span class="st">"Log-normal"</span> =<span class="st"> "lnorm"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20"></a>       <span class="st">"Exponential"</span> =<span class="st"> "exp"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21"></a>   )</span>
+<span id="cb4-22"><a href="#cb4-22"></a> )</span>
+<span id="cb4-23"><a href="#cb4-23"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_controlbar.png"><br></p>
 <p>I also advise the user not to add to many elements inside the controlbar. The controlbar_overlay parameter in <code>bs4DashPage</code> allows to push/cover the body content, depending on its value.</p>
 </div>
@@ -237,66 +244,66 @@
 <h2 class="hasAnchor">
 <a href="#footer-setup" class="anchor"></a>Footer Setup</h2>
 <p>We will use <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"> <span class="dt">copyrights =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">   <span class="dt">href =</span> <span class="st">"https://twitter.com/divadnojnarg"</span>, </a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">   <span class="dt">target =</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"> ),</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"> <span class="dt">right_text =</span> <span class="st">"2018"</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a> <span class="dt">copyrights =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>   <span class="dt">href =</span> <span class="st">"https://twitter.com/divadnojnarg"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>   <span class="dt">target =</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a> ),</span>
+<span id="cb5-6"><a href="#cb5-6"></a> <span class="dt">right_text =</span> <span class="st">"2018"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>)</span></code></pre></div>
 <p>Nothing special to add here!</p>
 </div>
 <div id="setting-up-the-body-content" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-up-the-body-content" class="anchor"></a>Setting up the body content</h2>
 <p>This is the most important part since your dashboard content is displayed here:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"> <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">   <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="dt">tabName =</span> <span class="st">"item1"</span>,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">      <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">        <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">          <span class="dt">width =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">          <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">            <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">              <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">              <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">              <span class="st">"Click on my header"</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">            )</a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">          })</a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">        )</a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">      })</a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">    )</a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">   ),</a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">   <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">     <span class="dt">tabName =</span> <span class="st">"item2"</span>,</a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">     <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">       <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</a>
-<a class="sourceLine" id="cb6-25" data-line-number="25">       <span class="dt">width =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">       <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</a>
-<a class="sourceLine" id="cb6-27" data-line-number="27">         <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb6-28" data-line-number="28">         <span class="dt">status =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb6-29" data-line-number="29">         <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb6-30" data-line-number="30">           <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</a>
-<a class="sourceLine" id="cb6-31" data-line-number="31">           <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</a>
-<a class="sourceLine" id="cb6-32" data-line-number="32">           <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb6-33" data-line-number="33">           <span class="dt">side =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb6-34" data-line-number="34">           <span class="st">"Is this template really for free? That's unbelievable!"</span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35">         ),</a>
-<a class="sourceLine" id="cb6-36" data-line-number="36">         <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb6-37" data-line-number="37">           <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</a>
-<a class="sourceLine" id="cb6-38" data-line-number="38">           <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</a>
-<a class="sourceLine" id="cb6-39" data-line-number="39">           <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb6-40" data-line-number="40">           <span class="dt">side =</span> <span class="st">"right"</span>,</a>
-<a class="sourceLine" id="cb6-41" data-line-number="41">           <span class="st">"Indeed, that's unbelievable!"</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42">         )</a>
-<a class="sourceLine" id="cb6-43" data-line-number="43">       )</a>
-<a class="sourceLine" id="cb6-44" data-line-number="44">     )</a>
-<a class="sourceLine" id="cb6-45" data-line-number="45">   )</a>
-<a class="sourceLine" id="cb6-46" data-line-number="46"> )</a>
-<a class="sourceLine" id="cb6-47" data-line-number="47">)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a> <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>   <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="dt">tabName =</span> <span class="st">"item1"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>      <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>          <span class="dt">width =</span> <span class="dv">4</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</span>
+<span id="cb6-10"><a href="#cb6-10"></a>          <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</span>
+<span id="cb6-11"><a href="#cb6-11"></a>            <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb6-12"><a href="#cb6-12"></a>              <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </span>
+<span id="cb6-13"><a href="#cb6-13"></a>              <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>              <span class="st">"Click on my header"</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>            )</span>
+<span id="cb6-16"><a href="#cb6-16"></a>          })</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        )</span>
+<span id="cb6-18"><a href="#cb6-18"></a>      })</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    )</span>
+<span id="cb6-20"><a href="#cb6-20"></a>   ),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>   <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-22"><a href="#cb6-22"></a>     <span class="dt">tabName =</span> <span class="st">"item2"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>     <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb6-24"><a href="#cb6-24"></a>       <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25"></a>       <span class="dt">width =</span> <span class="dv">9</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>       <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</span>
+<span id="cb6-27"><a href="#cb6-27"></a>         <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb6-28"><a href="#cb6-28"></a>         <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb6-29"><a href="#cb6-29"></a>         <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb6-30"><a href="#cb6-30"></a>           <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</span>
+<span id="cb6-31"><a href="#cb6-31"></a>           <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</span>
+<span id="cb6-32"><a href="#cb6-32"></a>           <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>           <span class="dt">side =</span> <span class="ot">NULL</span>,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>           <span class="st">"Is this template really for free? That's unbelievable!"</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a>         ),</span>
+<span id="cb6-36"><a href="#cb6-36"></a>         <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb6-37"><a href="#cb6-37"></a>           <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</span>
+<span id="cb6-38"><a href="#cb6-38"></a>           <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39"></a>           <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</span>
+<span id="cb6-40"><a href="#cb6-40"></a>           <span class="dt">side =</span> <span class="st">"right"</span>,</span>
+<span id="cb6-41"><a href="#cb6-41"></a>           <span class="st">"Indeed, that's unbelievable!"</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a>         )</span>
+<span id="cb6-43"><a href="#cb6-43"></a>       )</span>
+<span id="cb6-44"><a href="#cb6-44"></a>     )</span>
+<span id="cb6-45"><a href="#cb6-45"></a>   )</span>
+<span id="cb6-46"><a href="#cb6-46"></a> )</span>
+<span id="cb6-47"><a href="#cb6-47"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_body.png"><br></p>
 <p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">bs4DashBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4TabItems.html">bs4TabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4TabItem.html">bs4TabItem()</a></code>. Inportantly, the <em>tabName</em> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for shinydashboard. Therefore, users should not be lost.</p>
 </div>
@@ -305,150 +312,158 @@
 <a href="#wrap-up" class="anchor"></a>Wrap Up</h2>
 <p>Below is the code for your first bs4Dash application:</p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="dt">old_school =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="dt">sidebar_collapsed =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="dt">controlbar_collapsed =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(</a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">      <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">      <span class="dt">status =</span> <span class="st">"white"</span>,</a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">      <span class="dt">border =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">      <span class="dt">sidebarIcon =</span> <span class="st">"bars"</span>,</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">      <span class="dt">controlbarIcon =</span> <span class="st">"th"</span>,</a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">      <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb7-17" data-line-number="17">      <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">        <span class="dt">show =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb7-19" data-line-number="19">        <span class="dt">align =</span> <span class="st">"left"</span>,</a>
-<a class="sourceLine" id="cb7-20" data-line-number="20">        <span class="dt">status =</span> <span class="st">"warning"</span>, </a>
-<a class="sourceLine" id="cb7-21" data-line-number="21">        <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</a>
-<a class="sourceLine" id="cb7-22" data-line-number="22">        <span class="dt">src =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23">      ),</a>
-<a class="sourceLine" id="cb7-24" data-line-number="24">      <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</a>
-<a class="sourceLine" id="cb7-25" data-line-number="25">        <span class="dt">show =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb7-26" data-line-number="26">        <span class="dt">status =</span> <span class="st">"danger"</span>,</a>
-<a class="sourceLine" id="cb7-27" data-line-number="27">        <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</a>
-<a class="sourceLine" id="cb7-28" data-line-number="28">        <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb7-29" data-line-number="29">          <span class="dt">text =</span> <span class="st">"message 1"</span>,</a>
-<a class="sourceLine" id="cb7-30" data-line-number="30">          <span class="dt">date =</span> <span class="st">"today"</span></a>
-<a class="sourceLine" id="cb7-31" data-line-number="31">        ),</a>
-<a class="sourceLine" id="cb7-32" data-line-number="32">        <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb7-33" data-line-number="33">          <span class="dt">text =</span> <span class="st">"message 2"</span>,</a>
-<a class="sourceLine" id="cb7-34" data-line-number="34">          <span class="dt">date =</span> <span class="st">"yesterday"</span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35">        )</a>
-<a class="sourceLine" id="cb7-36" data-line-number="36">      )</a>
-<a class="sourceLine" id="cb7-37" data-line-number="37">    ),</a>
-<a class="sourceLine" id="cb7-38" data-line-number="38">    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</a>
-<a class="sourceLine" id="cb7-39" data-line-number="39">      <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb7-40" data-line-number="40">      <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb7-41" data-line-number="41">      <span class="dt">title =</span> <span class="st">"bs4Dash"</span>,</a>
-<a class="sourceLine" id="cb7-42" data-line-number="42">      <span class="dt">brandColor =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb7-43" data-line-number="43">      <span class="dt">url =</span> <span class="st">"https://www.google.fr"</span>,</a>
-<a class="sourceLine" id="cb7-44" data-line-number="44">      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"</span>,</a>
-<a class="sourceLine" id="cb7-45" data-line-number="45">      <span class="dt">elevation =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb7-46" data-line-number="46">      <span class="dt">opacity =</span> <span class="fl">0.8</span>,</a>
-<a class="sourceLine" id="cb7-47" data-line-number="47">      <span class="kw"><a href="../reference/bs4SidebarUserPanel.html">bs4SidebarUserPanel</a></span>(</a>
-<a class="sourceLine" id="cb7-48" data-line-number="48">        <span class="dt">img =</span> <span class="st">"https://image.flaticon.com/icons/svg/1149/1149168.svg"</span>, </a>
-<a class="sourceLine" id="cb7-49" data-line-number="49">        <span class="dt">text =</span> <span class="st">"Welcome Onboard!"</span></a>
-<a class="sourceLine" id="cb7-50" data-line-number="50">      ),</a>
-<a class="sourceLine" id="cb7-51" data-line-number="51">      <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</a>
-<a class="sourceLine" id="cb7-52" data-line-number="52">        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Header 1"</span>),</a>
-<a class="sourceLine" id="cb7-53" data-line-number="53">        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb7-54" data-line-number="54">          <span class="st">"Item 1"</span>,</a>
-<a class="sourceLine" id="cb7-55" data-line-number="55">          <span class="dt">tabName =</span> <span class="st">"item1"</span>,</a>
-<a class="sourceLine" id="cb7-56" data-line-number="56">          <span class="dt">icon =</span> <span class="st">"sliders"</span></a>
-<a class="sourceLine" id="cb7-57" data-line-number="57">        ),</a>
-<a class="sourceLine" id="cb7-58" data-line-number="58">        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb7-59" data-line-number="59">          <span class="st">"Item 2"</span>,</a>
-<a class="sourceLine" id="cb7-60" data-line-number="60">          <span class="dt">tabName =</span> <span class="st">"item2"</span>,</a>
-<a class="sourceLine" id="cb7-61" data-line-number="61">          <span class="dt">icon =</span> <span class="st">"id-card"</span></a>
-<a class="sourceLine" id="cb7-62" data-line-number="62">        )</a>
-<a class="sourceLine" id="cb7-63" data-line-number="63">      )</a>
-<a class="sourceLine" id="cb7-64" data-line-number="64">    ),</a>
-<a class="sourceLine" id="cb7-65" data-line-number="65">    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(</a>
-<a class="sourceLine" id="cb7-66" data-line-number="66">      <span class="dt">skin =</span> <span class="st">"light"</span>,</a>
-<a class="sourceLine" id="cb7-67" data-line-number="67">      <span class="dt">title =</span> <span class="st">"My right sidebar"</span>,</a>
-<a class="sourceLine" id="cb7-68" data-line-number="68">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(</a>
-<a class="sourceLine" id="cb7-69" data-line-number="69">        <span class="dt">inputId =</span> <span class="st">"obs"</span>, </a>
-<a class="sourceLine" id="cb7-70" data-line-number="70">        <span class="dt">label =</span> <span class="st">"Number of observations:"</span>,</a>
-<a class="sourceLine" id="cb7-71" data-line-number="71">        <span class="dt">min =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb7-72" data-line-number="72">        <span class="dt">max =</span> <span class="dv">1000</span>, </a>
-<a class="sourceLine" id="cb7-73" data-line-number="73">        <span class="dt">value =</span> <span class="dv">500</span></a>
-<a class="sourceLine" id="cb7-74" data-line-number="74">      ),</a>
-<a class="sourceLine" id="cb7-75" data-line-number="75">      <span class="kw"><a href="../reference/column.html">column</a></span>(</a>
-<a class="sourceLine" id="cb7-76" data-line-number="76">        <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb7-77" data-line-number="77">        <span class="dt">align =</span> <span class="st">"center"</span>,</a>
-<a class="sourceLine" id="cb7-78" data-line-number="78">        <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(</a>
-<a class="sourceLine" id="cb7-79" data-line-number="79">          <span class="dt">inputId =</span> <span class="st">"dist"</span>, </a>
-<a class="sourceLine" id="cb7-80" data-line-number="80">          <span class="dt">label =</span> <span class="st">"Distribution type:"</span>,</a>
-<a class="sourceLine" id="cb7-81" data-line-number="81">          <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> =<span class="st"> "norm"</span>,</a>
-<a class="sourceLine" id="cb7-82" data-line-number="82">            <span class="st">"Uniform"</span> =<span class="st"> "unif"</span>,</a>
-<a class="sourceLine" id="cb7-83" data-line-number="83">            <span class="st">"Log-normal"</span> =<span class="st"> "lnorm"</span>,</a>
-<a class="sourceLine" id="cb7-84" data-line-number="84">            <span class="st">"Exponential"</span> =<span class="st"> "exp"</span>)</a>
-<a class="sourceLine" id="cb7-85" data-line-number="85">        )</a>
-<a class="sourceLine" id="cb7-86" data-line-number="86">      )</a>
-<a class="sourceLine" id="cb7-87" data-line-number="87">    ),</a>
-<a class="sourceLine" id="cb7-88" data-line-number="88">    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(</a>
-<a class="sourceLine" id="cb7-89" data-line-number="89">      <span class="dt">copyrights =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(</a>
-<a class="sourceLine" id="cb7-90" data-line-number="90">        <span class="dt">href =</span> <span class="st">"https://twitter.com/divadnojnarg"</span>, </a>
-<a class="sourceLine" id="cb7-91" data-line-number="91">        <span class="dt">target =</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span></a>
-<a class="sourceLine" id="cb7-92" data-line-number="92">      ),</a>
-<a class="sourceLine" id="cb7-93" data-line-number="93">      <span class="dt">right_text =</span> <span class="st">"2018"</span></a>
-<a class="sourceLine" id="cb7-94" data-line-number="94">    ),</a>
-<a class="sourceLine" id="cb7-95" data-line-number="95">    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</a>
-<a class="sourceLine" id="cb7-96" data-line-number="96">      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</a>
-<a class="sourceLine" id="cb7-97" data-line-number="97">        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb7-98" data-line-number="98">          <span class="dt">tabName =</span> <span class="st">"item1"</span>,</a>
-<a class="sourceLine" id="cb7-99" data-line-number="99">          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</a>
-<a class="sourceLine" id="cb7-100" data-line-number="100">            <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb7-101" data-line-number="101">              <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</a>
-<a class="sourceLine" id="cb7-102" data-line-number="102">                <span class="dt">width =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb7-103" data-line-number="103">                <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</a>
-<a class="sourceLine" id="cb7-104" data-line-number="104">                <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</a>
-<a class="sourceLine" id="cb7-105" data-line-number="105">                  <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb7-106" data-line-number="106">                    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </a>
-<a class="sourceLine" id="cb7-107" data-line-number="107">                    <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb7-108" data-line-number="108">                    <span class="st">"Click on my header"</span></a>
-<a class="sourceLine" id="cb7-109" data-line-number="109">                  )</a>
-<a class="sourceLine" id="cb7-110" data-line-number="110">                })</a>
-<a class="sourceLine" id="cb7-111" data-line-number="111">              )</a>
-<a class="sourceLine" id="cb7-112" data-line-number="112">            })</a>
-<a class="sourceLine" id="cb7-113" data-line-number="113">          )</a>
-<a class="sourceLine" id="cb7-114" data-line-number="114">        ),</a>
-<a class="sourceLine" id="cb7-115" data-line-number="115">        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb7-116" data-line-number="116">          <span class="dt">tabName =</span> <span class="st">"item2"</span>,</a>
-<a class="sourceLine" id="cb7-117" data-line-number="117">          <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb7-118" data-line-number="118">            <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</a>
-<a class="sourceLine" id="cb7-119" data-line-number="119">            <span class="dt">width =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb7-120" data-line-number="120">            <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</a>
-<a class="sourceLine" id="cb7-121" data-line-number="121">              <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb7-122" data-line-number="122">              <span class="dt">status =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb7-123" data-line-number="123">              <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb7-124" data-line-number="124">                <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</a>
-<a class="sourceLine" id="cb7-125" data-line-number="125">                <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</a>
-<a class="sourceLine" id="cb7-126" data-line-number="126">                <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb7-127" data-line-number="127">                <span class="dt">side =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb7-128" data-line-number="128">                <span class="st">"Is this template really for free? That's unbelievable!"</span></a>
-<a class="sourceLine" id="cb7-129" data-line-number="129">              ),</a>
-<a class="sourceLine" id="cb7-130" data-line-number="130">              <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb7-131" data-line-number="131">                <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</a>
-<a class="sourceLine" id="cb7-132" data-line-number="132">                <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</a>
-<a class="sourceLine" id="cb7-133" data-line-number="133">                <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb7-134" data-line-number="134">                <span class="dt">side =</span> <span class="st">"right"</span>,</a>
-<a class="sourceLine" id="cb7-135" data-line-number="135">                <span class="st">"Indeed, that's unbelievable!"</span></a>
-<a class="sourceLine" id="cb7-136" data-line-number="136">              )</a>
-<a class="sourceLine" id="cb7-137" data-line-number="137">            )</a>
-<a class="sourceLine" id="cb7-138" data-line-number="138">          )</a>
-<a class="sourceLine" id="cb7-139" data-line-number="139">        )</a>
-<a class="sourceLine" id="cb7-140" data-line-number="140">      )</a>
-<a class="sourceLine" id="cb7-141" data-line-number="141">    )</a>
-<a class="sourceLine" id="cb7-142" data-line-number="142">  ),</a>
-<a class="sourceLine" id="cb7-143" data-line-number="143">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
-<a class="sourceLine" id="cb7-144" data-line-number="144">)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="dt">old_school =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="dt">sidebar_collapsed =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="dt">controlbar_collapsed =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="dt">title =</span> <span class="st">"Basic Dashboard"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(</span>
+<span id="cb7-11"><a href="#cb7-11"></a>      <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>      <span class="dt">status =</span> <span class="st">"white"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13"></a>      <span class="dt">border =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>      <span class="dt">sidebarIcon =</span> <span class="st">"bars"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>      <span class="dt">controlbarIcon =</span> <span class="st">"th"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>      <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>      <span class="dt">leftUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb7-18"><a href="#cb7-18"></a>        <span class="dt">show =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>        <span class="dt">align =</span> <span class="st">"left"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>        <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb7-21"><a href="#cb7-21"></a>        <span class="dt">menuIcon =</span> <span class="st">"envelope-open"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22"></a>        <span class="dt">src =</span> <span class="ot">NULL</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>      ),</span>
+<span id="cb7-24"><a href="#cb7-24"></a>      <span class="dt">rightUi =</span> <span class="kw"><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu</a></span>(</span>
+<span id="cb7-25"><a href="#cb7-25"></a>        <span class="dt">show =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb7-26"><a href="#cb7-26"></a>        <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb7-27"><a href="#cb7-27"></a>        <span class="dt">src =</span> <span class="st">"https://www.google.fr"</span>,</span>
+<span id="cb7-28"><a href="#cb7-28"></a>        <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
+<span id="cb7-29"><a href="#cb7-29"></a>          <span class="dt">message =</span> <span class="st">"message 1"</span>,</span>
+<span id="cb7-30"><a href="#cb7-30"></a>          <span class="dt">from =</span> <span class="st">"Divad Nojnarg"</span>,</span>
+<span id="cb7-31"><a href="#cb7-31"></a>          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,</span>
+<span id="cb7-32"><a href="#cb7-32"></a>          <span class="dt">time =</span> <span class="st">"today"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33"></a>          <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb7-34"><a href="#cb7-34"></a>          <span class="dt">type =</span> <span class="st">"message"</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>        ),</span>
+<span id="cb7-36"><a href="#cb7-36"></a>        <span class="kw"><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem</a></span>(</span>
+<span id="cb7-37"><a href="#cb7-37"></a>          <span class="dt">message =</span> <span class="st">"message 2"</span>,</span>
+<span id="cb7-38"><a href="#cb7-38"></a>          <span class="dt">from =</span> <span class="st">"Nono Gueye"</span>,</span>
+<span id="cb7-39"><a href="#cb7-39"></a>          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40"></a>          <span class="dt">time =</span> <span class="st">"yesterday"</span>,</span>
+<span id="cb7-41"><a href="#cb7-41"></a>          <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb7-42"><a href="#cb7-42"></a>          <span class="dt">type =</span> <span class="st">"message"</span></span>
+<span id="cb7-43"><a href="#cb7-43"></a>        )</span>
+<span id="cb7-44"><a href="#cb7-44"></a>      )</span>
+<span id="cb7-45"><a href="#cb7-45"></a>    ),</span>
+<span id="cb7-46"><a href="#cb7-46"></a>    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</span>
+<span id="cb7-47"><a href="#cb7-47"></a>      <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb7-48"><a href="#cb7-48"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb7-49"><a href="#cb7-49"></a>      <span class="dt">title =</span> <span class="st">"bs4Dash"</span>,</span>
+<span id="cb7-50"><a href="#cb7-50"></a>      <span class="dt">brandColor =</span> <span class="st">"primary"</span>,</span>
+<span id="cb7-51"><a href="#cb7-51"></a>      <span class="dt">url =</span> <span class="st">"https://www.google.fr"</span>,</span>
+<span id="cb7-52"><a href="#cb7-52"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"</span>,</span>
+<span id="cb7-53"><a href="#cb7-53"></a>      <span class="dt">elevation =</span> <span class="dv">3</span>,</span>
+<span id="cb7-54"><a href="#cb7-54"></a>      <span class="dt">opacity =</span> <span class="fl">0.8</span>,</span>
+<span id="cb7-55"><a href="#cb7-55"></a>      <span class="kw"><a href="../reference/bs4SidebarUserPanel.html">bs4SidebarUserPanel</a></span>(</span>
+<span id="cb7-56"><a href="#cb7-56"></a>        <span class="dt">img =</span> <span class="st">"https://image.flaticon.com/icons/svg/1149/1149168.svg"</span>, </span>
+<span id="cb7-57"><a href="#cb7-57"></a>        <span class="dt">text =</span> <span class="st">"Welcome Onboard!"</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a>      ),</span>
+<span id="cb7-59"><a href="#cb7-59"></a>      <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</span>
+<span id="cb7-60"><a href="#cb7-60"></a>        <span class="kw"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Header 1"</span>),</span>
+<span id="cb7-61"><a href="#cb7-61"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb7-62"><a href="#cb7-62"></a>          <span class="st">"Item 1"</span>,</span>
+<span id="cb7-63"><a href="#cb7-63"></a>          <span class="dt">tabName =</span> <span class="st">"item1"</span>,</span>
+<span id="cb7-64"><a href="#cb7-64"></a>          <span class="dt">icon =</span> <span class="st">"sliders"</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a>        ),</span>
+<span id="cb7-66"><a href="#cb7-66"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb7-67"><a href="#cb7-67"></a>          <span class="st">"Item 2"</span>,</span>
+<span id="cb7-68"><a href="#cb7-68"></a>          <span class="dt">tabName =</span> <span class="st">"item2"</span>,</span>
+<span id="cb7-69"><a href="#cb7-69"></a>          <span class="dt">icon =</span> <span class="st">"id-card"</span></span>
+<span id="cb7-70"><a href="#cb7-70"></a>        )</span>
+<span id="cb7-71"><a href="#cb7-71"></a>      )</span>
+<span id="cb7-72"><a href="#cb7-72"></a>    ),</span>
+<span id="cb7-73"><a href="#cb7-73"></a>    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(</span>
+<span id="cb7-74"><a href="#cb7-74"></a>      <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb7-75"><a href="#cb7-75"></a>      <span class="dt">title =</span> <span class="st">"My right sidebar"</span>,</span>
+<span id="cb7-76"><a href="#cb7-76"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(</span>
+<span id="cb7-77"><a href="#cb7-77"></a>        <span class="dt">inputId =</span> <span class="st">"obs"</span>, </span>
+<span id="cb7-78"><a href="#cb7-78"></a>        <span class="dt">label =</span> <span class="st">"Number of observations:"</span>,</span>
+<span id="cb7-79"><a href="#cb7-79"></a>        <span class="dt">min =</span> <span class="dv">0</span>, </span>
+<span id="cb7-80"><a href="#cb7-80"></a>        <span class="dt">max =</span> <span class="dv">1000</span>, </span>
+<span id="cb7-81"><a href="#cb7-81"></a>        <span class="dt">value =</span> <span class="dv">500</span></span>
+<span id="cb7-82"><a href="#cb7-82"></a>      ),</span>
+<span id="cb7-83"><a href="#cb7-83"></a>      <span class="kw"><a href="../reference/column.html">column</a></span>(</span>
+<span id="cb7-84"><a href="#cb7-84"></a>        <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb7-85"><a href="#cb7-85"></a>        <span class="dt">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb7-86"><a href="#cb7-86"></a>        <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(</span>
+<span id="cb7-87"><a href="#cb7-87"></a>          <span class="dt">inputId =</span> <span class="st">"dist"</span>, </span>
+<span id="cb7-88"><a href="#cb7-88"></a>          <span class="dt">label =</span> <span class="st">"Distribution type:"</span>,</span>
+<span id="cb7-89"><a href="#cb7-89"></a>          <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> =<span class="st"> "norm"</span>,</span>
+<span id="cb7-90"><a href="#cb7-90"></a>            <span class="st">"Uniform"</span> =<span class="st"> "unif"</span>,</span>
+<span id="cb7-91"><a href="#cb7-91"></a>            <span class="st">"Log-normal"</span> =<span class="st"> "lnorm"</span>,</span>
+<span id="cb7-92"><a href="#cb7-92"></a>            <span class="st">"Exponential"</span> =<span class="st"> "exp"</span>)</span>
+<span id="cb7-93"><a href="#cb7-93"></a>        )</span>
+<span id="cb7-94"><a href="#cb7-94"></a>      )</span>
+<span id="cb7-95"><a href="#cb7-95"></a>    ),</span>
+<span id="cb7-96"><a href="#cb7-96"></a>    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(</span>
+<span id="cb7-97"><a href="#cb7-97"></a>      <span class="dt">copyrights =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(</span>
+<span id="cb7-98"><a href="#cb7-98"></a>        <span class="dt">href =</span> <span class="st">"https://twitter.com/divadnojnarg"</span>, </span>
+<span id="cb7-99"><a href="#cb7-99"></a>        <span class="dt">target =</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span></span>
+<span id="cb7-100"><a href="#cb7-100"></a>      ),</span>
+<span id="cb7-101"><a href="#cb7-101"></a>      <span class="dt">right_text =</span> <span class="st">"2018"</span></span>
+<span id="cb7-102"><a href="#cb7-102"></a>    ),</span>
+<span id="cb7-103"><a href="#cb7-103"></a>    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</span>
+<span id="cb7-104"><a href="#cb7-104"></a>      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</span>
+<span id="cb7-105"><a href="#cb7-105"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb7-106"><a href="#cb7-106"></a>          <span class="dt">tabName =</span> <span class="st">"item1"</span>,</span>
+<span id="cb7-107"><a href="#cb7-107"></a>          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</span>
+<span id="cb7-108"><a href="#cb7-108"></a>            <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</span>
+<span id="cb7-109"><a href="#cb7-109"></a>              <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</span>
+<span id="cb7-110"><a href="#cb7-110"></a>                <span class="dt">width =</span> <span class="dv">4</span>,</span>
+<span id="cb7-111"><a href="#cb7-111"></a>                <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</span>
+<span id="cb7-112"><a href="#cb7-112"></a>                <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</span>
+<span id="cb7-113"><a href="#cb7-113"></a>                  <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb7-114"><a href="#cb7-114"></a>                    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </span>
+<span id="cb7-115"><a href="#cb7-115"></a>                    <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb7-116"><a href="#cb7-116"></a>                    <span class="st">"Click on my header"</span></span>
+<span id="cb7-117"><a href="#cb7-117"></a>                  )</span>
+<span id="cb7-118"><a href="#cb7-118"></a>                })</span>
+<span id="cb7-119"><a href="#cb7-119"></a>              )</span>
+<span id="cb7-120"><a href="#cb7-120"></a>            })</span>
+<span id="cb7-121"><a href="#cb7-121"></a>          )</span>
+<span id="cb7-122"><a href="#cb7-122"></a>        ),</span>
+<span id="cb7-123"><a href="#cb7-123"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb7-124"><a href="#cb7-124"></a>          <span class="dt">tabName =</span> <span class="st">"item2"</span>,</span>
+<span id="cb7-125"><a href="#cb7-125"></a>          <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb7-126"><a href="#cb7-126"></a>            <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</span>
+<span id="cb7-127"><a href="#cb7-127"></a>            <span class="dt">width =</span> <span class="dv">9</span>,</span>
+<span id="cb7-128"><a href="#cb7-128"></a>            <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</span>
+<span id="cb7-129"><a href="#cb7-129"></a>              <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb7-130"><a href="#cb7-130"></a>              <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb7-131"><a href="#cb7-131"></a>              <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb7-132"><a href="#cb7-132"></a>                <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</span>
+<span id="cb7-133"><a href="#cb7-133"></a>                <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</span>
+<span id="cb7-134"><a href="#cb7-134"></a>                <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
+<span id="cb7-135"><a href="#cb7-135"></a>                <span class="dt">side =</span> <span class="ot">NULL</span>,</span>
+<span id="cb7-136"><a href="#cb7-136"></a>                <span class="st">"Is this template really for free? That's unbelievable!"</span></span>
+<span id="cb7-137"><a href="#cb7-137"></a>              ),</span>
+<span id="cb7-138"><a href="#cb7-138"></a>              <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb7-139"><a href="#cb7-139"></a>                <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</span>
+<span id="cb7-140"><a href="#cb7-140"></a>                <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</span>
+<span id="cb7-141"><a href="#cb7-141"></a>                <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</span>
+<span id="cb7-142"><a href="#cb7-142"></a>                <span class="dt">side =</span> <span class="st">"right"</span>,</span>
+<span id="cb7-143"><a href="#cb7-143"></a>                <span class="st">"Indeed, that's unbelievable!"</span></span>
+<span id="cb7-144"><a href="#cb7-144"></a>              )</span>
+<span id="cb7-145"><a href="#cb7-145"></a>            )</span>
+<span id="cb7-146"><a href="#cb7-146"></a>          )</span>
+<span id="cb7-147"><a href="#cb7-147"></a>        )</span>
+<span id="cb7-148"><a href="#cb7-148"></a>      )</span>
+<span id="cb7-149"><a href="#cb7-149"></a>    )</span>
+<span id="cb7-150"><a href="#cb7-150"></a>  ),</span>
+<span id="cb7-151"><a href="#cb7-151"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
+<span id="cb7-152"><a href="#cb7-152"></a>)</span></code></pre></div>
 </details><p><br></p>
 <p><img src="figures/bs4Dash_wrapup.png"><br></p>
 <p>Advanced shiny user would probably design shiny modules to generate this page, which I really encourage. However, how to deal with modules is not the purpose of this article.</p>

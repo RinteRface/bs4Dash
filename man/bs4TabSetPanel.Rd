@@ -13,7 +13,8 @@ bs4TabSetPanel(
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
-  vertical = FALSE
+  vertical = FALSE,
+  type = NULL
 )
 
 bs4DashControlbarMenu(
@@ -23,7 +24,8 @@ bs4DashControlbarMenu(
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
-  vertical = FALSE
+  vertical = FALSE,
+  type = NULL
 )
 
 tabsetPanel(
@@ -33,7 +35,8 @@ tabsetPanel(
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
-  vertical = FALSE
+  vertical = FALSE,
+  type = NULL
 )
 }
 \arguments{
@@ -53,6 +56,8 @@ A vector is possible with a colour for each tab button}
 \item{.list}{When elements are programmatically added, pass them here instead of in ...}
 
 \item{vertical}{Whether to display tabs in a vertical mode. FALSE by default.}
+
+\item{type}{TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone.

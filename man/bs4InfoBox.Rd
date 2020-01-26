@@ -9,9 +9,10 @@ bs4InfoBox(
   ...,
   tabName = NULL,
   title,
-  value = NULL,
+  value,
   icon = NULL,
-  iconElevation = 3,
+  iconStatus = NULL,
+  iconElevation = NULL,
   status = NULL,
   gradientColor = NULL,
   width = 4,
@@ -22,9 +23,10 @@ infoBox(
   ...,
   tabName = NULL,
   title,
-  value = NULL,
+  value,
   icon = NULL,
-  iconElevation = 3,
+  iconStatus = NULL,
+  iconElevation = NULL,
   status = NULL,
   gradientColor = NULL,
   width = 4,
@@ -41,6 +43,8 @@ infoBox(
 \item{value}{The value to display in the box. Usually a number or short text.}
 
 \item{icon}{An icon tag, created by \code{\link[shiny]{icon}}.}
+
+\item{iconStatus}{Icon color. Only if status is NULL.}
 
 \item{iconElevation}{Icon elevation compared to the main content (relief). 3 by default.}
 

@@ -67,45 +67,7 @@ if (interactive()) {
          tableOutput("data")
        )
      ),
-     bs4TabSetPanel(
-       id = "tabset2",
-       side = "left",
-       vertical = TRUE,
-       bs4TabPanel(
-         tabName = "Tab 1", 
-         active = FALSE,
-         sliderInput(
-           "obs", 
-           "Number of observations:",
-           min = 0,
-           max = 1000, 
-           value = 500
-         ),
-         plotOutput("distPlot")
-       ),
-       bs4TabPanel(
-         tabName = "Tab 2", 
-         active = TRUE,
-         radioButtons(
-           inline = TRUE,
-           "rb", "Choose one:",
-           choiceNames = list(
-             icon("calendar"),
-             HTML("<p style='color:red;'>Red Text</p>"),
-             "Normal text"
-           ),
-           choiceValues = list(
-             "icon", "html", "text"
-           )
-         ),
-         textOutput("txt")
-       ),
-       bs4TabPanel(
-         tabName = "Tab 3", 
-         active = FALSE,
-         "Content 3"
-       )
-     )
+     uiOutput("tabSetPanel2")
    ),
    sidebar = bs4DashSidebar(
      skin = "light",
@@ -129,24 +91,46 @@ if (interactive()) {
    footer = bs4DashFooter()
  ),
  server = function(input, output, session) {
+ 
+   output$tabSetPanel2 <- renderUI({
+    bs4TabSetPanel(
+      id = "tabset2",
+      side = "left",
+      bs4TabPanel(
+        tabName = "Tab 1", 
+        active = FALSE,
+        p("Tab 1 ")
+      ),
+      bs4TabPanel(
+        tabName = "Tab 2", 
+        active = FALSE,
+        p("Tab 2")
+      ),
+      bs4TabPanel(
+        tabName = "Tab 3", 
+        active = FALSE,
+        p("Tab 3")
+      )
+    )
+   })
    
    # update tabset1
    observeEvent(input$controller, {
      updatebs4TabSetPanel(
        session, 
        inputId = "tabset1", 
-       selected = input$controller
+       selected = paste("Tab", input$controller)
      )
-   })
+   }, ignoreInit = TRUE)
    
    # update tabset 2
    observeEvent(input$controller2, {
      updatebs4TabSetPanel(
        session, 
        inputId = "tabset2", 
-       selected = input$controller2
+       selected = paste("Tab", input$controller2)
      )
-   })
+   }, ignoreInit = TRUE)
    
    output$distPlot <- renderPlot({
      hist(rnorm(input$obs))

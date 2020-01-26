@@ -1,5 +1,57 @@
 $(function() {
   
+  // Input binding
+  var tabSetPanelBinding = new Shiny.InputBinding();
+  $.extend(tabSetPanelBinding, {
+    
+    initialize: function(el) {
+      var activeTab = $(el).find(".active");
+      // if no tab is selected, select the first tab by default
+      if (activeTab.length === 0) {
+        $('#' + $(el).attr('id') + ' ' + 'li:first-child a').tab('show');
+      }
+    },
+  
+    find: function(scope) {
+      return $(scope).find(".tabsetpanel");
+    },
+  
+    // Given the DOM element for the input, return the value
+    getValue: function(el) {
+      var activeTab = $(el).find(".active");
+      return $(activeTab).html(); 
+    },
+    
+    setValue: function(el, value) {
+      // tabs are prefixed by their container id
+      // this is to handle multiple tabs and shiny modules
+      var parent = $(el).attr('id');
+      // clean white space
+      value = value.replace(/\s/g, '');
+      $('#' + parent + ' ' + 'a[href="#' + parent + '-' + value + '"]').tab('show');
+    },
+  
+    // see updatebs4TabSetPanel
+    receiveMessage: function(el, data) {
+      // update the active tab
+      if (data.hasOwnProperty('value')) {
+        this.setValue(el, data.value);
+      }
+    },
+  
+    subscribe: function(el, callback) {
+      // important to use shown.bs.tab and not show.bs.tab!
+      $(el).on("shown.bs.tab.tabSetPanelBinding", function(e) {
+        callback();
+      });
+    },
+  
+    unsubscribe: function(el) {
+      $(el).off(".tabSetPanelBinding");
+    }
+  });
+  Shiny.inputBindings.register(tabSetPanelBinding);
+  
   // recover all tabSet ids in an array
   // The idea is that we will add each respective 
   // id to the Shiny.addCustomMessageHandler function
@@ -7,7 +59,7 @@ $(function() {
   // of the targeted tabSet
   var tabIds = [];
   getAllTabSetIds = function() {
-    $('.content-wrapper ul').each(function() {
+    $('.content-wrapper .tabsetpanel').each(function() {
       tabIds.push(this.id);
     });  
   };
@@ -15,25 +67,6 @@ $(function() {
   // call the function ...
   getAllTabSetIds();
   
-  // As mentioned previously, we create a customMessageHandler
-  // for each tabSet. The unique id will allow for multiple
-  // update call at the same time.
-  tabIds.forEach(function(index) {
-    Shiny.addCustomMessageHandler(index, function(message) {
-      var selectedIdx = message.value;
-      var selectedTab = index + '-Tab' + selectedIdx;
-      
-      // trigger a click on corresponding the tab button. This will enable the body content
-      // to be shown. Otherwise, shiny does not know if the element needs to be
-      // rendered...
-      $('#' + index + ' a[href="#' + selectedTab +'"]').trigger('click');
-      $('#' + selectedTab).addClass('active show');
-      
-      // remove active class from ul menu + the body content (tab content)
-      $('#' + index + ' a[href!="#' + selectedTab +'"]').removeClass('active');
-      $('div[id="' + selectedTab + '"]').siblings().removeClass('active show');
-    });
-  });
   
   // handles the insertTab function
   tabIds.forEach(function(index) {
@@ -112,34 +145,4 @@ $(function() {
     });
   });
   
-  
-  // handle the left sidebar tabs if needed
-  var sidebarIds = [];
-  getAllSidebarIds = function() {
-    $('.sidebarMenuSelectedTabItem').each(function() {
-      sidebarIds.push(this.id);
-    });  
-  };
-  
-  // call the function ...
-  getAllSidebarIds();
-  
-  // As mentioned previously, we create a customMessageHandler
-  // for the sidebar. We handle the case of multiple menus.
-  sidebarIds.forEach(function(index) {
-    Shiny.addCustomMessageHandler(index, function(message) {
-      var sidebarSiblings = $('#' + index).siblings().find('a');
-      var selectedIdx = message.value - 1;
-      var selectedTab = $(sidebarSiblings[selectedIdx]).attr('id');
-      // trigger a click on the corresponding the tab button. This will enable the body content
-      // to be shown. Otherwise, shiny does not know if the element needs to be
-      // rendered...
-      $('a[href="#shiny-' + selectedTab +'"]').trigger('click');
-      $('#shiny-' + selectedTab).addClass('active show');
-      
-      // remove active class from ul menu + the body content (tab content)
-      $('a[href!="#shiny-' + selectedTab +'"]').removeClass('active');
-      $('div[id="shiny-' + index + '"]').siblings().removeClass('active show');
-    });
-  });
 });

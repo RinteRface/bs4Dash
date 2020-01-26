@@ -16,11 +16,21 @@ reference:
   contents: 
   - '`column`'
   
+  
+- title: Feedback related functions
+  desc: Bootstrap 4 popovers, tooltips, ...
+  contents: 
+  - '`bs4PopoverServer`'
+  - '`bs4PopoverUI`'
+  - '`bs4TooltipServer`'
+  - '`bs4TooltipUI`'
+  
 
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
   - '`updatebs4Card`'
+  - '`updatebs4CardSidebar`'
   - '`updatebs4Controlbar`'
   - '`updatebs4ControlbarMenu`'
   - '`updatebs4Sidebar`'
@@ -56,6 +66,8 @@ reference:
   - '`bs4InfoBox`'
   - '`bs4ValueBox`'
   - '`bs4Card`'
+  - '`bs4CardLabel`'
+  - '`bs4CardSidebar`'
   - '`bs4TabCard`'
   - '`bs4UserCard`'
   - '`bs4SocialCard`'

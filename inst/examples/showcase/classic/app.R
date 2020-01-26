@@ -8,6 +8,7 @@ shiny::shinyApp(
     controlbar_overlay = FALSE,
     navbar = bs4DashNavbar(
       status = "white",
+      fixed = TRUE,
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
         bs4DropdownMenu(
@@ -182,6 +183,7 @@ shiny::shinyApp(
       )
     ),
     footer = bs4DashFooter(
+      fixed = TRUE,
       copyrights = a(
         href = "https://twitter.com/divadnojnarg", 
         target = "_blank", "@DivadNojnarg"

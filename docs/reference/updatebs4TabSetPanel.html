@@ -209,45 +209,7 @@ See updatebs4TabSetPanel for full details</p>
          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)
        )
      ),
-     <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
-       <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
-       <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(
-           <span class='st'>"obs"</span>,
-           <span class='st'>"Number of observations:"</span>,
-           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
-         ),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
-       ),
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/radioButtons.html'>radioButtons</a></span>(
-           <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-           <span class='st'>"rb"</span>, <span class='st'>"Choose one:"</span>,
-           <span class='kw'>choiceNames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"calendar"</span>),
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='st'>"&lt;p style='color:red;'&gt;Red Text&lt;/p&gt;"</span>),
-             <span class='st'>"Normal text"</span>
-           ),
-           <span class='kw'>choiceValues</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-             <span class='st'>"icon"</span>, <span class='st'>"html"</span>, <span class='st'>"text"</span>
-           )
-         ),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"txt"</span>)
-       ),
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='st'>"Content 3"</span>
-       )
-     )
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"tabSetPanel2"</span>)
    ),
    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
      <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
@@ -272,23 +234,45 @@ See updatebs4TabSetPanel for full details</p>
  ),
  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
+   <span class='no'>output</span>$<span class='no'>tabSetPanel2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
+    <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
+      <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
+      <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
+        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 1 "</span>)
+      ),
+      <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
+        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 2"</span>)
+      ),
+      <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
+        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
+        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 3"</span>)
+      )
+    )
+   })
+
    <span class='co'># update tabset1</span>
    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controller</span>, {
      <span class='fu'>updatebs4TabSetPanel</span>(
        <span class='no'>session</span>,
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
-       <span class='kw'>selected</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>controller</span>
+       <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Tab"</span>, <span class='no'>input</span>$<span class='no'>controller</span>)
      )
-   })
+   }, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
    <span class='co'># update tabset 2</span>
    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controller2</span>, {
      <span class='fu'>updatebs4TabSetPanel</span>(
        <span class='no'>session</span>,
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
-       <span class='kw'>selected</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>controller2</span>
+       <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Tab"</span>, <span class='no'>input</span>$<span class='no'>controller2</span>)
      )
-   })
+   }, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))

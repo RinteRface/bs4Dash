@@ -95,7 +95,7 @@
       <h1>Cards</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-12-17</h4>
+            <h4 class="date">2020-01-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4cards.Rmd"><code>vignettes/bs4cards.Rmd</code></a></small>
       <div class="hidden name"><code>bs4cards.Rmd</code></div>
@@ -111,47 +111,48 @@
 <p>See <code><a href="../reference/bs4Card.html">bs4Card()</a></code>.</p>
 <p><img src="figures/bs4Cards.png"><br></p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">      <span class="dt">title =</span> <span class="st">"Closable card with dropdown"</span>, </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">      <span class="dt">width =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">      <span class="dt">status =</span> <span class="st">"warning"</span>, </a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">      <span class="dt">labelText =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">      <span class="dt">labelStatus =</span> <span class="st">"danger"</span>,</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">      <span class="dt">labelTooltip =</span> <span class="st">"Hi Bro!"</span>,</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">      <span class="dt">dropdownIcon =</span> <span class="st">"wrench"</span>,</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">      <span class="dt">dropdownMenu =</span> <span class="kw"><a href="../reference/dropdownItemList.html">dropdownItemList</a></span>(</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"https://www.google.com"</span>, <span class="dt">name =</span> <span class="st">"Link to google"</span>),</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 2"</span>),</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">        <span class="kw"><a href="../reference/dropdownDivider.html">dropdownDivider</a></span>(),</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 3"</span>)</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">      ),</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">      <span class="kw">plotOutput</span>(<span class="st">"plot"</span>)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">    ),</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">      <span class="dt">title =</span> <span class="st">"Closable card with gradient"</span>, </a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">      <span class="dt">width =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb1-25" data-line-number="25">      <span class="dt">status =</span> <span class="st">"warning"</span>, </a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">      <span class="dt">gradientColor =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">      <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">    ),</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32">      <span class="dt">title =</span> <span class="st">"Card with solidHeader and elevation"</span>, </a>
-<a class="sourceLine" id="cb1-33" data-line-number="33">      <span class="dt">elevation =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb1-34" data-line-number="34">      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">      <span class="dt">width =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36">      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb1-37" data-line-number="37">      <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-39" data-line-number="39">      <span class="kw">plot_ly</span>(<span class="dt">z =</span> <span class="op">~</span>volcano) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_surface</span>()</a>
-<a class="sourceLine" id="cb1-40" data-line-number="40">    )</a>
-<a class="sourceLine" id="cb1-41" data-line-number="41">  )</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">fluidRow</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb1-3"><a href="#cb1-3"></a>      <span class="dt">title =</span> <span class="st">"Closable card with dropdown"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-5"><a href="#cb1-5"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb1-7"><a href="#cb1-7"></a>      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb1-8"><a href="#cb1-8"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>      <span class="dt">label =</span> <span class="kw"><a href="../reference/bs4CardLabel.html">bs4CardLabel</a></span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="dt">text =</span> <span class="dv">1</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="dt">tooltip =</span> <span class="st">"Hello!"</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>      ),</span>
+<span id="cb1-14"><a href="#cb1-14"></a>      <span class="dt">dropdownMenu =</span> <span class="kw"><a href="../reference/dropdownItemList.html">dropdownItemList</a></span>(</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"https://www.google.com"</span>, <span class="dt">name =</span> <span class="st">"Link to google"</span>),</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 2"</span>),</span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="kw"><a href="../reference/dropdownDivider.html">dropdownDivider</a></span>(),</span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="kw"><a href="../reference/dropdownItem.html">dropdownItem</a></span>(<span class="dt">url =</span> <span class="st">"#"</span>, <span class="dt">name =</span> <span class="st">"item 3"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>      ),</span>
+<span id="cb1-20"><a href="#cb1-20"></a>      <span class="kw">plotOutput</span>(<span class="st">"plot"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    ),</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb1-23"><a href="#cb1-23"></a>      <span class="dt">title =</span> <span class="st">"Closable card with gradient"</span>, </span>
+<span id="cb1-24"><a href="#cb1-24"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-25"><a href="#cb1-25"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-26"><a href="#cb1-26"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>, </span>
+<span id="cb1-27"><a href="#cb1-27"></a>      <span class="dt">solidHeader =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb1-28"><a href="#cb1-28"></a>      <span class="dt">gradientColor =</span> <span class="st">"success"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>      <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31"></a>    ),</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb1-33"><a href="#cb1-33"></a>      <span class="dt">title =</span> <span class="st">"Card with solidHeader and elevation"</span>, </span>
+<span id="cb1-34"><a href="#cb1-34"></a>      <span class="dt">elevation =</span> <span class="dv">4</span>,</span>
+<span id="cb1-35"><a href="#cb1-35"></a>      <span class="dt">closable =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-36"><a href="#cb1-36"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-37"><a href="#cb1-37"></a>      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb1-38"><a href="#cb1-38"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb1-39"><a href="#cb1-39"></a>      <span class="dt">collapsible =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-40"><a href="#cb1-40"></a>      <span class="kw">plot_ly</span>(<span class="dt">z =</span> <span class="op">~</span>volcano) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_surface</span>()</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    )</span>
+<span id="cb1-42"><a href="#cb1-42"></a>  )</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="social-cards" class="section level2">
@@ -160,133 +161,133 @@
 <p>See <code><a href="../reference/bs4UserCard.html">bs4UserCard()</a></code> and <code><a href="../reference/bs4SocialCard.html">bs4SocialCard()</a></code>.</p>
 <p><img src="figures/bs4SocialCards.png"><br></p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="kw"><a href="../reference/bs4UserCard.html">bs4UserCard</a></span>(</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">      <span class="dt">status =</span> <span class="st">"info"</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">      <span class="dt">title =</span> <span class="st">"User card type 1"</span>,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">      <span class="dt">subtitle =</span> <span class="st">"a subtitle here"</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">      <span class="dt">elevation =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">      <span class="st">"Any content here"</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    ),</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="kw"><a href="../reference/bs4UserCard.html">bs4UserCard</a></span>(</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">      <span class="dt">type =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">      <span class="dt">status =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">      <span class="dt">imageElevation =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">      <span class="dt">title =</span> <span class="st">"User card type 2"</span>,</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">      <span class="dt">subtitle =</span> <span class="st">"a subtitle here"</span>,</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">      <span class="kw"><a href="../reference/bs4ProgressBar.html">bs4ProgressBar</a></span>(</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">        <span class="dt">value =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">        <span class="dt">striped =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">        <span class="dt">status =</span> <span class="st">"info"</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">      ),</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">      <span class="kw"><a href="../reference/bs4ProgressBar.html">bs4ProgressBar</a></span>(</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">        <span class="dt">value =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">        <span class="dt">striped =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">        <span class="dt">status =</span> <span class="st">"warning"</span>,</a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">        <span class="dt">width =</span> <span class="st">"20%"</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">      )</a>
-<a class="sourceLine" id="cb2-28" data-line-number="28">    )</a>
-<a class="sourceLine" id="cb2-29" data-line-number="29">  ),</a>
-<a class="sourceLine" id="cb2-30" data-line-number="30">  <span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb2-31" data-line-number="31">    <span class="kw"><a href="../reference/bs4SocialCard.html">bs4SocialCard</a></span>(</a>
-<a class="sourceLine" id="cb2-32" data-line-number="32">      <span class="dt">title =</span> <span class="st">"Social Card"</span>,</a>
-<a class="sourceLine" id="cb2-33" data-line-number="33">      <span class="dt">subtitle =</span> <span class="st">"example-01.05.2018"</span>,</a>
-<a class="sourceLine" id="cb2-34" data-line-number="34">      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-35" data-line-number="35">      <span class="st">"Some text here!"</span>,</a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">      <span class="dt">comments =</span> <span class="kw">tagList</span>(</a>
-<a class="sourceLine" id="cb2-37" data-line-number="37">        <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dt">X =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb2-38" data-line-number="38">          <span class="kw"><a href="../reference/cardComment.html">cardComment</a></span>(</a>
-<a class="sourceLine" id="cb2-39" data-line-number="39">            <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-40" data-line-number="40">            <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Comment"</span>, i),</a>
-<a class="sourceLine" id="cb2-41" data-line-number="41">            <span class="dt">date =</span> <span class="st">"01.05.2018"</span>,</a>
-<a class="sourceLine" id="cb2-42" data-line-number="42">            <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"The "</span>, i, <span class="st">"-th comment"</span>)</a>
-<a class="sourceLine" id="cb2-43" data-line-number="43">          )</a>
-<a class="sourceLine" id="cb2-44" data-line-number="44">        })</a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">      ),</a>
-<a class="sourceLine" id="cb2-46" data-line-number="46">      <span class="dt">footer =</span> <span class="st">"The footer here!"</span></a>
-<a class="sourceLine" id="cb2-47" data-line-number="47">    ),</a>
-<a class="sourceLine" id="cb2-48" data-line-number="48">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb2-49" data-line-number="49">      <span class="dt">title =</span> <span class="st">"Box with user comment"</span>,</a>
-<a class="sourceLine" id="cb2-50" data-line-number="50">      <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb2-51" data-line-number="51">      <span class="kw"><a href="../reference/userPost.html">userPost</a></span>(</a>
-<a class="sourceLine" id="cb2-52" data-line-number="52">        <span class="dt">id =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb2-53" data-line-number="53">        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-54" data-line-number="54">        <span class="dt">author =</span> <span class="st">"Jonathan Burke Jr."</span>,</a>
-<a class="sourceLine" id="cb2-55" data-line-number="55">        <span class="dt">description =</span> <span class="st">"Shared publicly - 7:30 PM today"</span>,</a>
-<a class="sourceLine" id="cb2-56" data-line-number="56">        <span class="st">"Lorem ipsum represents a long-held tradition for designers, </span></a>
-<a class="sourceLine" id="cb2-57" data-line-number="57"><span class="st">       typographers and the like. Some people hate it and argue for </span></a>
-<a class="sourceLine" id="cb2-58" data-line-number="58"><span class="st">       its demise, but others ignore the hate as they create awesome </span></a>
-<a class="sourceLine" id="cb2-59" data-line-number="59"><span class="st">       tools to help create filler text for everyone from bacon </span></a>
-<a class="sourceLine" id="cb2-60" data-line-number="60"><span class="st">       lovers to Charlie Sheen fans."</span>,</a>
-<a class="sourceLine" id="cb2-61" data-line-number="61">        <span class="kw"><a href="../reference/userPostTagItems.html">userPostTagItems</a></span>(</a>
-<a class="sourceLine" id="cb2-62" data-line-number="62">          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 1"</span>, <span class="dt">status =</span> <span class="st">"warning"</span>)),</a>
-<a class="sourceLine" id="cb2-63" data-line-number="63">          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 2"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>))</a>
-<a class="sourceLine" id="cb2-64" data-line-number="64">        )</a>
-<a class="sourceLine" id="cb2-65" data-line-number="65">      ),</a>
-<a class="sourceLine" id="cb2-66" data-line-number="66">      <span class="kw"><a href="../reference/userPost.html">userPost</a></span>(</a>
-<a class="sourceLine" id="cb2-67" data-line-number="67">        <span class="dt">id =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb2-68" data-line-number="68">        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-69" data-line-number="69">        <span class="dt">author =</span> <span class="st">"Adam Jones"</span>,</a>
-<a class="sourceLine" id="cb2-70" data-line-number="70">        <span class="dt">description =</span> <span class="st">"Shared publicly - 5 days ago"</span>,</a>
-<a class="sourceLine" id="cb2-71" data-line-number="71">        <span class="kw"><a href="../reference/userPostMedia.html">userPostMedia</a></span>(<span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"</span>),</a>
-<a class="sourceLine" id="cb2-72" data-line-number="72">        <span class="kw"><a href="../reference/userPostTagItems.html">userPostTagItems</a></span>(</a>
-<a class="sourceLine" id="cb2-73" data-line-number="73">          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 1"</span>, <span class="dt">status =</span> <span class="st">"info"</span>)),</a>
-<a class="sourceLine" id="cb2-74" data-line-number="74">          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 2"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>))</a>
-<a class="sourceLine" id="cb2-75" data-line-number="75">        )</a>
-<a class="sourceLine" id="cb2-76" data-line-number="76">      )</a>
-<a class="sourceLine" id="cb2-77" data-line-number="77">    )</a>
-<a class="sourceLine" id="cb2-78" data-line-number="78">  ),</a>
-<a class="sourceLine" id="cb2-79" data-line-number="79">  <span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb2-80" data-line-number="80">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb2-81" data-line-number="81">      <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb2-82" data-line-number="82">      <span class="dt">width =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb2-83" data-line-number="83">      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb2-84" data-line-number="84">      <span class="kw"><a href="../reference/cardProfile.html">cardProfile</a></span>(</a>
-<a class="sourceLine" id="cb2-85" data-line-number="85">        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-86" data-line-number="86">        <span class="dt">title =</span> <span class="st">"Nina Mcintire"</span>,</a>
-<a class="sourceLine" id="cb2-87" data-line-number="87">        <span class="dt">subtitle =</span> <span class="st">"Software Engineer"</span>,</a>
-<a class="sourceLine" id="cb2-88" data-line-number="88">        <span class="kw"><a href="../reference/cardProfileItemList.html">cardProfileItemList</a></span>(</a>
-<a class="sourceLine" id="cb2-89" data-line-number="89">          <span class="dt">bordered =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb2-90" data-line-number="90">          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</a>
-<a class="sourceLine" id="cb2-91" data-line-number="91">            <span class="dt">title =</span> <span class="st">"Followers"</span>,</a>
-<a class="sourceLine" id="cb2-92" data-line-number="92">            <span class="dt">description =</span> <span class="dv">1322</span></a>
-<a class="sourceLine" id="cb2-93" data-line-number="93">          ),</a>
-<a class="sourceLine" id="cb2-94" data-line-number="94">          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</a>
-<a class="sourceLine" id="cb2-95" data-line-number="95">            <span class="dt">title =</span> <span class="st">"Following"</span>,</a>
-<a class="sourceLine" id="cb2-96" data-line-number="96">            <span class="dt">description =</span> <span class="dv">543</span></a>
-<a class="sourceLine" id="cb2-97" data-line-number="97">          ),</a>
-<a class="sourceLine" id="cb2-98" data-line-number="98">          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</a>
-<a class="sourceLine" id="cb2-99" data-line-number="99">            <span class="dt">title =</span> <span class="st">"Friends"</span>,</a>
-<a class="sourceLine" id="cb2-100" data-line-number="100">            <span class="dt">description =</span> <span class="dv">13287</span></a>
-<a class="sourceLine" id="cb2-101" data-line-number="101">          )</a>
-<a class="sourceLine" id="cb2-102" data-line-number="102">        )</a>
-<a class="sourceLine" id="cb2-103" data-line-number="103">      )</a>
-<a class="sourceLine" id="cb2-104" data-line-number="104">    ),</a>
-<a class="sourceLine" id="cb2-105" data-line-number="105">    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
-<a class="sourceLine" id="cb2-106" data-line-number="106">      <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</a>
-<a class="sourceLine" id="cb2-107" data-line-number="107">      <span class="dt">width =</span> <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb2-108" data-line-number="108">      <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</a>
-<a class="sourceLine" id="cb2-109" data-line-number="109">        <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb2-110" data-line-number="110">        <span class="dt">status =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb2-111" data-line-number="111">        <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb2-112" data-line-number="112">          <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</a>
-<a class="sourceLine" id="cb2-113" data-line-number="113">          <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</a>
-<a class="sourceLine" id="cb2-114" data-line-number="114">          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-115" data-line-number="115">          <span class="dt">side =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb2-116" data-line-number="116">          <span class="st">"Is this template really for free? That's unbelievable!"</span></a>
-<a class="sourceLine" id="cb2-117" data-line-number="117">        ),</a>
-<a class="sourceLine" id="cb2-118" data-line-number="118">        <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</a>
-<a class="sourceLine" id="cb2-119" data-line-number="119">          <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</a>
-<a class="sourceLine" id="cb2-120" data-line-number="120">          <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</a>
-<a class="sourceLine" id="cb2-121" data-line-number="121">          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</a>
-<a class="sourceLine" id="cb2-122" data-line-number="122">          <span class="dt">side =</span> <span class="st">"right"</span>,</a>
-<a class="sourceLine" id="cb2-123" data-line-number="123">          <span class="st">"Indeed, that's unbelievable!"</span></a>
-<a class="sourceLine" id="cb2-124" data-line-number="124">        )</a>
-<a class="sourceLine" id="cb2-125" data-line-number="125">      )</a>
-<a class="sourceLine" id="cb2-126" data-line-number="126">    )</a>
-<a class="sourceLine" id="cb2-127" data-line-number="127">  )</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">fluidRow</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw"><a href="../reference/bs4UserCard.html">bs4UserCard</a></span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>      <span class="dt">status =</span> <span class="st">"info"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>      <span class="dt">title =</span> <span class="st">"User card type 1"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>      <span class="dt">subtitle =</span> <span class="st">"a subtitle here"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>      <span class="dt">elevation =</span> <span class="dv">4</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>      <span class="st">"Any content here"</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    ),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="kw"><a href="../reference/bs4UserCard.html">bs4UserCard</a></span>(</span>
+<span id="cb2-11"><a href="#cb2-11"></a>      <span class="dt">type =</span> <span class="dv">2</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>      <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>      <span class="dt">imageElevation =</span> <span class="dv">4</span>,</span>
+<span id="cb2-15"><a href="#cb2-15"></a>      <span class="dt">title =</span> <span class="st">"User card type 2"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="dt">subtitle =</span> <span class="st">"a subtitle here"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>      <span class="kw"><a href="../reference/bs4ProgressBar.html">bs4ProgressBar</a></span>(</span>
+<span id="cb2-18"><a href="#cb2-18"></a>        <span class="dt">value =</span> <span class="dv">5</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>        <span class="dt">striped =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>        <span class="dt">status =</span> <span class="st">"info"</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>      ),</span>
+<span id="cb2-22"><a href="#cb2-22"></a>      <span class="kw"><a href="../reference/bs4ProgressBar.html">bs4ProgressBar</a></span>(</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="dt">value =</span> <span class="dv">5</span>,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="dt">striped =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>        <span class="dt">status =</span> <span class="st">"warning"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26"></a>        <span class="dt">width =</span> <span class="st">"20%"</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>      )</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    )</span>
+<span id="cb2-29"><a href="#cb2-29"></a>  ),</span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb2-31"><a href="#cb2-31"></a>    <span class="kw"><a href="../reference/bs4SocialCard.html">bs4SocialCard</a></span>(</span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="dt">title =</span> <span class="st">"Social Card"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>      <span class="dt">subtitle =</span> <span class="st">"example-01.05.2018"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34"></a>      <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35"></a>      <span class="st">"Some text here!"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36"></a>      <span class="dt">comments =</span> <span class="kw">tagList</span>(</span>
+<span id="cb2-37"><a href="#cb2-37"></a>        <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dt">X =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</span>
+<span id="cb2-38"><a href="#cb2-38"></a>          <span class="kw"><a href="../reference/cardComment.html">cardComment</a></span>(</span>
+<span id="cb2-39"><a href="#cb2-39"></a>            <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40"></a>            <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Comment"</span>, i),</span>
+<span id="cb2-41"><a href="#cb2-41"></a>            <span class="dt">date =</span> <span class="st">"01.05.2018"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42"></a>            <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"The "</span>, i, <span class="st">"-th comment"</span>)</span>
+<span id="cb2-43"><a href="#cb2-43"></a>          )</span>
+<span id="cb2-44"><a href="#cb2-44"></a>        })</span>
+<span id="cb2-45"><a href="#cb2-45"></a>      ),</span>
+<span id="cb2-46"><a href="#cb2-46"></a>      <span class="dt">footer =</span> <span class="st">"The footer here!"</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a>    ),</span>
+<span id="cb2-48"><a href="#cb2-48"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb2-49"><a href="#cb2-49"></a>      <span class="dt">title =</span> <span class="st">"Box with user comment"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb2-51"><a href="#cb2-51"></a>      <span class="kw"><a href="../reference/userPost.html">userPost</a></span>(</span>
+<span id="cb2-52"><a href="#cb2-52"></a>        <span class="dt">id =</span> <span class="dv">1</span>,</span>
+<span id="cb2-53"><a href="#cb2-53"></a>        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54"></a>        <span class="dt">author =</span> <span class="st">"Jonathan Burke Jr."</span>,</span>
+<span id="cb2-55"><a href="#cb2-55"></a>        <span class="dt">description =</span> <span class="st">"Shared publicly - 7:30 PM today"</span>,</span>
+<span id="cb2-56"><a href="#cb2-56"></a>        <span class="st">"Lorem ipsum represents a long-held tradition for designers, </span></span>
+<span id="cb2-57"><a href="#cb2-57"></a><span class="st">       typographers and the like. Some people hate it and argue for </span></span>
+<span id="cb2-58"><a href="#cb2-58"></a><span class="st">       its demise, but others ignore the hate as they create awesome </span></span>
+<span id="cb2-59"><a href="#cb2-59"></a><span class="st">       tools to help create filler text for everyone from bacon </span></span>
+<span id="cb2-60"><a href="#cb2-60"></a><span class="st">       lovers to Charlie Sheen fans."</span>,</span>
+<span id="cb2-61"><a href="#cb2-61"></a>        <span class="kw"><a href="../reference/userPostTagItems.html">userPostTagItems</a></span>(</span>
+<span id="cb2-62"><a href="#cb2-62"></a>          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 1"</span>, <span class="dt">status =</span> <span class="st">"warning"</span>)),</span>
+<span id="cb2-63"><a href="#cb2-63"></a>          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 2"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>))</span>
+<span id="cb2-64"><a href="#cb2-64"></a>        )</span>
+<span id="cb2-65"><a href="#cb2-65"></a>      ),</span>
+<span id="cb2-66"><a href="#cb2-66"></a>      <span class="kw"><a href="../reference/userPost.html">userPost</a></span>(</span>
+<span id="cb2-67"><a href="#cb2-67"></a>        <span class="dt">id =</span> <span class="dv">2</span>,</span>
+<span id="cb2-68"><a href="#cb2-68"></a>        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg"</span>,</span>
+<span id="cb2-69"><a href="#cb2-69"></a>        <span class="dt">author =</span> <span class="st">"Adam Jones"</span>,</span>
+<span id="cb2-70"><a href="#cb2-70"></a>        <span class="dt">description =</span> <span class="st">"Shared publicly - 5 days ago"</span>,</span>
+<span id="cb2-71"><a href="#cb2-71"></a>        <span class="kw"><a href="../reference/userPostMedia.html">userPostMedia</a></span>(<span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"</span>),</span>
+<span id="cb2-72"><a href="#cb2-72"></a>        <span class="kw"><a href="../reference/userPostTagItems.html">userPostTagItems</a></span>(</span>
+<span id="cb2-73"><a href="#cb2-73"></a>          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 1"</span>, <span class="dt">status =</span> <span class="st">"info"</span>)),</span>
+<span id="cb2-74"><a href="#cb2-74"></a>          <span class="kw"><a href="../reference/userPostTagItem.html">userPostTagItem</a></span>(<span class="kw"><a href="../reference/bs4Badge.html">bs4Badge</a></span>(<span class="st">"item 2"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>))</span>
+<span id="cb2-75"><a href="#cb2-75"></a>        )</span>
+<span id="cb2-76"><a href="#cb2-76"></a>      )</span>
+<span id="cb2-77"><a href="#cb2-77"></a>    )</span>
+<span id="cb2-78"><a href="#cb2-78"></a>  ),</span>
+<span id="cb2-79"><a href="#cb2-79"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb2-80"><a href="#cb2-80"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb2-81"><a href="#cb2-81"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb2-82"><a href="#cb2-82"></a>      <span class="dt">width =</span> <span class="dv">3</span>,</span>
+<span id="cb2-83"><a href="#cb2-83"></a>      <span class="dt">solidHeader =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb2-84"><a href="#cb2-84"></a>      <span class="kw"><a href="../reference/cardProfile.html">cardProfile</a></span>(</span>
+<span id="cb2-85"><a href="#cb2-85"></a>        <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,</span>
+<span id="cb2-86"><a href="#cb2-86"></a>        <span class="dt">title =</span> <span class="st">"Nina Mcintire"</span>,</span>
+<span id="cb2-87"><a href="#cb2-87"></a>        <span class="dt">subtitle =</span> <span class="st">"Software Engineer"</span>,</span>
+<span id="cb2-88"><a href="#cb2-88"></a>        <span class="kw"><a href="../reference/cardProfileItemList.html">cardProfileItemList</a></span>(</span>
+<span id="cb2-89"><a href="#cb2-89"></a>          <span class="dt">bordered =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb2-90"><a href="#cb2-90"></a>          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</span>
+<span id="cb2-91"><a href="#cb2-91"></a>            <span class="dt">title =</span> <span class="st">"Followers"</span>,</span>
+<span id="cb2-92"><a href="#cb2-92"></a>            <span class="dt">description =</span> <span class="dv">1322</span></span>
+<span id="cb2-93"><a href="#cb2-93"></a>          ),</span>
+<span id="cb2-94"><a href="#cb2-94"></a>          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</span>
+<span id="cb2-95"><a href="#cb2-95"></a>            <span class="dt">title =</span> <span class="st">"Following"</span>,</span>
+<span id="cb2-96"><a href="#cb2-96"></a>            <span class="dt">description =</span> <span class="dv">543</span></span>
+<span id="cb2-97"><a href="#cb2-97"></a>          ),</span>
+<span id="cb2-98"><a href="#cb2-98"></a>          <span class="kw"><a href="../reference/cardProfileItem.html">cardProfileItem</a></span>(</span>
+<span id="cb2-99"><a href="#cb2-99"></a>            <span class="dt">title =</span> <span class="st">"Friends"</span>,</span>
+<span id="cb2-100"><a href="#cb2-100"></a>            <span class="dt">description =</span> <span class="dv">13287</span></span>
+<span id="cb2-101"><a href="#cb2-101"></a>          )</span>
+<span id="cb2-102"><a href="#cb2-102"></a>        )</span>
+<span id="cb2-103"><a href="#cb2-103"></a>      )</span>
+<span id="cb2-104"><a href="#cb2-104"></a>    ),</span>
+<span id="cb2-105"><a href="#cb2-105"></a>    <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
+<span id="cb2-106"><a href="#cb2-106"></a>      <span class="dt">title =</span> <span class="st">"Card with messages"</span>,</span>
+<span id="cb2-107"><a href="#cb2-107"></a>      <span class="dt">width =</span> <span class="dv">9</span>,</span>
+<span id="cb2-108"><a href="#cb2-108"></a>      <span class="kw"><a href="../reference/userMessages.html">userMessages</a></span>(</span>
+<span id="cb2-109"><a href="#cb2-109"></a>        <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb2-110"><a href="#cb2-110"></a>        <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb2-111"><a href="#cb2-111"></a>        <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb2-112"><a href="#cb2-112"></a>          <span class="dt">author =</span> <span class="st">"Alexander Pierce"</span>,</span>
+<span id="cb2-113"><a href="#cb2-113"></a>          <span class="dt">date =</span> <span class="st">"20 Jan 2:00 pm"</span>,</span>
+<span id="cb2-114"><a href="#cb2-114"></a>          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
+<span id="cb2-115"><a href="#cb2-115"></a>          <span class="dt">side =</span> <span class="ot">NULL</span>,</span>
+<span id="cb2-116"><a href="#cb2-116"></a>          <span class="st">"Is this template really for free? That's unbelievable!"</span></span>
+<span id="cb2-117"><a href="#cb2-117"></a>        ),</span>
+<span id="cb2-118"><a href="#cb2-118"></a>        <span class="kw"><a href="../reference/userMessage.html">userMessage</a></span>(</span>
+<span id="cb2-119"><a href="#cb2-119"></a>          <span class="dt">author =</span> <span class="st">"Dana Pierce"</span>,</span>
+<span id="cb2-120"><a href="#cb2-120"></a>          <span class="dt">date =</span> <span class="st">"21 Jan 4:00 pm"</span>,</span>
+<span id="cb2-121"><a href="#cb2-121"></a>          <span class="dt">src =</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg"</span>,</span>
+<span id="cb2-122"><a href="#cb2-122"></a>          <span class="dt">side =</span> <span class="st">"right"</span>,</span>
+<span id="cb2-123"><a href="#cb2-123"></a>          <span class="st">"Indeed, that's unbelievable!"</span></span>
+<span id="cb2-124"><a href="#cb2-124"></a>        )</span>
+<span id="cb2-125"><a href="#cb2-125"></a>      )</span>
+<span id="cb2-126"><a href="#cb2-126"></a>    )</span>
+<span id="cb2-127"><a href="#cb2-127"></a>  )</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="tab-cards" class="section level2">
@@ -295,105 +296,107 @@
 <p>See <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</p>
 <p><img src="figures/bs4TabCards.png"><br></p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw"><a href="../reference/column.html">column</a></span>(</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">      <span class="dt">width =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">      <span class="kw"><a href="../reference/bs4TabCard.html">bs4TabCard</a></span>(</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">        <span class="dt">title =</span> <span class="st">"A card with tabs"</span>,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">        <span class="dt">elevation =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">        <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">          <span class="dt">tabName =</span> <span class="st">"Tab 1"</span>,</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">          <span class="dt">active =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">          <span class="st">"A wonderful serenity has taken possession of my entire soul,</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">          like these sweet mornings of spring which I enjoy with my</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">          whole heart. I am alone, and feel the charm of existence in</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">          this spot, which was created for the bliss of souls like mine.</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">          I am so happy, my dear friend, so absorbed in the exquisite sense</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">          of mere tranquil existence, that I neglect my talents. I should be</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">          incapable of drawing a single stroke at the present moment; and yet</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">          I feel that I never was a greater artist than now"</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">        ),</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">          <span class="dt">tabName =</span> <span class="st">"Tab 2"</span>,</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">          <span class="dt">active =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">          <span class="st">"The European languages are members of the same family.</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">          Their separate existence is a myth. For science, music,</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">          sport, etc, Europe uses the same vocabulary. The languages</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">          only differ in their grammar, their pronunciation and their</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="st">          most common words. Everyone realizes why a new common</span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="st">          language would be desirable: one could refuse to pay expensive</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="st">          translators. To achieve this, it would be necessary to have</span></a>
-<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="st">          uniform grammar, pronunciation and more common words. If several</span></a>
-<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="st">          languages coalesce, the grammar of the resulting language is</span></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">          more simple and regular than that of the individual languages."</span></a>
-<a class="sourceLine" id="cb3-33" data-line-number="33">        ),</a>
-<a class="sourceLine" id="cb3-34" data-line-number="34">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-35" data-line-number="35">          <span class="dt">tabName =</span> <span class="st">"Tab 3"</span>,</a>
-<a class="sourceLine" id="cb3-36" data-line-number="36">          <span class="dt">active =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-37" data-line-number="37">          <span class="st">"Lorem Ipsum is simply dummy text of the printing and</span></a>
-<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="st">          typesetting industry. Lorem Ipsum has been the industry's</span></a>
-<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="st">          standard dummy text ever since the 1500s, when an unknown</span></a>
-<a class="sourceLine" id="cb3-40" data-line-number="40"><span class="st">          printer took a galley of type and scrambled it to make a</span></a>
-<a class="sourceLine" id="cb3-41" data-line-number="41"><span class="st">          type specimen book. It has survived not only five centuries,</span></a>
-<a class="sourceLine" id="cb3-42" data-line-number="42"><span class="st">          but also the leap into electronic typesetting, remaining</span></a>
-<a class="sourceLine" id="cb3-43" data-line-number="43"><span class="st">          essentially unchanged. It was popularised in the 1960s with</span></a>
-<a class="sourceLine" id="cb3-44" data-line-number="44"><span class="st">          the release of Letraset sheets containing Lorem Ipsum passages,</span></a>
-<a class="sourceLine" id="cb3-45" data-line-number="45"><span class="st">          and more recently with desktop publishing software like Aldus</span></a>
-<a class="sourceLine" id="cb3-46" data-line-number="46"><span class="st">          PageMaker including versions of Lorem Ipsum."</span></a>
-<a class="sourceLine" id="cb3-47" data-line-number="47">        )</a>
-<a class="sourceLine" id="cb3-48" data-line-number="48">      )</a>
-<a class="sourceLine" id="cb3-49" data-line-number="49">    ),</a>
-<a class="sourceLine" id="cb3-50" data-line-number="50">    <span class="kw"><a href="../reference/column.html">column</a></span>(</a>
-<a class="sourceLine" id="cb3-51" data-line-number="51">      <span class="dt">width =</span> <span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb3-52" data-line-number="52">      <span class="kw"><a href="../reference/bs4TabCard.html">bs4TabCard</a></span>(</a>
-<a class="sourceLine" id="cb3-53" data-line-number="53">        <span class="dt">title =</span> <span class="st">"A card with tabs"</span>,</a>
-<a class="sourceLine" id="cb3-54" data-line-number="54">        <span class="dt">side =</span> <span class="st">"right"</span>,</a>
-<a class="sourceLine" id="cb3-55" data-line-number="55">        <span class="dt">elevation =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb3-56" data-line-number="56">        <span class="dt">width =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb3-57" data-line-number="57">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-58" data-line-number="58">          <span class="dt">tabName =</span> <span class="st">"Tab 4"</span>,</a>
-<a class="sourceLine" id="cb3-59" data-line-number="59">          <span class="dt">active =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-60" data-line-number="60">          <span class="st">"A wonderful serenity has taken possession of my entire soul,</span></a>
-<a class="sourceLine" id="cb3-61" data-line-number="61"><span class="st">          like these sweet mornings of spring which I enjoy with my</span></a>
-<a class="sourceLine" id="cb3-62" data-line-number="62"><span class="st">          whole heart. I am alone, and feel the charm of existence in</span></a>
-<a class="sourceLine" id="cb3-63" data-line-number="63"><span class="st">          this spot, which was created for the bliss of souls like mine.</span></a>
-<a class="sourceLine" id="cb3-64" data-line-number="64"><span class="st">          I am so happy, my dear friend, so absorbed in the exquisite sense</span></a>
-<a class="sourceLine" id="cb3-65" data-line-number="65"><span class="st">          of mere tranquil existence, that I neglect my talents. I should be</span></a>
-<a class="sourceLine" id="cb3-66" data-line-number="66"><span class="st">          incapable of drawing a single stroke at the present moment; and yet</span></a>
-<a class="sourceLine" id="cb3-67" data-line-number="67"><span class="st">          I feel that I never was a greater artist than now"</span></a>
-<a class="sourceLine" id="cb3-68" data-line-number="68">        ),</a>
-<a class="sourceLine" id="cb3-69" data-line-number="69">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-70" data-line-number="70">          <span class="dt">tabName =</span> <span class="st">"Tab 5"</span>,</a>
-<a class="sourceLine" id="cb3-71" data-line-number="71">          <span class="dt">active =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb3-72" data-line-number="72">          <span class="st">"The European languages are members of the same family.</span></a>
-<a class="sourceLine" id="cb3-73" data-line-number="73"><span class="st">          Their separate existence is a myth. For science, music,</span></a>
-<a class="sourceLine" id="cb3-74" data-line-number="74"><span class="st">          sport, etc, Europe uses the same vocabulary. The languages</span></a>
-<a class="sourceLine" id="cb3-75" data-line-number="75"><span class="st">          only differ in their grammar, their pronunciation and their</span></a>
-<a class="sourceLine" id="cb3-76" data-line-number="76"><span class="st">          most common words. Everyone realizes why a new common</span></a>
-<a class="sourceLine" id="cb3-77" data-line-number="77"><span class="st">          language would be desirable: one could refuse to pay expensive</span></a>
-<a class="sourceLine" id="cb3-78" data-line-number="78"><span class="st">          translators. To achieve this, it would be necessary to have</span></a>
-<a class="sourceLine" id="cb3-79" data-line-number="79"><span class="st">          uniform grammar, pronunciation and more common words. If several</span></a>
-<a class="sourceLine" id="cb3-80" data-line-number="80"><span class="st">          languages coalesce, the grammar of the resulting language is</span></a>
-<a class="sourceLine" id="cb3-81" data-line-number="81"><span class="st">          more simple and regular than that of the individual languages."</span></a>
-<a class="sourceLine" id="cb3-82" data-line-number="82">        ),</a>
-<a class="sourceLine" id="cb3-83" data-line-number="83">        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</a>
-<a class="sourceLine" id="cb3-84" data-line-number="84">          <span class="dt">tabName =</span> <span class="st">"Tab 6"</span>,</a>
-<a class="sourceLine" id="cb3-85" data-line-number="85">          <span class="dt">active =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-86" data-line-number="86">          <span class="st">"Lorem Ipsum is simply dummy text of the printing and</span></a>
-<a class="sourceLine" id="cb3-87" data-line-number="87"><span class="st">          typesetting industry. Lorem Ipsum has been the industry's</span></a>
-<a class="sourceLine" id="cb3-88" data-line-number="88"><span class="st">          standard dummy text ever since the 1500s, when an unknown</span></a>
-<a class="sourceLine" id="cb3-89" data-line-number="89"><span class="st">          printer took a galley of type and scrambled it to make a</span></a>
-<a class="sourceLine" id="cb3-90" data-line-number="90"><span class="st">          type specimen book. It has survived not only five centuries,</span></a>
-<a class="sourceLine" id="cb3-91" data-line-number="91"><span class="st">          but also the leap into electronic typesetting, remaining</span></a>
-<a class="sourceLine" id="cb3-92" data-line-number="92"><span class="st">          essentially unchanged. It was popularised in the 1960s with</span></a>
-<a class="sourceLine" id="cb3-93" data-line-number="93"><span class="st">          the release of Letraset sheets containing Lorem Ipsum passages,</span></a>
-<a class="sourceLine" id="cb3-94" data-line-number="94"><span class="st">          and more recently with desktop publishing software like Aldus</span></a>
-<a class="sourceLine" id="cb3-95" data-line-number="95"><span class="st">          PageMaker including versions of Lorem Ipsum."</span></a>
-<a class="sourceLine" id="cb3-96" data-line-number="96">        )</a>
-<a class="sourceLine" id="cb3-97" data-line-number="97">      )</a>
-<a class="sourceLine" id="cb3-98" data-line-number="98">    )</a>
-<a class="sourceLine" id="cb3-99" data-line-number="99">  )</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">fluidRow</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw"><a href="../reference/column.html">column</a></span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>      <span class="kw"><a href="../reference/bs4TabCard.html">bs4TabCard</a></span>(</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="dt">id =</span> <span class="st">"tabcard1"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="dt">title =</span> <span class="st">"A card with tabs"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>        <span class="dt">elevation =</span> <span class="dv">2</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-10"><a href="#cb3-10"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 1"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>          <span class="dt">active =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>          <span class="st">"A wonderful serenity has taken possession of my entire soul,</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="st">          like these sweet mornings of spring which I enjoy with my</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="st">          whole heart. I am alone, and feel the charm of existence in</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="st">          this spot, which was created for the bliss of souls like mine.</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="st">          I am so happy, my dear friend, so absorbed in the exquisite sense</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="st">          of mere tranquil existence, that I neglect my talents. I should be</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="st">          incapable of drawing a single stroke at the present moment; and yet</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="st">          I feel that I never was a greater artist than now"</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>        ),</span>
+<span id="cb3-21"><a href="#cb3-21"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-22"><a href="#cb3-22"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 2"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23"></a>          <span class="dt">active =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>          <span class="st">"The European languages are members of the same family.</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="st">          Their separate existence is a myth. For science, music,</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="st">          sport, etc, Europe uses the same vocabulary. The languages</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="st">          only differ in their grammar, their pronunciation and their</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="st">          most common words. Everyone realizes why a new common</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="st">          language would be desirable: one could refuse to pay expensive</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="st">          translators. To achieve this, it would be necessary to have</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="st">          uniform grammar, pronunciation and more common words. If several</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="st">          languages coalesce, the grammar of the resulting language is</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="st">          more simple and regular than that of the individual languages."</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>        ),</span>
+<span id="cb3-35"><a href="#cb3-35"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-36"><a href="#cb3-36"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 3"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37"></a>          <span class="dt">active =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-38"><a href="#cb3-38"></a>          <span class="st">"Lorem Ipsum is simply dummy text of the printing and</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="st">          typesetting industry. Lorem Ipsum has been the industry's</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="st">          standard dummy text ever since the 1500s, when an unknown</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="st">          printer took a galley of type and scrambled it to make a</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="st">          type specimen book. It has survived not only five centuries,</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="st">          but also the leap into electronic typesetting, remaining</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="st">          essentially unchanged. It was popularised in the 1960s with</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="st">          the release of Letraset sheets containing Lorem Ipsum passages,</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="st">          and more recently with desktop publishing software like Aldus</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="st">          PageMaker including versions of Lorem Ipsum."</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>        )</span>
+<span id="cb3-49"><a href="#cb3-49"></a>      )</span>
+<span id="cb3-50"><a href="#cb3-50"></a>    ),</span>
+<span id="cb3-51"><a href="#cb3-51"></a>    <span class="kw"><a href="../reference/column.html">column</a></span>(</span>
+<span id="cb3-52"><a href="#cb3-52"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb3-53"><a href="#cb3-53"></a>      <span class="kw"><a href="../reference/bs4TabCard.html">bs4TabCard</a></span>(</span>
+<span id="cb3-54"><a href="#cb3-54"></a>        <span class="dt">id =</span> <span class="st">"tabcard2"</span>,</span>
+<span id="cb3-55"><a href="#cb3-55"></a>        <span class="dt">title =</span> <span class="st">"A card with tabs"</span>,</span>
+<span id="cb3-56"><a href="#cb3-56"></a>        <span class="dt">side =</span> <span class="st">"right"</span>,</span>
+<span id="cb3-57"><a href="#cb3-57"></a>        <span class="dt">elevation =</span> <span class="dv">2</span>,</span>
+<span id="cb3-58"><a href="#cb3-58"></a>        <span class="dt">width =</span> <span class="dv">12</span>,</span>
+<span id="cb3-59"><a href="#cb3-59"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-60"><a href="#cb3-60"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 4"</span>,</span>
+<span id="cb3-61"><a href="#cb3-61"></a>          <span class="dt">active =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-62"><a href="#cb3-62"></a>          <span class="st">"A wonderful serenity has taken possession of my entire soul,</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a><span class="st">          like these sweet mornings of spring which I enjoy with my</span></span>
+<span id="cb3-64"><a href="#cb3-64"></a><span class="st">          whole heart. I am alone, and feel the charm of existence in</span></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="st">          this spot, which was created for the bliss of souls like mine.</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a><span class="st">          I am so happy, my dear friend, so absorbed in the exquisite sense</span></span>
+<span id="cb3-67"><a href="#cb3-67"></a><span class="st">          of mere tranquil existence, that I neglect my talents. I should be</span></span>
+<span id="cb3-68"><a href="#cb3-68"></a><span class="st">          incapable of drawing a single stroke at the present moment; and yet</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a><span class="st">          I feel that I never was a greater artist than now"</span></span>
+<span id="cb3-70"><a href="#cb3-70"></a>        ),</span>
+<span id="cb3-71"><a href="#cb3-71"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-72"><a href="#cb3-72"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 5"</span>,</span>
+<span id="cb3-73"><a href="#cb3-73"></a>          <span class="dt">active =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-74"><a href="#cb3-74"></a>          <span class="st">"The European languages are members of the same family.</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a><span class="st">          Their separate existence is a myth. For science, music,</span></span>
+<span id="cb3-76"><a href="#cb3-76"></a><span class="st">          sport, etc, Europe uses the same vocabulary. The languages</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a><span class="st">          only differ in their grammar, their pronunciation and their</span></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="st">          most common words. Everyone realizes why a new common</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a><span class="st">          language would be desirable: one could refuse to pay expensive</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a><span class="st">          translators. To achieve this, it would be necessary to have</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a><span class="st">          uniform grammar, pronunciation and more common words. If several</span></span>
+<span id="cb3-82"><a href="#cb3-82"></a><span class="st">          languages coalesce, the grammar of the resulting language is</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a><span class="st">          more simple and regular than that of the individual languages."</span></span>
+<span id="cb3-84"><a href="#cb3-84"></a>        ),</span>
+<span id="cb3-85"><a href="#cb3-85"></a>        <span class="kw"><a href="../reference/bs4TabPanel.html">bs4TabPanel</a></span>(</span>
+<span id="cb3-86"><a href="#cb3-86"></a>          <span class="dt">tabName =</span> <span class="st">"Tab 6"</span>,</span>
+<span id="cb3-87"><a href="#cb3-87"></a>          <span class="dt">active =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-88"><a href="#cb3-88"></a>          <span class="st">"Lorem Ipsum is simply dummy text of the printing and</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a><span class="st">          typesetting industry. Lorem Ipsum has been the industry's</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a><span class="st">          standard dummy text ever since the 1500s, when an unknown</span></span>
+<span id="cb3-91"><a href="#cb3-91"></a><span class="st">          printer took a galley of type and scrambled it to make a</span></span>
+<span id="cb3-92"><a href="#cb3-92"></a><span class="st">          type specimen book. It has survived not only five centuries,</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a><span class="st">          but also the leap into electronic typesetting, remaining</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a><span class="st">          essentially unchanged. It was popularised in the 1960s with</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a><span class="st">          the release of Letraset sheets containing Lorem Ipsum passages,</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="st">          and more recently with desktop publishing software like Aldus</span></span>
+<span id="cb3-97"><a href="#cb3-97"></a><span class="st">          PageMaker including versions of Lorem Ipsum."</span></span>
+<span id="cb3-98"><a href="#cb3-98"></a>        )</span>
+<span id="cb3-99"><a href="#cb3-99"></a>      )</span>
+<span id="cb3-100"><a href="#cb3-100"></a>    )</span>
+<span id="cb3-101"><a href="#cb3-101"></a>  )</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="boxes" class="section level2">
@@ -402,18 +405,18 @@
 <p>See <code><a href="../reference/bs4Box.html">bs4Box()</a></code>.</p>
 <p><img src="figures/bs4Boxes.png"><br></p>
 <details open><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">      <span class="dt">height =</span> <span class="st">"600px"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">      <span class="dt">title =</span> <span class="st">"Box 1"</span>,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">      <span class="kw">plotlyOutput</span>(<span class="st">"plot2"</span>)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">    ),</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">      <span class="dt">height =</span> <span class="st">"600px"</span>,</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">      <span class="dt">title =</span> <span class="st">"Box 2"</span>,</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">      <span class="kw">plotlyOutput</span>(<span class="st">"plot3"</span>)</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">    )</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  )</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">fluidRow</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(</span>
+<span id="cb4-3"><a href="#cb4-3"></a>      <span class="dt">height =</span> <span class="st">"600px"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>      <span class="dt">title =</span> <span class="st">"Box 1"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      <span class="kw">plotlyOutput</span>(<span class="st">"plot2"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    ),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw"><a href="../reference/bs4Box.html">bs4Box</a></span>(</span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">height =</span> <span class="st">"600px"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>      <span class="dt">title =</span> <span class="st">"Box 2"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10"></a>      <span class="kw">plotlyOutput</span>(<span class="st">"plot3"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    )</span>
+<span id="cb4-12"><a href="#cb4-12"></a>  )</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="value-and-info-boxes" class="section level2">
@@ -421,104 +424,104 @@
 <a href="#value-and-info-boxes" class="anchor"></a>Value and Info Boxes</h2>
 <p>See <code><a href="../reference/bs4ValueBox.html">bs4ValueBox()</a></code> and <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> as well as all render/output functions, that is <code><a href="../reference/renderbs4ValueBox.html">renderbs4InfoBox()</a></code>, <code><a href="../reference/renderbs4ValueBox.html">renderbs4ValueBox()</a></code>, <code><a href="../reference/bs4InfoBoxOutput.html">infoBoxOutput()</a></code> and <code><a href="../reference/bs4ValueBoxOutput.html">valueBoxOutput()</a></code>. <img src="figures/bs4InfoBoxes.png"><br></p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">h4</span>(<span class="st">"Value Boxes"</span>),</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">      <span class="dt">value =</span> <span class="dv">150</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">      <span class="dt">subtitle =</span> <span class="st">"New orders"</span>,</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">      <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">      <span class="dt">icon =</span> <span class="st">"shopping-cart"</span>,</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">      <span class="dt">href =</span> <span class="st">"#"</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">    ),</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">      <span class="dt">elevation =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">      <span class="dt">value =</span> <span class="st">"53%"</span>,</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">      <span class="dt">subtitle =</span> <span class="st">"New orders"</span>,</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">      <span class="dt">status =</span> <span class="st">"danger"</span>,</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">      <span class="dt">icon =</span> <span class="st">"cogs"</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">    ),</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">      <span class="dt">value =</span> <span class="st">"44"</span>,</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">      <span class="dt">subtitle =</span> <span class="st">"User Registrations"</span>,</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">      <span class="dt">status =</span> <span class="st">"warning"</span>,</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">      <span class="dt">icon =</span> <span class="st">"sliders"</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">    ),</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">      <span class="dt">value =</span> <span class="st">"53%"</span>,</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">      <span class="dt">subtitle =</span> <span class="st">"Bounce rate"</span>,</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">      <span class="dt">status =</span> <span class="st">"success"</span>,</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">      <span class="dt">icon =</span> <span class="st">"database"</span></a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">    )</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">  ),</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">  <span class="kw">h4</span>(<span class="st">"Info Boxes"</span>),</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31">  <span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb5-32" data-line-number="32">    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</a>
-<a class="sourceLine" id="cb5-33" data-line-number="33">      <span class="dt">title =</span> <span class="st">"Messages"</span>,</a>
-<a class="sourceLine" id="cb5-34" data-line-number="34">      <span class="dt">value =</span> <span class="dv">1410</span>,</a>
-<a class="sourceLine" id="cb5-35" data-line-number="35">      <span class="dt">icon =</span> <span class="st">"envelope"</span></a>
-<a class="sourceLine" id="cb5-36" data-line-number="36">    ),</a>
-<a class="sourceLine" id="cb5-37" data-line-number="37">    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</a>
-<a class="sourceLine" id="cb5-38" data-line-number="38">      <span class="dt">title =</span> <span class="st">"Bookmarks"</span>,</a>
-<a class="sourceLine" id="cb5-39" data-line-number="39">      <span class="dt">status =</span> <span class="st">"info"</span>,</a>
-<a class="sourceLine" id="cb5-40" data-line-number="40">      <span class="dt">value =</span> <span class="dv">240</span>,</a>
-<a class="sourceLine" id="cb5-41" data-line-number="41">      <span class="dt">icon =</span> <span class="st">"bookmark"</span></a>
-<a class="sourceLine" id="cb5-42" data-line-number="42">    ),</a>
-<a class="sourceLine" id="cb5-43" data-line-number="43">    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</a>
-<a class="sourceLine" id="cb5-44" data-line-number="44">      <span class="dt">title =</span> <span class="st">"Comments"</span>,</a>
-<a class="sourceLine" id="cb5-45" data-line-number="45">      <span class="dt">gradientColor =</span> <span class="st">"danger"</span>,</a>
-<a class="sourceLine" id="cb5-46" data-line-number="46">      <span class="dt">value =</span> <span class="dv">41410</span>,</a>
-<a class="sourceLine" id="cb5-47" data-line-number="47">      <span class="dt">icon =</span> <span class="st">"comments"</span></a>
-<a class="sourceLine" id="cb5-48" data-line-number="48">    )</a>
-<a class="sourceLine" id="cb5-49" data-line-number="49">  )</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">h4</span>(<span class="st">"Value Boxes"</span>),</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>      <span class="dt">value =</span> <span class="dv">150</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>      <span class="dt">subtitle =</span> <span class="st">"New orders"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>      <span class="dt">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>      <span class="dt">icon =</span> <span class="st">"shopping-cart"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>      <span class="dt">href =</span> <span class="st">"#"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    ),</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</span>
+<span id="cb5-11"><a href="#cb5-11"></a>      <span class="dt">elevation =</span> <span class="dv">4</span>,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>      <span class="dt">value =</span> <span class="st">"53%"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>      <span class="dt">subtitle =</span> <span class="st">"New orders"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>      <span class="dt">status =</span> <span class="st">"danger"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15"></a>      <span class="dt">icon =</span> <span class="st">"cogs"</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>    ),</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</span>
+<span id="cb5-18"><a href="#cb5-18"></a>      <span class="dt">value =</span> <span class="st">"44"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>      <span class="dt">subtitle =</span> <span class="st">"User Registrations"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>      <span class="dt">status =</span> <span class="st">"warning"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>      <span class="dt">icon =</span> <span class="st">"sliders"</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>    ),</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="kw"><a href="../reference/bs4ValueBox.html">bs4ValueBox</a></span>(</span>
+<span id="cb5-24"><a href="#cb5-24"></a>      <span class="dt">value =</span> <span class="st">"53%"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25"></a>      <span class="dt">subtitle =</span> <span class="st">"Bounce rate"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26"></a>      <span class="dt">status =</span> <span class="st">"success"</span>,</span>
+<span id="cb5-27"><a href="#cb5-27"></a>      <span class="dt">icon =</span> <span class="st">"database"</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    )</span>
+<span id="cb5-29"><a href="#cb5-29"></a>  ),</span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="kw">h4</span>(<span class="st">"Info Boxes"</span>),</span>
+<span id="cb5-31"><a href="#cb5-31"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb5-33"><a href="#cb5-33"></a>      <span class="dt">title =</span> <span class="st">"Messages"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34"></a>      <span class="dt">value =</span> <span class="dv">1410</span>,</span>
+<span id="cb5-35"><a href="#cb5-35"></a>      <span class="dt">icon =</span> <span class="st">"envelope"</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>    ),</span>
+<span id="cb5-37"><a href="#cb5-37"></a>    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb5-38"><a href="#cb5-38"></a>      <span class="dt">title =</span> <span class="st">"Bookmarks"</span>,</span>
+<span id="cb5-39"><a href="#cb5-39"></a>      <span class="dt">status =</span> <span class="st">"info"</span>,</span>
+<span id="cb5-40"><a href="#cb5-40"></a>      <span class="dt">value =</span> <span class="dv">240</span>,</span>
+<span id="cb5-41"><a href="#cb5-41"></a>      <span class="dt">icon =</span> <span class="st">"bookmark"</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>    ),</span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb5-44"><a href="#cb5-44"></a>      <span class="dt">title =</span> <span class="st">"Comments"</span>,</span>
+<span id="cb5-45"><a href="#cb5-45"></a>      <span class="dt">gradientColor =</span> <span class="st">"danger"</span>,</span>
+<span id="cb5-46"><a href="#cb5-46"></a>      <span class="dt">value =</span> <span class="dv">41410</span>,</span>
+<span id="cb5-47"><a href="#cb5-47"></a>      <span class="dt">icon =</span> <span class="st">"comments"</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>    )</span>
+<span id="cb5-49"><a href="#cb5-49"></a>  )</span></code></pre></div>
 </details><p><br></p>
 <p>bs4InfoCard may now be used to navigate between body tabs, similarly to what happens in the sidebar:</p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">    <span class="dt">enable_preloader =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">      <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">          <span class="dt">text =</span> <span class="st">"Tab 1"</span>,</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">          <span class="dt">icon =</span> <span class="st">"card"</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">        ),</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">          <span class="dt">text =</span> <span class="st">"Tab 2"</span>,</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">          <span class="dt">icon =</span> <span class="st">"card"</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">        )</a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">      )</a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">    ),</a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">    <span class="dt">title =</span> <span class="st">"test"</span>,</a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb6-25" data-line-number="25">          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</a>
-<a class="sourceLine" id="cb6-27" data-line-number="27">            <span class="dt">title =</span> <span class="st">"Messages"</span>,</a>
-<a class="sourceLine" id="cb6-28" data-line-number="28">            <span class="dt">value =</span> <span class="st">"You are on Tab 1"</span>,</a>
-<a class="sourceLine" id="cb6-29" data-line-number="29">            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</a>
-<a class="sourceLine" id="cb6-30" data-line-number="30">            <span class="dt">tabName =</span> <span class="st">"Tab2"</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31">          )</a>
-<a class="sourceLine" id="cb6-32" data-line-number="32">        ),</a>
-<a class="sourceLine" id="cb6-33" data-line-number="33">        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
-<a class="sourceLine" id="cb6-34" data-line-number="34">          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</a>
-<a class="sourceLine" id="cb6-35" data-line-number="35">          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</a>
-<a class="sourceLine" id="cb6-36" data-line-number="36">            <span class="dt">title =</span> <span class="st">"Messages"</span>,</a>
-<a class="sourceLine" id="cb6-37" data-line-number="37">            <span class="dt">value =</span> <span class="st">"You are on Tab 2"</span>,</a>
-<a class="sourceLine" id="cb6-38" data-line-number="38">            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</a>
-<a class="sourceLine" id="cb6-39" data-line-number="39">            <span class="dt">tabName =</span> <span class="st">"Tab1"</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40">          )</a>
-<a class="sourceLine" id="cb6-41" data-line-number="41">        )</a>
-<a class="sourceLine" id="cb6-42" data-line-number="42">      )</a>
-<a class="sourceLine" id="cb6-43" data-line-number="43">    )</a>
-<a class="sourceLine" id="cb6-44" data-line-number="44">  ),</a>
-<a class="sourceLine" id="cb6-45" data-line-number="45">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
-<a class="sourceLine" id="cb6-46" data-line-number="46">)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="dt">enable_preloader =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>      <span class="kw"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>          <span class="dt">text =</span> <span class="st">"Tab 1"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>          <span class="dt">icon =</span> <span class="st">"card"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>        ),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="kw"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(</span>
+<span id="cb6-13"><a href="#cb6-13"></a>          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>          <span class="dt">text =</span> <span class="st">"Tab 2"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>          <span class="dt">icon =</span> <span class="st">"card"</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>        )</span>
+<span id="cb6-17"><a href="#cb6-17"></a>      )</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    ),</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="dt">title =</span> <span class="st">"test"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</span>
+<span id="cb6-23"><a href="#cb6-23"></a>      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</span>
+<span id="cb6-24"><a href="#cb6-24"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-25"><a href="#cb6-25"></a>          <span class="dt">tabName =</span> <span class="st">"Tab1"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb6-27"><a href="#cb6-27"></a>            <span class="dt">title =</span> <span class="st">"Messages"</span>,</span>
+<span id="cb6-28"><a href="#cb6-28"></a>            <span class="dt">value =</span> <span class="st">"You are on Tab 1"</span>,</span>
+<span id="cb6-29"><a href="#cb6-29"></a>            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</span>
+<span id="cb6-30"><a href="#cb6-30"></a>            <span class="dt">tabName =</span> <span class="st">"Tab2"</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>          )</span>
+<span id="cb6-32"><a href="#cb6-32"></a>        ),</span>
+<span id="cb6-33"><a href="#cb6-33"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
+<span id="cb6-34"><a href="#cb6-34"></a>          <span class="dt">tabName =</span> <span class="st">"Tab2"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>          <span class="kw"><a href="../reference/bs4InfoBox.html">bs4InfoBox</a></span>(</span>
+<span id="cb6-36"><a href="#cb6-36"></a>            <span class="dt">title =</span> <span class="st">"Messages"</span>,</span>
+<span id="cb6-37"><a href="#cb6-37"></a>            <span class="dt">value =</span> <span class="st">"You are on Tab 2"</span>,</span>
+<span id="cb6-38"><a href="#cb6-38"></a>            <span class="dt">icon =</span> <span class="st">"envelope"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39"></a>            <span class="dt">tabName =</span> <span class="st">"Tab1"</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>          )</span>
+<span id="cb6-41"><a href="#cb6-41"></a>        )</span>
+<span id="cb6-42"><a href="#cb6-42"></a>      )</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    )</span>
+<span id="cb6-44"><a href="#cb6-44"></a>  ),</span>
+<span id="cb6-45"><a href="#cb6-45"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
+<span id="cb6-46"><a href="#cb6-46"></a>)</span></code></pre></div>
 </details><p><br></p>
 </div>
   </div>

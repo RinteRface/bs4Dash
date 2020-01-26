@@ -17,7 +17,8 @@ bs4DashSidebar(
   src = NULL,
   elevation = 4,
   opacity = 0.8,
-  expand_on_hover = TRUE
+  expand_on_hover = TRUE,
+  fixed = TRUE
 )
 
 dashboardSidebar(
@@ -32,7 +33,8 @@ dashboardSidebar(
   src = NULL,
   elevation = 4,
   opacity = 0.8,
-  expand_on_hover = TRUE
+  expand_on_hover = TRUE,
+  fixed = TRUE
 )
 }
 \arguments{
@@ -60,6 +62,8 @@ dashboardSidebar(
 \item{opacity}{Sidebar brand opacity. From 0 to 1. 0.8 by default.}
 
 \item{expand_on_hover}{Whether to expand the sidebar om hover. TRUE by default.}
+
+\item{fixed}{Whether to fix the sidebar. Default to TRUE.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar
