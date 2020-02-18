@@ -76,7 +76,6 @@
 #'        title = "Closable Box with gradient", 
 #'        closable = TRUE, 
 #'        width = 12,
-#'        status = "warning", 
 #'        solidHeader = FALSE, 
 #'        gradientColor = "success",
 #'        collapsible = TRUE,
@@ -95,12 +94,13 @@
 #'        p("Box Content")
 #'       ),
 #'       bs4Card(
+#'        inputId = "card4",
 #'        title = "Maximizable Card", 
 #'        width = 6,
 #'        status = "warning", 
 #'        closable = FALSE,
 #'        maximizable = TRUE, 
-#'        collapsible = FALSE,
+#'        collapsible = TRUE,
 #'        sliderInput("obs", "Number of observations:",
 #'                    min = 0, max = 1000, value = 500
 #'        ),

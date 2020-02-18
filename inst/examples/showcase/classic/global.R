@@ -75,9 +75,8 @@ basic_cards_tab <- bs4TabItem(
       title = "Closable card with gradient", 
       closable = TRUE, 
       width = 6,
-      status = "warning", 
+      gradientColor = "success", 
       solidHeader = FALSE, 
-      gradientColor = "success",
       collapsible = TRUE,
       echarts4rOutput("riverPlot")
     )
@@ -94,12 +93,13 @@ basic_cards_tab <- bs4TabItem(
       plot_ly(z = ~volcano) %>% add_surface()
     ),
     bs4Card(
+      inputId = "card4",
       title = "Maximizable Card", 
       width = 6,
       status = "danger", 
       closable = FALSE,
       maximizable = TRUE, 
-      collapsible = FALSE,
+      collapsible = TRUE,
       sliderInput("bigObs", "Number of observations:",
                   min = 0, max = 1000, value = 500
       ),

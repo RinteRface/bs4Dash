@@ -324,7 +324,6 @@ the user to collapse the box.</p></td>
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable Box with gradient"</span>,
        <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
        <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='st'>"success"</span>,
        <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -343,12 +342,13 @@ the user to collapse the box.</p></td>
        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
       ),
       <span class='fu'>bs4Card</span>(
+       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"card4"</span>,
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Maximizable Card"</span>,
        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
        <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+       <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations:"</span>,
                    <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
        ),

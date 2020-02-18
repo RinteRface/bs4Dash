@@ -12,11 +12,19 @@ $.extend(cardBinding, {
     var collapsed = $(el).hasClass("collapsed-card");
     var maximized = $(el).hasClass("maximized-card");
     var display = $(el).css('display');
+    
     var visible;
     if (display === "none") {
       visible = false;
     } else {
       visible = true;
+    }
+    
+    // toggle collapse button when maximized
+    if (maximized) {
+      $(el).find("[data-card-widget = 'collapse']").hide();
+    } else {
+      $(el).find("[data-card-widget = 'collapse']").show();
     }
     return {collapsed: collapsed, maximized: maximized, visible: visible};
   },
