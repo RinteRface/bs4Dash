@@ -88,12 +88,7 @@ $(function() {
       // if the newly inserted tab is active, disable other tabs
       if (message.select === "true") {
         // trigger a click on corresponding the new tab button. 
-        $('#' + index + ' a[href="#' +  message.id +'"]').trigger('click');
-        $('#' + message.id).addClass('active show');
-        
-        // remove active class from ul menu + the body content (tab content)
-        $('#' + index + ' a[href!="#' + message.id +'"]').removeClass('active');
-        $('div[id="' +  message.id + '"]').siblings().removeClass('active show');
+        $('#' + index + ' a[href="#' +  message.id +'"]').tab('show');
       }
     });
   });
