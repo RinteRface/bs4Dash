@@ -15,6 +15,8 @@
 #' @export
 bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
                               title = NULL, width = 250) {
+  
+  if (is.null(inputId)) inputId <- "controlbarId"
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),

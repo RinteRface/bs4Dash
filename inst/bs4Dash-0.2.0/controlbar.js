@@ -22,6 +22,7 @@ $(function() {
   
     // Given the DOM element for the input, return the value
     getValue: function(el) {
+      $(el).trigger("shown");
       return $("body").hasClass("control-sidebar-slide-open");
     },
   
