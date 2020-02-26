@@ -25,6 +25,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Bug Fix
+- fix #94: cannot render element with dependencies in `bs4InsertTab()`
 - fix #93: set default inputId when it is not provided in `bs4DashControlbar()` so that
 `renderUI` works. Thanks @artemklevtsov
 - fix #86 : cannot use `updatebs4TabSetPanel()` with `renderUI`. Thanks @jyjek

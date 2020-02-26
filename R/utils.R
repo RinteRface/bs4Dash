@@ -82,3 +82,31 @@ findAttribute <- function(x, attr, val) {
 dropNulls <- function(x) {
   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
 }
+
+
+createWebDependency <- function (dependency, scrubFile = TRUE) {
+  if (is.null(dependency)) 
+    return(NULL)
+  if (!inherits(dependency, "html_dependency")) 
+    stop("Unexpected non-html_dependency type")
+  if (is.null(dependency$src$href)) {
+    prefix <- paste(dependency$name, "-", dependency$version, 
+                    sep = "")
+    shiny::addResourcePath(prefix, dependency$src$file)
+    dependency$src$href <- prefix
+  }
+  if (scrubFile) 
+    dependency$src$file <- NULL
+  return(dependency)
+}
+
+# Given a Shiny tag object, process singletons and dependencies. Returns a list
+# with rendered HTML and dependency objects.
+processDeps <- function (tags, session) {
+  ui <- htmltools::takeSingletons(tags, session$singletons, desingleton = FALSE)$ui
+  ui <- htmltools::surroundSingletons(ui)
+  dependencies <- lapply(htmltools::resolveDependencies(htmltools::findDependencies(ui)), 
+                         createWebDependency)
+  names(dependencies) <- NULL
+  list(html = htmltools::doRenderTags(ui), deps = dependencies)
+}

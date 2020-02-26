@@ -72,18 +72,29 @@ $(function() {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
+      
+      // define div and li targets
+      var $divTag = $(message.value.html);
+      var $liTag = $(message.link.html);
+      
       var tabId = message.ns + "-" + message.target;
       if (message.position === "after") {
         // insert after the targeted tag in the tab-panel div
-        $(message.value).insertAfter($("#" + tabId));
+        $divTag.insertAfter($("#" + tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertAfter($('[href ="#' + tabId + '"]').parent());
+        $liTag.insertAfter($('[href ="#' + tabId + '"]').parent());
       } else if (message.position === "before") {
         // insert before the targeted tag in the tab-panel div
-        $(message.value).insertBefore($("#" + tabId));
+        $divTag.insertBefore($("#" + tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertBefore($('[href ="#' + tabId + '"]').parent());
+        $liTag.insertBefore($('[href ="#' + tabId + '"]').parent());
       }
+      
+      // needed to render input/output in newly added tab. It takes the possible
+      // deps and add them to the tag. Indeed, if we insert a tab, its deps are not
+      // included in the page so it can't render properly
+      Shiny.renderContent($liTag[0], {html: $liTag.html(), deps: message.link.deps});
+      Shiny.renderContent($divTag[0], {html: $divTag.html(), deps: message.value.deps});
       
       // if the newly inserted tab is active, disable other tabs
       if (message.select === "true") {

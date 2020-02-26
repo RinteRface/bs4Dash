@@ -218,6 +218,49 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'    
 #'  }
 #'  shinyApp(ui, server)
+#'  
+#'  # with Datatable to test the Shiny.renderContent feature
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  library(DT)
+#'  
+#'  ui <-  bs4DashPage(
+#'    sidebar_collapsed = T,
+#'    sidebar = bs4DashSidebar(),
+#'    bs4DashFooter(),
+#'    body = bs4DashBody(
+#'      actionButton("add", "Add 'Dynamic' tab"),
+#'      bs4TabSetPanel(
+#'        id = "tabset", 
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "default",
+#'          "Tab 1"
+#'        )
+#'      )
+#'    )
+#'  )
+#'  
+#'  server <- function(input, output, session) {
+#'    
+#'    output$tbl = renderDT(
+#'      iris, options = list(lengthChange = FALSE)
+#'    )
+#'    
+#'    observeEvent(input$add, {
+#'      bs4InsertTab(
+#'        inputId = "tabset",
+#'        bs4TabPanel(
+#'          tabName = "DT", 
+#'          dataTableOutput("tbl")
+#'        ),
+#'        target = "default",
+#'        position = "after",
+#'        select = TRUE
+#'      )
+#'    })
+#'  }
+#'  shinyApp(ui, server)
 #' }
 bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
                          select = FALSE, session = shiny::getDefaultReactiveDomain()) {
@@ -244,7 +287,7 @@ bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
       tab[[2]]$attribs$id
     )
   )
-  tabLink <- as.character(force(tabLink))
+  tabLink <- force(tabLink)
   
   # prefix the tab id by the id of the wrapping tabsetpanel
   tab[[2]]$attribs$id <- paste0(ns, "-", tabId)
@@ -252,16 +295,19 @@ bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
   
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
-  tab <- as.character(force(tab[[2]]))
+  tab <- force(tab[[2]])
   
   # remove all whitespace from the target name
   target <- gsub(" ", "", target, fixed = TRUE)
   
+  # below, processDeps is necessary to make sure that
+  # tab content render well. It is used in combination with
+  # the Shiny.renderContent method on the js side.
   message <- dropNulls(
     list(
-      value = tab,
+      value = processDeps(tab, session),
       id = tabId,
-      link = tabLink,
+      link = processDeps(tabLink, session),
       target = target,
       position = position,
       select = tolower(select),

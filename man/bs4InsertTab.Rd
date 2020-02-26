@@ -96,5 +96,48 @@ if (interactive()) {
    
  }
  shinyApp(ui, server)
+ 
+ # with Datatable to test the Shiny.renderContent feature
+ library(shiny)
+ library(bs4Dash)
+ library(DT)
+ 
+ ui <-  bs4DashPage(
+   sidebar_collapsed = T,
+   sidebar = bs4DashSidebar(),
+   bs4DashFooter(),
+   body = bs4DashBody(
+     actionButton("add", "Add 'Dynamic' tab"),
+     bs4TabSetPanel(
+       id = "tabset", 
+       side = "left",
+       bs4TabPanel(
+         tabName = "default",
+         "Tab 1"
+       )
+     )
+   )
+ )
+ 
+ server <- function(input, output, session) {
+   
+   output$tbl = renderDT(
+     iris, options = list(lengthChange = FALSE)
+   )
+   
+   observeEvent(input$add, {
+     bs4InsertTab(
+       inputId = "tabset",
+       bs4TabPanel(
+         tabName = "DT", 
+         dataTableOutput("tbl")
+       ),
+       target = "default",
+       position = "after",
+       select = TRUE
+     )
+   })
+ }
+ shinyApp(ui, server)
 }
 }
