@@ -12,7 +12,7 @@
 ## New features
 - Whenever a `bs4Card()` is maximized, the collapsible icon is hidden (does not make sense to have it)
 - new `bs4CardLabel()` to add text labels in `bs4Card()`
-- new `bs4CardSidebar`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar
+- new `bs4CardSidebar()`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar
 - add `bs4PopoverServer()`, `bs4PopoverUI()`, `bs4TooltipUI()` and `bs4TooltipServer()`
 - `bs4TabSetPanel()`: you may access the currently selected tab with input$id
 - add type parameter to `bs4TabSetPanel()` and `bs4TabCard()` so as to select
