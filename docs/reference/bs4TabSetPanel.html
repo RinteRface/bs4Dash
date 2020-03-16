@@ -142,8 +142,8 @@
 
     <pre class="usage"><span class='fu'>bs4TabSetPanel</span>(
   <span class='no'>...</span>,
-  <span class='no'>id</span>,
-  <span class='no'>side</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
   <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>.list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -153,8 +153,8 @@
 
 <span class='fu'>bs4DashControlbarMenu</span>(
   <span class='no'>...</span>,
-  <span class='no'>id</span>,
-  <span class='no'>side</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
   <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>.list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -164,8 +164,8 @@
 
 <span class='fu'>tabsetPanel</span>(
   <span class='no'>...</span>,
-  <span class='no'>id</span>,
-  <span class='no'>side</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
   <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>.list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -182,12 +182,13 @@
     </tr>
     <tr>
       <th>id</th>
-      <td><p>Unique bs4TabSetPanel id.</p></td>
+      <td><p>Unique bs4TabSetPanel id. NULL by default. Set a value
+to get the currently selected tab.</p></td>
     </tr>
     <tr>
       <th>side</th>
       <td><p>Side of the box the tabs should be on (<code>"left"</code> or
-<code>"right"</code>).</p></td>
+<code>"right"</code>). Default to "left".</p></td>
     </tr>
     <tr>
       <th>status</th>

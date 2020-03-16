@@ -1030,9 +1030,10 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' Imported by \link{bs4TabCard} but can be used alone.
 #'
 #' @param ... Slot for \link{bs4TabPanel}.
-#' @param id Unique \link{bs4TabSetPanel} id.
+#' @param id Unique \link{bs4TabSetPanel} id. NULL by default. Set a value
+#'  to get the currently selected tab.
 #' @param side Side of the box the tabs should be on (\code{"left"} or
-#'   \code{"right"}).
+#'   \code{"right"}). Default to "left".
 #' @param tabStatus The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 #'  NULL by default, "light" if status is set.   
 #'  A vector is possible with a colour for each tab button
@@ -1114,13 +1115,14 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabSetPanel <- function(..., id, side, status = NULL, tabStatus = NULL, 
+bs4TabSetPanel <- function(..., id = NULL, side = "left", status = NULL, tabStatus = NULL, 
                            .list = NULL, vertical = FALSE, type = NULL) {
   
   # pills are the default
   if (is.null(type)) type <- "pills"
   
   # to make tab ids in the namespace of the tabSetPanel
+  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
   ns <- shiny::NS(id)
   
   tabs <- c(list(...), .list)

@@ -24,6 +24,11 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 - add iconStatus parameter to `bs4InfoBox()` to allow icon color
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
+## Minor change
+
+- id is NULL in `bs4TabSetPanel()` by default
+- side is default to left in `bs4TabSetPanel()`
+
 ## Bug Fix
 - fix #94: cannot render element with dependencies in `bs4InsertTab()`
 - fix #93: set default inputId when it is not provided in `bs4DashControlbar()` so that

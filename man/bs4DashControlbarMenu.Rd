@@ -7,8 +7,8 @@ See \link{bs4DashControlbarMenu} for full details}
 \usage{
 controlbarMenu(
   ...,
-  id,
-  side,
+  id = NULL,
+  side = "left",
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
@@ -19,10 +19,11 @@ controlbarMenu(
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}
 
-\item{id}{Unique \link{bs4TabSetPanel} id.}
+\item{id}{Unique \link{bs4TabSetPanel} id. NULL by default. Set a value
+to get the currently selected tab.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
-\code{"right"}).}
+\code{"right"}). Default to "left".}
 
 \item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
 

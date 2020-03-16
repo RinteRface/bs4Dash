@@ -8,8 +8,8 @@
 \usage{
 bs4TabSetPanel(
   ...,
-  id,
-  side,
+  id = NULL,
+  side = "left",
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
@@ -19,8 +19,8 @@ bs4TabSetPanel(
 
 bs4DashControlbarMenu(
   ...,
-  id,
-  side,
+  id = NULL,
+  side = "left",
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
@@ -30,8 +30,8 @@ bs4DashControlbarMenu(
 
 tabsetPanel(
   ...,
-  id,
-  side,
+  id = NULL,
+  side = "left",
   status = NULL,
   tabStatus = NULL,
   .list = NULL,
@@ -42,10 +42,11 @@ tabsetPanel(
 \arguments{
 \item{...}{Slot for \link{bs4TabPanel}.}
 
-\item{id}{Unique \link{bs4TabSetPanel} id.}
+\item{id}{Unique \link{bs4TabSetPanel} id. NULL by default. Set a value
+to get the currently selected tab.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
-\code{"right"}).}
+\code{"right"}). Default to "left".}
 
 \item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
 

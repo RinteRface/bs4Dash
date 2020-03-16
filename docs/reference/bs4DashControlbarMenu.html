@@ -147,8 +147,8 @@ See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details</p>
 
     <pre class="usage"><span class='fu'>controlbarMenu</span>(
   <span class='no'>...</span>,
-  <span class='no'>id</span>,
-  <span class='no'>side</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
   <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tabStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>.list</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -165,12 +165,13 @@ See <a href='bs4TabSetPanel.html'>bs4DashControlbarMenu</a> for full details</p>
     </tr>
     <tr>
       <th>id</th>
-      <td><p>Unique <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id.</p></td>
+      <td><p>Unique <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id. NULL by default. Set a value
+to get the currently selected tab.</p></td>
     </tr>
     <tr>
       <th>side</th>
       <td><p>Side of the box the tabs should be on (<code>"left"</code> or
-<code>"right"</code>).</p></td>
+<code>"right"</code>). Default to "left".</p></td>
     </tr>
     <tr>
       <th>status</th>
