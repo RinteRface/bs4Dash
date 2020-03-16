@@ -28,6 +28,7 @@ to be independant from the card status (https://adminlte.io/themes/v3/pages/widg
 
 - id is NULL in `bs4TabSetPanel()` by default
 - side is default to left in `bs4TabSetPanel()`
+- change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
 - fix #94: cannot render element with dependencies in `bs4InsertTab()`

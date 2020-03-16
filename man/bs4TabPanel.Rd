@@ -6,16 +6,16 @@
 \alias{tabPanel}
 \title{Create a tabPanel}
 \usage{
-bs4TabPanel(..., tabName, active = FALSE)
+bs4TabPanel(tabName, ..., active = FALSE)
 
-bs4DashControlbarItem(..., tabName, active = FALSE)
+bs4DashControlbarItem(tabName, ..., active = FALSE)
 
-tabPanel(..., tabName, active = FALSE)
+tabPanel(tabName, ..., active = FALSE)
 }
 \arguments{
-\item{...}{Tab content}
+\item{tabName}{Tab name: it will be also passed as the id argument. Must be unique.}
 
-\item{tabName}{Tab name: it will be also passed as the id argument. Should be unique.}
+\item{...}{Tab content.}
 
 \item{active}{Whether the tab is active or not. FALSE bu default.}
 }

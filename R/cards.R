@@ -1239,14 +1239,14 @@ bs4TabSetPanel <- function(..., id = NULL, side = "left", status = NULL, tabStat
 #' 
 #' To be included in a bs4TabCard
 #'
-#' @param ... Tab content
-#' @param tabName Tab name: it will be also passed as the id argument. Should be unique.
+#' @param tabName Tab name: it will be also passed as the id argument. Must be unique.
+#' @param ... Tab content.
 #' @param active Whether the tab is active or not. FALSE bu default.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabPanel <- function(..., tabName, active = FALSE) {
+bs4TabPanel <- function(tabName, ..., active = FALSE) {
   
   
   id <- tabName

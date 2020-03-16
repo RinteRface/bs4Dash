@@ -5,12 +5,12 @@
 \title{Alias to \link{bs4DashControlbarItem}
 See \link{bs4DashControlbarItem} for full details}
 \usage{
-controlbarItem(..., tabName, active = FALSE)
+controlbarItem(tabName, ..., active = FALSE)
 }
 \arguments{
-\item{...}{Tab content}
+\item{tabName}{Tab name: it will be also passed as the id argument. Must be unique.}
 
-\item{tabName}{Tab name: it will be also passed as the id argument. Should be unique.}
+\item{...}{Tab content.}
 
 \item{active}{Whether the tab is active or not. FALSE bu default.}
 }
