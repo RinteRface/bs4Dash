@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- Now `bs4DropdownMenuItem()` may act as an actionButton
 - Whenever a `bs4Card()` is maximized, the collapsible icon is hidden (does not make sense to have it)
 - new `bs4CardLabel()` to add text labels in `bs4Card()`
 - new `bs4CardSidebar()`: access the status via input$id. Add `updatebs4CardSidebar()` to toggle the card sidebar

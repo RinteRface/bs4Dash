@@ -207,6 +207,7 @@
        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
        <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.fr"</span>,
        <span class='fu'><a href='bs4DropdownMenuItem.html'>bs4DropdownMenuItem</a></span>(
+         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"triggerAction"</span>,
          <span class='kw'>message</span> <span class='kw'>=</span> <span class='st'>"message 1"</span>,
          <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"Divad Nojnarg"</span>,
          <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,
@@ -230,7 +231,14 @@
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
      <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>()
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>triggerAction</span>, {
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/showModal.html'>showModal</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/modalDialog.html'>modalDialog</a></span>(
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Important message"</span>,
+      <span class='st'>"This is an important message!"</span>
+     ))
+    })
+   }
  )
 }</div></pre>
   </div>

@@ -98,6 +98,7 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
 #'        status = "danger",
 #'        src = "https://www.google.fr",
 #'        bs4DropdownMenuItem(
+#'          inputId = "triggerAction",
 #'          message = "message 1",
 #'          from = "Divad Nojnarg",
 #'          src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
@@ -121,7 +122,14 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
 #'      title = "test",
 #'      body = bs4DashBody()
 #'    ),
-#'    server = function(input, output) {}
+#'    server = function(input, output) {
+#'     observeEvent(input$triggerAction, {
+#'      showModal(modalDialog(
+#'       title = "Important message",
+#'       "This is an important message!"
+#'      ))
+#'     })
+#'    }
 #'  )
 #' }
 #' 
@@ -181,6 +189,7 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #'
 #' Build an adminLTE3 dashboard dropdown menu item
 #'
+#' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
 #' @param message Item content.
 #' @param from Item sender. Only if type is message.
 #' @param time Item date.
@@ -194,16 +203,24 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenuItem <- function(message, from = NULL, time = NULL, icon = "info-circle", src = NULL,
+bs4DropdownMenuItem <- function(inputId = NULL, message, from = NULL, time = NULL, icon = "info-circle", src = NULL,
                                 status = NULL, type = c("notification", "message")) {
   
   type <- match.arg(type)
   
+  itemCl <- if (is.null(inputId)) {
+    "dropdown-item"
+  } else {
+    "dropdown-item action-button"
+  }
+  
   dropdownItemTag <- if (type == "notification") {
     shiny::tagList(
-      shiny::tags$a(
-        class = "dropdown-item",
-        href = "#",
+      shiny::tags$button(
+        type = "button",
+        class = itemCl,
+        `disabled` = if (is.null(inputId)) NA else NULL,
+        id = inputId,
         shiny::tagAppendAttributes(shiny::icon(icon), class = "mr-2"),
         message,
         shiny::tags$span(
@@ -218,9 +235,11 @@ bs4DropdownMenuItem <- function(message, from = NULL, time = NULL, icon = "info-
       shiny::tags$div(class = "dropdown-divider")
     )
   } else if (type == "message") {
-    shiny::tags$a(
-      href = "#",
-      class = "dropdown-item",
+    shiny::tags$button(
+      type = "button",
+      class = itemCl,
+      `disabled` = if (is.null(inputId)) NA else NULL,
+      id = inputId,
       shiny::tags$div(
         class = "media",
         shiny::tags$img(

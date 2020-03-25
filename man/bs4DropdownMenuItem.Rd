@@ -6,6 +6,7 @@
 \title{Create a Boostrap 4 dashboard dropdown menu item}
 \usage{
 bs4DropdownMenuItem(
+  inputId = NULL,
   message,
   from = NULL,
   time = NULL,
@@ -16,6 +17,7 @@ bs4DropdownMenuItem(
 )
 
 dropdownMenuItem(
+  inputId = NULL,
   message,
   from = NULL,
   time = NULL,
@@ -26,6 +28,8 @@ dropdownMenuItem(
 )
 }
 \arguments{
+\item{inputId}{Whether to allow the item to act as a \link[shiny]{actionButton}.}
+
 \item{message}{Item content.}
 
 \item{from}{Item sender. Only if type is message.}

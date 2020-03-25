@@ -56,6 +56,7 @@ if(interactive()){
        status = "danger",
        src = "https://www.google.fr",
        bs4DropdownMenuItem(
+         inputId = "triggerAction",
          message = "message 1",
          from = "Divad Nojnarg",
          src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
@@ -79,7 +80,14 @@ if(interactive()){
      title = "test",
      body = bs4DashBody()
    ),
-   server = function(input, output) {}
+   server = function(input, output) {
+    observeEvent(input$triggerAction, {
+     showModal(modalDialog(
+      title = "Important message",
+      "This is an important message!"
+     ))
+    })
+   }
  )
 }
 
