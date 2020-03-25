@@ -31,6 +31,7 @@ to be independant from the card status (https://adminlte.io/themes/v3/pages/widg
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix `bs4DropdownMenu()` example
 - fix #94: cannot render element with dependencies in `bs4InsertTab()`
 - fix #93: set default inputId when it is not provided in `bs4DashControlbar()` so that
 `renderUI` works. Thanks @artemklevtsov

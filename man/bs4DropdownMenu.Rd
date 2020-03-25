@@ -52,17 +52,24 @@ if(interactive()){
    ui = bs4DashPage(
      navbar = bs4DashNavbar(
       rightUi = bs4DropdownMenu(
-       show = TRUE,
-       labelText = "!",
+       show = FALSE,
        status = "danger",
-       src = "http://www.google.fr",
+       src = "https://www.google.fr",
        bs4DropdownMenuItem(
-        text = "message 1",
-        date = "today"
+         message = "message 1",
+         from = "Divad Nojnarg",
+         src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+         time = "today",
+         status = "danger",
+         type = "message"
        ),
        bs4DropdownMenuItem(
-        text = "message 2",
-        date = "yesterday"
+         message = "message 2",
+         from = "Nono Gueye",
+         src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+         time = "yesterday",
+         status = "success",
+         type = "message"
        )
       )
      ),
