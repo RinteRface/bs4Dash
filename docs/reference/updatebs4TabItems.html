@@ -239,7 +239,7 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
 
      <span class='co'># update tabset1</span>
      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controller</span>, {
-       <span class='fu'><a href='updatebs4TabSetPanel.html'>updatebs4TabSetPanel</a></span>(
+       <span class='fu'>updatebs4TabItems</span>(
          <span class='no'>session</span>,
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sidebar"</span>,
          <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"tab"</span>, <span class='no'>input</span>$<span class='no'>controller</span>)

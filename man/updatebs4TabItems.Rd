@@ -95,7 +95,7 @@ if (interactive()) {
      
      # update tabset1
      observeEvent(input$controller, {
-       updatebs4TabSetPanel(
+       updatebs4TabItems(
          session, 
          inputId = "sidebar", 
          selected = paste0("tab", input$controller)

@@ -80,7 +80,6 @@ $(function () {
   // the treeview li element cannot be active itself thus
   // we take the related link a.
   $(".has-treeview > a").on("click", function() {
-    console.log('click');
     var treeview = $(".has-treeview > a");
     var activeTreeviews = $(".has-treeview > a.active");
     // set all other nav-links to inactive
@@ -108,13 +107,12 @@ $(function () {
     $("#mymenu .nav-link").removeClass("active");
     
     
-    // collapse all treeviews elements when click on a link
+    // collapse all opened treeviews elements when click on a link
     // that is not a treeview
     var treeviews =  $(".has-treeview");
     if (!$(this).parents().hasClass("has-treeview")) {
-      $(treeviews).removeClass("menu-open");
-      for (i = 0; i < treeviews.length; i++) {
-        $(treeviews[i].children[1]).css("display", "none");
+      if ($(treeviews).hasClass('menu-open')) {
+        $(treeviews).children().click(); 
       }
     }
     
@@ -143,15 +141,42 @@ $(function () {
     },
     setValue: function(el, value) {
       var self = this;
-      var anchors = $(el).parent('#mymenu').find('li:not(.treeview)').children('a');
-      anchors.each(function() { // eslint-disable-line consistent-return
+      var anchors = $(el).parent('#mymenu').find('li:not(.has-treeview)').children('a');
+      var navTreeview = $('.nav-treeview');
+      var treeviews =  $(".has-treeview");
+      
+      anchors.each(function(index) { // eslint-disable-line consistent-return
         if (self._getTabName($(this)) === value) {
-          //$(this).tab('show');
+          var isTreeview = $(anchors[index]).hasClass('treeview-link');
+          if (isTreeview) {
+            anchors.splice(index, 1);
+            $(anchors).removeClass('active');
+            
+            // mark the link treeview as active and remove the diplay none
+            // class to the ul element so that li children are shown
+            $(navTreeview).siblings().addClass('active');
+            $(navTreeview).css('display', '');
+            
+            // open the menu  
+            $(treeviews).addClass('menu-open');
+          } else {
+            
+            // close all other open treeviews
+            if (!$(this).parents().hasClass("has-treeview")) {
+              if ($(treeviews).hasClass('menu-open')) {
+                $(treeviews).removeClass('menu-open'); 
+              }
+            }
+            
+            var treeViewLi = $(this).parents()[2];
+            var treeViewLiLink = treeViewLi.children[0];
+            $(treeViewLiLink).addClass("active");
+          }
           $(el).attr('data-value', self._getTabName($(this)));
           return false;
         }
       });
-      $('#mymenu' + ' ' + 'a[href="#shiny-tab-' + value + '"]').tab('show');
+      $('#mymenu a[href="#shiny-tab-' + value + '"]').tab('show');
     },
     receiveMessage: function(el, data) {
       if (data.hasOwnProperty('value'))
