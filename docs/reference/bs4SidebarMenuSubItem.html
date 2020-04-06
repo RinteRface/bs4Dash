@@ -140,9 +140,9 @@
     <p>Build an adminLTE3 dashboard main sidebar menu sub-item</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4SidebarMenuSubItem</span>(<span class='no'>text</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>bs4SidebarMenuSubItem</span>(<span class='no'>text</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>menuSubItem</span>(<span class='no'>text</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>menuSubItem</span>(<span class='no'>text</span>, <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,6 +158,11 @@
     <tr>
       <th>icon</th>
       <td><p>Item icon.</p></td>
+    </tr>
+    <tr>
+      <th>selected</th>
+      <td><p>If <code>TRUE</code>, this <code>bs4SidebarMenuSubItem</code>
+will start selected. If no item have <code>selected=TRUE</code>.</p></td>
     </tr>
     </table>
 
@@ -207,7 +212,8 @@
            <span class='fu'>bs4SidebarMenuSubItem</span>(
              <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item 5"</span>,
              <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"item5"</span>,
-             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>
+             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>,
+             <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
            )
          )
        )
@@ -226,7 +232,7 @@
              <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
              <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
              <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Box Content"</span>)
            )
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
@@ -238,7 +244,7 @@
              <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
              <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
              <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Box Content"</span>)
            )
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
@@ -250,7 +256,7 @@
              <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
              <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
              <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Box Content"</span>)
            )
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
@@ -262,7 +268,7 @@
              <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
              <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"info"</span>,
              <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Box Content"</span>)
            )
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
@@ -274,7 +280,7 @@
              <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
              <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"success"</span>,
              <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Box Content"</span>)
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Box Content"</span>)
            )
          )
        )

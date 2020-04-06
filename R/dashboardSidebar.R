@@ -245,6 +245,14 @@ updatebs4Sidebar <- function(inputId, session) {
 bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
                            compact = FALSE, child_indent = TRUE) {
   
+  # make sure only 1 item is selected at start
+  items <- list(...)
+  items <- findSidebarItem(items, "nav-item")
+  selectedItems <- dropNulls(lapply(seq_along(items), function(i) {
+    if (length(items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+  }))
+  if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
+  
   menuCl <- "nav nav-pills nav-sidebar flex-column"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
@@ -272,6 +280,17 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
 
 
 
+#' Internally used by \link{bs4SidebarMenu} to find treeview items
+#' and normal items.
+#' @param items List to search in.
+#' @param regex Regex to apply.
+findSidebarItem <- function(items, regex) {
+  dropNulls(lapply(seq_along(items), function(i) {
+    isNavItem <- length(grep(regex, items[[i]]$attribs$class, perl = TRUE)) > 0
+    if (isNavItem) items[[i]]
+  }))
+}
+
 
 
 
@@ -286,6 +305,9 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
 #' @param startExpanded Whether to expand the \link{bs4SidebarMenuItem} at start.
 #' @param condition When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
+#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuItem}
+#'  will start selected. If no item have \code{selected=TRUE}, then the first
+#'  \code{bs4SidebarMenuItem} will start selected.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -332,7 +354,7 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
 #'   shinyApp(ui = ui, server = server)
 #' }
 bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpanded = FALSE,
-                               condition = NULL) {
+                               condition = NULL, selected = NULL) {
   
   subitems <- list(...)
   
@@ -348,6 +370,8 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
           href = paste0("#shiny-tab-", tabName),
           `data-toggle` = "tab",
           `data-value` = tabName,
+          # needed by leftSidebar.js
+          `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
           shiny::tags$p(text)
         )
@@ -355,6 +379,21 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
     )
     # in case we have multiple subitems
   } else {
+    
+    # handle case of multiple selected subitems and raise an error if so...
+    selectedItems <- dropNulls(lapply(seq_along(subitems), function(i) {
+      if (length(subitems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+    }))
+    if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
+    
+    # add special class for leftSidebar.js
+    for (i in seq_along(subitems)) {
+      subitems[[i]]$children[[1]]$attribs$class <- paste(
+        subitems[[i]]$children[[1]]$attribs$class,
+        "treeview-link"
+      )
+    }
+    
     menuItemCl <- "nav-item has-treeview"
     if (startExpanded) menuItemCl <- paste0(menuItemCl, " menu-open")
     shiny::tags$li(
@@ -362,6 +401,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
       shiny::tags$a(
         href = "#",
         class = "nav-link",
+        `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
         shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
         shiny::tags$p(
           text,
@@ -370,7 +410,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
       ),
       shiny::tags$ul(
         class = "nav nav-treeview",
-        ...
+        subitems
       )
     )
   }
@@ -388,6 +428,8 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
 #' @param text Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param icon Item icon.
+#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
+#'   will start selected. If no item have \code{selected=TRUE}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -437,7 +479,8 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 5",
 #'              tabName = "item5",
-#'              icon = "circle-thin"
+#'              icon = "circle-thin",
+#'              selected = TRUE
 #'            )
 #'          )
 #'        )
@@ -513,7 +556,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
 #'    server = function(input, output) {}
 #'  )
 #' }
-bs4SidebarMenuSubItem <- function(text, tabName = NULL, icon = NULL) {
+bs4SidebarMenuSubItem <- function(text, tabName = NULL, icon = NULL, selected = NULL) {
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
@@ -522,6 +565,8 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, icon = NULL) {
       href = paste0("#shiny-tab-", tabName),
       `data-toggle` = "tab",
       `data-value` = tabName,
+      # below this is needed by leftSidebar.js
+      `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
       shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
       shiny::tags$p(text)
     )

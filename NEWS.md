@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- Add options to select `bs4SidebarMenuItem()` and `bs4SidebarMenuSubItem()` at start.
 - Now `bs4DropdownMenuItem()` may act as an actionButton
 - Whenever a `bs4Card()` is maximized, the collapsible icon is hidden (does not make sense to have it)
 - new `bs4CardLabel()` to add text labels in `bs4Card()`

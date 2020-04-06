@@ -5,9 +5,9 @@
 \alias{menuSubItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu sub-item}
 \usage{
-bs4SidebarMenuSubItem(text, tabName = NULL, icon = NULL)
+bs4SidebarMenuSubItem(text, tabName = NULL, icon = NULL, selected = NULL)
 
-menuSubItem(text, tabName = NULL, icon = NULL)
+menuSubItem(text, tabName = NULL, icon = NULL, selected = NULL)
 }
 \arguments{
 \item{text}{Item name.}
@@ -15,6 +15,9 @@ menuSubItem(text, tabName = NULL, icon = NULL)
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
 \item{icon}{Item icon.}
+
+\item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
+will start selected. If no item have \code{selected=TRUE}.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu sub-item
@@ -64,7 +67,8 @@ if (interactive()) {
            bs4SidebarMenuSubItem(
              text = "Item 5",
              tabName = "item5",
-             icon = "circle-thin"
+             icon = "circle-thin",
+             selected = TRUE
            )
          )
        )

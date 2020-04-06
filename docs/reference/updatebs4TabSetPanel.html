@@ -189,7 +189,7 @@ See updatebs4TabSetPanel for full details</p>
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/numericInput.html'>numericInput</a></span>(<span class='st'>"val"</span>, <span class='st'>"Value:"</span>, <span class='fl'>10</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>)
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>)
        ),
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
@@ -220,7 +220,7 @@ See updatebs4TabSetPanel for full details</p>
        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>3</span>,
        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>2</span>
      ),
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controller2"</span>,
        <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update the second tabset"</span>,
@@ -241,17 +241,17 @@ See updatebs4TabSetPanel for full details</p>
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 1 "</span>)
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Tab 1 "</span>)
       ),
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 2"</span>)
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Tab 2"</span>)
       ),
       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='st'>"Tab 3"</span>)
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Tab 3"</span>)
       )
     )
    })

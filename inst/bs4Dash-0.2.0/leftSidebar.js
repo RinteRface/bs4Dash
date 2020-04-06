@@ -22,8 +22,7 @@ $(function () {
   var ensureActivatedTab = function() {
       // get the selected tabs
     var tabs = $("#mymenu a[data-toggle='tab']");
-    var selectedTab = tabs.filter(".active.show");
-    
+    var selectedTab = tabs.filter('[data-start-selected="1"]');
     if (selectedTab.length === 0) {
       // If no tab starts selected, use the first one, if present
       $(tabs[0]).tab('show');
@@ -34,19 +33,26 @@ $(function () {
       // early (before Shiny has fully initialized)
       $('.sidebarMenuSelectedTabItem').attr('data-value',
         $(tabs[0]).attr('data-value'));
-    
-    
-    
-    } 
+    } else {
+      // if selected item is part of a treeview, we need to 
+      // trigger a click on the treeview parent
+      if ($(selectedTab).hasClass('treeview-link')) {
+        var treeviewNav = $(selectedTab).parents().filter('.nav-treeview');
+        var treeviewLink = $(treeviewNav).siblings();
+        $(treeviewLink).addClass('active');
+        $(treeviewLink).click();
+        $(selectedTab).tab('show');
+      } else {
+        $(selectedTab).addClass('active show');
+        $(selectedTab).tab('show');
+      }
+      // input value
+      $('.sidebarMenuSelectedTabItem').attr('data-value',
+        $(selectedTab).attr('data-value'));
+    }
   };
 
   ensureActivatedTab();
-  
-  // select the first sidebar item by default
-  var firsSidebarItem = $("#mymenu").children[0];
-  if (firsSidebarItem != "undefined") {
-    $(firsSidebarItem).addClass("active"); 
-  }
   
   // when click on treeview, collapse all other treeviews
   $(".has-treeview").on('click', function() {
@@ -74,6 +80,7 @@ $(function () {
   // the treeview li element cannot be active itself thus
   // we take the related link a.
   $(".has-treeview > a").on("click", function() {
+    console.log('click');
     var treeview = $(".has-treeview > a");
     var activeTreeviews = $(".has-treeview > a.active");
     // set all other nav-links to inactive
@@ -86,11 +93,14 @@ $(function () {
     $(this).addClass("active");
     
     // when click on a treeview, select its first element
-    var treeviewFirstChild = $(this).siblings()[0].children[0].children[0];
-    $(treeviewFirstChild).addClass("active");
-    // trigger a click so that the corresponding tabPanel is shown
-    // By default, setting the active class do not provide any click event
-    $(treeviewFirstChild).click();
+    var treeviewChildren = $(this).siblings()[0];
+    var childToActivate = $(treeviewChildren).find('[data-start-selected="1"]');
+    if (childToActivate.length > 0) {
+      $(childToActivate).addClass("active"); 
+      // trigger a click so that the corresponding tabPanel is shown
+      // By default, setting the active class do not provide any click event
+      $(childToActivate).click(); 
+    }
   });
   
   // when click on a navitem, deselect all other navitems

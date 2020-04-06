@@ -146,7 +146,8 @@
   <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )
 
 <span class='fu'>menuItem</span>(
@@ -155,7 +156,8 @@
   <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -185,6 +187,12 @@
       <th>condition</th>
       <td><p>When using bs4SidebarMenuItem with <a href='https://rdrr.io/pkg/shiny/man/conditionalPanel.html'>conditionalPanel</a>,
 write the condition here (see <a href='https://github.com/RinteRface/bs4Dash/issues/35'>https://github.com/RinteRface/bs4Dash/issues/35</a>).</p></td>
+    </tr>
+    <tr>
+      <th>selected</th>
+      <td><p>If <code>TRUE</code>, this <code>bs4SidebarMenuItem</code>
+will start selected. If no item have <code>selected=TRUE</code>, then the first
+<code>bs4SidebarMenuItem</code> will start selected.</p></td>
     </tr>
     </table>
 
@@ -218,12 +226,12 @@ write the condition here (see <a href='https://github.com/RinteRface/bs4Dash/iss
     <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
       <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"Welcome!"</span>),
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>h1</a></span>(<span class='st'>"Welcome!"</span>),
         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxInput.html'>checkboxInput</a></span>(<span class='st'>"show"</span>, <span class='st'>"Show Tab 2"</span>, <span class='fl'>FALSE</span>)
       ),
       <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"Hey! You found me!"</span>)
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>h1</a></span>(<span class='st'>"Hey! You found me!"</span>)
       )
     )
    )
