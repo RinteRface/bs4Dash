@@ -145,6 +145,7 @@
   <span class='no'>...</span>,
   <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>expandedName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"[[:space:]]"</span>, <span class='st'>""</span>, <span class='no'>text</span>)),
   <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
@@ -155,6 +156,7 @@
   <span class='no'>...</span>,
   <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>expandedName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"[[:space:]]"</span>, <span class='st'>""</span>, <span class='no'>text</span>)),
   <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
@@ -178,6 +180,13 @@
     <tr>
       <th>icon</th>
       <td><p>Item icon.</p></td>
+    </tr>
+    <tr>
+      <th>expandedName</th>
+      <td><p>A unique name given to each <code>menuItem</code> that serves
+to indicate which one (if any) is currently expanded. (This is only applicable
+to <code>menuItem</code>s that have children and it is mostly only useful for
+bookmarking state.)</p></td>
     </tr>
     <tr>
       <th>startExpanded</th>

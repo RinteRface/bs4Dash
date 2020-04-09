@@ -27,12 +27,13 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
-
+- New expandedName param for `bs4SidebarMenuItem` to align with shinydashboard
 - id is NULL in `bs4TabSetPanel()` by default
 - side is default to left in `bs4TabSetPanel()`
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix #99: rework the way sidebar items work. By default, when sidebar items has subitems and is selected, the first item is not selected. We leave the choice to the user. Thanks @analytichealth
 - Fix `bs4DropdownMenu()` example
 - fix #94: cannot render element with dependencies in `bs4InsertTab()`
 - fix #93: set default inputId when it is not provided in `bs4DashControlbar()` so that

@@ -197,27 +197,75 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab3"</span>,
            <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxInput.html'>checkboxInput</a></span>(<span class='st'>"val"</span>, <span class='st'>"Some value"</span>, <span class='fl'>FALSE</span>),
            <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"value"</span>)
+         ),
+         <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab4"</span>,
+           <span class='st'>"Nothing special here!"</span>
+         ),
+         <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab5"</span>,
+           <span class='st'>"Tab 5"</span>
+         ),
+         <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab6"</span>,
+           <span class='st'>"Tab 6"</span>
+         ),
+         <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab7"</span>,
+           <span class='st'>"Tab 7"</span>
          )
        )
      ),
      <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
        <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
+       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sidebarState"</span>,
        <span class='fu'><a href='bs4SidebarMenu.html'>bs4SidebarMenu</a></span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sidebar"</span>,
          <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"card"</span>
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"shuttle-van"</span>
          ),
          <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"card"</span>
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"space-shuttle"</span>,
+           <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
          ),
          <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab3"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"card"</span>
+           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item List 1"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>,
+           <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+           <span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
+             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item 3"</span>,
+             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab3"</span>,
+             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>
+           ),
+           <span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
+             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item 4"</span>,
+             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab4"</span>,
+             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>
+           )
+         ),
+         <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
+           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item List 2"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>,
+           <span class='kw'>startExpanded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
+             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item 5"</span>,
+             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab5"</span>,
+             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>
+           ),
+           <span class='fu'><a href='bs4SidebarMenuSubItem.html'>bs4SidebarMenuSubItem</a></span>(
+             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Item 6"</span>,
+             <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab6"</span>,
+             <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"circle-thin"</span>
+           )
+         ),
+         <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
+           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Tab 7"</span>,
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab7"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"home"</span>
          )
        )
      ),
@@ -227,14 +275,14 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controller"</span>,
          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update the first tabset"</span>,
          <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-         <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+         <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>6</span>,
          <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>2</span>
        )
      ),
      <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>()
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebarItemExpanded</span>))
      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebar</span>))
 
      <span class='co'># update tabset1</span>

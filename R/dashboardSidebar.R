@@ -43,6 +43,7 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
   # sidebar content
   contentTag <- shiny::tags$div(
     class = "sidebar",
+    id = "sidebarItemExpanded",
     shiny::tags$nav(
       class = "mt-2",
       ...
@@ -245,6 +246,8 @@ updatebs4Sidebar <- function(inputId, session) {
 bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
                            compact = FALSE, child_indent = TRUE) {
   
+  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  
   # make sure only 1 item is selected at start
   items <- list(...)
   items <- findSidebarItem(items, "nav-item")
@@ -262,9 +265,9 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
   shiny::tags$ul(
     class = menuCl,
     `data-widget` = "treeview",
-    id = "mymenu",
+    id = "sidebar-menu",
     role = "menu",
-    `data-accordion` = "false",
+    `data-accordion` = "true",
     ...,
     # This is a 0 height div, whose only purpose is to hold the tabName of the currently
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
@@ -302,6 +305,10 @@ findSidebarItem <- function(items, regex) {
 #' @param ... \link{bs4SidebarMenuSubItem}.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param icon Item icon.
+#' @param expandedName A unique name given to each \code{menuItem} that serves
+#'   to indicate which one (if any) is currently expanded. (This is only applicable
+#'   to \code{menuItem}s that have children and it is mostly only useful for
+#'   bookmarking state.)
 #' @param startExpanded Whether to expand the \link{bs4SidebarMenuItem} at start.
 #' @param condition When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
@@ -353,8 +360,9 @@ findSidebarItem <- function(items, regex) {
 #'   server <- function(input, output){}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpanded = FALSE,
-                               condition = NULL, selected = NULL) {
+bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, 
+                               expandedName = as.character(gsub("[[:space:]]", "", text)), 
+                               startExpanded = FALSE, condition = NULL, selected = NULL) {
   
   subitems <- list(...)
   
@@ -380,12 +388,6 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
     # in case we have multiple subitems
   } else {
     
-    # handle case of multiple selected subitems and raise an error if so...
-    selectedItems <- dropNulls(lapply(seq_along(subitems), function(i) {
-      if (length(subitems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
-    }))
-    if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
-    
     # add special class for leftSidebar.js
     for (i in seq_along(subitems)) {
       subitems[[i]]$children[[1]]$attribs$class <- paste(
@@ -394,10 +396,26 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
       )
     }
     
-    menuItemCl <- "nav-item has-treeview"
-    if (startExpanded) menuItemCl <- paste0(menuItemCl, " menu-open")
+    # If we're restoring a bookmarked app, this holds the value of what menuItem (if any)
+    # was expanded (this has be to stored separately from the selected menuItem, since
+    # these actually independent in AdminLTE). If no menuItem was expanded, `dataExpanded`
+    # is NULL. However, we want to this input to get passed on (and not dropped), so we
+    # do `%OR% ""` to assure this.
+    default <- if (startExpanded) expandedName else ""
+    dataExpanded <- shiny::restoreInput(id = "sidebarItemExpanded", default) %OR% ""
+    
+    # If `dataExpanded` is not the empty string, we need to check that it is eqaul to the
+    # this menuItem's `expandedName``
+    isExpanded <- nzchar(dataExpanded) && (dataExpanded == expandedName)
+    
+    # handle case of multiple selected subitems and raise an error if so...
+    selectedItems <- dropNulls(lapply(seq_along(subitems), function(i) {
+      if (length(subitems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+    }))
+    if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
+    
     shiny::tags$li(
-      class = menuItemCl,
+      class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
       shiny::tags$a(
         href = "#",
         class = "nav-link",
@@ -410,6 +428,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, startExpa
       ),
       shiny::tags$ul(
         class = "nav nav-treeview",
+        `data-expanded` = expandedName,
         subitems
       )
     )

@@ -10,6 +10,7 @@ bs4SidebarMenuItem(
   ...,
   tabName = NULL,
   icon = NULL,
+  expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
   condition = NULL,
   selected = NULL
@@ -20,6 +21,7 @@ menuItem(
   ...,
   tabName = NULL,
   icon = NULL,
+  expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
   condition = NULL,
   selected = NULL
@@ -33,6 +35,11 @@ menuItem(
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
 \item{icon}{Item icon.}
+
+\item{expandedName}{A unique name given to each \code{menuItem} that serves
+to indicate which one (if any) is currently expanded. (This is only applicable
+to \code{menuItem}s that have children and it is mostly only useful for
+bookmarking state.)}
 
 \item{startExpanded}{Whether to expand the \link{bs4SidebarMenuItem} at start.}
 

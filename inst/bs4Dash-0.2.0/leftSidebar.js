@@ -1,9 +1,32 @@
 $(function () {
   
-  // This code makes sure that each time
-  // a tabItem is clicked, we set the value
-  // of the input binding
-  var setInputBindingValue = function() {
+  // Below some functions are taken from shinydashboard and modified to 
+  // work with the new structure of adminLTE3
+  
+  
+  
+  // This function handles a special case in the AdminLTE sidebar: when there
+  // is a sidebar-menu with items, and one of those items has sub-items, and
+  // they are used for tab navigation. Normally, if one of the items is
+  // selected and then a sub-item is clicked, both the item and sub-item will
+  // retain the "active" class, so they will both be highlighted. This happens
+  // because they're not designed to be used together for tab panels. This
+  // code ensures that only one item will have the "active" class.
+  var deactivateOtherTabs = function() {
+    // Find all tab links under sidebar-menu even if they don't have a
+    // tabName (which is why the second selector is necessary)
+    var $tablinks = $("#sidebar-menu a[data-toggle='tab']," +
+      "#sidebar-menu li.has-treeview > a");
+
+    // If any other items are active, deactivate them
+    $tablinks.not($(this)).removeClass("active");
+    
+    // also manually activate the parent link when the selected item
+    // is part of a treeview. For some reason, this is not done by AdminLTE3...
+    if ($(this).hasClass('treeview-link')) {
+      $(this).parents('.has-treeview').children().eq(0).addClass('active');
+    }
+    
     // Trigger event for the tabItemInputBinding
     var $obj = $('.sidebarMenuSelectedTabItem');
     var inputBinding = $obj.data('shiny-input-binding');
@@ -13,7 +36,7 @@ $(function () {
     }
   };
 
-  $(document).on('shown.bs.tab', '#mymenu a[data-toggle="tab"]', setInputBindingValue);
+  $(document).on('shown.bs.tab', '#sidebar-menu a[data-toggle="tab"]', deactivateOtherTabs);
   
   
   // When document is ready, if there is a sidebar menu with no activated tabs,
@@ -21,106 +44,48 @@ $(function () {
   // present, the first one.
   var ensureActivatedTab = function() {
       // get the selected tabs
-    var tabs = $("#mymenu a[data-toggle='tab']");
-    var selectedTab = tabs.filter('[data-start-selected="1"]');
-    if (selectedTab.length === 0) {
+    var $tablinks = $("#sidebar-menu a[data-toggle='tab']");
+    
+    // If there are no tabs, $startTab.length will be 0.
+    var $startTab = $tablinks.filter("[data-start-selected='1']");
+    if ($startTab.length === 0) {
       // If no tab starts selected, use the first one, if present
-      $(tabs[0]).tab('show');
-      $('.container-fluid.tab-pane:eq(0)').addClass('active show');
+      $startTab = $tablinks.first();
+    } 
+    
+    // If there's a `data-start-selected` attribute and we can find a tab with
+    // that name, activate it.
+    if ($startTab.length !== 0) {
+      $startTab.tab("show");
+
       // This is indirectly setting the value of the Shiny input by setting
       // an attribute on the html element it is bound to. We cannot use the
       // inputBinding's setValue() method here because this is called too
       // early (before Shiny has fully initialized)
-      $('.sidebarMenuSelectedTabItem').attr('data-value',
-        $(tabs[0]).attr('data-value'));
-    } else {
-      // if selected item is part of a treeview, we need to 
-      // trigger a click on the treeview parent
-      if ($(selectedTab).hasClass('treeview-link')) {
-        var treeviewNav = $(selectedTab).parents().filter('.nav-treeview');
-        var treeviewLink = $(treeviewNav).siblings();
-        $(treeviewLink).addClass('active');
-        $(treeviewLink).click();
-        $(selectedTab).tab('show');
-      } else {
-        $(selectedTab).addClass('active show');
-        $(selectedTab).tab('show');
-      }
-      // input value
-      $('.sidebarMenuSelectedTabItem').attr('data-value',
-        $(selectedTab).attr('data-value'));
+      $(".sidebarMenuSelectedTabItem").attr("data-value",
+        $startTab.attr("data-value"));
     }
   };
 
   ensureActivatedTab();
   
-  // when click on treeview, collapse all other treeviews
-  $(".has-treeview").on('click', function() {
-    
-    // take care of all other treeviews 
-    var navItems = $(this).siblings();
-    var res;
-    var ul;
-    for (i = 0; i < navItems.length; i++) {
-      // we go through all siblings
-      // but we are only interested in the other
-      // treeviews. If found, we remove the menu-open class
-      // from the li wrapper and set display none to the ul children.
-      // ul is the second children of the li wrapper, hence index 1.
-      if ($(navItems[i]).hasClass("has-treeview")) {
-        res = navItems[i];
-        ul = res.children[1];
-        $(res).removeClass("menu-open");
-        $(ul).css("display", "none");
-      }
-    }
-  });
   
-  // Select treeview link on click
-  // the treeview li element cannot be active itself thus
-  // we take the related link a.
-  $(".has-treeview > a").on("click", function() {
-    var treeview = $(".has-treeview > a");
-    var activeTreeviews = $(".has-treeview > a.active");
-    // set all other nav-links to inactive
-    $("#mymenu .nav-link").removeClass("active");
-    // set all other treeviews to inactive
-    // if there are more than 1 treeview
-    if (treeview.length > 1) {
-      $(activeTreeviews).removeClass("active");
-    }
-    $(this).addClass("active");
-    
-    // when click on a treeview, select its first element
-    var treeviewChildren = $(this).siblings()[0];
-    var childToActivate = $(treeviewChildren).find('[data-start-selected="1"]');
-    if (childToActivate.length > 0) {
-      $(childToActivate).addClass("active"); 
-      // trigger a click so that the corresponding tabPanel is shown
-      // By default, setting the active class do not provide any click event
-      $(childToActivate).click(); 
-    }
-  });
+  // Whenever we expand a menuItem (to be expandable, it must have children),
+  // update the value for the expandedItem's input binding (this is the
+  // tabName of the fist subMenuItem inside the menuItem that is currently
+  // expanded)
+  $(document).on("click", ".has-treeview", function() {
+    var $menu = $(this);
+    console.log($menu.hasClass('menu-open'));
+    // If this menuItem was already open, then clicking on it again,
+    // should trigger the "hidden" event, so Shiny doesn't worry about
+    // it while it's hidden (and vice versa).
+    if ($menu.hasClass("menu-open")) $menu.trigger("collapsed.lte.treeview");
+    else if ($menu.hasClass("has-treeview")) $menu.trigger("expanded.lte.treeview");
   
-  // when click on a navitem, deselect all other navitems
-  $("#mymenu a[data-toggle='tab']").on("click", function() {
-    $("#mymenu .nav-link").removeClass("active");
-    
-    
-    // collapse all opened treeviews elements when click on a link
-    // that is not a treeview
-    var treeviews =  $(".has-treeview");
-    if (!$(this).parents().hasClass("has-treeview")) {
-      if ($(treeviews).hasClass('menu-open')) {
-        $(treeviews).children().click(); 
-      }
-    }
-    
-    // if click on an item part of a treeview, select the treeview parent
-    // by default
-    var treeViewLi = $(this).parents()[2];
-    var treeViewLiLink = treeViewLi.children[0];
-    $(treeViewLiLink).addClass("active");
+    // need to set timeout to account for the slideUp/slideDown animation
+    var $obj = $('sidebar.shiny-bound-input');
+    setTimeout(function() { $obj.trigger('change'); }, 600);
   });
   
   
@@ -141,42 +106,21 @@ $(function () {
     },
     setValue: function(el, value) {
       var self = this;
-      var anchors = $(el).parent('#mymenu').find('li:not(.has-treeview)').children('a');
-      var navTreeview = $('.nav-treeview');
-      var treeviews =  $(".has-treeview");
-      
-      anchors.each(function(index) { // eslint-disable-line consistent-return
+      var anchors = $(el).parent('#sidebar-menu').find('li:not(.treeview)').children('a');
+      anchors.each(function() { // eslint-disable-line consistent-return
         if (self._getTabName($(this)) === value) {
-          var isTreeview = $(anchors[index]).hasClass('treeview-link');
-          if (isTreeview) {
-            anchors.splice(index, 1);
-            $(anchors).removeClass('active');
-            
-            // mark the link treeview as active and remove the diplay none
-            // class to the ul element so that li children are shown
-            $(navTreeview).siblings().addClass('active');
-            $(navTreeview).css('display', '');
-            
-            // open the menu  
-            $(treeviews).addClass('menu-open');
-          } else {
-            
-            // close all other open treeviews
-            if (!$(this).parents().hasClass("has-treeview")) {
-              if ($(treeviews).hasClass('menu-open')) {
-                $(treeviews).removeClass('menu-open'); 
-              }
+          $(this).tab('show');
+          // this make sure that treeview items are open when we
+          // use the updatebs4TabItems function on the server side
+          if ($(this).hasClass('treeview-link')) {
+            if (!$(this).parents('.has-treeview').hasClass('menu-open')) {
+              $(this).parents('.has-treeview').children().eq(0).trigger('click');
             }
-            
-            var treeViewLi = $(this).parents()[2];
-            var treeViewLiLink = treeViewLi.children[0];
-            $(treeViewLiLink).addClass("active");
           }
           $(el).attr('data-value', self._getTabName($(this)));
           return false;
         }
       });
-      $('#mymenu a[href="#shiny-tab-' + value + '"]').tab('show');
     },
     receiveMessage: function(el, data) {
       if (data.hasOwnProperty('value'))
@@ -198,7 +142,7 @@ $(function () {
     }
   });
 
-  Shiny.inputBindings.register(tabItemInputBinding);
+  Shiny.inputBindings.register(tabItemInputBinding, 'bs4Dash.tabItemInput');
   
   
   //---------------------------------------------------------------------
@@ -236,7 +180,52 @@ $(function () {
     }
   });
   
-  Shiny.inputBindings.register(sidebarBinding);
+  Shiny.inputBindings.register(sidebarBinding, 'bs4Dash.sidebarInput');
+  
+  // does not work
+  //$(document).on('collapsed.lte.pushmenu', function(e) {
+  //  console.log('plop');
+  //  console.log(e);
+  //  $(window).trigger("resize");
+  //});
+  
+  // sidebarmenuExpandedInputBinding
+  // ------------------------------------------------------------------
+  // This keeps tracks of what menuItem (if any) is expanded
+  var sidebarmenuExpandedInputBinding = new Shiny.InputBinding();
+  $.extend(sidebarmenuExpandedInputBinding, {
+    find: function(scope) {
+      // This will also have id="sidebarItemExpanded"
+      return $(scope).find('.sidebar');
+    },
+    getValue: function(el) {
+      var $open = $(el)
+        .find('li')
+        .filter('.menu-open')
+        .find('ul');
+      if ($open.length === 1) return $open.attr('data-expanded');
+      else return null;
+    },
+    setValue: function(el, value) {
+      // does not work (nothing is printed)
+      var $menuItem = $(el).find("[data-expanded='" + value + "']");
+      // This will trigger actions defined by AdminLTE, as well as actions
+      // defined in sidebar.js.
+      $menuItem.prev().trigger("click");
+    },
+    subscribe: function(el, callback) {
+      $(el).on('change.sidebarmenuExpandedInputBinding', function() {
+        callback();
+      });
+    },
+    unsubscribe: function(el) {
+      $(el).off('.sidebarmenuExpandedInputBinding');
+    }
+  });
+  Shiny.inputBindings.register(sidebarmenuExpandedInputBinding,
+  'bs4Dash.sidebarmenuExpandedInputBinding');
+  
+  
   
   
   // toggle sidebar at start depending on the body class
