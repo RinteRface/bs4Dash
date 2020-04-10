@@ -9,6 +9,49 @@ $(function() {
         $(window).trigger("resize"); 
       }
   });
+  
+  
+  // The code below hande the click out of the right control bar
+  $(window).click(function(e) { 
+    if($("aside.control-sidebar").find(e.target).length === 0 &&
+       $("#controlbar-toggle").find(e.target).length === 0) {
+        if ($(".control-sidebar").attr("data-pin") === "false") {
+          $("body").removeClass("control-sidebar-slide-open");  
+        }
+      } 
+  });
+  
+  // if pin is TRUE at start we need to disable the controlbar toggle as soon
+  // as it is opened. Only do this if pin data is present.
+  $("#controlbar-toggle").one("click", function() {
+    var pinned = $(".control-sidebar").attr("data-pin");
+    if (pinned !== "false") {
+      setTimeout(function() {
+        $("#controlbar-toggle").addClass("disabled");
+      }, 10); 
+    }
+  });
+  
+  // handle the case where the controlbar is already opened at start
+  $(document).one("shiny:sessioninitialized", function() {
+    var controlbarOpen = $("body").hasClass("control-sidebar-slide-open");
+    var pinned = ($(".control-sidebar").attr("data-pin") === "true");
+    if (controlbarOpen && pinned) {
+      $("#controlbar-toggle").addClass("disabled");
+    }
+  });
+  
+  // handle the pin button: toggle data-pin state
+  $("#controlbarPin").on('click', function() {
+    $(".control-sidebar").attr("data-pin",
+       $(".control-sidebar").attr("data-pin") == "false" ? "true" : "false");
+    // toggle right sidebar control depending on the datapin
+    if ($(".control-sidebar").attr("data-pin") === "true") {
+      $("#controlbar-toggle").addClass("disabled");
+    } else {
+      $("#controlbar-toggle").removeClass("disabled");
+    }
+  });
 
 
   // Input binding
@@ -47,6 +90,6 @@ $(function() {
     }
   });
   
-  Shiny.inputBindings.register(controlbarBinding);
+  Shiny.inputBindings.register(controlbarBinding, "bs4Dash.controlbarBinding");
 
 });

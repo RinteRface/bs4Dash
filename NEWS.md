@@ -28,7 +28,10 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
-- New expandedName param for `bs4SidebarMenuItem()` to align with shinydashboard
+- Now, clicking outside the `bs4DashControlbar()` when it is opened will close it.
+To keep it open, see below
+- New pinned option for `bs4DashControlbar()`: allow to block the controlbar state
+- New expandedName param for `bs4SidebarMenuItem` to align with shinydashboard
 - id is NULL in `bs4TabSetPanel()` by default
 - side is default to left in `bs4TabSetPanel()`
 - change `bs4TabPanel()` param order to align with shiny
