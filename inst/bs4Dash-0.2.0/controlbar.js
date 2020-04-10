@@ -22,13 +22,22 @@ $(function() {
   });
   
   // if pin is TRUE at start we need to disable the controlbar toggle as soon
-  // as it is opened. Only do this if pin data is present
+  // as it is opened. Only do this if pin data is present.
   $("#controlbar-toggle").one("click", function() {
     var pinned = $(".control-sidebar").attr("data-pin");
     if (typeof pinned !== typeof undefined && pinned !== false) {
       setTimeout(function() {
-        $("#controlbar-toggle").addClass("disabled");
+        $(this).addClass("disabled");
       }, 10); 
+    }
+  });
+  
+  // handle the case where the controlbar is already opened at start
+  $(document).one("shiny:connected", function() {
+    var controlbarOpen = $("body").hasClass("control-sidebar-slide-open");
+    var pinned = ($(".control-sidebar").attr("data-pin") === "true");
+    if (controlbarOpen && pinned) {
+      $("#controlbar-toggle").addClass("disabled");
     }
   });
   
