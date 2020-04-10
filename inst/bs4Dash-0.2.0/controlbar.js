@@ -62,9 +62,7 @@ $(function() {
   
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
-      if (!$(el).attr("data-pin")) {
-        $("#controlbar-toggle").click(); 
-      }
+      $("#controlbar-toggle").click();
     },
   
     subscribe: function(el, callback) {
