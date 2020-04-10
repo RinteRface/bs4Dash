@@ -1,5 +1,17 @@
 $(function() {
   
+  // required to show a toast when the controlbar is pinned 
+  // for the first time
+  var showToast = true;
+  const controlbarToast = () => {
+    $(document).Toasts('create', {
+      title: 'Controlbar is pinned',
+      close: false,
+      autohide: true,
+      delay: 2000
+    });
+    showToast = false;
+  };
 
   // This prevent box content from going outside their container 
   // when the control-bar is on push mode
@@ -25,9 +37,10 @@ $(function() {
   // as it is opened. Only do this if pin data is present.
   $("#controlbar-toggle").one("click", function() {
     var pinned = $(".control-sidebar").attr("data-pin");
-    if (pinned !== "false") {
+    if (pinned !== undefined && pinned !== "false") {
       setTimeout(function() {
         $("#controlbar-toggle").addClass("disabled");
+        controlbarToast();
       }, 10); 
     }
   });
@@ -38,8 +51,10 @@ $(function() {
     var pinned = ($(".control-sidebar").attr("data-pin") === "true");
     if (controlbarOpen && pinned) {
       $("#controlbar-toggle").addClass("disabled");
+      controlbarToast();
     }
   });
+  
   
   // handle the pin button: toggle data-pin state
   $("#controlbarPin").on('click', function() {
@@ -48,6 +63,9 @@ $(function() {
     // toggle right sidebar control depending on the datapin
     if ($(".control-sidebar").attr("data-pin") === "true") {
       $("#controlbar-toggle").addClass("disabled");
+      if (showToast) {
+        controlbarToast();
+      }
     } else {
       $("#controlbar-toggle").removeClass("disabled");
     }
