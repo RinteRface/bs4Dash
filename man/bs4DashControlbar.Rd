@@ -12,7 +12,7 @@ bs4DashControlbar(
   skin = "dark",
   title = NULL,
   width = 250,
-  pinned = FALSE
+  pinned = NULL
 )
 
 dashboardControlbar(
@@ -22,7 +22,7 @@ dashboardControlbar(
   skin = "dark",
   title = NULL,
   width = 250,
-  pinned = FALSE
+  pinned = NULL
 )
 }
 \arguments{
@@ -39,7 +39,7 @@ is FALSE. NULL by default.}
 
 \item{width}{Controlbar width. 250 px by default.}
 
-\item{pinned}{Whether to block the controlbar state. Default to FALSE.}
+\item{pinned}{Whether to block the controlbar state (TRUE or FALSE). Default to NULL.}
 }
 \description{
 Build an adminLTE3 dashboard right sidebar

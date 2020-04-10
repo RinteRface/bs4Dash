@@ -22,11 +22,14 @@ $(function() {
   });
   
   // if pin is TRUE at start we need to disable the controlbar toggle as soon
-  // as it is opened
+  // as it is opened. Only do this if pin data is present
   $("#controlbar-toggle").one("click", function() {
-    setTimeout(function() {
-      $("#controlbar-toggle").addClass("disabled");
-    }, 10);
+    var pinned = $(".control-sidebar").attr("data-pin");
+    if (typeof pinned !== typeof undefined && pinned !== false) {
+      setTimeout(function() {
+        $("#controlbar-toggle").addClass("disabled");
+      }, 10); 
+    }
   });
   
   // handle the pin button: toggle data-pin state
