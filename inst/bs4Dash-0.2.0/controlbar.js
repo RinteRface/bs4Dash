@@ -27,7 +27,8 @@ $(function() {
   $(window).click(function(e) { 
     if($("aside.control-sidebar").find(e.target).length === 0 &&
        $("#controlbar-toggle").find(e.target).length === 0) {
-        if ($(".control-sidebar").attr("data-pin") === "false") {
+         var pinned = $(".control-sidebar").attr("data-pin");
+        if (pinned === "false" || pinned === undefined) {
           $("body").removeClass("control-sidebar-slide-open");  
         }
       } 
