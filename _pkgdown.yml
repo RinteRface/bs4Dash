@@ -22,6 +22,7 @@ reference:
   contents: 
   - '`bs4PopoverServer`'
   - '`bs4PopoverUI`'
+  - '`bs4Toast`'
   - '`bs4TooltipServer`'
   - '`bs4TooltipUI`'
   

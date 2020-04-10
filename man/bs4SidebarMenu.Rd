@@ -10,10 +10,18 @@ bs4SidebarMenu(
   id = NULL,
   flat = FALSE,
   compact = FALSE,
-  child_indent = TRUE
+  child_indent = TRUE,
+  legacy = FALSE
 )
 
-sidebarMenu(..., id = NULL, flat = FALSE, compact = FALSE, child_indent = TRUE)
+sidebarMenu(
+  ...,
+  id = NULL,
+  flat = FALSE,
+  compact = FALSE,
+  child_indent = TRUE,
+  legacy = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.}
@@ -27,7 +35,10 @@ example, if \code{id="tabs"}, then \code{input$tabs} will be the
 
 \item{compact}{Whether items should be compacted. FALSE by default.}
 
-\item{child_indent}{Whether to indent children. TRUE by default}
+\item{child_indent}{Whether to indent children. TRUE by default.}
+
+\item{legacy}{Whether to use the old adminLTE2 item selection display. Default
+to FALSE.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu

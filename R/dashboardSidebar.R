@@ -178,7 +178,9 @@ updatebs4Sidebar <- function(inputId, session) {
 #'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
 #' @param flat Whether sidebar items should have a flat design. FALSE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
-#' @param child_indent Whether to indent children. TRUE by default
+#' @param child_indent Whether to indent children. TRUE by default.
+#' @param legacy Whether to use the old adminLTE2 item selection display. Default
+#' to FALSE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -244,7 +246,7 @@ updatebs4Sidebar <- function(inputId, session) {
 #'
 #' @export
 bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
-                           compact = FALSE, child_indent = TRUE) {
+                           compact = FALSE, child_indent = TRUE, legacy = FALSE) {
   
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
   
@@ -260,6 +262,7 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
   if (child_indent) menuCl <- paste0(menuCl, " nav-child-indent")
+  if (legacy) menuCl <- paste0(menuCl, " nav-legacy")
   
   # menu Tag
   shiny::tags$ul(

@@ -145,10 +145,18 @@
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legacy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>sidebarMenu</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>sidebarMenu</span>(
+  <span class='no'>...</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>child_indent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>legacy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,7 +182,12 @@ example, if <code>id="tabs"</code>, then <code>input$tabs</code> will be the
     </tr>
     <tr>
       <th>child_indent</th>
-      <td><p>Whether to indent children. TRUE by default</p></td>
+      <td><p>Whether to indent children. TRUE by default.</p></td>
+    </tr>
+    <tr>
+      <th>legacy</th>
+      <td><p>Whether to use the old adminLTE2 item selection display. Default
+to FALSE.</p></td>
     </tr>
     </table>
 

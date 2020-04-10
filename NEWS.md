@@ -28,6 +28,8 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
+- New legacy parameter in `bs4SidebarMenu()`: to use old AdminLTE2 styling for 
+item selection
 - Now, clicking outside the `bs4DashControlbar()` when it is opened will close it.
 To keep it open, see below
 - New pinned option for `bs4DashControlbar()`: allow to block the controlbar state
