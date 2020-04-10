@@ -27,7 +27,7 @@ $(function() {
     var pinned = $(".control-sidebar").attr("data-pin");
     if (typeof pinned !== typeof undefined && pinned !== false) {
       setTimeout(function() {
-        $(this).addClass("disabled");
+        $("#controlbar-toggle").addClass("disabled");
       }, 10); 
     }
   });
