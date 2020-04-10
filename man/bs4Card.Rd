@@ -21,6 +21,7 @@ bs4Card(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
+  refreshable = FALSE,
   label = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
@@ -43,6 +44,7 @@ box(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
+  refreshable = FALSE,
   label = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
@@ -88,6 +90,8 @@ the user to collapse the box.}
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
+
+\item{refreshable}{TO DO...}
 
 \item{label}{Slot for \link{bs4CardLabel}.}
 

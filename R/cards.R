@@ -30,6 +30,7 @@
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param sidebar Slot for \link{bs4CardSidebar}.
+#' @param refreshable TO DO...
 #' 
 #' @family cards
 #'
@@ -123,7 +124,8 @@
 bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
-                    closable = FALSE, maximizable = FALSE, label = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
+                    closable = FALSE, maximizable = FALSE, refreshable = FALSE, 
+                    label = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
   
   if (!is.null(height) & overflow) {
     stop(
@@ -231,12 +233,28 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
       )
     },
     
+    # update
+    if (refreshable) {
+      shiny::tags$button(
+        type = "button",
+        class = "btn btn-tool",
+        `data-card-widget` = "card-refresh",
+        `data-response-type` = "html",
+        `data-source` = "https://pokeapi.co/api/v2/pokemon/1/",
+        shiny::tags$i(class = "fas fa-sync-alt")
+      )
+    },
+    
     # sidebar
     if (!is.null(sidebar)) sidebar[[2]]
   )
   
   # header
-  if (is.null(title) & (isTRUE(maximizable) | isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  if (is.null(title) & 
+      (isTRUE(maximizable) | 
+       isTRUE(closable) | 
+       isTRUE(collapsible) |
+       isTRUE(refreshable))) title <- "\u200C"
   
   headerTag <- shiny::tags$div(
     class = if (isTRUE(headerBorder)) "card-header" else "card-header no-border",
