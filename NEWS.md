@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- New `bs4Toast()`: include the builtin AdminLTE3 toasts!
 - Add options to select `bs4SidebarMenuItem()` and `bs4SidebarMenuSubItem()` at start.
 - Now `bs4DropdownMenuItem()` may act as an actionButton
 - Whenever a `bs4Card()` is maximized, the collapsible icon is hidden (does not make sense to have it)

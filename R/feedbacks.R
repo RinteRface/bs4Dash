@@ -255,3 +255,85 @@ bs4PopoverServer <- function(target, content, title, placement = c("top", "botto
   )
   session$sendCustomMessage("popover", message)
 }
+
+
+
+
+
+#' Create an adminLTE toast
+#'
+#' Builtin AdminLTE3 toasts
+#'
+#' @param title Toast title.
+#' @param body Body content.
+#' @param subtitle Toast subtitle.
+#' @param options Toasts options: a list. See \url{https://adminlte.io/docs/3.0/javascript/toasts.html}.
+#' @param session Shiny session object.
+#' 
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'   ui = dashboardPage(
+#'     navbar = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
+#'       actionButton("sendToast", "Send Toast")
+#'     ),
+#'     controlbar = dashboardControlbar()
+#'   ),
+#'   server = function(input, output) {
+#'     observeEvent(input$sendToast, {
+#'       bs4Toast(
+#'         title = "My Toast", 
+#'         body = h4("I am a toast!"),
+#'         options = list(
+#'           autohide = TRUE,
+#'           icon = "fas fa-home",
+#'           close = FALSE
+#'         )
+#'       )
+#'     })
+#'   }
+#'  )
+#'  
+#' }
+#' @importFrom jsonlite toJSON
+bs4Toast <- function(title, body, subtitle = NULL, options = NULL, 
+                     session = shiny::getDefaultReactiveDomain()) {
+  
+  props <- dropNulls(
+    list(
+      title = title,
+      body = body,
+      subtitle = subtitle
+    )
+  )
+  
+  message <- c(props, options)
+  
+  # make sure that shiny tags are evaluated and converted
+  # to strings since the toast api only accept strings
+  message2 <- lapply(seq_along(message), function(i) {
+    if (inherits(message[[i]], "shiny.tag")) {
+      as.character(force(message[[i]]))
+    } else {
+      message[[i]]
+    }
+  })
+  names(message2) <- names(message)
+  
+  # convert to json
+  message <- jsonlite::toJSON(
+    message2,
+    pretty = TRUE,
+    auto_unbox = TRUE
+  )
+  
+  session$sendCustomMessage("toast", message2)
+  
+}
