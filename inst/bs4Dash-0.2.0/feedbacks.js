@@ -21,4 +21,10 @@ $(function() {
       trigger: 'focus'
     });
   });
+  
+  
+  // handle builtin toasts
+  Shiny.addCustomMessageHandler('toast', function(message) {
+    $(document).Toasts('create', message);
+  });
 });

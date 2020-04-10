@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- New `bs4Toast()`: include the builtin AdminLTE3 toasts!
 - Add options to select `bs4SidebarMenuItem()` and `bs4SidebarMenuSubItem()` at start.
 - Now `bs4DropdownMenuItem()` may act as an actionButton
 - Whenever a `bs4Card()` is maximized, the collapsible icon is hidden (does not make sense to have it)
@@ -27,7 +28,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
-- New expandedName param for `bs4SidebarMenuItem` to align with shinydashboard
+- New expandedName param for `bs4SidebarMenuItem()` to align with shinydashboard
 - id is NULL in `bs4TabSetPanel()` by default
 - side is default to left in `bs4TabSetPanel()`
 - change `bs4TabPanel()` param order to align with shiny
