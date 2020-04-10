@@ -76,7 +76,6 @@ $(function () {
   // expanded)
   $(document).on("click", ".has-treeview", function() {
     var $menu = $(this);
-    console.log($menu.hasClass('menu-open'));
     // If this menuItem was already open, then clicking on it again,
     // should trigger the "hidden" event, so Shiny doesn't worry about
     // it while it's hidden (and vice versa).

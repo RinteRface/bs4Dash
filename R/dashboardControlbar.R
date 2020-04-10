@@ -9,12 +9,13 @@
 #' @param skin Controlbar skin. "dark" or "light".
 #' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
+#' @param pinned Whether to block the controlbar state (TRUE or FALSE). Default to NULL.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
-                              title = NULL, width = 250) {
+                              title = NULL, width = 250, pinned = NULL) {
   
   if (is.null(inputId)) inputId <- "controlbarId"
 
@@ -23,6 +24,15 @@ bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark
     id = inputId,
     `data-show` = if (disable) "false" else "true",
     `data-slide` = "true",
+    `data-pin` = if (!is.null(pinned)) tolower(pinned),
+    if (!is.null(pinned)) {
+      shiny::tags$button(
+        id = "controlbarPin",
+        class = "m-2 p-1 btn btn-xs btn-outline-secondary",
+        type = "button", 
+        shiny::icon("thumbtack")
+      )
+    },
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
