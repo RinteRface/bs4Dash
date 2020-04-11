@@ -143,26 +143,26 @@ with Bootstrap 4</p>
     </div>
 
     <pre class="usage"><span class='fu'>bs4TooltipServer</span>(
-  <span class='no'>target</span>,
-  <span class='no'>title</span>,
-  <span class='kw'>placement</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>, <span class='st'>"left"</span>, <span class='st'>"right"</span>),
-  <span class='no'>session</span>
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>options</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>target</th>
-      <td><p>Tooltip target.</p></td>
+      <th>id</th>
+      <td><p>Tooltip target id.</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>Tooltip title.</p></td>
+      <th>selector</th>
+      <td><p>jQuery selector. Allow more customization for the target (nested tags).</p></td>
     </tr>
     <tr>
-      <th>placement</th>
-      <td><p>Tooltipe placement: "top", "bottom", "left" or "right".</p></td>
+      <th>options</th>
+      <td><p>List of options to pass to the tooltip. See <a href='https://getbootstrap.com/docs/4.0/components/tooltips/'>https://getbootstrap.com/docs/4.0/components/tooltips/</a>.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -192,10 +192,11 @@ with Bootstrap 4</p>
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>, {
      <span class='fu'>bs4TooltipServer</span>(
-      <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>,
-      <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"goButton2"</span>,
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Server tooltip"</span>,
-      <span class='kw'>placement</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"goButton2"</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Server tooltip"</span>,
+       <span class='kw'>placement</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>
+      )
      )
    })
   }

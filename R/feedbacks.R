@@ -70,9 +70,9 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
 #' This replaces the shinyBS tooltip feature that is not compatible
 #' with Bootstrap 4
 #'
-#' @param target Tooltip target.
-#' @param title Tooltip title.
-#' @param placement Tooltipe placement: "top", "bottom", "left" or "right". 
+#' @param id Tooltip target id.
+#' @param selector jQuery selector. Allow more customization for the target (nested tags).
+#' @param options List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}. 
 #' @param session Shiny session object.
 #'
 #' @export
@@ -98,25 +98,30 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
 #'   server = function(input, output, session) {
 #'    observeEvent(input$goButton, {
 #'      bs4TooltipServer(
-#'       session = session, 
-#'       target = "goButton2", 
-#'       title = "Server tooltip", 
-#'       placement = "bottom"
+#'       id = "goButton2", 
+#'       options = list(
+#'        title = "Server tooltip", 
+#'        placement = "bottom"
+#'       )
 #'      )
 #'    })
 #'   }
 #'  )
 #' }
-bs4TooltipServer <- function(target, title, placement = c("top", "bottom", "left", "right"), 
-                             session) {
+bs4TooltipServer <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   
-  placement <- match.arg(placement)
+  if (!is.null(id) & !is.null(selector)) {
+    stop("Please choose either target or selector!")
+  }
+  if (is.null(options$title)) stop("Please provide a tooltip title!")
+  
+  options <- jsonlite::toJSON(options, auto_unbox = TRUE, pretty = TRUE)
   
   message <- dropNulls(
     list(
-      target = target,
-      title = title,
-      placement = placement
+      id = id,
+      selector = selector,
+      options = options
     )
   )
   session$sendCustomMessage("tooltip", message)
@@ -203,10 +208,9 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #' This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
 #'
-#' @param target Popover target.
-#' @param content Popover content.
-#' @param title Popover title.
-#' @param placement Popover placement: "top", "bottom", "left" or "right". 
+#' @param id Popover target id.
+#' @param selector jQuery selector. Allow more customization for the target (nested tags).
+#' @param options List of options to pass to the popover. See \url{https://getbootstrap.com/docs/4.0/components/popovers/}.
 #' @param session Shiny session object.
 #' @export
 #'
@@ -231,26 +235,31 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #'   server = function(input, output, session) {
 #'    observeEvent(input$goButton, {
 #'       bs4PopoverServer(
-#'         session = session, 
-#'         target = "goButton2", 
-#'         content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
-#'         title = "Server popover", 
-#'         placement = "bottom"
+#'         id = "goButton2", 
+#'         options = list(
+#'          content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
+#'          title = "Server popover", 
+#'          placement = "bottom",
+#'          trigger = "hover"
+#'         )
 #'       )
 #'     })
 #'   }
 #'  )
 #' }
-bs4PopoverServer <- function(target, content, title, placement = c("top", "bottom", "left", "right"), session) {
+bs4PopoverServer <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   
-  placement <- match.arg(placement)
+  if (!is.null(id) & !is.null(selector)) {
+    stop("Please choose either target or selector!")
+  }
+  if (is.null(options$content)) stop("Please provide a popover content!")
+  options <- jsonlite::toJSON(options, auto_unbox = TRUE, pretty = TRUE)
   
   message <- dropNulls(
     list(
-      target = target,
-      content = content,
-      title = title,
-      placement = placement
+      id = id,
+      selector = selector,
+      options = options
     )
   )
   session$sendCustomMessage("popover", message)

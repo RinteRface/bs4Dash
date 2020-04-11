@@ -5,21 +5,18 @@
 \title{Create a Bootstrap 4 Popover from the server side}
 \usage{
 bs4PopoverServer(
-  target,
-  content,
-  title,
-  placement = c("top", "bottom", "left", "right"),
-  session
+  id = NULL,
+  selector = NULL,
+  options,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{target}{Popover target.}
+\item{id}{Popover target id.}
 
-\item{content}{Popover content.}
+\item{selector}{jQuery selector. Allow more customization for the target (nested tags).}
 
-\item{title}{Popover title.}
-
-\item{placement}{Popover placement: "top", "bottom", "left" or "right".}
+\item{options}{List of options to pass to the popover. See \url{https://getbootstrap.com/docs/4.0/components/popovers/}.}
 
 \item{session}{Shiny session object.}
 }
@@ -48,11 +45,13 @@ if (interactive()) {
   server = function(input, output, session) {
    observeEvent(input$goButton, {
       bs4PopoverServer(
-        session = session, 
-        target = "goButton2", 
-        content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
-        title = "Server popover", 
-        placement = "bottom"
+        id = "goButton2", 
+        options = list(
+         content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
+         title = "Server popover", 
+         placement = "bottom",
+         trigger = "hover"
+        )
       )
     })
   }

@@ -5,18 +5,18 @@
 \title{Create a Bootstrap 4 Tooltip from the server side}
 \usage{
 bs4TooltipServer(
-  target,
-  title,
-  placement = c("top", "bottom", "left", "right"),
-  session
+  id = NULL,
+  selector = NULL,
+  options,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{target}{Tooltip target.}
+\item{id}{Tooltip target id.}
 
-\item{title}{Tooltip title.}
+\item{selector}{jQuery selector. Allow more customization for the target (nested tags).}
 
-\item{placement}{Tooltipe placement: "top", "bottom", "left" or "right".}
+\item{options}{List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}.}
 
 \item{session}{Shiny session object.}
 }
@@ -45,10 +45,11 @@ if (interactive()) {
   server = function(input, output, session) {
    observeEvent(input$goButton, {
      bs4TooltipServer(
-      session = session, 
-      target = "goButton2", 
-      title = "Server tooltip", 
-      placement = "bottom"
+      id = "goButton2", 
+      options = list(
+       title = "Server tooltip", 
+       placement = "bottom"
+      )
      )
    })
   }
