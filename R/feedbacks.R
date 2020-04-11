@@ -312,7 +312,7 @@ bs4PopoverServer <- function(id = NULL, selector = NULL, options, session = shin
 #'  
 #' }
 #' @importFrom jsonlite toJSON
-bs4Toast <- function(title, body, subtitle = NULL, options = NULL, 
+bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL, 
                      session = shiny::getDefaultReactiveDomain()) {
   
   props <- dropNulls(
@@ -345,4 +345,148 @@ bs4Toast <- function(title, body, subtitle = NULL, options = NULL,
   
   session$sendCustomMessage("toast", message2)
   
+}
+
+
+
+
+#' Create a Bootstrap 4 alert
+#' 
+#' AdminLTE3 alert
+#'
+#' @param ... Alert content.
+#' @param id Alert id. Needed by \link{bs4CloseAlert}.
+#' @param title Alert title.
+#' @param closable Whether to allow the user to close the alert. FALSE by default.
+#' @param width Alert width. Between 1 and 12.
+#' @param elevation Alert elevation.
+#' @param status Alert status. "primary", "success", "warning", "danger" or "info".
+#' 
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'    ui = bs4DashPage(
+#'      navbar = bs4DashNavbar(),
+#'      sidebar = bs4DashSidebar(),
+#'      controlbar = bs4DashControlbar(),
+#'      footer = bs4DashFooter(),
+#'      title = "test",
+#'      body = bs4DashBody(
+#'        title = "Alerts",
+#'        bs4Alert(
+#'         title = "Be Careful!",
+#'         status = "danger",
+#'         closable = FALSE,
+#'         "Danger alert preview. This alert is not dismissable. 
+#'         A wonderful serenity has taken possession of my entire soul, 
+#'         like these sweet mornings of spring which 
+#'         I enjoy with my whole heart."
+#'        ),
+#'        bs4Alert(
+#'         title = "Congratulation!",
+#'         status = "success",
+#'         closable = TRUE,
+#'         elevation = 4,
+#'         "Warning alert preview. This alert is dismissable. 
+#'         A wonderful serenity has taken possession of my entire soul, 
+#'         like these sweet mornings of spring which 
+#'         I enjoy with my whole heart."
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+bs4Alert <- function(..., id = NULL, title, closable = TRUE, width = 6, elevation = NULL,
+                     status = c("primary", "warning", "danger", "info", "success")) {
+  
+  status <- match.arg(status)
+  
+  type <- switch(
+    status,
+    primary = "info",
+    danger = "ban",
+    info = "info",
+    warning = "warning",
+    success = "check"
+  )
+  
+  alertCl <- "alert alert-dismissible"
+  if (!is.null(status)) alertCl <- paste0(alertCl, " alert-", status)
+  if (!is.null(elevation)) alertCl <- paste0(alertCl, " elevation-", elevation)
+  
+  alertTag <- shiny::tags$div(
+    id = id, 
+    class = alertCl,
+    if (closable) shiny::tags$button(
+      type = "button",
+      class = "close",
+      `data-dismiss` = "alert",
+      `aria-hidden` = "true",
+      "x"
+    ),
+    shiny::tags$h5(
+      shiny::tags$i(class = paste0("icon fa fa-", type)),
+      title
+    ),
+    ...
+  )
+  
+  shiny::tags$div(
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    alertTag
+  )
+}
+
+
+
+
+#' Close AdminLTE3 alert
+#' 
+#' Server side function
+#'
+#' @param id \link{bs4Alert} id.
+#' @param session Shiny session object.
+#' @export
+#'
+#' @note One may use input$<id>, where id is the alert unique id, to trigger
+#' more actions on the server side after the alert closed.
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shiny::shinyApp(
+#'   ui = dashboardPage(
+#'     navbar = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
+#'       actionButton("close", "Close Alert"),
+#'       bs4Alert(id = "myalert", title = "Hello", status = "success")
+#'     ),
+#'     controlbar = dashboardControlbar()
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$close, {
+#'       bs4CloseAlert(id = "myalert")
+#'     })
+#'     
+#'     observe(print(input$myalert))
+#'     
+#'     observeEvent(input$myalert, {
+#'       bs4Toast(title = "Alert succesfully closed!")
+#'     })
+#'   }
+#'  )
+#' }
+bs4CloseAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage("alert", session$ns(id))
 }

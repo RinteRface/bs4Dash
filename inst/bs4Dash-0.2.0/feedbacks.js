@@ -30,4 +30,14 @@ $(function() {
   Shiny.addCustomMessageHandler('toast', function(message) {
     $(document).Toasts('create', message);
   });
+  
+  // handle alert
+  Shiny.addCustomMessageHandler('alert', function(message) {
+    // callback -> give ability to perform more actions on the Shiny side
+    // once the alert is closed
+    $('#' + message).on('closed.bs.alert', function () {
+      Shiny.setInputValue(message, true);
+    });
+    $('#' + message).alert('close');
+  });
 });

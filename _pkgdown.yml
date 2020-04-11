@@ -20,6 +20,8 @@ reference:
 - title: Feedback related functions
   desc: Bootstrap 4 popovers, tooltips, ...
   contents: 
+  - '`bs4Alert`'
+  - '`bs4CloseAlert`'
   - '`bs4PopoverServer`'
   - '`bs4PopoverUI`'
   - '`bs4Toast`'
@@ -118,7 +120,6 @@ reference:
   contents:
   - '`bs4Accordion`'
   - '`bs4AccordionItem`'
-  - '`bs4Alert`'
   - '`bs4Badge`'
   - '`bs4Callout`'
   - '`bs4Carousel`'

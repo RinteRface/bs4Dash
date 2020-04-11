@@ -6,7 +6,7 @@
 \usage{
 bs4Toast(
   title,
-  body,
+  body = NULL,
   subtitle = NULL,
   options = NULL,
   session = shiny::getDefaultReactiveDomain()

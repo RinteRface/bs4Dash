@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- New `bs4CloseAlert()`: programmatically close `bs4Alert()`
 - New `bs4Toast()`: include the builtin AdminLTE3 toasts!
 - Add options to select `bs4SidebarMenuItem()` and `bs4SidebarMenuSubItem()` at start.
 - Now `bs4DropdownMenuItem()` may act as an actionButton
@@ -39,6 +40,7 @@ To keep it open, see below
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix #30: programmatically close `bs4Alert()`
 - Fix #47: Control bar not showing top elements when collapsed is FALSE
 - Fix #99: rework the way sidebar items work. By default, when sidebar items has subitems and is selected, the first item is not selected. We leave the choice to the user. Thanks @analytichealth
 - Fix `bs4DropdownMenu()` example
