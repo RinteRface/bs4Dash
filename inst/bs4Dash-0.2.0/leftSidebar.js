@@ -235,7 +235,7 @@ $(function () {
   
   // handle fixed sidebar
   if ($(".main-sidebar").attr("data-fixed") === "true") {
-    $("body").addClass("layout-fixed");
+    $('body').Layout('fixLayoutHeight');
   }
   
 });

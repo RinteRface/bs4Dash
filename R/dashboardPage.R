@@ -54,9 +54,6 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
   if (sidebar_mini) sidebar_cl <- paste0(sidebar_cl, " sidebar-mini")
   
   if (!is.null(controlbar)) {
-    if (!controlbar_collapsed) {
-      sidebar_cl <- paste0(sidebar_cl, " control-sidebar-slide-open")
-    }
     if (!controlbar_overlay) {
       sidebar_cl <- paste0(sidebar_cl, " control-sidebar-push-slide")
     } 
@@ -122,6 +119,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
       theme = old_school,
       shiny::tags$body(
         class = sidebar_cl,
+        `controlbar-start-open` = tolower(!controlbar_collapsed),
         `sidebar-start-open` = tolower(!sidebar_collapsed),
         
         # set up a time-out for the preloader

@@ -110,5 +110,12 @@ $(function() {
   });
   
   Shiny.inputBindings.register(controlbarBinding, "bs4Dash.controlbarBinding");
+  
+  
+  // toggle controlbar at start
+  var controlbarStartsOpen = $('body').attr('controlbar-start-open');
+  if (controlbarStartsOpen === "true") {
+    $('body').addClass('control-sidebar-slide-open');
+  }
 
 });
