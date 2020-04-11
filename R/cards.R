@@ -241,6 +241,8 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
         `data-card-widget` = "card-refresh",
         `data-response-type` = "html",
         `data-source` = "https://pokeapi.co/api/v2/pokemon/1/",
+        `data-load-in-content` = "false",
+        #`data-on-load-done` = "function(response) { console.log(response); }",
         shiny::tags$i(class = "fas fa-sync-alt")
       )
     },
