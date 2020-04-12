@@ -244,7 +244,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   )
   headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
   
-
+  
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
@@ -268,10 +268,15 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
   cardTag <- shiny::tags$div(class = cardCl, id = inputId)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
-  cardWrapper <- shiny::tags$div(
-    class = if (!is.null(width)) paste0("col-sm-", width),
+  cardWrapper <- if (!is.null(width)) {
+    shiny::tags$div(
+      class = paste0("col-sm-", width),
+      cardTag
+    )
+  } else {
     cardTag
-  )
+  }
+  
   cardWrapper
 }
 
@@ -1180,7 +1185,7 @@ bs4TabSetPanel <- function(..., id = NULL, side = "left", status = NULL, tabStat
   
   tabSetCl <- "nav"
   tabSetCl <- if (type == "tabs") {
-     paste0(tabSetCl, " nav-tabs")
+    paste0(tabSetCl, " nav-tabs")
   } else if (type == "pills") {
     paste0(tabSetCl, " nav-pills")
   }
@@ -1856,4 +1861,112 @@ cardComment <- function(..., src = NULL, title = NULL, date = NULL) {
       ...
     )
   )
+}
+
+
+
+
+#' Bootstrap 4 container for cards
+#'
+#' @param ... Slot for bs4Dash cards.
+#' @param type Container type. See \url{https://getbootstrap.com/docs/4.0/components/card/#card-layout}
+#' for more details.
+#' @export
+#' 
+#' @note Cards must have width argument set to NULL.
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  # with group
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'        bs4CardLayout(
+#'          type = "group",
+#'          lapply(1:4, function(i) {
+#'            bs4Card(
+#'              width = NULL,
+#'              title = paste("Card", i), 
+#'              closable = FALSE,
+#'              collapsible = FALSE,
+#'              "Lorem ipsum is so fun!"
+#'            )
+#'          })
+#'        )
+#'      ),
+#'      controlbar = dashboardControlbar()
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#'  
+#'  # with deck
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'        bs4CardLayout(
+#'          type = "deck",
+#'          lapply(1:4, function(i) {
+#'            bs4Card(
+#'              width = NULL,
+#'              title = paste("Card", i), 
+#'              closable = FALSE,
+#'              collapsible = FALSE,
+#'              "Lorem ipsum is so fun!"
+#'            )
+#'          })
+#'        )
+#'      ),
+#'      controlbar = dashboardControlbar()
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#'  
+#'  # with columns
+#'  shiny::shinyApp(
+#'    ui = dashboardPage(
+#'      navbar = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'        bs4CardLayout(
+#'          type = "columns",
+#'          lapply(1:12, function(i) {
+#'            bs4Card(
+#'              width = NULL,
+#'              title = paste("Card", i), 
+#'              closable = FALSE,
+#'              collapsible = FALSE,
+#'              height = if (i %% 2 == 1) "200px",
+#'              status = if (i %% 2 == 0) "primary",
+#'              if (i %% 2 == 0) "Lorem ipsum is so fun!",
+#'              if (i == 1 | i == 7 | i == 12) img(src = "https://via.placeholder.com/290x160")
+#'            )
+#'          })
+#'        )
+#'      ),
+#'      controlbar = dashboardControlbar()
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#'  
+#' }
+bs4CardLayout <- function(..., type = c("group", "deck", "columns")) {
+  cards <- list(...)
+  if (inherits(cards[[1]], "list")) cards <- cards[[1]]
+  # stop if width is accidentally passed
+  cards <- lapply(seq_along(cards), function(i) {
+    if (length(grep("col-sm", cards[[i]]$attribs$class)) > 0) {
+      stop("The card width parameter must be NULL")
+    } else {
+      cards[[i]]
+    }
+  })
+  type <- match.arg(type)
+  shiny::tags$div(class = paste0("card-", type), cards)
 }

@@ -10,6 +10,7 @@
 - value is now mandatory in `bs4InfoBox()`
 
 ## New features
+- New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!
 - New `bs4CloseAlert()`: programmatically close `bs4Alert()`
 - New `bs4Toast()`: include the builtin AdminLTE3 toasts!
 - Add options to select `bs4SidebarMenuItem()` and `bs4SidebarMenuSubItem()` at start.
