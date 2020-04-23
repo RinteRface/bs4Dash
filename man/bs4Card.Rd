@@ -21,7 +21,7 @@ bs4Card(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
-  label = NULL,
+  cardLabel = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
   sidebar = NULL
@@ -43,7 +43,7 @@ box(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
-  label = NULL,
+  cardLabel = NULL,
   dropdownMenu = NULL,
   overflow = FALSE,
   sidebar = NULL
@@ -89,7 +89,7 @@ the user to collapse the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{label}{Slot for \link{bs4CardLabel}.}
+\item{cardLabel}{Slot for \link{bs4CardLabel}.}
 
 \item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
 
@@ -123,7 +123,7 @@ if(interactive()){
        status = "warning", 
        solidHeader = FALSE, 
        collapsible = TRUE,
-       label = bs4CardLabel(
+       cardLabel = bs4CardLabel(
         text = 1,
         status = "danger",
         tooltip = "Hello!"

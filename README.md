@@ -25,7 +25,7 @@ See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4Da
 
 ## Useful Informations (if any)
 
-...
+Recent breaking change in dev version: _label_ becomes _cardLabel_ in `bs4Card()`!
 
 ## Installation
 

@@ -58,7 +58,7 @@ basic_cards_tab <- bs4TabItem(
       status = "warning", 
       solidHeader = FALSE, 
       collapsible = TRUE,
-      label = bs4CardLabel(
+      cardLabel = bs4CardLabel(
         text = 1,
         status = "danger",
         tooltip = "Hello!"

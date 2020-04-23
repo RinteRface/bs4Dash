@@ -26,7 +26,7 @@
 #'   \code{collapsible=TRUE}.
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
 #' @param maximizable If TRUE, the card can be displayed in full screen mode.
-#' @param label Slot for \link{bs4CardLabel}.
+#' @param cardLabel Slot for \link{bs4CardLabel}.
 #' @param dropdownMenu List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.
 #' @param overflow Whether to enable overflow in the card body and footer. FALSE by default.
 #' @param sidebar Slot for \link{bs4CardSidebar}.
@@ -56,7 +56,7 @@
 #'        status = "warning", 
 #'        solidHeader = FALSE, 
 #'        collapsible = TRUE,
-#'        label = bs4CardLabel(
+#'        cardLabel = bs4CardLabel(
 #'         text = 1,
 #'         status = "danger",
 #'         tooltip = "Hello!"
@@ -123,7 +123,7 @@
 bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = NULL, elevation = NULL,
                     solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL, 
                     width = 6, height = NULL, collapsible = TRUE, collapsed = FALSE, 
-                    closable = FALSE, maximizable = FALSE, label = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
+                    closable = FALSE, maximizable = FALSE, cardLabel = NULL, dropdownMenu = NULL, overflow = FALSE, sidebar = NULL) {
   
   if (!is.null(height) & overflow) {
     stop(
@@ -194,7 +194,7 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
     class = "card-tools",
     
     # labels
-    if (!is.null(label)) label,
+    if (!is.null(cardLabel)) cardLabel,
     # dropdown
     if (!is.null(dropdownMenu)) dropdownMenu,
     

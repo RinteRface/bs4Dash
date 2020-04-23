@@ -89,13 +89,13 @@
 
       
 
-      </header><script src="bs4sortable_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Sortable Elements</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-04-12</h4>
+            <h4 class="date">2020-04-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4sortable.Rmd"><code>vignettes/bs4sortable.Rmd</code></a></small>
       <div class="hidden name"><code>bs4sortable.Rmd</code></div>
@@ -110,40 +110,40 @@
 <p>With bs4Dash, it is possible to sort elements by row and columns without the need of any external package. This does not work on mobiles.</p>
 <p><img src="figures/bs4Sortable.gif"><br></p>
 <details open><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</span>
-<span id="cb1-2"><a href="#cb1-2"></a> <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</span>
-<span id="cb1-3"><a href="#cb1-3"></a> shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="dt">title =</span> <span class="st">"test"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</span>
-<span id="cb1-11"><a href="#cb1-11"></a>      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</span>
-<span id="cb1-12"><a href="#cb1-12"></a>        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</span>
-<span id="cb1-13"><a href="#cb1-13"></a>          <span class="dt">tabName =</span> <span class="st">"sortabled"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</span>
-<span id="cb1-15"><a href="#cb1-15"></a>            <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</span>
-<span id="cb1-16"><a href="#cb1-16"></a>              <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</span>
-<span id="cb1-17"><a href="#cb1-17"></a>                <span class="dt">width =</span> <span class="dv">4</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>                <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</span>
-<span id="cb1-19"><a href="#cb1-19"></a>                <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</span>
-<span id="cb1-20"><a href="#cb1-20"></a>                  <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</span>
-<span id="cb1-21"><a href="#cb1-21"></a>                    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </span>
-<span id="cb1-22"><a href="#cb1-22"></a>                    <span class="dt">width =</span> <span class="dv">12</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>                    <span class="st">"Click on my header"</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a>                  )</span>
-<span id="cb1-25"><a href="#cb1-25"></a>                })</span>
-<span id="cb1-26"><a href="#cb1-26"></a>              )</span>
-<span id="cb1-27"><a href="#cb1-27"></a>            })</span>
-<span id="cb1-28"><a href="#cb1-28"></a>          )</span>
-<span id="cb1-29"><a href="#cb1-29"></a>        )</span>
-<span id="cb1-30"><a href="#cb1-30"></a>      )</span>
-<span id="cb1-31"><a href="#cb1-31"></a>    )</span>
-<span id="cb1-32"><a href="#cb1-32"></a>  ),</span>
-<span id="cb1-33"><a href="#cb1-33"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</span>
-<span id="cb1-34"><a href="#cb1-34"></a> )</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"> <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bs4Dash)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"> shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">navbar =</span> <span class="kw"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">sidebar =</span> <span class="kw"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">controlbar =</span> <span class="kw"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="dt">footer =</span> <span class="kw"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="dt">title =</span> <span class="st">"test"</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="dt">body =</span> <span class="kw"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">      <span class="kw"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">        <span class="kw"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">          <span class="dt">tabName =</span> <span class="st">"sortabled"</span>,</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">          <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">            <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(i) {</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">              <span class="kw"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">                <span class="dt">width =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">                <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="dt">class =</span> <span class="st">"text-center"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, i)),</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">                <span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(j) {</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">                  <span class="kw"><a href="../reference/bs4Card.html">bs4Card</a></span>(</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">                    <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, j,<span class="st">"-th card of the "</span>, i, <span class="st">"-th column"</span>), </a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">                    <span class="dt">width =</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">                    <span class="st">"Click on my header"</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">                  )</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">                })</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">              )</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">            })</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">          )</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">        )</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">      )</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">    )</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">  ),</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {}</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34"> )</a></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="limitations" class="section level2">

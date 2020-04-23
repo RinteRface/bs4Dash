@@ -23,7 +23,7 @@ basic_cards_tab <- bs4TabItem(
       status = "warning", 
       solidHeader = FALSE, 
       collapsible = TRUE,
-      label = bs4CardLabel(
+      cardLabel = bs4CardLabel(
         text = 1,
         status = "danger",
         tooltip = "Hello!"
@@ -40,7 +40,6 @@ basic_cards_tab <- bs4TabItem(
       title = "Closable card with gradient", 
       closable = TRUE, 
       width = 6,
-      status = "warning", 
       solidHeader = FALSE, 
       gradientColor = "success",
       collapsible = TRUE,
