@@ -95,7 +95,7 @@ test_that("card tools", {
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 5)
   
-  parms$label <- bs4CardLabel(text = "label", status = "danger")
+  parms$cardLabel <- bs4CardLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 6)
