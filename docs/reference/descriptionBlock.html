@@ -142,12 +142,12 @@
 
     <pre class="usage"><span class='fu'>descriptionBlock</span>(
   <span class='kw'>number</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>number_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>number_icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>numberColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>numberIcon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>header</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>right_border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>margin_bottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>rightBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>marginBottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -158,20 +158,20 @@
       <td><p>Any number.</p></td>
     </tr>
     <tr>
-      <th>header</th>
-      <td><p>Bold text.</p></td>
-    </tr>
-    <tr>
-      <th>text</th>
-      <td><p>Additional text.</p></td>
-    </tr>
-    <tr>
       <th>numberColor</th>
       <td><p>Number color: see here for a list of valid colors <a href='https://adminlte.io/themes/AdminLTE/pages/UI/general.html'>https://adminlte.io/themes/AdminLTE/pages/UI/general.html</a>.</p></td>
     </tr>
     <tr>
       <th>numberIcon</th>
       <td><p>Number icon, if any. Should be written like "fa fa-times".</p></td>
+    </tr>
+    <tr>
+      <th>header</th>
+      <td><p>Bold text.</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>Additional text.</p></td>
     </tr>
     <tr>
       <th>rightBorder</th>
@@ -207,24 +207,24 @@ descriptionBlock is used in a <a href='cardPad.html'>cardPad</a> context.</p></t
           <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
           <span class='fu'>descriptionBlock</span>(
             <span class='kw'>number</span> <span class='kw'>=</span> <span class='st'>"17%"</span>,
-            <span class='kw'>number_color</span> <span class='kw'>=</span> <span class='st'>"success"</span>,
-            <span class='kw'>number_icon</span> <span class='kw'>=</span> <span class='st'>"fa fa-caret-up"</span>,
+            <span class='kw'>numberColor</span> <span class='kw'>=</span> <span class='st'>"success"</span>,
+            <span class='kw'>numberIcon</span> <span class='kw'>=</span> <span class='st'>"caret-up"</span>,
             <span class='kw'>header</span> <span class='kw'>=</span> <span class='st'>"$35,210.43"</span>,
             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"TOTAL REVENUE"</span>,
-            <span class='kw'>right_border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='kw'>margin_bottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+            <span class='kw'>rightBorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+            <span class='kw'>marginBottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
           )
         ),
         <span class='fu'><a href='column.html'>column</a></span>(
           <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>,
           <span class='fu'>descriptionBlock</span>(
             <span class='kw'>number</span> <span class='kw'>=</span> <span class='st'>"18%"</span>,
-            <span class='kw'>number_color</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-            <span class='kw'>number_icon</span> <span class='kw'>=</span> <span class='st'>"fa fa-caret-down"</span>,
+            <span class='kw'>numberColor</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
+            <span class='kw'>numberIcon</span> <span class='kw'>=</span> <span class='st'>"caret-down"</span>,
             <span class='kw'>header</span> <span class='kw'>=</span> <span class='st'>"1200"</span>,
             <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"GOAL COMPLETION"</span>,
-            <span class='kw'>right_border</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-            <span class='kw'>margin_bottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+            <span class='kw'>rightBorder</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+            <span class='kw'>marginBottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
           )
         )
       )
