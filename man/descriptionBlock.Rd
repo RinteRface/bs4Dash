@@ -17,18 +17,18 @@ descriptionBlock(
 \arguments{
 \item{number}{Any number.}
 
-\item{number_color}{Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
-
-\item{number_icon}{Number icon, if any. Should be written like "fa fa-times".}
-
 \item{header}{Bold text.}
 
 \item{text}{Additional text.}
 
-\item{right_border}{TRUE by default. Whether to display a right border to
+\item{numberColor}{Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
+
+\item{numberIcon}{Number icon, if any. Should be written like "fa fa-times".}
+
+\item{rightBorder}{TRUE by default. Whether to display a right border to
 separate two blocks. The last block on the right should not have a right border.}
 
-\item{margin_bottom}{FALSE by default. Set it to TRUE when the
+\item{marginBottom}{FALSE by default. Set it to TRUE when the
 descriptionBlock is used in a \link{cardPad} context.}
 }
 \description{

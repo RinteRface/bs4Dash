@@ -374,24 +374,24 @@ statsboxes_tab <- bs4TabItem(
           width = 6,
           descriptionBlock(
             number = "17%", 
-            number_color = "success", 
-            number_icon = "fa fa-caret-up",
+            numberColor = "success", 
+            numberIcon = "fa fa-caret-up",
             header = "$35,210.43", 
             text = "TOTAL REVENUE", 
-            right_border = TRUE,
-            margin_bottom = FALSE
+            rightBorder = TRUE,
+            marginBottom = FALSE
           )
         ),
         column(
           width = 6,
           descriptionBlock(
             number = "18%", 
-            number_color = "danger", 
-            number_icon = "fa fa-caret-down",
+            numberColor = "danger", 
+            numberIcon = "fa fa-caret-down",
             header = "1200", 
             text = "GOAL COMPLETION", 
-            right_border = FALSE,
-            margin_bottom = FALSE
+            rightBorder = FALSE,
+            marginBottom = FALSE
           )
         )
       )
@@ -408,20 +408,20 @@ statsboxes_tab <- bs4TabItem(
             descriptionBlock(
               header = "8390", 
               text = "VISITS", 
-              right_border = FALSE,
-              margin_bottom = TRUE
+              rightBorder = FALSE,
+              marginBottom = TRUE
             ),
             descriptionBlock(
               header = "30%", 
               text = "REFERRALS", 
-              right_border = FALSE,
-              margin_bottom = TRUE
+              rightBorder = FALSE,
+              marginBottom = TRUE
             ),
             descriptionBlock(
               header = "70%", 
               text = "ORGANIC", 
-              right_border = FALSE,
-              margin_bottom = FALSE
+              rightBorder = FALSE,
+              marginBottom = FALSE
             )
           )
         )

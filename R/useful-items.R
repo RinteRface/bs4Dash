@@ -1241,13 +1241,13 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 #' @description Create a description block, perfect for writing statistics
 #'
 #' @param number Any number.
-#' @param number_color Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-#' @param number_icon Number icon, if any. Should be written like "fa fa-times".
+#' @param numberColor Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param numberIcon Number icon, if any. Should be written like "fa fa-times".
 #' @param header Bold text.
 #' @param text Additional text.
-#' @param right_border TRUE by default. Whether to display a right border to
+#' @param rightBorder TRUE by default. Whether to display a right border to
 #'   separate two blocks. The last block on the right should not have a right border.
-#' @param margin_bottom FALSE by default. Set it to TRUE when the
+#' @param marginBottom FALSE by default. Set it to TRUE when the
 #'   descriptionBlock is used in a \link{cardPad} context.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1273,24 +1273,24 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 #'           width = 6,
 #'           descriptionBlock(
 #'             number = "17%", 
-#'             number_color = "success", 
-#'             number_icon = "fa fa-caret-up",
+#'             numberColor = "success", 
+#'             numberIcon = "fa fa-caret-up",
 #'             header = "$35,210.43", 
 #'             text = "TOTAL REVENUE", 
-#'             right_border = TRUE,
-#'             margin_bottom = FALSE
+#'             rightBorder = TRUE,
+#'             marginBottom = FALSE
 #'           )
 #'         ),
 #'         column(
 #'           width = 6,
 #'           descriptionBlock(
 #'             number = "18%", 
-#'             number_color = "danger", 
-#'             number_icon = "fa fa-caret-down",
+#'             numberColor = "danger", 
+#'             numberIcon = "fa fa-caret-down",
 #'             header = "1200", 
 #'             text = "GOAL COMPLETION", 
-#'             right_border = FALSE,
-#'             margin_bottom = FALSE
+#'             rightBorder = FALSE,
+#'             marginBottom = FALSE
 #'           )
 #'         )
 #'       )
@@ -1303,23 +1303,23 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 #' }
 #'
 #' @export
-descriptionBlock <- function(number = NULL, number_color = NULL, number_icon = NULL,
-                             header = NULL, text = NULL, right_border = TRUE,
-                             margin_bottom = FALSE) {
+descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NULL,
+                             header = NULL, text = NULL, rightBorder = TRUE,
+                             marginBottom = FALSE) {
   
   cl <- "description-block"
-  if (isTRUE(right_border)) cl <- paste0(cl, " border-right")
-  if (isTRUE(margin_bottom)) cl <- paste0(cl, " mb-4")
+  if (isTRUE(rightBorder)) cl <- paste0(cl, " border-right")
+  if (isTRUE(marginBottom)) cl <- paste0(cl, " mb-4")
   
   numcl <- "description-percentage"
-  if (!is.null(number_color)) numcl <- paste0(numcl, " text-", number_color)
+  if (!is.null(numberColor)) numcl <- paste0(numcl, " text-", numberColor)
   
   shiny::tags$div(
     class = cl,
     shiny::tags$span(
       class = numcl, 
       number,
-      if (!is.null(number_icon)) shiny::tags$i(class = number_icon)
+      if (!is.null(numberIcon)) shiny::tags$i(class = numberIcon)
     ),
     shiny::tags$h5(class = "description-header", header),
     shiny::tags$span(class = "description-text", text)
