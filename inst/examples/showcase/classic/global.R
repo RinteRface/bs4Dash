@@ -864,7 +864,7 @@ gallery_1_tab <- bs4TabItem(
       attachmentBlock(
         src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
         title = "Test",
-        title_url = "http://google.com",
+        titleUrl = "http://google.com",
         "This is the content"
       )
     )

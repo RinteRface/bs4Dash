@@ -8,6 +8,7 @@
 - remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards
 - By default, closable is now FALSE for `bs4Card()`
 - value is now mandatory in `bs4InfoBox()`
+- change `attachmentBlock()` title_url to titleUrl (to match with a new upcoming package...)
 
 ## New features
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!

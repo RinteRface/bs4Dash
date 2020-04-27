@@ -1178,7 +1178,7 @@ ionicon <- function(name) {
 #' @param ... Any element.
 #' @param src Url or path to the image.
 #' @param title Attachment title.
-#' @param title_url External link.
+#' @param titleUrl External link.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -1197,7 +1197,7 @@ ionicon <- function(name) {
 #'       attachmentBlock(
 #'        src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
 #'        title = "Test",
-#'        title_url = "http://google.com",
+#'        titleUrl = "http://google.com",
 #'        "This is the content"
 #'       )
 #'      )
@@ -1209,7 +1209,7 @@ ionicon <- function(name) {
 #' }
 #'
 #' @export
-attachmentBlock <- function(..., src = NULL, title = NULL, title_url = NULL) {
+attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
   shiny::tags$div(
     class = "attachment-block clearfix",
     shiny::img(
@@ -1221,7 +1221,7 @@ attachmentBlock <- function(..., src = NULL, title = NULL, title_url = NULL) {
       shiny::tags$h4(
         class = "attachment-heading",
         shiny::tags$a(
-          href = title_url,
+          href = titleUrl,
           target = "_blank",
           title
         )
