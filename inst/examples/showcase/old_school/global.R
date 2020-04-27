@@ -375,7 +375,7 @@ statsboxes_tab <- bs4TabItem(
           descriptionBlock(
             number = "17%", 
             numberColor = "success", 
-            numberIcon = "fa fa-caret-up",
+            numberIcon = "caret-up",
             header = "$35,210.43", 
             text = "TOTAL REVENUE", 
             rightBorder = TRUE,
@@ -387,7 +387,7 @@ statsboxes_tab <- bs4TabItem(
           descriptionBlock(
             number = "18%", 
             numberColor = "danger", 
-            numberIcon = "fa fa-caret-down",
+            numberIcon = "caret-down",
             header = "1200", 
             text = "GOAL COMPLETION", 
             rightBorder = FALSE,

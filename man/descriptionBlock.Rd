@@ -6,24 +6,24 @@
 \usage{
 descriptionBlock(
   number = NULL,
-  number_color = NULL,
-  number_icon = NULL,
+  numberColor = NULL,
+  numberIcon = NULL,
   header = NULL,
   text = NULL,
-  right_border = TRUE,
-  margin_bottom = FALSE
+  rightBorder = TRUE,
+  marginBottom = FALSE
 )
 }
 \arguments{
 \item{number}{Any number.}
 
-\item{header}{Bold text.}
-
-\item{text}{Additional text.}
-
 \item{numberColor}{Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.}
 
 \item{numberIcon}{Number icon, if any. Should be written like "fa fa-times".}
+
+\item{header}{Bold text.}
+
+\item{text}{Additional text.}
 
 \item{rightBorder}{TRUE by default. Whether to display a right border to
 separate two blocks. The last block on the right should not have a right border.}
@@ -55,24 +55,24 @@ if (interactive()) {
           width = 6,
           descriptionBlock(
             number = "17\%", 
-            number_color = "success", 
-            number_icon = "fa fa-caret-up",
+            numberColor = "success", 
+            numberIcon = "caret-up",
             header = "$35,210.43", 
             text = "TOTAL REVENUE", 
-            right_border = TRUE,
-            margin_bottom = FALSE
+            rightBorder = TRUE,
+            marginBottom = FALSE
           )
         ),
         column(
           width = 6,
           descriptionBlock(
             number = "18\%", 
-            number_color = "danger", 
-            number_icon = "fa fa-caret-down",
+            numberColor = "danger", 
+            numberIcon = "caret-down",
             header = "1200", 
             text = "GOAL COMPLETION", 
-            right_border = FALSE,
-            margin_bottom = FALSE
+            rightBorder = FALSE,
+            marginBottom = FALSE
           )
         )
       )

@@ -11,6 +11,7 @@
 - change `attachmentBlock()` title_url to titleUrl (to match with a new upcoming package...)
 - `descriptionBlock()`: number_color, number_icon, right_border and margin_bottom become
 camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
+- numberIcon in `descriptionBlock()` only need the name of the icon ('times') instead
 
 ## New features
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!
