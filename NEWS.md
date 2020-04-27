@@ -13,6 +13,7 @@
 camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - numberIcon in `descriptionBlock()` only need the name of the icon ('times') instead
 - `bs4Jumbotron()`: btn_name becomes btnName
+- `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!

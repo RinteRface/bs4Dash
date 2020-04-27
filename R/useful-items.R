@@ -1520,7 +1520,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' @param description Post description.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
-#' @param collapse_status Color of the collapse button. NULL by default but also "primary", "info",
+#' @param collapseStatus Color of the collapse button. NULL by default but also "primary", "info",
 #' "danger", "warning", "success", "secondary" ...
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1575,13 +1575,13 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' @export
 userPost <- function(..., id = NULL, src = NULL, author = NULL, 
                      description = NULL, collapsible = TRUE, 
-                     collapsed = FALSE, collapse_status = NULL) {
+                     collapsed = FALSE, collapseStatus = NULL) {
   
   cl <- "collapse"
   id <- paste0("post-", id)
   
   btnCl <- "btn float-right"
-  if(!is.null(collapse_status)) btnCl <- paste0(btnCl, " btn-", collapse_status)
+  if(!is.null(collapseStatus)) btnCl <- paste0(btnCl, " btn-", collapseStatus)
   
   
   # if the input tag is an image, it is better to center it...

@@ -12,7 +12,7 @@ userPost(
   description = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  collapse_status = NULL
+  collapseStatus = NULL
 )
 }
 \arguments{
@@ -30,7 +30,7 @@ userPost(
 
 \item{collapsed}{Whether the comment is collapsed when the application starts, FALSE by default.}
 
-\item{collapse_status}{Color of the collapse button. NULL by default but also "primary", "info",
+\item{collapseStatus}{Color of the collapse button. NULL by default but also "primary", "info",
 "danger", "warning", "success", "secondary" ...}
 }
 \description{
