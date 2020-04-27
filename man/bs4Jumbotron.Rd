@@ -9,7 +9,7 @@ bs4Jumbotron(
   title = NULL,
   lead = NULL,
   href = NULL,
-  btn_name = "More",
+  btnName = "More",
   status = c("primary", "warning", "danger", "info", "success")
 )
 }
@@ -22,7 +22,7 @@ bs4Jumbotron(
 
 \item{href}{Jumbrotron external link.}
 
-\item{btn_name}{Jumbotron button name.}
+\item{btnName}{Jumbotron button name.}
 
 \item{status}{Jumbotron background color. "primary", "success", "warning", "danger" or "info".}
 }
