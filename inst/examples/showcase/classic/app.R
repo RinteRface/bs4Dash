@@ -8,7 +8,7 @@ shiny::shinyApp(
     controlbar_overlay = FALSE,
     navbar = bs4DashNavbar(
       status = "white",
-      fixed = TRUE,
+      fixed = FALSE,
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
         bs4DropdownMenu(
@@ -42,6 +42,7 @@ shiny::shinyApp(
     ),
     sidebar = bs4DashSidebar(
       expand_on_hover = TRUE,
+      fixed = TRUE,
       skin = "light",
       status = "primary",
       title = "bs4Dash",
@@ -183,7 +184,7 @@ shiny::shinyApp(
       )
     ),
     footer = bs4DashFooter(
-      fixed = TRUE,
+      fixed = FALSE,
       copyrights = a(
         href = "https://twitter.com/divadnojnarg", 
         target = "_blank", "@DivadNojnarg"
