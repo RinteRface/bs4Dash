@@ -30,7 +30,7 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
   brandTag <- if (!is.null(title)) {
     shiny::tags$a(
       class = if (!is.null(brandColor)) paste0("brand-link bg-", brandColor) else "brand-link",
-      href = url,
+      href = if (!is.null(url)) url else "#",
       shiny::tags$img(
         src = src,
         class = "brand-image img-circle elevation-3",
