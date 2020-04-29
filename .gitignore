@@ -7,3 +7,4 @@ doc
 inst/doc
 .DS_Store
 inst/examples/**/rsconnect
+.vscode
