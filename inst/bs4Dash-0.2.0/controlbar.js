@@ -30,6 +30,8 @@ $(function() {
          var pinned = $(".control-sidebar").attr("data-pin");
         if (pinned === "false" || pinned === undefined) {
           $("body").removeClass("control-sidebar-slide-open");  
+          // don't forget to refresh the input binding
+          $("#controlbar-toggle").trigger('collapsed.lte.controlsidebar');
         }
       } 
   });
