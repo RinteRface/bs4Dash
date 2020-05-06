@@ -77,7 +77,7 @@
       <h1 data-toc-skip>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-04-29</h4>
+            <h4 class="date">2020-05-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Intro.Rmd"><code>vignettes/bs4Intro.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Intro.Rmd</code></div>
@@ -227,7 +227,7 @@
 <a href="#footer-setup" class="anchor"></a>Footer Setup</h2>
 <p>We will use <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(
- <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">a</a></span>(
+ <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(
    <span class="kw">href</span> <span class="kw">=</span> <span class="st">"https://twitter.com/divadnojnarg"</span>,
    <span class="kw">target</span> <span class="kw">=</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span>
  ),
@@ -247,7 +247,7 @@
       <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
         <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(
           <span class="kw">width</span> <span class="kw">=</span> <span class="fl">4</span>,
-          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
+          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
           <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">j</span>) {
             <span class="fu"><a href="../reference/bs4Card.html">bs4Card</a></span>(
               <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, <span class="no">j</span>,<span class="st">"-th card of the "</span>, <span class="no">i</span>, <span class="st">"-th column"</span>),
@@ -390,7 +390,7 @@
       )
     ),
     <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(
-      <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">a</a></span>(
+      <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">a</a></span>(
         <span class="kw">href</span> <span class="kw">=</span> <span class="st">"https://twitter.com/divadnojnarg"</span>,
         <span class="kw">target</span> <span class="kw">=</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span>
       ),
@@ -404,7 +404,7 @@
             <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
               <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(
                 <span class="kw">width</span> <span class="kw">=</span> <span class="fl">4</span>,
-                <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
+                <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
                 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">j</span>) {
                   <span class="fu"><a href="../reference/bs4Card.html">bs4Card</a></span>(
                     <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, <span class="no">j</span>,<span class="st">"-th card of the "</span>, <span class="no">i</span>, <span class="st">"-th column"</span>),

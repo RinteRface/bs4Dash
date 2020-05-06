@@ -55,7 +55,10 @@ dashboardSidebar(
 
 \item{url}{Sidebar brand link.}
 
-\item{src}{Sidebar brand image.}
+\item{src}{Sidebar brand image. Ideally, the image should be in a /www folder next to the app.
+Then simply write \code{src = "image.png"}. This could also be the url to an image hosted on 
+a server like \code{"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"}. svg are not
+always well rendered.}
 
 \item{elevation}{Sidebar elevation. 4 by default (until 5).}
 

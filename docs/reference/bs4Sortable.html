@@ -160,7 +160,7 @@
             <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) {
               <span class='fu'>bs4Sortable</span>(
                 <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"text-center"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Column"</span>, <span class='no'>i</span>)),
+                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>p</a></span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"text-center"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Column"</span>, <span class='no'>i</span>)),
                 <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>j</span>) {
                   <span class='fu'><a href='bs4Card.html'>bs4Card</a></span>(
                     <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"I am the "</span>, <span class='no'>j</span>,<span class='st'>"-th card of the "</span>, <span class='no'>i</span>, <span class='st'>"-th column"</span>),
