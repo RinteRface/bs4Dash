@@ -60,6 +60,6 @@ from [dreamRs](https://twitter.com/dreamRs_fr)).
 Issues are listed [here](https://github.com/RinteRface/bs4Dash/issues). 
 
 
-## Akwnowledgement
+## Acknowledgement
 
-I warmly thank [Glyphicons](https://www.glyphicons.com) creator for providing them free for Bootstrap. 
+I warmly thank [Glyphicons](https://www.glyphicons.com) creator for providing them for free with Bootstrap. 
