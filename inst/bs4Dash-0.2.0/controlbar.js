@@ -25,15 +25,19 @@ $(function() {
   
   // The code below hande the click out of the right control bar
   $(window).click(function(e) { 
-    if($("aside.control-sidebar").find(e.target).length === 0 &&
-       $("#controlbar-toggle").find(e.target).length === 0) {
-         var pinned = $(".control-sidebar").attr("data-pin");
-        if (pinned === "false" || pinned === undefined) {
-          $("body").removeClass("control-sidebar-slide-open");  
-          // don't forget to refresh the input binding
-          $("#controlbar-toggle").trigger('collapsed.lte.controlsidebar');
-        }
-      } 
+    // There is a potential conflict. This function detect any click outside
+    // the controlbar and close if if it is not pinned. Yet, if we click on an action       // button controlling the controlbar state (see updatebs4Controlbar), it is also outside the controlbar so the toggle event will be triggered twice. The controlbar will never close as shown in https://github.com/RinteRface/bs4Dash/issues/110. Below we make sure to leave the function as soon as a click on a button holding the class action button. This is not really a fix but a reasonable workaround.
+    var isActionButton = $(e.target).hasClass("action-button shiny-bound-input");
+    if (isActionButton) return null;
+      
+    if($("aside.control-sidebar").find(e.target).length === 0) {
+      var pinned = $(".control-sidebar").attr("data-pin");
+      if (pinned === "false" || pinned === undefined) {
+        $("body").removeClass("control-sidebar-slide-open");  
+        // don't forget to refresh the input binding
+        $("#controlbar-toggle").trigger('collapsed.lte.controlsidebar');
+      }
+    }  
   });
   
   // if pin is TRUE at start we need to disable the controlbar toggle as soon
@@ -92,7 +96,7 @@ $(function() {
   
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
-      $("#controlbar-toggle").click();
+      $("#controlbar-toggle").ControlSidebar('toggle');
     },
   
     subscribe: function(el, callback) {
