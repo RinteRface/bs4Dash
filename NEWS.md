@@ -47,6 +47,7 @@ To keep it open, see below
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix issue #112 with `sliderInput` z-index and `bs4DashPage()` preloader. Thanks @analytichealth for the report
 - Fix issue in `bs4DashSidebar()` url link. Thanks @pvictor
 - Fix #30: programmatically close `bs4Alert()`
 - Fix #47: Control bar not showing top elements when collapsed is FALSE

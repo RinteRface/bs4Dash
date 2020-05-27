@@ -62,7 +62,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
   # create the body content
   bodyContent <- shiny::tags$div(
     class = "wrapper",
-    style = if (enable_preloader) "visibility: hidden;" else NULL,
+    style = if (enable_preloader) "visibility: hidden; opacity: 0;" else NULL,
     navbar,
     sidebar,
     # page content
@@ -75,7 +75,6 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
   preloaderTag <- if (enable_preloader) {
     shiny::tags$div(
       class = "pre",
-      style = "z-index: 1000;",
       shiny::HTML(
         '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve" width="30" height="30">
 
@@ -132,7 +131,9 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
             "$(document).ready(function() {
               setTimeout(function(){
                 $('.pre').remove();
-                $('.wrapper').css('visibility', 'visible');
+                $('.wrapper')
+                  .css('visibility', 'visible')
+                  .css('opacity', '');
                 $('body').css('background', '#fff');
                 }, ", duration, ");
             });
