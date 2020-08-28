@@ -1,6 +1,6 @@
 # bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right"/>
 
-[![Build Status](https://travis-ci.org/RinteRface/bs4Dash.svg?branch=master)](https://travis-ci.org/RinteRface/bs4Dash)
+[![R build status](https://github.com/RinteRface/bs4Dash/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/bs4Dash/actions)
 [![version](http://www.r-pkg.org/badges/version/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![cranlogs](https://cranlogs.r-pkg.org/badges/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
