@@ -10,3 +10,4 @@
 ^docs$
 ^cran-comments\.md$
 ^codecov\.yml$
+^\.vscode$

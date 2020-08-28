@@ -155,7 +155,7 @@ the height scales automatically with the content.</p></td>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
      <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
@@ -175,15 +175,15 @@ the height scales automatically with the content.</p></td>
       <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
        <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"boxes"</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
           <span class='fu'>bs4Box</span>(
            <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"600px"</span>,
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Box 1"</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"plot"</span>),
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"plot"</span>),
            <span class='fu'><a href='column.html'>column</a></span>(
             <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>12</span>,
             <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>,
-            <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(
+            <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html'>sliderInput</a></span>(
               <span class='st'>"obs"</span>,
               <span class='st'>"Number of observations:"</span>,
               <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
@@ -194,11 +194,11 @@ the height scales automatically with the content.</p></td>
           <span class='fu'>bs4Box</span>(
            <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"600px"</span>,
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Box 2"</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>),
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>),
            <span class='fu'><a href='column.html'>column</a></span>(
             <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>12</span>,
             <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>,
-            <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/radioButtons.html'>radioButtons</a></span>(
+            <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html'>radioButtons</a></span>(
               <span class='st'>"dist"</span>,
               <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
               <span class='st'>"Distribution type:"</span>,
@@ -215,11 +215,11 @@ the height scales automatically with the content.</p></td>
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+    <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
      })
 
-     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
        <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span>(
        <span class='no'>input</span>$<span class='no'>dist</span>,
        <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>rnorm</span>,

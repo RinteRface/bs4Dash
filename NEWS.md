@@ -16,6 +16,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- add `bs4ShowTab()` and `bs4HideTab()`: thanks @fmmattioni for the reminder ;)
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!
 - New `bs4CloseAlert()`: programmatically close `bs4Alert()`
 - New `bs4Toast()`: include the builtin AdminLTE3 toasts!

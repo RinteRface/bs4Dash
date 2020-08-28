@@ -230,7 +230,7 @@ Default to TRUE.</p></td>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>bs4DashPage</span>(
     <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
@@ -248,15 +248,15 @@ Default to TRUE.</p></td>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>dashboardPage</span>(
    <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span>(),
    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(),
    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span>(
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)),
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)),
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"result"</span>))
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
+       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)),
+       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)),
+       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"result"</span>))
      )
    ),
    <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span>(
@@ -266,8 +266,8 @@ Default to TRUE.</p></td>
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabsetpanel"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html'>sliderInput</a></span>(
            <span class='st'>"obs"</span>,
            <span class='st'>"Number of observations:"</span>,
            <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -277,8 +277,8 @@ Default to TRUE.</p></td>
        ),
        <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html'>checkboxGroupInput</a></span>(
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html'>checkboxGroupInput</a></span>(
            <span class='st'>"variable"</span>,
            <span class='st'>"Variables to show:"</span>,
            <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
@@ -288,8 +288,8 @@ Default to TRUE.</p></td>
        ),
        <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span>(
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/selectInput.html'>selectInput</a></span>(
            <span class='st'>"state"</span>,
            <span class='st'>"Choose a state:"</span>,
            <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`East Coast`</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"NY"</span>, <span class='st'>"NJ"</span>, <span class='st'>"CT"</span>),
@@ -302,15 +302,15 @@ Default to TRUE.</p></td>
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
     })
 
-    <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span>({
+    <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderTable.html'>renderTable</a></span>({
       <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>])
     }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-    <span class='no'>output</span>$<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
+    <span class='no'>output</span>$<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>({
       <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"You chose"</span>, <span class='no'>input</span>$<span class='no'>state</span>)
     })
    }

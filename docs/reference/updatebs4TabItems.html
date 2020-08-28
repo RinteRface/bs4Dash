@@ -155,7 +155,7 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
      <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
      <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -165,23 +165,23 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
        <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations:"</span>,
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations:"</span>,
                        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
            ),
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html'>checkboxGroupInput</a></span>(<span class='st'>"variable"</span>, <span class='st'>"Variables to show:"</span>,
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html'>checkboxGroupInput</a></span>(<span class='st'>"variable"</span>, <span class='st'>"Variables to show:"</span>,
                               <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
                                 <span class='st'>"Transmission"</span> <span class='kw'>=</span> <span class='st'>"am"</span>,
                                 <span class='st'>"Gears"</span> <span class='kw'>=</span> <span class='st'>"gear"</span>)),
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab3"</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxInput.html'>checkboxInput</a></span>(<span class='st'>"val"</span>, <span class='st'>"Some value"</span>, <span class='fl'>FALSE</span>),
-           <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"value"</span>)
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html'>checkboxInput</a></span>(<span class='st'>"val"</span>, <span class='st'>"Some value"</span>, <span class='fl'>FALSE</span>),
+           <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"value"</span>)
          ),
          <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab4"</span>,
@@ -256,7 +256,7 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
      ),
      <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(
        <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html'>sliderInput</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controller"</span>,
          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update the first tabset"</span>,
          <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -267,11 +267,11 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
      <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>()
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebarItemExpanded</span>))
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebar</span>))
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebarItemExpanded</span>))
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sidebar</span>))
 
      <span class='co'># update tabset1</span>
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controller</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controller</span>, {
        <span class='fu'>updatebs4TabItems</span>(
          <span class='no'>session</span>,
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sidebar"</span>,
@@ -279,15 +279,15 @@ server. It behaves just like <code><a href='updatebs4TabSetPanel.html'>updatebs4
        )
      }, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
        <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
      })
 
-     <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span>({
+     <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderTable.html'>renderTable</a></span>({
        <span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]
      }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-     <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({ <span class='no'>input</span>$<span class='no'>val</span> })
+     <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>({ <span class='no'>input</span>$<span class='no'>val</span> })
 
    }
  )

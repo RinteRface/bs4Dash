@@ -413,6 +413,120 @@ bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDom
 
 
 
+#' Dynamically hide/show a bs4TabPanel
+#'
+#' @param inputId The id of the \link{bs4TabSetPanel} in which to find target.
+#' @param target The value of the \link{bs4TabPanel} to be hidden/shown. 
+#' @param select Should target be selected upon being shown?
+#' @param session The shiny session within which to call this function.
+#' 
+#' @export
+#' @rdname toggleTabs
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  ui <- bs4DashPage(
+#'    body = bs4DashBody(
+#'      bs4TabSetPanel(
+#'        id = "tabs",
+#'        side = "left",
+#'        bs4TabPanel(
+#'          tabName = "Tab 1", 
+#'          active = FALSE,
+#'          "Content 1"
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 2", 
+#'          active = TRUE,
+#'          "Content 2"
+#'        ),
+#'        bs4TabPanel(
+#'          tabName = "Tab 3", 
+#'          active = FALSE,
+#'          "Content 3"
+#'        )
+#'      ),
+#'      br(),
+#'      actionButton("hideTab", "Hide 'Tab 1' tab"),
+#'      actionButton("showTab", "Show 'Tab ' tab"),
+#'      actionButton("hideTab2", "Hide 'Tab 2'"),
+#'      actionButton("showTab2", "Show 'Tab 2'")
+#'    )
+#'  )
+#'  
+#'  server <- function(input, output, session) {
+#'    observeEvent(input$hideTab, {
+#'      bs4HideTab(inputId = "tabs", target = "Tab 1")
+#'    })
+#'    
+#'    observeEvent(input$showTab, {
+#'      bs4ShowTab(inputId = "tabs", target = "Tab 1")
+#'    })
+#'    
+#'    observeEvent(input$hideTab2, {
+#'      bs4HideTab(inputId = "tabs", target = "Tab 2")
+#'    })
+#'    
+#'    observeEvent(input$showTab2, {
+#'      bs4ShowTab(inputId = "tabs", target = "Tab 2", select = TRUE)
+#'    })
+#'    
+#'  }
+#'  
+#'  shinyApp(ui, server)
+#' }
+bs4HideTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
+  
+  # tabsetpanel namespace
+  ns <- inputId
+  
+  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
+  # prefix by hide_ makes sense
+  inputId <- paste0("hide_", inputId)
+  
+  # remove all white spaces from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+  
+  message <- dropNulls(
+    list(
+      target = target,
+      ns = ns
+    )
+  )
+  session$sendCustomMessage(type = inputId, message = message)
+}
+
+
+
+#' @rdname toggleTabs
+#' @export
+bs4ShowTab <- function(inputId, target, select = FALSE,
+                       session = shiny::getDefaultReactiveDomain()) {
+  force(target)
+  # show the tab if selected (we can do that on the R side)
+  if (select) updatebs4TabSetPanel(session, inputId, selected = target)
+  
+  # tabsetpanel namespace
+  ns <- inputId
+  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
+  # prefix by show_ makes sense
+  inputId <- paste0("show_", inputId)
+  
+  # remove all white spaces from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+  
+  message <- dropNulls(
+    list(
+      target = target,
+      ns = ns
+    )
+  )
+  session$sendCustomMessage(type = inputId, message = message)
+}
+
 
 #' Change the selected sidebar tab on the client
 #'

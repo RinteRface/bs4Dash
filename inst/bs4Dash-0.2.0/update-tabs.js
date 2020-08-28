@@ -120,6 +120,30 @@ $(function() {
   });
   
   
+  // handles the bs4HideTab function
+  tabIds.forEach(function(index) {
+    var id = "hide_" + index;
+    Shiny.addCustomMessageHandler(id, function(message) {
+      var tabId = message.ns + "-" + message.target;
+      $('#' + index + ' a[href="#' +  tabId +'"]')
+        .parent()
+        .hide()
+        .removeClass('active');
+    });
+  });
+  
+  // handles the bs4ShowTab function
+  tabIds.forEach(function(index) {
+    var id = "show_" + index;
+    Shiny.addCustomMessageHandler(id, function(message) {
+      var tabId = message.ns + "-" + message.target;
+      $('#' + index + ' a[href="#' +  tabId +'"]')
+        .parent()
+        .show();
+    });
+  });
+  
+  
   // handle the right controlbar 
   var controlbarIds = [];
   getAllControlbarIds = function() {

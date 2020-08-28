@@ -146,22 +146,22 @@
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span>(
      <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
      <span class='kw'>controlbar_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span>(),
      <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(),
      <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span>(
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controlbarToggle"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Toggle Controlbar"</span>)
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controlbarToggle"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Toggle Controlbar"</span>)
      ),
      <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controlbar"</span>)
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controlbar</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controlbar</span>, {
        <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>controlbar</span>) {
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/showModal.html'>showModal</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/modalDialog.html'>modalDialog</a></span>(
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/showModal.html'>showModal</a></span>(<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/modalDialog.html'>modalDialog</a></span>(
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Alert"</span>,
            <span class='st'>"The controlbar is opened."</span>,
            <span class='kw'>easyClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -170,11 +170,11 @@
        }
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controlbarToggle</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>controlbarToggle</span>, {
        <span class='fu'>updatebs4Controlbar</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"controlbar"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
        <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>controlbar</span>)
      })
    }

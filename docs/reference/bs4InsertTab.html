@@ -131,7 +131,7 @@
   <span class='no'>target</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"before"</span>, <span class='st'>"after"</span>),
   <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,34 +174,34 @@
    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
    <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"add1"</span>,<span class='st'>"ADD tabset 1"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"add1"</span>,<span class='st'>"ADD tabset 1"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
        ),
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
        )
      ),
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"add2"</span>,<span class='st'>"ADD tabset 2"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"add2"</span>,<span class='st'>"ADD tabset 2"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
        ),
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
        )
      )
    )
@@ -209,7 +209,7 @@
 
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add1</span>, {
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add1</span>, {
      <span class='fu'>bs4InsertTab</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Dynamic"</span>, <span class='st'>"I am inserted"</span>),
@@ -219,7 +219,7 @@
      )
    })
 
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add2</span>, {
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add2</span>, {
      <span class='fu'>bs4InsertTab</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Dynamic"</span>, <span class='st'>"I am inserted and active"</span>),
@@ -230,7 +230,7 @@
    })
 
  }
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
  <span class='co'># with Datatable to test the Shiny.renderContent feature</span>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
@@ -242,7 +242,7 @@
    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
    <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"add"</span>, <span class='st'>"Add 'Dynamic' tab"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"add"</span>, <span class='st'>"Add 'Dynamic' tab"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
@@ -260,12 +260,12 @@
      <span class='no'>iris</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>lengthChange</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
    )
 
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
      <span class='fu'>bs4InsertTab</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"DT"</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>dataTableOutput</a></span>(<span class='st'>"tbl"</span>)
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>dataTableOutput</a></span>(<span class='st'>"tbl"</span>)
        ),
        <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
        <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"after"</span>,
@@ -273,7 +273,7 @@
      )
    })
  }
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

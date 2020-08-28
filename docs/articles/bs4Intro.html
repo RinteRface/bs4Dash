@@ -71,13 +71,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="bs4Intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-05-28</h4>
+            <h4 class="date">2020-08-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Intro.Rmd"><code>vignettes/bs4Intro.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Intro.Rmd</code></div>
@@ -94,7 +94,7 @@
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bs4Dash</span>)
 
- <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(
+ <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
   <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
    <span class="kw">old_school</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
    <span class="kw">sidebar_min</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
@@ -199,7 +199,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(
  <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>,
  <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My right sidebar"</span>,
- <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(
+ <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(
    <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"obs"</span>,
    <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Number of observations:"</span>,
    <span class="kw">min</span> <span class="kw">=</span> <span class="fl">0</span>,
@@ -209,7 +209,7 @@
  <span class="fu"><a href="../reference/column.html">column</a></span>(
    <span class="kw">width</span> <span class="kw">=</span> <span class="fl">12</span>,
    <span class="kw">align</span> <span class="kw">=</span> <span class="st">"center"</span>,
-   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(
+   <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html">radioButtons</a></span>(
      <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"dist"</span>,
      <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Distribution type:"</span>,
      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> <span class="kw">=</span> <span class="st">"norm"</span>,
@@ -227,7 +227,7 @@
 <a href="#footer-setup" class="anchor"></a>Footer Setup</h2>
 <p>We will use <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(
- <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">a</a></span>(
+ <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">a</a></span>(
    <span class="kw">href</span> <span class="kw">=</span> <span class="st">"https://twitter.com/divadnojnarg"</span>,
    <span class="kw">target</span> <span class="kw">=</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span>
  ),
@@ -243,11 +243,11 @@
  <span class="fu"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(
    <span class="fu"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
     <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"item1"</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
       <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
         <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(
           <span class="kw">width</span> <span class="kw">=</span> <span class="fl">4</span>,
-          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
+          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
           <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">j</span>) {
             <span class="fu"><a href="../reference/bs4Card.html">bs4Card</a></span>(
               <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, <span class="no">j</span>,<span class="st">"-th card of the "</span>, <span class="no">i</span>, <span class="st">"-th column"</span>),
@@ -297,7 +297,7 @@
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bs4Dash</span>)
 
-<span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(
+<span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
   <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
     <span class="kw">old_school</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
     <span class="kw">sidebar_collapsed</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
@@ -369,7 +369,7 @@
     <span class="kw">controlbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(
       <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>,
       <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My right sidebar"</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span>(
+      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span>(
         <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"obs"</span>,
         <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Number of observations:"</span>,
         <span class="kw">min</span> <span class="kw">=</span> <span class="fl">0</span>,
@@ -379,7 +379,7 @@
       <span class="fu"><a href="../reference/column.html">column</a></span>(
         <span class="kw">width</span> <span class="kw">=</span> <span class="fl">12</span>,
         <span class="kw">align</span> <span class="kw">=</span> <span class="st">"center"</span>,
-        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span>(
+        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html">radioButtons</a></span>(
           <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"dist"</span>,
           <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Distribution type:"</span>,
           <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Normal"</span> <span class="kw">=</span> <span class="st">"norm"</span>,
@@ -390,7 +390,7 @@
       )
     ),
     <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(
-      <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">a</a></span>(
+      <span class="kw">copyrights</span> <span class="kw">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">a</a></span>(
         <span class="kw">href</span> <span class="kw">=</span> <span class="st">"https://twitter.com/divadnojnarg"</span>,
         <span class="kw">target</span> <span class="kw">=</span> <span class="st">"_blank"</span>, <span class="st">"@DivadNojnarg"</span>
       ),
@@ -400,11 +400,11 @@
       <span class="fu"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(
         <span class="fu"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
           <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"item1"</span>,
-          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(
+          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
             <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
               <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(
                 <span class="kw">width</span> <span class="kw">=</span> <span class="fl">4</span>,
-                <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
+                <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
                 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">j</span>) {
                   <span class="fu"><a href="../reference/bs4Card.html">bs4Card</a></span>(
                     <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, <span class="no">j</span>,<span class="st">"-th card of the "</span>, <span class="no">i</span>, <span class="st">"-th column"</span>),

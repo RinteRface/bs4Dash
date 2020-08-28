@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4RemoveTab • bs4Dash</title>
+<title>Dynamically hide/show a bs4TabPanel — bs4HideTab • bs4Dash</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> — bs4RemoveTab" />
-<meta property="og:description" content="Remove a bs4TabPanel in a bs4TabSetPanel" />
+<meta property="og:title" content="Dynamically hide/show a bs4TabPanel — bs4HideTab" />
+<meta property="og:description" content="Dynamically hide/show a bs4TabPanel" />
 
 
 
@@ -116,31 +116,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></h1>
+    <h1>Dynamically hide/show a bs4TabPanel</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/update-functions.R'><code>R/update-functions.R</code></a></small>
-    <div class="hidden name"><code>bs4RemoveTab.Rd</code></div>
+    <div class="hidden name"><code>toggleTabs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Remove a <a href='bs4TabPanel.html'>bs4TabPanel</a> in a <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></p>
+    <p>Dynamically hide/show a bs4TabPanel</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4RemoveTab</span>(<span class='no'>inputId</span>, <span class='no'>target</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
+    <pre class="usage"><span class='fu'>bs4HideTab</span>(<span class='no'>inputId</span>, <span class='no'>target</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>())
+
+<span class='fu'>bs4ShowTab</span>(
+  <span class='no'>inputId</span>,
+  <span class='no'>target</span>,
+  <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>inputId</th>
-      <td><p><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> id.</p></td>
+      <td><p>The id of the <a href='bs4TabSetPanel.html'>bs4TabSetPanel</a> in which to find target.</p></td>
     </tr>
     <tr>
       <th>target</th>
-      <td><p><a href='bs4TabPanel.html'>bs4TabPanel</a> to remove.</p></td>
+      <td><p>The value of the <a href='bs4TabPanel.html'>bs4TabPanel</a> to be hidden/shown.</p></td>
     </tr>
     <tr>
       <th>session</th>
-      <td><p>Shiny session object.</p></td>
+      <td><p>The shiny session within which to call this function.</p></td>
+    </tr>
+    <tr>
+      <th>select</th>
+      <td><p>Should target be selected upon being shown?</p></td>
     </tr>
     </table>
 
@@ -150,61 +161,54 @@
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
 
- <span class='no'>ui</span> <span class='kw'>&lt;-</span>  <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-   <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-   <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
+ <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"remove1"</span>,<span class='st'>"Remove tab 1"</span>),
      <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
        <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
+         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='st'>"Content 1"</span>
        ),
        <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='st'>"Content 2"</span>
+       ),
+       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
+         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
+         <span class='st'>"Content 3"</span>
        )
      ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"remove2"</span>,<span class='st'>"Remove tab 2"</span>),
-     <span class='fu'><a href='bs4TabSetPanel.html'>bs4TabSetPanel</a></span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
-       <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 1"</span>),
-       ),
-       <span class='fu'><a href='bs4TabPanel.html'>bs4TabPanel</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-         <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>p</a></span>(<span class='st'>"Text 2"</span>),
-       )
-     )
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"hideTab"</span>, <span class='st'>"Hide 'Tab 1' tab"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"showTab"</span>, <span class='st'>"Show 'Tab ' tab"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"hideTab2"</span>, <span class='st'>"Hide 'Tab 2'"</span>),
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"showTab2"</span>, <span class='st'>"Show 'Tab 2'"</span>)
    )
  )
 
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>remove1</span>, {
-     <span class='fu'>bs4RemoveTab</span>(
-       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
-       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>
-     )
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hideTab</span>, {
+     <span class='fu'>bs4HideTab</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>)
    })
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>remove2</span>, {
-     <span class='fu'>bs4RemoveTab</span>(
-       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset2"</span>,
-       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-     )
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>showTab</span>, {
+     <span class='fu'>bs4ShowTab</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>)
+   })
+
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hideTab2</span>, {
+     <span class='fu'>bs4HideTab</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>)
+   })
+
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>showTab2</span>, {
+     <span class='fu'>bs4ShowTab</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>, <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
    })
 
  }
+
  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }</div></pre>
   </div>
