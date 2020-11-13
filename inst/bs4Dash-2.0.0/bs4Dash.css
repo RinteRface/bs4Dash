@@ -53,3 +53,13 @@
     opacity: 0.5 !important;
     
 }
+
+/* Fix issueswith dropdown links in card with solidHeader */
+.dropdown-item { 
+   color: #000 !important; 
+ }
+ 
+/* User post border bottom issue */
+.post {
+  border-bottom: none !important;
+}

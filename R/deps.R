@@ -49,13 +49,13 @@ add_bs4Dash_deps <- function(tag, options) {
     # adminLTE3 deps
     htmltools::htmlDependency(
       name = "AdminLTE3", 
-      version = "3.0.0",
-      src = c(file = "AdminLTE3-3.0.0"),
+      version = "3.1.0",
+      src = c(file = "AdminLTE3-3.1.0"),
       script = adminLTE3_js,
       stylesheet = adminLTE3_css,
       package = "bs4Dash"
     ),
-    # bs4Dash custom js
+    # bs4Dash custom js/css (must come after adminlte, bootstrap 4)
     htmltools::htmlDependency(
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
