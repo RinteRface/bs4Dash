@@ -25,22 +25,24 @@ add_bs4Dash_deps <- function(tag, theme) {
     htmltools::htmlDependency(
       name = "bootstrap", 
       version = "4.3.1",
-      src = c(file = system.file("bootstrap-4.3.1", package = "bs4Dash")),
-      script = bootstrap_js
+      src = c(file = "bootstrap-4.3.1"),
+      script = bootstrap_js,
+      package = "bs4Dash"
     ),
     # adminLTE3 deps
     htmltools::htmlDependency(
       name = "AdminLTE3", 
       version = "3.0.0",
-      src = c(file = system.file("AdminLTE3-3.0.0", package = "bs4Dash")),
+      src = c(file = "AdminLTE3-3.0.0"),
       script = adminLTE3_js,
-      stylesheet = adminLTE3_css
+      stylesheet = adminLTE3_css,
+      package = "bs4Dash"
     ),
     # bs4Dash custom js
     htmltools::htmlDependency(
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
-      src = c(file = system.file("bs4Dash-2.0.0", package = "bs4Dash")),
+      src = c(file = "bs4Dash-2.0.0"),
       script = c(
         bs4Dash_js, 
         "leftSidebar.js", 
@@ -50,7 +52,8 @@ add_bs4Dash_deps <- function(tag, theme) {
         "cards.js",
         "feedbacks.js"
       ),
-      stylesheet = bs4Dash_css
+      stylesheet = bs4Dash_css,
+      package = "bs4Dash"
     ),
     # fontawesome
     htmltools::htmlDependency(
@@ -62,7 +65,7 @@ add_bs4Dash_deps <- function(tag, theme) {
     # ionicons
     htmltools::htmlDependency(
       name = "ionicons",
-      version = as.character(utils::packageVersion("bs4Dash")),
+      version = "4.4.2",
       src = c(href = ionicons_css),
       stylesheet = "ionicons.min.css"
     ),
@@ -72,6 +75,14 @@ add_bs4Dash_deps <- function(tag, theme) {
       version = as.character(utils::packageVersion("bs4Dash")),
       src = c(href = google_fonts),
       stylesheet = ""
+    ),
+    # glyphicons
+    htmltools::htmlDependency(
+      name = "glyphicons",
+      version = as.character(utils::packageVersion("bs4Dash")),
+      src = c(file = "glyphicons"),
+      stylesheet = "glyphicons.min.css",
+      package = "bs4Dash"
     ),
     # old school skin
     if (theme) {
