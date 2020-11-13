@@ -158,6 +158,9 @@ updatebs4Sidebar <- function(inputId, session) {
 #'   used for a Shiny input value, and it will report which tab is selected. For
 #'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
 #'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
+#' @param .list An optional list containing items to put in the menu Same as the
+#' \code{...} arguments, but in list format. This can be useful when working
+#' with programmatically generated items.
 #' @param flat Whether sidebar items should have a flat design. FALSE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
 #' @param child_indent Whether to indent children. TRUE by default.
@@ -173,14 +176,8 @@ updatebs4Sidebar <- function(inputId, session) {
 #'  
 #'  shinyApp(
 #'    ui = bs4DashPage(
-#'      sidebar_collapsed = TRUE,
-#'      controlbar_collapsed = TRUE,
-#'      enable_preloader = FALSE,
-#'      loading_duration =  2,
-#'      navbar = bs4DashNavbar(skin = "light"),
-#'      body = bs4DashBody(
-#'        
-#'      ),
+#'      header = bs4DashNavbar(skin = "light"),
+#'      body = bs4DashBody(),
 #'      sidebar = bs4DashSidebar(
 #'        skin = "light",
 #'        bs4SidebarMenu(
@@ -198,7 +195,8 @@ updatebs4Sidebar <- function(inputId, session) {
 #'            bs4SidebarMenuSubItem(
 #'              tabName = "subtab1",
 #'              text = "Tab 3"
-#'            ),bs4SidebarMenuSubItem(
+#'            ),
+#'            bs4SidebarMenuSubItem(
 #'              tabName = "subtab2",
 #'              text = "Tab 4"
 #'            )
@@ -227,13 +225,13 @@ updatebs4Sidebar <- function(inputId, session) {
 #' }
 #'
 #' @export
-bs4SidebarMenu <- function(..., id = NULL, flat = FALSE, 
-                           compact = FALSE, child_indent = TRUE, legacy = FALSE) {
+bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE, 
+                           compact = FALSE, childIndent = TRUE, legacy = FALSE) {
   
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
   
   # make sure only 1 item is selected at start
-  items <- list(...)
+  items <- c(list(...), .list)
   items <- findSidebarItem(items, "nav-item")
   selectedItems <- dropNulls(lapply(seq_along(items), function(i) {
     if (length(items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
@@ -243,7 +241,7 @@ bs4SidebarMenu <- function(..., id = NULL, flat = FALSE,
   menuCl <- "nav nav-pills nav-sidebar flex-column"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
-  if (child_indent) menuCl <- paste0(menuCl, " nav-child-indent")
+  if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
   if (legacy) menuCl <- paste0(menuCl, " nav-legacy")
   
   # menu Tag
@@ -288,8 +286,15 @@ findSidebarItem <- function(items, regex) {
 #'
 #' @param text Item name.
 #' @param ... \link{bs4SidebarMenuSubItem}.
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
+#'   \code{NULL}, don't display an icon.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
-#' @param icon Item icon.
+#' @param href An link address. Not compatible with \code{tabName}.
+#' @param newtab If \code{href} is supplied, should the link open in a new
+#'   browser tab?
+#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuItem}
+#'  will start selected. If no item have \code{selected=TRUE}, then the first
+#'  \code{bs4SidebarMenuItem} will start selected.
 #' @param expandedName A unique name given to each \code{menuItem} that serves
 #'   to indicate which one (if any) is currently expanded. (This is only applicable
 #'   to \code{menuItem}s that have children and it is mostly only useful for
@@ -297,9 +302,6 @@ findSidebarItem <- function(items, regex) {
 #' @param startExpanded Whether to expand the \link{bs4SidebarMenuItem} at start.
 #' @param condition When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
-#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuItem}
-#'  will start selected. If no item have \code{selected=TRUE}, then the first
-#'  \code{bs4SidebarMenuItem} will start selected.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -345,11 +347,21 @@ findSidebarItem <- function(items, regex) {
 #'   server <- function(input, output){}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL, 
+bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NULL, 
+                               newTab = TRUE, selected = NULL,
                                expandedName = as.character(gsub("[[:space:]]", "", text)), 
-                               startExpanded = FALSE, condition = NULL, selected = NULL) {
+                               startExpanded = FALSE, condition = NULL) {
   
   subitems <- list(...)
+  
+  if (!is.null(icon)) {
+    tagAssert(icon, type = "i")
+    icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
+  }
+  
+  if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1 ) {
+    stop("Must have either href, tabName, or sub-items (contained in ...).")
+  }
   
   # classic menuItem with 1 element
   if (length(subitems) == 0) {
@@ -359,13 +371,24 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
         `data-display-if` = condition,
         shiny::tags$a(
           class = "nav-link",
-          id = paste0("tab-", tabName),
-          href = paste0("#shiny-tab-", tabName),
+          id = if (!is.null(tabName)) {
+            paste0("tab-", tabName)
+          },
+          href = if (is.null(href)) {
+            if (!is.null(tabName)) {
+              paste0("#shiny-tab-", tabName)
+            } else {
+              "#"
+            }
+          },
+          target = if (!is.null(href)) {
+            if (newTab) "_blank"
+          },
           `data-toggle` = "tab",
-          `data-value` = tabName,
+          `data-value` = if (!is.null(tabName)) tabName,
           # needed by leftSidebar.js
-          `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
-          shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
+          `data-start-selected` = if (selected) 1 else NULL,
+          icon,
           shiny::tags$p(text)
         )
       )
@@ -405,7 +428,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
         href = "#",
         class = "nav-link",
         `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
-        shiny::tags$i(class = paste0("nav-icon fas fa-", icon)),
+        icon,
         shiny::tags$p(
           text,
           shiny::tags$i(class = "right fas fa-angle-left")
@@ -431,7 +454,11 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
 #'
 #' @param text Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
-#' @param icon Item icon.
+#' @param href An link address. Not compatible with \code{tabName}.
+#' @param newtab If \code{href} is supplied, should the link open in a new
+#'   browser tab?
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
+#'   \code{NULL}, don't display an icon.
 #' @param selected If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
 #'   will start selected. If no item have \code{selected=TRUE}.
 #'
@@ -445,7 +472,7 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
 #'  
 #'  shiny::shinyApp(
 #'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
+#'      header = bs4DashNavbar(),
 #'      sidebar = bs4DashSidebar(
 #'        bs4SidebarMenu(
 #'          bs4SidebarHeader("List of items 1"),
@@ -456,12 +483,12 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 1",
 #'              tabName = "item1",
-#'              icon = "circle-thin"
+#'              icon = shiny::icon("circle-thin")
 #'            ),
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 2",
 #'              tabName = "item2",
-#'              icon = "circle-thin"
+#'              icon = shiny::icon("circle-thin")
 #'            )
 #'          ),
 #'          bs4SidebarHeader("Classic Items"),
@@ -472,18 +499,17 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
 #'          bs4SidebarHeader("List of items 2"),
 #'          bs4SidebarMenuItem(
 #'            text = "Item List 2",
-#'            icon = "bars",
+#'            icon = shiny::icon("bars"),
 #'            startExpanded = FALSE,
-#'            #active = FALSE,
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 4",
 #'              tabName = "item4",
-#'              icon = "circle-thin"
+#'              icon = shiny::icon("circle-thin")
 #'            ),
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 5",
 #'              tabName = "item5",
-#'              icon = "circle-thin",
+#'              icon = shiny::icon("circle-thin"),
 #'              selected = TRUE
 #'            )
 #'          )
@@ -560,18 +586,36 @@ bs4SidebarMenuItem <- function(text, ..., tabName = NULL, icon = NULL,
 #'    server = function(input, output) {}
 #'  )
 #' }
-bs4SidebarMenuSubItem <- function(text, tabName = NULL, icon = NULL, selected = NULL) {
+bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL, 
+                                  newTab = NULL, icon = NULL, selected = NULL) {
+  
+  if (!is.null(icon)) {
+    tagAssert(icon, type = "i")
+    icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
+  }
+  
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
       class = "nav-link",
-      id = paste0("tab-", tabName),
-      href = paste0("#shiny-tab-", tabName),
+      id = if (!is.null(tabName)) {
+        paste0("tab-", tabName)
+      },
+      href = if (is.null(href)) {
+        if (!is.null(tabName)) {
+          paste0("#shiny-tab-", tabName)
+        } else {
+          "#"
+        }
+      },
+      target = if (!is.null(href)) {
+        if (newTab) "_blank"
+      },
       `data-toggle` = "tab",
       `data-value` = tabName,
       # below this is needed by leftSidebar.js
-      `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
-      shiny::tags$i(class = paste0("nav-icon fa fa-", icon)),
+      `data-start-selected` = if (selected) 1 else NULL,
+      icon,
       shiny::tags$p(text)
     )
   )
@@ -588,10 +632,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, icon = NULL, selected = 
 #'
 #' @export
 bs4SidebarHeader <- function(title) {
-  shiny::tags$li(
-    class = "nav-header",
-    title
-  )
+  shiny::tags$li(class = "nav-header", title)
 }
 
 

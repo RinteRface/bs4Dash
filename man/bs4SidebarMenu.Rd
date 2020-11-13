@@ -8,18 +8,20 @@
 bs4SidebarMenu(
   ...,
   id = NULL,
+  .list = NULL,
   flat = FALSE,
   compact = FALSE,
-  child_indent = TRUE,
+  childIndent = TRUE,
   legacy = FALSE
 )
 
 sidebarMenu(
   ...,
   id = NULL,
+  .list = NULL,
   flat = FALSE,
   compact = FALSE,
-  child_indent = TRUE,
+  childIndent = TRUE,
   legacy = FALSE
 )
 }
@@ -31,14 +33,18 @@ used for a Shiny input value, and it will report which tab is selected. For
 example, if \code{id="tabs"}, then \code{input$tabs} will be the
 \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.}
 
+\item{.list}{An optional list containing items to put in the menu Same as the
+\code{...} arguments, but in list format. This can be useful when working
+with programmatically generated items.}
+
 \item{flat}{Whether sidebar items should have a flat design. FALSE by default.}
 
 \item{compact}{Whether items should be compacted. FALSE by default.}
 
-\item{child_indent}{Whether to indent children. TRUE by default.}
-
 \item{legacy}{Whether to use the old adminLTE2 item selection display. Default
 to FALSE.}
+
+\item{child_indent}{Whether to indent children. TRUE by default.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu
@@ -50,14 +56,8 @@ if (interactive()) {
  
  shinyApp(
    ui = bs4DashPage(
-     sidebar_collapsed = TRUE,
-     controlbar_collapsed = TRUE,
-     enable_preloader = FALSE,
-     loading_duration =  2,
-     navbar = bs4DashNavbar(skin = "light"),
-     body = bs4DashBody(
-       
-     ),
+     header = bs4DashNavbar(skin = "light"),
+     body = bs4DashBody(),
      sidebar = bs4DashSidebar(
        skin = "light",
        bs4SidebarMenu(
@@ -75,7 +75,8 @@ if (interactive()) {
            bs4SidebarMenuSubItem(
              tabName = "subtab1",
              text = "Tab 3"
-           ),bs4SidebarMenuSubItem(
+           ),
+           bs4SidebarMenuSubItem(
              tabName = "subtab2",
              text = "Tab 4"
            )

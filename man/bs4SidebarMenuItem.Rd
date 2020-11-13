@@ -8,23 +8,27 @@
 bs4SidebarMenuItem(
   text,
   ...,
-  tabName = NULL,
   icon = NULL,
+  tabName = NULL,
+  href = NULL,
+  newTab = TRUE,
+  selected = NULL,
   expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
-  condition = NULL,
-  selected = NULL
+  condition = NULL
 )
 
 menuItem(
   text,
   ...,
-  tabName = NULL,
   icon = NULL,
+  tabName = NULL,
+  href = NULL,
+  newTab = TRUE,
+  selected = NULL,
   expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
-  condition = NULL,
-  selected = NULL
+  condition = NULL
 )
 }
 \arguments{
@@ -32,9 +36,16 @@ menuItem(
 
 \item{...}{\link{bs4SidebarMenuSubItem}.}
 
+\item{icon}{An icon tag, created by \code{\link[shiny]{icon}}. If
+\code{NULL}, don't display an icon.}
+
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
-\item{icon}{Item icon.}
+\item{href}{An link address. Not compatible with \code{tabName}.}
+
+\item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuItem}
+will start selected. If no item have \code{selected=TRUE}, then the first
+\code{bs4SidebarMenuItem} will start selected.}
 
 \item{expandedName}{A unique name given to each \code{menuItem} that serves
 to indicate which one (if any) is currently expanded. (This is only applicable
@@ -46,9 +57,8 @@ bookmarking state.)}
 \item{condition}{When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
 write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).}
 
-\item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuItem}
-will start selected. If no item have \code{selected=TRUE}, then the first
-\code{bs4SidebarMenuItem} will start selected.}
+\item{newtab}{If \code{href} is supplied, should the link open in a new
+browser tab?}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu item

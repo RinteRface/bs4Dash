@@ -5,19 +5,39 @@
 \alias{menuSubItem}
 \title{Create a Boostrap 4 dashboard main sidebar menu sub-item}
 \usage{
-bs4SidebarMenuSubItem(text, tabName = NULL, icon = NULL, selected = NULL)
+bs4SidebarMenuSubItem(
+  text,
+  tabName = NULL,
+  href = NULL,
+  newTab = NULL,
+  icon = NULL,
+  selected = NULL
+)
 
-menuSubItem(text, tabName = NULL, icon = NULL, selected = NULL)
+menuSubItem(
+  text,
+  tabName = NULL,
+  href = NULL,
+  newTab = NULL,
+  icon = NULL,
+  selected = NULL
+)
 }
 \arguments{
 \item{text}{Item name.}
 
 \item{tabName}{Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.}
 
-\item{icon}{Item icon.}
+\item{href}{An link address. Not compatible with \code{tabName}.}
+
+\item{icon}{An icon tag, created by \code{\link[shiny]{icon}}. If
+\code{NULL}, don't display an icon.}
 
 \item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
 will start selected. If no item have \code{selected=TRUE}.}
+
+\item{newtab}{If \code{href} is supplied, should the link open in a new
+browser tab?}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu sub-item
@@ -29,7 +49,7 @@ if (interactive()) {
  
  shiny::shinyApp(
    ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
+     header = bs4DashNavbar(),
      sidebar = bs4DashSidebar(
        bs4SidebarMenu(
          bs4SidebarHeader("List of items 1"),
@@ -40,12 +60,12 @@ if (interactive()) {
            bs4SidebarMenuSubItem(
              text = "Item 1",
              tabName = "item1",
-             icon = "circle-thin"
+             icon = shiny::icon("circle-thin")
            ),
            bs4SidebarMenuSubItem(
              text = "Item 2",
              tabName = "item2",
-             icon = "circle-thin"
+             icon = shiny::icon("circle-thin")
            )
          ),
          bs4SidebarHeader("Classic Items"),
@@ -56,18 +76,17 @@ if (interactive()) {
          bs4SidebarHeader("List of items 2"),
          bs4SidebarMenuItem(
            text = "Item List 2",
-           icon = "bars",
+           icon = shiny::icon("bars"),
            startExpanded = FALSE,
-           #active = FALSE,
            bs4SidebarMenuSubItem(
              text = "Item 4",
              tabName = "item4",
-             icon = "circle-thin"
+             icon = shiny::icon("circle-thin")
            ),
            bs4SidebarMenuSubItem(
              text = "Item 5",
              tabName = "item5",
-             icon = "circle-thin",
+             icon = shiny::icon("circle-thin"),
              selected = TRUE
            )
          )

@@ -19,8 +19,17 @@ This is to align with shinydashboard and shinydashboardPlus.
 ### bs4DashSidebar/dashboardSidebar
 - `inputId` moved to the end.
 - `inputId` renamed to `id`.
-- Added `collapsed` and `minified`
-- Add `width`
+- Added `collapsed` and `minified`.
+- Add `width`.
+
+### bs4SidebarMenu
+- `child_indent` becomes `childIndent`.
+- Add `.list` to pass programmatically generated `bs4SidebarMenuItem`.
+
+### bs4SidebarMenuItem
+- Add `href` and `newTab`.
+- icon expects `shiny::icon`.
+
 
 
 ### Others
