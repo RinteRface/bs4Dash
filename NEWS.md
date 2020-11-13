@@ -11,6 +11,10 @@ This is to align with shinydashboard and shinydashboardPlus.
 - New `options` parameter to configure AdminLTE3.
 - New `preloader` to use `{waiter}` as a preloading engine.
 
+### bs4DashNavbar/dashboardHeader
+- `controlbarIcon` accepts `shiny::icon` instead of the icon name.
+- `sidebarIcon` accepts `shiny::icon` instead of the icon name.
+
 
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)

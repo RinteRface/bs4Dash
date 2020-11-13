@@ -37,7 +37,7 @@ Collate:
     'dashboardBody.R'
     'dashboardFooter.R'
     'dashboardControlbar.R'
-    'dashboardNavbar.R'
+    'dashboardHeader.R'
     'dashboardPage.R'
     'aliases.R'
     'bs4DashGallery.R'

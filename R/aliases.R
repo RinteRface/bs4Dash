@@ -1,5 +1,5 @@
 #' @include dashboardPage.R
-#' @include dashboardNavbar.R
+#' @include dashboardHeader.R
 #' @include dashboardControlbar.R
 #' @include dashboardFooter.R
 #' @include dashboardBody.R

@@ -3,6 +3,8 @@
 #' Build an adminLTE3 dashboard navbar
 #'
 #' @param ... Any UI element between left and right Ui.
+#' @param leftUi Custom left Ui content. Any Ui element.
+#' @param rightUi Custom right Ui content. Any Ui element.
 #' @param skin Navbar skin. "dark" or "light".
 #' @param status Navbar status. "primary", "danger", "warning",
 #' "success", "info", "white", "gray-light" and all other available colors. See
@@ -11,16 +13,15 @@
 #' @param compact Whether items should be compacted. FALSE by default.
 #' @param sidebarIcon Icon of the main sidebar toggle.
 #' @param controlbarIcon Icon to toggle the controlbar (left).
-#' @param leftUi Custom left Ui content. Any Ui element.
-#' @param rightUi Custom right Ui content. Any Ui element.
 #' @param fixed Whether to fix the navbar to the top. FALSE by default
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
-                          sidebarIcon = "bars", compact = FALSE, controlbarIcon = "th",
-                          leftUi = NULL, rightUi = NULL, fixed = FALSE) {
+bs4DashNavbar <- function(..., leftUi = NULL, rightUi = NULL, 
+                          skin = "light", status = NULL, border = TRUE,
+                          compact = FALSE, sidebarIcon = shiny::icon("bars"),
+                          controlbarIcon = shiny::icon("th"), fixed = FALSE) {
   
   shiny::tags$nav(
     `data-fixed` = tolower(fixed),
@@ -41,7 +42,7 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
           class = "nav-link",
           `data-widget` = "pushmenu",
           href = "#",
-          shiny::icon(sidebarIcon)
+          sidebarIcon
         )
       ),
       leftUi
@@ -63,7 +64,7 @@ bs4DashNavbar <- function(..., skin = "light", status = NULL, border = TRUE,
           class = "nav-link",
           `data-widget` = "control-sidebar",
           href = "#",
-          shiny::icon(controlbarIcon)
+          controlbarIcon
         )
       ) 
     )
