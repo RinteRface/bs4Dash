@@ -170,9 +170,9 @@ bs4Card <- function(..., inputId = NULL, title = NULL, footer = NULL, status = N
       "card card-default"
     } else {
       if (isTRUE(solidHeader)) {
-        paste0("card card-outline card-", status)
-      } else {
         paste0("card card-", status)
+      } else {
+        paste0("card card-outline card-", status)
       }
     }
   }
