@@ -30,7 +30,7 @@ LazyData: true
 RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
 Collate: 
-    'update-functions.R'
+    'tabs.R'
     'render-functions.R'
     'cards.R'
     'dashboardSidebar.R'

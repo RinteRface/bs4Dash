@@ -641,3 +641,159 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
     )
   )
 }
+
+
+
+
+
+#' Change the selected sidebar tab on the client
+#'
+#' This function controls the active tab of \code{\link{bs4TabItems}} from the
+#' server. It behaves just like \code{\link{updatebs4TabSetPanel}}.
+#'
+#' @inheritParams updatebs4TabSetPanel
+#' @examples
+#' ## Only run this example in interactive R sessions
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'    ui = bs4DashPage(
+#'      sidebar_collapsed = FALSE,
+#'      controlbar_collapsed = TRUE,
+#'      enable_preloader = FALSE,
+#'      navbar = bs4DashNavbar(skin = "dark"),
+#'      body = bs4DashBody(
+#'        bs4TabItems(
+#'          bs4TabItem(
+#'            tabName = "tab1",
+#'            sliderInput("obs", "Number of observations:",
+#'                        min = 0, max = 1000, value = 500
+#'            ),
+#'            plotOutput("distPlot")
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab2",
+#'            checkboxGroupInput("variable", "Variables to show:",
+#'                               c("Cylinders" = "cyl",
+#'                                 "Transmission" = "am",
+#'                                 "Gears" = "gear")),
+#'            tableOutput("data")
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab3",
+#'            checkboxInput("val", "Some value", FALSE),
+#'            textOutput("value")
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab4",
+#'            "Nothing special here!"
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab5",
+#'            "Tab 5"
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab6",
+#'            "Tab 6"
+#'          ),
+#'          bs4TabItem(
+#'            tabName = "tab7",
+#'            "Tab 7"
+#'          )
+#'        )
+#'      ),
+#'      sidebar = bs4DashSidebar(
+#'        skin = "light",
+#'        inputId = "sidebarState",
+#'        bs4SidebarMenu(
+#'          id = "sidebar",
+#'          bs4SidebarMenuItem(
+#'            text = "Tab 1",
+#'            tabName = "tab1",
+#'            icon = "shuttle-van"
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            text = "Tab 2",
+#'            tabName = "tab2",
+#'            icon = "space-shuttle",
+#'            selected = TRUE
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            text = "Item List 1",
+#'            icon = "bars",
+#'            startExpanded = TRUE,
+#'            bs4SidebarMenuSubItem(
+#'              text = "Item 3",
+#'              tabName = "tab3",
+#'              icon = "circle-thin"
+#'            ),
+#'            bs4SidebarMenuSubItem(
+#'              text = "Item 4",
+#'              tabName = "tab4",
+#'              icon = "circle-thin"
+#'            )
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            text = "Item List 2",
+#'            icon = "bars",
+#'            startExpanded = FALSE,
+#'            bs4SidebarMenuSubItem(
+#'              text = "Item 5",
+#'              tabName = "tab5",
+#'              icon = "circle-thin"
+#'            ),
+#'            bs4SidebarMenuSubItem(
+#'              text = "Item 6",
+#'              tabName = "tab6",
+#'              icon = "circle-thin"
+#'            )
+#'          ),
+#'          bs4SidebarMenuItem(
+#'            text = "Tab 7",
+#'            tabName = "tab7",
+#'            icon = "home"
+#'          )
+#'        )
+#'      ),
+#'      controlbar = bs4DashControlbar(
+#'        skin = "light",
+#'        sliderInput(
+#'          inputId = "controller",
+#'          label = "Update the first tabset",
+#'          min = 1,
+#'          max = 6,
+#'          value = 2
+#'        )
+#'      ),
+#'      footer = bs4DashFooter()
+#'    ),
+#'    server = function(input, output, session) {
+#'      observe(print(input$sidebarItemExpanded))
+#'      observe(print(input$sidebar))
+#'      
+#'      # update tabset1
+#'      observeEvent(input$controller, {
+#'        updatebs4TabItems(
+#'          session, 
+#'          inputId = "sidebar", 
+#'          selected = paste0("tab", input$controller)
+#'        )
+#'      }, ignoreInit = TRUE)
+#'      
+#'      output$distPlot <- renderPlot({
+#'        hist(rnorm(input$obs))
+#'      })
+#'      
+#'      output$data <- renderTable({
+#'        mtcars[, c("mpg", input$variable), drop = FALSE]
+#'      }, rownames = TRUE)
+#'      
+#'      output$value <- renderText({ input$val })
+#'      
+#'    }
+#'  )
+#' }
+#' @export
+updatebs4TabItems <- updatebs4TabSetPanel

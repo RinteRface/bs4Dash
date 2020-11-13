@@ -6,7 +6,7 @@
 #' @include dashboardSidebar.R
 #' @include cards.R
 #' @include render-functions.R
-#' @include update-functions.R
+#' @include tabs.R
 NULL
 
 
@@ -419,3 +419,14 @@ cardSidebar <- bs4CardSidebar
 #'
 #' @export
 updateCardSidebar <- updatebs4CardSidebar
+
+
+
+
+#' Alias to \link{updatebs4Card}
+#' See \link{updatebs4Card} for full details
+#'
+#' @rdname updatebs4Card
+#'
+#' @export
+updateCard <- updatebs4Card

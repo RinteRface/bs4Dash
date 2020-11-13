@@ -463,6 +463,60 @@ updatebs4Card <- function(inputId, session, action = c("remove", "toggle", "togg
 
 
 
+
+#' Programmatically toggle a bs4Card sidebar
+#'
+#' @param session Shiny session object.
+#' @param inputId Card sidebar id.
+#' 
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = bs4DashPage(
+#'     sidebar_collapsed = FALSE,
+#'     controlbar_collapsed = TRUE,
+#'     enable_preloader = FALSE,
+#'     navbar = bs4DashNavbar(skin = "dark"),
+#'     body = bs4DashBody(
+#'       bs4Card(
+#'         title = "Closable Box with gradient", 
+#'         closable = TRUE, 
+#'         width = 12,
+#'         height = "500px",
+#'         solidHeader = FALSE, 
+#'         collapsible = TRUE,
+#'         actionButton("update", "Toggle card sidebar"),
+#'         sidebar = bs4CardSidebar(
+#'           inputId = "mycardsidebar",
+#'           p("Sidebar Content")
+#'         )
+#'       )
+#'     ),
+#'     sidebar = bs4DashSidebar(),
+#'     controlbar = bs4DashControlbar(),
+#'     footer = bs4DashFooter()
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$mycardsidebar))
+#'     
+#'     observeEvent(input$update, {
+#'       updatebs4CardSidebar(session, inputId = "mycardsidebar")
+#'     })
+#'     
+#'   }
+#'  )
+#' }
+updatebs4CardSidebar <- function(session, inputId) {
+  session$sendInputMessage(inputId, NULL)
+}
+
+
+
+
 #' Create a box dropdown item list
 #'
 #' Can be used to add dropdown items to a cardtool.
@@ -1028,247 +1082,6 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
   )
 }
 
-
-
-#' Create a tabSetPanel
-#' 
-#' Imported by \link{bs4TabCard} but can be used alone.
-#'
-#' @param ... Slot for \link{bs4TabPanel}.
-#' @param id Unique \link{bs4TabSetPanel} id. NULL by default. Set a value
-#'  to get the currently selected tab.
-#' @param side Side of the box the tabs should be on (\code{"left"} or
-#'   \code{"right"}). Default to "left".
-#' @param tabStatus The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
-#'  NULL by default, "light" if status is set.   
-#'  A vector is possible with a colour for each tab button
-#' @param .list When elements are programmatically added, pass them here instead of in ...
-#' @param vertical Whether to display tabs in a vertical mode. FALSE by default.
-#' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
-#' 
-#' @inheritParams bs4Card
-#' 
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(bs4Dash)
-#'
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
-#'      
-#'      # manually inserted panels
-#'      bs4TabSetPanel(
-#'       id = "tabcard",
-#'       side = "left",
-#'       bs4TabPanel(
-#'        tabName = "Tab 1", 
-#'        active = FALSE,
-#'        "Content 1"
-#'       ),
-#'       bs4TabPanel(
-#'        tabName = "Tab 2", 
-#'        active = TRUE,
-#'        "Content 2"
-#'       ),
-#'       bs4TabPanel(
-#'        tabName = "Tab 3", 
-#'        active = FALSE,
-#'        "Content 3"
-#'       )
-#'      ),
-#'      
-#'      br(), br(),
-#'      # programmatically inserted panels
-#'      bs4TabSetPanel(
-#'        id = "tabset",
-#'        side = "left",
-#'        .list = lapply(1:3, function(i) {
-#'          bs4TabPanel(
-#'            tabName = paste0("Tab", i), 
-#'            active = FALSE,
-#'            paste("Content", i)
-#'          )
-#'        })
-#'       ),
-#'       
-#'       br(), br(),
-#'       # vertical tabset
-#'       bs4TabSetPanel(
-#'        id = "verttabset",
-#'        side = "left",
-#'        vertical = TRUE,
-#'        .list = lapply(1:3, function(i) {
-#'          bs4TabPanel(
-#'            tabName = paste0("Tab", i), 
-#'            active = FALSE,
-#'            paste("Content", i)
-#'          )
-#'        })
-#'       )
-#'     )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
-#' }
-#' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-bs4TabSetPanel <- function(..., id = NULL, side = "left", status = NULL, tabStatus = NULL, 
-                           .list = NULL, vertical = FALSE, type = NULL) {
-  
-  # pills are the default
-  if (is.null(type)) type <- "pills"
-  
-  # to make tab ids in the namespace of the tabSetPanel
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
-  ns <- shiny::NS(id)
-  
-  tabs <- c(list(...), .list)
-  found_active <- FALSE
-  selected <- NULL
-  tabStatus <- if (!is.null(tabStatus)) rep(tabStatus, length.out = length(tabs))
-  # handle tabs
-  tabSetPanelItem <- lapply(seq_along(tabs), FUN = function(i) {
-    
-    tabName <- tabs[[i]][[1]]
-    tabsTag <- tabs[[i]][[2]]
-    
-    tabClass <- tabsTag$attribs$class
-    
-    # make sure that if the user set 2 tabs active at the same time, 
-    # only the first one is selected
-    active <- sum(grep(x = tabClass, pattern = "active")) == 1
-    if (!found_active) {
-      if (active) {
-        found_active <<- TRUE
-        selected <<- i - 1
-        # if no items are selected, we select the first
-      } else {
-        selected <<- 0
-      }
-      # do not allow more than 1 active item
-    } else {
-      if (active) {
-        stop("Cannot set 2 active tabs at the same time.")
-      }
-    }
-    
-    id <- tabsTag$attribs$id
-    
-    shiny::tags$li(
-      class = if (!is.null(status) & is.null(tabStatus[i])) {
-        "nav-item bg-light"
-      } else if (!is.null(tabStatus[i])) {
-        paste0("nav-item bg-", tabStatus[i])
-      } else {
-        "nav-item"
-      },
-      shiny::tags$a(
-        class = if (active) "nav-link active" else "nav-link",
-        href = paste0("#", ns(id)),
-        id = paste0(ns(id), "-tab"),
-        `data-toggle` = "tab",
-        role = "tab",
-        `aria-controls` = ns(id),
-        `aria-selected` = if (active) "true" else "false",
-        tabName
-      )
-    )
-  })
-  
-  tabSetCl <- "nav"
-  tabSetCl <- if (type == "tabs") {
-    paste0(tabSetCl, " nav-tabs")
-  } else if (type == "pills") {
-    paste0(tabSetCl, " nav-pills")
-  }
-  
-  # side
-  if (side == "right") {
-    tabSetCl <- paste0(tabSetCl, " ml-auto p-2")
-  } else {
-    tabSetCl <- paste0(tabSetCl, " p-2")
-  }
-  
-  # support vertical tabs
-  if (vertical) tabSetCl <- paste0(tabSetCl, " flex-column")
-  
-  tabSetMenu <- shiny::tags$ul(
-    id = id,
-    class = "tabsetpanel",
-    class = tabSetCl,
-    `aria-orientation` = if (vertical) "vertical" else NULL
-  )
-  tabSetMenu <- shiny::tagAppendChildren(tabSetMenu, tabSetPanelItem)
-  
-  # content
-  tabSetContent <- shiny::tags$div(
-    class = "tab-content",
-    lapply(seq_along(tabs), FUN = function(i) {
-      
-      # put the correct namespace on ids
-      tabs[[i]][[2]]$attribs$id <- ns(tabs[[i]][[2]]$attribs$id)
-      tabs[[i]][[2]]$attribs$`aria-labelledby` <- ns(tabs[[i]][[2]]$attribs$`aria-labelledby`)
-      tabs[[i]][[2]]
-    })
-  )
-  
-  # Wrapper
-  if (vertical) {
-    if (side == "left") {
-      shiny::fluidRow(
-        shiny::column(width = 3, tabSetMenu),
-        shiny::column(width = 9, tabSetContent)
-      )
-    } else {
-      shiny::fluidRow(
-        shiny::column(width = 9, tabSetContent),
-        shiny::column(width = 3, tabSetMenu)
-      )
-    }
-  } else {
-    shiny::tagList(tabSetMenu, tabSetContent)
-  }
-}
-
-
-
-#' Create a tabPanel
-#' 
-#' To be included in a bs4TabCard
-#'
-#' @param tabName Tab name: it will be also passed as the id argument. Must be unique.
-#' @param ... Tab content.
-#' @param active Whether the tab is active or not. FALSE bu default.
-#' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-bs4TabPanel <- function(tabName, ..., active = FALSE) {
-  
-  
-  id <- tabName
-  # handle punctuation
-  id <- gsub(x = id, pattern = "[[:punct:]]", replacement = "")
-  # handle tab names with space
-  id <- gsub(x = id, pattern = " ", replacement = "")
-  
-  tabPanelTag <- shiny::tags$div(
-    class = if (active) "tab-pane fade active" else "tab-pane fade",
-    id = id,
-    role = "tabpanel",
-    `aria-labelledby` = paste0(id, "-tab"),
-    ...
-  )
-  return(list(tabName, tabPanelTag))
-}
 
 
 
