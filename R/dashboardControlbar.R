@@ -94,7 +94,7 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 
 #' Function to programmatically toggle the state of the controlbar
 #'
-#' @param inputId Controlbar id.
+#' @param id Controlbar id.
 #' @param session Shiny session object.
 #' @export
 #'
@@ -103,16 +103,18 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      controlbar_collapsed = FALSE,
-#'      controlbar_overlay = TRUE,
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'        actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar")
 #'      ),
-#'      controlbar = dashboardControlbar(inputId = "controlbar")
+#'      controlbar = dashboardControlbar(
+#'        id = "controlbar",
+#'        collapsed = FALSE,
+#'        overlay = TRUE
+#'      )
 #'    ),
 #'    server = function(input, output, session) {
 #'      
@@ -128,7 +130,7 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'      })
 #'      
 #'      observeEvent(input$controlbarToggle, {
-#'        updatebs4Controlbar(inputId = "controlbar", session = session)
+#'        updatebs4Controlbar(id = "controlbar", session = session)
 #'      })
 #'      
 #'      observe({
@@ -137,6 +139,6 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'    }
 #'  )
 #' }
-updatebs4Controlbar <- function(inputId, session) {
-  session$sendInputMessage(inputId, NULL)
+updatebs4Controlbar <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(id, NULL)
 }

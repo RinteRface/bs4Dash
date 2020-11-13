@@ -21,9 +21,13 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### bs4DashControlbar/dashboardControlbar
-- Add `collpsed` and `overlay`.
+- Add `collapsed` and `overlay`.
 - Remove `title`.
 - Rename `inputId` to `id`.
+
+
+### updatebs4Controlbar
+- `inputId` becomes `id`.
 
 
 ### bs4DashSidebar/dashboardSidebar
@@ -105,6 +109,7 @@ To keep it open, see below
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!
 - Fix issue #110: due to the fact that the `bs4Controlbar()` now collapse when clicked outside, clicking on an input triggering the `updatebs4Controlbar()` would toggle it twice. Thanks @dwhdai
 - Fix issue #112 with `sliderInput` z-index and `bs4DashPage()` preloader. Thanks @analytichealth for the report
 - Fix issue in `bs4DashSidebar()` url link. Thanks @pvictor
