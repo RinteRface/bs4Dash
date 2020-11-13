@@ -47,6 +47,7 @@ $(function() {
     if (pinned !== undefined && pinned !== "false") {
       setTimeout(function() {
         $("#controlbar-toggle").addClass("disabled");
+        $("#controlbarPin").children().css("color", "#0460a9");
         controlbarToast();
       }, 10); 
     }
@@ -58,6 +59,7 @@ $(function() {
     var pinned = ($(".control-sidebar").attr("data-pin") === "true");
     if (controlbarOpen && pinned) {
       $("#controlbar-toggle").addClass("disabled");
+      $("#controlbarPin").children().css("color", "#0460a9");
       controlbarToast();
     }
   });
@@ -65,16 +67,21 @@ $(function() {
   
   // handle the pin button: toggle data-pin state
   $("#controlbarPin").on('click', function() {
+    var $pinIcon = $(this).children();
+    $pinIcon.toggleClass("fa-rotate-90 fa-2x");
+    
     $(".control-sidebar").attr("data-pin",
        $(".control-sidebar").attr("data-pin") == "false" ? "true" : "false");
     // toggle right sidebar control depending on the datapin
     if ($(".control-sidebar").attr("data-pin") === "true") {
+      $pinIcon.css("color", "#0460a9");
       $("#controlbar-toggle").addClass("disabled");
       if (showToast) {
         controlbarToast();
       }
     } else {
       $("#controlbar-toggle").removeClass("disabled");
+      $pinIcon.css("color", "");
     }
   });
 
