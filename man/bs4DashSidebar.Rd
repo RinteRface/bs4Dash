@@ -7,8 +7,8 @@
 \usage{
 bs4DashSidebar(
   ...,
-  inputId = NULL,
   disable = FALSE,
+  width = NULL,
   title = NULL,
   skin = "dark",
   status = "primary",
@@ -17,14 +17,17 @@ bs4DashSidebar(
   src = NULL,
   elevation = 4,
   opacity = 0.8,
-  expand_on_hover = TRUE,
-  fixed = TRUE
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = NULL
 )
 
 dashboardSidebar(
   ...,
-  inputId = NULL,
   disable = FALSE,
+  width = NULL,
   title = NULL,
   skin = "dark",
   status = "primary",
@@ -33,20 +36,25 @@ dashboardSidebar(
   src = NULL,
   elevation = 4,
   opacity = 0.8,
-  expand_on_hover = TRUE,
-  fixed = TRUE
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = NULL
 )
 }
 \arguments{
 \item{...}{Slot for \link{bs4SidebarMenu}.}
 
-\item{inputId}{Recover the state of the sidebar.}
-
 \item{disable}{If \code{TRUE}, the sidebar will be disabled.}
+
+\item{width}{The width of the sidebar. This must either be a number which
+specifies the width in pixels, or a string that specifies the width in CSS
+units.}
 
 \item{title}{Sidebar title.}
 
-\item{skin}{Sidebar skin. "dark" or "light"}
+\item{skin}{Sidebar skin. "dark" or "light".}
 
 \item{status}{Sidebar status. "primary", "danger", "warning", "success", "info".}
 
@@ -64,9 +72,16 @@ always well rendered.}
 
 \item{opacity}{Sidebar brand opacity. From 0 to 1. 0.8 by default.}
 
-\item{expand_on_hover}{Whether to expand the sidebar om hover. TRUE by default.}
+\item{collapsed}{If \code{TRUE}, the sidebar will be collapsed on app startup.}
+
+\item{minified}{Whether to slightly close the sidebar but still show item icons. Default
+to TRUE.}
+
+\item{expandOnHover}{Whether to expand the sidebar om hover. TRUE by default.}
 
 \item{fixed}{Whether to fix the sidebar. Default to TRUE.}
+
+\item{id}{Recover the state of the sidebar.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar

@@ -3,10 +3,12 @@
 #' Build an adminLTE3 dashboard main sidebar
 #'
 #' @param ... Slot for \link{bs4SidebarMenu}.
-#' @param inputId Recover the state of the sidebar.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
+#' @param width The width of the sidebar. This must either be a number which
+#'   specifies the width in pixels, or a string that specifies the width in CSS
+#'   units.
 #' @param title Sidebar title.
-#' @param skin Sidebar skin. "dark" or "light"
+#' @param skin Sidebar skin. "dark" or "light".
 #' @param status Sidebar status. "primary", "danger", "warning", "success", "info".
 #' @param brandColor Brand color. NULL by default: "primary", "danger", "warning",
 #' "success", "info", "white" or "gray-light".
@@ -17,17 +19,29 @@
 #' always well rendered. 
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param opacity Sidebar brand opacity. From 0 to 1. 0.8 by default.
-#' @param expand_on_hover Whether to expand the sidebar om hover. TRUE by default.
+#' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
+#' @param minified Whether to slightly close the sidebar but still show item icons. Default
+#' to TRUE.
+#' @param expandOnHover Whether to expand the sidebar om hover. TRUE by default.
 #' @param fixed Whether to fix the sidebar. Default to TRUE.
+#' @param id Recover the state of the sidebar.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE, 
+bs4DashSidebar <- function(..., disable = FALSE, width = NULL, 
                            title = NULL, skin = "dark", status = "primary",
                            brandColor = NULL, url = NULL, src = NULL,
-                           elevation = 4, opacity = .8, expand_on_hover = TRUE,
-                           fixed = TRUE) {
+                           elevation = 4, opacity = .8, collapsed = FALSE,
+                           minified = TRUE, expandOnHover = TRUE,
+                           fixed = TRUE, id = NULL) {
+  
+  # If we're restoring a bookmarked app, this holds the value of whether or not the
+  # sidebar was collapsed. If this is not the case, the default is whatever the user
+  # specified in the `collapsed` argument.
+  dataValue <- shiny::restoreInput(id = id, default = collapsed)
+  if (disable) dataValue <- TRUE # this is a workaround to fix #209
+  dataValueString <- if (dataValue) "true" else "false"
 
   # brand logo
   brandTag <- if (!is.null(title)) {
@@ -54,12 +68,14 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
   )
 
   sidebarTag <- shiny::tags$aside(
-    id = inputId,
+    id = id,
     `data-fixed` = tolower(fixed),
+    `data-minified` = if (minified) "true" else "false", 
+    `data-collapsed` = dataValueString, 
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation,
-      if (expand_on_hover) NULL else " sidebar-no-expand"
+      if (expandOnHover) NULL else " sidebar-no-expand"
     ),
     style = if (disable) "display: none;"
    )
@@ -77,43 +93,6 @@ bs4DashSidebar <- function(..., inputId = NULL, disable = FALSE,
   )
   
   if (disable) shiny::tagList(customCSS, sidebarTag) else sidebarTag
-  
-  
-  ## change sidebar width
-  #shiny::tagList(
-  #  shiny::singleton(
-  #    shiny::tags$head(
-  #      shiny::tags$style(
-  #        shiny::HTML(
-  #          paste0(
-  #            ".main-sidebar, .main-sidebar:before {
-  #              transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-  #              width: ", width, "px;
-  #            }
-  #            .sidebar-mini.sidebar-collapse .main-sidebar:hover {
-  #                width: ", width, "px;
-  #            }
-  #            @media (min-width: 768px) {
-  #              .content-wrapper,
-  #              .main-footer,
-  #              .main-header {
-  #                transition: margin-left 0.3s ease-in-out;
-  #                margin-left: ", width, "px;
-  #                z-index: 3000;
-  #              }
-  #            }
-  #            .nav-sidebar:hover {
-  #              overflow: hidden;
-  #            }
-  #            "
-  #          )
-  #        )
-  #      )
-  #    )
-  #  ),
-  #  sidebarTag
-  #)
-  
 }
 
 

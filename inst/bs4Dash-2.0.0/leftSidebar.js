@@ -226,16 +226,21 @@ $(function () {
   
   
   
-  
-  // toggle sidebar at start depending on the body class
-  var sidebarStartsOpen = $('body').attr('sidebar-start-open');
-  if (sidebarStartsOpen === "false") {
-    $('body').addClass('sidebar-collapse');
-  }
-  
   // handle fixed sidebar
   if ($(".main-sidebar").attr("data-fixed") === "true") {
     $('body').Layout('fixLayoutHeight');
+  }
+  
+  // toggle sidebar at start depending on the body class
+  var sidebarCollapsed = $('.main-sidebar').attr('data-collapsed');
+  if (sidebarCollapsed === "true") {
+    // This triggers binding geValue
+    $("[data-widget='pushmenu']").click();
+  }
+  
+  var sidebarMinified = $('.main-sidebar').attr('data-minified');
+  if (sidebarMinified === "true") {
+    $('body').addClass('sidebar-mini');
   }
   
 });

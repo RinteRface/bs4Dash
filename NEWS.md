@@ -16,6 +16,13 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `sidebarIcon` accepts `shiny::icon` instead of the icon name.
 
 
+### bs4DashSidebar/dashboardSidebar
+- `inputId` moved to the end.
+- `inputId` renamed to `id`.
+- Added `collapsed` and `minified`
+- Add `width`
+
+
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - remove all sidebar related parameters from `bs4Card()`. This is now part of
