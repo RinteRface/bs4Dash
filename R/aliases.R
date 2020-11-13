@@ -41,6 +41,16 @@ dashboardBrand <- bs4DashBrand
 
 
 
+#' Alias to \link{bs4UserMenu}
+#' See \link{bs4UserMenu} for full details
+#'
+#' @rdname bs4UserMenu
+#'
+#' @export
+dashboardUser <- bs4UserMenu
+
+
+
 
 #' Alias to \link{bs4DropdownMenu}
 #' See \link{bs4DropdownMenu} for full details

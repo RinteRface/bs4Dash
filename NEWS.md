@@ -16,6 +16,9 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `sidebarIcon` accepts `shiny::icon` instead of the icon name.
 - add `title`, `titleWidth` and `disable`
 
+### bs4UserMenu
+- `src` becomes `image`.
+
 
 ### bs4DashSidebar/dashboardSidebar
 - `inputId` moved to the end.
@@ -60,6 +63,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `dashboardUserItem()`, `userOutput` and `renderUser`.
 - New `bs4DashBrand` for better dashboard titles.
 - add `bs4ShowTab()` and `bs4HideTab()`: thanks @fmmattioni for the reminder ;)
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!
@@ -82,6 +86,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
+- `bs4UserMenu` does not close when clicked inside.
 - Add glyphicons as an html dependency
 - New legacy parameter in `bs4SidebarMenu()`: to use old AdminLTE2 styling for 
 item selection
