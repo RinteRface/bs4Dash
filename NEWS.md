@@ -28,6 +28,8 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 ### updatebs4Controlbar
 - `inputId` becomes `id`.
+- New alias: `updateControlbar`.
+- `session` is not mandatory
 
 
 ### bs4DashSidebar/dashboardSidebar

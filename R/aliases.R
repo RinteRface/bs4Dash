@@ -125,6 +125,17 @@ updateControlbarMenu <- updatebs4ControlbarMenu
 
 
 
+#' Alias to \link{updatebs4Controlbar}
+#' See \link{updatebs4Controlbar} for full details
+#'
+#' @rdname updatebs4Controlbar 
+#'
+#' @export
+updateControlbar <- updatebs4Controlbar
+
+
+
+
 
 #' Alias to \link{bs4DashFooter}
 #' See \link{bs4DashFooter} for full details
