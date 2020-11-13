@@ -55,7 +55,7 @@ if (interactive()) {
          bs4SidebarHeader("List of items 1"),
          bs4SidebarMenuItem(
            text = "Item List",
-           icon = "bars",
+           icon = shiny::icon("bars"),
            startExpanded = TRUE,
            bs4SidebarMenuSubItem(
              text = "Item 1",

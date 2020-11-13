@@ -352,7 +352,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
                                expandedName = as.character(gsub("[[:space:]]", "", text)), 
                                startExpanded = FALSE, condition = NULL) {
   
-  subitems <- list(...)
+  subItems <- list(...)
   
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
@@ -364,7 +364,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
   }
   
   # classic menuItem with 1 element
-  if (length(subitems) == 0) {
+  if (length(subItems) == 0) {
     return(
       shiny::tags$li(
         class = "nav-item",
@@ -387,7 +387,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
           `data-toggle` = "tab",
           `data-value` = if (!is.null(tabName)) tabName,
           # needed by leftSidebar.js
-          `data-start-selected` = if (selected) 1 else NULL,
+          `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           icon,
           shiny::tags$p(text)
         )
@@ -397,9 +397,9 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
   } else {
     
     # add special class for leftSidebar.js
-    for (i in seq_along(subitems)) {
-      subitems[[i]]$children[[1]]$attribs$class <- paste(
-        subitems[[i]]$children[[1]]$attribs$class,
+    for (i in seq_along(subItems)) {
+      subItems[[i]]$children[[1]]$attribs$class <- paste(
+        subItems[[i]]$children[[1]]$attribs$class,
         "treeview-link"
       )
     }
@@ -417,8 +417,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
     isExpanded <- nzchar(dataExpanded) && (dataExpanded == expandedName)
     
     # handle case of multiple selected subitems and raise an error if so...
-    selectedItems <- dropNulls(lapply(seq_along(subitems), function(i) {
-      if (length(subitems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+    selectedItems <- dropNulls(lapply(seq_along(subItems), function(i) {
+      if (length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
     }))
     if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
     
@@ -437,7 +437,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
       shiny::tags$ul(
         class = "nav nav-treeview",
         `data-expanded` = expandedName,
-        subitems
+        subItems
       )
     )
   }
@@ -478,7 +478,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
 #'          bs4SidebarHeader("List of items 1"),
 #'          bs4SidebarMenuItem(
 #'            text = "Item List",
-#'            icon = "bars",
+#'            icon = shiny::icon("bars"),
 #'            startExpanded = TRUE,
 #'            bs4SidebarMenuSubItem(
 #'              text = "Item 1",
@@ -614,7 +614,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       `data-toggle` = "tab",
       `data-value` = tabName,
       # below this is needed by leftSidebar.js
-      `data-start-selected` = if (selected) 1 else NULL,
+      `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
       icon,
       shiny::tags$p(text)
     )
