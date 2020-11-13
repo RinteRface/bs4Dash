@@ -114,7 +114,7 @@ bs4DashPage <- function(navbar = NULL, sidebar = NULL, body = NULL,
       shiny::tags$title(title)
     ),
     # Body
-    addDeps(
+    add_bs4Dash_deps(
       theme = old_school,
       shiny::tags$body(
         class = sidebar_cl,

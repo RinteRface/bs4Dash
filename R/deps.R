@@ -1,16 +1,5 @@
-# Add an html dependency, without overwriting existing ones
-appendDependencies <- function(x, value) {
-  if (inherits(value, "html_dependency"))
-    value <- list(value)
-  
-  old <- attr(x, "html_dependencies", TRUE)
-  
-  htmltools::htmlDependencies(x) <- c(old, value)
-  x
-}
-
 # Add dashboard dependencies to a tag object
-addDeps <- function(x, theme) {
+add_bs4Dash_deps <- function(tag, theme) {
   
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
@@ -24,7 +13,7 @@ addDeps <- function(x, theme) {
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
   
-  dashboardDeps <- list(
+  bs4Dash_deps <- list(
     # jquery UI deps for sortable elements
     htmltools::htmlDependency(
       name = "jquery-ui", 
@@ -51,7 +40,7 @@ addDeps <- function(x, theme) {
     htmltools::htmlDependency(
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
-      src = c(file = system.file("bs4Dash-0.2.0", package = "bs4Dash")),
+      src = c(file = system.file("bs4Dash-2.0.0", package = "bs4Dash")),
       script = c(
         bs4Dash_js, 
         "leftSidebar.js", 
@@ -94,5 +83,5 @@ addDeps <- function(x, theme) {
       )
     }
   )
-  appendDependencies(x, dashboardDeps)
+  tagList(tag, bs4Dash_deps)
 }
