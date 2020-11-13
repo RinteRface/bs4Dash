@@ -57,7 +57,14 @@
 #'       )
 #'      ),
 #'      options = NULL,
-#'      header = dashboardHeader(),
+#'      header = dashboardHeader(
+#'       title = bs4DashBrand(
+#'        title = "My dashboard",
+#'        color = "primary",
+#'        src = "https://adminlte.io/themes/v3",
+#'        image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+#'       )
+#'      ),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'       box(status = "danger"),
@@ -77,9 +84,17 @@
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
                         freshTheme = NULL, preloader = NULL, options = NULL){
   
-  
+  titleTag <- header[[2]]
+  # brand logo
+  sidebar$children[[2]] <- sidebar$children[[1]]
+  sidebar$children[[1]] <- if (inherits(titleTag, "shiny.tag")) {
+    titleTag
+  } else {
+    div(class = "brand-link", titleTag)
+  }
+
   # some checks
-  tagAssert(header, type = "nav", class = "main-header")
+  tagAssert(header[[1]], type = "nav", class = "main-header")
   tagAssert(sidebar, type = "aside", class = "main-sidebar")
   tagAssert(body, type = "div", class = "content-wrapper")
   if (!is.null(controlbar)) {
@@ -92,7 +107,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   # create the body content
   bodyContent <- shiny::tags$div(
     class = "wrapper",
-    header,
+    header[[1]],
     sidebar,
     # page content
     body,

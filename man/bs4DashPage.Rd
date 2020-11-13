@@ -96,7 +96,14 @@ if(interactive()){
       )
      ),
      options = NULL,
-     header = dashboardHeader(),
+     header = dashboardHeader(
+      title = bs4DashBrand(
+       title = "My dashboard",
+       color = "primary",
+       src = "https://adminlte.io/themes/v3",
+       image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+      )
+     ),
      sidebar = dashboardSidebar(),
      body = dashboardBody(
       box(status = "danger"),

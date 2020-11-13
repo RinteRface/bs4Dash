@@ -7,6 +7,9 @@
 \usage{
 bs4DashNavbar(
   ...,
+  title = NULL,
+  titleWidth = NULL,
+  disable = FALSE,
   leftUi = NULL,
   rightUi = NULL,
   skin = "light",
@@ -20,6 +23,9 @@ bs4DashNavbar(
 
 dashboardHeader(
   ...,
+  title = NULL,
+  titleWidth = NULL,
+  disable = FALSE,
   leftUi = NULL,
   rightUi = NULL,
   skin = "light",
@@ -33,6 +39,15 @@ dashboardHeader(
 }
 \arguments{
 \item{...}{Any UI element between left and right Ui.}
+
+\item{title}{Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
+for more evolved title.}
+
+\item{titleWidth}{The width of the title area. This must either be a number
+which specifies the width in pixels, or a string that specifies the width
+in CSS units.}
+
+\item{disable}{If \code{TRUE}, don't display the header bar.}
 
 \item{leftUi}{Custom left Ui content. Any Ui element.}
 

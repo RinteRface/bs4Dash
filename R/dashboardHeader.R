@@ -3,6 +3,12 @@
 #' Build an adminLTE3 dashboard navbar
 #'
 #' @param ... Any UI element between left and right Ui.
+#' @param title Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
+#' for more evolved title.
+#' @param titleWidth The width of the title area. This must either be a number
+#'   which specifies the width in pixels, or a string that specifies the width
+#'   in CSS units.
+#' @param disable If \code{TRUE}, don't display the header bar.
 #' @param leftUi Custom left Ui content. Any Ui element.
 #' @param rightUi Custom right Ui content. Any Ui element.
 #' @param skin Navbar skin. "dark" or "light".
@@ -18,12 +24,36 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., leftUi = NULL, rightUi = NULL, 
-                          skin = "light", status = NULL, border = TRUE,
-                          compact = FALSE, sidebarIcon = shiny::icon("bars"),
+bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE, 
+                          leftUi = NULL, rightUi = NULL, skin = "light", status = NULL, 
+                          border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
                           controlbarIcon = shiny::icon("th"), fixed = FALSE) {
   
-  shiny::tags$nav(
+  titleWidth <- validateCssUnit(titleWidth)
+  
+  # Set up custom CSS for custom width.
+  custom_css <- NULL
+  if (!is.null(titleWidth)) {
+    # This CSS is derived from the header-related instances of '230px' (the
+    # default sidebar width) from inst/AdminLTE/AdminLTE.css. One change is that
+    # instead making changes to the global settings, we've put them in a media
+    # query (min-width: 768px), so that it won't override other media queries
+    # (like max-width: 767px) that work for narrower screens.
+    custom_css <- tags$head(tags$style(HTML(gsub("_WIDTH_", titleWidth, fixed = TRUE, '
+      @media (min-width: 768px) {
+        .main-header > .navbar {
+          margin-left: _WIDTH_;
+        }
+        .main-header .logo {
+          width: _WIDTH_;
+        }
+      }
+    '))))
+  }
+  
+ headerTag <- shiny::tags$nav(
+    custom_css, 
+    style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
       "main-header navbar navbar-expand navbar-", status,
@@ -68,6 +98,37 @@ bs4DashNavbar <- function(..., leftUi = NULL, rightUi = NULL,
         )
       ) 
     )
+  )
+ 
+ list(headerTag, title)
+}
+
+
+
+
+
+#' Alternative to simple text title 
+#'
+#' @param title Brand title. 
+#' @param color Brand color.
+#' @param src External link to point to.
+#' @param image External image location.
+#' @param opacity Brand opacity: value between 0 and 1.
+#'
+#' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
+#' @export
+bs4DashBrand <- function(title, color = NULL, src = NULL, image = NULL, opacity = .8) {
+  shiny::tags$a(
+    class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
+    href = if (!is.null(src)) src else "#",
+    if (!is.null(image)) {
+      shiny::tags$img(
+        src = image,
+        class = "brand-image img-circle elevation-3",
+        style = paste0("opacity: ", opacity)
+      )
+    },
+    shiny::tags$span(class = "brand-text font-weight-light", title)
   )
 }
 

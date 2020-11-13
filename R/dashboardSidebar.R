@@ -7,18 +7,9 @@
 #' @param width The width of the sidebar. This must either be a number which
 #'   specifies the width in pixels, or a string that specifies the width in CSS
 #'   units.
-#' @param title Sidebar title.
 #' @param skin Sidebar skin. "dark" or "light".
 #' @param status Sidebar status. "primary", "danger", "warning", "success", "info".
-#' @param brandColor Brand color. NULL by default: "primary", "danger", "warning",
-#' "success", "info", "white" or "gray-light".
-#' @param url Sidebar brand link.
-#' @param src Sidebar brand image. Ideally, the image should be in a /www folder next to the app.
-#' Then simply write \code{src = "image.png"}. This could also be the url to an image hosted on 
-#' a server like \code{"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"}. svg are not
-#' always well rendered. 
 #' @param elevation Sidebar elevation. 4 by default (until 5).
-#' @param opacity Sidebar brand opacity. From 0 to 1. 0.8 by default.
 #' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
 #' @param minified Whether to slightly close the sidebar but still show item icons. Default
 #' to TRUE.
@@ -30,9 +21,8 @@
 #'
 #' @export
 bs4DashSidebar <- function(..., disable = FALSE, width = NULL, 
-                           title = NULL, skin = "dark", status = "primary",
-                           brandColor = NULL, url = NULL, src = NULL,
-                           elevation = 4, opacity = .8, collapsed = FALSE,
+                           skin = "dark", status = "primary",
+                           elevation = 4, collapsed = FALSE,
                            minified = TRUE, expandOnHover = TRUE,
                            fixed = TRUE, id = NULL) {
   
@@ -43,19 +33,6 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
   if (disable) dataValue <- TRUE # this is a workaround to fix #209
   dataValueString <- if (dataValue) "true" else "false"
 
-  # brand logo
-  brandTag <- if (!is.null(title)) {
-    shiny::tags$a(
-      class = if (!is.null(brandColor)) paste0("brand-link bg-", brandColor) else "brand-link",
-      href = if (!is.null(url)) url else "#",
-      shiny::tags$img(
-        src = src,
-        class = "brand-image img-circle elevation-3",
-        style = paste0("opacity: ", opacity)
-      ),
-      shiny::tags$span(class = "brand-text font-weight-light", title)
-    )
-  }
 
   # sidebar content
   contentTag <- shiny::tags$div(
@@ -80,7 +57,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     style = if (disable) "display: none;"
    )
 
-  sidebarTag <- shiny::tagAppendChildren(sidebarTag, brandTag, contentTag)
+  sidebarTag <- shiny::tagAppendChildren(sidebarTag, contentTag)
   sidebarTag
   
   customCSS <- shiny::singleton(

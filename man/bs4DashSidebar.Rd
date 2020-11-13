@@ -9,14 +9,9 @@ bs4DashSidebar(
   ...,
   disable = FALSE,
   width = NULL,
-  title = NULL,
   skin = "dark",
   status = "primary",
-  brandColor = NULL,
-  url = NULL,
-  src = NULL,
   elevation = 4,
-  opacity = 0.8,
   collapsed = FALSE,
   minified = TRUE,
   expandOnHover = TRUE,
@@ -28,14 +23,9 @@ dashboardSidebar(
   ...,
   disable = FALSE,
   width = NULL,
-  title = NULL,
   skin = "dark",
   status = "primary",
-  brandColor = NULL,
-  url = NULL,
-  src = NULL,
   elevation = 4,
-  opacity = 0.8,
   collapsed = FALSE,
   minified = TRUE,
   expandOnHover = TRUE,
@@ -52,25 +42,11 @@ dashboardSidebar(
 specifies the width in pixels, or a string that specifies the width in CSS
 units.}
 
-\item{title}{Sidebar title.}
-
 \item{skin}{Sidebar skin. "dark" or "light".}
 
 \item{status}{Sidebar status. "primary", "danger", "warning", "success", "info".}
 
-\item{brandColor}{Brand color. NULL by default: "primary", "danger", "warning",
-"success", "info", "white" or "gray-light".}
-
-\item{url}{Sidebar brand link.}
-
-\item{src}{Sidebar brand image. Ideally, the image should be in a /www folder next to the app.
-Then simply write \code{src = "image.png"}. This could also be the url to an image hosted on 
-a server like \code{"https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg"}. svg are not
-always well rendered.}
-
 \item{elevation}{Sidebar elevation. 4 by default (until 5).}
-
-\item{opacity}{Sidebar brand opacity. From 0 to 1. 0.8 by default.}
 
 \item{collapsed}{If \code{TRUE}, the sidebar will be collapsed on app startup.}
 

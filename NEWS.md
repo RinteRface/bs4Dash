@@ -14,6 +14,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 ### bs4DashNavbar/dashboardHeader
 - `controlbarIcon` accepts `shiny::icon` instead of the icon name.
 - `sidebarIcon` accepts `shiny::icon` instead of the icon name.
+- add `title`, `titleWidth` and `disable`
 
 
 ### bs4DashSidebar/dashboardSidebar
@@ -21,6 +22,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `inputId` renamed to `id`.
 - Added `collapsed` and `minified`.
 - Add `width`.
+- Remove `opacity`, `title`, `brandColor`, `url` and `src`.
 
 ### bs4SidebarMenu
 - `child_indent` becomes `childIndent`.
@@ -52,6 +54,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `bs4DashBrand` for better dashboard titles.
 - add `bs4ShowTab()` and `bs4HideTab()`: thanks @fmmattioni for the reminder ;)
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!
 - New `bs4CloseAlert()`: programmatically close `bs4Alert()`
