@@ -1,5 +1,5 @@
 # Add dashboard dependencies to a tag object
-add_bs4Dash_deps <- function(tag, theme) {
+add_bs4Dash_deps <- function(tag, options) {
   
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
@@ -8,7 +8,6 @@ add_bs4Dash_deps <- function(tag, theme) {
   bs4Dash_css <- "bs4Dash.css"
   jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
-  old_school_css <- "https://bootswatch.com/4/sketchy/"
   fontawesome_css <- "https://use.fontawesome.com/releases/v5.0.13/css/"
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -29,6 +28,24 @@ add_bs4Dash_deps <- function(tag, theme) {
       script = bootstrap_js,
       package = "bs4Dash"
     ),
+    if (!is.null(options)) {
+      # additional options (this needs to be loaded before shinydashboardPlus deps)
+      htmltools::htmlDependency(
+        "options",
+        as.character(utils::packageVersion("bs4Dash")),
+        src = c(file = "bs4Dash-2.0.0"),
+        head = paste0(
+          "<script>var AdminLTEOptions = ", 
+          jsonlite::toJSON(
+            options, 
+            auto_unbox = TRUE,
+            pretty = TRUE
+          ),
+          ";</script>"
+        ),
+        package = "bs4Dash"
+      )
+    },
     # adminLTE3 deps
     htmltools::htmlDependency(
       name = "AdminLTE3", 
@@ -83,16 +100,7 @@ add_bs4Dash_deps <- function(tag, theme) {
       src = c(file = "glyphicons"),
       stylesheet = "glyphicons.min.css",
       package = "bs4Dash"
-    ),
-    # old school skin
-    if (theme) {
-      htmltools::htmlDependency(
-        name = "old_school",
-        version = as.character(utils::packageVersion("bs4Dash")),
-        src = c(href = old_school_css),
-        stylesheet = "bootstrap.min.css"
-      )
-    }
+    )
   )
   tagList(tag, bs4Dash_deps)
 }

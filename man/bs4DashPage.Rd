@@ -6,41 +6,31 @@
 \title{Create a Boostrap 4 dashboard page}
 \usage{
 bs4DashPage(
-  navbar = NULL,
-  sidebar = NULL,
-  body = NULL,
+  header,
+  sidebar,
+  body,
   controlbar = NULL,
   footer = NULL,
   title = NULL,
-  old_school = FALSE,
-  sidebar_mini = TRUE,
-  sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE,
-  controlbar_overlay = TRUE,
-  enable_preloader = FALSE,
-  loading_duration = 2,
-  loading_background = "#1E90FF"
+  freshTheme = NULL,
+  preloader = NULL,
+  options = NULL
 )
 
 dashboardPage(
-  navbar = NULL,
-  sidebar = NULL,
-  body = NULL,
+  header,
+  sidebar,
+  body,
   controlbar = NULL,
   footer = NULL,
   title = NULL,
-  old_school = FALSE,
-  sidebar_mini = TRUE,
-  sidebar_collapsed = FALSE,
-  controlbar_collapsed = TRUE,
-  controlbar_overlay = TRUE,
-  enable_preloader = FALSE,
-  loading_duration = 2,
-  loading_background = "#1E90FF"
+  freshTheme = NULL,
+  preloader = NULL,
+  options = NULL
 )
 }
 \arguments{
-\item{navbar}{Slot for \link{bs4DashNavbar}.}
+\item{header}{Slot for \link{bs4DashNavbar}.}
 
 \item{sidebar}{Slot for \link{bs4DashSidebar}.}
 
@@ -52,24 +42,17 @@ dashboardPage(
 
 \item{title}{App title.}
 
-\item{old_school}{Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
-by default.}
+\item{freshTheme}{A skin powered by the fresh package. Not compatible with skin.
+See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.}
 
-\item{sidebar_mini}{Whether to see sidebar icons when \link{bs4DashSidebar}.
-is collapsed. TRUE by default.}
+\item{preloader}{bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
+Pass a nested list with 2 elements like \code{list(waiter = list(html = spin_1(), color = "#333e48"), duration = 5)}.
+\code{waiter} expects to provide a sub-list to configure \link[waiter]{waiter_show_on_load} (refer to
+the package help for all styles). \code{duration} defines the loader timeout.}
 
-\item{sidebar_collapsed}{Whether the sidebar is collapsed of not at start. FALSE by default.}
-
-\item{controlbar_collapsed}{Whether the sidebar is collapsed of not at start. TRUE by default.}
-
-\item{controlbar_overlay}{Whether the sidebar covers the content when expanded.
-Default to TRUE.}
-
-\item{enable_preloader}{Whether to enable a page loader. FALSE by default.}
-
-\item{loading_duration}{Loader duration in seconds. 2s by default.}
-
-\item{loading_background}{Background color during page startup. Blue by default: 
+\item{options}{Extra option to overwrite the vanilla AdminLTE configuration. See 
+\url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
+Expect a list.
 \url{https://www.w3schools.com/cssref/css_colors.asp}.}
 }
 \description{
@@ -79,91 +62,51 @@ Build an adminLTE3 dashboard page
 if(interactive()){
  library(shiny)
  library(bs4Dash)
+ library(fresh)
 
- shiny::shinyApp(
-   ui = bs4DashPage(
-    enable_preloader = TRUE,
-    navbar = bs4DashNavbar(),
-    sidebar = bs4DashSidebar(),
-    controlbar = bs4DashControlbar(),
-    footer = bs4DashFooter(),
-    title = "test",
-    body = bs4DashBody()
-   ),
-   server = function(input, output) {}
- )
-}
-
-if(interactive()){
- library(shiny)
- library(bs4Dash)
-
- shiny::shinyApp(
+ shinyApp(
    ui = dashboardPage(
-   navbar = dashboardHeader(),
-   sidebar = dashboardSidebar(),
-   body = dashboardBody(
-     fluidRow(
-       column(width = 4, plotOutput("distPlot")),
-       column(width = 4, tableOutput("data")),
-       column(width = 4, textOutput("result"))
-     )
+     freshTheme = create_theme(
+      bs4dash_vars(
+        navbar_light_color = "#bec5cb",
+        navbar_light_active_color = "#FFF",
+        navbar_light_hover_color = "#FFF"
+      ),
+      bs4dash_yiq(
+        contrasted_threshold = 10,
+        text_dark = "#FFF", 
+        text_light = "#272c30"
+      ),
+      bs4dash_layout(
+        main_bg = "#353c42"
+      ),
+      bs4dash_sidebar_light(
+        bg = "#272c30", 
+        color = "#bec5cb",
+        hover_color = "#FFF",
+        submenu_bg = "#272c30", 
+        submenu_color = "#FFF", 
+        submenu_hover_color = "#FFF"
+      ),
+      bs4dash_status(
+        primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
+      ),
+      bs4dash_color(
+        gray_900 = "#FFF", white = "#272c30"
+      )
+     ),
+     options = NULL,
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(),
+     body = dashboardBody(
+      box(status = "danger"),
+      box(status = "primary"),
+      box(status = "orange")
+     ),
+     controlbar = dashboardControlbar(),
+     title = "DashboardPage"
    ),
-   controlbar = dashboardControlbar(
-     skin = "light",
-     tabsetPanel(
-       type = "tabs",
-       id = "tabsetpanel",
-       tabPanel(
-         title = "Tab 1",
-         br(),
-         sliderInput(
-           "obs",
-           "Number of observations:",
-           min = 0,
-           max = 1000,
-           value = 500
-         )
-       ),
-       tabPanel(
-         title = "Tab 2",
-         br(),
-         checkboxGroupInput(
-           "variable",
-           "Variables to show:",
-           c("Cylinders" = "cyl",
-             "Transmission" = "am",
-             "Gears" = "gear")
-         )
-       ),
-       tabPanel(
-         title = "Tab 3",
-         br(),
-         selectInput(
-           "state",
-           "Choose a state:",
-           list(`East Coast` = list("NY", "NJ", "CT"),
-                `West Coast` = list("WA", "OR", "CA"),
-                `Midwest` = list("MN", "WI", "IA")
-           )
-         )
-       )
-     )
-    )
-   ),
-   server = function(input, output) {
-    output$distPlot <- renderPlot({
-     hist(rnorm(input$obs))
-    })
-   
-    output$data <- renderTable({
-      head(mtcars[, c("mpg", input$variable), drop = FALSE])
-    }, rownames = TRUE)
-   
-    output$result <- renderText({
-      paste("You chose", input$state)
-    })
-   }
+   server = function(input, output) { }
  )
 }
 

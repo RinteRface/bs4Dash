@@ -1,6 +1,18 @@
 # bs4Dash 2.0.0.9000
 
 ## Breaking changes
+This is to align with shinydashboard and shinydashboardPlus.
+### bs4DashPage/dashboardPage
+- `navbar` param becomes `header`.
+- Remove `old_school`, `sidebar_mini`, `sidebar_collapsed`, `controlbar_collapsed`, 
+  `controlbar_overlay`, `enable_preloader`, `loading_duration` and 
+  `loading_background`. These parameters move to dashboardSidebar, controlbar ...
+- New `freshTheme` parameter to pass `{fresh}` powered themes.
+- New `options` parameter to configure AdminLTE3.
+- New `preloader` to use `{waiter}` as a preloading engine.
+
+
+### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - remove all sidebar related parameters from `bs4Card()`. This is now part of
  the new `bs4CardSidebar()`
