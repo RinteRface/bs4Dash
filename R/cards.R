@@ -928,9 +928,9 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
       paste0(tabCardCl, " card-default card-tabs")
     } else {
       if (isTRUE(solidHeader)) {
-        paste0(tabCardCl, " card-outline card-", status, " card-outline-tabs")
-      } else {
         paste0(tabCardCl, " card-", status, " card-tabs")
+      } else {
+        paste0(tabCardCl, " card-outline card-", status, " card-outline-tabs")
       }
     }
   }
