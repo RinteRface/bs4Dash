@@ -31,6 +31,16 @@ dashboardHeader <- bs4DashNavbar
 
 
 
+#' Alias to \link{bs4DashBrand}
+#' See \link{bs4DashBrand} for full details
+#'
+#' @rdname bs4DashBrand
+#'
+#' @export
+dashboardBrand <- bs4DashBrand
+
+
+
 
 #' Alias to \link{bs4DropdownMenu}
 #' See \link{bs4DropdownMenu} for full details
