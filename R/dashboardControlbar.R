@@ -3,28 +3,32 @@
 #' Build an adminLTE3 dashboard right sidebar
 #'
 #' @param ... Any UI element.
-#' @param inputId To acces the current state of the controlbar. Open is TRUE, closed
+#' @param id To access the current state of the controlbar. Open is TRUE, closed
 #' is FALSE. NULL by default.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
-#' @param skin Controlbar skin. "dark" or "light".
-#' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
+#' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.
+#' @param overlay Whether the sidebar covers the content when expanded. Default to TRUE.
+#' @param skin Controlbar skin. "dark" or "light".
 #' @param pinned Whether to block the controlbar state (TRUE or FALSE). Default to NULL.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
-                              title = NULL, width = 250, pinned = NULL) {
+bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
+                              collapsed = TRUE, overlay = TRUE, skin = "dark", 
+                              pinned = NULL) {
   
-  if (is.null(inputId)) inputId <- "controlbarId"
+  if (is.null(id)) inputId <- "controlbarId"
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
-    id = inputId,
+    id = id,
+    `data-collapsed` = if (collapsed) "true" else "false",
+    `data-overlay` = if (overlay) "true" else "false",
     `data-show` = if (disable) "false" else "true",
-    `data-slide` = "true",
     `data-pin` = if (!is.null(pinned)) tolower(pinned),
+    `data-slide` = "true",
     if (!is.null(pinned)) {
       shiny::tags$button(
         id = "controlbarPin",
@@ -36,7 +40,6 @@ bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark
     shiny::tags$div(
       class = "p-3",
       id = "controlbarTitle",
-      shiny::tags$h5(title),
       ...
     )
   )

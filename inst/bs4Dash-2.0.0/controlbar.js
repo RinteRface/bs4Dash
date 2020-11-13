@@ -119,9 +119,15 @@ $(function() {
   
   
   // toggle controlbar at start
-  var controlbarStartsOpen = $('body').attr('controlbar-start-open');
-  if (controlbarStartsOpen === "true") {
+  var controlbarCollapsed = $('.control-sidebar').attr('data-collapsed');
+  if (controlbarCollapsed === "false") {
     $('body').addClass('control-sidebar-slide-open');
+  }
+  
+  // handle controlbar overlay
+  var controlbarOverlay = $('.control-sidebar').attr('data-overlay');
+  if (controlbarOverlay === "false") {
+    $('body').addClass('control-sidebar-push-slide');
   }
 
 });

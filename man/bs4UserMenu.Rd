@@ -42,10 +42,7 @@ dashboardUser(
 "secondary".}
 }
 \description{
-Create a Bootstrap 4 user profile.
-
-Alias to \link{bs4UserMenu}
-See \link{bs4UserMenu} for full details
+Insert in the rightUi or leftUi slot of \link{dashboardHeader}.
 }
 \examples{
 if (interactive()) {

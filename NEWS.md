@@ -20,6 +20,12 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `src` becomes `image`.
 
 
+### bs4DashControlbar/dashboardControlbar
+- Add `collpsed` and `overlay`.
+- Remove `title`.
+- Rename `inputId` to `id`.
+
+
 ### bs4DashSidebar/dashboardSidebar
 - `inputId` moved to the end.
 - `inputId` renamed to `id`.

@@ -7,37 +7,41 @@
 \usage{
 bs4DashControlbar(
   ...,
-  inputId = NULL,
+  id = NULL,
   disable = FALSE,
-  skin = "dark",
-  title = NULL,
   width = 250,
+  collapsed = TRUE,
+  overlay = TRUE,
+  skin = "dark",
   pinned = NULL
 )
 
 dashboardControlbar(
   ...,
-  inputId = NULL,
+  id = NULL,
   disable = FALSE,
-  skin = "dark",
-  title = NULL,
   width = 250,
+  collapsed = TRUE,
+  overlay = TRUE,
+  skin = "dark",
   pinned = NULL
 )
 }
 \arguments{
 \item{...}{Any UI element.}
 
-\item{inputId}{To acces the current state of the controlbar. Open is TRUE, closed
+\item{id}{To access the current state of the controlbar. Open is TRUE, closed
 is FALSE. NULL by default.}
 
 \item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 
-\item{skin}{Controlbar skin. "dark" or "light".}
-
-\item{title}{Controlbar title.}
-
 \item{width}{Controlbar width. 250 px by default.}
+
+\item{collapsed}{Whether the control bar on the right side is collapsed or not at start. TRUE by default.}
+
+\item{overlay}{Whether the sidebar covers the content when expanded. Default to TRUE.}
+
+\item{skin}{Controlbar skin. "dark" or "light".}
 
 \item{pinned}{Whether to block the controlbar state (TRUE or FALSE). Default to NULL.}
 }
