@@ -37,14 +37,20 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `img` and `text` become `image` and `name`, respectively.
 
 
+### bs4Card
+- Change `solidHeader` behavior.
+- Remove all sidebar related parameters from `bs4Card()`. This is now part of
+ the new `bs4CardSidebar()`.
+- Remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`.
+- Remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards.
+- By default, `closable` is now FALSE for `bs4Card()`.
+
+### bs4TabCard
+- Change `solidHeader` behavior. 
+
 
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
-- remove all sidebar related parameters from `bs4Card()`. This is now part of
- the new `bs4CardSidebar()`
-- remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`
-- remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards
-- By default, closable is now FALSE for `bs4Card()`
 - value is now mandatory in `bs4InfoBox()`
 - change `attachmentBlock()` title_url to titleUrl (to match with a new upcoming package...)
 - `descriptionBlock()`: number_color, number_icon, right_border and margin_bottom become
