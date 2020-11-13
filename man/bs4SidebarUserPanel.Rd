@@ -5,14 +5,16 @@
 \alias{sidebarUserPanel}
 \title{Create a Boostrap 4 dashboard main sidebar user panel}
 \usage{
-bs4SidebarUserPanel(img = NULL, text = NULL)
+bs4SidebarUserPanel(name, image = NULL)
 
-sidebarUserPanel(img = NULL, text = NULL)
+sidebarUserPanel(name, image = NULL)
 }
 \arguments{
-\item{img}{User panel image path or url.}
+\item{name}{Name of the user.}
 
-\item{text}{User panel text.}
+\item{image}{A filename or URL to use for an image of the person. If it is a
+local file, the image should be contained under the www/ subdirectory of
+the application.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar user panel

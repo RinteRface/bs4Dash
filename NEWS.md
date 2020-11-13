@@ -31,6 +31,10 @@ This is to align with shinydashboard and shinydashboardPlus.
 - icon expects `shiny::icon`.
 
 
+### bs4SidebarUserPanel
+- `img` and `text` become `image` and `name`, respectively.
+
+
 
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)

@@ -641,22 +641,26 @@ bs4SidebarHeader <- function(title) {
 #'
 #' Build an adminLTE3 dashboard main sidebar user panel
 #'
-#' @param img User panel image path or url.
-#' @param text User panel text.
+#' @param name Name of the user.
+#' @param image A filename or URL to use for an image of the person. If it is a
+#' local file, the image should be contained under the www/ subdirectory of
+#' the application.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4SidebarUserPanel <- function(img = NULL, text = NULL) {
+bs4SidebarUserPanel <- function(name, image = NULL) {
   shiny::tags$div(
     class = "user-panel mt-3 pb-3 mb-3 d-flex",
-    shiny::tags$div(
-      class = "image",
-      shiny::img(src = img, class = "img-circle elevation-2")
-    ),
+    if (!is.null(image)) {
+      shiny::tags$div(
+        class = "image",
+        shiny::img(src = image, class = "img-circle elevation-2")
+      )
+    },
     shiny::tags$div(
       class = "info",
-      shiny::a(class = "d-block", href = "#", text)
+      shiny::a(class = "d-block", href = "#", name)
     )
   )
 }
