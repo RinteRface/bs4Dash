@@ -1,4 +1,16 @@
 $(function () {
+  
+
+  // Whenever the sidebar finishes a transition (which it does every time it
+  // changes from collapsed to expanded and vice versa), trigger resize,
+  // so that all outputs are resized.
+  $(".main-sidebar").on(
+    'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+      function() {
+        $(window).trigger("resize");
+      });
+  
+  
   // This function handles a special case in the AdminLTE sidebar: when there
   // is a sidebar-menu with items, and one of those items has sub-items, and
   // they are used for tab navigation. Normally, if one of the items is
