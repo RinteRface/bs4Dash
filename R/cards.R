@@ -8,17 +8,28 @@
 #' @param status The status of the item This determines the item's background
 #'   color.  Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00a65a")}
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00c0ef")}
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f39c12")}
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f56954")}
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001F3F")}
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39CCCC")}
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#D81B60")}
-#'   \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#111111")}
+#' 
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#000000")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' Only primary, success, info, warning and danger are compatible with solidHeader!
 #' @param solidHeader Should the header be shown with a solid color background?
@@ -26,26 +37,21 @@
 #'   white. Otherwise, a color string. Valid colors are listed in
 #'   \link{validColors}. See below:
 #' \itemize{
-#'  \item \code{light_blue (primary status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'  \item \code{red (danger status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#dd4b39")}.
-#'  \item \code{green (success status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#00a65a")}.
-#'  \item \code{aqua (info status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#00c0ef")}.
-#'  \item \code{yellow (warning status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#f39c12")}.
-#'  \item \code{blue}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#0073b7")}.
-#'  \item \code{navy}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#001F3F")}.
-#'  \item \code{teal}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#39CCCC")}.
-#'  \item \code{olive}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#3D9970")}.
-#'  \item \code{lime}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#01FF70")}.
-#'  \item \code{orange}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#FF851B")}.
-#'  \item \code{fuchsia}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#F012BE")}.
-#'  \item \code{purple}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'  \item \code{maroon}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#D81B60")}.
-#'  \item \code{black}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#111")}.
-#'  \item \code{gray_lte}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#d2d6de")}.
+#'  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default valueBox width of 4 occupies 1/3 of that width. For column-based
+#'   default card width of 4 occupies 1/3 of that width. For column-based
 #'   layouts, use \code{NULL} for the width; the width is set by the column that
 #'   contains the box.
 #' @param height The height of a box, in pixels or other CSS unit. By default
