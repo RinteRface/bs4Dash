@@ -110,3 +110,148 @@ processDeps <- function (tags, session) {
   names(dependencies) <- NULL
   list(html = htmltools::doRenderTags(ui), deps = dependencies)
 }
+
+
+
+# Returns TRUE if a status is valid; throws error otherwise.
+validateStatus <- function(status) {
+  
+  if (status %in% validStatuses) {
+    return(TRUE)
+  }
+  
+  stop("Invalid status: ", status, ". Valid statuses are: ",
+       paste(validStatuses, collapse = ", "), ".")
+}
+
+
+#' Valid statuses
+#'
+#' These status strings correspond to colors as defined in Bootstrap's CSS.
+#' Although the colors can vary depending on the particular CSS selector, they
+#' generally appear as follows:
+#'
+#' \itemize{
+#'   \item \code{primary} Blue (sometimes dark blue)
+#'   \item \code{secondary} Light gray
+#'   \item \code{info} Blue
+#'   \item \code{success} Green
+#'   \item \code{warning} Orange
+#'   \item \code{danger} Red
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger")
+
+
+
+
+# Returns TRUE if a nuance is valid; throws error otherwise.
+validateNuance <- function(nuance) {
+  
+  if (status %in% validNuances) {
+    return(TRUE)
+  }
+  
+  stop("Invalid nuance: ", status, ". Valid nuances are: ",
+       paste(validNuances, collapse = ", "), ".")
+}
+
+
+#' Valid nuances
+#'
+#' These nuances strings correspond to colors as defined in AdminLTE's CSS.
+#' Although the colors can vary depending on the particular CSS selector, they
+#' generally appear as follows:
+#'
+#' \itemize{
+#'   \item \code{black} Black
+#'   \item \code{gray-dark} Gray dark
+#'   \item \code{gray} Gray
+#'   \item \code{light} Light
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validNuances <- c("black", "gray-dark", "gray", "light")
+
+
+
+
+# Returns TRUE if a color is a valid color defined in AdminLTE, throws error
+# otherwise.
+validateColor <- function(color) {
+  if (color %in% validColors) {
+    return(TRUE)
+  }
+  
+  stop("Invalid color: ", color, ". Valid colors are: ",
+       paste(validColors, collapse = ", "), ".")
+}
+
+#' Valid colors
+#'
+#' These are valid colors for various dashboard components. Valid colors are
+#' listed below:
+#'
+#' \itemize{
+#'   \item \code{indigo} Indigo
+#'   \item \code{lightblue} Light blue
+#'   \item \code{navy} Dark Grey/Blue
+#'   \item \code{purple} Purple
+#'   \item \code{fuchsia} Fuchsia
+#'   \item \code{pink} Pink
+#'   \item \code{maroon} Pink
+#'   \item \code{orange} Orange
+#'   \item \code{lime} Light green
+#'   \item \code{teal} Blue/Green
+#'   \item \code{olive} Pastel green
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink", 
+                 "maroon", "orange", "lime", "teal", "olive")
+
+
+
+# Returns TRUE if a status is valid; throws error otherwise.
+validateStatusPlus <- function(status) {
+  
+  if (status %in% validStatusesPlus) {
+    return(TRUE)
+  }
+  
+  stop("Invalid status: ", status, ". Valid statuses are: ",
+       paste(validStatusesPlus, collapse = ", "), ".")
+}
+
+
+#' Valid statuses extra
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validStatusesPlus <- c(validStatuses, validNuances, validColors)
+
+
+
+
+# used to generate color tags in the documentation
+rd_color_tag <- function(color, label = color) {
+  style <- sprintf(
+    "width:12px;height:12px;background:%s;border-radius:2px;display:inline-block;margin-right:5px;",
+    color
+  )
+  sprintf(
+    "\\ifelse{html}{\\out{<span style='%s'></span>%s}}{%s}",
+    style, label, label
+  )
+}

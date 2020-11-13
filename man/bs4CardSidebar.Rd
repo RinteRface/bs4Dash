@@ -3,30 +3,40 @@
 \name{bs4CardSidebar}
 \alias{bs4CardSidebar}
 \alias{cardSidebar}
+\alias{boxSidebar}
 \title{Create a sidebar for Boostrap 4 card}
 \usage{
 bs4CardSidebar(
   ...,
-  inputId = NULL,
+  id = NULL,
   width = "25\%",
   background = "#333a40",
   startOpen = FALSE,
-  icon = "cogs"
+  icon = shiny::icon("cogs")
 )
 
 cardSidebar(
   ...,
-  inputId = NULL,
+  id = NULL,
   width = "25\%",
   background = "#333a40",
   startOpen = FALSE,
-  icon = "cogs"
+  icon = shiny::icon("cogs")
+)
+
+boxSidebar(
+  ...,
+  id = NULL,
+  width = "25\%",
+  background = "#333a40",
+  startOpen = FALSE,
+  icon = shiny::icon("cogs")
 )
 }
 \arguments{
 \item{...}{Sidebar content.}
 
-\item{inputId}{Unique sidebar id. Useful if you want to use \link{updatebs4CardSidebar}.}
+\item{id}{Unique sidebar id. Useful if you want to use \link{updatebs4CardSidebar}.}
 
 \item{width}{Sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px").}
 
@@ -34,7 +44,7 @@ cardSidebar(
 
 \item{startOpen}{Whether the sidebar is open at start. FALSE by default.}
 
-\item{icon}{Sidebar icon.}
+\item{icon}{Sidebar icon. Expect \code{\link[shiny]{icon}}.}
 }
 \description{
 To insert in the sidebar slot of \link{bs4Card}.

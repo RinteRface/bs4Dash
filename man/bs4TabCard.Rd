@@ -54,7 +54,22 @@ tabBox(
 
 \item{title}{TabCard title.}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
+\item{status}{The status of the item This determines the item's background
+  color.  Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00a65a")}
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00c0ef")}
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f39c12")}
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f56954")}
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001F3F")}
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39CCCC")}
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#D81B60")}
+  \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#111111")}
+}
+Only primary, success, info, warning and danger are compatible with solidHeader!}
 
 \item{elevation}{tabCard elevation.}
 
@@ -62,9 +77,6 @@ tabBox(
 
 \item{headerBorder}{Whether to display a border between the header and body.
 TRUE by default}
-
-\item{gradientColor}{If NULL (the default), the background of the box will be
-white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
 
 \item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 NULL by default, "light" if status is set.   
@@ -88,8 +100,6 @@ the user to collapse the box.}
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
-
-\item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
 
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}).}

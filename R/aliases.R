@@ -411,6 +411,17 @@ cardSidebar <- bs4CardSidebar
 
 
 
+#' Alias to \link{bs4CardSidebar}
+#' See \link{bs4CardSidebar} for full details
+#'
+#' @rdname bs4CardSidebar
+#'
+#' @export
+boxSidebar <- bs4CardSidebar
+
+
+
+
 
 #' Alias to \link{updatebs4CardSidebar}
 #' See \link{updatebs4CardSidebar} for full details
@@ -423,6 +434,17 @@ updateCardSidebar <- updatebs4CardSidebar
 
 
 
+#' Alias to \link{updatebs4CardSidebar}
+#' See \link{updatebs4CardSidebar} for full details
+#'
+#' @rdname updatebs4CardSidebar
+#'
+#' @export
+updateBoxSidebar <- updatebs4CardSidebar
+
+
+
+
 #' Alias to \link{updatebs4Card}
 #' See \link{updatebs4Card} for full details
 #'
@@ -430,3 +452,58 @@ updateCardSidebar <- updatebs4CardSidebar
 #'
 #' @export
 updateCard <- updatebs4Card
+
+
+
+
+#' Alias to \link{updatebs4Card}
+#' See \link{updatebs4Card} for full details
+#'
+#' @rdname updatebs4Card
+#'
+#' @export
+updateBox <- updatebs4Card
+
+
+
+
+#' Alias to \link{cardDropdown}
+#' See \link{cardDropdown} for full details
+#'
+#' @rdname cardDropdown
+#'
+#' @export
+boxDropdown <- cardDropdown
+
+
+
+
+#' Alias to \link{cardDropdownItem}
+#' See \link{cardDropdownItem} for full details
+#'
+#' @rdname cardDropdownItem 
+#'
+#' @export
+boxDropdownItem <- cardDropdownItem 
+
+
+
+
+#' Alias to \link{bs4CardLabel}
+#' See \link{bs4CardLabel} for full details
+#'
+#' @rdname bs4CardLabel
+#'
+#' @export
+cardLabel <- bs4CardLabel
+
+
+
+
+#' Alias to \link{cardLabel}
+#' See \link{cardLabel} for full details
+#'
+#' @rdname cardLabel
+#'
+#' @export
+boxLabel <- cardLabel

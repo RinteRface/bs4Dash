@@ -48,7 +48,22 @@ to get the currently selected tab.}
 \item{side}{Side of the box the tabs should be on (\code{"left"} or
 \code{"right"}). Default to "left".}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
+\item{status}{The status of the item This determines the item's background
+  color.  Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00a65a")}
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00c0ef")}
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f39c12")}
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f56954")}
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001F3F")}
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39CCCC")}
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#D81B60")}
+  \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#111111")}
+}
+Only primary, success, info, warning and danger are compatible with solidHeader!}
 
 \item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
 NULL by default, "light" if status is set.   

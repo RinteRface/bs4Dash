@@ -3,29 +3,39 @@
 \name{updatebs4Card}
 \alias{updatebs4Card}
 \alias{updateCard}
-\title{update an AdminLTE3 card from the server side}
+\alias{updateBox}
+\title{Update an AdminLTE3 card from the server side}
 \usage{
 updatebs4Card(
-  inputId,
-  session,
-  action = c("remove", "toggle", "toggleMaximize", "restore")
+  id,
+  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  session = shiny::getDefaultReactiveDomain()
 )
 
 updateCard(
-  inputId,
-  session,
-  action = c("remove", "toggle", "toggleMaximize", "restore")
+  id,
+  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  session = shiny::getDefaultReactiveDomain()
+)
+
+updateBox(
+  id,
+  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{Card inputId}
-
-\item{session}{Shiny session}
+\item{id}{Card inputId.}
 
 \item{action}{Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore")}.}
+
+\item{session}{Shiny session.}
 }
 \description{
-update an AdminLTE3 card from the server side
+Update an AdminLTE3 card from the server side
+
+Alias to \link{updatebs4Card}
+See \link{updatebs4Card} for full details
 
 Alias to \link{updatebs4Card}
 See \link{updatebs4Card} for full details
@@ -35,10 +45,9 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
+ shinyApp(
    ui = dashboardPage(
-     sidebar_collapsed = TRUE,
-     navbar = dashboardHeader(),
+     header = dashboardHeader(),
      sidebar = dashboardSidebar(),
      body = dashboardBody(
        actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
@@ -53,8 +62,8 @@ if (interactive()) {
          )
        ),
        
-       bs4Card(
-         inputId = "mycard",
+       box(
+         id = "mycard",
          title = "The plot is visible when you maximize the card", 
          closable = TRUE, 
          maximizable = TRUE,
@@ -78,7 +87,7 @@ if (interactive()) {
      })
      
      observeEvent(input$triggerCard, {
-       updatebs4Card(inputId = "mycard", session = session, action = input$cardAction)
+       updatebs4Card(id = "mycard", session = session, action = input$cardAction)
      })
      
      observe({

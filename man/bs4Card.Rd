@@ -7,72 +7,103 @@
 \usage{
 bs4Card(
   ...,
-  inputId = NULL,
   title = NULL,
   footer = NULL,
   status = NULL,
-  elevation = NULL,
   solidHeader = FALSE,
-  headerBorder = TRUE,
-  gradientColor = NULL,
+  background = NULL,
   width = 6,
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
+  icon = NULL,
+  gradient = FALSE,
+  cardToolSize = "sm",
   maximizable = FALSE,
-  cardLabel = NULL,
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
   dropdownMenu = NULL,
-  overflow = FALSE,
-  sidebar = NULL
+  sidebar = NULL,
+  id = NULL
 )
 
 box(
   ...,
-  inputId = NULL,
   title = NULL,
   footer = NULL,
   status = NULL,
-  elevation = NULL,
   solidHeader = FALSE,
-  headerBorder = TRUE,
-  gradientColor = NULL,
+  background = NULL,
   width = 6,
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
+  icon = NULL,
+  gradient = FALSE,
+  cardToolSize = "sm",
   maximizable = FALSE,
-  cardLabel = NULL,
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
   dropdownMenu = NULL,
-  overflow = FALSE,
-  sidebar = NULL
+  sidebar = NULL,
+  id = NULL
 )
 }
 \arguments{
 \item{...}{Contents of the box.}
 
-\item{inputId}{Get the state of the card. Optional.}
-
 \item{title}{Optional title.}
 
 \item{footer}{Optional footer text.}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
-
-\item{elevation}{Card elevation.}
+\item{status}{The status of the item This determines the item's background
+  color.  Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00a65a")}
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#00c0ef")}
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f39c12")}
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f56954")}
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001F3F")}
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39CCCC")}
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#D81B60")}
+  \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#111111")}
+}
+Only primary, success, info, warning and danger are compatible with solidHeader!}
 
 \item{solidHeader}{Should the header be shown with a solid color background?}
 
-\item{headerBorder}{Whether to display a border between the header and body.
-TRUE by default}
-
-\item{gradientColor}{If NULL (the default), the background of the box will be
-white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
+\item{background}{If NULL (the default), the background of the box will be
+  white. Otherwise, a color string. Valid colors are listed in
+  \link{validColors}. See below:
+\itemize{
+ \item \code{light_blue (primary status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+ \item \code{red (danger status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#dd4b39")}.
+ \item \code{green (success status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#00a65a")}.
+ \item \code{aqua (info status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#00c0ef")}.
+ \item \code{yellow (warning status)}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#f39c12")}.
+ \item \code{blue}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#0073b7")}.
+ \item \code{navy}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#001F3F")}.
+ \item \code{teal}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#39CCCC")}.
+ \item \code{olive}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#3D9970")}.
+ \item \code{lime}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#01FF70")}.
+ \item \code{orange}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#FF851B")}.
+ \item \code{fuchsia}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#F012BE")}.
+ \item \code{purple}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#605ca8")}.
+ \item \code{maroon}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#D81B60")}.
+ \item \code{black}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#111")}.
+ \item \code{gray_lte}: \Sexpr[results=rd, stage=install]{bs4Dash:::rd_color_tag("#d2d6de")}.
+}}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
-default width of 4 occupies 1/3 of that width. For column-based
+default valueBox width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
@@ -87,15 +118,26 @@ the user to collapse the box.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
+\item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
+
+\item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
+
+\item{cardToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
+
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{cardLabel}{Slot for \link{bs4CardLabel}.}
+\item{elevation}{Card elevation.}
 
-\item{dropdownMenu}{List of items in the the boxtool dropdown menu. Use \link{dropdownItemList}.}
+\item{headerBorder}{Whether to display a border between the header and body.
+TRUE by default}
 
-\item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
+\item{label}{Slot for \link{cardLabel}.}
 
-\item{sidebar}{Slot for \link{bs4CardSidebar}.}
+\item{dropdownMenu}{List of items in the boxtool dropdown menu. Use \link{boxDropdown}.}
+
+\item{sidebar}{Slot for \link{cardSidebar}.}
+
+\item{id}{Box unique id. \link{updateCard} target.}
 }
 \description{
 Build an adminLTE3 card
@@ -105,76 +147,42 @@ if(interactive()){
  library(shiny)
  library(bs4Dash)
 
- shiny::shinyApp(
-   ui = bs4DashPage(
-    navbar = bs4DashNavbar(),
-    sidebar = bs4DashSidebar(),
-    controlbar = bs4DashControlbar(),
-    footer = bs4DashFooter(),
-    title = "test",
-    body = bs4DashBody(
-    fluidRow(
-     column(
-      width = 6,
-      bs4Card(
-       title = "Closable Box with dropdown", 
-       closable = TRUE, 
-       width = 12,
-       status = "warning", 
-       solidHeader = FALSE, 
-       collapsible = TRUE,
-       cardLabel = bs4CardLabel(
-        text = 1,
-        status = "danger",
-        tooltip = "Hello!"
-       ),
-       dropdownMenu = dropdownItemList(
-         dropdownItem(url = "http://www.google.com", name = "Link to google"),
-         dropdownItem(url = "#", name = "item 2"),
+ shinyApp(
+   ui = dashboardPage(
+     dashboardHeader(),
+     dashboardSidebar(),
+     dashboardBody(
+      box(
+        title = "Closable Box with dropdown", 
+        closable = TRUE, 
+        width = 12,
+        status = "warning", 
+        solidHeader = FALSE, 
+        collapsible = TRUE,
+        label = boxLabel(
+         text = 1,
+         status = "danger"
+        ),
+        dropdownMenu = boxDropdown(
+         boxDropdownItem("Link to google", href = "http://www.google.com"),
+         boxDropdownItem("item 2", href = "#"),
          dropdownDivider(),
-         dropdownItem(url = "#", name = "item 3")
-       ),
-       p("Box Content")
-      )
-     ),
-     column(
-      width = 6, 
-      bs4Card(
-       title = "Closable Box with gradient", 
-       closable = TRUE, 
-       width = 12,
-       solidHeader = FALSE, 
-       gradientColor = "success",
-       collapsible = TRUE,
-       p("Box Content")
-      )
+         boxDropdownItem("item 3", href = "#", icon = icon("th"))
+        ),
+        sidebar = boxSidebar(
+         startOpen = TRUE,
+         id = "mycardsidebar",
+         sliderInput(
+          "obs", 
+          "Number of observations:",
+          min = 0, 
+          max = 1000, 
+          value = 500
+         )
+        ),
+        plotOutput("distPlot")
+       )
      )
-     ),
-     fluidRow(
-      bs4Card(
-       title = "Closable Box with solidHeader", 
-       closable = TRUE, 
-       width = 6,
-       solidHeader = TRUE, 
-       status = "primary",
-       collapsible = TRUE,
-       p("Box Content")
-      ),
-      bs4Card(
-       inputId = "card4",
-       title = "Maximizable Card", 
-       width = 6,
-       status = "warning", 
-       closable = FALSE,
-       maximizable = TRUE, 
-       collapsible = TRUE,
-       sliderInput("obs", "Number of observations:",
-                   min = 0, max = 1000, value = 500
-       ),
-       plotOutput("distPlot")
-      )
-     )
-    )
    ),
    server = function(input, output) {
     output$distPlot <- renderPlot({

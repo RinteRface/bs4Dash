@@ -3,11 +3,14 @@
 \name{updatebs4CardSidebar}
 \alias{updatebs4CardSidebar}
 \alias{updateCardSidebar}
+\alias{updateBoxSidebar}
 \title{Programmatically toggle a bs4Card sidebar}
 \usage{
 updatebs4CardSidebar(session, inputId)
 
 updateCardSidebar(session, inputId)
+
+updateBoxSidebar(session, inputId)
 }
 \arguments{
 \item{session}{Shiny session object.}
@@ -16,6 +19,9 @@ updateCardSidebar(session, inputId)
 }
 \description{
 Programmatically toggle a bs4Card sidebar
+
+Alias to \link{updatebs4CardSidebar}
+See \link{updatebs4CardSidebar} for full details
 
 Alias to \link{updatebs4CardSidebar}
 See \link{updatebs4CardSidebar} for full details

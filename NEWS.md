@@ -45,7 +45,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 ### bs4SidebarMenuItem
 - Add `href` and `newTab`.
-- icon expects `shiny::icon`.
+- `icon` expects `shiny::icon`.
 
 
 ### bs4SidebarUserPanel
@@ -59,6 +59,13 @@ This is to align with shinydashboard and shinydashboardPlus.
 - Remove dropdownIcon parameter from `bs4Card()`. It is now part of the `dropdownItemList()`.
 - Remove labelStatus, labelText and labelTooltip params from `bs4Card()`. This is to reduce the number of parameters of cards.
 - By default, `closable` is now FALSE for `bs4Card()`.
+- Rename `dropdownItemList` by `cardDropdown`
+- Rename `dropdownItemListItem` by `cardDropdownItem`
+
+
+### bs4CardSidebar 
+- `inputId` becomes `id`.
+- `icon` expects `shiny::icon`.
 
 ### bs4TabCard
 - Change `solidHeader` behavior. 
