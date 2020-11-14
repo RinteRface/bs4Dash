@@ -212,7 +212,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   }
   # add padding if box sidebar
   if (!is.null(sidebar)) {
-    style <- paste(style, "padding: 10px;")
+    style <- paste(style, "; padding: 10px;")
   }
   
   
