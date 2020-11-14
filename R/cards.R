@@ -68,10 +68,10 @@
 #' @param elevation Card elevation. 
 #' @param headerBorder Whether to display a border between the header and body.
 #' TRUE by default
-#' @param label Slot for \link{cardLabel}.
+#' @param label Slot for \link{boxLabel}.
 #' @param dropdownMenu List of items in the boxtool dropdown menu. Use \link{boxDropdown}.
-#' @param sidebar Slot for \link{cardSidebar}.
-#' @param id Box unique id. \link{updateCard} target.
+#' @param sidebar Slot for \link{boxSidebar}.
+#' @param id Box unique id. \link{updateBox} target.
 #'
 #' @rdname card
 #'
@@ -385,10 +385,10 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 
 #' Create a sidebar for Boostrap 4 card
 #' 
-#' To insert in the sidebar slot of \link{bs4Card}.
+#' To insert in the sidebar slot of \link{box}.
 #'
 #' @param ... Sidebar content.
-#' @param id Unique sidebar id. Useful if you want to use \link{updatebs4CardSidebar}.
+#' @param id Unique sidebar id. Useful if you want to use \link{updateBoxSidebar}.
 #' @param width Sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px").
 #' @param background Sidebar background color. Dark by default.
 #' @param startOpen Whether the sidebar is open at start. FALSE by default.
@@ -466,8 +466,10 @@ bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40"
 
 
 #' Update an AdminLTE3 card from the server side
+#' 
+#' To update \link{box} on the server side.
 #'
-#' @param id Card inputId.
+#' @param id Card id.
 #' @param action Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore", "update")}.
 #' @param options If action is update, a list of new options to configure the box, such as
 #' \code{list(title = "new title", status = NULL, solidHeader = FALSE, 
@@ -654,10 +656,12 @@ updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()
 #'
 #' Can be used to add dropdown items to a cardtool.
 #'
-#' @param ... Slot for \link{dropdownItem}.
+#' @param ... Slot for \link{cardDropdownItem}.
 #' @param icon Dropdown menu icon.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname cardDropdown
 #'
 #' @export
 cardDropdown <- function(..., icon = shiny::icon("wrench")) {
@@ -688,11 +692,15 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
 
 
 #' Create a box dropdown item 
+#' 
+#' To insert in \link{boxDropdown}.
 #'
 #' @param ... Item content.
 #' @param id If passed, the item will behave like an action button.
 #' @param href Target url or page.
 #' @param icon Optional icon. Expect \link[shiny]{icon}.
+#' 
+#' @rdname cardDropdown
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

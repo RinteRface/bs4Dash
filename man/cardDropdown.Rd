@@ -2,21 +2,32 @@
 % Please edit documentation in R/cards.R, R/aliases.R
 \name{cardDropdown}
 \alias{cardDropdown}
+\alias{cardDropdownItem}
 \alias{boxDropdown}
 \title{Create a box dropdown item list}
 \usage{
 cardDropdown(..., icon = shiny::icon("wrench"))
 
+cardDropdownItem(..., id = NULL, href = NULL, icon = NULL)
+
 boxDropdown(..., icon = shiny::icon("wrench"))
 }
 \arguments{
-\item{...}{Slot for \link{dropdownItem}.}
+\item{...}{Item content.}
 
-\item{icon}{Dropdown menu icon.}
+\item{icon}{Optional icon. Expect \link[shiny]{icon}.}
+
+\item{id}{If passed, the item will behave like an action button.}
+
+\item{href}{Target url or page.}
 }
 \description{
 Can be used to add dropdown items to a cardtool.
+
+To insert in \link{boxDropdown}.
 }
 \author{
+David Granjon, \email{dgranjon@ymail.com}
+
 David Granjon, \email{dgranjon@ymail.com}
 }

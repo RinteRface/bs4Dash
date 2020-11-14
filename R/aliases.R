@@ -258,7 +258,7 @@ tabItem <- bs4TabItem
 #' Alias to \link{bs4Card}
 #' See \link{bs4Card} for full details
 #'
-#' @rdname bs4Card
+#' @rdname card
 #'
 #' @export
 box <- bs4Card
@@ -403,7 +403,7 @@ updateTabItems <- updatebs4TabItems
 #' Alias to \link{bs4CardSidebar}
 #' See \link{bs4CardSidebar} for full details
 #'
-#' @rdname bs4CardSidebar
+#' @rdname cardSidebar
 #'
 #' @export
 cardSidebar <- bs4CardSidebar
@@ -414,7 +414,7 @@ cardSidebar <- bs4CardSidebar
 #' Alias to \link{bs4CardSidebar}
 #' See \link{bs4CardSidebar} for full details
 #'
-#' @rdname bs4CardSidebar
+#' @rdname cardSidebar
 #'
 #' @export
 boxSidebar <- bs4CardSidebar
@@ -426,7 +426,7 @@ boxSidebar <- bs4CardSidebar
 #' Alias to \link{updatebs4CardSidebar}
 #' See \link{updatebs4CardSidebar} for full details
 #'
-#' @rdname updatebs4CardSidebar
+#' @rdname cardSidebar
 #'
 #' @export
 updateCardSidebar <- updatebs4CardSidebar
@@ -437,7 +437,7 @@ updateCardSidebar <- updatebs4CardSidebar
 #' Alias to \link{updatebs4CardSidebar}
 #' See \link{updatebs4CardSidebar} for full details
 #'
-#' @rdname updatebs4CardSidebar
+#' @rdname cardSidebar
 #'
 #' @export
 updateBoxSidebar <- updatebs4CardSidebar
@@ -448,7 +448,7 @@ updateBoxSidebar <- updatebs4CardSidebar
 #' Alias to \link{updatebs4Card}
 #' See \link{updatebs4Card} for full details
 #'
-#' @rdname updatebs4Card
+#' @rdname card
 #'
 #' @export
 updateCard <- updatebs4Card
@@ -459,7 +459,7 @@ updateCard <- updatebs4Card
 #' Alias to \link{updatebs4Card}
 #' See \link{updatebs4Card} for full details
 #'
-#' @rdname updatebs4Card
+#' @rdname card
 #'
 #' @export
 updateBox <- updatebs4Card
