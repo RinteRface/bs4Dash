@@ -91,6 +91,17 @@ $(function () {
       $navbar
         .removeClass('navbar-light')
         .addClass('navbar-dark');
+        
+      $('.main-sidebar').attr('class', $('.main-sidebar')
+        .attr('class')
+        .replace('light', 'dark'));
+      $('#sidebar-skin').prop( "checked", true );
+      
+      $('.control-sidebar').attr('class', $('.control-sidebar')
+        .attr('class')
+        .replace('light', 'dark'));
+        $('#controlbar-skin').prop( "checked", true );
+      
       $('.dark-theme-icon')
         .removeClass('fa-sun')
         .addClass('fa-moon');
@@ -99,6 +110,17 @@ $(function () {
       $navbar
         .removeClass('navbar-dark')
         .addClass('navbar-light');
+        
+      $('.main-sidebar').attr('class', $('.main-sidebar')
+        .attr('class')
+        .replace('dark', 'light'));
+      $('#sidebar-skin').prop( "checked", false );
+      
+      $('.control-sidebar').attr('class', $('.control-sidebar')
+        .attr('class')
+        .replace('dark', 'light'));
+      $('#controlbar-skin').prop( "checked", false );
+      
       $('.dark-theme-icon')
         .removeClass('fa-moon')
         .addClass('fa-sun');
@@ -192,13 +214,13 @@ $(function () {
   
   // detect global sidebar theme and select or not the toggle
   if ($('.main-sidebar').attr('class').match('dark')) {
-    $('#sidebar_skin').prop( "checked", true );
+    $('#sidebar-skin').prop( "checked", true );
   }
   
   // clicking on dark/light switch changes:
   // - icon style
   // - sidebar class 
-  $('#sidebar_skin').on('click', function () {
+  $('#sidebar-skin').on('click', function () {
     var sidebarCl;
     if ($(this).is(':checked')) {
       sidebarCl = $('.main-sidebar')
@@ -294,7 +316,7 @@ $(function () {
   
   updateSidebarTheme = function (color) {
     var sidebarCl;
-    if ($('#sidebar_skin').is(':checked')) {
+    if ($('#sidebar-skin').is(':checked')) {
       sidebarCl = 'sidebar-dark-';
     } else {
       sidebarCl = 'sidebar-light-';
@@ -345,5 +367,39 @@ $(function () {
 
     $body.addClass(accent_class);
   };
+  
+  
+  // Controlbar themer
+  
+  // detect global controlbar theme and select or not the toggle
+  if ($('.control-sidebar').attr('class').match('dark')) {
+    $('#controlbar-skin').prop( "checked", true );
+  }
+  
+  // clicking on dark/light switch changes:
+  // - icon style
+  // - sidebar class 
+  $('#controlbar-skin').on('click', function () {
+    var controlbarCl;
+    if ($(this).is(':checked')) {
+      controlbarCl = $('.control-sidebar')
+        .attr('class')
+        .replace('light', 'dark');
+      $('.control-sidebar').attr('class', controlbarCl);
+        
+      $('.sidebar-themer-icon')
+        .removeClass('fa-sun')
+        .addClass('fa-moon');
+    } else {
+      controlbarCl = $('.control-sidebar')
+        .attr('class')
+        .replace('dark', 'light');
+      $('.control-sidebar').attr('class', controlbarCl);
+      
+      $('.sidebar-themer-icon')
+        .removeClass('fa-moon')
+        .addClass('fa-sun'); 
+    }
+  });
   
 });
