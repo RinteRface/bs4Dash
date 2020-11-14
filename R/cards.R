@@ -644,7 +644,7 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
 #'  )
 #' }
 updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  session$sendInputMessage(inputId, NULL)
+  session$sendInputMessage(id, NULL)
 }
 
 
