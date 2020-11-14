@@ -109,6 +109,31 @@ $(function () {
   var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
   $navbar.append($dark_mode_container);
   
+  // Themer chips
+  
+  // Better style on hover
+  $('.themer-chip').hover(function () {
+    $(this).css({ opacity: 1 }).removeClass('elevation-2').addClass('elevation-4');
+  }, function () {
+    $(this).css({ opacity: 0.8 }).removeClass('elevation-4').addClass('elevation-2');
+  });
+  
+  // 
+  $('.navbar-themer-chip').on('click', function() {
+    $(this).css({ 'border-color': 'yellow', 'border-style': 'solid' });
+    $('.navbar-themer-chip').not(this).css({ 'border-color': '', 'border-style': '' });
+  });
+  
+  $('.accents-themer-chip').on('click', function() {
+    $(this).css({ 'border-color': 'yellow', 'border-style': 'solid' });
+    $('.accents-themer-chip').not(this).css({ 'border-color': '', 'border-style': '' });
+  });
+  
+  $('.sidebar-themer-chip').on('click', function() {
+    $(this).css({ 'border-color': 'yellow', 'border-style': 'solid' });
+    $('.sidebar-themer-chip').not(this).css({ 'border-color': '', 'border-style': '' });
+  });
+  
   
   // Navbar Themer
   var navbar_dark_skins = [
@@ -282,6 +307,43 @@ $(function () {
     });
 
     $sidebar.addClass(sidebar_class);
+  };
+  
+  
+  // Accents themer
+  var accent_colors = [
+    'accent-primary',
+    'accent-secondary',
+    'accent-info',
+    'accent-success',
+    'accent-danger',
+    'accent-indigo',
+    'accent-purple',
+    'accent-pink',
+    'accent-maroon',
+    'accent-fuchsia',
+    'accent-navy',
+    'accent-lightblue',
+    'accent-lime',
+    'accent-teal',
+    'accent-olive',
+    'accent-gray-dark',
+    'accent-gray',
+    'accent-light',
+    'accent-warning',
+    'accent-white',
+    'accent-orange'
+  ];
+  
+  
+  updateAccentsTheme = function (color) {
+    var accent_class = color;
+    var $body = $('body');
+    accent_colors.forEach(function (skin) {
+      $body.removeClass(skin);
+    });
+
+    $body.addClass(accent_class);
   };
   
 });

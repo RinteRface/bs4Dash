@@ -32,7 +32,7 @@ skinSelector <- function() {
   lapply(themer_list, createThemer, skins = validStatusesPlus)
 }
 
-themer_list <- c("Navbar", "Sidebar")
+themer_list <- c("Navbar", "Sidebar", "Accents")
 
 
 createThemer <- function(name, skins) {
@@ -66,12 +66,14 @@ createThemer <- function(name, skins) {
         class = "d-flex flex-wrap mb-3",
         lapply(skins, function(theme) {
           div(
-            class = sprintf("bg-%s elevation-2", theme),
+            class = sprintf("bg-%s elevation-2 %s-themer-chip", theme, tolower(name)),
             style = "width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;",
             onclick = if (name == "Navbar") {
               sprintf("update%sTheme('navbar-%s');", name, theme)
-            } else {
+            } else if (name == "Sidebar") {
               sprintf("update%sTheme('%s');", name, theme)
+            } else if (name == "Accents") {
+              sprintf("update%sTheme('accent-%s');", name, theme)
             }
           )
         })
