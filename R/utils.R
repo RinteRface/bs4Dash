@@ -168,7 +168,6 @@ validateNuance <- function(nuance) {
 #' generally appear as follows:
 #'
 #' \itemize{
-#'   \item \code{black} Black
 #'   \item \code{gray-dark} Gray dark
 #'   \item \code{gray} Gray
 #'   \item \code{light} Light
@@ -178,7 +177,7 @@ validateNuance <- function(nuance) {
 #' @format NULL
 #'
 #' @keywords internal
-validNuances <- c("black", "gray-dark", "gray", "light")
+validNuances <- c("gray-dark", "gray", "light")
 
 
 
