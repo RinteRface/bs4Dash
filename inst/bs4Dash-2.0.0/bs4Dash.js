@@ -109,4 +109,58 @@ $(function () {
   var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
   $navbar.append($dark_mode_container);
   
+  
+  // Themer
+  var navbar_dark_skins = [
+    'navbar-primary',
+    'navbar-secondary',
+    'navbar-info',
+    'navbar-success',
+    'navbar-danger',
+    'navbar-indigo',
+    'navbar-purple',
+    'navbar-pink',
+    'navbar-maroon',
+    'navbar-fuchsia',
+    'navbar-navy',
+    'navbar-lightblue',
+    'navbar-lime',
+    'navbar-teal',
+    'navbar-olive',
+    'navbar-dark',
+    'navbar-gray-dark',
+    'navbar-gray'
+  ];
+
+  var navbar_light_skins = [
+    'navbar-light',
+    'navbar-warning',
+    'navbar-white',
+    'navbar-orange'
+  ];
+  
+  var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins);
+  
+  /**
+  * Update color theme to navbar tag
+  *
+  * @param String color Color to apply.
+  * @returns void
+  */
+  updateNavbarTheme = function (color) {
+    var $main_header = $('.main-header');
+    $main_header.removeClass('navbar-dark').removeClass('navbar-light');
+    navbar_all_colors.forEach(function (color) {
+      $main_header.removeClass(color);
+    });
+
+    if (navbar_dark_skins.indexOf(color) > -1) {
+      $main_header.addClass('navbar-dark');
+    } else {
+      $main_header.addClass('navbar-light');
+    }
+
+    $main_header.addClass(color);
+  };
+  
 });

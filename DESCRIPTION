@@ -44,5 +44,6 @@ Collate:
     'deps.R'
     'feedbacks.R'
     'grid.R'
+    'skinSelector.R'
     'useful-items.R'
     'utils.R'
