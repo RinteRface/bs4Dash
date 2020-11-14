@@ -51,7 +51,7 @@ createThemer <- function(name, skins) {
             class = "custom-control-input"
           ),
           tags$label(
-            shiny::icon("sun", class = "sidebar-themer-icon"), 
+            shiny::icon("sun", class = sprintf("%s-themer-icon", tolower(name))), 
             `for` = sprintf("%s-skin", tolower(name)), 
             class = "custom-control-label"
           )

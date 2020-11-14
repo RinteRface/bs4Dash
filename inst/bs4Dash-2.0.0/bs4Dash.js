@@ -105,6 +105,14 @@ $(function () {
       $('.dark-theme-icon')
         .removeClass('fa-sun')
         .addClass('fa-moon');
+        
+      $('.sidebar-themer-icon')
+        .removeClass('fa-sun')
+        .addClass('fa-moon');
+        
+      $('.controlbar-themer-icon')
+        .removeClass('fa-sun')
+        .addClass('fa-moon');
     } else {
       $('body').removeClass('dark-mode');
       $navbar
@@ -122,6 +130,14 @@ $(function () {
       $('#controlbar-skin').prop( "checked", false );
       
       $('.dark-theme-icon')
+        .removeClass('fa-moon')
+        .addClass('fa-sun');
+        
+      $('.sidebar-themer-icon')
+        .removeClass('fa-moon')
+        .addClass('fa-sun');
+        
+      $('.controlbar-themer-icon')
         .removeClass('fa-moon')
         .addClass('fa-sun');
     }
@@ -387,7 +403,7 @@ $(function () {
         .replace('light', 'dark');
       $('.control-sidebar').attr('class', controlbarCl);
         
-      $('.sidebar-themer-icon')
+      $('.controlbar-themer-icon')
         .removeClass('fa-sun')
         .addClass('fa-moon');
     } else {
@@ -396,7 +412,7 @@ $(function () {
         .replace('dark', 'light');
       $('.control-sidebar').attr('class', controlbarCl);
       
-      $('.sidebar-themer-icon')
+      $('.controlbar-themer-icon')
         .removeClass('fa-moon')
         .addClass('fa-sun'); 
     }
