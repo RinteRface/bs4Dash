@@ -71,6 +71,10 @@ This is to align with shinydashboard and shinydashboardPlus.
 - Change `solidHeader` behavior. 
 
 
+### bs4ValueBox
+- `status` becomes `color`. 
+- `icon` expects `shiny::icon`.
+
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - value is now mandatory in `bs4InfoBox()`

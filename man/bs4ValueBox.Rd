@@ -9,22 +9,22 @@ bs4ValueBox(
   value,
   subtitle,
   icon = NULL,
-  elevation = NULL,
-  status = NULL,
+  color = NULL,
   width = 3,
+  href = NULL,
   footer = NULL,
-  href = NULL
+  elevation = NULL
 )
 
 valueBox(
   value,
   subtitle,
   icon = NULL,
-  elevation = NULL,
-  status = NULL,
+  color = NULL,
   width = 3,
+  href = NULL,
   footer = NULL,
-  href = NULL
+  elevation = NULL
 )
 }
 \arguments{
@@ -34,20 +34,20 @@ valueBox(
 
 \item{icon}{An icon tag, created by \code{\link[shiny]{icon}}.}
 
-\item{elevation}{Value box elevation.}
-
-\item{status}{A color for the box. "primary", "info", "success", "warning", "danger" or NULL.}
-
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
 default width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
-\item{footer}{Optional html content for the footer of the box.}
-
 \item{href}{An optional URL to link to in the footer. Should both `footer`
 and this parameter be set, `footer` will take precedence.}
+
+\item{footer}{Optional html content for the footer of the box.}
+
+\item{elevation}{Value box elevation.}
+
+\item{status}{A color for the box. "primary", "info", "success", "warning", "danger" or NULL.}
 }
 \description{
 A beautiful AdminLTE3 value box.
@@ -57,34 +57,33 @@ if(interactive()){
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
-     sidebar = bs4DashSidebar(),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(),
+     controlbar = dashboardControlbar(),
+     footer = dashboardFooter(),
      title = "test",
      body = bs4DashBody(
       fluidRow(
-       bs4ValueBox(
+       valueBox(
         value = 150,
         subtitle = "New orders",
-        status = "primary",
-        icon = "shopping-cart",
-        href = "#"
+        color = "primary",
+        icon = icon("shopping-cart")
        ),
-       bs4ValueBox(
+       valueBox(
         value = "53\%",
         subtitle = "New orders",
-        status = "danger",
-        icon = "cogs",
-        footer = shiny::div("Hello World")
+        color = "indigo",
+        icon = icon("cogs"),
+        footer = div("Hello World")
        ),
-       bs4ValueBox(
+       valueBox(
         value = "44",
         subtitle = "User Registrations",
-        status = "warning",
-        icon = "sliders"
+        color = "teal",
+        icon = icon("sliders")
        )
       )
      )

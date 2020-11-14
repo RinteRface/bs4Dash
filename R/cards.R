@@ -763,34 +763,33 @@ dropdownDivider <- function() {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
 #'      title = "test",
 #'      body = bs4DashBody(
 #'       fluidRow(
-#'        bs4ValueBox(
+#'        valueBox(
 #'         value = 150,
 #'         subtitle = "New orders",
-#'         status = "primary",
-#'         icon = "shopping-cart",
-#'         href = "#"
+#'         color = "primary",
+#'         icon = icon("shopping-cart")
 #'        ),
-#'        bs4ValueBox(
+#'        valueBox(
 #'         value = "53%",
 #'         subtitle = "New orders",
-#'         status = "danger",
-#'         icon = "cogs",
-#'         footer = shiny::div("Hello World")
+#'         color = "indigo",
+#'         icon = icon("cogs"),
+#'         footer = div("Hello World")
 #'        ),
-#'        bs4ValueBox(
+#'        valueBox(
 #'         value = "44",
 #'         subtitle = "User Registrations",
-#'         status = "warning",
-#'         icon = "sliders"
+#'         color = "teal",
+#'         icon = icon("sliders")
 #'        )
 #'       )
 #'      )
@@ -800,8 +799,8 @@ dropdownDivider <- function() {
 #' }
 #'
 #' @export
-bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
-                        status = NULL, width = 3, footer = NULL, href = NULL) {
+bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3, 
+                        href = NULL, footer = NULL, elevation = NULL) {
   
   # check conditions
   if (!is.null(width)) {
@@ -823,7 +822,10 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   
   
   valueBoxCl <- "small-box"
-  if (!is.null(status)) valueBoxCl <- paste0(valueBoxCl, " bg-", status)
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    valueBoxCl <- paste0(valueBoxCl, " bg-", color)
+  }
   if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
   
   innerTag <- shiny::tags$div(
@@ -835,7 +837,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, elevation = NULL,
   iconTag <- if(!is.null(icon)) {
     shiny::tags$div(
       class = "icon",
-      shiny::icon(icon)
+      icon
     )
   } else {
     NULL
