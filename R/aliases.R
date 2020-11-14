@@ -500,10 +500,10 @@ cardLabel <- bs4CardLabel
 
 
 
-#' Alias to \link{cardLabel}
-#' See \link{cardLabel} for full details
+#' Alias to \link{bs4CardLabel}
+#' See \link{bs4CardLabel} for full details
 #'
-#' @rdname cardLabel
+#' @rdname bs4CardLabel
 #'
 #' @export
-boxLabel <- cardLabel
+boxLabel <- bs4CardLabel

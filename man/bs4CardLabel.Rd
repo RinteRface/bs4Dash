@@ -3,11 +3,14 @@
 \name{bs4CardLabel}
 \alias{bs4CardLabel}
 \alias{cardLabel}
+\alias{boxLabel}
 \title{Create a label for Boostrap 4 card}
 \usage{
 bs4CardLabel(text, status, tooltip = NULL)
 
 cardLabel(text, status, tooltip = NULL)
+
+boxLabel(text, status, tooltip = NULL)
 }
 \arguments{
 \item{text}{Label text. In practice only few letters or a number.}
@@ -18,6 +21,9 @@ cardLabel(text, status, tooltip = NULL)
 }
 \description{
 Create a label for Boostrap 4 card
+
+Alias to \link{bs4CardLabel}
+See \link{bs4CardLabel} for full details
 
 Alias to \link{bs4CardLabel}
 See \link{bs4CardLabel} for full details
