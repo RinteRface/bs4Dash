@@ -105,7 +105,6 @@ if(interactive()){
 }
 \seealso{
 Other cards: 
-\code{\link{bs4Card}()},
 \code{\link{bs4TabCard}()},
 \code{\link{bs4ValueBox}()}
 }

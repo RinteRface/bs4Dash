@@ -72,10 +72,11 @@
 #' @param dropdownMenu List of items in the boxtool dropdown menu. Use \link{boxDropdown}.
 #' @param sidebar Slot for \link{cardSidebar}.
 #' @param id Box unique id. \link{updateCard} target.
-#' 
-#' @family cards
+#'
+#' @rdname card
 #'
 #' @examples
+#' # A box with label, sidebar, dropdown menu
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
@@ -393,6 +394,8 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @param startOpen Whether the sidebar is open at start. FALSE by default.
 #' @param icon Sidebar icon. Expect \code{\link[shiny]{icon}}.
 #' 
+#' 
+#' @rdname cardSidebar
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40", 
                            startOpen = FALSE, icon = shiny::icon("cogs")) {
@@ -469,68 +472,106 @@ bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40"
 #' @param session Shiny session.
 #' 
 #' @export
+#' 
+#' @rdname card
 #'
 #' @examples
+#' # Toggle a box on the client
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      header = dashboardHeader(),
-#'      sidebar = dashboardSidebar(),
-#'      body = dashboardBody(
-#'        actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
-#'        selectInput(
-#'          inputId = "cardAction", 
-#'          label = "Card action", 
-#'          choices = c(
-#'            "remove",
-#'            "toggle",
-#'            "toggleMaximize",
-#'            "restore"
-#'          )
-#'        ),
-#'        
-#'        box(
-#'          id = "mycard",
-#'          title = "The plot is visible when you maximize the card", 
-#'          closable = TRUE, 
-#'          maximizable = TRUE,
-#'          width = 12,
+#'  ui <- dashboardPage(
+#'    dashboardHeader(),
+#'    dashboardSidebar(),
+#'    dashboardBody(
+#'      tags$style("body { background-color: ghostwhite}"),
+#'      fluidRow(
+#'        actionButton("toggle_box", "Toggle Box"),
+#'        actionButton("remove_box", "Remove Box", class = "bg-danger"),
+#'        actionButton("restore_box", "Restore Box", class = "bg-success")
+#'      ),
+#'      actionButton("update_box", "Update Box", class = "bg-info"), 
+#'      actionButton("update_box2", "Update Box 2", class = "bg-info"),
+#'      br(),
+#'      br(),
+#'      box(
+#'        title = textOutput("box_state"),
+#'        id = "mybox",
+#'        status = "danger", 
+#'        background = "maroon", 
+#'        gradient = TRUE,
+#'        collapsible = TRUE,
+#'        closable = TRUE,
+#'        plotOutput("plot")
+#'      )
+#'    )
+#'  )
+#'  
+#'  server <- function(input, output, session) {
+#'    output$plot <- renderPlot({
+#'      req(!input$mybox$collapsed)
+#'      plot(rnorm(200))
+#'    })
+#'    
+#'    output$box_state <- renderText({
+#'      state <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+#'      paste("My box is", state)
+#'    })
+#'    
+#'    observeEvent(input$toggle_box, {
+#'      updateBox("mybox", action = "toggle")
+#'    })
+#'    
+#'    observeEvent(input$remove_box, {
+#'      updateBox("mybox", action = "remove")
+#'    })
+#'    
+#'    observeEvent(input$restore_box, {
+#'      updateBox("mybox", action = "restore")
+#'    })
+#'    
+#'    observeEvent(input$mybox$visible, {
+#'      collapsed <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+#'      visible <- if (input$mybox$visible) "visible" else "hidden"
+#'      message <- paste("My box is", collapsed, "and", visible)
+#'      showNotification(message, type = "warning", duration = 1)
+#'    })
+#'    
+#'    observeEvent(input$update_box, {
+#'      updateBox(
+#'        "mybox", 
+#'        action = "update", 
+#'        options = list(
+#'          title = tagList(h2("hello"), dashboardLabel(1, status = "primary")),
 #'          status = "warning", 
-#'          solidHeader = FALSE, 
-#'          collapsible = TRUE,
-#'          sliderInput("obs", "Number of observations:",
-#'                      min = 0, max = 1000, value = 500
-#'          ),
-#'          plotOutput("distPlot")
+#'          solidHeader = TRUE, 
+#'          width = 12, 
+#'          background = NULL, 
+#'          height = "900px", 
+#'          closable = FALSE
 #'        )
 #'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      
-#'      output$distPlot <- renderPlot({
-#'        if (input$mycard$maximized) {
-#'          hist(rnorm(input$obs)) 
-#'        }
-#'      })
-#'      
-#'      observeEvent(input$triggerCard, {
-#'        updatebs4Card(id = "mycard", session = session, action = input$cardAction)
-#'      })
-#'      
-#'      observe({
-#'        print(
-#'          list(
-#'            collapsed = input$mycard$collapsed,
-#'            maximized = input$mycard$maximized,
-#'            visible = input$mycard$visible
-#'          )
-#'        )
-#'      })
-#'    }
-#'  )
+#'    })
+#'     
+#'     observeEvent(input$update_box2, {
+#'       updateBox(
+#'         "mybox", 
+#'         action = "update", 
+#'         options = list(
+#'           status = NULL, 
+#'           solidHeader = FALSE,
+#'           width = 4, 
+#'           background = "green", 
+#'           height = "500px", 
+#'           closable = TRUE
+#'         )
+#'       )
+#'     })
+#'    
+#'  }
+#'  
+#'  shinyApp(ui, server)
 #' }
 updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "restore"), 
                           session = shiny::getDefaultReactiveDomain()) {
@@ -543,51 +584,49 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
 
 #' Programmatically toggle a bs4Card sidebar
 #'
+#' @param id Card sidebar id.
 #' @param session Shiny session object.
-#' @param inputId Card sidebar id.
+#' 
+#' @rdname cardSidebar
 #' 
 #' @export
 #' @examples
+#' # Toggle a box sidebar
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     sidebar_collapsed = FALSE,
-#'     controlbar_collapsed = TRUE,
-#'     enable_preloader = FALSE,
-#'     navbar = bs4DashNavbar(skin = "dark"),
-#'     body = bs4DashBody(
-#'       bs4Card(
-#'         title = "Closable Box with gradient", 
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     body = dashboardBody(
+#'       box(
+#'         title = "Update box sidebar", 
 #'         closable = TRUE, 
 #'         width = 12,
 #'         height = "500px",
 #'         solidHeader = FALSE, 
 #'         collapsible = TRUE,
 #'         actionButton("update", "Toggle card sidebar"),
-#'         sidebar = bs4CardSidebar(
-#'           inputId = "mycardsidebar",
+#'         sidebar = boxSidebar(
+#'           id = "mycardsidebar",
 #'           p("Sidebar Content")
 #'         )
 #'       )
 #'     ),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter()
+#'     sidebar = dashboardSidebar()
 #'   ),
 #'   server = function(input, output, session) {
 #'     observe(print(input$mycardsidebar))
 #'     
 #'     observeEvent(input$update, {
-#'       updatebs4CardSidebar(session, inputId = "mycardsidebar")
+#'       updateBoxSidebar("mycardsidebar")
 #'     })
 #'     
 #'   }
 #'  )
 #' }
-updatebs4CardSidebar <- function(session, inputId) {
+updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(inputId, NULL)
 }
 
