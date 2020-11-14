@@ -17,7 +17,16 @@ if (interactive()) {
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),
-     sidebar = dashboardSidebar(),
+     sidebar = dashboardSidebar(
+      sidebarMenu(
+       menuItem(
+        text = "Item 1"
+       ),
+       menuItem(
+        text = "Item 2"
+       )
+      )
+     ),
      body = dashboardBody(),
      controlbar = dashboardControlbar(skinSelector(), pinned = TRUE),
      title = "Skin Selector"

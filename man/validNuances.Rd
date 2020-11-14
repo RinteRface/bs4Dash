@@ -11,7 +11,6 @@ generally appear as follows:
 }
 \details{
 \itemize{
-  \item \code{black} Black
   \item \code{gray-dark} Gray dark
   \item \code{gray} Gray
   \item \code{light} Light

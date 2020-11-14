@@ -110,7 +110,7 @@ $(function () {
   $navbar.append($dark_mode_container);
   
   
-  // Themer
+  // Navbar Themer
   var navbar_dark_skins = [
     'navbar-primary',
     'navbar-secondary',
@@ -127,7 +127,6 @@ $(function () {
     'navbar-lime',
     'navbar-teal',
     'navbar-olive',
-    'navbar-dark',
     'navbar-gray-dark',
     'navbar-gray'
   ];
@@ -161,6 +160,128 @@ $(function () {
     }
 
     $main_header.addClass(color);
+  };
+  
+  
+  // Sidebar themer
+  
+  // detect global sidebar theme and select or not the toggle
+  if ($('.main-sidebar').attr('class').match('dark')) {
+    $('#sidebar_skin').prop( "checked", true );
+  }
+  
+  // clicking on dark/light switch changes:
+  // - icon style
+  // - sidebar class 
+  $('#sidebar_skin').on('click', function () {
+    var sidebarCl;
+    if ($(this).is(':checked')) {
+      sidebarCl = $('.main-sidebar')
+        .attr('class')
+        .replace('light', 'dark');
+      $('.main-sidebar').attr('class', sidebarCl);
+        
+      $('.sidebar-themer-icon')
+        .removeClass('fa-sun')
+        .addClass('fa-moon');
+    } else {
+      sidebarCl = $('.main-sidebar')
+        .attr('class')
+        .replace('dark', 'light');
+      $('.main-sidebar').attr('class', sidebarCl);
+      
+      $('.sidebar-themer-icon')
+        .removeClass('fa-moon')
+        .addClass('fa-sun'); 
+    }
+  });
+  
+  var sidebar_colors = [
+    'bg-primary',
+    'bg-secondary',
+    'bg-info',
+    'bg-success',
+    'bg-danger',
+    'bg-indigo',
+    'bg-purple',
+    'bg-pink',
+    'bg-maroon',
+    'bg-fuchsia',
+    'bg-navy',
+    'bg-lightblue',
+    'bg-lime',
+    'bg-teal',
+    'bg-olive',
+    'bg-gray-dark',
+    'bg-gray',
+    'bg-light',
+    'bg-warning',
+    'bg-white',
+    'bg-orange'
+  ];
+  
+  
+  var sidebar_skins = [
+    'sidebar-dark-primary',
+    'sidebar-dark-secondary',
+    'sidebar-dark-info',
+    'sidebar-dark-success',
+    'sidebar-dark-danger',
+    'sidebar-dark-indigo',
+    'sidebar-dark-purple',
+    'sidebar-dark-pink',
+    'sidebar-dark-maroon',
+    'sidebar-dark-fuchsia',
+    'sidebar-dark-navy',
+    'sidebar-dark-lightblue',
+    'sidebar-dark-lime',
+    'sidebar-dark-teal',
+    'sidebar-dark-olive',
+    'sidebar-dark-gray-dark',
+    'sidebar-dark-gray',
+    'sidebar-dark-light',
+    'sidebar-dark-warning',
+    'sidebar-dark-white',
+    'sidebar-dark-orange',
+    'sidebar-light-primary',
+    'sidebar-light-secondary',
+    'sidebar-light-info',
+    'sidebar-light-success',
+    'sidebar-light-danger',
+    'sidebar-light-indigo',
+    'sidebar-light-purple',
+    'sidebar-light-pink',
+    'sidebar-light-maroon',
+    'sidebar-light-fuchsia',
+    'sidebar-light-navy',
+    'sidebar-light-lightblue',
+    'sidebar-light-lime',
+    'sidebar-light-teal',
+    'sidebar-light-olive',
+    'sidebar-light-gray-dark',
+    'sidebar-light-gray',
+    'sidebar-light-light',
+    'sidebar-light-warning',
+    'sidebar-light-white',
+    'sidebar-light-orange'
+  ];
+  
+  
+  updateSidebarTheme = function (color) {
+    var sidebarCl;
+    if ($('#sidebar_skin').is(':checked')) {
+      sidebarCl = 'sidebar-dark-';
+    } else {
+      sidebarCl = 'sidebar-light-';
+    }
+    
+    var sidebar_class = sidebarCl + color.replace('bg-', '');
+    var $sidebar = $('.main-sidebar');
+    sidebar_skins.forEach(function (skin) {
+      $sidebar.removeClass(skin);
+    });
+
+    $sidebar.addClass(sidebar_class);
   };
   
 });
