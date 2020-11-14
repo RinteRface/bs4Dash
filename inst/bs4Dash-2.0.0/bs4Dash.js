@@ -78,4 +78,35 @@ $(function () {
     }, 500);
   });
   
+  // automatic global theme switcher
+  $navbar = $('.main-header.navbar');
+  var $dark_mode_checkbox = $('<input />', {
+    type: 'checkbox',
+    id: 'customSwitch1',
+    checked: $('body').hasClass('dark-mode'),
+    class: 'custom-control-input'
+  }).on('click', function () {
+    if ($(this).is(':checked')) {
+      $('body').addClass('dark-mode');
+      $navbar
+        .removeClass('navbar-light')
+        .addClass('navbar-dark');
+      $('.dark-theme-icon')
+        .removeClass('fa-sun')
+        .addClass('fa-moon');
+    } else {
+      $('body').removeClass('dark-mode');
+      $navbar
+        .removeClass('navbar-dark')
+        .addClass('navbar-light');
+      $('.dark-theme-icon')
+        .removeClass('fa-moon')
+        .addClass('fa-sun');
+    }
+  });
+  
+  var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
+  var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
+  $navbar.append($dark_mode_container);
+  
 });

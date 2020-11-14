@@ -82,6 +82,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New builtin dark/light mode switcher.
 - New "go to top" feature.
 - New `dashboardUserItem()`, `userOutput` and `renderUser`.
 - New `bs4DashBrand` for better dashboard titles.
