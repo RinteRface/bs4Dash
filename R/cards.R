@@ -468,7 +468,10 @@ bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40"
 #' Update an AdminLTE3 card from the server side
 #'
 #' @param id Card inputId.
-#' @param action Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore")}.
+#' @param action Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore", "update")}.
+#' @param options If action is update, a list of new options to configure the box, such as
+#' \code{list(title = "new title", status = NULL, solidHeader = FALSE, 
+#' background = "red", width = 6, height = "200px", collapsible = FALSE, closable = FALSE)}.
 #' @param session Shiny session.
 #' 
 #' @export
@@ -573,9 +576,23 @@ bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40"
 #'  
 #'  shinyApp(ui, server)
 #' }
-updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "restore"), 
-                          session = shiny::getDefaultReactiveDomain()) {
+updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "restore", "update"), 
+                          options = NULL, session = shiny::getDefaultReactiveDomain()) {
   action <- match.arg(action)
+  # for update, we take a list of options
+  if (action == "update") {
+    # handle case whare options are shiny tag or a list of tags ...
+    options <- lapply(options, function(o) {
+      if (inherits(o, "shiny.tag") || inherits(o, "shiny.tag.list")) {
+        o <- as.character(o)
+      }
+      o
+    })
+    message <- dropNulls(c(action = action, options = list(options)))
+    session$sendInputMessage(id, message)
+  } else {
+    session$sendInputMessage(id, message = match.arg(action))
+  }
   session$sendInputMessage(id, action)
 }
 

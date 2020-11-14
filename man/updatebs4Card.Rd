@@ -8,13 +8,15 @@ See \link{updatebs4Card} for full details}
 \usage{
 updateCard(
   id,
-  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  action = c("remove", "toggle", "toggleMaximize", "restore", "update"),
+  options = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 
 updateBox(
   id,
-  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  action = c("remove", "toggle", "toggleMaximize", "restore", "update"),
+  options = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }

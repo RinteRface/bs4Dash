@@ -31,7 +31,8 @@ bs4Card(
 
 updatebs4Card(
   id,
-  action = c("remove", "toggle", "toggleMaximize", "restore"),
+  action = c("remove", "toggle", "toggleMaximize", "restore", "update"),
+  options = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -127,7 +128,11 @@ TRUE by default}
 
 \item{id}{Card inputId.}
 
-\item{action}{Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore")}.}
+\item{action}{Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore", "update")}.}
+
+\item{options}{If action is update, a list of new options to configure the box, such as
+\code{list(title = "new title", status = NULL, solidHeader = FALSE, 
+background = "red", width = 6, height = "200px", collapsible = FALSE, closable = FALSE)}.}
 
 \item{session}{Shiny session.}
 }
