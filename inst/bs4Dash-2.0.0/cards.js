@@ -14,6 +14,7 @@ $.extend(cardBinding, {
       
       var isCollapsed = $(el).hasClass('collapsed-card');
       var display = $(el).css('display');
+      var isMaximized = $(el).hasClass('maximized-card');
     
       var visible;
       if (display === "none") {
@@ -33,7 +34,7 @@ $.extend(cardBinding, {
         collapsible: config.collapsible,
         collapsed: isCollapsed, 
         closable: config.closable,
-        maximized: config.maximized,
+        maximized: isMaximized,
         visible: visible, 
         status: config.status,
         solidHeader : config.solidHeader,
