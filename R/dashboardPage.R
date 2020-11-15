@@ -130,7 +130,6 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         content = "width=device-width, initial-scale=1"
       ),
       shiny::tags$meta(`http-equiv` = "x-ua-compatible", content = "ie=edge"),
-      tags$link(rel = "stylesheet", type = "text/css", href = "https://cdn.jsdelivr.net/npm/bootswatch@4.5.3/dist/darkly/bootstrap.min.css"),
       shiny::tags$title(title)
     ),
     # Body
