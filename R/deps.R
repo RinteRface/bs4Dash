@@ -23,8 +23,8 @@ add_bs4Dash_deps <- function(tag, options) {
     # bootstrap deps
     htmltools::htmlDependency(
       name = "bootstrap", 
-      version = "4.3.1",
-      src = c(file = "bootstrap-4.3.1"),
+      version = "4.5.2",
+      src = c(file = "bootstrap-4.5.2"),
       script = bootstrap_js,
       package = "bs4Dash"
     ),
