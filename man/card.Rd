@@ -87,7 +87,6 @@ updateBox(
 \item{status}{The status of the item This determines the item's background
   color.  Valid statuses are defined as follows:
 \itemize{
-
   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.

@@ -74,6 +74,14 @@ This is to align with shinydashboard and shinydashboardPlus.
 ### bs4ValueBox
 - `status` becomes `color`. 
 - `icon` expects `shiny::icon`.
+- Remove `iconStatus`.
+- Add `href` and `fill`.
+- Rename `gradientColor` to `gradient`.
+
+## bs4InfoBox
+- `status` becomes color
+- Remove `...` for `subtitle`
+- 
 
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)

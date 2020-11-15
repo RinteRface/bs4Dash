@@ -6,52 +6,67 @@
 \title{Boostrap 4 info box}
 \usage{
 bs4InfoBox(
-  ...,
-  tabName = NULL,
   title,
-  value,
-  icon = NULL,
-  iconStatus = NULL,
-  iconElevation = NULL,
-  status = NULL,
-  gradientColor = NULL,
+  value = NULL,
+  subtitle = NULL,
+  icon = shiny::icon("bar-chart"),
+  color = NULL,
   width = 4,
-  elevation = NULL
+  href = NULL,
+  fill = FALSE,
+  gradient = FALSE,
+  elevation = NULL,
+  iconElevation = NULL,
+  tabName = NULL
 )
 
 infoBox(
-  ...,
-  tabName = NULL,
   title,
-  value,
-  icon = NULL,
-  iconStatus = NULL,
-  iconElevation = NULL,
-  status = NULL,
-  gradientColor = NULL,
+  value = NULL,
+  subtitle = NULL,
+  icon = shiny::icon("bar-chart"),
+  color = NULL,
   width = 4,
-  elevation = NULL
+  href = NULL,
+  fill = FALSE,
+  gradient = FALSE,
+  elevation = NULL,
+  iconElevation = NULL,
+  tabName = NULL
 )
 }
 \arguments{
-\item{...}{Any extra UI element.}
-
-\item{tabName}{Optional: \link{bs4InfoBox} may be used to navigate between tabs.}
-
 \item{title}{Info box title.}
 
 \item{value}{The value to display in the box. Usually a number or short text.}
 
+\item{subtitle}{Any extra UI element.}
+
 \item{icon}{An icon tag, created by \code{\link[shiny]{icon}}.}
 
-\item{iconStatus}{Icon color. Only if status is NULL.}
-
-\item{iconElevation}{Icon elevation compared to the main content (relief). 3 by default.}
-
-\item{status}{A color for the box. "primary", "info", "success", "warning", "danger" or NULL.}
-
-\item{gradientColor}{If NULL (the default), the background of the box will be
-white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
+\item{color}{A color for the box. Valid colors are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+}}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
@@ -59,7 +74,21 @@ default width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
-\item{elevation}{Infobox elevation.}
+\item{href}{An optional URL to link to.}
+
+\item{fill}{If FALSE (the default), use a white background for the content, and 
+the color argument for the background of the icon. If TRUE, use the color argument 
+for the background of the content; the icon will use the same color with a slightly 
+darkened background.}
+
+\item{gradient}{Wether to use gradient style for background color. Default to FALSE.}
+
+\item{elevation}{Box elevation.}
+
+\item{iconElevation}{Icon elevation compared to the main content (relief). 3 by default.}
+
+\item{tabName}{Optional: \link{infoBox} behaves like \link{menuItem} and 
+may be used to navigate between multiple \link{tabItem}.}
 }
 \description{
 A beautiful AdminLTE3 info box.
@@ -69,31 +98,56 @@ if(interactive()){
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
-     sidebar = bs4DashSidebar(),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(
+      sidebarMenu(
+        menuItem(
+         text = "Item 1",
+         tabName = "tab1"
+        ),
+        menuItem(
+         text = "Item 2",
+         tabName = "tab2"
+        )        
+      )
+     ),
+     controlbar = dashboardControlbar(),
+     footer = dashboardFooter(),
      title = "test",
-     body = bs4DashBody(
-      fluidRow(
-       bs4InfoBox(
-        title = "Messages",
-        value = 1410,
-        icon = "envelope"
+     body = dashboardBody(
+      tabItems(
+       tabItem(
+        tabName = "tab1",
+        fluidRow(
+         infoBox(
+          title = "Messages",
+          value = 1410,
+          icon = icon("envelope"),
+          color = "orange",
+          fill = TRUE, 
+         ),
+         infoBox(
+          title = "Bookmarks",
+          color = "info",
+          value = 240,
+          icon = icon("bookmark"),
+          tabName = "tab2"
+         )
+        )
        ),
-       bs4InfoBox(
-        title = "Bookmarks",
-        status = "info",
-        value = 240,
-        icon = "bookmark"
-       ),
-       bs4InfoBox(
-        title = "Comments",
-        gradientColor = "danger",
-        value = 41410,
-        icon = "comments"
+       tabItem(
+        tabName = "tab2",
+        infoBox(
+          title = "Comments",
+          color = "indigo",
+          gradient = TRUE, 
+          value = 41410,
+          subtitle = "A subtitle",
+          icon = icon("comments"),
+          tabName = "tab1"
+        )
        )
       )
      )
