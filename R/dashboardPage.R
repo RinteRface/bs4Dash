@@ -87,10 +87,12 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   titleTag <- header[[2]]
   # brand logo
   sidebar$children[[2]] <- sidebar$children[[1]]
-  sidebar$children[[1]] <- if (inherits(titleTag, "shiny.tag")) {
-    titleTag
-  } else {
-    div(class = "brand-link", titleTag)
+  sidebar$children[[1]] <- if (!is.null(titleTag)) {
+    if (inherits(titleTag, "shiny.tag")) {
+      titleTag
+    } else {
+      div(class = "brand-link", titleTag)
+    }
   }
 
   # some checks
@@ -128,7 +130,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         content = "width=device-width, initial-scale=1"
       ),
       shiny::tags$meta(`http-equiv` = "x-ua-compatible", content = "ie=edge"),
-      
+      tags$link(rel = "stylesheet", type = "text/css", href = "https://cdn.jsdelivr.net/npm/bootswatch@4.5.3/dist/darkly/bootstrap.min.css"),
       shiny::tags$title(title)
     ),
     # Body
