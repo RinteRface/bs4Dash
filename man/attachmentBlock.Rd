@@ -46,6 +46,10 @@ if (interactive()) {
 }
 
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{bs4Card}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

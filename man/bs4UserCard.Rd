@@ -72,7 +72,7 @@ userDescription(
 )
 }
 \arguments{
-\item{...}{Contents of the box.}
+\item{...}{Any element such as \link{descriptionBlock}.}
 
 \item{title}{User card title.}
 

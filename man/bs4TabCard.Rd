@@ -60,7 +60,7 @@ tabBox(
 )
 }
 \arguments{
-\item{...}{Contents of the box.}
+\item{...}{Any element such as \link{descriptionBlock}.}
 
 \item{id}{Card id.}
 
