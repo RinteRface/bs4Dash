@@ -181,7 +181,7 @@
 #'
 #' @export
 tabsetPanel <- function(..., id = NULL, selected = NULL, 
-                           type = c("tabs", "pills"), position = NULL) {
+                        type = c("tabs", "pills"), position = NULL) {
   type <- match.arg(type)
   
   # We run the Shiny tabsetPanel function, to edit it later. This
@@ -347,267 +347,36 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
 #'  }
 #'  shinyApp(ui, server)
 #' }
-bs4InsertTab <- function(inputId, tab, target, position = c("before", "after"),
+insertTab <- function(inputId, tab, target, position = c("before", "after"),
                          select = FALSE, session = shiny::getDefaultReactiveDomain()) {
   
-  if (!(class(tab[[2]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
-  
-  ns <- inputId
-  
-  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
-  # prefix by insert_ makes sense
-  inputId <- paste0("insert_", inputId)
-  
-  position <- match.arg(position)
-  
-  # create the corresponding tablink
-  tabId <- gsub(" ", "", tab[[2]]$attribs$id, fixed = TRUE)
-  
-  tabLink <- shiny::tags$li(
-    class = "nav-item",
-    shiny::a(
-      class = "nav-link",
-      href = paste0("#", ns, "-", tabId),
-      `data-toggle` = "tab",
-      tab[[2]]$attribs$id
-    )
-  )
-  tabLink <- force(tabLink)
-  
-  # prefix the tab id by the id of the wrapping tabsetpanel
-  tab[[2]]$attribs$id <- paste0(ns, "-", tabId)
-  tabId <- tab[[2]]$attribs$id
-  
-  # force to render shiny.tag and convert it to character
-  # since text does not accept anything else
-  tab <- force(tab[[2]])
-  
-  # remove all whitespace from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
-  
-  # below, processDeps is necessary to make sure that
-  # tab content render well. It is used in combination with
-  # the Shiny.renderContent method on the js side.
-  message <- dropNulls(
-    list(
-      value = processDeps(tab, session),
-      id = tabId,
-      link = processDeps(tabLink, session),
-      target = target,
-      position = position,
-      select = tolower(select),
-      ns = ns
-    )
-  )
-  session$sendCustomMessage(type = inputId, message = message)
-}
-
-
-
-#' Remove a \link{bs4TabPanel} in a \link{bs4TabSetPanel}
-#'
-#' @param inputId  \link{bs4TabSetPanel} id.
-#' @param target \link{bs4TabPanel} to remove.
-#' @param session Shiny session object.
-#' 
-#' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  ui <-  bs4DashPage(
-#'    sidebar_collapsed = TRUE,
-#'    sidebar = bs4DashSidebar(),
-#'    bs4DashFooter(),
-#'    body = bs4DashBody(
-#'      actionButton("remove1","Remove tab 1"),
-#'      bs4TabSetPanel(
-#'        id = "tabset1", 
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1",
-#'          active = TRUE,
-#'          p("Text 1"),
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2",
-#'          active = FALSE,
-#'          p("Text 2"),
-#'        )
-#'      ),
-#'      actionButton("remove2","Remove tab 2"),
-#'      bs4TabSetPanel(
-#'        id = "tabset2", 
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1",
-#'          active = TRUE,
-#'          p("Text 1"),
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2",
-#'          active = FALSE,
-#'          p("Text 2"),
-#'        )
-#'      )
-#'    )
-#'  )
-#'  
-#'  server <- function(input, output, session) {
-#'    
-#'    observeEvent(input$remove1, {
-#'      bs4RemoveTab(
-#'        inputId = "tabset1",
-#'        target = "Tab 1"
-#'      )
-#'    })
-#'    
-#'    observeEvent(input$remove2, {
-#'      bs4RemoveTab(
-#'        inputId = "tabset2",
-#'        target = "Tab 2",
-#'      )
-#'    })
-#'    
-#'  }
-#'  shinyApp(ui, server)
-#' }
-bs4RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
-  
-  # tabsetpanel namespace
-  ns <- inputId
-  
-  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
-  # prefix by remove_ makes sense
-  inputId <- paste0("remove_", inputId)
-  
-  # remove all whitespace from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
-  
-  message <- dropNulls(
-    list(
-      target = target,
-      ns = ns
-    )
-  )
-  session$sendCustomMessage(type = inputId, message = message)
-  
-}
-
-
-
-#' Dynamically hide/show a bs4TabPanel
-#'
-#' @param inputId The id of the \link{bs4TabSetPanel} in which to find target.
-#' @param target The value of the \link{bs4TabPanel} to be hidden/shown. 
-#' @param select Should target be selected upon being shown?
-#' @param session The shiny session within which to call this function.
-#' 
-#' @export
-#' @rdname toggleTabs
-#'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  ui <- bs4DashPage(
-#'    body = bs4DashBody(
-#'      bs4TabSetPanel(
-#'        id = "tabs",
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1", 
-#'          active = FALSE,
-#'          "Content 1"
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2", 
-#'          active = TRUE,
-#'          "Content 2"
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 3", 
-#'          active = FALSE,
-#'          "Content 3"
-#'        )
-#'      ),
-#'      br(),
-#'      actionButton("hideTab", "Hide 'Tab 1' tab"),
-#'      actionButton("showTab", "Show 'Tab ' tab"),
-#'      actionButton("hideTab2", "Hide 'Tab 2'"),
-#'      actionButton("showTab2", "Show 'Tab 2'")
-#'    )
-#'  )
-#'  
-#'  server <- function(input, output, session) {
-#'    observeEvent(input$hideTab, {
-#'      bs4HideTab(inputId = "tabs", target = "Tab 1")
-#'    })
-#'    
-#'    observeEvent(input$showTab, {
-#'      bs4ShowTab(inputId = "tabs", target = "Tab 1")
-#'    })
-#'    
-#'    observeEvent(input$hideTab2, {
-#'      bs4HideTab(inputId = "tabs", target = "Tab 2")
-#'    })
-#'    
-#'    observeEvent(input$showTab2, {
-#'      bs4ShowTab(inputId = "tabs", target = "Tab 2", select = TRUE)
-#'    })
-#'    
-#'  }
-#'  
-#'  shinyApp(ui, server)
-#' }
-bs4HideTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
-  
-  # tabsetpanel namespace
-  ns <- inputId
-  
-  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
-  # prefix by hide_ makes sense
-  inputId <- paste0("hide_", inputId)
-  
-  # remove all white spaces from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
-  
-  message <- dropNulls(
-    list(
-      target = target,
-      ns = ns
-    )
-  )
-  session$sendCustomMessage(type = inputId, message = message)
-}
-
-
-
-#' @rdname toggleTabs
-#' @export
-bs4ShowTab <- function(inputId, target, select = FALSE,
-                       session = shiny::getDefaultReactiveDomain()) {
   force(target)
-  # show the tab if selected (we can do that on the R side)
-  if (select) updatebs4TabSetPanel(session, inputId, selected = target)
-  
-  # tabsetpanel namespace
-  ns <- inputId
-  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
-  # prefix by show_ makes sense
-  inputId <- paste0("show_", inputId)
-  
-  # remove all white spaces from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
-  
-  message <- dropNulls(
-    list(
-      target = target,
-      ns = ns
-    )
+  force(select)
+  position <- match.arg(position)
+  inputId <- session$ns(inputId)
+  item <- buildTabItem(
+    "id", 
+    "tsid", 
+    TRUE, 
+    divTag = tab, 
+    textFilter = if (is.character(tab)) navbarMenuTextFilter else NULL
   )
-  session$sendCustomMessage(type = inputId, message = message)
+  
+  item$liTag$attribs$class <- "nav-item"
+  item$liTag$children[[1]]$attribs$class <- "nav-link"
+  
+  callback <- function() {
+    session$sendInsertTab(
+      inputId = inputId, 
+      liTag = processDeps(item$liTag, session), 
+      divTag = processDeps(item$divTag, session), 
+      menuName = NULL, 
+      target = target, 
+      position = position, 
+      select = select
+    )
+  }
+  
+  session$onFlush(callback, once = TRUE)
+  
 }

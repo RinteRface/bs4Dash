@@ -297,3 +297,200 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
     stopifnot(width >= 0)
   }
 }
+
+
+
+randomInt <- function (min, max) {
+  if (missing(max)) {
+    max <- min
+    min <- 0
+  }
+  if (min < 0 || max <= min)
+    stop("Invalid min/max values")
+  min + sample(max - min, 1) - 1
+}
+
+
+# A scope where we can put mutable global state
+.globals <- new.env(parent = emptyenv())
+.globals$ownSeed <- NULL
+
+withPrivateSeed <-function (expr) {
+  if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
+    hasOrigSeed <- TRUE
+    origSeed <- .GlobalEnv$.Random.seed
+  }
+  else {
+    hasOrigSeed <- FALSE
+  }
+  if (is.null(.globals$ownSeed)) {
+    if (hasOrigSeed) {
+      rm(.Random.seed, envir = .GlobalEnv, inherits = FALSE)
+    }
+  }
+  else {
+    .GlobalEnv$.Random.seed <- .globals$ownSeed
+  }
+  on.exit({
+    .globals$ownSeed <- .GlobalEnv$.Random.seed
+    if (hasOrigSeed) {
+      .GlobalEnv$.Random.seed <- origSeed
+    } else {
+      rm(.Random.seed, envir = .GlobalEnv, inherits = FALSE)
+    }
+    httpuv::getRNGState()
+  })
+  expr
+}
+
+
+p_randomInt <- function (...) {
+  withPrivateSeed(randomInt(...))
+}
+
+
+markTabAsSelected <- function (x) {
+  attr(x, "selected") <- TRUE
+  x
+}
+
+
+`%OR%` <- function (x, y)
+{
+  if (is.null(x) || isTRUE(is.na(x)))
+    y
+  else x
+}
+
+
+findAndMarkSelectedTab <- function (tabs, selected, foundSelected) {
+  tabs <- lapply(tabs, function(div) {
+    if (foundSelected || is.character(div)) {
+    }
+    else if (inherits(div, "shiny.navbarmenu")) {
+      res <- findAndMarkSelectedTab(div$tabs, selected,
+                                    foundSelected)
+      div$tabs <- res$tabs
+      foundSelected <<- res$foundSelected
+    }
+    else {
+      if (is.null(selected)) {
+        foundSelected <<- TRUE
+        div <- markTabAsSelected(div)
+      }
+      else {
+        tabValue <- div$attribs$`data-value` %OR% div$attribs$title
+        if (identical(selected, tabValue)) {
+          foundSelected <<- TRUE
+          div <- markTabAsSelected(div)
+        }
+      }
+    }
+    return(div)
+  })
+  return(list(tabs = tabs, foundSelected = foundSelected))
+}
+
+
+
+anyNamed <- function (x)
+{
+  if (length(x) == 0)
+    return(FALSE)
+  nms <- names(x)
+  if (is.null(nms))
+    return(FALSE)
+  any(nzchar(nms))
+}
+
+
+
+buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected = NULL,
+                         foundSelected = FALSE) {
+  res <- findAndMarkSelectedTab(tabs, selected, foundSelected)
+  tabs <- res$tabs
+  foundSelected <- res$foundSelected
+  if (!is.null(id))
+    ulClass <- paste(ulClass, "shiny-tab-input")
+  if (anyNamed(tabs)) {
+    nms <- names(tabs)
+    nms <- nms[nzchar(nms)]
+    stop("Tabs should all be unnamed arguments, but some are named: ",
+         paste(nms, collapse = ", "))
+  }
+  tabsetId <- p_randomInt(1000, 10000)
+  tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
+                 foundSelected = foundSelected, tabs = tabs, textFilter = textFilter)
+  tabNavList <- tags$ul(class = ulClass, id = id, `data-tabsetid` = tabsetId,
+                        lapply(tabs, "[[", 1))
+  tabContent <- tags$div(class = "tab-content", `data-tabsetid` = tabsetId,
+                         lapply(tabs, "[[", 2))
+  list(navList = tabNavList, content = tabContent)
+}
+
+
+isTabSelected <- function (x) {
+  isTRUE(attr(x, "selected", exact = TRUE))
+}
+
+
+containsSelectedTab <- function (tabs) {
+  any(vapply(tabs, isTabSelected, logical(1)))
+}
+
+
+getIcon <- function (tab = NULL, iconClass = NULL) {
+  if (!is.null(tab))
+    iconClass <- tab$attribs$`data-icon-class`
+  if (!is.null(iconClass)) {
+    if (grepl("fa-", iconClass, fixed = TRUE)) {
+      iconClass <- paste(iconClass, "fa-fw")
+    }
+    icon(name = NULL, class = iconClass)
+  }
+  else NULL
+}
+
+
+navbarMenuTextFilter <- function (text) {
+  if (grepl("^\\-+$", text))
+    tags$li(class = "divider")
+  else tags$li(class = "dropdown-header", text)
+}
+
+
+buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = NULL,
+                          textFilter = NULL) {
+  divTag <- if (!is.null(divTag))
+    divTag
+  else tabs[[index]]
+  if (is.character(divTag) && !is.null(textFilter)) {
+    liTag <- textFilter(divTag)
+    divTag <- NULL
+  }
+  else if (inherits(divTag, "shiny.navbarmenu")) {
+    tabset <- buildTabset(divTag$tabs, "dropdown-menu", navbarMenuTextFilter,
+                          foundSelected = foundSelected)
+    containsSelected <- containsSelectedTab(divTag$tabs)
+    liTag <- tags$li(class = paste0("dropdown", if (containsSelected)
+      " active"), tags$a(href = "#", class = "dropdown-toggle",
+                         `data-toggle` = "dropdown", `data-value` = divTag$menuName,
+                         getIcon(iconClass = divTag$iconClass), divTag$title,
+                         tags$b(class = "caret")), tabset$navList)
+    divTag <- tabset$content$children
+  }
+  else {
+    tabId <- paste("tab", tabsetId, index, sep = "-")
+    liTag <- tags$li(tags$a(href = paste("#", tabId, sep = ""),
+                            `data-toggle` = "tab", `data-value` = divTag$attribs$`data-value`,
+                            getIcon(iconClass = divTag$attribs$`data-icon-class`),
+                            divTag$attribs$title))
+    if (isTabSelected(divTag)) {
+      liTag$attribs$class <- "active"
+      divTag$attribs$class <- "tab-pane active"
+    }
+    divTag$attribs$id <- tabId
+    divTag$attribs$title <- NULL
+  }
+  return(list(liTag = liTag, divTag = divTag))
+}

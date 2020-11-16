@@ -1180,7 +1180,7 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
   if (is.null(type)) type <- "pills"
   
   # Build tabs
-  content <- bs4TabsetPanel(
+  content <- tabsetPanel(
     ..., 
     id = id, 
     selected = selected, 
