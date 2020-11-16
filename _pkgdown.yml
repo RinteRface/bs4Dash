@@ -65,7 +65,6 @@ reference:
 - title: Cards and boxes
   desc: Build cards and boxes
   contents:
-  - '`bs4Box`'
   - '`bs4InfoBox`'
   - '`bs4ValueBox`'
   - '`bs4Card`'

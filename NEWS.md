@@ -86,6 +86,10 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `src` becomes `image`.
 - `status` becomes `color`.
 
+
+### bs4Box 
+- This component has been removed
+
 ### Others
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - value is now mandatory in `bs4InfoBox()`
