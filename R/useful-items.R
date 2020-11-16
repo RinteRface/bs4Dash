@@ -1724,38 +1724,46 @@ userMessage <- function(..., author = NULL, date = NULL,
 
 
 
-#' @title AdminLTE3 user post
+#' AdminLTE3 user post
 #'
-#' @description Create a user post
+#' Creates a user post. This content may be inserted in a \link{box}.
 #'
 #' @param ... Post content, slot for \link{userPostTagItems}, \link{userPostMedia}.
 #' @param id Unique id of the post.
-#' @param src Profile image, if any.
+#' @param image Profile image, if any.
 #' @param author Post author.
 #' @param description Post description.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
-#' @param collapseStatus Color of the collapse button. NULL by default but also "primary", "info",
-#' "danger", "warning", "success", "secondary" ...
+#' @param collapseStatus Color of the collapse button. Valid colors are:
+#' \itemize{
+#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userPost
 #' 
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     bs4DashNavbar(),
-#'     bs4DashSidebar(),
-#'     bs4DashControlbar(),
-#'     bs4DashBody(
-#'      bs4Card(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
 #'       title = "Box with user comment",
 #'       status = "primary",
 #'       userPost(
 #'        id = 1,
-#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
 #'        author = "Jonathan Burke Jr.",
 #'        description = "Shared publicly - 7:30 PM today",
 #'        "Lorem ipsum represents a long-held tradition for designers, 
@@ -1763,20 +1771,20 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'        its demise, but others ignore the hate as they create awesome 
 #'        tools to help create filler text for everyone from bacon 
 #'        lovers to Charlie Sheen fans.",
+#'        collapsible = FALSE,
 #'        userPostTagItems(
-#'         userPostTagItem(bs4Badge("item 1", status = "warning")),
-#'         userPostTagItem(bs4Badge("item 2", status = "danger"))
+#'         userPostTagItem(bs4Badge("item 1", status = "info")),
+#'         userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
 #'        )
 #'       ),
 #'       userPost(
 #'        id = 2,
-#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
 #'        author = "Adam Jones",
-#'        description = "Shared publicly - 5 days ago",
-#'        userPostMedia(src = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
+#'        userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
 #'        userPostTagItems(
-#'         userPostTagItem(bs4Badge("item 1", status = "info")),
-#'         userPostTagItem(bs4Badge("item 2", status = "danger"))
+#'         userPostTagItem(bs4Badge("item 1", status = "success")),
+#'         userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
 #'        )
 #'       )
 #'      )
@@ -1788,7 +1796,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' }
 #' 
 #' @export
-userPost <- function(..., id = NULL, src = NULL, author = NULL, 
+userPost <- function(..., id = NULL, image, author, 
                      description = NULL, collapsible = TRUE, 
                      collapsed = FALSE, collapseStatus = NULL) {
   
@@ -1796,7 +1804,10 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
   id <- paste0("post-", id)
   
   btnCl <- "btn float-right"
-  if(!is.null(collapseStatus)) btnCl <- paste0(btnCl, " btn-", collapseStatus)
+  if(!is.null(collapseStatus)) {
+    validateStatus(collapseStatus)
+    btnCl <- paste0(btnCl, " btn-", collapseStatus)
+  }
   
   
   # if the input tag is an image, it is better to center it...
@@ -1824,7 +1835,7 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
     
     shiny::tags$div(
       class = "user-block",
-      shiny::img(class = "img-circle img-bordered-sm", src = src),
+      shiny::img(class = "img-circle img-bordered-sm", src = image),
       shiny::tags$span(
         class = "username", 
         author,
@@ -1857,13 +1868,13 @@ userPost <- function(..., id = NULL, src = NULL, author = NULL,
 
 
 
-#' @title AdminLTE3 user post tool item container
+#' AdminLTE3 user post tool item container
 #'
-#' @description Create a user post tool item container
+#' \link{userPostTagItems} creates a container to host \link{userPostTagItem}.
 #'
 #' @param ... Slot for \link{userPostTagItem}.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userPost
 #' 
 #' @export
 userPostTagItems<- function(...) {
@@ -1877,13 +1888,13 @@ userPostTagItems<- function(...) {
 
 
 
-#' @title AdminLTE3 user post tool item
+#' AdminLTE3 user post tool item
 #'
-#' @description Create a user post tool item
+#' \link{userPostTagItem} creates a user post tool item
 #'
 #' @param ... Tool content such as label, button, ...
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userPost
 #' 
 #' @export
 userPostTagItem <- function(...) {
@@ -1896,22 +1907,22 @@ userPostTagItem <- function(...) {
 
 
 
-#' @title AdminLTE2 user post media
+#' AdminLTE3 user post media
 #'
-#' @description Create a user post media (image)
+#' \link{userPostMedia} creates a container to include an image in \link{userPost}.
 #'
-#' @param src Image path or url ...
+#' @param image Image path or url ...
 #' @param height Media height in pixels.
 #' @param width Media width in pixels.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @export
-userPostMedia <- function(src = NULL, height = NULL, width = NULL) {
+userPostMedia <- function(image = NULL, height = NULL, width = NULL) {
   shiny::img(
     style = "margin: auto;",
     class = "img-fluid", 
-    src = src,
+    src = image,
     height = height,
     width = width
   )

@@ -108,6 +108,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- In `userPost()` and `userPostMedia()`, `src` becomes `image`.
 - In `bs4Stars()`, status becomes `color`.
 - Remove `bs4ShowTab()`, `bs4HideTab()` and `bs4RemoveTab()`. shiny vanilla function should work well now.
 - Remove `bs4TabPanel()`.
