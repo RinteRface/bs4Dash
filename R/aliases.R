@@ -409,7 +409,7 @@ updateTabsetPanel <- updatebs4TabSetPanel
 
 
 
-#' Alias to \link{ updatebs4TabItems}
+#' Alias to \link{updatebs4TabItems}
 #' See \link{updatebs4TabItems} for full details
 #'
 #' @rdname  updatebs4TabItems
@@ -527,3 +527,23 @@ cardLabel <- bs4CardLabel
 #'
 #' @export
 boxLabel <- bs4CardLabel
+
+
+#' Alias to \link{cardProfile}
+#' See \link{cardProfile} for full details
+#'
+#' @rdname cardProfile
+#'
+#' @export
+boxProfile <- cardProfile
+
+
+
+
+#' Alias to \link{cardProfileItem}
+#' See \link{cardProfileItem} for full details
+#'
+#' @rdname cardProfile
+#'
+#' @export
+boxProfileItem <- cardProfileItem

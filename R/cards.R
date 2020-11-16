@@ -1613,7 +1613,7 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
 #'    server = function(input, output) {}
 #'  )
 #' }
-#' 
+#' @rdname cardProfile
 #' @export
 cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FALSE) {
   
@@ -1645,6 +1645,8 @@ cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FA
 #' @param description Item info.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname cardProfile
 #' 
 #' @export
 cardProfileItem <- function(title, description) {
