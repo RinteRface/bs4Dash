@@ -20,7 +20,7 @@ $(function () {
   if (typeof workerId != "undefined") {
     var pathname = window.location.pathname;
     var newpath = pathname + workerId;
-    window.history.replaceState( {} , 'newpath', newpath);
+    // window.history.replaceState( {} , 'newpath', newpath);
   }
   
   // footer has fixed layout?
