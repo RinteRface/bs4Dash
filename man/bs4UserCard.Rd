@@ -9,7 +9,7 @@
 \usage{
 bs4UserCard(
   ...,
-  user = NULL,
+  title = NULL,
   footer = NULL,
   status = NULL,
   solidHeader = TRUE,
@@ -20,7 +20,6 @@ bs4UserCard(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
-  icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
@@ -42,7 +41,7 @@ bs4UserDescription(
 
 userBox(
   ...,
-  user = NULL,
+  title = NULL,
   footer = NULL,
   status = NULL,
   solidHeader = TRUE,
@@ -53,7 +52,6 @@ userBox(
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
-  icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
@@ -75,6 +73,8 @@ userDescription(
 }
 \arguments{
 \item{...}{Contents of the box.}
+
+\item{title}{User card title.}
 
 \item{footer}{User card footer.}
 
@@ -151,8 +151,6 @@ the user to collapse the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
-
 \item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 
 \item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
@@ -170,8 +168,6 @@ TRUE by default}
 
 \item{id}{Card id.}
 
-\item{title}{User card title.}
-
 \item{subtitle}{User card subtitle.}
 
 \item{image}{User image url or path.}
@@ -184,7 +180,7 @@ while 2 is a left aligned user image.}
 \item{imageElevation}{User card image elevation (numeric). NULL by default.}
 }
 \description{
-Create widget user card
+\link{userBox} creates a user card.
 
 \link{userDescription} creates a customized title tag for \link{userBox}.
 }
@@ -202,7 +198,7 @@ if(interactive()){
      title = "test",
      body = dashboardBody(
       userBox(
-       user = userDescription(
+       title = userDescription(
         title = "Nadia Carmichael",
         subtitle = "lead Developer",
         type = 2,
@@ -216,7 +212,7 @@ if(interactive()){
        footer = "The footer here!"
       ),
       userBox(
-       user = userDescription(
+       title = userDescription(
         title = "Alexander Pierce",
         subtitle = "Founder & CEO",
         type = 1,
@@ -228,7 +224,7 @@ if(interactive()){
        footer = "The footer here!"
       ),
       userBox(
-       user = userDescription(
+       title = userDescription(
         title = "Elizabeth Pierce",
         subtitle = "Web Designer",
         image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",

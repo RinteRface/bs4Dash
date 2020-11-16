@@ -1305,7 +1305,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 
 #' @title AdminLTE3 widget user card
 #'
-#' @description Create widget user card
+#' @description \link{userBox} creates a user card.
 #'
 #' @inheritParams bs4Card
 #' 
@@ -1327,7 +1327,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'      title = "test",
 #'      body = dashboardBody(
 #'       userBox(
-#'        user = userDescription(
+#'        title = userDescription(
 #'         title = "Nadia Carmichael",
 #'         subtitle = "lead Developer",
 #'         type = 2,
@@ -1341,7 +1341,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'        footer = "The footer here!"
 #'       ),
 #'       userBox(
-#'        user = userDescription(
+#'        title = userDescription(
 #'         title = "Alexander Pierce",
 #'         subtitle = "Founder & CEO",
 #'         type = 1,
@@ -1353,7 +1353,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'        footer = "The footer here!"
 #'       ),
 #'       userBox(
-#'        user = userDescription(
+#'        title = userDescription(
 #'         title = "Elizabeth Pierce",
 #'         subtitle = "Web Designer",
 #'         image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
@@ -1372,17 +1372,17 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL, 
+bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL, 
                         solidHeader = TRUE, background = NULL, width = 6, height = NULL, 
-                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL, 
-                        gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
-                        sidebar = NULL, id = NULL) {
+                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
+                        gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, 
+                        label = NULL, dropdownMenu = NULL, sidebar = NULL, id = NULL) {
   
   # userBox is built on top of the box function. The difference is the title tag
   # that is replaced by userDescription ...
   boxTag <- box(
     ...,
-    title = user, 
+    title = title, 
     footer = footer, 
     status = status, 
     solidHeader = solidHeader, 
@@ -1393,7 +1393,7 @@ bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL,
     collapsed = collapsed, 
     closable = closable, 
     maximizable = maximizable, 
-    icon = icon, 
+    icon = NULL, 
     gradient = gradient, 
     boxToolSize = boxToolSize, 
     elevation = elevation, 
@@ -1406,7 +1406,7 @@ bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL,
 
   
   # find the selected type 
-  type <- user[[2]]
+  type <- title[[2]]
   
   # specific class for userDescription
   boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget")
@@ -1420,17 +1420,17 @@ bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL,
   # Change color
   if (!is.null(status)) {
     if (gradient) {
-      if (inherits(user[[1]], "shiny.tag.list")) {
-        user[[1]][[1]]$attribs$class <- paste0(user[[1]][[1]]$attribs$class, " bg-gradient-", status)
+      if (inherits(title[[1]], "shiny.tag.list")) {
+        title[[1]][[1]]$attribs$class <- paste0(title[[1]][[1]]$attribs$class, " bg-gradient-", status)
       } else {
-        user[[1]]$attribs$class <- paste0(user[[1]]$attribs$class, " bg-gradient-", status)
+        title[[1]]$attribs$class <- paste0(title[[1]]$attribs$class, " bg-gradient-", status)
       }
       
     } else {
-      if (inherits(user[[1]], "shiny.tag.list")) {
-        user[[1]][[1]]$attribs$class <- paste0(user[[1]][[1]]$attribs$class, " bg-", status)
+      if (inherits(title[[1]], "shiny.tag.list")) {
+        title[[1]][[1]]$attribs$class <- paste0(title[[1]][[1]]$attribs$class, " bg-", status)
       } else {
-        user[[1]]$attribs$class <- paste0(user[[1]]$attribs$class, " bg-", status)
+        title[[1]]$attribs$class <- paste0(title[[1]]$attribs$class, " bg-", status)
       }
       
     }
@@ -1445,7 +1445,7 @@ bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL,
   })
   
   # replace title tag by the user widget
-  boxTag$children[[1]]$children[[1]] <- user[[1]]
+  boxTag$children[[1]]$children[[1]] <- title[[1]]
   
   # inject box tools
   if (inherits(boxTag$children[[1]]$children[[1]], "shiny.tag.list")) {
@@ -1662,18 +1662,12 @@ cardProfileItem <- function(title, description) {
 
 #' @title AdminLTE3 social card
 #'
-#' @description Create social card
+#' @description \link{socialBox} Creates social card
 #'
-#' @param ... Body content. May include \link{attachmentBlock} for instance.
-#' @param src Header image, if any.
-#' @param title Card title.
-#' @param subtitle card subtitle.
-#' @param width Card width (between 1 and 12). 
-#' @param height Card height.
-#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the card. 
-#' @param closable If TRUE, display a button in the upper right that allows the user to close the card.
-#' @param comments Slot for \link{cardComment}.
-#' @param footer Card footer, if any.
+#' @inheritParams bs4Card
+#' @param comments Slot for \link{cardComment}
+#' 
+#' @rdname socialBox
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -1681,127 +1675,147 @@ cardProfileItem <- function(title, description) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(
-#'      bs4SidebarMenu(
-#'        bs4SidebarHeader("Main content"),
-#'        bs4SidebarMenuItem(
-#'          "Social Card",
-#'          tabName = "social_card",
-#'          icon = "desktop"
-#'        )
-#'       )
-#'     ),
-#'     footer = bs4DashFooter(),
-#'     body = bs4DashBody(
-#'      bs4TabItems(
-#'        bs4TabItem(
-#'          tabName = "profile_card",
-#'          bs4SocialCard(
-#'           title = "Social Card",
-#'           subtitle = "example-01.05.2018",
-#'           src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-#'           "Some text here!",
-#'           comments = tagList(
-#'            lapply(X = 1:10, FUN = function(i) {
-#'              cardComment(
-#'               src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-#'               title = paste("Comment", i),
-#'               date = "01.05.2018",
-#'               paste0("The ", i, "-th comment")
-#'              )
-#'             })
-#'           ),
-#'           footer = "The footer here!"
-#'          )
-#'        )
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      socialBox(
+#'       title = userBlock(
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+#'        title = "Social Box",
+#'        subtitle = "example-01.05.2018"
+#'       ),
+#'       "Some text here!",
+#'       attachmentBlock(
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+#'        title = "Test",
+#'        href = "https://google.com",
+#'        "This is the content"
+#'       ),
+#'       lapply(X = 1:10, FUN = function(i) {
+#'         boxComment(
+#'           image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'           title = paste("Comment", i),
+#'           date = "01.05.2018",
+#'           paste0("The ", i, "-th comment")
+#'         )
+#'       }),
+#'       footer = "The footer here!"
 #'      )
-#'    ),
-#'    title = "socialCard"
+#'     ),
+#'     controlbar = dashboardControlbar(),
+#'     title = "socialBox"
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
 #'
 #' @export
-bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL, 
-                          width = 6, height = NULL, collapsible = TRUE,
-                          closable = TRUE, comments = NULL, footer = NULL) {
+bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = NULL, 
+                          collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
+                          boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
+                          sidebar = NULL, id = NULL) {
   
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height), ";")
+  items <- list(...)
+  # recover comments
+  comments <- dropNulls(lapply(items, function(item) {
+    if (inherits(item, "list")) {
+      lapply(item, function(nested) {
+        if (inherits(nested, "card-comment")) nested
+      })
+    } else {
+      if (inherits(item, "card-comment")) item
+    }
+  })) [[1]]
+  
+  otherItems <- dropNulls(lapply(items, function(item) {
+    if (inherits(item, "list")) {
+      lapply(item, function(nested) {
+        if (!inherits(nested, "card-comment")) nested
+      })
+    } else {
+      if (!inherits(item, "card-comment")) item
+    }
+  }))
+  
+  # userBox is built on top of the box function. The difference is the title tag
+  # that is replaced by userDescription ...
+  boxTag <- box(
+    ...,
+    title = title, 
+    footer = footer,
+    width = width, 
+    height = height, 
+    collapsible = collapsible, 
+    collapsed = collapsed, 
+    closable = closable, 
+    maximizable = maximizable, 
+    icon = NULL, 
+    gradient = FALSE, 
+    boxToolSize = boxToolSize, 
+    elevation = elevation, 
+    headerBorder = headerBorder,
+    label = label, 
+    dropdownMenu = dropdownMenu, 
+    sidebar = sidebar, 
+    id = id
+  )
+  
+  # specific class 
+  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget")
+  
+  # replace title tag by the user widget
+  boxTag$children[[1]]$children[[1]]$children[[2]] <- title
+  
+  
+  # inject any comments
+  if (length(comments) > 0) {
+    commentsTag <- shiny::tags$div(
+      class = "card-footer card-comments",
+      style = "overflow-y: auto; max-height: 150px; display: block;",
+      comments
+    ) 
+    
+    # insert in boxTag structure
+    boxTag$children[[1]]$children[[2]]$children <- otherItems
+    boxTag$children[[1]] <- tagInsertChild(
+      boxTag$children[[1]],
+      commentsTag,
+      3
+    )
+    
   }
   
-  shiny::column(
-    width = width,
-    shiny::tags$div(
-      class = "card card-widget",
-      style = paste0(style, " display: block;"),
-      
-      # header
-      shiny::tags$div(
-        class = "card-header",
-        
-        # userblock
-        shiny::tags$div(
-          class = "user-block",
-          shiny::img(class = "img-circle", src = src),
-          shiny::tags$span(
-            class = "username",
-            shiny::a(href = "javascript:void(0)", title)
-          ),
-          shiny::tags$span(class = "description", subtitle)
-        ),
-        
-        # cardTool
-        shiny::tags$div(
-          class = "card-tools",
-          if (collapsible) {
-            shiny::tags$button(
-              class = "btn btn-tool",
-              `data-card-widget` = "collapse",
-              type = "button",
-              shiny::tags$i(class = "fa fa-minus")
-            )
-          },
-          if (closable) {
-            shiny::tags$button(
-              class = "btn btn-tool",
-              `data-card-widget` = "remove",
-              type = "button",
-              shiny::tags$i(class = "fa fa-times")
-            )
-          }
-        )
-      ),
-      
-      # card body
-      shiny::tags$div(
-        class = "card-body",
-        ...
-      ),
-      
-      # card comments
-      if (!is.null(comments)) {
-        shiny::tags$div(
-          class = "card-footer card-comments",
-          style = "overflow-y: auto; max-height: 150px; display: block;",
-          comments
-        ) 
-      },
-      
-      # footer
-      if (!is.null(footer)) {
-        shiny::tags$div(
-          class = "card-footer", 
-          style = "display: block;",
-          footer
-        ) 
-      }
-    )
+  boxTag
+  
+  
+  
+}
+
+
+
+#' User block
+#' 
+#' \link{userBlock} goes in the title of \link{socialBox}.
+#'
+#' @param image User image.
+#' @param title A title, user name,...
+#' @param subtitle Any subtitle.
+#' 
+#' @rdname socialBox
+#' 
+#' @export
+userBlock <- function(image, title, subtitle = NULL) {
+  shiny::tags$div(
+    class = "user-block",
+    shiny::img(class = "img-circle", src = image),
+    shiny::tags$span(
+      class = "username",
+      shiny::a(href = "javascript:void(0)", title)
+    ),
+    if (!is.null(subtitle)) shiny::tags$span(class = "description", subtitle)
   )
 }
 
@@ -1809,30 +1823,39 @@ bs4SocialCard <- function(..., src = NULL, title = NULL, subtitle = NULL,
 
 #' @title BS4 card comment container
 #'
-#' @description Create a card comment to insert in \link{bs4SocialCard}
+#' @description Create a card comment to insert in \link{socialBox}
 #'
 #' @param ... Comment content.
-#' @param src Author image, if any.
+#' @param image Author image, if any.
 #' @param title Comment title.
 #' @param date Date of publication.
+#' 
+#' @rdname socialBox
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @export
-cardComment <- function(..., src = NULL, title = NULL, date = NULL) {
-  shiny::tags$div(
+cardComment <- function(..., image, title = NULL, date = NULL) {
+  
+  comment <- list(...)
+  if (length(comment) == 0) stop("You must enter a comment.")
+  
+  cardCommentTag <- shiny::tags$div(
     class = "card-comment",
-    shiny::img(class = "img-circle img-sm", src = src),
+    shiny::img(class = "img-circle img-sm", src = image),
     shiny::tags$div(
       class = "comment-text",
       shiny::tags$span(
         class = "username", 
         title,
-        shiny::tags$span(class = "text-muted float-right", date)
+        if (!is.null(date)) shiny::tags$span(class = "text-muted float-right", date)
       ),
       ...
     )
   )
+  
+  class(cardCommentTag) <- c(class(cardCommentTag), "card-comment")
+  cardCommentTag
 }
 
 

@@ -86,12 +86,16 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `src` becomes `image`.
 - `status` becomes `color`.
 
+### bs4SocialBox
+- rework component
+- add `userBlock()` to pass on title.
+
 
 ### bs4Box 
 - This component has been removed
 
 ### Others
-- In `cardProfile()`, add `bordered()`. `src` becomes `image`. 
+- In `cardProfile()`, add `bordered`. `src` becomes `image`. 
 - Remove `cardProfileItemList()`.
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - value is now mandatory in `bs4InfoBox()`

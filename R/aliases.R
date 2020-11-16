@@ -547,3 +547,23 @@ boxProfile <- cardProfile
 #'
 #' @export
 boxProfileItem <- cardProfileItem
+
+
+
+#' Alias to \link{bs4SocialCard}
+#' See \link{bs4SocialCard} for full details
+#'
+#' @rdname socialBox
+#'
+#' @export
+socialBox <- bs4SocialCard
+
+
+
+#' Alias to \link{cardComment}
+#' See \link{cardComment} for full details
+#'
+#' @rdname socialBox
+#'
+#' @export
+boxComment <- cardComment
