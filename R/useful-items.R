@@ -1171,14 +1171,17 @@ ionicon <- function(name) {
 
 
 
-#' @title AdminLTE3 attachment container
+#' AdminLTE3 attachment container
 #'
-#' @description Create an attachment container, nice to wrap articles...
+#' \link{attachmentBlock} create an attachment container, nice to wrap articles...
+#' and insert in a \link{box}.
 #'
 #' @param ... Any element.
-#' @param src Url or path to the image.
+#' @param image url or path to the image.
 #' @param title Attachment title.
-#' @param titleUrl External link.
+#' @param href External link.
+#' 
+#' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -1186,46 +1189,52 @@ ionicon <- function(name) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     bs4DashNavbar(),
-#'     bs4DashSidebar(),
-#'     bs4DashControlbar(),
-#'     bs4DashBody(
-#'      bs4Card(
-#'       title = "Attachment example",
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "attachmentBlock example",
 #'       attachmentBlock(
-#'        src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
 #'        title = "Test",
-#'        titleUrl = "http://google.com",
+#'        href = "https://google.com",
 #'        "This is the content"
 #'       )
 #'      )
 #'     ),
-#'     title = "AttachmentBlock"
+#'     title = "attachmentBlock"
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
 #'
 #' @export
-attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
+attachmentBlock <- function(..., image, title = NULL, href = NULL) {
   shiny::tags$div(
     class = "attachment-block clearfix",
     shiny::img(
       class = "attachment-img",
-      src = src
+      src = image
     ),
     shiny::tags$div(
       class = "attachment-pushed",
-      shiny::tags$h4(
-        class = "attachment-heading",
-        shiny::tags$a(
-          href = titleUrl,
-          target = "_blank",
-          title
-        )
-      ),
+      if (!is.null(title)) {
+        shiny::tags$h4(
+          class = "attachment-heading",
+          shiny::tags$a(
+            href = href,
+            target = if (!is.null(href)) {
+              "_blank"
+            } else {
+              "#"
+            },
+            title
+          )
+        ) 
+      },
       shiny::tags$div(
         class = "attachment-text",
         ...
@@ -1236,33 +1245,58 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 
 
 
-#' @title AdminLTE3 description block
+#' AdminLTE3 description block
 #'
-#' @description Create a description block, perfect for writing statistics
+#' \link{descriptionBlock} creates a description block, perfect for writing statistics 
+#' to insert in a \link{box}.
 #'
 #' @param number Any number.
-#' @param numberColor Number color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-#' @param numberIcon Number icon, if any. Should be written like "fa fa-times".
+#' @param numberColor Number color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' @param numberIcon Number icon, if any. Expect \code{\link[shiny]{icon}}.
 #' @param header Bold text.
 #' @param text Additional text.
 #' @param rightBorder TRUE by default. Whether to display a right border to
 #'   separate two blocks. The last block on the right should not have a right border.
 #' @param marginBottom FALSE by default. Set it to TRUE when the
 #'   descriptionBlock is used in a \link{cardPad} context.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'   
+#' @rdname card
+#' @family boxWidgets
 #'
 #' @examples
+#' # Box with descriptionBlock
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     bs4DashNavbar(),
-#'     bs4DashSidebar(),
-#'     bs4DashControlbar(),
-#'     bs4DashBody(
-#'      bs4Card(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
 #'       solidHeader = FALSE,
 #'       title = "Status summary",
 #'       background = NULL,
@@ -1273,8 +1307,8 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 #'           width = 6,
 #'           descriptionBlock(
 #'             number = "17%", 
-#'             numberColor = "success", 
-#'             numberIcon = "caret-up",
+#'             numberColor = "pink", 
+#'             numberIcon = icon("caret-up"),
 #'             header = "$35,210.43", 
 #'             text = "TOTAL REVENUE", 
 #'             rightBorder = TRUE,
@@ -1285,8 +1319,8 @@ attachmentBlock <- function(..., src = NULL, title = NULL, titleUrl = NULL) {
 #'           width = 6,
 #'           descriptionBlock(
 #'             number = "18%", 
-#'             numberColor = "danger", 
-#'             numberIcon = "caret-down",
+#'             numberColor = "secondary", 
+#'             numberIcon = icon("caret-down"),
 #'             header = "1200", 
 #'             text = "GOAL COMPLETION", 
 #'             rightBorder = FALSE,
@@ -1308,18 +1342,21 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
                              marginBottom = FALSE) {
   
   cl <- "description-block"
-  if (isTRUE(rightBorder)) cl <- paste0(cl, " border-right")
-  if (isTRUE(marginBottom)) cl <- paste0(cl, " mb-4")
+  if (rightBorder) cl <- paste0(cl, " border-right")
+  if (marginBottom) cl <- paste0(cl, " mb-4")
   
   numcl <- "description-percentage"
-  if (!is.null(numberColor)) numcl <- paste0(numcl, " text-", numberColor)
+  if (!is.null(numberColor)) {
+    validateStatusPlus(numberColor)
+    numcl <- paste0(numcl, " text-", numberColor)
+  }
   
   shiny::tags$div(
     class = cl,
     shiny::tags$span(
       class = numcl, 
       number,
-      if (!is.null(numberIcon)) shiny::icon(numberIcon)
+      if (!is.null(numberIcon)) numberIcon
     ),
     shiny::tags$h5(class = "description-header", header),
     shiny::tags$span(class = "description-text", text)
@@ -1328,13 +1365,39 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 
 
 
-#' @title AdminLTE3 vertical block container
+#' AdminLTE3 vertical block container
 #'
-#' @description Create a vertical container for \link{descriptionBlock} or other elements
+#' \link{boxPad} creates a vertical container for \link{descriptionBlock}.
+#' It has to be included in a \link{box}.
 #'
 #' @param ... Any element such as \link{descriptionBlock}.
-#' @param color Background color: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param color Background color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' @param style Custom CSS, if any.
+#' 
+#' @rdname card
+#' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -1342,21 +1405,21 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     bs4DashNavbar(),
-#'     bs4DashSidebar(),
-#'     bs4DashControlbar(),
-#'     bs4DashBody(
-#'      bs4Card(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
 #'       title = "Box with right pad",
 #'       status = "warning",
 #'       fluidRow(
 #'         column(width = 6),
 #'         column(
 #'           width = 6,
-#'           cardPad(
-#'             color = "info",
+#'           boxPad(
+#'             color = "purple",
 #'             descriptionBlock(
 #'               header = "8390", 
 #'               text = "VISITS", 
@@ -1380,7 +1443,7 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #'       )
 #'      )
 #'     ),
-#'     title = "cardPad"
+#'     title = "boxPad"
 #'   ),
 #'   server = function(input, output) { }
 #'  )
@@ -1389,7 +1452,10 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' @export
 cardPad <- function(..., color = NULL, style = NULL) {
   cl <- "card-pane-right pt-2 pb-2 pl-4 pr-4"
-  if (!is.null(color)) cl <- paste0(cl, " bg-", color)
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    cl <- paste0(cl, " bg-", color)
+  }
   
   shiny::tags$div(
     class = cl,
@@ -1397,6 +1463,124 @@ cardPad <- function(..., color = NULL, style = NULL) {
     ...
   )
 }
+
+
+
+
+
+
+#' AdminLTE3 product list container
+#'
+#' \link{productList} creates a container to display commercial items in an elegant container.
+#' Insert in a \link{box}.
+#'
+#' @param ... slot for \link{productListItem}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname productList
+#'
+#' @examples
+#' 
+#' # Box with productList
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "Product List",
+#'       status = "primary",
+#'       productList(
+#'         productListItem(
+#'           image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png", 
+#'           title = "Samsung TV", 
+#'           subtitle = "$1800", 
+#'           color = "warning",
+#'           "This is an amazing TV, but I don't like TV!"
+#'         ),
+#'         productListItem(
+#'           image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg", 
+#'           title = "Imac 27", 
+#'           subtitle = "$4999", 
+#'           color = "danger",
+#'           "This is were I spend most of my time!"
+#'         )
+#'       )
+#'      )
+#'     ),
+#'     title = "Product List"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+productList <- function(...) {
+  shiny::tags$ul(
+    class = "products-list product-list-in-card pl-2 pr-2",
+    ...
+  )
+}
+
+
+
+
+#' AdminLTE3 product item
+#'
+#' \link{productListItem} creates a product item to insert in \link{productList}.
+#'
+#' @param ... product description.
+#' @param image image url, if any.
+#' @param title product name.
+#' @param subtitle product price.
+#' @param color price color: Valid color are listed below:
+#' \itemize{
+#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
+#' @rdname productList
+#'
+#' @export
+productListItem <- function(..., image = NULL, title = NULL, 
+                            subtitle = NULL, color = NULL) {
+  cl <- "badge float-right"
+  if (!is.null(color)) {
+    validateStatus(color)
+    cl <- paste0(cl, " badge-", color)
+  }
+  
+  shiny::tags$li(
+    class = "item",
+    shiny::tags$div(
+      class = "product-img",
+      shiny::tags$img(src = image, alt = "Product Image")
+    ),
+    shiny::tags$div(
+      class = "product-info",
+      shiny::tags$a(
+        href = "javascript:void(0)", 
+        class = "product-title",
+        title,
+        if (!is.null(subtitle)) shiny::tags$span(class = cl, subtitle)
+      ),
+      shiny::tags$span(
+        class = "product-description",
+        ...
+      )
+    )
+  )
+}
+
+
+
 
 
 
@@ -2171,28 +2355,5 @@ bs4Quote <- function(..., status) {
 #' Get all AdminLTE colors.
 #' @export
 getAdminLTEColors <- function() {
-  return(
-    c(
-      "dark",
-      "navy",
-      "gray-dark",
-      "gray",
-      "secondary",
-      "indigo",
-      "purple",
-      "primary",
-      "info",
-      "success",
-      "olive",
-      "teal",
-      "lime",
-      "warning",
-      "orange",
-      "danger",
-      "fuchsia",
-      "maroon",
-      "pink",
-      "light"
-    )
-  )
+  c(validStatuses, validNuances, validColors)
 }

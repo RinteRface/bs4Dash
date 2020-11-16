@@ -123,6 +123,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `productList()` and `productListItem()`.
 - New `userDescription()` and `userBlock()`.
 - New built-in `skinSelector`.
 - New built-in dark/light mode switcher.
