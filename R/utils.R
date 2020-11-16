@@ -254,3 +254,10 @@ rd_color_tag <- function(color, label = color) {
     style, label, label
   )
 }
+
+
+# Insert HTML tag at any position
+tagInsertChild <- function(tag, child, position) {
+  tag$children <- append(tag$children, list(child), position - 1)
+  tag
+}
