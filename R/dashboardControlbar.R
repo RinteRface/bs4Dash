@@ -114,7 +114,8 @@ updateControlbarMenu <- shiny::updateTabsetPanel
 #'        id = "controlbar",
 #'        collapsed = FALSE,
 #'        overlay = TRUE
-#'      )
+#'      ),
+#'      title = "updateControlbar"
 #'    ),
 #'    server = function(input, output, session) {
 #'      
