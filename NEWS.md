@@ -95,6 +95,9 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `src` becomes `image`.
 - `titleUrl` becomes `href`.
 
+### descriptionBlock
+- `icon` expects `shiny::icon`.
+
 
 ### bs4Box 
 - This component has been removed
