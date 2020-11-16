@@ -10,15 +10,19 @@ updatebs4TabItems(session, inputId, selected = NULL)
 updateTabItems(session, inputId, selected = NULL)
 }
 \arguments{
-\item{session}{shiny session.}
+\item{session}{The \code{session} object passed to function given to
+\code{shinyServer}.}
 
-\item{inputId}{\link{bs4TabsetPanel} unique id.}
+\item{inputId}{The id of the \code{tabsetPanel}, \code{navlistPanel},
+or \code{navbarPage} object.}
 
-\item{selected}{the tab to be selected.}
+\item{selected}{The \code{value} (or, if none was supplied, the \code{title})
+of the tab that should be selected by default. If \code{NULL}, the first
+tab will be selected.}
 }
 \description{
-This function controls the active tab of \code{\link{bs4TabItems}} from the
-server. It behaves just like \code{\link{updatebs4TabSetPanel}}.
+This function controls the active tab of \code{\link{tabItems}} from the
+server. It behaves just like \code{\link{shiny::updateTabsetPanel}}.
 }
 \examples{
 ## Only run this example in interactive R sessions

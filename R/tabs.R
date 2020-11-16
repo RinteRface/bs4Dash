@@ -10,44 +10,39 @@
 #'  library(shiny)
 #'  library(bs4Dash)
 #'
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
-#'      
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Bootstrap 4 tabsetPanel",
+#'     body = dashboardBody(
 #'      # manually inserted panels
-#'      bs4TabsetPanel(
+#'      tabsetPanel(
 #'       id = "tabcard",
-#'       side = "left",
 #'       tabPanel(
-#'        tabName = "Tab 1", 
-#'        active = FALSE,
+#'        title = "Tab 1", 
 #'        "Content 1"
 #'       ),
 #'       tabPanel(
-#'        tabName = "Tab 2", 
-#'        active = TRUE,
+#'        title = "Tab 2", 
 #'        "Content 2"
 #'       ),
 #'       tabPanel(
-#'        tabName = "Tab 3", 
-#'        active = FALSE,
+#'        title = "Tab 3", 
 #'        "Content 3"
 #'       )
 #'      ),
 #'      
 #'      br(), br(),
 #'      # programmatically inserted panels
-#'      bs4TabsetPanel(
+#'      tabsetPanel(
 #'        id = "tabset",
 #'        side = "left",
 #'        .list = lapply(1:3, function(i) {
-#'          bs4TabPanel(
-#'            tabName = paste0("Tab", i), 
+#'          tabPanel(
+#'            title = paste0("Tab", i), 
 #'            active = FALSE,
 #'            paste("Content", i)
 #'          )
@@ -56,13 +51,13 @@
 #'       
 #'       br(), br(),
 #'       # vertical tabset
-#'       bs4TabsetPanel(
+#'       tabsetPanel(
 #'        id = "verttabset",
 #'        side = "left",
 #'        vertical = TRUE,
 #'        .list = lapply(1:3, function(i) {
-#'          bs4TabPanel(
-#'            tabName = paste0("Tab", i), 
+#'          tabPanel(
+#'            title = paste0("Tab", i), 
 #'            active = FALSE,
 #'            paste("Content", i)
 #'          )
@@ -72,12 +67,120 @@
 #'    ),
 #'    server = function(input, output) {}
 #'  )
+#'  
+#'  # update tabsetPanel
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'    title = "updateTabsetPanel",
+#'    header = dashboardHeader(),
+#'    body = dashboardBody(
+#'      tabsetPanel(
+#'        id = "tabset1",
+#'        selected = "Tab 2",
+#'        tabPanel(
+#'          title = "Tab 1", 
+#'          numericInput("val", "Value:", 10, min = 1, max = 100),
+#'          verbatimTextOutput("value")
+#'        ),
+#'        tabPanel(
+#'          title = "Tab 2", 
+#'          "Content 2"
+#'        ),
+#'        tabPanel(
+#'          title = "Tab 3", 
+#'          checkboxGroupInput(
+#'            inline = TRUE,
+#'            "variable", "Variables to show:",
+#'            c("Cylinders" = "cyl",
+#'              "Transmission" = "am",
+#'              "Gears" = "gear")
+#'          ),
+#'          tableOutput("data")
+#'        )
+#'      ),
+#'      uiOutput("tabSetPanel2")
+#'    ),
+#'    sidebar = dashboardSidebar(
+#'      skin = "light",
+#'      sliderInput(
+#'        inputId = "controller",
+#'        label = "Update the first tabset",
+#'        min = 1,
+#'        max = 3,
+#'        value = 2
+#'      ),
+#'      br(),
+#'      sliderInput(
+#'        inputId = "controller2",
+#'        label = "Update the second tabset",
+#'        min = 1,
+#'        max = 3,
+#'        value = 3
+#'      )
+#'    ),
+#'    controlbar = dashboardControlbar(collapsed = FALSE),
+#'    footer = dashboardFooter()
+#'  ),
+#'  server = function(input, output, session) {
+#'  
+#'    output$tabSetPanel2 <- renderUI({
+#'     tabsetPanel(
+#'       id = "tabset2",
+#'       tabPanel(
+#'         title = "Tab 1", 
+#'         p("Tab 1 ")
+#'       ),
+#'       tabPanel(
+#'         title = "Tab 2", 
+#'         p("Tab 2")
+#'       ),
+#'       tabPanel(
+#'         title = "Tab 3", 
+#'         p("Tab 3")
+#'       )
+#'     )
+#'    })
+#'    
+#'    # update tabset1
+#'    observeEvent(input$controller, {
+#'      updateTabsetPanel(
+#'        session, 
+#'        inputId = "tabset1", 
+#'        selected = paste("Tab", input$controller)
+#'      )
+#'    }, ignoreInit = TRUE)
+#'    
+#'    # update tabset 2
+#'    observeEvent(input$controller2, {
+#'      updateTabsetPanel(
+#'        session, 
+#'        inputId = "tabset2", 
+#'        selected = paste("Tab", input$controller2)
+#'      )
+#'    }, ignoreInit = TRUE)
+#'    
+#'    output$distPlot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'    })
+#'    
+#'    output$data <- renderTable({
+#'      mtcars[, c("mpg", input$variable), drop = FALSE]
+#'    }, rownames = TRUE)
+#'    
+#'    output$txt <- renderText({
+#'      paste("You chose", input$rb)
+#'    })
+#'    
+#'    output$value <- renderText({ input$val })
+#'    
+#'   }
+#'  )
 #' }
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabsetPanel <- function(..., id = NULL, selected = NULL, 
+tabsetPanel <- function(..., id = NULL, selected = NULL, 
                            type = c("tabs", "pills"), position = NULL) {
   type <- match.arg(type)
   
@@ -116,147 +219,6 @@ bs4TabsetPanel <- function(..., id = NULL, selected = NULL,
   
   temp_tabset$children[[1]]$children[[1]] <- bs4_nav_items
   temp_tabset
-}
-
-
-
-
-#' Update a \link{bs4TabsetPanel}
-#'
-#' @param session shiny session.
-#' @param inputId \link{bs4TabsetPanel} unique id.
-#' @param selected the tab to be selected.
-#'
-#' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  
-#'  shinyApp(
-#'   ui = bs4DashPage(
-#'    sidebar_collapsed = FALSE,
-#'    controlbar_collapsed = TRUE,
-#'    enable_preloader = FALSE,
-#'    loading_duration =  2,
-#'    navbar = bs4DashNavbar(skin = "dark"),
-#'    body = bs4DashBody(
-#'      bs4TabsetPanel(
-#'        id = "tabset1",
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1", 
-#'          active = FALSE,
-#'          numericInput("val", "Value:", 10, min = 1, max = 100),
-#'          verbatimTextOutput("value")
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2", 
-#'          active = TRUE,
-#'          "Content 2"
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 3", 
-#'          active = FALSE,
-#'          checkboxGroupInput(
-#'            inline = TRUE,
-#'            "variable", "Variables to show:",
-#'            c("Cylinders" = "cyl",
-#'              "Transmission" = "am",
-#'              "Gears" = "gear")
-#'          ),
-#'          tableOutput("data")
-#'        )
-#'      ),
-#'      uiOutput("tabSetPanel2")
-#'    ),
-#'    sidebar = bs4DashSidebar(
-#'      skin = "light",
-#'      sliderInput(
-#'        inputId = "controller",
-#'        label = "Update the first tabset",
-#'        min = 1,
-#'        max = 3,
-#'        value = 2
-#'      ),
-#'      br(),
-#'      sliderInput(
-#'        inputId = "controller2",
-#'        label = "Update the second tabset",
-#'        min = 1,
-#'        max = 3,
-#'        value = 3
-#'      )
-#'    ),
-#'    controlbar = bs4DashControlbar(skin = "light"),
-#'    footer = bs4DashFooter()
-#'  ),
-#'  server = function(input, output, session) {
-#'  
-#'    output$tabSetPanel2 <- renderUI({
-#'     bs4TabsetPanel(
-#'       id = "tabset2",
-#'       side = "left",
-#'       bs4TabPanel(
-#'         tabName = "Tab 1", 
-#'         active = FALSE,
-#'         p("Tab 1 ")
-#'       ),
-#'       bs4TabPanel(
-#'         tabName = "Tab 2", 
-#'         active = FALSE,
-#'         p("Tab 2")
-#'       ),
-#'       bs4TabPanel(
-#'         tabName = "Tab 3", 
-#'         active = FALSE,
-#'         p("Tab 3")
-#'       )
-#'     )
-#'    })
-#'    
-#'    # update tabset1
-#'    observeEvent(input$controller, {
-#'      updatebs4TabSetPanel(
-#'        session, 
-#'        inputId = "tabset1", 
-#'        selected = paste("Tab", input$controller)
-#'      )
-#'    }, ignoreInit = TRUE)
-#'    
-#'    # update tabset 2
-#'    observeEvent(input$controller2, {
-#'      updatebs4TabSetPanel(
-#'        session, 
-#'        inputId = "tabset2", 
-#'        selected = paste("Tab", input$controller2)
-#'      )
-#'    }, ignoreInit = TRUE)
-#'    
-#'    output$distPlot <- renderPlot({
-#'      hist(rnorm(input$obs))
-#'    })
-#'    
-#'    output$data <- renderTable({
-#'      mtcars[, c("mpg", input$variable), drop = FALSE]
-#'    }, rownames = TRUE)
-#'    
-#'    output$txt <- renderText({
-#'      paste("You chose", input$rb)
-#'    })
-#'    
-#'    output$value <- renderText({ input$val })
-#'    
-#'   }
-#'  )
-#' }
-updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
-  message <- dropNulls(list(value = selected))
-  # this functions is linked to the 
-  # inst/bs4Dash/update-tabs.js function
-  session$sendInputMessage(inputId, message = message)
 }
 
 

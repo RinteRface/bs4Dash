@@ -250,17 +250,6 @@ tabBox <- bs4TabCard
 
 
 
-#' Alias to \link{bs4TabsetPanel}
-#' See \link{bs4TabsetPanel} for full details
-#'
-#' @rdname bs4TabsetPanel
-#'
-#' @export
-tabsetPanel <- bs4TabsetPanel
-
-
-
-
 
 #' Alias to \link{bs4InfoBox}
 #' See \link{bs4InfoBox} for full details

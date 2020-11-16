@@ -648,10 +648,10 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 
 #' Change the selected sidebar tab on the client
 #'
-#' This function controls the active tab of \code{\link{bs4TabItems}} from the
-#' server. It behaves just like \code{\link{updatebs4TabSetPanel}}.
+#' This function controls the active tab of \code{\link{tabItems}} from the
+#' server. It behaves just like \code{\link{shiny::updateTabsetPanel}}.
 #'
-#' @inheritParams updatebs4TabSetPanel
+#' @inheritParams shiny::updateTabsetPanel
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {
@@ -796,4 +796,4 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'  )
 #' }
 #' @export
-updatebs4TabItems <- updatebs4TabSetPanel
+updatebs4TabItems <- shiny::updateTabsetPanel
