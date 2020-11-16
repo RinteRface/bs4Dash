@@ -81,6 +81,7 @@
 #' @param id Box unique id. \link{updateBox} target.
 #'
 #' @rdname card
+#' @family cards
 #'
 #' @examples
 #' # A box with label, sidebar, dropdown menu
@@ -1312,6 +1313,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @rdname bs4UserCard
+#' @family cards
 #'
 #' @examples
 #' if(interactive()){
@@ -1668,6 +1670,7 @@ cardProfileItem <- function(title, description) {
 #' @param comments Slot for \link{cardComment}
 #' 
 #' @rdname socialBox
+#' @family cards
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -1868,6 +1871,8 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #' for more details.
 #' @export
 #' 
+#' @family cards
+#' 
 #' @note Cards must have width argument set to NULL.
 #'
 #' @examples
@@ -1876,9 +1881,9 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'  library(bs4Dash)
 #'  
 #'  # with group
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'        bs4CardLayout(
@@ -1900,9 +1905,9 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'  )
 #'  
 #'  # with deck
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'        bs4CardLayout(
@@ -1924,9 +1929,9 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'  )
 #'  
 #'  # with columns
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'        bs4CardLayout(

@@ -24,9 +24,9 @@ if (interactive()) {
  library(bs4Dash)
  
  # with group
- shiny::shinyApp(
+ shinyApp(
    ui = dashboardPage(
-     navbar = dashboardHeader(),
+     header = dashboardHeader(),
      sidebar = dashboardSidebar(),
      body = dashboardBody(
        bs4CardLayout(
@@ -48,9 +48,9 @@ if (interactive()) {
  )
  
  # with deck
- shiny::shinyApp(
+ shinyApp(
    ui = dashboardPage(
-     navbar = dashboardHeader(),
+     header = dashboardHeader(),
      sidebar = dashboardSidebar(),
      body = dashboardBody(
        bs4CardLayout(
@@ -72,9 +72,9 @@ if (interactive()) {
  )
  
  # with columns
- shiny::shinyApp(
+ shinyApp(
    ui = dashboardPage(
-     navbar = dashboardHeader(),
+     header = dashboardHeader(),
      sidebar = dashboardSidebar(),
      body = dashboardBody(
        bs4CardLayout(
@@ -100,3 +100,13 @@ if (interactive()) {
  
 }
 }
+\seealso{
+Other cards: 
+\code{\link{bs4Card}()},
+\code{\link{bs4InfoBox}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{bs4TabCard}()},
+\code{\link{bs4UserCard}()},
+\code{\link{bs4ValueBox}()}
+}
+\concept{cards}

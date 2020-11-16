@@ -112,6 +112,7 @@ Create a card comment to insert in \link{socialBox}
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
+ 
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -149,8 +150,18 @@ if (interactive()) {
 }
 
 }
+\seealso{
+Other cards: 
+\code{\link{bs4CardLayout}()},
+\code{\link{bs4Card}()},
+\code{\link{bs4InfoBox}()},
+\code{\link{bs4TabCard}()},
+\code{\link{bs4UserCard}()},
+\code{\link{bs4ValueBox}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{cards}

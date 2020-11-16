@@ -338,6 +338,16 @@ if (interactive()) {
  shinyApp(ui, server)
 }
 }
+\seealso{
+Other cards: 
+\code{\link{bs4CardLayout}()},
+\code{\link{bs4InfoBox}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{bs4TabCard}()},
+\code{\link{bs4UserCard}()},
+\code{\link{bs4ValueBox}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{cards}
