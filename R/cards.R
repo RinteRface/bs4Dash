@@ -59,10 +59,10 @@
 #' @param collapsed If TRUE, start collapsed. This must be used with
 #'   \code{collapsible=TRUE}.
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
+#' @param maximizable If TRUE, the card can be displayed in full screen mode.
 #' @param icon Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.
 #' @param gradient Whether to allow gradient effect for the background color. Default to FALSE.
-#' @param cardToolSize Size of the toolbox: choose among "xs", "sm", "md", "lg".
-#' @param maximizable If TRUE, the card can be displayed in full screen mode.
+#' @param boxToolSize Size of the toolbox: choose among "xs", "sm", "md", "lg".
 #' @param elevation Card elevation. 
 #' @param headerBorder Whether to display a border between the header and body.
 #' TRUE by default
@@ -129,9 +129,8 @@
 #' @export
 bs4Card <- function(..., title = NULL, footer = NULL, status = NULL, 
                     solidHeader = FALSE, background = NULL, width = 6, height = NULL, 
-                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, icon = NULL, 
-                    gradient = FALSE, cardToolSize = "sm", maximizable = FALSE, 
-                    elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
+                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL, 
+                    gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
                     sidebar = NULL, id = NULL) {
   
   props <- dropNulls(
@@ -216,23 +215,21 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   
   cardToolTag <- NULL
   
-  if (collapsible || closable || !is.null(dropdownMenu) || 
+  if (collapsible || closable || maximizable || !is.null(dropdownMenu) || 
       !is.null(label) || !is.null(sidebar)) {
     btnToolClass <- "btn"
     btnToolClass <- if (
-      !is.null(status) || 
-      (is.null(status) && is.null(background))
+      is.null(status) || 
+      !(is.null(status) && is.null(background))
     ) {
-      paste(btnToolClass, "btn-tool")
-    } else {
       paste0(
         btnToolClass, 
-        if (!is.null(background)) paste0(" bg-", background),
-        " btn-", cardToolSize
+        if (!is.null(background)) paste0(" btn-", background),
+        " btn-", boxToolSize
       )
     }
     
-    cardToolTag <- shiny::tags$div(class = "card-tools pull-right")
+    cardToolTag <- shiny::tags$div(class = "card-tools float-right")
   }
   
   
@@ -244,6 +241,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     else "minus"
     collapseTag <- shiny::tags$button(
       class = btnToolClass, 
+      type = "button",
       `data-card-widget` = "collapse", 
       shiny::icon(collapseIcon)
     )
@@ -263,7 +261,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   if (maximizable) {
     maximizableTag <- shiny::tags$button(
       type = "button",
-      class = "btn btn-tool",
+      class = btnToolClass,
       `data-card-widget` = "maximize",
       shiny::icon("expand")
     )
@@ -1313,59 +1311,93 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'
 #' @description Create widget user card
 #'
-#' @param ... Footer content.
-#' @param type User card type. Either NULL or 2.
-#' @param status User card color. "primary", "warning", "danger", "info" or "success".
-#' @param src User image url or path.
-#' @param elevation User card elevation (numeric). NULL by default.
-#' @param imageElevation User card image elevation (numeric). NULL by default.
+#' @param ... User card content.
 #' @param title User card title.
 #' @param subtitle User card subtitle.
+#' @param footer User card footer.
+#' @param image User image url or path.
+#' @param backgroundImage image url, if any. Background needs to be TRUE.
+#' @param color User card color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' @param type User card type. Either 1 or 2. 1 corresponds to a centered user image,
+#' while 2 is a left aligned user image.
 #' @param width The width of the card, using the Bootstrap grid system.
+#' @param height box height.
+#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the box. 
+#' @param collapsed If TRUE, start collapsed. This must be used with \code{collapsible=TRUE}.
+#' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
+#' @param maximizable If TRUE, the card can be displayed in full screen mode.
+#' @param gradient Whether to allow gradient effect for the background color. Default to FALSE.
+#' @param boxToolSize Toolbox icon size: choose among "xs", "sm", "md", "lg".
+#' @param elevation User card elevation (numeric). NULL by default.
+#' @param imageElevation User card image elevation (numeric). NULL by default.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname bs4UserCard
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
 #'      title = "test",
-#'      body = bs4DashBody(
-#'       fluidRow(
-#'       bs4UserCard(
-#'         src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-#'         status = "info",
-#'         title = "User card type 1",
-#'         subtitle = "a subtitle here",
-#'         elevation = 4,
-#'         "Any content here"
-#'        ),
-#'        bs4UserCard(
-#'         type = 2,
-#'         src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
-#'         status = "success",
-#'         imageElevation = 4,
-#'         title = "User card type 2",
-#'         subtitle = "a subtitle here",
-#'         bs4ProgressBar(
-#'          value = 5,
-#'          striped = FALSE,
-#'          status = "info"
-#'          ),
-#'         bs4ProgressBar(
-#'           value = 5,
-#'           striped = TRUE,
-#'           status = "warning",
-#'           width = "20%"
-#'         )
-#'        )
+#'      body = dashboardBody(
+#'       userBox(
+#'        title = "Nadia Carmichael",
+#'        subtitle = "lead Developer",
+#'        type = 2,
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+#'        status = "orange",
+#'        "Some text here!",
+#'        footer = "The footer here!"
+#'       ),
+#'       userBox(
+#'        title = "Alexander Pierce",
+#'        subtitle = "Founder & CEO",
+#'        type = 1,
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'        color = "indigo",
+#'        closable = TRUE,
+#'        "Some text here!",
+#'        footer = "The footer here!"
+#'       ),
+#'       userBox(
+#'        title = "Elizabeth Pierce",
+#'        subtitle = "Web Designer",
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'        backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+#'        closable = TRUE,
+#'        maximizable = TRUE,
+#'        "Some text here!",
+#'        footer = "The footer here!"
 #'       )
 #'      )
 #'    ),
@@ -1374,24 +1406,116 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageElevation = NULL,
-                        status = c("primary", "warning", "danger", "info", "success"),
-                        title = NULL, subtitle = NULL, width = 6) {
+bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL, backgroundImage = NULL,
+                        type = c(1, 2), color = NULL, width = 6, height = NULL,
+                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, 
+                        maximizable = FALSE, gradient = FALSE, boxToolSize = "sm", elevation = NULL, 
+                        imageElevation = NULL) {
   
-  status <- match.arg(status)
+  # Some checks
+  if (!is.null(color)) validateStatusPlus(color)
+  
+  if (!collapsible && collapsed) {
+    stop("Cannot collapse a card that is not collapsible.")
+  }
+  
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
   
   userCardCl <- "card card-widget"
+  # if type is not explicitly provided, it will use the default value, c(1, 2).
+  # Below we ensure that whenever it is the case, we only select the first element
+  # by default. We also need to convert to character for match.arg
+  if (length(type) == 2) {
+    type <- as.character(type[1])
+    type <- match.arg(type)
+  }
+  
+  # once type is assigned, if it is "1" we actually put it back to NULL since 
+  # the class widget-user-1 does not exist (only widget-user-2).
+  if (!is.null(type)) {
+    type <- as.character(type)
+    type <- match.arg(type)
+    if (type == "1") type <- NULL
+  }
   if (!is.null(type)) {
     userCardCl <- paste0(userCardCl, " widget-user-", type)
   } else {
     userCardCl <- paste0(userCardCl, " widget-user") 
-  } 
+  }
   
   if (!is.null(elevation)) userCardCl <- paste0(userCardCl, " elevation-", elevation)
+  if (collapsible && collapsed) {
+    userCardCl <- paste(userCardCl, "collapsed-card")
+  }
+  
+  style <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height))
+  }
   
   
   headerCl <- "widget-user-header"
-  if (!is.null(status)) headerCl <- paste0(headerCl, " bg-", status)
+  if (!is.null(color)) {
+    if (gradient) {
+      headerCl <- paste0(headerCl, " bg-gradient-", color)
+    } else {
+      headerCl <- paste0(headerCl, " bg-", color)
+    }
+  }
+  if (!is.null(backgroundImage)) headerCl <- paste0(headerCl, " bg-black")
+  
+  # collapseTag
+  collapseTag <- NULL
+  if (collapsible) {
+    collapseIcon <- if (collapsed) 
+      "plus"
+    else "minus"
+    collapseTag <- shiny::tags$button(
+      class = paste0("btn", " btn-", color, " btn-", boxToolSize), 
+      type = "button",
+      `data-card-widget` = "collapse", 
+      shiny::icon(collapseIcon)
+    )
+  }
+  
+  # closeTag
+  closeTag <- NULL
+  if (closable) {
+    closeTag <- shiny::tags$button(
+      class = paste0("btn", " btn-", color, " btn-", boxToolSize),
+      `data-card-widget` = "remove",
+      type = "button",
+      shiny::tags$i(class = "fa fa-times")
+    )
+  }
+  
+  maximizableTag <- NULL
+  if (maximizable) {
+    maximizableTag <- shiny::tags$button(
+      type = "button",
+      class = paste0("btn", " btn-", color, " btn-", boxToolSize),
+      `data-card-widget` = "maximize",
+      shiny::icon("expand")
+    )
+  }
+  
+  
+  if (collapsible || closable || maximizable) {
+    cardToolTag <- shiny::tags$div(class = "card-tools float-right")
+  }
+  
+  # update boxToolTag
+  cardToolTag <- shiny::tagAppendChildren(
+    cardToolTag, 
+    collapseTag, 
+    closeTag,
+    maximizableTag
+  )
   
   
   headerImageTag <- shiny::tags$div(
@@ -1402,7 +1526,7 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
       } else {
         "img-circle"
       },
-      src = src
+      src = image
     )
   )
   
@@ -1410,31 +1534,49 @@ bs4UserCard <- function(..., type = NULL, src = NULL, elevation = NULL, imageEle
     shiny::tagList(
       shiny::tags$div(
         class = headerCl,
+        style = if (!is.null(backgroundImage)) {
+          paste0("background: url('", backgroundImage, "') center center;")
+        },
+        cardToolTag,
         # title and subtitle
         shiny::tags$h3(class = "widget-user-username", title),
-        shiny::tags$h5(class = "widget-user-desc", subtitle)
+        if (!is.null(subtitle)) shiny::tags$h5(class = "widget-user-desc", subtitle)
       ),
       headerImageTag
     )
   } else {
     shiny::tags$div(
       class = headerCl,
+      style = if (!is.null(backgroundImage)) {
+        paste0("background: url('", backgroundImage, "') center center;")
+      },
+      cardToolTag,
       headerImageTag,
       # title and subtitle
       shiny::tags$h3(class = "widget-user-username", title),
-      shiny::tags$h5(class = "widget-user-desc", subtitle)
+      if (!is.null(subtitle)) shiny::tags$h5(class = "widget-user-desc", subtitle)
     )
   }
   
+  bodyTag <- shiny::tags$div(class = "card-body", ...)
   
-  footerTag <- shiny::tags$div(
-    class = "card-footer",
-    style = "overflow-y: auto; max-height: 500px;",
-    ...
-  )
   
-  userCardTag <- shiny::tags$div(class = userCardCl)
-  userCardTag <- shiny::tagAppendChildren(userCardTag, headerTag, footerTag)
+  footerTag <- if (!is.null(footer)) {
+    shiny::tags$div(
+      class = if (!is.null(type)) {
+        if (type == 2) "card-footer p-1" 
+      } else {
+        "card-footer"
+      },
+      style = "overflow-y: auto; max-height: 500px;",
+      footer
+    )
+  } else {
+    NULL
+  }
+  
+  userCardTag <- shiny::tags$div(class = userCardCl, style = style)
+  userCardTag <- shiny::tagAppendChildren(userCardTag, headerTag, bodyTag, footerTag)
   
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),

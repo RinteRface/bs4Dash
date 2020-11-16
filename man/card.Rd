@@ -20,10 +20,10 @@ bs4Card(
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
+  maximizable = FALSE,
   icon = NULL,
   gradient = FALSE,
-  cardToolSize = "sm",
-  maximizable = FALSE,
+  boxToolSize = "sm",
   elevation = NULL,
   headerBorder = TRUE,
   label = NULL,
@@ -51,10 +51,10 @@ box(
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
+  maximizable = FALSE,
   icon = NULL,
   gradient = FALSE,
-  cardToolSize = "sm",
-  maximizable = FALSE,
+  boxToolSize = "sm",
   elevation = NULL,
   headerBorder = TRUE,
   label = NULL,
@@ -146,13 +146,13 @@ the user to collapse the box.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
+\item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
+
 \item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
 
 \item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 
-\item{cardToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
-
-\item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
+\item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
 
 \item{elevation}{Card elevation.}
 
