@@ -38,6 +38,7 @@ install.packages("bs4Dash")
 devtools::install_github("RinteRface/bs4Dash")
 ```
 
+(see package manager)
 ## Demo
 
 See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic/) and
