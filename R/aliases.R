@@ -503,4 +503,4 @@ boxPad <- cardPad
 #' @rdname stars
 #'
 #' @export
-startBlock <- bs4Stars
+starBlock <- bs4Stars
