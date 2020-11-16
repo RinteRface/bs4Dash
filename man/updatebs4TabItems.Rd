@@ -12,7 +12,7 @@ updateTabItems(session, inputId, selected = NULL)
 \arguments{
 \item{session}{shiny session.}
 
-\item{inputId}{\link{bs4TabSetPanel} unique id.}
+\item{inputId}{\link{bs4TabsetPanel} unique id.}
 
 \item{selected}{the tab to be selected.}
 }

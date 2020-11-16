@@ -1,20 +1,9 @@
-#' Create a tabSetPanel
+#' Create a tabsetPanel
 #' 
-#' Imported by \link{bs4TabCard} but can be used alone.
+#' Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
+#' to handle bootstrap 4. 
 #'
-#' @param ... Slot for \link{bs4TabPanel}.
-#' @param id Unique \link{bs4TabSetPanel} id. NULL by default. Set a value
-#'  to get the currently selected tab.
-#' @param side Side of the box the tabs should be on (\code{"left"} or
-#'   \code{"right"}). Default to "left".
-#' @param tabStatus The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
-#'  NULL by default, "light" if status is set.   
-#'  A vector is possible with a colour for each tab button
-#' @param .list When elements are programmatically added, pass them here instead of in ...
-#' @param vertical Whether to display tabs in a vertical mode. FALSE by default.
-#' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
-#' 
-#' @inheritParams bs4Card
+#' @inheritParams shiny::tabsetPanel
 #' 
 #' @examples
 #' if(interactive()){
@@ -31,20 +20,20 @@
 #'     body = bs4DashBody(
 #'      
 #'      # manually inserted panels
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'       id = "tabcard",
 #'       side = "left",
-#'       bs4TabPanel(
+#'       tabPanel(
 #'        tabName = "Tab 1", 
 #'        active = FALSE,
 #'        "Content 1"
 #'       ),
-#'       bs4TabPanel(
+#'       tabPanel(
 #'        tabName = "Tab 2", 
 #'        active = TRUE,
 #'        "Content 2"
 #'       ),
-#'       bs4TabPanel(
+#'       tabPanel(
 #'        tabName = "Tab 3", 
 #'        active = FALSE,
 #'        "Content 3"
@@ -53,7 +42,7 @@
 #'      
 #'      br(), br(),
 #'      # programmatically inserted panels
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'        id = "tabset",
 #'        side = "left",
 #'        .list = lapply(1:3, function(i) {
@@ -67,7 +56,7 @@
 #'       
 #'       br(), br(),
 #'       # vertical tabset
-#'       bs4TabSetPanel(
+#'       bs4TabsetPanel(
 #'        id = "verttabset",
 #'        side = "left",
 #'        vertical = TRUE,
@@ -88,164 +77,54 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabSetPanel <- function(..., id = NULL, side = "left", status = NULL, tabStatus = NULL, 
-                           .list = NULL, vertical = FALSE, type = NULL) {
+bs4TabsetPanel <- function(..., id = NULL, selected = NULL, 
+                           type = c("tabs", "pills"), position = NULL) {
+  type <- match.arg(type)
   
-  # pills are the default
-  if (is.null(type)) type <- "pills"
+  # We run the Shiny tabsetPanel function, to edit it later. This
+  # is to avoid to rewrite all internal functions...
+  temp_tabset <- shiny::tabsetPanel(
+    ...,
+    id = id,
+    selected = selected,
+    type = type,
+    position = position
+  )
   
-  # to make tab ids in the namespace of the tabSetPanel
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
-  ns <- shiny::NS(id)
-  
-  tabs <- c(list(...), .list)
+  # Some edit below since Bootstrap 4 significantly changed the layout
+  nav_items <- temp_tabset$children[[1]]$children[[1]]
   found_active <- FALSE
-  selected <- NULL
-  tabStatus <- if (!is.null(tabStatus)) rep(tabStatus, length.out = length(tabs))
-  # handle tabs
-  tabSetPanelItem <- lapply(seq_along(tabs), FUN = function(i) {
-    
-    tabName <- tabs[[i]][[1]]
-    tabsTag <- tabs[[i]][[2]]
-    
-    tabClass <- tabsTag$attribs$class
-    
-    # make sure that if the user set 2 tabs active at the same time, 
-    # only the first one is selected
-    active <- sum(grep(x = tabClass, pattern = "active")) == 1
-    if (!found_active) {
-      if (active) {
-        found_active <<- TRUE
-        selected <<- i - 1
-        # if no items are selected, we select the first
-      } else {
-        selected <<- 0
-      }
-      # do not allow more than 1 active item
-    } else {
-      if (active) {
-        stop("Cannot set 2 active tabs at the same time.")
+  bs4_nav_items <- lapply(nav_items, function(x) {
+    if (!is.null(x$attribs$class)) {
+      if (grep(x = x$attribs$class, pattern = "active")) {
+        x$attribs$class <- NULL
+        found_active <- TRUE
       }
     }
-    
-    id <- tabsTag$attribs$id
-    
-    shiny::tags$li(
-      class = if (!is.null(status) & is.null(tabStatus[i])) {
-        "nav-item bg-light"
-      } else if (!is.null(tabStatus[i])) {
-        paste0("nav-item bg-", tabStatus[i])
-      } else {
-        "nav-item"
-      },
-      shiny::tags$a(
-        class = if (active) "nav-link active" else "nav-link",
-        href = paste0("#", ns(id)),
-        id = paste0(ns(id), "-tab"),
-        `data-toggle` = "tab",
-        role = "tab",
-        `aria-controls` = ns(id),
-        `aria-selected` = if (active) "true" else "false",
-        tabName
-      )
-    )
+    x$attribs$class <- if (is.null(x$attribs$class)) {
+      "nav-item"
+    } else {
+      paste("nav-item",  x$attribs$class)
+    }
+    x$children[[1]]$attribs$class <- if (found_active) {
+      "nav-link active"
+    } else {
+      "nav-link"
+    }
+    x
   })
   
-  tabSetCl <- "nav"
-  tabSetCl <- if (type == "tabs") {
-    paste0(tabSetCl, " nav-tabs")
-  } else if (type == "pills") {
-    paste0(tabSetCl, " nav-pills")
-  }
-  
-  # side
-  if (side == "right") {
-    tabSetCl <- paste0(tabSetCl, " ml-auto p-2")
-  } else {
-    tabSetCl <- paste0(tabSetCl, " p-2")
-  }
-  
-  # support vertical tabs
-  if (vertical) tabSetCl <- paste0(tabSetCl, " flex-column")
-  
-  tabSetMenu <- shiny::tags$ul(
-    id = id,
-    class = "tabsetpanel",
-    class = tabSetCl,
-    `aria-orientation` = if (vertical) "vertical" else NULL
-  )
-  tabSetMenu <- shiny::tagAppendChildren(tabSetMenu, tabSetPanelItem)
-  
-  # content
-  tabSetContent <- shiny::tags$div(
-    class = "tab-content",
-    lapply(seq_along(tabs), FUN = function(i) {
-      
-      # put the correct namespace on ids
-      tabs[[i]][[2]]$attribs$id <- ns(tabs[[i]][[2]]$attribs$id)
-      tabs[[i]][[2]]$attribs$`aria-labelledby` <- ns(tabs[[i]][[2]]$attribs$`aria-labelledby`)
-      tabs[[i]][[2]]
-    })
-  )
-  
-  # Wrapper
-  if (vertical) {
-    if (side == "left") {
-      shiny::fluidRow(
-        shiny::column(width = 3, tabSetMenu),
-        shiny::column(width = 9, tabSetContent)
-      )
-    } else {
-      shiny::fluidRow(
-        shiny::column(width = 9, tabSetContent),
-        shiny::column(width = 3, tabSetMenu)
-      )
-    }
-  } else {
-    shiny::tagList(tabSetMenu, tabSetContent)
-  }
-}
-
-
-
-#' Create a tabPanel
-#' 
-#' To be included in a bs4TabCard
-#'
-#' @param tabName Tab name: it will be also passed as the id argument. Must be unique.
-#' @param ... Tab content.
-#' @param active Whether the tab is active or not. FALSE bu default.
-#' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-bs4TabPanel <- function(tabName, ..., active = FALSE) {
-  
-  
-  id <- tabName
-  # handle punctuation
-  id <- gsub(x = id, pattern = "[[:punct:]]", replacement = "")
-  # handle tab names with space
-  id <- gsub(x = id, pattern = " ", replacement = "")
-  
-  tabPanelTag <- shiny::tags$div(
-    class = if (active) "tab-pane fade active" else "tab-pane fade",
-    id = id,
-    role = "tabpanel",
-    `aria-labelledby` = paste0(id, "-tab"),
-    ...
-  )
-  return(list(tabName, tabPanelTag))
+  temp_tabset$children[[1]]$children[[1]] <- bs4_nav_items
+  temp_tabset
 }
 
 
 
 
-
-#' Update a \link{bs4TabSetPanel}
+#' Update a \link{bs4TabsetPanel}
 #'
 #' @param session shiny session.
-#' @param inputId \link{bs4TabSetPanel} unique id.
+#' @param inputId \link{bs4TabsetPanel} unique id.
 #' @param selected the tab to be selected.
 #'
 #' @export
@@ -264,7 +143,7 @@ bs4TabPanel <- function(tabName, ..., active = FALSE) {
 #'    loading_duration =  2,
 #'    navbar = bs4DashNavbar(skin = "dark"),
 #'    body = bs4DashBody(
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'        id = "tabset1",
 #'        side = "left",
 #'        bs4TabPanel(
@@ -317,7 +196,7 @@ bs4TabPanel <- function(tabName, ..., active = FALSE) {
 #'  server = function(input, output, session) {
 #'  
 #'    output$tabSetPanel2 <- renderUI({
-#'     bs4TabSetPanel(
+#'     bs4TabsetPanel(
 #'       id = "tabset2",
 #'       side = "left",
 #'       bs4TabPanel(
@@ -384,9 +263,9 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 
 
 
-#' Insert a \link{bs4TabPanel} in a \link{bs4TabSetPanel}
+#' Insert a \link{bs4TabPanel} in a \link{bs4TabsetPanel}
 #'
-#' @param inputId  \link{bs4TabSetPanel} id.
+#' @param inputId  \link{bs4TabsetPanel} id.
 #' @param tab \link{bs4TabPanel} to insert.
 #' @param target \link{bs4TabPanel} after of before which the new tab will be inserted.
 #' @param position Insert before or after: \code{c("before", "after")}.
@@ -406,7 +285,7 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'    bs4DashFooter(),
 #'    body = bs4DashBody(
 #'      actionButton("add1","ADD tabset 1"),
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'        id = "tabset1", 
 #'        side = "left",
 #'        bs4TabPanel(
@@ -421,7 +300,7 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'        )
 #'      ),
 #'      actionButton("add2","ADD tabset 2"),
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'        id = "tabset2", 
 #'        side = "left",
 #'        bs4TabPanel(
@@ -474,7 +353,7 @@ updatebs4TabSetPanel <- function (session, inputId, selected = NULL) {
 #'    bs4DashFooter(),
 #'    body = bs4DashBody(
 #'      actionButton("add", "Add 'Dynamic' tab"),
-#'      bs4TabSetPanel(
+#'      bs4TabsetPanel(
 #'        id = "tabset", 
 #'        side = "left",
 #'        bs4TabPanel(

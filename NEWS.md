@@ -94,7 +94,14 @@ This is to align with shinydashboard and shinydashboardPlus.
 ### bs4Box 
 - This component has been removed
 
+
+### bs4TabCard
+- rework component. Like `tabBox()` from `{shinydashboard}`
+
+
 ### Others
+- Remove `bs4TabPanel()`.
+- `bs4TabSetPanel()` becomes `bs4TabsetPanel()` and is built on top of `shiny::tabsetPanel`.
 - In `cardProfile()`, add `bordered`. `src` becomes `image`. 
 - Remove `cardProfileItemList()`.
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
@@ -107,10 +114,11 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `userDescription()` and `userBlock()`.
 - New built-in `skinSelector`.
 - New built-in dark/light mode switcher.
 - New "go to top" feature.
-- New `dashboardUserItem()`, `userOutput` and `renderUser`.
+- New `dashboardUserItem()`, `userOutput()` and `renderUser()`.
 - New `bs4DashBrand` for better dashboard titles.
 - add `bs4ShowTab()` and `bs4HideTab()`: thanks @fmmattioni for the reminder ;)
 - New `bs4CardLayout()`: simplify the way to deal with `bs4Card()`!

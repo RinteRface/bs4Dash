@@ -88,54 +88,6 @@ dashboardControlbar <- bs4DashControlbar
 
 
 
-#' Alias to \link{bs4DashControlbarMenu}
-#' See \link{bs4DashControlbarMenu} for full details
-#'
-#' @inheritParams bs4DashControlbarMenu
-#' @rdname bs4DashControlbarMenu
-#'
-#' @export
-controlbarMenu <- bs4DashControlbarMenu
-
-
-
-
-#' Alias to \link{bs4DashControlbarItem}
-#' See \link{bs4DashControlbarItem} for full details
-#'
-#' @inheritParams bs4DashControlbarItem
-#' @rdname bs4DashControlbarItem
-#'
-#' @export
-controlbarItem <- bs4DashControlbarItem 
-
-
-
-
-
-#' Alias to \link{updatebs4ControlbarMenu}
-#' See \link{updatebs4ControlbarMenu} for full details
-#'
-#' @inheritParams updatebs4ControlbarMenu 
-#' @rdname updatebs4ControlbarMenu 
-#'
-#' @export
-updateControlbarMenu <- updatebs4ControlbarMenu 
-
-
-
-
-#' Alias to \link{updatebs4Controlbar}
-#' See \link{updatebs4Controlbar} for full details
-#'
-#' @rdname updatebs4Controlbar 
-#'
-#' @export
-updateControlbar <- updatebs4Controlbar
-
-
-
-
 
 #' Alias to \link{bs4DashFooter}
 #' See \link{bs4DashFooter} for full details
@@ -298,27 +250,13 @@ tabBox <- bs4TabCard
 
 
 
-#' Alias to \link{bs4TabSetPanel}
-#' See \link{bs4TabSetPanel} for full details
+#' Alias to \link{bs4TabsetPanel}
+#' See \link{bs4TabsetPanel} for full details
 #'
-#' @rdname bs4TabSetPanel
-#'
-#' @export
-tabsetPanel <- bs4TabSetPanel
-
-
-
-
-
-
-#' Alias to \link{bs4TabPanel}
-#' See \link{bs4TabPanel} for full details
-#'
-#' @rdname bs4TabPanel
+#' @rdname bs4TabsetPanel
 #'
 #' @export
-tabPanel <- bs4TabPanel
-
+tabsetPanel <- bs4TabsetPanel
 
 
 
@@ -394,17 +332,6 @@ valueBoxOutput <- bs4ValueBoxOutput
 #' @export
 renderValueBox <- renderbs4ValueBox
 
-
-
-
-
-#' Alias to \link{updatebs4TabSetPanel}
-#' See \link{updatebs4TabSetPanel} for full details
-#'
-#' @rdname updatebs4TabSetPanel
-#'
-#' @export
-updateTabsetPanel <- updatebs4TabSetPanel
 
 
 

@@ -1120,21 +1120,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' Create a Boostrap 4 tabCard
 #'
 #' Build an adminLTE3 card with tabs
-#'
-#' @param ... Contents of the box: should be \link{bs4TabPanel}.
-#' @param id Unique \link{bs4TabSetPanel} id.
-#' @param title TabCard title.
-#' @param width The width of the box, using the Bootstrap grid system. This is
-#'   used for row-based layouts. The overall width of a region is 12, so the
-#'   default width of 4 occupies 1/3 of that width. For column-based
-#'   layouts, use \code{NULL} for the width; the width is set by the column that
-#'   contains the box.
-#' @param height The height of a box, in pixels or other CSS unit. By default
-#'   the height scales automatically with the content.
-#' @param elevation tabCard elevation. 
-#' @param side Side of the box the tabs should be on (\code{"left"} or
-#'   \code{"right"}).
-#' @param type TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.
 #'   
 #' @inheritParams bs4Card
 #' @inheritParams bs4TabSetPanel
@@ -1146,30 +1131,31 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #'  library(shiny)
 #'  library(bs4Dash)
 #'
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
-#'      bs4TabCard(
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "tabBox",
+#'     body = dashboardBody(
+#'      tabBox(
 #'       id = "tabcard",
 #'       title = "A card with tabs",
-#'       bs4TabPanel(
-#'        tabName = "Tab 1", 
-#'        active = FALSE,
+#'       selected = "Tab 2",
+#'       status = "primary",
+#'       solidHeader = FALSE, 
+#'       type = "tabs",
+#'       tabPanel(
+#'        title = "Tab 1", 
 #'        "Content 1"
 #'       ),
-#'       bs4TabPanel(
-#'        tabName = "Tab 2", 
-#'        active = TRUE,
+#'       tabPanel(
+#'        title = "Tab 2", 
 #'        "Content 2"
 #'       ),
-#'       bs4TabPanel(
-#'        tabName = "Tab 3", 
-#'        active = FALSE,
+#'       tabPanel(
+#'        title = "Tab 3", 
 #'        "Content 3"
 #'       )
 #'      )
@@ -1182,123 +1168,131 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL, 
-                       solidHeader = FALSE, headerBorder = TRUE, gradientColor = NULL,
-                       tabStatus = NULL, width = 6, height = NULL,  
-                       collapsible = TRUE, collapsed = FALSE, closable = TRUE,
-                       maximizable = FALSE, overflow = FALSE, side = c("left", "right"),
-                       type = NULL) {
+bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6, 
+                       height = NULL, side = c("left", "right"), type = NULL,
+                       footer = NULL, status = NULL, solidHeader = FALSE, background = NULL,
+                       collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, 
+                       icon = NULL, gradient = FALSE, boxToolSize = "sm", elevation = NULL, 
+                       headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
+                       sidebar = NULL) {
   
-  found_active <- FALSE
   side <- match.arg(side)
   if (is.null(type)) type <- "pills"
   
-  tabCardCl <- "card"
-  tabCardCl <- if (!is.null(gradientColor)) {
-    paste0(tabCardCl, " bg-gradient-", gradientColor)
-  } else {
-    if (is.null(status)) {
-      paste0(tabCardCl, " card-default card-tabs")
-    } else {
-      if (isTRUE(solidHeader)) {
-        paste0(tabCardCl, " card-", status, " card-tabs")
-      } else {
-        paste0(tabCardCl, " card-outline card-", status, " card-outline-tabs")
-      }
-    }
-  }
-  if (isTRUE(collapsible) & isTRUE(collapsed)) tabCardCl <- paste0(tabCardCl, " collapsed-card")
-  if (!is.null(elevation)) tabCardCl <- paste0(tabCardCl, " elevation-", elevation)
+  # Build tabs
+  content <- bs4TabsetPanel(
+    ..., 
+    id = id, 
+    selected = selected, 
+    type = type, 
+    position = NULL
+  )
   
-  # tools collapse/closable
-  if (isTRUE(closable) | isTRUE(collapsible) | isTRUE(maximizable)) {
-    cardToolTag <- shiny::tags$div(
-      class = "tools pt-3 pb-3 pr-2 mr-2",
+  # Re-use box function
+  boxTag <- box(
+    content$children[[2]],
+    title = title, 
+    footer = footer, 
+    status = status, 
+    solidHeader = solidHeader, 
+    background = background,
+    width = width, 
+    height = height, 
+    collapsible = collapsible, 
+    collapsed = collapsed, 
+    closable = closable, 
+    maximizable = maximizable, 
+    icon = icon, 
+    gradient = gradient, 
+    boxToolSize = boxToolSize, 
+    elevation = elevation, 
+    headerBorder = headerBorder,
+    label = label, 
+    dropdownMenu = dropdownMenu, 
+    sidebar = sidebar, 
+    id = NULL
+  )
+  
+  # add card-tabs class
+  boxTag$children[[1]]$attribs$class <- paste0(
+    boxTag$children[[1]]$attribs$class,
+    if (solidHeader) {
+      " card-tabs"
+    } else {
+      " card-outline-tabs"
+    }
+  )
+  
+  # change header class
+  boxTag$children[[1]]$children[[1]]$attribs$class <- paste0(
+    boxTag$children[[1]]$children[[1]]$attribs$class,
+    if (solidHeader) {
+      " p-0 pt-1" 
+    } else {
+      " p-0 border-bottom-0"
+    }
+  )
+  
+  
+  # Remove title and add it to tab list
+  if (!is.null(title)) {
+    titleTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
+    boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
+    titleNavTag <- shiny::tags$li(
+      class = "pt-2 px-3",
+      titleTag
+    )
+    
+    boxToolTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
+    boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
+    
+    if (side == "right") {
+      content$children[[1]] <- tagInsertChild(
+        content$children[[1]],
+        titleNavTag, 
+        1
+      )
       
-      # collapse
-      if (isTRUE(collapsible)) {
-        collapseIcon <- if (collapsed) 
-          "plus"
-        else "minus"
-        shiny::tags$button(
-          type = "button",
-          class = "btn btn-tool pb-0 pt-0",
-          `data-card-widget` = "collapse",
-          shiny::icon(collapseIcon)
-        )
-      },
-      
-      # close
-      if (isTRUE(closable)) {
-        shiny::tags$button(
-          type = "button",
-          class = "btn btn-tool pb-0 pt-0",
-          `data-card-widget` = "remove",
-          shiny::tags$i(class = "fa fa-times")
-        )
-      },
-      
-      # maximize
-      if (maximizable) {
-        shiny::tags$button(
-          type = "button",
-          class = "btn btn-tool",
-          `data-card-widget` = "maximize",
-          shiny::tags$i(class = "fa fa-expand")
-        )
-      }
+    } else {
+      content$children[[1]] <- tagInsertChild(
+        content$children[[1]],
+        titleNavTag, 
+        length(content$children[[1]])
+      )
+    }
+    
+    # Insert box tools at the end of the list
+    content$children[[1]] <- tagInsertChild(
+      content$children[[1]],
+      tags$li(class = "ml-auto", boxToolTag),
+      length(content$children[[1]])
+    )
+  }
+  
+  
+  # Better box tool styling
+  #boxTag$children[[1]]$children[[1]]$children[[1]]$attribs$class <- paste0(
+  #  boxTag$children[[1]]$children[[1]]$children[[1]]$attribs$class,
+  #  " pt-3 pb-3 pr-2 mr-2"
+  #)
+  
+  # Insert tabs at different position in the header tag
+  if (side == "right") {
+    boxTag$children[[1]]$children[[1]] <- tagInsertChild(
+      boxTag$children[[1]]$children[[1]],
+      content$children[[1]],
+      length(boxTag$children[[1]]$children[[1]])
     )
   } else {
-    cardToolTag <- shiny::tags$div()
+    boxTag$children[[1]]$children[[1]] <- tagInsertChild(
+      boxTag$children[[1]]$children[[1]],
+      content$children[[1]],
+      1
+    )
   }
   
-  # header
-  tabMenu <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus, type = type)[[1]]
-  if (is.null(title) & (isTRUE(maximizable) | isTRUE(closable) | isTRUE(collapsible))) title <- "\u200C"
+  boxTag
   
-  headerTag <- shiny::tags$div(
-    class = if (isTRUE(headerBorder)) "card-header d-flex p-0" else "card-header d-flex p-0 no-border",
-    if (side == "right") {
-      shiny::tagList(
-        if (!is.null(title)) shiny::tags$h3(class = "card-title p-3", title) else NULL,
-        # tab menu
-        tabMenu
-      )
-    } else {
-      shiny::tagList(
-        # tab menu
-        tabMenu,
-        if (!is.null(title)) shiny::tags$h3(class = "card-title p-3 ml-auto", title) else NULL
-      )
-    }
-  )
-  headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
-  
-  
-  # body
-  panelContent <- bs4TabSetPanel(..., id = id, side = side, tabStatus = tabStatus)[[2]]
-  bodyTag <- shiny::tags$div(
-    class = "card-body",
-    style = if (overflow) "overflow-y: auto; max-height: 500px;" else NULL,
-    panelContent
-  )
-  
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  
-  tabCardTag <- shiny::tags$div(
-    class = tabCardCl,
-    style = if (!is.null(style)) style
-  )
-  
-  tabCardTag <- shiny::tagAppendChildren(tabCardTag, headerTag, bodyTag)
-  
-  shiny::tags$div(
-    class = paste0("col-sm-", width),
-    tabCardTag
-  )
 }
 
 
@@ -1405,7 +1399,7 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
     sidebar = sidebar, 
     id = id
   )
-
+  
   
   # find the selected type 
   type <- title[[2]]
@@ -1417,8 +1411,8 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
   } else {
     boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user") 
   }
-
-
+  
+  
   # Change color
   if (!is.null(status)) {
     if (gradient) {

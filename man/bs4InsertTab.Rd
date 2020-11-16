@@ -2,7 +2,7 @@
 % Please edit documentation in R/tabs.R
 \name{bs4InsertTab}
 \alias{bs4InsertTab}
-\title{Insert a \link{bs4TabPanel} in a \link{bs4TabSetPanel}}
+\title{Insert a \link{bs4TabPanel} in a \link{bs4TabsetPanel}}
 \usage{
 bs4InsertTab(
   inputId,
@@ -14,7 +14,7 @@ bs4InsertTab(
 )
 }
 \arguments{
-\item{inputId}{\link{bs4TabSetPanel} id.}
+\item{inputId}{\link{bs4TabsetPanel} id.}
 
 \item{tab}{\link{bs4TabPanel} to insert.}
 
@@ -27,7 +27,7 @@ bs4InsertTab(
 \item{session}{Shiny session object.}
 }
 \description{
-Insert a \link{bs4TabPanel} in a \link{bs4TabSetPanel}
+Insert a \link{bs4TabPanel} in a \link{bs4TabsetPanel}
 }
 \examples{
 if (interactive()) {
@@ -40,7 +40,7 @@ if (interactive()) {
    bs4DashFooter(),
    body = bs4DashBody(
      actionButton("add1","ADD tabset 1"),
-     bs4TabSetPanel(
+     bs4TabsetPanel(
        id = "tabset1", 
        side = "left",
        bs4TabPanel(
@@ -55,7 +55,7 @@ if (interactive()) {
        )
      ),
      actionButton("add2","ADD tabset 2"),
-     bs4TabSetPanel(
+     bs4TabsetPanel(
        id = "tabset2", 
        side = "left",
        bs4TabPanel(
@@ -108,7 +108,7 @@ if (interactive()) {
    bs4DashFooter(),
    body = bs4DashBody(
      actionButton("add", "Add 'Dynamic' tab"),
-     bs4TabSetPanel(
+     bs4TabsetPanel(
        id = "tabset", 
        side = "left",
        bs4TabPanel(

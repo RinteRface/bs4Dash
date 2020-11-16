@@ -71,23 +71,23 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
 
 
 
-#' @rdname bs4TabSetPanel
+#' @rdname bs4TabsetPanel
 #' @export
-bs4DashControlbarMenu <- bs4TabSetPanel
+controlbarMenu <- bs4TabsetPanel
 
 
 
 
-#' @rdname bs4TabPanel
+#' @inheritParams  shiny::tabPanel
 #' @export
-bs4DashControlbarItem <- bs4TabPanel
+controlbarItem <- shiny::tabPanel
 
 
 
 
-#' @rdname updatebs4TabSetPanel
+#' @inheritParams shiny::updateTabsetPanel
 #' @export
-updatebs4ControlbarMenu <- updatebs4TabSetPanel
+updateControlbarMenu <- shiny::updateTabsetPanel
 
 
 
@@ -130,7 +130,7 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'      })
 #'      
 #'      observeEvent(input$controlbarToggle, {
-#'        updatebs4Controlbar(id = "controlbar", session = session)
+#'        updateControlbar(id = "controlbar", session = session)
 #'      })
 #'      
 #'      observe({
@@ -139,6 +139,6 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'    }
 #'  )
 #' }
-updatebs4Controlbar <- function(id, session = shiny::getDefaultReactiveDomain()) {
+updateControlbar <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
 }

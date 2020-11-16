@@ -38,7 +38,6 @@ reference:
   - '`updatebs4ControlbarMenu`'
   - '`updatebs4Sidebar`'
   - '`updatebs4TabItems`'
-  - '`updatebs4TabSetPanel`'
     
 - title: Body content functions
   desc: Functions that are to be used in the bs4DashBody
@@ -88,7 +87,6 @@ reference:
   - '`bs4InsertTab`'
   - '`bs4RemoveTab`'
   - '`bs4TabPanel`'
-  - '`bs4TabSetPanel`'
   
 - title: Card extra elements
   desc: Add more shiny elements to your cards
