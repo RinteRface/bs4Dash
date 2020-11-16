@@ -71,14 +71,14 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
 
 
 
-#' @rdname tabsetPanel
+#' @inheritParams tabsetPanel
 #' @export
 controlbarMenu <- tabsetPanel
 
 
 
 
-#' @inheritParams  shiny::tabPanel
+#' @inheritParams shiny::tabPanel
 #' @export
 controlbarItem <- shiny::tabPanel
 

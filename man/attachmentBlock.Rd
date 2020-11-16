@@ -48,7 +48,12 @@ if (interactive()) {
 }
 \seealso{
 Other boxWidgets: 
-\code{\link{bs4Card}()}
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

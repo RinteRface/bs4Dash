@@ -29,7 +29,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
                           controlbarIcon = shiny::icon("th"), fixed = FALSE) {
   
-  titleWidth <- validateCssUnit(titleWidth)
+  titleWidth <- shiny::validateCssUnit(titleWidth)
   
   # Set up custom CSS for custom width.
   custom_css <- NULL
@@ -39,24 +39,34 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     # instead making changes to the global settings, we've put them in a media
     # query (min-width: 768px), so that it won't override other media queries
     # (like max-width: 767px) that work for narrower screens.
-    custom_css <- tags$head(tags$style(HTML(gsub("_WIDTH_", titleWidth, fixed = TRUE, '
-      @media (min-width: 768px) {
-        .main-header > .navbar {
-          margin-left: _WIDTH_;
-        }
-        .main-header .logo {
-          width: _WIDTH_;
-        }
-      }
-    '))))
+    custom_css <- shiny::tags$head(
+      shiny::tags$style(
+        shiny::HTML(
+          gsub(
+            "_WIDTH_", 
+            titleWidth, 
+            fixed = TRUE, 
+            '@media (min-width: 768px) {
+              .main-header.navbar {
+                margin-left: _WIDTH_;
+              }
+              .main-header .brand-link {
+                width: _WIDTH_;
+              }
+            }
+           '
+          )
+        )
+      )
+    )
   }
   
- headerTag <- shiny::tags$nav(
+  headerTag <- shiny::tags$nav(
     custom_css, 
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
-      "main-header navbar navbar-expand navbar-", status,
+      "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
       " navbar-", skin, if (isTRUE(border)) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
@@ -99,8 +109,8 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       ) 
     )
   )
- 
- list(headerTag, title)
+  
+  list(headerTag, title)
 }
 
 
@@ -338,10 +348,12 @@ bs4DropdownMenuItem <- function(inputId = NULL, message, from = NULL, time = NUL
 
 
 #' Create a Bootstrap 4 user profile.
+#' 
+#' Insert in the rightUi or leftUi slot of \link{dashboardHeader}.
 #'
-#' @param ... Body content.
+#' @param ... Body content. Slot for \link{dashboardUserItem}.
 #' @param name User name.
-#' @param src User profile picture.
+#' @param image User profile picture.
 #' @param title A title.
 #' @param subtitle A subtitle.
 #' @param footer Footer is any.
@@ -355,56 +367,138 @@ bs4DropdownMenuItem <- function(inputId = NULL, message, from = NULL, time = NUL
 #'  
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     navbar = dashboardHeader(
-#'       rightUi = bs4UserMenu(
-#'        name = "Divad Nojnarg", 
-#'        status = "primary",
-#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
-#'        title = "bs4Dash",
-#'        subtitle = "Author", 
-#'        footer = p("The footer", class = "text-center"),
-#'        "This is the menu content."
-#'       )
-#'     ),
+#'     header = dashboardHeader(rightUi = userOutput("user")),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(),
-#'     title = "bs4UserMenu"
+#'     title = "DashboardPage"
 #'   ),
-#'   server = function(input, output) {}
+#'   server = function(input, output) {
+#'    output$user <- renderUser({
+#'     dashboardUser(
+#'        name = "Divad Nojnarg", 
+#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+#'        title = "shinydashboardPlus",
+#'        subtitle = "Author", 
+#'        footer = p("The footer", class = "text-center"),
+#'        fluidRow(
+#'         dashboardUserItem(
+#'          width = 6,
+#'          "Item 1"
+#'         ),
+#'         dashboardUserItem(
+#'          width = 6,
+#'          "Item 2"
+#'         )
+#'        )
+#'       )
+#'    })
+#'   }
 #'  )
 #' }
 #' 
 #' @export
-bs4UserMenu <- function(..., name = NULL, src = NULL, title = NULL,
-                        subtitle = NULL, footer = NULL,
-                        status = c("primary", "danger", "success", "warning", "info", "secondary")) {
+bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
+                        subtitle = NULL, footer = NULL, status = NULL) {
   
-  status <- match.arg(status)
+  # Create line 1 for menu
+  if (!is.null(title)) {
+    line_1 <- paste0(name, " - ", title)
+  } else {
+    line_1 <- name
+  }
   
-  shiny::tags$li(
-    class = "nav-item dropdown user-menu",
+  # Create user_text based on if subtitle exists
+  # If subtitle doesn't exist, make the menu height smaller
+  if (!is.null(subtitle)) {
+    user_text <- shiny::tags$p(line_1, shiny::tags$small(subtitle))
+    user_header_height <- NULL
+  } else {
+    user_text <- shiny::tags$p(line_1)
+    user_header_height <- shiny::tags$script(shiny::HTML('$(".user-header").css("height", "145px")'));
+  }
+  
+  shiny::tagList(
+    shiny::tags$head(
+      shiny::tags$script(
+        "$(function() {
+          $('.dashboard-user').on('click', function(e){
+            e.stopPropagation();
+          });
+        });
+        "
+      )
+    ), 
     shiny::tags$a(
       href = "#",
       class = "nav-link dropdown-toggle",
       `data-toggle` = "dropdown",
       `aria-expanded` = "false",
       shiny::tags$img(
-        src = src,
+        src = image,
         class = "user-image img-circle elevation-2",
         alt = "User Image"),
       shiny::tags$span(class = "d-none d-md-inline", name)
     ),
     shiny::tags$ul(
-      class = "dropdown-menu dropdown-menu-lg dropdown-menu-right",
+      class = "dropdown-menu dropdown-menu-lg dropdown-menu-right dashboard-user",
       shiny::tags$li(
         class = paste0("user-header bg-", status),
         shiny::tags$img(
-          src = src,
+          src = image,
           class = "img-circle elevation-2",
-          alt = "User Image"),
+          alt = "User Image"
+        ),
         shiny::tags$p(title, shiny::tags$small(subtitle))),
-      shiny::tags$li(class = "user-body", ...),
+      if(length(list(...)) > 0) shiny::tags$li(class = "user-body", shiny::fluidRow(...)),
       if(!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
     )
   )
 }
+
+
+
+
+#' Create a dashboard user profile item 
+#'
+#' This can be inserted in a \code{\link{dashboardUser}}.
+#'
+#' @param item HTML Tag.
+#' @param width Item width between 1 and 12.
+#'
+#' @export
+dashboardUserItem <- function(item, width) {
+  item <- shiny::div(
+    class = paste0("col-", width, " text-center"),
+    item
+  ) 
+}
+
+
+
+
+#' Create a dynamic user output (client side)
+#'
+#' This can be used as a placeholder for dynamically-generated \code{\link{dashboardUser}}.
+#'
+#' @param id Output variable name.
+#' @param tag A tag function, like \code{tags$li} or \code{tags$ul}.
+#'
+#' @seealso \code{\link{renderUser}} for the corresponding server side function
+#'   and examples.
+#' @family user outputs
+#' @export
+userOutput <- function(id, tag = shiny::tags$li) {
+  shiny::uiOutput(outputId = id, container = tag, class = "nav-item dropdown user-menu")
+}
+
+#' Create dynamic user output (server side)
+#'
+#' @inheritParams shiny::renderUI
+#'
+#' @seealso \code{\link{userOutput}} for the corresponding client side function
+#'   and examples.
+#' @family user outputs
+#' @export
+renderUser <- shiny::renderUI
+
+globalVariables("func")

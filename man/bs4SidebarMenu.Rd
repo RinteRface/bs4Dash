@@ -41,10 +41,10 @@ with programmatically generated items.}
 
 \item{compact}{Whether items should be compacted. FALSE by default.}
 
+\item{childIndent}{Whether to indent children. TRUE by default.}
+
 \item{legacy}{Whether to use the old adminLTE2 item selection display. Default
 to FALSE.}
-
-\item{child_indent}{Whether to indent children. TRUE by default.}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu

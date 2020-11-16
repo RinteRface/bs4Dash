@@ -7,6 +7,7 @@
 #' @include cards.R
 #' @include render-functions.R
 #' @include tabs.R
+#' @include useful-items.R
 NULL
 
 
@@ -417,7 +418,7 @@ boxDropdown <- cardDropdown
 #' Alias to \link{cardDropdownItem}
 #' See \link{cardDropdownItem} for full details
 #'
-#' @rdname cardDropdownItem 
+#' @rdname cardDropdown
 #'
 #' @export
 boxDropdownItem <- cardDropdownItem 
@@ -483,3 +484,23 @@ socialBox <- bs4SocialCard
 #'
 #' @export
 boxComment <- cardComment
+
+
+
+#' Alias to \link{cardPad}
+#' See \link{cardPad} for full details
+#'
+#' @rdname card
+#'
+#' @export
+boxPad <- cardPad
+
+
+
+#' Alias to \link{bs4Stars}
+#' See \link{bs4Stars} for full details
+#'
+#' @rdname stars
+#'
+#' @export
+startBlock <- bs4Stars

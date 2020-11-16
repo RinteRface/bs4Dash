@@ -18,7 +18,7 @@ productListItem(..., image = NULL, title = NULL, subtitle = NULL, color = NULL)
 
 \item{subtitle}{product price.}
 
-\item{color}{price color: Valid color are listed below:
+\item{color}{price color. Valid color are listed below:
 \itemize{
  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.

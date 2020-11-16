@@ -152,11 +152,11 @@ validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger
 # Returns TRUE if a nuance is valid; throws error otherwise.
 validateNuance <- function(nuance) {
   
-  if (status %in% validNuances) {
+  if (nuance %in% validNuances) {
     return(TRUE)
   }
   
-  stop("Invalid nuance: ", status, ". Valid nuances are: ",
+  stop("Invalid nuance: ", nuance, ". Valid nuances are: ",
        paste(validNuances, collapse = ", "), ".")
 }
 
@@ -421,9 +421,9 @@ buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected =
   tabsetId <- p_randomInt(1000, 10000)
   tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
                  foundSelected = foundSelected, tabs = tabs, textFilter = textFilter)
-  tabNavList <- tags$ul(class = ulClass, id = id, `data-tabsetid` = tabsetId,
+  tabNavList <- shiny::tags$ul(class = ulClass, id = id, `data-tabsetid` = tabsetId,
                         lapply(tabs, "[[", 1))
-  tabContent <- tags$div(class = "tab-content", `data-tabsetid` = tabsetId,
+  tabContent <- shiny::tags$div(class = "tab-content", `data-tabsetid` = tabsetId,
                          lapply(tabs, "[[", 2))
   list(navList = tabNavList, content = tabContent)
 }
@@ -446,7 +446,7 @@ getIcon <- function (tab = NULL, iconClass = NULL) {
     if (grepl("fa-", iconClass, fixed = TRUE)) {
       iconClass <- paste(iconClass, "fa-fw")
     }
-    icon(name = NULL, class = iconClass)
+    shiny::icon(name = NULL, class = iconClass)
   }
   else NULL
 }
@@ -454,8 +454,8 @@ getIcon <- function (tab = NULL, iconClass = NULL) {
 
 navbarMenuTextFilter <- function (text) {
   if (grepl("^\\-+$", text))
-    tags$li(class = "divider")
-  else tags$li(class = "dropdown-header", text)
+    shiny::tags$li(class = "divider")
+  else shiny::tags$li(class = "dropdown-header", text)
 }
 
 
@@ -472,16 +472,16 @@ buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = 
     tabset <- buildTabset(divTag$tabs, "dropdown-menu", navbarMenuTextFilter,
                           foundSelected = foundSelected)
     containsSelected <- containsSelectedTab(divTag$tabs)
-    liTag <- tags$li(class = paste0("dropdown", if (containsSelected)
-      " active"), tags$a(href = "#", class = "dropdown-toggle",
+    liTag <- shiny::tags$li(class = paste0("dropdown", if (containsSelected)
+      " active"), shiny::tags$a(href = "#", class = "dropdown-toggle",
                          `data-toggle` = "dropdown", `data-value` = divTag$menuName,
                          getIcon(iconClass = divTag$iconClass), divTag$title,
-                         tags$b(class = "caret")), tabset$navList)
+                         shiny::tags$b(class = "caret")), tabset$navList)
     divTag <- tabset$content$children
   }
   else {
     tabId <- paste("tab", tabsetId, index, sep = "-")
-    liTag <- tags$li(tags$a(href = paste("#", tabId, sep = ""),
+    liTag <- shiny::tags$li(shiny::tags$a(href = paste("#", tabId, sep = ""),
                             `data-toggle` = "tab", `data-value` = divTag$attribs$`data-value`,
                             getIcon(iconClass = divTag$attribs$`data-icon-class`),
                             divTag$attribs$title))

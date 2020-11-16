@@ -60,9 +60,13 @@ tabBox(
 )
 }
 \arguments{
-\item{...}{Any element such as \link{descriptionBlock}.}
+\item{...}{Contents of the box.}
 
 \item{id}{Card id.}
+
+\item{selected}{The \code{value} (or, if none was supplied, the \code{title})
+of the tab that should be selected by default. If \code{NULL}, the first
+tab will be selected.}
 
 \item{title}{Optional title.}
 
@@ -74,6 +78,16 @@ contains the box.}
 
 \item{height}{The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.}
+
+\item{side}{\link[shiny]{tabPanel} side. Either left or right.}
+
+\item{type}{\describe{
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
+\item{\code{"hidden"}}{Hides the selectable tabs. Use \code{type = "hidden"} in
+conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
+active tab via other input controls. (See example below)}
+}}
 
 \item{footer}{Optional footer text.}
 
@@ -204,11 +218,11 @@ if(interactive()){
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4Card}()},
 \code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{bs4ValueBox}()},
+\code{\link{descriptionBlock}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

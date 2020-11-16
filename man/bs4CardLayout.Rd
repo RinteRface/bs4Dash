@@ -102,11 +102,11 @@ if (interactive()) {
 }
 \seealso{
 Other cards: 
-\code{\link{bs4Card}()},
 \code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4TabCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{bs4ValueBox}()},
+\code{\link{descriptionBlock}()}
 }
 \concept{cards}

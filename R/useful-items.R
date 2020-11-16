@@ -825,39 +825,49 @@ bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
 #'
 #' @param maxstar Maximum number of stars by block.
 #' @param grade Current score. Should be positive and lower or equal to maxstar.
-#' @param status Star color: see \code{validColors()} in the documentation.
+#' @param color Star color. Valid colors are listed below:
+#' \itemize{
+#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname stars
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'       bs4Card(
-#'        title = "Stars",
-#'        bs4Stars(grade = 5),
-#'        bs4Stars(grade = 5, status = "success"),
-#'        bs4Stars(grade = 1, status = "danger"),
-#'        bs4Stars(grade = 3, status = "info")
-#'       )
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "Star example",
+#'       starBlock(grade = 5),
+#'       starBlock(grade = 5, color = "warning"),
+#'       starBlock(grade = 1, color = "danger"),
+#'       starBlock(grade = 3, color = "secondary")
 #'      )
-#'    ),
-#'    server = function(input, output) {}
+#'     ),
+#'     title = "starBlock"
+#'   ),
+#'   server = function(input, output) { }
 #'  )
 #' }
 #'
 #' @export
-bs4Stars <- function(maxstar = 5, grade, status = "warning") {
+bs4Stars <- function(maxstar = 5, grade, color = "warning") {
   
+  stopifnot(!is.null(color))
+  validateColor(color)
   stopifnot(!is.null(grade))
   stopifnot(grade >= 0)
   stopifnot(grade <= maxstar)
@@ -865,15 +875,15 @@ bs4Stars <- function(maxstar = 5, grade, status = "warning") {
   shiny::tags$td(
     class = "mailbox-star",
     shiny::tags$a(
-      href = NULL,
+      href = "javascript:void(0)",
       if (grade > 0) {
         full_star <- lapply(1:grade, FUN = function(i) {
-          shiny::tags$i(class = paste0("fa text-", status, " fa-star"))
+          shiny::tags$i(class = paste0("fa text-", color, " fa-star"))
         })
       },
       if (grade < maxstar) {
         empty_star <- lapply(1:(maxstar - grade), FUN = function(i) {
-          shiny::tags$i(class = paste0("fa text-", status, " fa-star-o"))
+          shiny::tags$i(class = paste0("fa text-", color, " fa-star-o"))
         })
       }
     ),
@@ -1544,7 +1554,7 @@ productList <- function(...) {
 #' @param image image url, if any.
 #' @param title product name.
 #' @param subtitle product price.
-#' @param color price color: Valid color are listed below:
+#' @param color price color. Valid color are listed below:
 #' \itemize{
 #'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
 #'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.

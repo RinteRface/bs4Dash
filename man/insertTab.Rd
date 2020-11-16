@@ -2,7 +2,7 @@
 % Please edit documentation in R/tabs.R
 \name{insertTab}
 \alias{insertTab}
-\title{Insert a \link{bs4TabPanel} in a \link{bs4TabsetPanel}}
+\title{Insert a \link{tabPanel} in a \link{tabsetPanel}}
 \usage{
 insertTab(
   inputId,
@@ -14,11 +14,11 @@ insertTab(
 )
 }
 \arguments{
-\item{inputId}{\link{bs4TabsetPanel} id.}
+\item{inputId}{\link{tabsetPanel} id.}
 
-\item{tab}{\link{bs4TabPanel} to insert.}
+\item{tab}{\link{tabPanel} to insert.}
 
-\item{target}{\link{bs4TabPanel} after of before which the new tab will be inserted.}
+\item{target}{\link{tabPanel} after of before which the new tab will be inserted.}
 
 \item{position}{Insert before or after: \code{c("before", "after")}.}
 
@@ -27,7 +27,7 @@ insertTab(
 \item{session}{Shiny session object.}
 }
 \description{
-Insert a \link{bs4TabPanel} in a \link{bs4TabsetPanel}
+Insert a \link{tabPanel} in a \link{tabsetPanel}
 }
 \examples{
 if (interactive()) {

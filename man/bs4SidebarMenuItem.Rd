@@ -43,6 +43,9 @@ menuItem(
 
 \item{href}{An link address. Not compatible with \code{tabName}.}
 
+\item{newTab}{If \code{href} is supplied, should the link open in a new
+browser tab?}
+
 \item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuItem}
 will start selected. If no item have \code{selected=TRUE}, then the first
 \code{bs4SidebarMenuItem} will start selected.}
@@ -56,9 +59,6 @@ bookmarking state.)}
 
 \item{condition}{When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
 write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).}
-
-\item{newtab}{If \code{href} is supplied, should the link open in a new
-browser tab?}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu item

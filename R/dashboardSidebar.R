@@ -140,7 +140,7 @@ updatebs4Sidebar <- function(inputId, session) {
 #' with programmatically generated items.
 #' @param flat Whether sidebar items should have a flat design. FALSE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
-#' @param child_indent Whether to indent children. TRUE by default.
+#' @param childIndent Whether to indent children. TRUE by default.
 #' @param legacy Whether to use the old adminLTE2 item selection display. Default
 #' to FALSE.
 #'
@@ -267,7 +267,7 @@ findSidebarItem <- function(items, regex) {
 #'   \code{NULL}, don't display an icon.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param href An link address. Not compatible with \code{tabName}.
-#' @param newtab If \code{href} is supplied, should the link open in a new
+#' @param newTab If \code{href} is supplied, should the link open in a new
 #'   browser tab?
 #' @param selected If \code{TRUE}, this \code{bs4SidebarMenuItem}
 #'  will start selected. If no item have \code{selected=TRUE}, then the first
@@ -432,7 +432,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
 #' @param text Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
 #' @param href An link address. Not compatible with \code{tabName}.
-#' @param newtab If \code{href} is supplied, should the link open in a new
+#' @param newTab If \code{href} is supplied, should the link open in a new
 #'   browser tab?
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
 #'   \code{NULL}, don't display an icon.
@@ -649,7 +649,7 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #' Change the selected sidebar tab on the client
 #'
 #' This function controls the active tab of \code{\link{tabItems}} from the
-#' server. It behaves just like \code{\link{shiny::updateTabsetPanel}}.
+#' server. It behaves just like \code{\link[shiny]{updateTabsetPanel}}.
 #'
 #' @inheritParams shiny::updateTabsetPanel
 #' @examples

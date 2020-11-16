@@ -37,20 +37,20 @@ themer_list <- c("Navbar", "Sidebar", "Accents", "Controlbar")
 
 createThemer <- function(name, skins) {
   
-  titleTag <- h6(sprintf("%s themer", name))
+  titleTag <- shiny::h6(sprintf("%s themer", name))
   
-  tagList(
+  shiny::tagList(
     if (name %in% c("Sidebar", "Controlbar")) {
-      fluidRow(
+      shiny::fluidRow(
         titleTag,
-        div(
+        shiny::div(
           class = "mx-2 custom-control custom-switch", 
-          tags$input(
+          shiny::tags$input(
             id = sprintf("%s-skin", tolower(name)),
             type = "checkbox", 
             class = "custom-control-input"
           ),
-          tags$label(
+          shiny::tags$label(
             shiny::icon("sun", class = sprintf("%s-themer-icon", tolower(name))), 
             `for` = sprintf("%s-skin", tolower(name)), 
             class = "custom-control-label"
@@ -61,12 +61,12 @@ createThemer <- function(name, skins) {
       titleTag
     },
     if (name != "Controlbar") {
-      div(
+      shiny::div(
         class = "d-flex",
-        div(
+        shiny::div(
           class = "d-flex flex-wrap mb-3",
           lapply(skins, function(theme) {
-            div(
+            shiny::div(
               class = sprintf("bg-%s elevation-2 %s-themer-chip", theme, tolower(name)),
               style = "width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;",
               onclick = if (name == "Navbar") {

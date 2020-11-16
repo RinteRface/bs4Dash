@@ -30,14 +30,14 @@ menuSubItem(
 
 \item{href}{An link address. Not compatible with \code{tabName}.}
 
+\item{newTab}{If \code{href} is supplied, should the link open in a new
+browser tab?}
+
 \item{icon}{An icon tag, created by \code{\link[shiny]{icon}}. If
 \code{NULL}, don't display an icon.}
 
 \item{selected}{If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
 will start selected. If no item have \code{selected=TRUE}.}
-
-\item{newtab}{If \code{href} is supplied, should the link open in a new
-browser tab?}
 }
 \description{
 Build an adminLTE3 dashboard main sidebar menu sub-item

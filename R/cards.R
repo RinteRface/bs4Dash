@@ -272,7 +272,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
         if (!is.null(background)) {
           paste0(" bg-", background)
         },
-        " btn-", cardToolSize
+        " btn-", boxToolSize
       ) 
     }
   }
@@ -286,7 +286,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
           if (!is.null(background)) {
             paste0(" bg-", background)
           },
-          " btn-", cardToolSize
+          " btn-", boxToolSize
         ), 
         " dropdown-toggle"
       )
@@ -359,6 +359,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 #' @param text Label text. In practice only few letters or a number.
 #' @param status label color status. See \link{getAdminLTEColors}.
 #' @param tooltip Label tooltip text on hover.
+#' @family boxWidgets
 #' @export
 bs4CardLabel <- function(text, status, tooltip = NULL) {
   
@@ -389,6 +390,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' 
 #' 
 #' @rdname cardSidebar
+#' @family boxWidgets
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40", 
                            startOpen = FALSE, icon = shiny::icon("cogs")) {
@@ -655,7 +657,7 @@ updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @rdname cardDropdown
-#'
+#' @family boxWidgets
 #' @export
 cardDropdown <- function(..., icon = shiny::icon("wrench")) {
   
@@ -696,7 +698,7 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
 #' @rdname cardDropdown
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
+#' 
 #' @export
 cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
   shiny::tags$a(
@@ -1122,7 +1124,8 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' Build an adminLTE3 card with tabs
 #'   
 #' @inheritParams bs4Card
-#' @inheritParams bs4TabSetPanel
+#' @inheritParams tabsetPanel
+#' @param side \link[shiny]{tabPanel} side. Either left or right.
 #' 
 #' @family cards
 #'
@@ -1264,7 +1267,7 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
     # Insert box tools at the end of the list
     content$children[[1]] <- tagInsertChild(
       content$children[[1]],
-      tags$li(class = "ml-auto", boxToolTag),
+      shiny::tags$li(class = "ml-auto", boxToolTag),
       length(content$children[[1]])
     )
   }
@@ -1537,14 +1540,16 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
 
 
 
-#' @title AdminLTE3 card profile
+#' AdminLTE3 card profile
 #'
-#' @description Create card profile
+#' \link{boxProfile} goes inside a \link{box}. Displays user informations in an elegant
+#' container.
 #'
-#' @param ... Any element such as \link{cardProfileItemList}.
-#' @param src Profile image, if any.
+#' @param ... Any element such as \link{boxProfileItem}.
+#' @param image Profile image, if any.
 #' @param title Title.
 #' @param subtitle Subtitle.
+#' @param bordered Whether the container should have a border or not. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1603,6 +1608,7 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
 #'  )
 #' }
 #' @rdname cardProfile
+#' @family boxWidgets
 #' @export
 cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FALSE) {
   
@@ -1654,7 +1660,6 @@ cardProfileItem <- function(title, description) {
 #' @description \link{socialBox} Creates social card
 #'
 #' @inheritParams bs4Card
-#' @param comments Slot for \link{cardComment}
 #' 
 #' @rdname socialBox
 #' @family cards
@@ -1795,6 +1800,7 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
 #' @param subtitle Any subtitle.
 #' 
 #' @rdname socialBox
+#' @family boxWidgets
 #' 
 #' @export
 userBlock <- function(image, title, subtitle = NULL) {
@@ -1821,6 +1827,7 @@ userBlock <- function(image, title, subtitle = NULL) {
 #' @param date Date of publication.
 #' 
 #' @rdname socialBox
+#' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 

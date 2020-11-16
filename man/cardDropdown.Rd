@@ -4,6 +4,7 @@
 \alias{cardDropdown}
 \alias{cardDropdownItem}
 \alias{boxDropdown}
+\alias{boxDropdownItem}
 \title{Create a box dropdown item list}
 \usage{
 cardDropdown(..., icon = shiny::icon("wrench"))
@@ -11,6 +12,8 @@ cardDropdown(..., icon = shiny::icon("wrench"))
 cardDropdownItem(..., id = NULL, href = NULL, icon = NULL)
 
 boxDropdown(..., icon = shiny::icon("wrench"))
+
+boxDropdownItem(..., id = NULL, href = NULL, icon = NULL)
 }
 \arguments{
 \item{...}{Item content.}
@@ -26,8 +29,18 @@ Can be used to add dropdown items to a cardtool.
 
 To insert in \link{boxDropdown}.
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{boxWidgets}

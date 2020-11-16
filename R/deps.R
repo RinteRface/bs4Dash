@@ -102,5 +102,6 @@ add_bs4Dash_deps <- function(tag, options) {
       package = "bs4Dash"
     )
   )
-  tagList(tag, bs4Dash_deps)
+  
+  shiny::tagList(tag, bs4Dash_deps)
 }

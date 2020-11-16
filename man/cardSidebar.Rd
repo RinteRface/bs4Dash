@@ -97,3 +97,13 @@ if (interactive()) {
  )
 }
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
+}
+\concept{boxWidgets}

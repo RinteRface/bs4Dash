@@ -28,3 +28,13 @@ See \link{bs4CardLabel} for full details
 Alias to \link{bs4CardLabel}
 See \link{bs4CardLabel} for full details
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
+}
+\concept{boxWidgets}

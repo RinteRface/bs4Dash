@@ -108,6 +108,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- In `bs4Stars()`, status becomes `color`.
 - Remove `bs4ShowTab()`, `bs4HideTab()` and `bs4RemoveTab()`. shiny vanilla function should work well now.
 - Remove `bs4TabPanel()`.
 - `bs4TabSetPanel()` becomes `bs4TabsetPanel()` and is built on top of `shiny::tabsetPanel`.

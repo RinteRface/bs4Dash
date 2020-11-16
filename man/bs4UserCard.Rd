@@ -72,7 +72,7 @@ userDescription(
 )
 }
 \arguments{
-\item{...}{Any element such as \link{descriptionBlock}.}
+\item{...}{Contents of the box.}
 
 \item{title}{User card title.}
 
@@ -246,11 +246,11 @@ if(interactive()){
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4Card}()},
 \code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4TabCard}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{bs4ValueBox}()},
+\code{\link{descriptionBlock}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

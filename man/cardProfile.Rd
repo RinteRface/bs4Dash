@@ -16,18 +16,21 @@ boxProfile(..., image = NULL, title, subtitle = NULL, bordered = FALSE)
 boxProfileItem(title, description)
 }
 \arguments{
-\item{...}{Any element such as \link{cardProfileItemList}.}
+\item{...}{Any element such as \link{boxProfileItem}.}
+
+\item{image}{Profile image, if any.}
 
 \item{title}{Item title.}
 
 \item{subtitle}{Subtitle.}
 
-\item{description}{Item info.}
+\item{bordered}{Whether the container should have a border or not. FALSE by default.}
 
-\item{src}{Profile image, if any.}
+\item{description}{Item info.}
 }
 \description{
-Create card profile
+\link{boxProfile} goes inside a \link{box}. Displays user informations in an elegant
+container.
 
 Create card profile item
 }
@@ -86,8 +89,18 @@ if (interactive()) {
  )
 }
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{cardDropdown}()},
+\code{\link{descriptionBlock}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{boxWidgets}

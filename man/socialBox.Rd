@@ -98,8 +98,6 @@ TRUE by default}
 \item{subtitle}{Any subtitle.}
 
 \item{date}{Date of publication.}
-
-\item{comments}{Slot for \link{cardComment}}
 }
 \description{
 \link{socialBox} Creates social card
@@ -153,15 +151,32 @@ if (interactive()) {
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4Card}()},
 \code{\link{bs4InfoBox}()},
 \code{\link{bs4TabCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{bs4ValueBox}()},
+\code{\link{descriptionBlock}()}
+
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
+
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{boxWidgets}
 \concept{cards}

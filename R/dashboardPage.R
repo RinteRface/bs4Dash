@@ -91,7 +91,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     if (inherits(titleTag, "shiny.tag")) {
       titleTag
     } else {
-      div(class = "brand-link", titleTag)
+      shiny::div(class = "brand-link", titleTag)
     }
   }
 
