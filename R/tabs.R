@@ -241,111 +241,55 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  ui <-  bs4DashPage(
-#'    sidebar_collapsed = T,
-#'    sidebar = bs4DashSidebar(),
-#'    bs4DashFooter(),
-#'    body = bs4DashBody(
-#'      actionButton("add1","ADD tabset 1"),
-#'      bs4TabsetPanel(
-#'        id = "tabset1", 
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1",
-#'          active = TRUE,
-#'          p("Text 1"),
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2",
-#'          active = FALSE,
-#'          p("Text 2"),
-#'        )
-#'      ),
-#'      actionButton("add2","ADD tabset 2"),
-#'      bs4TabsetPanel(
-#'        id = "tabset2", 
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "Tab 1",
-#'          active = TRUE,
-#'          p("Text 1"),
-#'        ),
-#'        bs4TabPanel(
-#'          tabName = "Tab 2",
-#'          active = FALSE,
-#'          p("Text 2"),
-#'        )
-#'      )
-#'    )
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Handle tabs",
+#'     body = dashboardBody(
+#'       actionButton("add", "Add 'Dynamic' tab"),
+#'       actionButton("remove", "Remove 'Foo' tab"),
+#'       actionButton("hideTab", "Hide 'Foo' tab"),
+#'       actionButton("showTab", "Show 'Foo' tab"),
+#'       br(), br(),
+#'       tabBox(
+#'         id = "tabs",
+#'         title = "A card with tabs",
+#'         selected = "Bar",
+#'         status = "primary",
+#'         solidHeader = FALSE, 
+#'         type = "tabs",
+#'         tabPanel("Hello", "This is the hello tab"),
+#'         tabPanel("Foo", "This is the foo tab"),
+#'         tabPanel("Bar", "This is the bar tab")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$add, {
+#'       insertTab(
+#'         inputId = "tabs",
+#'         tabPanel("Dynamic", "This a dynamically-added tab"),
+#'         target = "Bar",
+#'         select = TRUE
+#'       )
+#'     })
+#'     
+#'     observeEvent(input$remove, {
+#'       removeTab(inputId = "tabs", target = "Foo")
+#'     })
+#'     
+#'     observeEvent(input$hideTab, {
+#'       hideTab(inputId = "tabs", target = "Foo")
+#'     })
+#'     
+#'     observeEvent(input$showTab, {
+#'       showTab(inputId = "tabs", target = "Foo")
+#'     })
+#'   }
 #'  )
-#'  
-#'  server <- function(input, output, session) {
-#'    
-#'    observeEvent(input$add1, {
-#'      bs4InsertTab(
-#'        inputId = "tabset1",
-#'        bs4TabPanel(tabName = "Dynamic", "I am inserted"),
-#'        target = "Tab 1",
-#'        position = "after",
-#'        select = FALSE
-#'      )
-#'    })
-#'    
-#'    observeEvent(input$add2, {
-#'      bs4InsertTab(
-#'        inputId = "tabset2",
-#'        bs4TabPanel(tabName = "Dynamic", "I am inserted and active"),
-#'        target = "Tab 1",
-#'        position = "before",
-#'        select = TRUE
-#'      )
-#'    })
-#'    
-#'  }
-#'  shinyApp(ui, server)
-#'  
-#'  # with Datatable to test the Shiny.renderContent feature
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  library(DT)
-#'  
-#'  ui <-  bs4DashPage(
-#'    sidebar_collapsed = T,
-#'    sidebar = bs4DashSidebar(),
-#'    bs4DashFooter(),
-#'    body = bs4DashBody(
-#'      actionButton("add", "Add 'Dynamic' tab"),
-#'      bs4TabsetPanel(
-#'        id = "tabset", 
-#'        side = "left",
-#'        bs4TabPanel(
-#'          tabName = "default",
-#'          "Tab 1"
-#'        )
-#'      )
-#'    )
-#'  )
-#'  
-#'  server <- function(input, output, session) {
-#'    
-#'    output$tbl = renderDT(
-#'      iris, options = list(lengthChange = FALSE)
-#'    )
-#'    
-#'    observeEvent(input$add, {
-#'      bs4InsertTab(
-#'        inputId = "tabset",
-#'        bs4TabPanel(
-#'          tabName = "DT", 
-#'          dataTableOutput("tbl")
-#'        ),
-#'        target = "default",
-#'        position = "after",
-#'        select = TRUE
-#'      )
-#'    })
-#'  }
-#'  shinyApp(ui, server)
 #' }
 insertTab <- function(inputId, tab, target, position = c("before", "after"),
                          select = FALSE, session = shiny::getDefaultReactiveDomain()) {
