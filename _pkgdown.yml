@@ -143,6 +143,7 @@ reference:
   - '`bs4TimelineStart`'
   - '`getAdminLTEColors`'
   - '`ionicon`'
+  - '`userDescription`'
   - '`userMessage`'
   - '`userMessages`'
   - '`userPost`'

@@ -2,68 +2,84 @@
 % Please edit documentation in R/cards.R, R/aliases.R
 \name{bs4UserCard}
 \alias{bs4UserCard}
+\alias{bs4UserDescription}
 \alias{userBox}
+\alias{userDescription}
 \title{AdminLTE3 widget user card}
 \usage{
 bs4UserCard(
   ...,
-  title,
-  subtitle = NULL,
+  user = NULL,
   footer = NULL,
-  image = NULL,
-  backgroundImage = NULL,
-  type = c(1, 2),
-  color = NULL,
+  status = NULL,
+  solidHeader = TRUE,
+  background = NULL,
   width = 6,
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
+  icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  id = NULL
+)
+
+bs4UserDescription(
+  title,
+  subtitle = NULL,
+  image = NULL,
+  backgroundImage = NULL,
+  type = c(1, 2),
   imageElevation = NULL
 )
 
 userBox(
   ...,
-  title,
-  subtitle = NULL,
+  user = NULL,
   footer = NULL,
-  image = NULL,
-  backgroundImage = NULL,
-  type = c(1, 2),
-  color = NULL,
+  status = NULL,
+  solidHeader = TRUE,
+  background = NULL,
   width = 6,
   height = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
   closable = FALSE,
   maximizable = FALSE,
+  icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  id = NULL
+)
+
+userDescription(
+  title,
+  subtitle = NULL,
+  image = NULL,
+  backgroundImage = NULL,
+  type = c(1, 2),
   imageElevation = NULL
 )
 }
 \arguments{
-\item{...}{User card content.}
-
-\item{title}{User card title.}
-
-\item{subtitle}{User card subtitle.}
+\item{...}{Contents of the box.}
 
 \item{footer}{User card footer.}
 
-\item{image}{User image url or path.}
-
-\item{backgroundImage}{image url, if any. Background needs to be TRUE.}
-
-\item{type}{User card type. Either 1 or 2. 1 corresponds to a centered user image,
-while 2 is a left aligned user image.}
-
-\item{color}{User card color. Valid colors are defined as follows:
+\item{status}{The status of the item This determines the item's background
+  color.  Valid statuses are defined as follows:
 \itemize{
   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
@@ -85,30 +101,92 @@ while 2 is a left aligned user image.}
   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+}
+Only primary, success, info, warning and danger are compatible with solidHeader!}
+
+\item{solidHeader}{Should the header be shown with a solid color background?}
+
+\item{background}{If NULL (the default), the background of the box will be
+  white. Otherwise, a color string. Valid colors are listed in
+  \link{validColors}. See below:
+\itemize{
+ \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 }}
 
-\item{width}{The width of the card, using the Bootstrap grid system.}
+\item{width}{The width of the box, using the Bootstrap grid system. This is
+used for row-based layouts. The overall width of a region is 12, so the
+default card width of 4 occupies 1/3 of that width. For column-based
+layouts, use \code{NULL} for the width; the width is set by the column that
+contains the box.}
 
-\item{height}{box height.}
+\item{height}{The height of a box, in pixels or other CSS unit. By default
+the height scales automatically with the content.}
 
-\item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the box.}
+\item{collapsible}{If TRUE, display a button in the upper right that allows
+the user to collapse the box.}
 
-\item{collapsed}{If TRUE, start collapsed. This must be used with \code{collapsible=TRUE}.}
+\item{collapsed}{If TRUE, start collapsed. This must be used with
+\code{collapsible=TRUE}.}
 
 \item{closable}{If TRUE, display a button in the upper right that allows the user to close the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
+\item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
+
 \item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 
-\item{boxToolSize}{Toolbox icon size: choose among "xs", "sm", "md", "lg".}
+\item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
 
-\item{elevation}{User card elevation (numeric). NULL by default.}
+\item{elevation}{Card elevation.}
+
+\item{headerBorder}{Whether to display a border between the header and body.
+TRUE by default}
+
+\item{label}{Slot for \link{boxLabel}.}
+
+\item{dropdownMenu}{List of items in the boxtool dropdown menu. Use \link{boxDropdown}.}
+
+\item{sidebar}{Slot for \link{boxSidebar}.}
+
+\item{id}{Card id.}
+
+\item{title}{User card title.}
+
+\item{subtitle}{User card subtitle.}
+
+\item{image}{User image url or path.}
+
+\item{backgroundImage}{image url, if any. Background needs to be TRUE.}
+
+\item{type}{User card type. Either 1 or 2. 1 corresponds to a centered user image,
+while 2 is a left aligned user image.}
 
 \item{imageElevation}{User card image elevation (numeric). NULL by default.}
 }
 \description{
 Create widget user card
+
+\link{userDescription} creates a customized title tag for \link{userBox}.
 }
 \examples{
 if(interactive()){
@@ -124,29 +202,39 @@ if(interactive()){
      title = "test",
      body = dashboardBody(
       userBox(
-       title = "Nadia Carmichael",
-       subtitle = "lead Developer",
-       type = 2,
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
-       status = "orange",
+       user = userDescription(
+        title = "Nadia Carmichael",
+        subtitle = "lead Developer",
+        type = 2,
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+       ),
+       status = "primary",
+       gradient = TRUE, 
+       background = "primary",
+       boxToolSize = "xl",
        "Some text here!",
        footer = "The footer here!"
       ),
       userBox(
-       title = "Alexander Pierce",
-       subtitle = "Founder & CEO",
-       type = 1,
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-       color = "indigo",
+       user = userDescription(
+        title = "Alexander Pierce",
+        subtitle = "Founder & CEO",
+        type = 1,
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+       ),
+       status = "indigo",
        closable = TRUE,
        "Some text here!",
        footer = "The footer here!"
       ),
       userBox(
-       title = "Elizabeth Pierce",
-       subtitle = "Web Designer",
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-       backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+       user = userDescription(
+        title = "Elizabeth Pierce",
+        subtitle = "Web Designer",
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+        backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+       ),
+       status = "olive",
        closable = TRUE,
        maximizable = TRUE,
        "Some text here!",

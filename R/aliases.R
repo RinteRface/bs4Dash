@@ -276,6 +276,16 @@ userBox <- bs4UserCard
 
 
 
+#' Alias to \link{bs4UserDescription}
+#' See \link{bs4UserDescription} for full details
+#'
+#' @rdname bs4UserCard
+#'
+#' @export
+userDescription <- bs4UserDescription
+
+
+
 
 #' Alias to \link{bs4TabCard}
 #' See \link{bs4TabCard} for full details

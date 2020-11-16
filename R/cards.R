@@ -35,17 +35,26 @@
 #'   white. Otherwise, a color string. Valid colors are listed in
 #'   \link{validColors}. See below:
 #' \itemize{
-#'  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
@@ -187,7 +196,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
   
   if (!is.null(background)) {
-    validateColor(background)
+    validateStatusPlus(background)
     cardCl <- paste0(cardCl, " bg-", if (gradient) "gradient-", background)
   }
   
@@ -1311,47 +1320,7 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'
 #' @description Create widget user card
 #'
-#' @param ... User card content.
-#' @param title User card title.
-#' @param subtitle User card subtitle.
-#' @param footer User card footer.
-#' @param image User image url or path.
-#' @param backgroundImage image url, if any. Background needs to be TRUE.
-#' @param color User card color. Valid colors are defined as follows:
-#' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
-#' }
-#' @param type User card type. Either 1 or 2. 1 corresponds to a centered user image,
-#' while 2 is a left aligned user image.
-#' @param width The width of the card, using the Bootstrap grid system.
-#' @param height box height.
-#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the box. 
-#' @param collapsed If TRUE, start collapsed. This must be used with \code{collapsible=TRUE}.
-#' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
-#' @param maximizable If TRUE, the card can be displayed in full screen mode.
-#' @param gradient Whether to allow gradient effect for the background color. Default to FALSE.
-#' @param boxToolSize Toolbox icon size: choose among "xs", "sm", "md", "lg".
-#' @param elevation User card elevation (numeric). NULL by default.
-#' @param imageElevation User card image elevation (numeric). NULL by default.
+#' @inheritParams bs4Card
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
@@ -1371,29 +1340,39 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #'      title = "test",
 #'      body = dashboardBody(
 #'       userBox(
-#'        title = "Nadia Carmichael",
-#'        subtitle = "lead Developer",
-#'        type = 2,
-#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
-#'        status = "orange",
+#'        user = userDescription(
+#'         title = "Nadia Carmichael",
+#'         subtitle = "lead Developer",
+#'         type = 2,
+#'         image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+#'        ),
+#'        status = "primary",
+#'        gradient = TRUE, 
+#'        background = "primary",
+#'        boxToolSize = "xl",
 #'        "Some text here!",
 #'        footer = "The footer here!"
 #'       ),
 #'       userBox(
-#'        title = "Alexander Pierce",
-#'        subtitle = "Founder & CEO",
-#'        type = 1,
-#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-#'        color = "indigo",
+#'        user = userDescription(
+#'         title = "Alexander Pierce",
+#'         subtitle = "Founder & CEO",
+#'         type = 1,
+#'         image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'        ),
+#'        status = "indigo",
 #'        closable = TRUE,
 #'        "Some text here!",
 #'        footer = "The footer here!"
 #'       ),
 #'       userBox(
-#'        title = "Elizabeth Pierce",
-#'        subtitle = "Web Designer",
-#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-#'        backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+#'        user = userDescription(
+#'         title = "Elizabeth Pierce",
+#'         subtitle = "Web Designer",
+#'         image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'         backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+#'        ),
+#'        status = "olive",
 #'        closable = TRUE,
 #'        maximizable = TRUE,
 #'        "Some text here!",
@@ -1406,15 +1385,12 @@ bs4TabCard <- function(..., id, title = NULL, status = NULL, elevation = NULL,
 #' }
 #'
 #' @export
-bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL, backgroundImage = NULL,
-                        type = c(1, 2), color = NULL, width = 6, height = NULL,
-                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, 
-                        maximizable = FALSE, gradient = FALSE, boxToolSize = "sm", elevation = NULL, 
-                        imageElevation = NULL) {
-  
-  # Some checks
-  if (!is.null(color)) validateStatusPlus(color)
-  
+bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL, 
+                        solidHeader = TRUE, background = NULL, width = 6, height = NULL, 
+                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL, 
+                        gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
+                        sidebar = NULL, id = NULL) {
+
   if (!collapsible && collapsed) {
     stop("Cannot collapse a card that is not collapsible.")
   }
@@ -1426,7 +1402,114 @@ bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL
     stopifnot(width >= 0)
   }
   
-  userCardCl <- "card card-widget"
+  
+  # userBox is built on top of the box function. The difference is the title tag
+  # that is replaced by userDescription ...
+  boxTag <- box(
+    ...,
+    title = user, 
+    footer = footer, 
+    status = status, 
+    solidHeader = solidHeader, 
+    background = background,
+    width = width, 
+    height = height, 
+    collapsible = collapsible, 
+    collapsed = collapsed, 
+    closable = closable, 
+    maximizable = maximizable, 
+    icon = icon, 
+    gradient = gradient, 
+    boxToolSize = boxToolSize, 
+    elevation = elevation, 
+    headerBorder = headerBorder,
+    label = label, 
+    dropdownMenu = dropdownMenu, 
+    sidebar = sidebar, 
+    id = id
+  )
+
+  
+  # find the selected type 
+  type <- user[[2]]
+  
+  # specific class for userDescription
+  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget")
+  if (!is.null(type)) {
+    boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user-", type)
+  } else {
+    boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user") 
+  }
+
+
+  # Change color
+  if (!is.null(status)) {
+    if (gradient) {
+      if (inherits(user[[1]], "shiny.tag.list")) {
+        user[[1]][[1]]$attribs$class <- paste0(user[[1]][[1]]$attribs$class, " bg-gradient-", status)
+      } else {
+        user[[1]]$attribs$class <- paste0(user[[1]]$attribs$class, " bg-gradient-", status)
+      }
+      
+    } else {
+      if (inherits(user[[1]], "shiny.tag.list")) {
+        user[[1]][[1]]$attribs$class <- paste0(user[[1]][[1]]$attribs$class, " bg-", status)
+      } else {
+        user[[1]]$attribs$class <- paste0(user[[1]]$attribs$class, " bg-", status)
+      }
+      
+    }
+  }
+  
+  
+  # recover box tools
+  boxTools <- boxTag$children[[1]]$children[[1]]$children[[3]] 
+  boxTools$children <- lapply(dropNulls(boxTools$children), function(tool) {
+    if (solidHeader && !is.null(status)) tool$attribs$class <- paste0(tool$attribs$class, " btn-", status)
+    tool
+  })
+  
+  # replace title tag by the user widget
+  boxTag$children[[1]]$children[[1]] <- user[[1]]
+  
+  # inject box tools
+  if (inherits(boxTag$children[[1]]$children[[1]], "shiny.tag.list")) {
+    boxTag$children[[1]]$children[[1]][[1]] <- tagInsertChild(
+      boxTag$children[[1]]$children[[1]][[1]],
+      boxTools,
+      1
+    )
+  } else {
+    boxTag$children[[1]]$children[[1]] <- tagInsertChild(
+      boxTag$children[[1]]$children[[1]],
+      boxTools,
+      1
+    )
+  }
+  
+  boxTag
+}
+
+#' User Description
+#' 
+#' \link{userDescription} creates a customized title tag for \link{userBox}.
+#'
+#' @param title User card title.
+#' @param subtitle User card subtitle.
+#' @param footer User card footer.
+#' @param image User image url or path.
+#' @param backgroundImage image url, if any. Background needs to be TRUE.
+#' @param type User card type. Either 1 or 2. 1 corresponds to a centered user image,
+#' while 2 is a left aligned user image.
+#' @param imageElevation User card image elevation (numeric). NULL by default.
+#' 
+#' @rdname bs4UserCard
+#' @export
+bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundImage = NULL,
+                               type = c(1, 2), imageElevation = NULL) {
+  
+  headerCl <- "widget-user-header"
+  
   # if type is not explicitly provided, it will use the default value, c(1, 2).
   # Below we ensure that whenever it is the case, we only select the first element
   # by default. We also need to convert to character for match.arg
@@ -1442,81 +1525,6 @@ bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL
     type <- match.arg(type)
     if (type == "1") type <- NULL
   }
-  if (!is.null(type)) {
-    userCardCl <- paste0(userCardCl, " widget-user-", type)
-  } else {
-    userCardCl <- paste0(userCardCl, " widget-user") 
-  }
-  
-  if (!is.null(elevation)) userCardCl <- paste0(userCardCl, " elevation-", elevation)
-  if (collapsible && collapsed) {
-    userCardCl <- paste(userCardCl, "collapsed-card")
-  }
-  
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  
-  
-  headerCl <- "widget-user-header"
-  if (!is.null(color)) {
-    if (gradient) {
-      headerCl <- paste0(headerCl, " bg-gradient-", color)
-    } else {
-      headerCl <- paste0(headerCl, " bg-", color)
-    }
-  }
-  if (!is.null(backgroundImage)) headerCl <- paste0(headerCl, " bg-black")
-  
-  # collapseTag
-  collapseTag <- NULL
-  if (collapsible) {
-    collapseIcon <- if (collapsed) 
-      "plus"
-    else "minus"
-    collapseTag <- shiny::tags$button(
-      class = paste0("btn", " btn-", color, " btn-", boxToolSize), 
-      type = "button",
-      `data-card-widget` = "collapse", 
-      shiny::icon(collapseIcon)
-    )
-  }
-  
-  # closeTag
-  closeTag <- NULL
-  if (closable) {
-    closeTag <- shiny::tags$button(
-      class = paste0("btn", " btn-", color, " btn-", boxToolSize),
-      `data-card-widget` = "remove",
-      type = "button",
-      shiny::tags$i(class = "fa fa-times")
-    )
-  }
-  
-  maximizableTag <- NULL
-  if (maximizable) {
-    maximizableTag <- shiny::tags$button(
-      type = "button",
-      class = paste0("btn", " btn-", color, " btn-", boxToolSize),
-      `data-card-widget` = "maximize",
-      shiny::icon("expand")
-    )
-  }
-  
-  
-  if (collapsible || closable || maximizable) {
-    cardToolTag <- shiny::tags$div(class = "card-tools float-right")
-  }
-  
-  # update boxToolTag
-  cardToolTag <- shiny::tagAppendChildren(
-    cardToolTag, 
-    collapseTag, 
-    closeTag,
-    maximizableTag
-  )
-  
   
   headerImageTag <- shiny::tags$div(
     class = "widget-user-image",
@@ -1530,14 +1538,15 @@ bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL
     )
   )
   
-  headerTag <- if (is.null(type)) {
+  if (!is.null(backgroundImage)) headerCl <- paste0(headerCl, " bg-black")
+  
+  userDescriptionTag <- if (is.null(type)) {
     shiny::tagList(
       shiny::tags$div(
         class = headerCl,
         style = if (!is.null(backgroundImage)) {
           paste0("background: url('", backgroundImage, "') center center;")
         },
-        cardToolTag,
         # title and subtitle
         shiny::tags$h3(class = "widget-user-username", title),
         if (!is.null(subtitle)) shiny::tags$h5(class = "widget-user-desc", subtitle)
@@ -1549,8 +1558,7 @@ bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL
       class = headerCl,
       style = if (!is.null(backgroundImage)) {
         paste0("background: url('", backgroundImage, "') center center;")
-      },
-      cardToolTag,
+      }, 
       headerImageTag,
       # title and subtitle
       shiny::tags$h3(class = "widget-user-username", title),
@@ -1558,30 +1566,7 @@ bs4UserCard <- function(..., title, subtitle = NULL, footer = NULL, image = NULL
     )
   }
   
-  bodyTag <- shiny::tags$div(class = "card-body", ...)
-  
-  
-  footerTag <- if (!is.null(footer)) {
-    shiny::tags$div(
-      class = if (!is.null(type)) {
-        if (type == 2) "card-footer p-1" 
-      } else {
-        "card-footer"
-      },
-      style = "overflow-y: auto; max-height: 500px;",
-      footer
-    )
-  } else {
-    NULL
-  }
-  
-  userCardTag <- shiny::tags$div(class = userCardCl, style = style)
-  userCardTag <- shiny::tagAppendChildren(userCardTag, headerTag, bodyTag, footerTag)
-  
-  shiny::tags$div(
-    class = if (!is.null(width)) paste0("col-sm-", width),
-    userCardTag
-  )
+  list(userDescriptionTag, type)
 }
 
 
