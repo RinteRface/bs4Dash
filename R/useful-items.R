@@ -331,67 +331,73 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 
 
 
-#' Create a Bootstrap 4 progress bar
-#' 
 #' AdminLTE3 progress bar
+#' 
+#' Create a Bootstrap 4 progress bar.
 #'
 #' @param value Progress bar value.
-#' @param label Progress label. NULL by default.
 #' @param min Progress bar minimum value.
 #' @param max Progress bar maximum value.
-#' @param striped Whether the progress bar is striped or not. FALSE by default.
 #' @param vertical Whether to display the progress bar in vertical mode. FALSE by default.
+#' @param striped Whether the progress bar is striped or not. FALSE by default.
+#' @param animated Whether to animate the progress bar. Default to FALSE.
 #' @param status Progress bar status. "primary", "success", "warning", "danger" or "info".
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
-#' @param animated Whether to animate the progress bar. Default to FALSE.
+#' @param label Progress label. NULL by default.
 #' 
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'        title = "Progress bars",
-#'        bs4Card(
-#'         title = "Progress bars",
-#'         footer = tagList(
-#'           bs4ProgressBar(
-#'           value = 5,
-#'           size = "xxs",
-#'           striped = FALSE,
-#'           status = "info"
-#'          ),
-#'          bs4ProgressBar(
-#'           value = 25,
-#'           striped = TRUE,
-#'           status = "warning",
-#'           label = "25%"
-#'          )
-#'         ),
-#'         bs4ProgressBar(
-#'          value = 80,
-#'          vertical = TRUE,
-#'          status = "success"
-#'         ),
-#'         bs4ProgressBar(
-#'          value = 100,
-#'          vertical = TRUE,
-#'          striped = TRUE,
-#'          size = "sm",
-#'          status = "danger",
-#'          animated = TRUE
-#'         )
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'       box(
+#'        title = "Horizontal",
+#'        progressBar(
+#'         value = 10,
+#'         striped = TRUE,
+#'         animated = TRUE
+#'        ),
+#'        progressBar(
+#'         value = 50,
+#'         status = "warning",
+#'         size = "xs"
+#'        ),
+#'        progressBar(
+#'         value = 20,
+#'         status = "danger",
+#'         size = "sm"
 #'        )
-#'      )
+#'       ),
+#'       box(
+#'        title = "Vertical",
+#'        progressBar(
+#'         value = 10,
+#'         striped = TRUE,
+#'         animated = TRUE,
+#'         vertical = TRUE
+#'        ),
+#'        progressBar(
+#'         value = 50,
+#'         status = "warning",
+#'         size = "xs",
+#'         vertical = TRUE
+#'        ),
+#'        progressBar(
+#'         value = 20,
+#'         status = "danger",
+#'         size = "sm",
+#'         vertical = TRUE
+#'        )
+#'       )
+#'      ),
+#'      title = "Progress bars"
 #'    ),
-#'    server = function(input, output) {}
+#'    server = function(input, output) { }
 #'  )
 #' }
 
@@ -399,10 +405,11 @@ bs4CarouselItem <- function(active = FALSE, src = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4ProgressBar <- function (value, label = NULL, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
-                            status = c("primary", "warning", "danger", "info", "success"), 
-                            size = NULL, animated = FALSE) {
-  status <- match.arg(status)
+bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
+                            animated = FALSE, status = "primary", size = NULL, 
+                            label = NULL) {
+  
+  if (!is.null(status)) validateStatus(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
   

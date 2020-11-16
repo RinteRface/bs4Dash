@@ -2,24 +2,22 @@
 % Please edit documentation in R/useful-items.R
 \name{bs4ProgressBar}
 \alias{bs4ProgressBar}
-\title{Create a Bootstrap 4 progress bar}
+\title{AdminLTE3 progress bar}
 \usage{
 bs4ProgressBar(
   value,
-  label = NULL,
   min = 0,
   max = 100,
   vertical = FALSE,
   striped = FALSE,
-  status = c("primary", "warning", "danger", "info", "success"),
+  animated = FALSE,
+  status = "primary",
   size = NULL,
-  animated = FALSE
+  label = NULL
 )
 }
 \arguments{
 \item{value}{Progress bar value.}
-
-\item{label}{Progress label. NULL by default.}
 
 \item{min}{Progress bar minimum value.}
 
@@ -29,62 +27,70 @@ bs4ProgressBar(
 
 \item{striped}{Whether the progress bar is striped or not. FALSE by default.}
 
+\item{animated}{Whether to animate the progress bar. Default to FALSE.}
+
 \item{status}{Progress bar status. "primary", "success", "warning", "danger" or "info".}
 
 \item{size}{Progress bar size. NULL, "sm", "xs" or "xxs".}
 
-\item{animated}{Whether to animate the progress bar. Default to FALSE.}
+\item{label}{Progress label. NULL by default.}
 }
 \description{
-AdminLTE3 progress bar
+Create a Bootstrap 4 progress bar.
 }
 \examples{
 if(interactive()){
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
-     sidebar = bs4DashSidebar(),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
-     title = "test",
-     body = bs4DashBody(
-       title = "Progress bars",
-       bs4Card(
-        title = "Progress bars",
-        footer = tagList(
-          bs4ProgressBar(
-          value = 5,
-          size = "xxs",
-          striped = FALSE,
-          status = "info"
-         ),
-         bs4ProgressBar(
-          value = 25,
-          striped = TRUE,
-          status = "warning",
-          label = "25\%"
-         )
-        ),
-        bs4ProgressBar(
-         value = 80,
-         vertical = TRUE,
-         status = "success"
-        ),
-        bs4ProgressBar(
-         value = 100,
-         vertical = TRUE,
-         striped = TRUE,
-         size = "sm",
-         status = "danger",
-         animated = TRUE
-        )
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(),
+     body = dashboardBody(
+      box(
+       title = "Horizontal",
+       progressBar(
+        value = 10,
+        striped = TRUE,
+        animated = TRUE
+       ),
+       progressBar(
+        value = 50,
+        status = "warning",
+        size = "xs"
+       ),
+       progressBar(
+        value = 20,
+        status = "danger",
+        size = "sm"
        )
-     )
+      ),
+      box(
+       title = "Vertical",
+       progressBar(
+        value = 10,
+        striped = TRUE,
+        animated = TRUE,
+        vertical = TRUE
+       ),
+       progressBar(
+        value = 50,
+        status = "warning",
+        size = "xs",
+        vertical = TRUE
+       ),
+       progressBar(
+        value = 20,
+        status = "danger",
+        size = "sm",
+        vertical = TRUE
+       )
+      )
+     ),
+     title = "Progress bars"
    ),
-   server = function(input, output) {}
+   server = function(input, output) { }
  )
 }
 
