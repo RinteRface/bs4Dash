@@ -229,8 +229,10 @@ $(function () {
   // Sidebar themer
   
   // detect global sidebar theme and select or not the toggle
-  if ($('.main-sidebar').attr('class').match('dark')) {
-    $('#sidebar-skin').prop( "checked", true );
+  if ($('.main-sidebar').length > 0) {
+    if ($('.main-sidebar').attr('class').match('dark')) {
+      $('#sidebar-skin').prop( "checked", true );
+    } 
   }
   
   // clicking on dark/light switch changes:
@@ -388,8 +390,10 @@ $(function () {
   // Controlbar themer
   
   // detect global controlbar theme and select or not the toggle
-  if ($('.control-sidebar').attr('class').match('dark')) {
-    $('#controlbar-skin').prop( "checked", true );
+  if ($('.control-sidebar').length > 0) {
+    if ($('.control-sidebar').attr('class').match('dark')) {
+      $('#controlbar-skin').prop( "checked", true );
+    } 
   }
   
   // clicking on dark/light switch changes:
