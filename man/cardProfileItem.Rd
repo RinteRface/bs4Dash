@@ -4,7 +4,7 @@
 \alias{cardProfileItem}
 \title{AdminLTE3 card profile item}
 \usage{
-cardProfileItem(title = NULL, description = NULL)
+cardProfileItem(title, description)
 }
 \arguments{
 \item{title}{Item title.}

@@ -91,6 +91,8 @@ This is to align with shinydashboard and shinydashboardPlus.
 - This component has been removed
 
 ### Others
+- In `cardProfile()`, add `bordered()`. `src` becomes `image`. 
+- Remove `cardProfileItemList()`.
 - `updatebs4TabSetPanel()`: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)
 - value is now mandatory in `bs4InfoBox()`
 - change `attachmentBlock()` title_url to titleUrl (to match with a new upcoming package...)

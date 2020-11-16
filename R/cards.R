@@ -1564,48 +1564,46 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(
-#'       bs4SidebarMenu(
-#'        bs4SidebarHeader("Main content"),
-#'        bs4SidebarMenuItem(
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(
+#'       sidebarMenu(
+#'        sidebarHeader("Main content"),
+#'        menuItem(
 #'          "Profile Card",
 #'          tabName = "profile_card",
-#'          icon = "desktop"
+#'          icon = icon("desktop")
 #'        )
 #'       )
 #'      ),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'       bs4TabItems(
-#'        bs4TabItem(
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
+#'      title = "boxProfile",
+#'      body = dashboardBody(
+#'       tabItems(
+#'        tabItem(
 #'          tabName = "profile_card",
 #'          bs4Card(
 #'           status = "primary",
 #'           solidHeader = TRUE,
-#'           cardProfile(
-#'            src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+#'           boxProfile(
+#'            image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
 #'            title = "Nina Mcintire",
 #'            subtitle = "Software Engineer",
-#'            cardProfileItemList(
-#'             bordered = TRUE,
-#'             cardProfileItem(
+#'            bordered = TRUE,
+#'            boxProfileItem(
 #'              title = "Followers",
 #'              description = 1322
 #'             ),
-#'             cardProfileItem(
+#'             boxProfileItem(
 #'              title = "Following",
 #'              description = 543
 #'             ),
-#'             cardProfileItem(
+#'             boxProfileItem(
 #'              title = "Friends",
 #'              description = 13287
 #'             )
-#'            )
 #'           )
 #'         )
 #'        )
@@ -1617,39 +1615,27 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
 #' }
 #' 
 #' @export
-cardProfile <- function(..., src = NULL, title = NULL, subtitle = NULL) {
+cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FALSE) {
+  
+  cl <- if (bordered) "list-group" else "list-group list-group-unbordered"
   
   shiny::tags$div(
     class = "card-body card-profile",
-    shiny::tags$div(
-      class = "text-center",
-      shiny::img(class = "profile-user-img img-fluid img-circle", src = src)
-    ),
+    if (!is.null(image)) {
+      shiny::tags$div(
+        class = "text-center",
+        shiny::img(class = "profile-user-img img-fluid img-circle", src = image)
+      )
+    },
     shiny::h3(class = "profile-username text-center", title),
-    shiny::p(class = "text-muted text-center", subtitle),
-    ...
+    if (!is.null(subtitle)) shiny::p(class = "text-muted text-center", subtitle),
+    shiny::tags$ul(
+      class = cl,
+      ...
+    )
   ) 
 }
 
-#' @title AdminLTE3 card profile item container
-#'
-#' @description Create card profile item list
-#'
-#' @param ... Slot for \link{cardProfileItem}.
-#' @param bordered Whether the container should have a border or not. FALSE by default.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
-#' @export
-cardProfileItemList <- function(..., bordered = FALSE) {
-  
-  cl <- if (isTRUE(bordered)) "list-group mb-3" else "list-group list-group-unbordered mb-3"
-  
-  shiny::tags$ul(
-    class = cl,
-    ...
-  )
-}
 
 #' @title AdminLTE3 card profile item 
 #'
@@ -1661,7 +1647,7 @@ cardProfileItemList <- function(..., bordered = FALSE) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @export
-cardProfileItem <- function(title = NULL, description = NULL) {
+cardProfileItem <- function(title, description) {
   shiny::tags$li(
     class = "list-group-item",
     shiny::strong(title),

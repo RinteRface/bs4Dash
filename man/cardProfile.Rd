@@ -4,16 +4,16 @@
 \alias{cardProfile}
 \title{AdminLTE3 card profile}
 \usage{
-cardProfile(..., src = NULL, title = NULL, subtitle = NULL)
+cardProfile(..., image = NULL, title, subtitle = NULL, bordered = FALSE)
 }
 \arguments{
 \item{...}{Any element such as \link{cardProfileItemList}.}
 
-\item{src}{Profile image, if any.}
-
 \item{title}{Title.}
 
 \item{subtitle}{Subtitle.}
+
+\item{src}{Profile image, if any.}
 }
 \description{
 Create card profile
@@ -23,48 +23,46 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
-     sidebar = bs4DashSidebar(
-      bs4SidebarMenu(
-       bs4SidebarHeader("Main content"),
-       bs4SidebarMenuItem(
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(
+      sidebarMenu(
+       sidebarHeader("Main content"),
+       menuItem(
          "Profile Card",
          tabName = "profile_card",
-         icon = "desktop"
+         icon = icon("desktop")
        )
       )
      ),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
-     title = "test",
-     body = bs4DashBody(
-      bs4TabItems(
-       bs4TabItem(
+     controlbar = dashboardControlbar(),
+     footer = dashboardFooter(),
+     title = "boxProfile",
+     body = dashboardBody(
+      tabItems(
+       tabItem(
          tabName = "profile_card",
          bs4Card(
           status = "primary",
           solidHeader = TRUE,
-          cardProfile(
-           src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+          boxProfile(
+           image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
            title = "Nina Mcintire",
            subtitle = "Software Engineer",
-           cardProfileItemList(
-            bordered = TRUE,
-            cardProfileItem(
+           bordered = TRUE,
+           boxProfileItem(
              title = "Followers",
              description = 1322
             ),
-            cardProfileItem(
+            boxProfileItem(
              title = "Following",
              description = 543
             ),
-            cardProfileItem(
+            boxProfileItem(
              title = "Friends",
              description = 13287
             )
-           )
           )
         )
        )
