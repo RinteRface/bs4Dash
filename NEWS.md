@@ -91,6 +91,11 @@ This is to align with shinydashboard and shinydashboardPlus.
 - add `userBlock()` to pass on title.
 
 
+### attachmentBlock
+- `src` becomes `image`.
+- `titleUrl` becomes `href`.
+
+
 ### bs4Box 
 - This component has been removed
 

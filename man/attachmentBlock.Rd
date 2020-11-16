@@ -4,41 +4,42 @@
 \alias{attachmentBlock}
 \title{AdminLTE3 attachment container}
 \usage{
-attachmentBlock(..., src = NULL, title = NULL, titleUrl = NULL)
+attachmentBlock(..., image, title = NULL, href = NULL)
 }
 \arguments{
 \item{...}{Any element.}
 
-\item{src}{Url or path to the image.}
+\item{image}{url or path to the image.}
 
 \item{title}{Attachment title.}
 
-\item{titleUrl}{External link.}
+\item{href}{External link.}
 }
 \description{
-Create an attachment container, nice to wrap articles...
+\link{attachmentBlock} create an attachment container, nice to wrap articles...
+and insert in a \link{box}.
 }
 \examples{
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
+ 
  shinyApp(
-  ui = bs4DashPage(
-    bs4DashNavbar(),
-    bs4DashSidebar(),
-    bs4DashControlbar(),
-    bs4DashBody(
-     bs4Card(
-      title = "Attachment example",
+  ui = dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+     box(
+      title = "attachmentBlock example",
       attachmentBlock(
-       src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
+       image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
        title = "Test",
-       titleUrl = "http://google.com",
+       href = "https://google.com",
        "This is the content"
       )
      )
     ),
-    title = "AttachmentBlock"
+    title = "attachmentBlock"
   ),
   server = function(input, output) { }
  )
@@ -48,3 +49,4 @@ if (interactive()) {
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{boxWidgets}
