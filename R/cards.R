@@ -1269,13 +1269,6 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
     )
   }
   
-  
-  # Better box tool styling
-  #boxTag$children[[1]]$children[[1]]$children[[1]]$attribs$class <- paste0(
-  #  boxTag$children[[1]]$children[[1]]$children[[1]]$attribs$class,
-  #  " pt-3 pb-3 pr-2 mr-2"
-  #)
-  
   # Insert tabs at different position in the header tag
   if (side == "right") {
     boxTag$children[[1]]$children[[1]] <- tagInsertChild(
