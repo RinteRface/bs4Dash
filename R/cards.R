@@ -142,6 +142,22 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
                     gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
                     sidebar = NULL, id = NULL) {
   
+  # multiple validation
+  validateBoxProps(
+    title = title, 
+    label = label, 
+    sidebar = sidebar, 
+    dropdownMenu = dropdownMenu, 
+    status = status, 
+    gradient = gradient, 
+    collapsible = collapsible, 
+    collapsed = collapsed, 
+    solidHeader = solidHeader,
+    background = background, 
+    elevation = elevation, 
+    width = width
+  )
+  
   props <- dropNulls(
     list(
       title = as.character(title),
@@ -156,37 +172,10 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     )
   )
   
-  if (is.null(title) && 
-      (!is.null(label) || !is.null(sidebar) || !is.null(dropdownMenu))) {
-    stop("Cannot use box tools without a title")
-  }
-  
-  if (!collapsible & collapsed) {
-    stop("Cannot collapse a card that is not collapsible.")
-  }
-  
-  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
-  if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
-  
-  
-  if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
-  }
-  
-  if (!is.null(width)) {
-    stopifnot(is.numeric(width))
-    # respect the bootstrap grid
-    stopifnot(width <= 12)
-    stopifnot(width >= 0)
-  }
-  
   
   cardCl <- "card"
   
   if (!is.null(status)) {
-    validateStatusPlus(status)
     cardCl <- paste0(cardCl, " card-", status)
   }
   
@@ -196,7 +185,6 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
   
   if (!is.null(background)) {
-    validateStatusPlus(background)
     cardCl <- paste0(cardCl, " bg-", if (gradient) "gradient-", background)
   }
   
@@ -244,7 +232,6 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   
   collapseTag <- NULL
   if (collapsible) {
-    buttonStatus <- status %OR% "default"
     collapseIcon <- if (collapsed) 
       "plus"
     else "minus"
@@ -1390,18 +1377,6 @@ bs4UserCard <- function(..., user = NULL, footer = NULL, status = NULL,
                         collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL, 
                         gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL, 
                         sidebar = NULL, id = NULL) {
-
-  if (!collapsible && collapsed) {
-    stop("Cannot collapse a card that is not collapsible.")
-  }
-  
-  if (!is.null(width)) {
-    stopifnot(is.numeric(width))
-    # respect the bootstrap grid
-    stopifnot(width <= 12)
-    stopifnot(width >= 0)
-  }
-  
   
   # userBox is built on top of the box function. The difference is the title tag
   # that is replaced by userDescription ...

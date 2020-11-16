@@ -261,3 +261,39 @@ tagInsertChild <- function(tag, child, position) {
   tag$children <- append(tag$children, list(child), position - 1)
   tag
 }
+
+
+# Tool to validate the card props
+validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradient, collapsible, 
+                             collapsed, solidHeader, background, elevation, width) {
+  
+  if (!is.null(status)) validateStatusPlus(status)
+  if (!is.null(background)) validateStatusPlus(background)
+  
+  
+  if (is.null(title) && 
+      (!is.null(label) || !is.null(sidebar) || !is.null(dropdownMenu))) {
+    stop("Cannot use box tools without a title")
+  }
+  
+  if (!collapsible & collapsed) {
+    stop("Cannot collapse a card that is not collapsible.")
+  }
+  
+  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
+  if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
+  
+  
+  if (!is.null(elevation)) {
+    stopifnot(is.numeric(elevation))
+    stopifnot(elevation < 6)
+    stopifnot(elevation >= 0)
+  }
+  
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
+}
