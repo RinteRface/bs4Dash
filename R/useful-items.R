@@ -2673,52 +2673,71 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 
 #' Create a Boostrap 4 ribbon
 #'
-#' Build a bootstrap 4 ribbon
+#' \link{bs4Ribbon} build a bootstrap 4 ribbon
 #'
 #' @param text Ribbon text.
-#' @param status Ribbon status: "primary", "danger", "success", "warning", "info" and 
-#' "secondary".
-#' @param size NULL by default: "lg" or "xl".
+#' @param color Ribbon color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' 
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(), 
-#'     sidebar = bs4DashSidebar(),
-#'     body = bs4DashBody(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
 #'      fluidRow(
-#'       bs4Box(
+#'       box(
 #'        width = 4,
-#'        title = "Normal ribbon",
+#'        title = "Blue ribbon",
 #'        bs4Ribbon(
 #'         text = "New",
-#'         status = "primary"
+#'         color = "primary"
 #'        )
 #'       ),
-#'       bs4Box(
+#'       box(
 #'        width = 4,
-#'        title = "Large ribbon",
+#'        title = "Purple ribbon",
 #'        bs4Ribbon(
 #'         text = "New",
-#'         status = "secondary",
-#'         size = "lg"
+#'         color = "indigo"
 #'        )
 #'       ),
-#'       bs4Box(
+#'       box(
 #'        width = 4,
-#'        title = "XLarge ribbon",
+#'        title = "Orange ribbon",
 #'        bs4Ribbon(
 #'         text = "New",
-#'         status = "danger",
-#'         size = "xl"
+#'         color = "orange"
 #'        )
 #'       )
 #'      )
 #'     ), 
-#'     footer = bs4DashFooter()
+#'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
@@ -2728,15 +2747,10 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Ribbon <- function(text, status = c("primary", "danger", "success", "warning", "info", "secondary"),
-                      size = NULL) {
-  status <- match.arg(status)
-  ribbonCl <- paste0("ribbon bg-", status) 
+bs4Ribbon <- function(text, color) {
+  validateStatusPlus(color)
+  ribbonCl <- paste0("ribbon bg-", color) 
   ribbonWrapperCl <- "ribbon-wrapper"
-  if (!is.null(size)) {
-    ribbonWrapperCl <- paste0(ribbonWrapperCl, " ribbon-", size)
-    ribbonCl <- paste0(ribbonCl, " text-", size)
-  }
   shiny::tags$div(
     class = ribbonWrapperCl,
     shiny::tags$div(class = ribbonCl, text)
