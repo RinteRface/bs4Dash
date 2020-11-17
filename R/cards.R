@@ -5,7 +5,7 @@
 #' @param ... Contents of the box.
 #' @param title Optional title.
 #' @param footer Optional footer text.
-#' @param status The status of the item This determines the item's background
+#' @param status The status of the item. This determines the item's background
 #'   color.  Valid statuses are defined as follows:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -29,7 +29,6 @@
 #'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' Only primary, success, info, warning and danger are compatible with solidHeader!
 #' @param solidHeader Should the header be shown with a solid color background?
 #' @param background If NULL (the default), the background of the box will be
 #'   white. Otherwise, a color string. Valid colors are listed in

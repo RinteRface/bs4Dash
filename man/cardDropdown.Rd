@@ -35,8 +35,10 @@ Other boxWidgets:
 \code{\link{bs4CardLabel}()},
 \code{\link{bs4CardSidebar}()},
 \code{\link{bs4SocialCard}()},
+\code{\link{bs4Timeline}()},
 \code{\link{cardProfile}()},
-\code{\link{descriptionBlock}()}
+\code{\link{descriptionBlock}()},
+\code{\link{userPost}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

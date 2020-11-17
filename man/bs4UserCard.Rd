@@ -78,7 +78,7 @@ userDescription(
 
 \item{footer}{User card footer.}
 
-\item{status}{The status of the item This determines the item's background
+\item{status}{The status of the item. This determines the item's background
   color.  Valid statuses are defined as follows:
 \itemize{
   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -101,8 +101,7 @@ userDescription(
   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
-}
-Only primary, success, info, warning and danger are compatible with solidHeader!}
+}}
 
 \item{solidHeader}{Should the header be shown with a solid color background?}
 

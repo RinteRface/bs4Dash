@@ -101,6 +101,18 @@ if (interactive()) {
 }
 
 }
+\seealso{
+Other boxWidgets: 
+\code{\link{attachmentBlock}()},
+\code{\link{bs4CardLabel}()},
+\code{\link{bs4CardSidebar}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{bs4Timeline}()},
+\code{\link{cardDropdown}()},
+\code{\link{cardProfile}()},
+\code{\link{descriptionBlock}()}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\concept{boxWidgets}

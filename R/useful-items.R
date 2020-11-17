@@ -563,9 +563,9 @@ bs4Loading <- function() {
 
 
 
-#' @title AdminLTE3 timeline block
+#' AdminLTE3 timeline block
 #'
-#' @description Create a timeline block
+#' \link{timelineBlock} creates a timeline block that may be inserted in a \link{box} or outside.
 #'
 #' @param ... slot for \link{bs4TimelineLabel} or \link{bs4TimelineItem}.
 #' @param reversed Whether the timeline is reversed or not.
@@ -575,50 +575,52 @@ bs4Loading <- function() {
 #' inside a box.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname timeline
+#' @family boxWidgets
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
 #'     title = "test",
-#'     body = bs4DashBody(
-#'      bs4Card(
+#'     body = dashboardBody(
+#'      box(
 #'       title = "Timeline",
-#'       bs4Timeline(
+#'       timelineBlock(
 #'        width = 12,
 #'        reversed = TRUE,
-#'        bs4TimelineEnd(status = "danger"),
-#'        bs4TimelineLabel("10 Feb. 2014", status = "info"),
-#'        bs4TimelineItem(
+#'        timelineEnd(color = "danger"),
+#'        timelineLabel("10 Feb. 2014", color = "pink"),
+#'        timelineItem(
 #'         elevation = 4, 
 #'         title = "Item 1",
-#'         icon = "gears",
-#'         status = "success",
+#'         icon = icon("gears"),
+#'         color = "olive",
 #'         time = "now",
 #'         footer = "Here is the footer",
 #'         "This is the body"
 #'        ),
-#'        bs4TimelineItem(
+#'        timelineItem(
 #'         title = "Item 2",
 #'         border = FALSE
 #'        ),
-#'        bs4TimelineLabel("3 Jan. 2014", status = "primary"),
-#'        bs4TimelineItem(
+#'        timelineLabel("3 Jan. 2014", color = "lightblue"),
+#'        timelineItem(
 #'         elevation = 2,
 #'         title = "Item 3",
-#'         icon = "paint-brush",
-#'         status = "warning",
-#'         bs4TimelineItemMedia(src = "http://placehold.it/150x100"),
-#'         bs4TimelineItemMedia(src = "http://placehold.it/150x100")
+#'         icon = icon("paint-brush"),
+#'         status = "orange",
+#'         timelineItemMedia(image = "http://placehold.it/150x100"),
+#'         timelineItemMedia(image = "http://placehold.it/150x100")
 #'        ),
-#'        bs4TimelineStart(status = "danger")
+#'        timelineStart(color = "secondary")
 #'       )
 #'      )
 #'     )
@@ -646,20 +648,45 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 }
 
 
-#' @title AdminLTE3 timeline label
+#' AdminLTE3 timeline label
 #'
-#' @description Create a timeline label
+#' \link{timelineLabel} creates a timeline label element to highlight an event.
 #'
 #' @param ... Any element.
-#' @param status Label status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param color Label color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname timeline
 #' 
 #' @export
-bs4TimelineLabel <- function(..., status = NULL) {
+bs4TimelineLabel <- function(..., color = NULL) {
   
   cl <- "bg-"
-  if (!is.null(status)) cl <- paste0(cl, status)
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    cl <- paste0(cl, color)
+  }
   
   shiny::tags$div(
     class = "time-label",
@@ -671,29 +698,57 @@ bs4TimelineLabel <- function(..., status = NULL) {
 }
 
 
-#' @title AdminLTE3 timeline item
+#' AdminLTE3 timeline item
 #'
-#' @description Create a timeline item
+#' \link{timelineItem} creates a timeline item that contains information for a 
+#' given event like the title, description, date, ...
 #'
-#' @param ... Any element such as \link{bs4TimelineItemMedia} ...
-#' @param elevation Timeline elevation (numeric). NULL by default.
-#' @param icon Item icon such as "clock-o", "times", ...
-#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param ... Any element such as \link{timelineItemMedia} ...
+#' @param icon Item icon. Expect \code{\link[shiny]{icon}}.
+#' @param color Item color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' @param time Item date or time.
 #' @param title Item title.
 #' @param border Whether to display a border between the header and the body. TRUE by default.
 #' @param footer Item footer if any.
+#' @param elevation Timeline elevation (numeric). NULL by default.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname timeline
 #' 
 #' @export
-bs4TimelineItem <- function(..., elevation = NULL, icon = NULL, 
-                            status = NULL, time = NULL, title = NULL, 
-                            border = TRUE, footer = NULL) {
+bs4TimelineItem <- function(..., icon = NULL, 
+                            color = NULL, time = NULL, title = NULL, 
+                            border = TRUE, footer = NULL, elevation = NULL) {
   
-  cl <- "fa fa-"
-  if (!is.null(icon)) cl <- paste0(cl, icon)
-  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    icon$attribs$class <- paste0(icon$attribs$class, " bg-", color)
+  }
+  
+  if (!is.null(elevation)) {
+    icon$attribs$class <- paste0(icon$attribs$class, " elevation-", elevation)
+  }
   
   itemCl <- "timeline-header no-border"
   if (isTRUE(border)) itemCl <- "timeline-header"
@@ -701,13 +756,7 @@ bs4TimelineItem <- function(..., elevation = NULL, icon = NULL,
   shiny::tags$div(
     
     # timelineItem icon and status
-    shiny::tags$i(
-      class = if (!is.null(elevation)) {
-        paste0(cl, " elevation-", elevation)
-      } else {
-        cl
-      }
-    ),
+    icon,
     
     # timelineItem container
     shiny::tags$div(
@@ -746,21 +795,21 @@ bs4TimelineItem <- function(..., elevation = NULL, icon = NULL,
 }
 
 
-#' @title AdminLTE2 timeline media item
+#' AdminLTE2 timeline media item
 #'
-#' @description Create a timeline media item
+#' \link{timelineItemMedia} create a specific container for images.
 #'
-#' @param src Media url or path.
+#' @param image Media url or path.
 #' @param height Media height in pixels.
 #' @param width Media width in pixels.
 #' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname timeline
 #' 
 #' @export
-bs4TimelineItemMedia <- function(src = NULL, height = NULL, width = NULL) {
+bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
   shiny::img(
     class = "margin", 
-    src = src, 
+    src = image, 
     height = height,
     width = width
   )
@@ -769,48 +818,92 @@ bs4TimelineItemMedia <- function(src = NULL, height = NULL, width = NULL) {
 
 
 
-#' @title AdminLTE3 timeline starting point
+#' AdminLTE3 timeline starting point
 #'
-#' @description Create a timeline starting point
+#' \link{timelineStart} indicates a starting point.
 #'
 #' @param icon Item icon such as "clock-o", "times", ...
-#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @param color Item color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' 
+#' @rdname timeline
 #' 
 #' @export
-bs4TimelineStart <- function(icon = "clock-o", status = NULL) {
+bs4TimelineStart <- function(icon = shiny::icon("clock-o"), color = NULL) {
   
-  cl <- "fa fa-"
-  if (!is.null(icon)) cl <- paste0(cl, icon)
-  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+  iconTag <- icon
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
+  }
   
-  shiny::tags$div(
-    shiny::tags$i(class = cl)
-  )
+  shiny::tags$div(iconTag)
 }
 
 
-#' @title AdminLTE3 timeline ending point
+#' AdminLTE3 timeline ending point
 #'
-#' @description Create a timeline ending point
+#' \link{timelineEnd} indicates an end point.
 #'
 #' @param icon Item icon such as "clock-o", "times", ...
-#' @param status Item status: see here for a list of valid colors \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
+#' @param color Item color. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname timeline
 #' 
 #' @export
-bs4TimelineEnd <- function(icon = "hourglass-end", status = NULL) {
+bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
   
-  cl <- "fa fa-"
-  if (!is.null(icon)) cl <- paste0(cl, icon)
-  if (!is.null(status)) cl <- paste0(cl, " bg-", status)
+  iconTag <- icon
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+    iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
+  }
   
   shiny::tagList(
-    shiny::tags$div(
-      shiny::tags$i(class = cl)
-    ),
+    shiny::tags$div(iconTag),
     shiny::br(), 
     shiny::br()
   )
@@ -1747,6 +1840,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userPost
+#' @family boxWidgets
 #' 
 #' @examples
 #' if (interactive()) {

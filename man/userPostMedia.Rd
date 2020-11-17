@@ -4,14 +4,14 @@
 \alias{userPostMedia}
 \title{AdminLTE3 user post media}
 \usage{
-userPostMedia(src = NULL, height = NULL, width = NULL)
+userPostMedia(image = NULL, height = NULL, width = NULL)
 }
 \arguments{
+\item{image}{Image path or url ...}
+
 \item{height}{Media height in pixels.}
 
 \item{width}{Media width in pixels.}
-
-\item{image}{Image path or url ...}
 }
 \description{
 \link{userPostMedia} creates a container to include an image in \link{userPost}.

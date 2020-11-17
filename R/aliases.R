@@ -504,3 +504,69 @@ boxPad <- cardPad
 #'
 #' @export
 starBlock <- bs4Stars
+
+
+
+
+#' Alias to \link{bs4Timeline}
+#' See \link{bs4Timeline} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineBlock <- bs4Timeline
+
+
+
+
+#' Alias to \link{bs4TimelineLabel}
+#' See \link{bs4TimelineLabel} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineLabel <- bs4TimelineLabel
+
+
+
+
+#' Alias to \link{bs4TimelineItem}
+#' See \link{bs4TimelineItem} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineItem <- bs4TimelineItem
+
+
+
+
+#' Alias to \link{bs4TimelineItemMedia}
+#' See \link{bs4TimelineItemMedia} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineItemMedia <- bs4TimelineItemMedia
+
+
+
+
+#' Alias to \link{bs4TimelineStart}
+#' See \link{bs4TimelineStart} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineStart <- bs4TimelineStart
+
+
+
+
+#' Alias to \link{bs4TimelineEnd}
+#' See \link{bs4TimelineEnd} for full details
+#'
+#' @rdname timeline
+#'
+#' @export
+timelineEnd <- bs4TimelineEnd

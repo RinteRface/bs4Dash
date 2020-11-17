@@ -33,8 +33,10 @@ Other boxWidgets:
 \code{\link{attachmentBlock}()},
 \code{\link{bs4CardSidebar}()},
 \code{\link{bs4SocialCard}()},
+\code{\link{bs4Timeline}()},
 \code{\link{cardDropdown}()},
 \code{\link{cardProfile}()},
-\code{\link{descriptionBlock}()}
+\code{\link{descriptionBlock}()},
+\code{\link{userPost}()}
 }
 \concept{boxWidgets}
