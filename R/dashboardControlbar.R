@@ -13,6 +13,8 @@
 #' @param pinned Whether to block the controlbar state (TRUE or FALSE). Default to NULL.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname controlbar
 #'
 #' @export
 bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
@@ -72,6 +74,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
 
 
 #' @inheritParams tabsetPanel
+#' @rdname controlbar
 #' @export
 controlbarMenu <- tabsetPanel
 
@@ -79,6 +82,7 @@ controlbarMenu <- tabsetPanel
 
 
 #' @inheritParams shiny::tabPanel
+#' @rdname controlbar
 #' @export
 controlbarItem <- shiny::tabPanel
 
@@ -86,6 +90,7 @@ controlbarItem <- shiny::tabPanel
 
 
 #' @inheritParams shiny::updateTabsetPanel
+#' @rdname controlbar
 #' @export
 updateControlbarMenu <- shiny::updateTabsetPanel
 
@@ -97,6 +102,8 @@ updateControlbarMenu <- shiny::updateTabsetPanel
 #' @param id Controlbar id.
 #' @param session Shiny session object.
 #' @export
+#' 
+#' @rdname controlbar
 #'
 #' @examples
 #' if (interactive()) {

@@ -80,7 +80,7 @@ dropdownMenuItem <- bs4DropdownMenuItem
 #' Alias to \link{bs4DashControlbar}
 #' See \link{bs4DashControlbar} for full details
 #'
-#' @rdname bs4DashControlbar
+#' @rdname controlbar
 #'
 #' @export
 dashboardControlbar <- bs4DashControlbar
