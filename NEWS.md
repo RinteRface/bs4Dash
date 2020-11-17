@@ -112,6 +112,18 @@ This is to align with shinydashboard and shinydashboardPlus.
 - rework component. Like `tabBox()` from `{shinydashboard}`
 
 
+### bs4DropdownMenu
+- `badge` becomes `badgeStatus`
+- Add `type`.
+- icon expects `shiny::icon`.
+- Replace `labelText` by `headerText`.
+- Add `.list` and `href`.
+- Remove `align`.
+
+### bs4DropdownMenuItem
+- This has been replaced by `notificationItem()` and `messageItem()`
+
+
 ### Others
 - Remove `src` from `carouselItem`
 - In `bs4Ribbon()`, `status` becomes `color`. Remove `size`.

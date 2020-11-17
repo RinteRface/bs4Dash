@@ -1,6 +1,7 @@
-#' Create a Boostrap 4 dashboard navbar
+#' Boostrap 4 dashboard navbar
 #'
-#' Build an adminLTE3 dashboard navbar
+#' \link{dashboardHeader} creates an adminLTE3 dashboard navbar to be included in
+#' \link{dashboardPage}.
 #'
 #' @param ... Any UI element between left and right Ui.
 #' @param title Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
@@ -9,8 +10,8 @@
 #'   which specifies the width in pixels, or a string that specifies the width
 #'   in CSS units.
 #' @param disable If \code{TRUE}, don't display the header bar.
-#' @param leftUi Custom left Ui content. Any Ui element.
-#' @param rightUi Custom right Ui content. Any Ui element.
+#' @param leftUi Custom left Ui content. Any element like \link{dropdownMenu}.
+#' @param rightUi Custom right Ui content. Any element like \link{dropdownMenu}.
 #' @param skin Navbar skin. "dark" or "light".
 #' @param status Navbar status. "primary", "danger", "warning",
 #' "success", "info", "white", "gray-light" and all other available colors. See
@@ -145,57 +146,73 @@ bs4DashBrand <- function(title, color = NULL, src = NULL, image = NULL, opacity 
 
 
 
-#' Create a Boostrap 4 dashboard dropdown menu
+#' Boostrap 4 dashboard dropdown menu
 #'
-#' Build an adminLTE3 dashboard dropdown menu
+#' \link{dropdownMenu} creates an adminLTE3 dashboard dropdown menu, to be inserted in
+#' a \link{dashboardHeader}.
 #'
-#' @param ... Slot for \link{bs4DropdownMenuItem}.
-#' @param show Whether to start with the dropdown open. FALSE by default.
-#' @param status Dropdown menu status. "primary", "success", "warning", "danger" or "info".
-#' @param labelText Dropdown label text.
-#' @param src Dropdown link to an external ressource.
-#' @param menuIcon Fontawesome icon (default = "bell")
-#' @param align Menu alignment (default = "right")
+#' @param ... Items to put in the menu. Typically, message menus should contain
+#'   \code{\link{messageItem}}s, notification menus should contain
+#'   \code{\link{notificationItem}}s, and task menus should contain
+#'   \code{\link{taskItem}}s.
+#' @param type The type of menu. Should be one of "messages", "notifications",
+#'   "tasks".
+#' @param badgeStatus The status of the badge which displays the number of items
+#'   in the menu. This determines the badge's color. Valid statuses are listed
+#'   in \link{validStatuses}. A value of \code{NULL} means to not display a
+#'   badge.
+#' @param icon An icon to display in the header. By default, the icon is
+#'   automatically selected depending on \code{type}, but it can be overriden
+#'   with this argument.
+#' @param headerText An optional text argument used for the header of the
+#'   dropdown menu (this is only visible when the menu is expanded). If none is
+#'   provided by the user, the default is "You have \code{x} messages," where
+#'   \code{x} is the number of items in the menu (if the \code{type} is
+#'   specified to be "notifications" or "tasks," the default text shows "You
+#'   have \code{x} notifications" or  "You have \code{x} tasks," respectively).
+#' @param .list An optional list containing items to put in the menu Same as the
+#'   \code{...} arguments, but in list format. This can be useful when working
+#'   with programmatically generated items.
+#' @param href External link.
 #' 
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(
-#'       rightUi = bs4DropdownMenu(
-#'        show = FALSE,
-#'        status = "danger",
-#'        src = "https://www.google.fr",
-#'        bs4DropdownMenuItem(
-#'          inputId = "triggerAction",
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(
+#'       rightUi = dropdownMenu(
+#'        badgeStatus = "danger",
+#'        type = "messages",
+#'        messageItem(
+#'          inputId = "triggerAction1",
 #'          message = "message 1",
 #'          from = "Divad Nojnarg",
-#'          src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+#'          image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
 #'          time = "today",
-#'          status = "danger",
-#'          type = "message"
-#'        ),
-#'        bs4DropdownMenuItem(
-#'          message = "message 2",
-#'          from = "Nono Gueye",
-#'          src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
-#'          time = "yesterday",
-#'          status = "success",
-#'          type = "message"
+#'          color = "lime"
+#'        )
+#'       ),
+#'       leftUi = dropdownMenu(
+#'        badgeStatus = "info",
+#'        type = "notifications",
+#'        notificationItem(
+#'          inputId = "triggerAction2",
+#'          text = "Error!",
+#'          status = "danger"
 #'        )
 #'       )
 #'      ),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody()
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
+#'      title = "dropdownMenu",
+#'      body = dashboardBody()
 #'    ),
 #'    server = function(input, output) {
-#'     observeEvent(input$triggerAction, {
+#'     observeEvent(input$triggerAction1, {
 #'      showModal(modalDialog(
 #'       title = "Important message",
 #'       "This is an important message!"
@@ -208,48 +225,64 @@ bs4DashBrand <- function(title, color = NULL, src = NULL, image = NULL, opacity 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
-                            status = c("primary", "warning", "danger", "info", "success"), 
-                            menuIcon = "bell", align = "right") {
+bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
+                            badgeStatus = "primary", icon = NULL, headerText = NULL, 
+                            .list = NULL, href = NULL) {
   
-  status <- match.arg(status)
-  items <- list(...)
-  n_items <- length(items)
-  # remove the divider from the last item
-  #items[[n_items]][[2]] <- NULL
+  type <- match.arg(type)
+  if (!is.null(badgeStatus)) validateStatus(badgeStatus)
+  items <- c(list(...), .list)
   
-  labelText <- n_items
+  # Make sure the items are a tags
+  #lapply(items, tagAssert, type = "a", class = "dropdown-item")
+  
+  if (is.null(icon)) {
+    icon <- switch(
+      type,
+      messages = shiny::icon("comments"),
+      notifications = shiny::icon("bell"),
+      tasks = shiny::icon("tasks")
+    )
+  }
+  
+  numItems <- length(items)
+  
+  if (is.null(badgeStatus)) {
+    badge <- NULL
+  } else {
+    badge <- span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
+  }
+  
+  if (is.null(headerText)) {
+    headerText <- paste("You have", numItems, type)
+  }
   
   shiny::tags$li(
-    class = if (isTRUE(show)) "nav-item dropdown show" else "nav-item dropdown",
+    class = "nav-item dropdown",
     shiny::tags$a(
       class = "nav-link",
       `data-toggle` = "dropdown",
       href = "#",
-      shiny::icon(menuIcon),
-      shiny::tags$span(
-        class = paste0("badge badge-", status, " navbar-badge"), 
-        labelText
-      )
+      `aria-expanded` = "false",
+      icon,
+      badge
     ),
     shiny::tags$div(
-      class = if (isTRUE(show)) {
-        sprintf("dropdown-menu dropdown-menu-lg dropdown-menu-%s show", align)
-      } else {
-        sprintf("dropdown-menu dropdown-menu-lg dropdown-menu-%s", align)
-      },
+      class = sprintf("dropdown-menu dropdown-menu-lg"),
       shiny::tags$span(
         class = "dropdown-item dropdown-header", 
-        paste0(n_items, " Items")
+        headerText
       ),
       shiny::tags$div(class = "dropdown-divider"),
-      ...,
-      shiny::tags$a(
-        class = "dropdown-item dropdown-footer",
-        href = src,
-        target = "_blank",
-        "See more"
-      )
+      items,
+      if (!is.null(href)) {
+        shiny::tags$a(
+          class = "dropdown-item dropdown-footer",
+          href = href,
+          target = "_blank",
+          "More"
+        ) 
+      }
     )
   )
 }
@@ -257,91 +290,127 @@ bs4DropdownMenu <- function(..., show = FALSE, labelText = NULL, src = NULL,
 
 
 
-#' Create a Boostrap 4 dashboard dropdown menu item
+#' Bootstrap 4 message item
 #'
-#' Build an adminLTE3 dashboard dropdown menu item
+#' \link{messageItem} creates a message item to place in a \link{dropdownMenu}.
 #'
-#' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
-#' @param message Item content.
-#' @param from Item sender. Only if type is message.
-#' @param time Item date.
-#' @param icon Item icon.
-#' @param src Item image. Only if type is message.
-#' @param status Item status. Leave NULL if type is notification. See
-#' \link{getAdminLTEColors} for valid statuses.
+#' @param from Who the message is from.
+#' @param message Text of the message.
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param time String representing the time the message was sent. Any string may
+#'   be used. For example, it could be a relative date/time like "5 minutes",
+#'   "today", or "12:30pm yesterday", or an absolute time, like "2014-12-01 13:45".
+#'   If NULL, no time will be displayed.
+#' @param href An optional URL to link to.
+#' @param image User image. 
+#' @param color Item color.
 #' If not NULL, Indicate the message priority.
-#' @param type Item type: notification or message.
+#' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DropdownMenuItem <- function(inputId = NULL, message, from = NULL, time = NULL, icon = "info-circle", src = NULL,
-                                status = NULL, type = c("notification", "message")) {
+messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL, 
+                        href = NULL, image = NULL, color = "secondary", inputId = NULL) {
   
-  type <- match.arg(type)
+  tagAssert(icon, type = "i")
+  if (is.null(href)) href <- "#"
+  if (!is.null(color)) validateStatusPlus(color)
   
-  itemCl <- if (is.null(inputId)) {
-    "dropdown-item"
-  } else {
-    "dropdown-item action-button"
-  }
+  itemCl <- "dropdown-item"
+  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
   
-  dropdownItemTag <- if (type == "notification") {
-    shiny::tagList(
-      shiny::tags$button(
-        type = "button",
-        class = itemCl,
-        `disabled` = if (is.null(inputId)) NA else NULL,
-        id = inputId,
-        shiny::tagAppendAttributes(shiny::icon(icon), class = "mr-2"),
-        message,
-        shiny::tags$span(
-          class = "float-right text-muted text-sm",
-          time,
-          shiny::tags$span(
-            class = "time",
-            shiny::icon(icon)
-          )
-        )
-      ),
-      shiny::tags$div(class = "dropdown-divider")
-    )
-  } else if (type == "message") {
-    shiny::tags$button(
-      type = "button",
+  shiny::tagList(
+    shiny::a(
       class = itemCl,
-      `disabled` = if (is.null(inputId)) NA else NULL,
       id = inputId,
-      shiny::tags$div(
+      href = if (is.null(inputId)) {
+        "#"
+      } else {
+        href
+      },
+      target = if (!is.null(href)) "_blank",
+      shiny::div(
         class = "media",
-        shiny::tags$img(
-          src = src,
-          class = "img-size-50 mr-3 img-circle"
-        ),
+        if (!is.null(image)) {
+          shiny::img(
+            src = image, 
+            alt = "User Avatar", 
+            class = "img-size-50 mr-3 img-circle"
+          )
+        },
         shiny::tags$div(
           class = "media-body",
           shiny::tags$h3(
             class = "dropdown-item-title",
             from,
-            shiny::tags$span(
-              class = paste0("float-right text-sm text-", status),
-              shiny::tags$i(class = "fas fa-star")
-            )
+            if (!is.null(icon)) {
+              shiny::tags$span(
+                class = paste0("float-right text-sm text-", color),
+                icon
+              )
+            }
           ),
           shiny::tags$p(class = "text-sm", message),
-          shiny::tags$p(
-            class = "text-sm text-muted",
-            shiny::tags$i(class = "far fa-clock mr-1"),
-            time
-          )
+          if (!is.null(time)) {
+            shiny::tags$p(
+              class = "text-sm text-muted",
+              tags$i(class = "far fa-clock mr-1"),
+              time
+            )
+          }
         )
       )
-    ) 
+    ),
+    shiny::tags$div(class = "dropdown-divider")
+  )
+}
+
+#' Bootstrap 4 notification item
+#'
+#' \link{messageItem} creates a message item to place in a \link{dropdownMenu}.
+#'
+#' @param text The notification text.
+#' @param icon An icon tag, created by \code{\link[shiny]{icon}}.
+#' @param status The status of the item This determines the item's background
+#'   color. Valid statuses are listed in \link{validStatuses}.
+#' @param href An optional URL to link to.
+#' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
+#'
+#' @export
+notificationItem <- function(text, icon = shiny::icon("warning"), 
+                             status = "success", href = NULL, inputId = NULL) {
+  
+  tagAssert(icon, type = "i")
+  if (is.null(href)) href <- "#"
+  if (!is.null(status)) validateStatusPlus(status)
+  
+  itemCl <- "dropdown-item"
+  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  
+  if (!is.null(status)) {
+    icon <- tagAppendAttributes(icon, class = paste0("text-", status)) 
   }
   
-  dropdownItemTag
-  
+  shiny::tagList(
+    shiny::tags$a(
+      class = itemCl,
+      `disabled` = if (is.null(inputId)) NA else NULL,
+      href = if (is.null(inputId)) {
+        "#"
+      } else {
+        href
+      },
+      target = if (!is.null(href)) "_blank",
+      id = inputId,
+      shiny::tagAppendAttributes(icon, class = "mr-2"),
+      text
+    ),
+    shiny::tags$div(class = "dropdown-divider")
+  )
 }
+
+
 
 
 

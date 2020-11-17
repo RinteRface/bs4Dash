@@ -65,18 +65,6 @@ dropdownMenu <- bs4DropdownMenu
 
 
 
-#' Alias to \link{bs4DropdownMenuItem}
-#' See \link{bs4DropdownMenuItem} for full details
-#'
-#' @rdname bs4DropdownMenuItem
-#'
-#' @export
-dropdownMenuItem <- bs4DropdownMenuItem
-
-
-
-
-
 #' Alias to \link{bs4DashControlbar}
 #' See \link{bs4DashControlbar} for full details
 #'

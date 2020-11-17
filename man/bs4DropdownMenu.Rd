@@ -3,85 +3,101 @@
 \name{bs4DropdownMenu}
 \alias{bs4DropdownMenu}
 \alias{dropdownMenu}
-\title{Create a Boostrap 4 dashboard dropdown menu}
+\title{Boostrap 4 dashboard dropdown menu}
 \usage{
 bs4DropdownMenu(
   ...,
-  show = FALSE,
-  labelText = NULL,
-  src = NULL,
-  status = c("primary", "warning", "danger", "info", "success"),
-  menuIcon = "bell",
-  align = "right"
+  type = c("messages", "notifications", "tasks"),
+  badgeStatus = "primary",
+  icon = NULL,
+  headerText = NULL,
+  .list = NULL,
+  href = NULL
 )
 
 dropdownMenu(
   ...,
-  show = FALSE,
-  labelText = NULL,
-  src = NULL,
-  status = c("primary", "warning", "danger", "info", "success"),
-  menuIcon = "bell",
-  align = "right"
+  type = c("messages", "notifications", "tasks"),
+  badgeStatus = "primary",
+  icon = NULL,
+  headerText = NULL,
+  .list = NULL,
+  href = NULL
 )
 }
 \arguments{
-\item{...}{Slot for \link{bs4DropdownMenuItem}.}
+\item{...}{Items to put in the menu. Typically, message menus should contain
+\code{\link{messageItem}}s, notification menus should contain
+\code{\link{notificationItem}}s, and task menus should contain
+\code{\link{taskItem}}s.}
 
-\item{show}{Whether to start with the dropdown open. FALSE by default.}
+\item{type}{The type of menu. Should be one of "messages", "notifications",
+"tasks".}
 
-\item{labelText}{Dropdown label text.}
+\item{badgeStatus}{The status of the badge which displays the number of items
+in the menu. This determines the badge's color. Valid statuses are listed
+in \link{validStatuses}. A value of \code{NULL} means to not display a
+badge.}
 
-\item{src}{Dropdown link to an external ressource.}
+\item{icon}{An icon to display in the header. By default, the icon is
+automatically selected depending on \code{type}, but it can be overriden
+with this argument.}
 
-\item{status}{Dropdown menu status. "primary", "success", "warning", "danger" or "info".}
+\item{headerText}{An optional text argument used for the header of the
+dropdown menu (this is only visible when the menu is expanded). If none is
+provided by the user, the default is "You have \code{x} messages," where
+\code{x} is the number of items in the menu (if the \code{type} is
+specified to be "notifications" or "tasks," the default text shows "You
+have \code{x} notifications" or  "You have \code{x} tasks," respectively).}
 
-\item{menuIcon}{Fontawesome icon (default = "bell")}
+\item{.list}{An optional list containing items to put in the menu Same as the
+\code{...} arguments, but in list format. This can be useful when working
+with programmatically generated items.}
 
-\item{align}{Menu alignment (default = "right")}
+\item{href}{External link.}
 }
 \description{
-Build an adminLTE3 dashboard dropdown menu
+\link{dropdownMenu} creates an adminLTE3 dashboard dropdown menu, to be inserted in
+a \link{dashboardHeader}.
 }
 \examples{
 if(interactive()){
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(
-      rightUi = bs4DropdownMenu(
-       show = FALSE,
-       status = "danger",
-       src = "https://www.google.fr",
-       bs4DropdownMenuItem(
-         inputId = "triggerAction",
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(
+      rightUi = dropdownMenu(
+       badgeStatus = "danger",
+       type = "messages",
+       messageItem(
+         inputId = "triggerAction1",
          message = "message 1",
          from = "Divad Nojnarg",
-         src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+         image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
          time = "today",
-         status = "danger",
-         type = "message"
-       ),
-       bs4DropdownMenuItem(
-         message = "message 2",
-         from = "Nono Gueye",
-         src = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
-         time = "yesterday",
-         status = "success",
-         type = "message"
+         color = "lime"
+       )
+      ),
+      leftUi = dropdownMenu(
+       badgeStatus = "info",
+       type = "notifications",
+       notificationItem(
+         inputId = "triggerAction2",
+         text = "Error!",
+         status = "danger"
        )
       )
      ),
-     sidebar = bs4DashSidebar(),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
-     title = "test",
-     body = bs4DashBody()
+     sidebar = dashboardSidebar(),
+     controlbar = dashboardControlbar(),
+     footer = dashboardFooter(),
+     title = "dropdownMenu",
+     body = dashboardBody()
    ),
    server = function(input, output) {
-    observeEvent(input$triggerAction, {
+    observeEvent(input$triggerAction1, {
      showModal(modalDialog(
       title = "Important message",
       "This is an important message!"

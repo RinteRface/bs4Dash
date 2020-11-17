@@ -59,6 +59,11 @@
    color: #000 !important; 
  }
  
+/* Don't screw up the dark mode: dropdown-item must be white */
+ .dark-mode .dropdown-item {
+  color: #fff !important;
+}
+ 
 /* User post border bottom issue */
 .post {
   border-bottom: none !important;

@@ -495,7 +495,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #' @param title Callout title.
 #' @param width Callout width. Between 1 and 12.
 #' @param elevation Callout elevation.
-#' @param status Callout status. "primary", "success", "warning", "danger" or "info".
+#' @param status Callout status. "success", "warning", "danger" or "info".
 #' 
 #' @examples
 #' if(interactive()){
@@ -536,7 +536,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #'
 #' @export
 bs4Callout <- function(..., title, width = 6, elevation = NULL,
-                       status = c("primary", "warning", "danger", "info", "success")) {
+                       status = c("warning", "danger", "info", "success")) {
   
   status <- match.arg(status)
   

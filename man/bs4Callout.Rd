@@ -9,7 +9,7 @@ bs4Callout(
   title,
   width = 6,
   elevation = NULL,
-  status = c("primary", "warning", "danger", "info", "success")
+  status = c("warning", "danger", "info", "success")
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ bs4Callout(
 
 \item{elevation}{Callout elevation.}
 
-\item{status}{Callout status. "primary", "success", "warning", "danger" or "info".}
+\item{status}{Callout status. "success", "warning", "danger" or "info".}
 }
 \description{
 AdminLTE3 callout

@@ -3,7 +3,7 @@
 \name{bs4DashNavbar}
 \alias{bs4DashNavbar}
 \alias{dashboardHeader}
-\title{Create a Boostrap 4 dashboard navbar}
+\title{Boostrap 4 dashboard navbar}
 \usage{
 bs4DashNavbar(
   ...,
@@ -49,9 +49,9 @@ in CSS units.}
 
 \item{disable}{If \code{TRUE}, don't display the header bar.}
 
-\item{leftUi}{Custom left Ui content. Any Ui element.}
+\item{leftUi}{Custom left Ui content. Any element like \link{dropdownMenu}.}
 
-\item{rightUi}{Custom right Ui content. Any Ui element.}
+\item{rightUi}{Custom right Ui content. Any element like \link{dropdownMenu}.}
 
 \item{skin}{Navbar skin. "dark" or "light".}
 
@@ -70,7 +70,8 @@ in CSS units.}
 \item{fixed}{Whether to fix the navbar to the top. FALSE by default}
 }
 \description{
-Build an adminLTE3 dashboard navbar
+\link{dashboardHeader} creates an adminLTE3 dashboard navbar to be included in
+\link{dashboardPage}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
