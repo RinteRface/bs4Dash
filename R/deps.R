@@ -67,7 +67,8 @@ add_bs4Dash_deps <- function(tag, options) {
         "update-tabs.js", 
         "controlbar.js",
         "cards.js",
-        "feedbacks.js"
+        "feedbacks.js",
+        "userMessages.js"
       ),
       stylesheet = bs4Dash_css,
       package = "bs4Dash"

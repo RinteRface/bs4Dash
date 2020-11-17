@@ -108,6 +108,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- In `userMessage()`, `src` becomes `image` and `side` becomes `type`.
 - In `timelineItemMedia()`, `src` becomes `image`.
 - In `timelineItem()`, `timelineStart()` and `timelineEnd()`, `icon` expects `shiny::icon`.
 - `status` becomes `color` in `timelineItem()`, `timelineLabel()`, `timelineStart()` and `timelineEnd()`.
@@ -128,6 +129,8 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `updateUserMessages()`.
+- New `userList()` and `userListItem()`.
 - New `productList()` and `productListItem()`.
 - New `userDescription()` and `userBlock()`.
 - New built-in `skinSelector`.

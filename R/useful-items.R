@@ -1707,40 +1707,177 @@ productListItem <- function(..., image = NULL, title = NULL,
 
 
 
-
-#' @title AdminLTE3 user message container
+#' AdminLTE3 user list container
 #'
-#' @description Create a user message container
+#' \link{userList} creates a user list container to be inserted in a \link{box}.
 #'
-#' @param ... Slot for \link{userMessage}.
-#' @param status Messages status. See here for a list of valid colors 
-#' \url{https://adminlte.io/themes/AdminLTE/pages/UI/general.html}.
-#' @param width Container width: between 1 and 12.
-#' 
-#' @note Better to include in a \link{bs4Card}.
+#' @param ... slot for \link{userListItem}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userList
 #'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     bs4DashNavbar(),
-#'     bs4DashSidebar(),
-#'     bs4DashControlbar(),
-#'     bs4DashBody(
-#'      userMessages(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "User List example",
 #'       status = "success",
-#'       userMessage(
-#'        author = "Alexander Pierce",
-#'        date = "20 Jan 2:00 pm",
-#'        src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-#'        side = NULL,
-#'        "Is this template really for free? That's unbelievable!"
+#'       userList(
+#'         userListItem(
+#'           image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg", 
+#'           title = "Shiny", 
+#'           subtitle = "Package 1"
+#'         ),
+#'         userListItem(
+#'           image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg", 
+#'           title = "Tidyverse", 
+#'           subtitle = "Package 2"
+#'         ),
+#'         userListItem(
+#'           image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg", 
+#'           title = "tidyr", 
+#'           subtitle = "Package 3"
+#'         )
 #'       )
 #'      )
+#'     ),
+#'     title = "User List"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
+userList <- function(...) {
+  shiny::tags$ul(
+    class = "users-list clearfix",
+    ...
+  )
+}
+
+
+#' AdminLTE3 user list item
+#'
+#' \link{userListItem} creates a user list item.
+#'
+#' @param image image url or path.
+#' @param title Item title.
+#' @param subtitle Item subtitle.
+#'
+#' @rdname userList
+#'
+#' @export
+userListItem <- function(image = NULL, title = NULL, subtitle = NULL) {
+  shiny::tags$li(
+    shiny::tags$img(
+      src = image, 
+      alt = "User Image",
+      shiny::tags$a(class = "users-list-name", title),
+      if (!is.null(subtitle)) {
+        shiny::tags$span(class = "users-list-date", subtitle)
+      }
+    )
+  )
+}
+
+
+
+
+
+
+#' AdminLTE3 user message container
+#'
+#' \link{userMessages} creates a user message container. Maybe inserted in a \link{box}.
+#'
+#' @param ... Slot for \link{userMessage}.
+#' @param id Optional. To use with \link{updateUserMessages}.
+#' @param status Messages status. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' @param width Container width: between 1 and 12.
+#' @param height Container height. 
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userMessage
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "Box with messages",
+#'       solidHeader = TRUE,
+#'       status = "warning",
+#'       userMessages(
+#'        width = 12,
+#'        status = "teal",
+#'        userMessage(
+#'          author = "Alexander Pierce",
+#'          date = "20 Jan 2:00 pm",
+#'          image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'          type = "sent",
+#'          "Is this template really for free? That's unbelievable!"
+#'        ),
+#'        userMessage(
+#'          author = "Sarah Bullock",
+#'          date = "23 Jan 2:05 pm",
+#'          image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'          type = "received",
+#'          "You better believe it!"
+#'        )
+#'       )
+#'      ),
+#'      userMessages(
+#'        width = 6,
+#'        status = "danger",
+#'         userMessage(
+#'          author = "Alexander Pierce",
+#'          date = "20 Jan 2:00 pm",
+#'          image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'          type = "received",
+#'          "Is this template really for free? That's unbelievable!"
+#'        ),
+#'        userMessage(
+#'          author = "Sarah Bullock",
+#'          date = "23 Jan 2:05 pm",
+#'          image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'          type = "sent",
+#'          "You better believe it!"
+#'        )
+#'       )
 #'     ),
 #'     title = "user Message"
 #'   ),
@@ -1749,63 +1886,83 @@ productListItem <- function(..., image = NULL, title = NULL,
 #' }
 #'
 #' @export
-userMessages <- function(..., status, width = 4) {
+userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
   cl <- "direct-chat-messages direct-chat"
-  if (!is.null(status)) cl <- paste0(cl, " direct-chat-", status)
-  msgtag <- shiny::tags$div(class = cl, ...)
+  if (!is.null(height)) shiny::validateCssUnit(height)
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+    cl <- paste0(cl, " direct-chat-", status)
+  }
+  msgtag <- shiny::tags$div(
+    class = cl, 
+    ..., 
+    style = if (!is.null(height)) {
+      sprintf("height: %s; overflow-y: auto;", height)
+    } else {
+      "height: 100%;"
+    }
+  )
   
   shiny::tags$div(
+    id = id,
     class = if (!is.null(width)) paste0("col-sm-", width),
     msgtag
   )
   
 }
 
-#' @title AdminLTE3 user message 
+
+
+
+
+#' AdminLTE3 user message 
 #'
-#' @description Create a user message
+#' \link{userMessage} creates a user message html element.
 #'
 #' @param ... Message text.
 #' @param author Message author.
 #' @param date Message date.
-#' @param src Message author image path or url.
-#' @param side Side where author is displayed: NULL (left, by default) or "right".
+#' @param image Message author image path or url.
+#' @param type Message type: \code{c("sent", "received")}.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname userMessage
 #'
 #' @export
 userMessage <- function(..., author = NULL, date = NULL, 
-                        src = NULL, side = NULL) {
+                        image = NULL, type = c("sent", "received")) {
   
+  type <- match.arg(type)
   messageCl <- "direct-chat-msg"
-  if (!is.null(side)) messageCl <- paste0(messageCl, " right")
+  if (type == "sent") messageCl <- paste0(messageCl, " right")
   
   # message info
   messageInfo <- shiny::tags$div(
     class = "direct-chat-info clearfix",
     shiny::tags$span(
-      class = if (!is.null(side)) {
-        "direct-chat-name float-left"
-      } else {
+      class = if (type == "right") {
         "direct-chat-name float-right"
+      } else {
+        "direct-chat-name float-left"
       }, 
       author
     ),
-    shiny::tags$span(
-      class = if (!is.null(side)) {
-        "direct-chat-timestamp float-right"
-      } else {
-        "direct-chat-timestamp float-left"
-      }, 
-      date
-    )
+    if (!is.null(date)) {
+      shiny::tags$span(
+        class = if (type == "right") {
+          "direct-chat-timestamp float-right"
+        } else {
+          "direct-chat-timestamp float-left"
+        }, 
+        date
+      )
+    }
   )
   
   # message Text
   messageTxt <- shiny::tags$div(class = "direct-chat-text", ...)
   
   # message author image
-  messageImg <- shiny::tags$img(class = "direct-chat-img", src = src)
+  messageImg <- shiny::tags$img(class = "direct-chat-img", src = image)
   
   shiny::tags$div(
     class = messageCl,
@@ -1814,6 +1971,143 @@ userMessage <- function(..., author = NULL, date = NULL,
     messageTxt
   )
 }
+
+
+
+
+#' Update a messages container in the server side
+#' 
+#' \link{updateUserMessages} allows to interact with a \link{userMessages} container,
+#' such as sending, removing or editing messages.
+#'
+#' @param id \link{userMessages} to target.
+#' @param action Action to perform: add, remove or update.
+#' @param index Index of item to update or remove.
+#' @param content New message content in a list. For actions like add and update only! See example.
+#' @param session Shiny session object.
+#' @export
+#' @rdname userMessage
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'       fluidRow(
+#'         actionButton("remove", "Remove message"),
+#'         actionButton("add", "Add message"),
+#'         actionButton("update", "Update message")
+#'       ),
+#'       numericInput("index", "Message index:", 1, min = 1, max = 3),
+#'       br(),
+#'       br(),
+#'       userMessages(
+#'         width = 6,
+#'         status = "danger",
+#'         id = "message",
+#'         userMessage(
+#'           author = "Alexander Pierce",
+#'           date = "20 Jan 2:00 pm",
+#'           image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+#'           type = "received",
+#'           "Is this template really for free? That's unbelievable!"
+#'         ),
+#'         userMessage(
+#'           author = "Sarah Bullock",
+#'           date = "23 Jan 2:05 pm",
+#'           image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+#'           type = "sent",
+#'           "You better believe it!"
+#'         )
+#'       )
+#'     ),
+#'     title = "user Message"
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$remove, {
+#'       updateUserMessages("message", action = "remove", index = input$index)
+#'     })
+#'     observeEvent(input$add, {
+#'       updateUserMessages(
+#'         "message", 
+#'         action = "add", 
+#'         content = list(
+#'           author = "David",
+#'           date = "Now",
+#'           image = "https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg",
+#'           type = "received",
+#'           text = tagList(
+#'            sliderInput(
+#'             "obs", 
+#'             "Number of observations:",
+#'             min = 0, 
+#'             max = 1000, 
+#'             value = 500
+#'            ),
+#'            plotOutput("distPlot")
+#'           )
+#'         )
+#'       )
+#'     })
+#'     
+#'     output$distPlot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'     })
+#'     
+#'     observeEvent(input$update, {
+#'       updateUserMessages(
+#'         "message", 
+#'         action = "update", 
+#'         index = input$index,
+#'         content = list(
+#'          text = tagList(
+#'           appButton(
+#'            inputId = "reload",
+#'            label = "Click me!", 
+#'            icon = icon("sync"), 
+#'            dashboardBadge(1, color = "orange")
+#'           )
+#'          )
+#'         )
+#'       )
+#'     })
+#'     
+#'     observeEvent(input$reload, {
+#'      showNotification("Yeah!", duration = 1, type = "default")
+#'     })
+#'   }
+#'  )
+#' }
+updateUserMessages <- function(id, action = c("add", "remove", "update"), 
+                               index = NULL, content = NULL, 
+                               session = shiny::getDefaultReactiveDomain()) {
+  action <- match.arg(action)
+  
+  content <- lapply(content, function(c) {
+    if (inherits(c, "shiny.tag") || inherits(c, "shiny.tag.list")) {
+      # necessary if the user pass input/output with deps
+      # that are not yet available in the page before inserting the new tag
+      c <- processDeps(c, session)
+    }
+    c
+  })
+  
+  session$sendCustomMessage(
+    "user-messages", 
+    list(
+      id = id, 
+      action = action, 
+      index = index,
+      body = content
+    )
+  )
+}
+
 
 
 
