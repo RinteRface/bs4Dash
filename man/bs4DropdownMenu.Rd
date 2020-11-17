@@ -35,9 +35,16 @@ dropdownMenu(
 "tasks".}
 
 \item{badgeStatus}{The status of the badge which displays the number of items
-in the menu. This determines the badge's color. Valid statuses are listed
-in \link{validStatuses}. A value of \code{NULL} means to not display a
-badge.}
+  in the menu. This determines the badge's color. Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+}. 
+A value of \code{NULL} means to not display a badge.}
 
 \item{icon}{An icon to display in the header. By default, the icon is
 automatically selected depending on \code{type}, but it can be overriden
