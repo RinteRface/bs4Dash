@@ -108,6 +108,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- In `bs4Badge()`, status becomes color.
 - In `userMessage()`, `src` becomes `image` and `side` becomes `type`.
 - In `timelineItemMedia()`, `src` becomes `image`.
 - In `timelineItem()`, `timelineStart()` and `timelineEnd()`, `icon` expects `shiny::icon`.

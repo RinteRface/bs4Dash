@@ -1,11 +1,19 @@
 #' Create a Bootstrap 4 dashboard badge item
 #' 
-#' Beautiful badge from AdminLTE3 
+#' \link{dashboardBadge} creates a badge. It may be inserted in any element like inside 
+#' a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 #'
 #' @param ... Badge content.
+#' @param color Bdage color. Valid colors:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
 #' @param position Badge position: "left" or "right".
-#' @param status Bdage color. "primary", "danger", "info", "success", "warning",
-#' "secondary", "dark" or "light".
 #' @param rounded Whether the badge is rounded instead of square. FALSE by default.
 #'  
 #' @examples 
@@ -13,35 +21,36 @@
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'       bs4Badge(
-#'        position = "right",
-#'        status = "warning",
-#'        "Warning"
-#'       )
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      dashboardBadge("Badge 1", color = "danger"),
+#'      actionButton(
+#'       inputId = "badge", 
+#'       label = "Hello", 
+#'       icon = NULL, 
+#'       width = NULL, 
+#'       dashboardBadge(1, color = "primary")
 #'      )
-#'    ),
-#'    server = function(input, output) {}
+#'     )
+#'   ),
+#'   server = function(input, output) { }
 #'  )
 #' }
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Badge <- function(..., position = c("left", "right"), status,
+bs4Badge <- function(..., color, position = c("left", "right"),
                      rounded = FALSE) {
   
+  validateStatus(color)
   position <- match.arg(position)
   
   shiny::tags$span(
-    class = paste0(position, " badge", " badge-", status, if (rounded) " badge-pill"),
+    class = paste0(position, " badge", " badge-", color, if (rounded) " badge-pill"),
     ...
   )
 }

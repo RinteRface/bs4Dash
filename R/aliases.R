@@ -570,3 +570,14 @@ timelineStart <- bs4TimelineStart
 #'
 #' @export
 timelineEnd <- bs4TimelineEnd
+
+
+
+
+#' Alias to \link{bs4Badge}
+#' See \link{bs4Badge} for full details
+#'
+#' @rdname badge
+#'
+#' @export
+dashboardBadge <- bs4Badge
