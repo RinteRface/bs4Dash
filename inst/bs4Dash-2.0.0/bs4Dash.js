@@ -91,53 +91,67 @@ $(function () {
       $navbar
         .removeClass('navbar-light')
         .addClass('navbar-dark');
-        
-      $('.main-sidebar').attr('class', $('.main-sidebar')
-        .attr('class')
-        .replace('light', 'dark'));
-      $('#sidebar-skin').prop( "checked", true );
       
-      $('.control-sidebar').attr('class', $('.control-sidebar')
-        .attr('class')
-        .replace('light', 'dark'));
+      // sidebar update  
+      if ($('.main-sidebar').length > 0) {
+        $('.main-sidebar').attr('class', $('.main-sidebar')
+          .attr('class')
+          .replace('light', 'dark'));
+        $('#sidebar-skin').prop( "checked", true );
+        
+        $('.sidebar-themer-icon')
+          .removeClass('fa-sun')
+          .addClass('fa-moon');
+      }
+        
+      // controlbar update
+      if ($('.control-sidebar').length > 0) {
+        $('.control-sidebar').attr('class', $('.control-sidebar')
+          .attr('class')
+          .replace('light', 'dark'));
         $('#controlbar-skin').prop( "checked", true );
+        
+        $('.controlbar-themer-icon')
+          .removeClass('fa-sun')
+          .addClass('fa-moon');
+      }
+      
       
       $('.dark-theme-icon')
         .removeClass('fa-sun')
         .addClass('fa-moon');
         
-      $('.sidebar-themer-icon')
-        .removeClass('fa-sun')
-        .addClass('fa-moon');
-        
-      $('.controlbar-themer-icon')
-        .removeClass('fa-sun')
-        .addClass('fa-moon');
     } else {
       $('body').removeClass('dark-mode');
       $navbar
         .removeClass('navbar-dark')
         .addClass('navbar-light');
-        
-      $('.main-sidebar').attr('class', $('.main-sidebar')
-        .attr('class')
-        .replace('dark', 'light'));
-      $('#sidebar-skin').prop( "checked", false );
       
-      $('.control-sidebar').attr('class', $('.control-sidebar')
-        .attr('class')
-        .replace('dark', 'light'));
-      $('#controlbar-skin').prop( "checked", false );
+      // sidebar update
+      if ($('.main-sidebar').length > 0) {
+        $('.main-sidebar').attr('class', $('.main-sidebar')
+          .attr('class')
+          .replace('dark', 'light'));
+        $('#sidebar-skin').prop( "checked", false );
+        
+        $('.sidebar-themer-icon')
+          .removeClass('fa-moon')
+          .addClass('fa-sun');
+      }
+
+      // controlbar update
+      if ($('.control-sidebar').length > 0) {
+        $('.control-sidebar').attr('class', $('.control-sidebar')
+          .attr('class')
+          .replace('dark', 'light'));
+        $('#controlbar-skin').prop( "checked", false );
+        
+        $('.controlbar-themer-icon')
+          .removeClass('fa-moon')
+          .addClass('fa-sun');
+      }
       
       $('.dark-theme-icon')
-        .removeClass('fa-moon')
-        .addClass('fa-sun');
-        
-      $('.sidebar-themer-icon')
-        .removeClass('fa-moon')
-        .addClass('fa-sun');
-        
-      $('.controlbar-themer-icon')
         .removeClass('fa-moon')
         .addClass('fa-sun');
     }
