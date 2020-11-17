@@ -252,15 +252,39 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
   items <- c(list(...), .list)
   
   generateCarouselNav <- function(items) {
-    lapply(1:length(items), FUN = function(i) {
-      active <- sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
+    found_active <- FALSE
+    navs <- lapply(seq_along(items), FUN = function(i) {
+      # if we found an active item, all other active items are ignored.
+      active <- if (found_active) {
+         FALSE
+      } else {
+        sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
+      }
+      # if the item has active class and no item was found before, we found the active item
+      if (active && !found_active) found_active <- TRUE
       
       shiny::tags$li(
-        `data-target` = paste0("#",id),
+        `data-target` = paste0("#", id),
         `data-slide-to` = i - 1,
-        class = if (isTRUE(active)) "active" else NULL
+        class = if (active) "active"
       )
     })
+    
+    actives <- dropNulls(lapply(navs, function(nav) {
+      nav$attribs$class
+    }))
+    
+    # Make sure at least the first item is active
+    if (length(actives) == 0) {
+      navs[[1]]$attribs$class <- "active"
+      items[[1]]$attribs$class <<- paste0(
+        items[[1]]$attribs$class,
+        " active"
+      )
+    }
+    
+    navs
+    
   }
   
   indicatorsTag <- shiny::tags$ol(
@@ -270,7 +294,7 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
   
   bodyTag <- shiny::tags$div(
     class = "carousel-inner",
-    ...
+    items
   )
   
   controlButtons <- if (indicators) {
