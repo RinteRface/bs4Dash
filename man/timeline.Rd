@@ -179,6 +179,7 @@ Other boxWidgets:
 \code{\link{attachmentBlock}()},
 \code{\link{bs4CardLabel}()},
 \code{\link{bs4CardSidebar}()},
+\code{\link{bs4Carousel}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{cardDropdown}()},
 \code{\link{cardProfile}()},

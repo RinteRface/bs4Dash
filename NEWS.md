@@ -113,6 +113,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- Remove `src` from `carouselItem`
 - In `bs4Ribbon()`, `status` becomes `color`. Remove `size`.
 - In `bs4Badge()`, `status` becomes `color`.
 - In `userMessage()`, `src` becomes `image` and `side` becomes `type`.
@@ -168,6 +169,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
+- Add `indicators` and `.list` to `carousel()`.
 - `insertTab()` is using more shiny vanilla elements.
 - `bs4UserMenu()` does not close when clicked inside.
 - Add glyphicons as an html dependency

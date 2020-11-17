@@ -592,3 +592,23 @@ timelineEnd <- bs4TimelineEnd
 #'
 #' @export
 dashboardBadge <- bs4Badge
+
+
+
+#' Alias to \link{bs4Carousel}
+#' See \link{bs4Carousel} for full details
+#'
+#' @rdname carousel
+#'
+#' @export
+carousel <- bs4Carousel
+
+
+
+#' Alias to \link{bs4CarouselItem}
+#' See \link{bs4CarouselItem} for full details
+#'
+#' @rdname carousel
+#'
+#' @export
+carouselItem <- bs4CarouselItem

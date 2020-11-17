@@ -202,56 +202,54 @@ bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
 
 
 
-#' Create a Bootstrap 4 carousel
+#' Bootstrap 4 carousel
 #' 
-#' Beautiful carousel from AdminLTE3 
+#' \link{carousel} creates a carousel container to display media content.
 #'
-#' @param ... Slot for \link{bs4CarouselItem}.
+#' @param ... Slot for \link{carouselItem}.
 #' @param id Unique carousel id.
+#' @param indicators Whether to display left and right indicators.
 #' @param width Carousel width. Between 1 and 12.
+#' @param .list Should you need to pass \link{carouselItem} via \link{lapply} or similar,
+#' put these item here instead of passing them in ...
 #' 
 #' @examples 
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'       title = "Carousel",
-#'       bs4Carousel(
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      body = dashboardBody(
+#'       carousel(
 #'        id = "mycarousel",
-#'        width = 6,
-#'        bs4CarouselItem(
-#'         active = TRUE,
-#'         src = "http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
+#'        carouselItem(
+#'         caption = "Item 1",
+#'         tags$img(src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap")
 #'        ),
-#'        bs4CarouselItem(
-#'         active = FALSE,
-#'         src = "http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
-#'        ),
-#'        bs4CarouselItem(
-#'         active = FALSE,
-#'         src = "http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
+#'        carouselItem(
+#'         caption = "Item 2",
+#'         tags$img(src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap")
 #'        )
-#'      )
-#'     )
+#'       )
+#'      ),
+#'      title = "Carousel"
 #'    ),
-#'    server = function(input, output) {}
+#'    server = function(input, output) { }
 #'  )
 #' }
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname carousel
+#' @family boxWidgets
 #'
 #' @export
-bs4Carousel <- function(..., id, width = 12) {
+bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
   
-  items <- list(...)
+  items <- c(list(...), .list)
   
   generateCarouselNav <- function(items) {
     lapply(1:length(items), FUN = function(i) {
@@ -275,32 +273,36 @@ bs4Carousel <- function(..., id, width = 12) {
     ...
   )
   
-  controlButtons <- shiny::tagList(
-    # previous
-    shiny::tags$a(
-      class = "carousel-control-prev",
-      href = paste0("#", id),
-      role = "button",
-      `data-slide` = "prev",
-      shiny::tags$span(
-        class = "carousel-control-prev-icon",
-        `aria-hidden` = "true"
+  controlButtons <- if (indicators) {
+    shiny::tagList(
+      # previous
+      shiny::tags$a(
+        class = "carousel-control-prev",
+        href = paste0("#", id),
+        role = "button",
+        `data-slide` = "prev",
+        shiny::tags$span(
+          class = "carousel-control-prev-icon",
+          `aria-hidden` = "true"
+        ),
+        shiny::tags$span(class = "sr-only", "Previous")
       ),
-      shiny::tags$span(class = "sr-only", "Previous")
-    ),
-    # next
-    shiny::tags$a(
-      class = "carousel-control-next",
-      href = paste0("#", id),
-      role = "button",
-      `data-slide` = "next",
-      shiny::tags$span(
-        class = "carousel-control-next-icon",
-        `aria-hidden` = "true"
-      ),
-      shiny::tags$span(class = "sr-only", "Next")
+      # next
+      shiny::tags$a(
+        class = "carousel-control-next",
+        href = paste0("#", id),
+        role = "button",
+        `data-slide` = "next",
+        shiny::tags$span(
+          class = "carousel-control-next-icon",
+          `aria-hidden` = "true"
+        ),
+        shiny::tags$span(class = "sr-only", "Next")
+      )
     )
-  )
+  } else {
+    NULL
+  }
   
   carouselTag <- shiny::tags$div(
     class = "carousel slide",
@@ -319,23 +321,24 @@ bs4Carousel <- function(..., id, width = 12) {
 
 
 
-#' Create a Bootstrap 4 carousel item
+#' Bootstrap 4 carousel item
 #' 
-#' To insert in a \link{bs4Carousel}
-#'
+#' \link{carouselItem} creates a carousel item to insert in a \link{carousel}
+#' 
+#' @param ... Element such as images, iframe, ...
+#' @param caption Item caption.
 #' @param active Whether the item is active or not at start.
-#' @param src Item path or url.
 #' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname carousel
 #'
 #' @export
-bs4CarouselItem <- function(active = FALSE, src = NULL) {
+bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
   shiny::tags$div(
-    class = if (isTRUE(active)) "carousel-item active" else "carousel-item",
-    shiny::tags$img(
-      class = "d-block w-100", 
-      src = src
-    )
+    class = if (active) "carousel-item active" else "carousel-item",
+    ..., 
+    if (!is.null(caption)) {
+      shiny::tags$div(class = "carousel-caption", caption)
+    }
   )
 }
 
