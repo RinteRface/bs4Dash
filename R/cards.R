@@ -214,7 +214,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   
   if (collapsible || closable || maximizable || !is.null(dropdownMenu) || 
       !is.null(label) || !is.null(sidebar)) {
-    btnToolClass <- "btn"
+    btnToolClass <- "btn btn-tool"
     btnToolClass <- if (
       is.null(status) || 
       !(is.null(status) && is.null(background))
