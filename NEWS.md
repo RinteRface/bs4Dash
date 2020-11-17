@@ -11,6 +11,11 @@ This is to align with shinydashboard and shinydashboardPlus.
 - New `options` parameter to configure AdminLTE3.
 - New `preloader` to use `{waiter}` as a preloading engine.
 
+
+### bs4DashFooter
+- `...` becomes `left`.
+- `right_text` becomes `right`.
+
 ### bs4DashNavbar/dashboardHeader
 - `controlbarIcon` accepts `shiny::icon` instead of the icon name.
 - `sidebarIcon` accepts `shiny::icon` instead of the icon name.

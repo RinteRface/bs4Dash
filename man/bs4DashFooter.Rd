@@ -3,23 +3,21 @@
 \name{bs4DashFooter}
 \alias{bs4DashFooter}
 \alias{dashboardFooter}
-\title{Create a Boostrap 4 dashboard footer}
+\title{Dashboard Footer}
 \usage{
-bs4DashFooter(..., copyrights = NULL, right_text = NULL, fixed = FALSE)
+bs4DashFooter(left = NULL, right = NULL, fixed = FALSE)
 
-dashboardFooter(..., copyrights = NULL, right_text = NULL, fixed = FALSE)
+dashboardFooter(left = NULL, right = NULL, fixed = FALSE)
 }
 \arguments{
-\item{...}{Left text.}
+\item{left}{Left text.}
 
-\item{copyrights}{Copyrights, if any.}
-
-\item{right_text}{Right text.}
+\item{right}{Right text.}
 
 \item{fixed}{Whether to fix the footer. Default to FALSE.}
 }
 \description{
-Build an adminLTE3 dashboard footer
+This creates a dashboard footer to insert in \link{dashboardPage}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
