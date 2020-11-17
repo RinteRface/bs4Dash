@@ -31,21 +31,18 @@ if (interactive()) {
  library(bs4Dash)
  
  shinyApp(
-   ui = bs4DashPage(
-     sidebar_collapsed = FALSE,
-     controlbar_collapsed = TRUE,
-     enable_preloader = FALSE,
-     navbar = bs4DashNavbar(skin = "dark"),
-     body = bs4DashBody(
-       bs4TabItems(
-         bs4TabItem(
+   ui = dashboardPage(
+     header = dashboardHeader(skin = "dark"),
+     body = dashboardBody(
+       tabItems(
+         tabItem(
            tabName = "tab1",
            sliderInput("obs", "Number of observations:",
                        min = 0, max = 1000, value = 500
            ),
            plotOutput("distPlot")
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab2",
            checkboxGroupInput("variable", "Variables to show:",
                               c("Cylinders" = "cyl",
@@ -53,83 +50,83 @@ if (interactive()) {
                                 "Gears" = "gear")),
            tableOutput("data")
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab3",
            checkboxInput("val", "Some value", FALSE),
            textOutput("value")
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab4",
            "Nothing special here!"
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab5",
            "Tab 5"
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab6",
            "Tab 6"
          ),
-         bs4TabItem(
+         tabItem(
            tabName = "tab7",
            "Tab 7"
          )
        )
      ),
-     sidebar = bs4DashSidebar(
+     sidebar = dashboardSidebar(
        skin = "light",
        inputId = "sidebarState",
-       bs4SidebarMenu(
+       sidebarMenu(
          id = "sidebar",
-         bs4SidebarMenuItem(
+         menuItem(
            text = "Tab 1",
            tabName = "tab1",
-           icon = "shuttle-van"
+           icon = icon("shuttle-van")
          ),
-         bs4SidebarMenuItem(
+         menuItem(
            text = "Tab 2",
            tabName = "tab2",
-           icon = "space-shuttle",
+           icon = icon("space-shuttle"),
            selected = TRUE
          ),
-         bs4SidebarMenuItem(
+         menuItem(
            text = "Item List 1",
-           icon = "bars",
+           icon = icon("bars"),
            startExpanded = TRUE,
-           bs4SidebarMenuSubItem(
+           menuSubItem(
              text = "Item 3",
              tabName = "tab3",
-             icon = "circle-thin"
+             icon = icon("circle-thin")
            ),
-           bs4SidebarMenuSubItem(
+           menuSubItem(
              text = "Item 4",
              tabName = "tab4",
-             icon = "circle-thin"
+             icon = icon("circle-thin")
            )
          ),
-         bs4SidebarMenuItem(
+         menuItem(
            text = "Item List 2",
-           icon = "bars",
+           icon = icon("bars"),
            startExpanded = FALSE,
-           bs4SidebarMenuSubItem(
+           menuSubItem(
              text = "Item 5",
              tabName = "tab5",
-             icon = "circle-thin"
+             icon = icon("circle-thin")
            ),
-           bs4SidebarMenuSubItem(
+           menuSubItem(
              text = "Item 6",
              tabName = "tab6",
-             icon = "circle-thin"
+             icon = icon("circle-thin")
            )
          ),
-         bs4SidebarMenuItem(
+         menuItem(
            text = "Tab 7",
            tabName = "tab7",
-           icon = "home"
+           icon = icon("home")
          )
        )
      ),
-     controlbar = bs4DashControlbar(
+     controlbar = dashboardControlbar(
        skin = "light",
        sliderInput(
          inputId = "controller",
@@ -147,7 +144,7 @@ if (interactive()) {
      
      # update tabset1
      observeEvent(input$controller, {
-       updatebs4TabItems(
+       updateTabItems(
          session, 
          inputId = "sidebar", 
          selected = paste0("tab", input$controller)
