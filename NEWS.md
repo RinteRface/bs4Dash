@@ -32,7 +32,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 - `session` is not mandatory
 
 
-### bs4DashSidebar/dashboardSidebar
+### bs4DashSidebar/dashboardSidebar/updateSidebar
 - `inputId` moved to the end.
 - `inputId` renamed to `id`.
 - Added `collapsed` and `minified`.
@@ -63,7 +63,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 - Rename `dropdownItemListItem` by `cardDropdownItem`
 
 
-### bs4CardSidebar 
+### bs4CardSidebar
 - `inputId` becomes `id`.
 - `icon` expects `shiny::icon`.
 

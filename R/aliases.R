@@ -105,7 +105,7 @@ dashboardFooter <- bs4DashFooter
 #' Alias to \link{bs4DashSidebar}
 #' See \link{bs4DashSidebar} for full details
 #'
-#' @rdname bs4DashSidebar
+#' @rdname sidebar
 #'
 #' @export
 dashboardSidebar <- bs4DashSidebar
@@ -117,7 +117,7 @@ dashboardSidebar <- bs4DashSidebar
 #' Alias to \link{bs4SidebarHeader}
 #' See \link{bs4SidebarHeader} for full details
 #'
-#' @rdname bs4SidebarHeader
+#' @rdname sidebar
 #'
 #' @export
 sidebarHeader <- bs4SidebarHeader
@@ -129,7 +129,7 @@ sidebarHeader <- bs4SidebarHeader
 #' Alias to \link{bs4SidebarMenu}
 #' See \link{bs4SidebarMenu} for full details
 #'
-#' @rdname bs4SidebarMenu
+#' @rdname sidebar
 #'
 #' @export
 sidebarMenu <- bs4SidebarMenu
@@ -141,7 +141,7 @@ sidebarMenu <- bs4SidebarMenu
 #' Alias to \link{bs4SidebarUserPanel}
 #' See \link{bs4SidebarUserPanel} for full details
 #'
-#' @rdname bs4SidebarUserPanel
+#' @rdname sidebar
 #'
 #' @export
 sidebarUserPanel <- bs4SidebarUserPanel
@@ -153,7 +153,7 @@ sidebarUserPanel <- bs4SidebarUserPanel
 #' Alias to \link{bs4SidebarMenuItem}
 #' See \link{bs4SidebarMenuItem} for full details
 #'
-#' @rdname bs4SidebarMenuItem
+#' @rdname sidebar
 #'
 #' @export
 menuItem <- bs4SidebarMenuItem
@@ -165,7 +165,7 @@ menuItem <- bs4SidebarMenuItem
 #' Alias to \link{bs4SidebarMenuSubItem}
 #' See \link{bs4SidebarMenuSubItem} for full details
 #'
-#' @rdname bs4SidebarMenuSubItem
+#' @rdname sidebar
 #'
 #' @export
 menuSubItem <- bs4SidebarMenuSubItem

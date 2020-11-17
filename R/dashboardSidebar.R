@@ -1,8 +1,9 @@
 #' Create a Boostrap 4 dashboard main sidebar
 #'
-#' Build an adminLTE3 dashboard main sidebar
+#' \link{dashboardSidebar} creates an adminLTE3 dashboard main sidebar to 
+#' insert in the sidebar slot of \link{dashboardPage}.
 #'
-#' @param ... Slot for \link{bs4SidebarMenu}.
+#' @param ... Slot for \link{sidebarMenu}.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
 #' @param width The width of the sidebar. This must either be a number which
 #'   specifies the width in pixels, or a string that specifies the width in CSS
@@ -18,6 +19,7 @@
 #' @param id Recover the state of the sidebar.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sidebar
 #'
 #' @export
 bs4DashSidebar <- function(..., disable = FALSE, width = NULL, 
@@ -75,22 +77,24 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 
 
 
-#' Function to programmatically toggle the state of the sidebar
+#' Toggle sidebar state
+#' 
+#' \link{updateSidebar} toggles a \link{dashboardSidebar} on the client.
 #'
-#' @param inputId Sidebar id.
+#' @param id Sidebar id.
 #' @param session Shiny session object.
 #' @export
+#' 
+#' @rdname sidebar
 #'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      controlbar_collapsed = FALSE,
-#'      controlbar_overlay = TRUE,
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(inputId = "sidebar"),
 #'      body = dashboardBody(
 #'        actionButton(inputId = "controlbarToggle", label = "Toggle Sidebar")
@@ -110,7 +114,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #'      })
 #'      
 #'      observeEvent(input$controlbarToggle, {
-#'        updatebs4Sidebar(inputId = "sidebar", session = session)
+#'        updatebs4Sidebar(id = "sidebar", session = session)
 #'      })
 #'      
 #'      observe({
@@ -119,22 +123,22 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #'    }
 #'  )
 #' }
-updatebs4Sidebar <- function(inputId, session) {
-  session$sendInputMessage(inputId, NULL)
+updatebs4Sidebar <- function(id, session) {
+  session$sendInputMessage(id, NULL)
 }
 
 
 
 
-#' Create a Boostrap 4 dashboard main sidebar menu
+#' Dashboard main sidebar menu
 #'
-#' Build an adminLTE3 dashboard main sidebar menu
+#' \link{sidebarMenu} creates a menu for \link{dashboardSidebar}.
 #'
-#' @param ... Slot for \link{bs4SidebarMenuItem} or \link{bs4SidebarHeader}.
-#' @param id For \link{bs4SidebarMenu}, if \code{id} is present, this id will be
+#' @param ... Slot for \link{menuItem} or \link{sidebarHeader}.
+#' @param id For \link{sidebarMenu}, if \code{id} is present, this id will be
 #'   used for a Shiny input value, and it will report which tab is selected. For
 #'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
-#'   \code{tabName} of the currently-selected \link{bs4SidebarMenuItem}.
+#'   \code{tabName} of the currently-selected \link{menuItem}.
 #' @param .list An optional list containing items to put in the menu Same as the
 #' \code{...} arguments, but in list format. This can be useful when working
 #' with programmatically generated items.
@@ -144,63 +148,7 @@ updatebs4Sidebar <- function(inputId, session) {
 #' @param legacy Whether to use the old adminLTE2 item selection display. Default
 #' to FALSE.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'    ui = bs4DashPage(
-#'      header = bs4DashNavbar(skin = "light"),
-#'      body = bs4DashBody(),
-#'      sidebar = bs4DashSidebar(
-#'        skin = "light",
-#'        bs4SidebarMenu(
-#'          id = "test",
-#'          bs4SidebarMenuItem(
-#'            tabName = "tab1",
-#'            text = "Tab 1"
-#'          ),
-#'          bs4SidebarMenuItem(
-#'            tabName = "tab2",
-#'            text = "Tab 2"
-#'          ),
-#'          bs4SidebarMenuItem(
-#'            text = "Click me pleaaaaase",
-#'            bs4SidebarMenuSubItem(
-#'              tabName = "subtab1",
-#'              text = "Tab 3"
-#'            ),
-#'            bs4SidebarMenuSubItem(
-#'              tabName = "subtab2",
-#'              text = "Tab 4"
-#'            )
-#'          )
-#'        )
-#'      ),
-#'      controlbar = bs4DashControlbar(skin = "light"),
-#'      footer = bs4DashFooter()
-#'    ),
-#'    server = function(input, output, session) {
-#'      observeEvent(input$test, {
-#'        if (input$test == "subtab1") {
-#'          showModal(modalDialog(
-#'            title = "Thank you so much",
-#'            "You clicked me! This event is the result of
-#'            an input bound to the menu. By adding an id to the
-#'            bs4SidebarMenu, input$id will give the currently selected
-#'            tab. This is useful to trigger some events.",
-#'            easyClose = TRUE,
-#'            footer = NULL
-#'          ))
-#'        }
-#'      })
-#'    }
-#'  )
-#' }
-#'
+#' @rdname sidebar
 #' @export
 bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE, 
                            compact = FALSE, childIndent = TRUE, legacy = FALSE) {
@@ -243,10 +191,11 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
 
 
 
-#' Internally used by \link{bs4SidebarMenu} to find treeview items
+#' Internally used by \link{sidebarMenu} to find treeview items
 #' and normal items.
 #' @param items List to search in.
 #' @param regex Regex to apply.
+#' @keywords internal
 findSidebarItem <- function(items, regex) {
   dropNulls(lapply(seq_along(items), function(i) {
     isNavItem <- length(grep(regex, items[[i]]$attribs$class, perl = TRUE)) > 0
@@ -257,30 +206,30 @@ findSidebarItem <- function(items, regex) {
 
 
 
-#' Create a Boostrap 4 dashboard main sidebar menu item
+#' Dashboard sidebar menu item
 #'
-#' Build an adminLTE3 dashboard main sidebar menu item
+#' \link{menuItem} creates an item to put in \link{sidebarMenu}.
 #'
 #' @param text Item name.
-#' @param ... \link{bs4SidebarMenuSubItem}.
+#' @param ... \link{menuSubItem}.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
 #'   \code{NULL}, don't display an icon.
-#' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
+#' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
 #' @param href An link address. Not compatible with \code{tabName}.
 #' @param newTab If \code{href} is supplied, should the link open in a new
 #'   browser tab?
-#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuItem}
+#' @param selected If \code{TRUE}, this \code{menuItem}
 #'  will start selected. If no item have \code{selected=TRUE}, then the first
-#'  \code{bs4SidebarMenuItem} will start selected.
+#'  \code{menuItem} will start selected.
 #' @param expandedName A unique name given to each \code{menuItem} that serves
 #'   to indicate which one (if any) is currently expanded. (This is only applicable
 #'   to \code{menuItem}s that have children and it is mostly only useful for
 #'   bookmarking state.)
-#' @param startExpanded Whether to expand the \link{bs4SidebarMenuItem} at start.
-#' @param condition When using \link{bs4SidebarMenuItem} with \link[shiny]{conditionalPanel},
+#' @param startExpanded Whether to expand the \link{menuItem} at start.
+#' @param condition When using \link{menuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sidebar
 #' 
 #' @note See examples for a use case of the condition parameter.
 #'
@@ -291,30 +240,30 @@ findSidebarItem <- function(items, regex) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  ui <- bs4DashPage(
-#'   bs4DashNavbar(),
-#'   bs4DashSidebar(
-#'     bs4SidebarMenu(
+#'  ui <- dashboardPage(
+#'   dashboardHeader(),
+#'   dashboardSidebar(
+#'     sidebarMenu(
 #'       id = "sidebarMenu",
-#'       bs4SidebarMenuItem(
+#'       menuItem(
 #'         text = "Tab 1",
 #'         tabName = "tab1"
 #'       ),
-#'       bs4SidebarMenuItem(
+#'       menuItem(
 #'         condition = "input.show == true",
 #'         text = "Tab 2",
 #'         tabName = "tab2"
 #'       )
 #'     )
 #'   ),
-#'   bs4DashBody(
-#'     bs4TabItems(
-#'       bs4TabItem(
+#'   dashboardBody(
+#'     tabItems(
+#'       tabItem(
 #'         tabName = "tab1",
 #'         h1("Welcome!"),
 #'         checkboxInput("show", "Show Tab 2", FALSE)
 #'       ),
-#'       bs4TabItem(
+#'       tabItem(
 #'         tabName = "tab2",
 #'         h1("Hey! You found me!")
 #'       )
@@ -425,144 +374,23 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
 
 
 
-#' Create a Boostrap 4 dashboard main sidebar menu sub-item
+#' Dashboard sidebar menu sub-item
 #'
-#' Build an adminLTE3 dashboard main sidebar menu sub-item
+#' \link{menuSubItem} creates an item to put in \link{menuItem}.
 #'
 #' @param text Item name.
-#' @param tabName Should correspond exactly to the tabName given in \code{\link{bs4TabItem}}.
+#' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
 #' @param href An link address. Not compatible with \code{tabName}.
 #' @param newTab If \code{href} is supplied, should the link open in a new
 #'   browser tab?
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
 #'   \code{NULL}, don't display an icon.
-#' @param selected If \code{TRUE}, this \code{bs4SidebarMenuSubItem}
+#' @param selected If \code{TRUE}, this \code{menuSubItem}
 #'   will start selected. If no item have \code{selected=TRUE}.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sidebar
 #'
 #' @export
-#' @examples 
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      header = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(
-#'        bs4SidebarMenu(
-#'          bs4SidebarHeader("List of items 1"),
-#'          bs4SidebarMenuItem(
-#'            text = "Item List",
-#'            icon = shiny::icon("bars"),
-#'            startExpanded = TRUE,
-#'            bs4SidebarMenuSubItem(
-#'              text = "Item 1",
-#'              tabName = "item1",
-#'              icon = shiny::icon("circle-thin")
-#'            ),
-#'            bs4SidebarMenuSubItem(
-#'              text = "Item 2",
-#'              tabName = "item2",
-#'              icon = shiny::icon("circle-thin")
-#'            )
-#'          ),
-#'          bs4SidebarHeader("Classic Items"),
-#'          bs4SidebarMenuItem(
-#'            text = "Item 3",
-#'            tabName = "item3"
-#'          ),
-#'          bs4SidebarHeader("List of items 2"),
-#'          bs4SidebarMenuItem(
-#'            text = "Item List 2",
-#'            icon = shiny::icon("bars"),
-#'            startExpanded = FALSE,
-#'            bs4SidebarMenuSubItem(
-#'              text = "Item 4",
-#'              tabName = "item4",
-#'              icon = shiny::icon("circle-thin")
-#'            ),
-#'            bs4SidebarMenuSubItem(
-#'              text = "Item 5",
-#'              tabName = "item5",
-#'              icon = shiny::icon("circle-thin"),
-#'              selected = TRUE
-#'            )
-#'          )
-#'        )
-#'      ),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'        bs4TabItems(
-#'          bs4TabItem(
-#'            tabName = "item1",
-#'            bs4Card(
-#'              title = "Card 1", 
-#'              closable = TRUE, 
-#'              width = 6,
-#'              solidHeader = TRUE, 
-#'              status = "primary",
-#'              collapsible = TRUE,
-#'              p("Box Content")
-#'            )
-#'          ),
-#'          bs4TabItem(
-#'            tabName = "item2",
-#'            bs4Card(
-#'              title = "Card 2", 
-#'              closable = TRUE, 
-#'              width = 6,
-#'              solidHeader = TRUE, 
-#'              status = "warning",
-#'              collapsible = TRUE,
-#'              p("Box Content")
-#'            )
-#'          ),
-#'          bs4TabItem(
-#'            tabName = "item3",
-#'            bs4Card(
-#'              title = "Card 3", 
-#'              closable = TRUE, 
-#'              width = 6,
-#'              solidHeader = TRUE, 
-#'              status = "danger",
-#'              collapsible = TRUE,
-#'              p("Box Content")
-#'            )
-#'          ),
-#'          bs4TabItem(
-#'            tabName = "item4",
-#'            bs4Card(
-#'              title = "Card 4", 
-#'              closable = TRUE, 
-#'              width = 6,
-#'              solidHeader = TRUE, 
-#'              status = "info",
-#'              collapsible = TRUE,
-#'              p("Box Content")
-#'            )
-#'          ),
-#'          bs4TabItem(
-#'            tabName = "item5",
-#'            bs4Card(
-#'              title = "Card 5", 
-#'              closable = TRUE, 
-#'              width = 6,
-#'              solidHeader = TRUE, 
-#'              status = "success",
-#'              collapsible = TRUE,
-#'              p("Box Content")
-#'            )
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
-#' }
 bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL, 
                                   newTab = NULL, icon = NULL, selected = NULL) {
   
@@ -599,13 +427,13 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
 }
 
 
-#' Create a Boostrap 4 dashboard main sidebar header
+#' Dashboard sidebar menu header
 #'
-#' Build an adminLTE3 dashboard main sidebar header
+#' \link{sidebarHeader} creates a header to put in \link{dashboardSidebar}.
 #'
-#' @param title SidebarHeader title.
+#' @param title title.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sidebar
 #'
 #' @export
 bs4SidebarHeader <- function(title) {
@@ -614,16 +442,16 @@ bs4SidebarHeader <- function(title) {
 
 
 
-#' Create a Boostrap 4 dashboard main sidebar user panel
+#' Dashboard sidebar user panel
 #'
-#' Build an adminLTE3 dashboard main sidebar user panel
+#' \link{sidebarUserPanel} creates a user Panel to put in \link{dashboardSidebar}.
 #'
 #' @param name Name of the user.
 #' @param image A filename or URL to use for an image of the person. If it is a
 #' local file, the image should be contained under the www/ subdirectory of
 #' the application.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sidebar
 #'
 #' @export
 bs4SidebarUserPanel <- function(name, image = NULL) {
@@ -648,8 +476,10 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 
 #' Change the selected sidebar tab on the client
 #'
-#' This function controls the active tab of \code{\link{tabItems}} from the
+#' \link{updateTabItems} controls the active tab of \code{\link{tabItems}} from the
 #' server. It behaves just like \code{\link[shiny]{updateTabsetPanel}}.
+#' 
+#' @rdname sidebar
 #'
 #' @inheritParams shiny::updateTabsetPanel
 #' @examples
