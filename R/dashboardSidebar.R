@@ -20,6 +20,7 @@
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname sidebar
+#' @seealso \link{dashboardBody}
 #'
 #' @export
 bs4DashSidebar <- function(..., disable = FALSE, width = NULL, 

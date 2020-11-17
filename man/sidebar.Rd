@@ -437,6 +437,9 @@ if (interactive()) {
  )
 }
 }
+\seealso{
+\link{dashboardBody}
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

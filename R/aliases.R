@@ -177,7 +177,7 @@ menuSubItem <- bs4SidebarMenuSubItem
 #' Alias to \link{bs4DashBody}
 #' See \link{bs4DashBody} for full details
 #'
-#' @rdname bs4DashBody
+#' @rdname body
 #'
 #' @export
 dashboardBody <- bs4DashBody
@@ -187,7 +187,7 @@ dashboardBody <- bs4DashBody
 #' Alias to \link{bs4TabItems}
 #' See \link{bs4TabItems} for full details
 #'
-#' @rdname bs4TabItems
+#' @rdname body
 #'
 #' @export
 tabItems <- bs4TabItems
@@ -198,7 +198,7 @@ tabItems <- bs4TabItems
 #' Alias to \link{bs4TabItem}
 #' See \link{bs4TabItem} for full details
 #'
-#' @rdname bs4TabItem
+#' @rdname body
 #'
 #' @export
 tabItem <- bs4TabItem

@@ -1,10 +1,14 @@
-#' Create a Boostrap 4 dashboard body
+#' Boostrap 4 dashboard body
 #'
-#' Build an adminLTE3 dashboard body
+#' \link{dashboardBody} creates the main body container for a \link{dashboardPage}.
 #'
-#' @param ... Body content, slot for \link{bs4TabItems}.
+#' @param ... Body content, slot for \link{tabItems}.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname body
+#' 
+#' @seealso \link{dashboardSidebar}
 #'
 #' @export
 bs4DashBody <- function(...) {
@@ -12,10 +16,7 @@ bs4DashBody <- function(...) {
     class = "content-wrapper",
     shiny::tags$section(
       class = "content", 
-      shiny::tags$div(
-        class = "container-fluid", 
-        ...
-      )
+      ...
     )
   )
 }
@@ -23,10 +24,14 @@ bs4DashBody <- function(...) {
 
 
 
-#' A container for tab items
+#' Boostrap 4 body items
+#'
+#' \link{tabItems} creates a wrapper for multiple \link{tabItem}.
 #'
 #' @param ... Items to put in the container. Each item should be a
-#'   \code{\link{bs4TabItem}}.
+#'   \code{\link{tabItem}}.
+#'   
+#' @rdname body
 #'   
 #' @export
 bs4TabItems <- function(...) {
@@ -35,12 +40,15 @@ bs4TabItems <- function(...) {
   shiny::tags$div(class = "tab-content", ...)
 }
 
-#' One tab to put inside a tab items container
+#' Boostrap 4 body item
+#'
+#' \link{tabItem} creates a body tab content.
 #'
 #' @param tabName The name of a tab. This must correspond to the \code{tabName}
-#'   of a \code{\link{bs4SidebarMenuItem}}.
+#'   of a sidebar \code{\link{menuItem}}.
 #' @param ... Contents of the tab.
 #' 
+#' @rdname body
 #' @export
 bs4TabItem <- function(tabName = NULL, ...) {
   if (is.null(tabName))
