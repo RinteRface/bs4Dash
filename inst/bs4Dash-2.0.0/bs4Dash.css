@@ -63,3 +63,10 @@
 .post {
   border-bottom: none !important;
 }
+
+/* So that body content has minimum padding: AdminLTE3 is not strict enough. Use
+   same value as in shinydashboard.
+*/
+.content-wrapper>.content {
+  padding: 15px !important;
+}
