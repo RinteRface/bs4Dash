@@ -114,6 +114,17 @@ dashboardSidebar <- bs4DashSidebar
 
 
 
+#' Alias to \link{updatebs4Sidebar}
+#' See \link{updatebs4Sidebar} for full details
+#'
+#' @rdname sidebar
+#'
+#' @export
+updateSidebar <- updatebs4Sidebar
+
+
+
+
 #' Alias to \link{bs4SidebarHeader}
 #' See \link{bs4SidebarHeader} for full details
 #'
@@ -329,7 +340,7 @@ renderValueBox <- renderbs4ValueBox
 #' Alias to \link{updatebs4TabItems}
 #' See \link{updatebs4TabItems} for full details
 #'
-#' @rdname  updatebs4TabItems
+#' @rdname sidebar
 #'
 #' @export
 updateTabItems <- updatebs4TabItems

@@ -10,11 +10,13 @@
 \alias{bs4SidebarUserPanel}
 \alias{updatebs4TabItems}
 \alias{dashboardSidebar}
+\alias{updateSidebar}
 \alias{sidebarHeader}
 \alias{sidebarMenu}
 \alias{sidebarUserPanel}
 \alias{menuItem}
 \alias{menuSubItem}
+\alias{updateTabItems}
 \title{Create a Boostrap 4 dashboard main sidebar}
 \usage{
 bs4DashSidebar(
@@ -85,6 +87,8 @@ dashboardSidebar(
   id = NULL
 )
 
+updateSidebar(id, session)
+
 sidebarHeader(title)
 
 sidebarMenu(
@@ -120,6 +124,8 @@ menuSubItem(
   icon = NULL,
   selected = NULL
 )
+
+updateTabItems(session, inputId, selected = NULL)
 }
 \arguments{
 \item{...}{\link{menuSubItem}.}

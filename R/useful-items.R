@@ -15,6 +15,8 @@
 #' }
 #' @param position Badge position: "left" or "right".
 #' @param rounded Whether the badge is rounded instead of square. FALSE by default.
+#' 
+#' @rdname badge
 #'  
 #' @examples 
 #' if(interactive()){
