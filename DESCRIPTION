@@ -45,5 +45,6 @@ Collate:
     'deps.R'
     'feedbacks.R'
     'grid.R'
+    'inputs.R'
     'skinSelector.R'
     'utils.R'

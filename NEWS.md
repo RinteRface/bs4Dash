@@ -136,6 +136,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `appButton()`.
 - New `updateUserMessages()`.
 - New `userList()` and `userListItem()`.
 - New `productList()` and `productListItem()`.
