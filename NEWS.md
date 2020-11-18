@@ -149,7 +149,8 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
-- Add fullscreen widget to `dashboardHeader`.
+- New bottom area for `dashboardSidebar()`.
+- Add fullscreen widget to `dashboardHeader()`.
 - New `updateAccordion()`.
 - `actionButton()` is updated to provide Bootstrap 4 features.
 - New `appButton()`.
