@@ -35,20 +35,24 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
   
   items <- c(list(...), .list)
   
-  if (inherits(leftUi, "shiny.tag.list")) {
-    lapply(leftUi, function(item) {
-      tagAssert(item, type = "li", class = "dropdown")
-    })
-  } else {
-    tagAssert(leftUi, type = "li", class = "dropdown")
+  if (!is.null(leftUi)) {
+    if (inherits(leftUi, "shiny.tag.list")) {
+      lapply(leftUi, function(item) {
+        tagAssert(item, type = "li", class = "dropdown")
+      })
+    } else {
+      tagAssert(leftUi, type = "li", class = "dropdown")
+    }
   }
   
-  if (inherits(rightUi, "shiny.tag.list")) {
-    lapply(rightUi, function(item) {
-      tagAssert(item, type = "li", class = "dropdown")
-    })
-  } else {
-    tagAssert(rightUi, type = "li", class = "dropdown")
+  if (!is.null(rightUi)) {
+    if (inherits(rightUi, "shiny.tag.list")) {
+      lapply(rightUi, function(item) {
+        tagAssert(item, type = "li", class = "dropdown")
+      })
+    } else {
+      tagAssert(rightUi, type = "li", class = "dropdown")
+    } 
   }
   
   titleWidth <- shiny::validateCssUnit(titleWidth)

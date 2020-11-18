@@ -518,7 +518,13 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #' @param title Callout title.
 #' @param width Callout width. Between 1 and 12.
 #' @param elevation Callout elevation.
-#' @param status Callout status. "success", "warning", "danger" or "info".
+#' @param status Callout status. Valid statuses:
+#' \itemize{
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
 #' 
 #' @examples
 #' if(interactive()){
@@ -561,6 +567,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 bs4Callout <- function(..., title, width = 6, elevation = NULL,
                        status = c("warning", "danger", "info", "success")) {
   
+  validateStatus(status)
   status <- match.arg(status)
   
   calloutCl <- "callout"

@@ -21,7 +21,13 @@ bs4Callout(
 
 \item{elevation}{Callout elevation.}
 
-\item{status}{Callout status. "success", "warning", "danger" or "info".}
+\item{status}{Callout status. Valid statuses:
+\itemize{
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+}}
 }
 \description{
 AdminLTE3 callout
