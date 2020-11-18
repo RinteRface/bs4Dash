@@ -149,6 +149,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `updateAccordion()`.
 - `actionButton()` is updated to provide Bootstrap 4 features.
 - New `appButton()`.
 - New `updateUserMessages()`.

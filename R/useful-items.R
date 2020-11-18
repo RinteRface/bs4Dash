@@ -60,145 +60,228 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 
 
 
-#' Create a Bootstrap 4 accordion
-#' 
-#' Beautiful accordion from AdminLTE3 
+#' Bootstrap 4 accordion container
 #'
-#' @param ... Slot for \link{bs4AccordionItem}.
-#' @param id Unique accordion id. 
-#' 
-#' @examples 
-#' if(interactive()){
+#' \link{accordion} creates an accordion container. 
+#' Accordions are part of collapsible elements.
+#'
+#' @param ... slot for \link{accordionItem}.
+#' @param id Unique accordion id.
+#' @param width The width of the accordion.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname accordion
+#'
+#' @examples
+#' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'       bs4Accordion(
-#'        id = "accordion",
-#'        bs4AccordionItem(
-#'         id = "item1",
-#'         title = "Item 1", 
-#'         status = "danger",
-#'         "Anim pariatur cliche reprehenderit, enim 
-#'         eiusmod high life accusamus terry richardson ad 
-#'         squid. 3 wolf moon officia aute, non cupidatat 
-#'         skateboard dolor brunch. Food truck quinoa nesciunt 
-#'         laborum eiusmod. Brunch 3 wolf moon tempor, sunt 
-#'         aliqua put a bird on it squid single-origin coffee 
-#'         nulla assumenda shoreditch et. Nihil anim keffiyeh 
-#'         helvetica, craft beer labore wes anderson cred 
-#'         nesciunt sapiente ea proident. Ad vegan excepteur 
-#'         butcher vice lomo. Leggings occaecat craft beer farm-to-table, 
-#'         raw denim aesthetic synth nesciunt you probably haven't 
-#'         heard of them accusamus labore sustainable VHS"
-#'        ),
-#'        bs4AccordionItem(
-#'         id = "item2",
-#'         title = "Item 2", 
-#'         status = "warning",
-#'         "Anim pariatur cliche reprehenderit, enim 
-#'         eiusmod high life accusamus terry richardson ad 
-#'         squid. 3 wolf moon officia aute, non cupidatat 
-#'         skateboard dolor brunch. Food truck quinoa nesciunt 
-#'         laborum eiusmod. Brunch 3 wolf moon tempor, sunt 
-#'         aliqua put a bird on it squid single-origin coffee 
-#'         nulla assumenda shoreditch et. Nihil anim keffiyeh 
-#'         helvetica, craft beer labore wes anderson cred 
-#'         nesciunt sapiente ea proident. Ad vegan excepteur 
-#'         butcher vice lomo. Leggings occaecat craft beer farm-to-table, 
-#'         raw denim aesthetic synth nesciunt you probably haven't 
-#'         heard of them accusamus labore sustainable VHS"
-#'        )
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'       accordion(
+#'        id = "accordion1",
+#'         accordionItem(
+#'           title = "Accordion 1 Item 1",
+#'           status = "danger",
+#'           collapsed = TRUE,
+#'           "This is some text!"
+#'         ),
+#'         accordionItem(
+#'           title = "Accordion 1 Item 2",
+#'           status = "indigo",
+#'           collapsed = FALSE,
+#'           "This is some text!"
+#'         )
+#'       ),
+#'       accordion(
+#'        id = "accordion2",
+#'         accordionItem(
+#'           title = "Accordion 2 Item 1",
+#'           status = "info",
+#'           collapsed = TRUE,
+#'           "This is some text!"
+#'         ),
+#'         accordionItem(
+#'           title = "Accordion 2 Item 2",
+#'           status = "success",
+#'           collapsed = FALSE,
+#'           "This is some text!"
+#'         )
 #'       )
-#'      )
-#'    ),
-#'    server = function(input, output) {}
+#'     ),
+#'     title = "Accordion"
+#'   ),
+#'   server = function(input, output) { }
 #'  )
 #' }
-#' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Accordion <- function(..., id) {
+bs4Accordion <- function(..., id, width = 12) {
   
   items <- list(...)
-  len <- length(items)
   
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
-  lapply(seq_len(len), FUN = function(i) {
-    items[[i]]$children[[1]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id, "accordion") 
+  lapply(seq_along(items), FUN = function(i) {
+    items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id) 
+    items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs[["href"]] <<- paste0("#collapse_", id, "_", i)
+    items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
   
   shiny::tags$div(
-    id = paste0(id, "accordion"),
-    items
+    class = if (!is.null(width)) paste0("col-sm-", width),
+    shiny::tags$div(
+      class = "accordion",
+      id = id,
+      items
+    )
   )
 }
 
 
-#' Create a Bootstrap 4 accordion item
+#' Bootstrap 4 accordion item
 #' 
-#' To insert in a bs4Accordion
+#' \link{accordionItem} is to be inserted in a \link{accordion}.
 #'
 #' @param ... Item content.
-#' @param id Item unique id.
 #' @param title Item title.
-#' @param status Item color. "primary", "success", "warning", "danger" or "info". NULL by default.
-#' @param width The width of the accordion.
+#' @param status Item color. Valid colors are defined as below: 
+#'   \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' @param collapsed Whether to expand or collapse the item. TRUE by default. Set it to FALSE if you want to expand it.
 #' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname accordion
 #'
 #' @export
-bs4AccordionItem <- function(..., id, title = NULL, status = NULL, width = 12) {
+bs4AccordionItem <- function(..., title, status = NULL, collapsed = TRUE) {
   
-  
-  accordionItemCl <- "card"
-  if (!is.null(status)) accordionItemCl <- paste0(accordionItemCl, " card-", status)
-  
-  # header
-  headerTag <- shiny::tags$div(
-    class = "card-header",
-    id = paste0("header_", id),
-    shiny::tags$h4(
-      class = "card-title",
-      shiny::tags$a(
-        href = paste0("#", id),
-        `aria-controls` = id,
-        `data-target` = paste0("#", id),
-        `data-toggle` = "collapse",
-        title
-      )
-    )
-  )
-  
-  # body
-  bodyTag <- shiny::tags$div(
-    `aria-labelledby` = paste0("header_", id),
-    id = id,
-    class = "panel-collapse collapse in",
-    shiny::tags$div(
-      class = "card-body",
-      ...
-    )
-  )
-  
-  accordionItemTag <- shiny::tags$div(class = accordionItemCl)
-  accordionItemTag <- shiny::tagAppendChildren(accordionItemTag, headerTag, bodyTag)
+  cl <- "card"
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+    cl <- paste0(cl, " card-", status)
+  }
   
   shiny::tags$div(
-    class = if (!is.null(width)) paste0("col-sm-", width),
-    accordionItemTag
+    class = cl,
+    
+    # box header
+    shiny::tags$div(
+      class = "card-header",
+      shiny::tags$h4(
+        class = "card-title w-100",
+        shiny::tags$a(
+          class = "d-block w-100",
+          href = NULL,
+          `data-toggle` = "collapse",
+          `aria-expanded` = if (collapsed) "false" else "true",
+          class = if (collapsed) "collapsed",
+          title
+        )
+      )
+    ),
+    
+    shiny::tags$div(
+      id = NULL,  
+      `data-parent` = NULL,
+      class = if (collapsed) {
+        "collapse"
+      } else {
+        "collapse show"
+      },
+      #`aria-expanded` = if (isTRUE(collapsed)) "false" else "true",
+      #style = if (isTRUE(collapsed)) "height: 0px;" else NULL,
+      shiny::tags$div(class = "card-body", ...)
+    )
   )
 }
+
+
+
+
+
+#' Update an accordion on the client
+#' 
+#' \link{updateAccordion} toggles an \link{accordion} on the client.
+#'
+#' @param id Accordion to target.
+#' @param selected Index of the newly selected \link{accordionItem}.
+#' @param session Shiny session object.
+#'
+#' @export
+#' @rdname accordion
+#' @examples
+#' 
+#' # Update accordion
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'       radioButtons("controller", "Controller", choices = c(1, 2)),
+#'       br(),
+#'       accordion(
+#'         id = "accordion1",
+#'         accordionItem(
+#'           title = "Accordion 1 Item 1",
+#'           status = "danger",
+#'           collapsed = TRUE,
+#'           "This is some text!"
+#'         ),
+#'         accordionItem(
+#'           title = "Accordion 1 Item 2",
+#'           status = "warning",
+#'           collapsed = TRUE,
+#'           "This is some text!"
+#'         )
+#'       )
+#'     ),
+#'     title = "Update Accordion"
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$controller, {
+#'       updateAccordion(id = "accordion1", selected = input$controller)
+#'     })
+#'     observe(print(input$accordion1))
+#'     observeEvent(input$accordion1, {
+#'       showNotification(sprintf("You selected accordion N° %s", input$accordion1), type = "message")
+#'     })
+#'   }
+#'  )
+#' }
+updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(id, selected)
+}
+
+
 
 
 

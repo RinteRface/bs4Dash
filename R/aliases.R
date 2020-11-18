@@ -607,3 +607,23 @@ carouselItem <- bs4CarouselItem
 #' See \link{bs4ProgressBar} for full details
 #' @export
 progressBar <- bs4ProgressBar
+
+
+
+#' Alias to \link{bs4Accordion}
+#' See \link{bs4Accordion} for full details
+#'
+#' @rdname accordion
+#'
+#' @export
+accordion <- bs4Accordion
+
+
+
+#' Alias to \link{bs4AccordionItem}
+#' See \link{bs4AccordionItem} for full details
+#'
+#' @rdname accordion
+#'
+#' @export
+accordionItem <- bs4AccordionItem

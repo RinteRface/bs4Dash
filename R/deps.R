@@ -69,7 +69,8 @@ add_bs4Dash_deps <- function(tag, options) {
         "cards.js",
         "feedbacks.js",
         "userMessages.js",
-        "output-bindings.js"
+        "output-bindings.js",
+        "accordions-binding.js"
       ),
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
