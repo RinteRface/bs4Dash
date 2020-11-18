@@ -17,6 +17,7 @@
 #' @param expandOnHover Whether to expand the sidebar om hover. TRUE by default.
 #' @param fixed Whether to fix the sidebar. Default to TRUE.
 #' @param id Recover the state of the sidebar.
+#' @param customArea Sidebar bottom space area. Only works if sidebar is fixed.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname sidebar
@@ -27,7 +28,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                            skin = "dark", status = "primary",
                            elevation = 4, collapsed = FALSE,
                            minified = TRUE, expandOnHover = TRUE,
-                           fixed = TRUE, id = NULL) {
+                           fixed = TRUE, id = NULL, customArea = NULL) {
   
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
@@ -55,13 +56,21 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     class = paste0(
       "main-sidebar sidebar-", skin, "-", 
       status, " elevation-", elevation,
-      if (expandOnHover) NULL else " sidebar-no-expand"
+      if (expandOnHover) NULL else " sidebar-no-expand",
+      if (!is.null(customArea)) " main-sidebar-custom"
     ),
     style = if (disable) "display: none;"
    )
 
   sidebarTag <- shiny::tagAppendChildren(sidebarTag, contentTag)
-  sidebarTag
+  
+  # bottom sidebar
+  if (!is.null(customArea)) {
+    sidebarTag <- shiny::tagAppendChild(
+      sidebarTag,
+      shiny::tags$div(class = "sidebar-custom", customArea)
+    )
+  }
   
   customCSS <- shiny::singleton(
     shiny::tags$style(

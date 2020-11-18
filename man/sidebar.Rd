@@ -30,7 +30,8 @@ bs4DashSidebar(
   minified = TRUE,
   expandOnHover = TRUE,
   fixed = TRUE,
-  id = NULL
+  id = NULL,
+  customArea = NULL
 )
 
 updatebs4Sidebar(id, session)
@@ -84,7 +85,8 @@ dashboardSidebar(
   minified = TRUE,
   expandOnHover = TRUE,
   fixed = TRUE,
-  id = NULL
+  id = NULL,
+  customArea = NULL
 )
 
 updateSidebar(id, session)
@@ -155,6 +157,8 @@ to TRUE.}
 used for a Shiny input value, and it will report which tab is selected. For
 example, if \code{id="tabs"}, then \code{input$tabs} will be the
 \code{tabName} of the currently-selected \link{menuItem}.}
+
+\item{customArea}{Sidebar bottom space area. Only works if sidebar is fixed.}
 
 \item{session}{Shiny session object.}
 

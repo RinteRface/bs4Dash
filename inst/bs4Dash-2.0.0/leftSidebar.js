@@ -234,7 +234,8 @@ $(function () {
   
   // handle fixed sidebar
   if ($(".main-sidebar").attr("data-fixed") === "true") {
-    $('body').Layout('fixLayoutHeight');
+    $('body').addClass('layout-fixed');
+    //$('body').Layout('fixLayoutHeight');
   }
   
   // toggle sidebar at start depending on the body class

@@ -85,8 +85,14 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
                         freshTheme = NULL, preloader = NULL, options = NULL){
   
   titleTag <- header[[2]]
-  # brand logo
+  # look for custom area and move it to third slot
+  if (length(sidebar$children) > 1) {
+    sidebar$children[[3]] <- sidebar$children[[2]]
+  }
+  # sidebar stuff are moved to second child
   sidebar$children[[2]] <- sidebar$children[[1]]
+  
+  # header content (brand logo) is moved to sidebar first child
   sidebar$children[[1]] <- if (!is.null(titleTag)) {
     if (inherits(titleTag, "shiny.tag")) {
       titleTag
