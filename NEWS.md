@@ -181,6 +181,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
+- New `taskItem()`.
 - Add `indicators` and `.list` to `carousel()`.
 - `insertTab()` is using more shiny vanilla elements.
 - `bs4UserMenu()` does not close when clicked inside.
