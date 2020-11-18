@@ -600,3 +600,10 @@ carousel <- bs4Carousel
 #'
 #' @export
 carouselItem <- bs4CarouselItem
+
+
+
+#' Alias to \link{bs4ProgressBar}
+#' See \link{bs4ProgressBar} for full details
+#' @export
+progressBar <- bs4ProgressBar
