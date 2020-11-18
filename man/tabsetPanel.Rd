@@ -9,7 +9,8 @@ tabsetPanel(
   id = NULL,
   selected = NULL,
   type = c("tabs", "pills"),
-  position = NULL
+  position = NULL,
+  .list = NULL
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ active tab via other input controls. (See example below)}
 
 \item{position}{This argument is deprecated; it has been discontinued in
 Bootstrap 3.}
+
+\item{.list}{In case of programmatically generated items. See example.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
@@ -73,22 +76,6 @@ if(interactive()){
      # programmatically inserted panels
      tabsetPanel(
        id = "tabset",
-       side = "left",
-       .list = lapply(1:3, function(i) {
-         tabPanel(
-           title = paste0("Tab", i), 
-           active = FALSE,
-           paste("Content", i)
-         )
-       })
-      ),
-      
-      br(), br(),
-      # vertical tabset
-      tabsetPanel(
-       id = "verttabset",
-       side = "left",
-       vertical = TRUE,
        .list = lapply(1:3, function(i) {
          tabPanel(
            title = paste0("Tab", i), 

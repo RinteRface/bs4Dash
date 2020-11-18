@@ -63,8 +63,7 @@ add_bs4Dash_deps <- function(tag, options) {
       script = c(
         bs4Dash_js, 
         "leftSidebar.js", 
-        "navbar.js", 
-        "update-tabs.js", 
+        "navbar.js",
         "controlbar.js",
         "cards.js",
         "feedbacks.js",

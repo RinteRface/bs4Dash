@@ -498,6 +498,25 @@ buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = 
 
 
 
+bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, type = c("tabs", "pills", 
+                                                    "hidden"), position = NULL) 
+{
+  if (!is.null(position)) {
+    shiny::shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
+                                "it has been discontinued in Bootstrap 3."), version = "0.10.2.2")
+  }
+  if (!is.null(id)) 
+    selected <- shiny::restoreInput(id = id, default = selected)
+  type <- match.arg(type)
+  tabset <- buildTabset(tabs, paste0("nav nav-", type), NULL, id, selected)
+  first <- tabset$navList
+  second <- tabset$content
+  shiny::tags$div(class = "tabbable", first, second)
+}
+
+
+
+
 validateIcon <- function (icon) 
 {
   if (is.null(icon) || identical(icon, character(0))) {

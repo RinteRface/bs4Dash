@@ -25,7 +25,8 @@ controlbarMenu(
   id = NULL,
   selected = NULL,
   type = c("tabs", "pills"),
-  position = NULL
+  position = NULL,
+  .list = NULL
 )
 
 controlbarItem(title, ..., value = title, icon = NULL)
@@ -76,6 +77,8 @@ active tab via other input controls. (See example below)}
 
 \item{position}{This argument is deprecated; it has been discontinued in
 Bootstrap 3.}
+
+\item{.list}{In case of programmatically generated items. See example.}
 
 \item{title}{Display title for tab}
 

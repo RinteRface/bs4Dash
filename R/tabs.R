@@ -4,6 +4,7 @@
 #' to handle bootstrap 4. 
 #'
 #' @inheritParams shiny::tabsetPanel
+#' @param .list In case of programmatically generated items. See example.
 #' 
 #' @examples
 #' if(interactive()){
@@ -39,22 +40,6 @@
 #'      # programmatically inserted panels
 #'      tabsetPanel(
 #'        id = "tabset",
-#'        side = "left",
-#'        .list = lapply(1:3, function(i) {
-#'          tabPanel(
-#'            title = paste0("Tab", i), 
-#'            active = FALSE,
-#'            paste("Content", i)
-#'          )
-#'        })
-#'       ),
-#'       
-#'       br(), br(),
-#'       # vertical tabset
-#'       tabsetPanel(
-#'        id = "verttabset",
-#'        side = "left",
-#'        vertical = TRUE,
 #'        .list = lapply(1:3, function(i) {
 #'          tabPanel(
 #'            title = paste0("Tab", i), 
@@ -181,19 +166,20 @@
 #'
 #' @export
 tabsetPanel <- function(..., id = NULL, selected = NULL, 
-                        type = c("tabs", "pills"), position = NULL) {
+                        type = c("tabs", "pills"), position = NULL, .list = NULL) {
+  
+  items <- c(list(...), .list)
   type <- match.arg(type)
   
   # We run the Shiny tabsetPanel function, to edit it later. This
   # is to avoid to rewrite all internal functions...
-  temp_tabset <- shiny::tabsetPanel(
-    ...,
+  temp_tabset <- bs3_tabsetPanel(
+    tabs = items,
     id = id,
     selected = selected,
     type = type,
     position = position
   )
-  
   # Some edit below since Bootstrap 4 significantly changed the layout
   nav_items <- temp_tabset$children[[1]]$children[[1]]
   found_active <- FALSE

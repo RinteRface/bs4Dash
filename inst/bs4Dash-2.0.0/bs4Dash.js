@@ -1,5 +1,24 @@
 $(function () {
   
+  // Modify the shiny tabsetpanel binding to follow BS4 rules
+  $(document).on('shiny:connected', function(event) {
+    Shiny.unbindAll();
+    $.extend(Shiny
+      .inputBindings
+      .bindingNames['shiny.bootstrapTabInput']
+      .binding, {
+        // do whathever you want to edit existing methods
+        getValue: function(el) {
+          var anchor = $(el).find('li:not(.dropdown)').children('a.active');
+          if (anchor.length === 1)
+            return this._getTabName(anchor);
+
+          return null;
+        }
+      });
+    Shiny.bindAll();
+  });
+  
   // Make the dashboard widgets sortable Using jquery UI
   $('.connectedSortable').sortable({
     placeholder         : 'sort-highlight',
