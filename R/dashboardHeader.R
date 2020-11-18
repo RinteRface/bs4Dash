@@ -49,9 +49,19 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     if (inherits(rightUi, "shiny.tag.list")) {
       lapply(rightUi, function(item) {
         tagAssert(item, type = "li", class = "dropdown")
+        # add dropdown-menu-right class to correctly open the dropdown
+        item$children[[2]]$attribs$class <- paste0(
+          item$children[[2]]$attribs$class,
+          " dropdown-menu-right"
+        )
       })
     } else {
       tagAssert(rightUi, type = "li", class = "dropdown")
+      # add dropdown-menu-right class to correctly open the dropdown
+      rightUi$children[[2]]$attribs$class <- paste0(
+        rightUi$children[[2]]$attribs$class,
+        " dropdown-menu-right"
+      )
     } 
   }
   
