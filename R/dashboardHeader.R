@@ -23,7 +23,8 @@
 #' @param compact Whether items should be compacted. FALSE by default.
 #' @param sidebarIcon Icon of the main sidebar toggle.
 #' @param controlbarIcon Icon to toggle the controlbar (left).
-#' @param fixed Whether to fix the navbar to the top. FALSE by default
+#' @param fixed Whether to fix the navbar to the top. FALSE by default.
+#' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -31,7 +32,7 @@
 bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE, 
                           .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = NULL, 
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
-                          controlbarIcon = shiny::icon("th"), fixed = FALSE) {
+                          controlbarIcon = shiny::icon("th"), fixed = FALSE, fullscreen = FALSE) {
   
   items <- c(list(...), .list)
   
@@ -131,7 +132,19 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     shiny::tags$ul(
       class = "navbar-nav ml-auto",
       rightUi,
-      
+      # fullscreen widget
+      if (fullscreen) {
+        shiny::tags$li(
+          class = "nav-item",
+          shiny::tags$a(
+            class = "nav-link",
+            `data-widget` = "fullscreen",
+            href = "#",
+            role = "button",
+            shiny::tags$i(class = "fas fa-expand-arrows-alt")
+          )
+        )
+      },
       # controlbar toggle
       shiny::tags$li(
         class = "nav-item",
