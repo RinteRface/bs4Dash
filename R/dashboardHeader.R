@@ -202,13 +202,25 @@ bs4DashBrand <- function(title, color = NULL, src = NULL, image = NULL, opacity 
 #'          color = "lime"
 #'        )
 #'       ),
-#'       leftUi = dropdownMenu(
-#'        badgeStatus = "info",
-#'        type = "notifications",
-#'        notificationItem(
-#'          inputId = "triggerAction2",
-#'          text = "Error!",
-#'          status = "danger"
+#'       leftUi = tagList(
+#'        dropdownMenu(
+#'         badgeStatus = "info",
+#'         type = "notifications",
+#'         notificationItem(
+#'           inputId = "triggerAction2",
+#'           text = "Error!",
+#'           status = "danger"
+#'         )
+#'        ),
+#'        dropdownMenu(
+#'         badgeStatus = "info",
+#'         type = "tasks",
+#'         taskItem(
+#'           inputId = "triggerAction3",
+#'           text = "My progress",
+#'           color = "orange",
+#'           value = 10
+#'         )
 #'        )
 #'       )
 #'      ),
@@ -358,7 +370,9 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
       } else {
         href
       },
-      target = if (!is.null(href)) "_blank",
+      target = if (is.null(inputId)) {
+        if (!is.null(href)) "_blank"
+      },
       shiny::div(
         class = "media",
         if (!is.null(image)) {
@@ -452,7 +466,9 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
       } else {
         href
       },
-      target = if (!is.null(href)) "_blank",
+      target = if (is.null(inputId)) {
+        if (!is.null(href)) "_blank"
+      },
       id = inputId,
       shiny::tagAppendAttributes(icon, class = "mr-2"),
       text
@@ -463,6 +479,75 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
 
 
 
+#' Bootstrap 4 task item
+#'
+#' \link{taskItem} creates a task item to place in a \link{dropdownMenu}.
+#'
+#' @param text The task text.
+#' @param value A percent value to use for the bar.
+#' @param color A color for the bar. Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
+#' @param href An optional URL to link to.
+#' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
+#'
+#' @family menu items
+#' @seealso \code{\link{dashboardHeader}} for example usage.
+#' @export
+taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
+  validateStatusPlus(color)
+  if (is.null(href)) href <- "#"
+  
+  itemCl <- "dropdown-item"
+  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  
+  shiny::tagList(
+    shiny::tags$a(
+      class = itemCl,
+      href = if (is.null(inputId)) {
+        "#"
+      } else {
+        href
+      },
+      target = if (is.null(inputId)) {
+        if (!is.null(href)) "_blank"
+      },
+      id = inputId,
+      h5(
+        tags$small(text),
+        tags$small(class = "float-right", paste0(value, "%"))
+      ),
+      progressBar(
+        value = value,
+        animated = TRUE,
+        striped = TRUE,
+        size = "xs",
+        status = color
+      )
+    ),
+    shiny::tags$div(class = "dropdown-divider")
+  )
+}
 
 
 

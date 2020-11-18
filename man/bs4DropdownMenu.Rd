@@ -87,13 +87,25 @@ if(interactive()){
          color = "lime"
        )
       ),
-      leftUi = dropdownMenu(
-       badgeStatus = "info",
-       type = "notifications",
-       notificationItem(
-         inputId = "triggerAction2",
-         text = "Error!",
-         status = "danger"
+      leftUi = tagList(
+       dropdownMenu(
+        badgeStatus = "info",
+        type = "notifications",
+        notificationItem(
+          inputId = "triggerAction2",
+          text = "Error!",
+          status = "danger"
+        )
+       ),
+       dropdownMenu(
+        badgeStatus = "info",
+        type = "tasks",
+        taskItem(
+          inputId = "triggerAction3",
+          text = "My progress",
+          color = "orange",
+          value = 10
+        )
        )
       )
      ),
