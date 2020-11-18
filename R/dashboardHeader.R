@@ -294,7 +294,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
   if (is.null(badgeStatus)) {
     badge <- NULL
   } else {
-    badge <- span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
+    badge <- shiny::span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
   }
   
   if (is.null(headerText)) {
@@ -423,7 +423,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
           if (!is.null(time)) {
             shiny::tags$p(
               class = "text-sm text-muted",
-              tags$i(class = "far fa-clock mr-1"),
+              shiny::tags$i(class = "far fa-clock mr-1"),
               time
             )
           }
@@ -479,7 +479,7 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
   if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
   
   if (!is.null(status)) {
-    icon <- tagAppendAttributes(icon, class = paste0("text-", status)) 
+    icon <- shiny::tagAppendAttributes(icon, class = paste0("text-", status)) 
   }
   
   shiny::tagList(
@@ -558,9 +558,9 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
         if (!is.null(href)) "_blank"
       },
       id = inputId,
-      h5(
-        tags$small(text),
-        tags$small(class = "float-right", paste0(value, "%"))
+      shiny::h5(
+        shiny::tags$small(text),
+        shiny::tags$small(class = "float-right", paste0(value, "%"))
       ),
       progressBar(
         value = value,

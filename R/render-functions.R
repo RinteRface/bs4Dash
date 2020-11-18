@@ -150,7 +150,7 @@ dropdownMenuOutput <- function(outputId) {
 #'   for generating static sidebar menus.
 #' @export
 sidebarMenuOutput <- function(outputId) {
-  menuOutput(outputId = outputId, tag = tags$ul)
+  menuOutput(outputId = outputId, tag = shiny::tags$ul)
 }
 
 
@@ -168,7 +168,7 @@ sidebarMenuOutput <- function(outputId) {
 #'   for generating static sidebar menus.
 #' @export
 menuItemOutput <- function(outputId) {
-  menuOutput(outputId = outputId, tag = tags$li)
+  menuOutput(outputId = outputId, tag = shiny::tags$li)
 }
 
 

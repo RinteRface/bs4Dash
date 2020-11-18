@@ -497,12 +497,33 @@ buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = 
 
 
 
+shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call(sys.parent()))[1L], 
+          version = NULL) 
+{
+  if (getOption("shiny.deprecation.messages") %OR% TRUE == 
+      FALSE) 
+    return(invisible())
+  if (is.null(msg)) {
+    msg <- paste(old, "is deprecated.")
+    if (!is.null(new)) {
+      msg <- paste(msg, "Please use", new, "instead.", 
+                   "To disable this message, run options(shiny.deprecation.messages=FALSE)")
+    }
+  }
+  if (!is.null(version)) {
+    msg <- paste0(msg, " (Last used in version ", version, 
+                  ")")
+  }
+  message(msg)
+}
+
+
 
 bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, type = c("tabs", "pills", 
                                                     "hidden"), position = NULL) 
 {
   if (!is.null(position)) {
-    shiny::shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
+    shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
                                 "it has been discontinued in Bootstrap 3."), version = "0.10.2.2")
   }
   if (!is.null(id)) 

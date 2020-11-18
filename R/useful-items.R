@@ -547,6 +547,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname progress
 #'
 #' @export
 bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 

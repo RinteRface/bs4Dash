@@ -605,6 +605,7 @@ carouselItem <- bs4CarouselItem
 
 #' Alias to \link{bs4ProgressBar}
 #' See \link{bs4ProgressBar} for full details
+#' @rdname progress
 #' @export
 progressBar <- bs4ProgressBar
 
