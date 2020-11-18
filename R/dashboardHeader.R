@@ -10,6 +10,9 @@
 #'   which specifies the width in pixels, or a string that specifies the width
 #'   in CSS units.
 #' @param disable If \code{TRUE}, don't display the header bar.
+#' @param .list An optional list containing items to put in the header. Same as
+#'   the \code{...} arguments, but in list format. This can be useful when
+#'   working with programmatically generated items.
 #' @param leftUi Custom left Ui content. Any element like \link{dropdownMenu}.
 #' @param rightUi Custom right Ui content. Any element like \link{dropdownMenu}.
 #' @param skin Navbar skin. "dark" or "light".
@@ -26,9 +29,27 @@
 #'
 #' @export
 bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE, 
-                          leftUi = NULL, rightUi = NULL, skin = "light", status = NULL, 
+                          .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = NULL, 
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
                           controlbarIcon = shiny::icon("th"), fixed = FALSE) {
+  
+  items <- c(list(...), .list)
+  
+  if (inherits(leftUi, "shiny.tag.list")) {
+    lapply(leftUi, function(item) {
+      tagAssert(item, type = "li", class = "dropdown")
+    })
+  } else {
+    tagAssert(leftUi, type = "li", class = "dropdown")
+  }
+  
+  if (inherits(rightUi, "shiny.tag.list")) {
+    lapply(rightUi, function(item) {
+      tagAssert(item, type = "li", class = "dropdown")
+    })
+  } else {
+    tagAssert(rightUi, type = "li", class = "dropdown")
+  }
   
   titleWidth <- shiny::validateCssUnit(titleWidth)
   
@@ -90,7 +111,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     ),
     
     # in between content
-    ...,
+    items,
     
     # right sidebar elements
     shiny::tags$ul(
@@ -552,9 +573,10 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 
 
 
-#' Create a Bootstrap 4 user profile.
+#' Bootstrap 4 user profile.
 #' 
-#' Insert in the rightUi or leftUi slot of \link{dashboardHeader}.
+#' \link{dashboardUser} to insert in the rightUi or leftUi slot of 
+#' \link{dashboardHeader}.
 #'
 #' @param ... Body content. Slot for \link{dashboardUserItem}.
 #' @param name User name.

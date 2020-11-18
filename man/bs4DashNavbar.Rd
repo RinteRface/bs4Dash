@@ -10,6 +10,7 @@ bs4DashNavbar(
   title = NULL,
   titleWidth = NULL,
   disable = FALSE,
+  .list = NULL,
   leftUi = NULL,
   rightUi = NULL,
   skin = "light",
@@ -26,6 +27,7 @@ dashboardHeader(
   title = NULL,
   titleWidth = NULL,
   disable = FALSE,
+  .list = NULL,
   leftUi = NULL,
   rightUi = NULL,
   skin = "light",
@@ -48,6 +50,10 @@ which specifies the width in pixels, or a string that specifies the width
 in CSS units.}
 
 \item{disable}{If \code{TRUE}, don't display the header bar.}
+
+\item{.list}{An optional list containing items to put in the header. Same as
+the \code{...} arguments, but in list format. This can be useful when
+working with programmatically generated items.}
 
 \item{leftUi}{Custom left Ui content. Any element like \link{dropdownMenu}.}
 

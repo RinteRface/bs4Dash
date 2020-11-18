@@ -3,7 +3,7 @@
 \name{bs4UserMenu}
 \alias{bs4UserMenu}
 \alias{dashboardUser}
-\title{Create a Bootstrap 4 user profile.}
+\title{Bootstrap 4 user profile.}
 \usage{
 bs4UserMenu(
   ...,
@@ -63,7 +63,8 @@ dashboardUser(
 }}
 }
 \description{
-Insert in the rightUi or leftUi slot of \link{dashboardHeader}.
+\link{dashboardUser} to insert in the rightUi or leftUi slot of 
+\link{dashboardHeader}.
 }
 \examples{
 if (interactive()) {
