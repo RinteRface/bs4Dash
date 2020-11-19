@@ -125,7 +125,8 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
-- Remove `src` from `carouselItem`
+- `status` becomes `color` in `blockQuote`.
+- Remove `src` from `carouselItem()`
 - In `bs4Ribbon()`, `status` becomes `color`. Remove `size`.
 - In `bs4Badge()`, `status` becomes `color`.
 - In `userMessage()`, `src` becomes `image` and `side` becomes `type`.

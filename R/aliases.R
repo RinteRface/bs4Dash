@@ -640,3 +640,15 @@ accordionItem <- bs4AccordionItem
 #'
 #' @export
 sortable <- bs4Sortable
+
+
+
+
+
+#' Alias to \link{bs4Quote}
+#' See \link{bs4Quote} for full details
+#'
+#' @rdname quote
+#'
+#' @export
+blockQuote <- bs4Quote

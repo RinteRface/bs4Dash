@@ -2905,28 +2905,50 @@ bs4Ribbon <- function(text, color) {
 #' Build a bootstrap 4 block quote
 #'
 #' @param ... Content.
-#' @param status Block status: "primary", "danger", "success", "warning", "info" and 
-#' "secondary" or any other supported colors. See \url{https://adminlte.io/themes/dev/AdminLTE/pages/UI/general.html}.
+#' @param color Block color.  Valid colors are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' 
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(), 
-#'     sidebar = bs4DashSidebar(),
-#'     body = bs4DashBody(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
 #'      fluidRow(
-#'       bs4Quote("Blablabla", status = "indigo"),
-#'       bs4Quote("Blablabla", status = "danger"),
-#'       bs4Quote("Blablabla", status = "teal"),
-#'       bs4Quote("Blablabla", status = "orange"),
-#'       bs4Quote("Blablabla", status = "warning"),
-#'       bs4Quote("Blablabla", status = "fuchsia")
+#'       blockQuote("Blablabla", color = "indigo"),
+#'       blockQuote("Blablabla", color = "danger"),
+#'       blockQuote("Blablabla", color = "teal"),
+#'       blockQuote("Blablabla", color = "orange"),
+#'       blockQuote("Blablabla", color = "warning"),
+#'       blockQuote("Blablabla", color = "fuchsia")
 #'      )
 #'     ), 
-#'     footer = bs4DashFooter()
+#'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
@@ -2936,9 +2958,10 @@ bs4Ribbon <- function(text, color) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Quote <- function(..., status) {
+bs4Quote <- function(..., color) {
+  validateStatusPlus(color)
   shiny::tags$blockquote(
-    class = paste0("quote-", status),
+    class = paste0("quote-", color),
     ...
   )
 }
