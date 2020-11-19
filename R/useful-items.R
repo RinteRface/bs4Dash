@@ -2478,38 +2478,35 @@ userPostMedia <- function(image = NULL, height = NULL, width = NULL) {
 #' @param width Section width: between 1 and 12.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname sortable
 #' 
 #' @examples 
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  shiny::shinyApp(
-#'   ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
-#'       bs4TabItems(
-#'         bs4TabItem(
-#'           tabName = "sortabled",
-#'           fluidRow(
-#'             lapply(1:3, FUN = function(i) {
-#'               bs4Sortable(
-#'                 width = 4,
-#'                 p(class = "text-center", paste("Column", i)),
-#'                 lapply(1:2, FUN = function(j) {
-#'                   bs4Card(
-#'                     title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
-#'                     width = 12,
-#'                     "Click on my header"
-#'                   )
-#'                 })
-#'               )
-#'             })
-#'           )
-#'         )
+#'  
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Sortable UI",
+#'     body = dashboardBody(
+#'       fluidRow(
+#'        lapply(1:3, FUN = function(i) {
+#'          sortable(
+#'            width = 4,
+#'            p(class = "text-center", paste("Column", i)),
+#'            lapply(1:2, FUN = function(j) {
+#'              box(
+#'                title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+#'                width = 12,
+#'                "Click on my header"
+#'              )
+#'            })
+#'          )
+#'        })
 #'       )
 #'     )
 #'   ),
@@ -2518,7 +2515,7 @@ userPostMedia <- function(image = NULL, height = NULL, width = NULL) {
 #' }  
 #' 
 #' @export
-bs4Sortable <- function(..., width = NULL) {
+bs4Sortable <- function(..., width = 12) {
   
   sectionCl <- "connectedSortable ui-sortable"
   if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)

@@ -628,3 +628,15 @@ accordion <- bs4Accordion
 #'
 #' @export
 accordionItem <- bs4AccordionItem
+
+
+
+
+
+#' Alias to \link{bs4Sortable}
+#' See \link{bs4Sortable} for full details
+#'
+#' @rdname sortable
+#'
+#' @export
+sortable <- bs4Sortable
