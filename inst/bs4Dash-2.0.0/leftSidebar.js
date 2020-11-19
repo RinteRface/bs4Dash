@@ -89,7 +89,7 @@ $(function () {
     else if ($menu.hasClass("has-treeview")) $menu.trigger("expanded.lte.treeview");
   
     // need to set timeout to account for the slideUp/slideDown animation
-    var $obj = $('sidebar.shiny-bound-input');
+    var $obj = $('.sidebar.shiny-bound-input');
     setTimeout(function() { $obj.trigger('change'); }, 600);
   });
   
@@ -186,13 +186,6 @@ $(function () {
   });
   
   Shiny.inputBindings.register(sidebarBinding, 'bs4Dash.sidebarInput');
-  
-  // does not work
-  //$(document).on('collapsed.lte.pushmenu', function(e) {
-  //  console.log('plop');
-  //  console.log(e);
-  //  $(window).trigger("resize");
-  //});
   
   // sidebarmenuExpandedInputBinding
   // ------------------------------------------------------------------
