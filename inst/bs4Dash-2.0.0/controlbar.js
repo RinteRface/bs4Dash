@@ -128,7 +128,7 @@ $(function() {
   // toggle controlbar at start
   var controlbarCollapsed = $('.control-sidebar').attr('data-collapsed');
   if (controlbarCollapsed === "false") {
-    $('body').addClass('control-sidebar-slide-open');
+    $("#controlbar-toggle").ControlSidebar('toggle');
   }
   
   // handle controlbar overlay
