@@ -97,10 +97,16 @@ $(function() {
   
     // Given the DOM element for the input, return the value
     getValue: function(el) {
-      $(el).trigger("shown");
-      return $("body").hasClass("control-sidebar-slide-open");
+      // this handles the case where the controlbar is not collapsed at start
+      var controlbarCollapsed = $('.control-sidebar').attr('data-collapsed');
+      if (controlbarCollapsed === "false") {
+        $("#controlbar-toggle").ControlSidebar('toggle');
+        $('.control-sidebar').attr('data-collapsed', "true");
+        return true;
+      } else {
+        return $("body").hasClass("control-sidebar-slide-open");
+      }
     },
-  
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
       $("#controlbar-toggle").ControlSidebar('toggle');
@@ -123,13 +129,6 @@ $(function() {
   });
   
   Shiny.inputBindings.register(controlbarBinding, "bs4Dash.controlbarBinding");
-  
-  
-  // toggle controlbar at start
-  var controlbarCollapsed = $('.control-sidebar').attr('data-collapsed');
-  if (controlbarCollapsed === "false") {
-    $("#controlbar-toggle").ControlSidebar('toggle');
-  }
   
   // handle controlbar overlay
   var controlbarOverlay = $('.control-sidebar').attr('data-overlay');
