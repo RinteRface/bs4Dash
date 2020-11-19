@@ -39,7 +39,11 @@ listGroupItem(
 \arguments{
 \item{...}{Item content.}
 
+\item{type}{List group type.}
+
 \item{width}{List group width. 4 by default. Between 1 and 12.}
+
+\item{.list}{Slot for programmatically generated items.}
 
 \item{title}{Item title (only if type is "heading").}
 

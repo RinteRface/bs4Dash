@@ -13,8 +13,7 @@ userPost(
   author,
   description = NULL,
   collapsible = TRUE,
-  collapsed = FALSE,
-  collapseStatus = "secondary"
+  collapsed = FALSE
 )
 
 userPostTagItems(...)
@@ -35,16 +34,6 @@ userPostTagItem(...)
 \item{collapsible}{If TRUE, display a button in the upper right that allows the user to collapse the comment.}
 
 \item{collapsed}{Whether the comment is collapsed when the application starts, FALSE by default.}
-
-\item{collapseStatus}{Color of the collapse button. Valid colors are:
-\itemize{
- \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-}}
 }
 \description{
 Creates a user post. This content may be inserted in a \link{box}.

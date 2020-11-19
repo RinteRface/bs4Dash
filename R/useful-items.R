@@ -1236,8 +1236,10 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #'
 #' @description Create a list group
 #'
-#' @param ... Slot for \link{bs4ListGroupItem}.
+#' @param ... Slot for \link{listGroupItem}.
+#' @param type List group type. 
 #' @param width List group width. 4 by default. Between 1 and 12.
+#' @param .list Slot for programmatically generated items.
 #' 
 #' @rdname listgroup
 #'
@@ -2940,6 +2942,7 @@ bs4Ribbon <- function(text, color) {
 #'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
+#' @rdname quote
 #' 
 #' @examples
 #' if (interactive()) {

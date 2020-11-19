@@ -20,7 +20,7 @@ at the top of the main server function.
 \description{
 This piece of code is necessary so that plots get the
 good background color, automatically. It requires the use 
-of the {thematic} package and shiny dev.
+of the thematic package and shiny dev.
 }
 \examples{
 if (interactive()) {

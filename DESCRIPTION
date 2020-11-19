@@ -24,7 +24,8 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     golem,
-    DT
+    DT, 
+    thematic
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000

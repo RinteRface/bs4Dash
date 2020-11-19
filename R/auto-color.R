@@ -2,7 +2,7 @@
 #' 
 #' This piece of code is necessary so that plots get the
 #' good background color, automatically. It requires the use 
-#' of the {thematic} package and shiny dev.
+#' of the thematic package and shiny dev.
 #'
 #' @param input Shiny input object.
 #' @param output Shiny output object.
@@ -49,9 +49,9 @@
 #' }
 useAutoColor <- function(input, output, session) {
   input <- get("input", envir = parent.frame())
-  session <- getDefaultReactiveDomain()
+  session <- shiny::getDefaultReactiveDomain()
   # input$dark_mode is created on the client
-  observeEvent(input$dark_mode, {
+  shiny::observeEvent(input$dark_mode, {
     session$setCurrentTheme(NULL)
   })
 }
