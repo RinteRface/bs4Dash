@@ -75,3 +75,18 @@
 .content-wrapper>.content {
   padding: 15px !important;
 }
+
+
+/* Tweak controlbar tabs in dark mode */
+.control-sidebar-dark .nav-tabs {
+  background-color: transparent !important;
+}
+
+.control-sidebar-dark .nav-tabs .nav-link.active {
+  background-color: #6c757d;
+}
+
+/* Add margins to pills in controlbar */
+.control-sidebar .nav-pills {
+  margin: 10px !important;
+}
