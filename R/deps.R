@@ -8,6 +8,8 @@ add_bs4Dash_deps <- function(tag, options) {
   bs4Dash_css <- "bs4Dash.css"
   jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
+  os_js <- "jquery.overlayScrollbars.min.js"
+  os_css <- "OverlayScrollbars.min.css"
   fontawesome_css <- "https://use.fontawesome.com/releases/v5.0.13/css/"
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -28,6 +30,16 @@ add_bs4Dash_deps <- function(tag, options) {
       script = bootstrap_js,
       package = "bs4Dash"
     ),
+    # overlay scrollbars
+    htmltools::htmlDependency(
+      name = "os", 
+      version = "1.13.0",
+      src = c(file = "os-1.13.0"),
+      script = os_js,
+      stylesheet = os_css,
+      package = "bs4Dash"
+    ),
+    # custom options
     if (!is.null(options)) {
       # additional options (this needs to be loaded before shinydashboardPlus deps)
       htmltools::htmlDependency(
