@@ -681,28 +681,27 @@ bs4Callout <- function(..., title, status = c("warning", "danger", "info", "succ
 #' @note Loading state can be programmatically used when a conputation is running for instance.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname loading
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'        title = "Callouts",
-#'        bs4Card(
-#'         title = "Loading State",
-#'         bs4Loading()
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {}
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       title = "loading spinner",
+#'       loadingState()
+#'       )
+#'     ),
+#'     title = "Loading State"
+#'   ),
+#'   server = function(input, output) { }
 #'  )
 #' }
 #'
@@ -1437,14 +1436,14 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
+#'      title = "Ionicons",
+#'      body = dashboardBody(
 #'       ionicon(name ="heart"),
 #'       ionicon(name ="beer")
 #'     )
@@ -2546,7 +2545,7 @@ bs4Sortable <- function(..., width = 12) {
 
 
 
-#' Create a Boostrap 4 table container
+#' Boostrap 4 table container
 #'
 #' Build an argon table container
 #'
@@ -2562,11 +2561,12 @@ bs4Sortable <- function(..., width = 12) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
+#'  
 #'  shinyApp(
-#'   ui = bs4DashPage(
-#'     navbar = bs4DashNavbar(), 
-#'     sidebar = bs4DashSidebar(),
-#'     body = bs4DashBody(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
 #'      bs4Table(
 #'       cardWrap = TRUE,
 #'       bordered = TRUE,
@@ -2584,15 +2584,15 @@ bs4Sortable <- function(..., width = 12) {
 #'        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
 #'        bs4TableItem(
 #'         dataCell = TRUE, 
-#'         bs4Badge(
+#'         dashboardBadge(
 #'          "Pending",
 #'          position = "right",
-#'          status = "danger",
+#'          color = "danger",
 #'          rounded = TRUE
 #'         )
 #'        ),
 #'        bs4TableItem(
-#'         progressBar(id = "pb1", value = 50, size = "xxs")
+#'         progressBar(value = 50)
 #'        ),
 #'        bs4TableItem(
 #'         dataCell = TRUE, 
@@ -2607,7 +2607,7 @@ bs4Sortable <- function(..., width = 12) {
 #'       )
 #'      )
 #'     ), 
-#'     footer = bs4DashFooter()
+#'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
@@ -2615,6 +2615,7 @@ bs4Sortable <- function(..., width = 12) {
 #' 
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname table
 #'
 #' @export
 bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE, 
@@ -2662,13 +2663,13 @@ bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE,
 
 
 
-#' Create a Boostrap 4 table item row
+#' Boostrap 4 table item row
 #'
 #' Build an bs4 table item row
 #'
-#' @param ... Slot for \link{bs4TableItem}.
+#' @param ... Slot for \link{tableItem}.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname table
 #'
 #' @export
 bs4TableItems <- function(...) {
@@ -2677,14 +2678,14 @@ bs4TableItems <- function(...) {
 
 
 
-#' Create a Boostrap 4 table item
+#' Bootstrap 4 table item
 #'
 #' Build an bs4 table item
 #'
 #' @param ... Any HTML element.
 #' @param dataCell Whether the cell should be contain data or text. <td> by default.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname table
 #'
 #' @export
 bs4TableItem <- function(..., dataCell = FALSE) {
@@ -2826,7 +2827,7 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 
 
 
-#' Create a Boostrap 4 ribbon
+#' Boostrap 4 ribbon
 #'
 #' \link{bs4Ribbon} build a bootstrap 4 ribbon
 #'
@@ -2915,7 +2916,7 @@ bs4Ribbon <- function(text, color) {
 
 
 
-#' Create a Boostrap 4 block quote
+#' Boostrap 4 block quote
 #'
 #' Build a bootstrap 4 block quote
 #'

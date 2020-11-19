@@ -2,7 +2,7 @@
 % Please edit documentation in R/useful-items.R
 \name{bs4Quote}
 \alias{bs4Quote}
-\title{Create a Boostrap 4 block quote}
+\title{Boostrap 4 block quote}
 \usage{
 bs4Quote(..., color)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/useful-items.R
 \name{bs4Ribbon}
 \alias{bs4Ribbon}
-\title{Create a Boostrap 4 ribbon}
+\title{Boostrap 4 ribbon}
 \usage{
 bs4Ribbon(text, color)
 }

@@ -41,6 +41,7 @@ Collate:
     'dashboardHeader.R'
     'dashboardPage.R'
     'aliases.R'
+    'auto-color.R'
     'bs4DashGallery.R'
     'deps.R'
     'feedbacks.R'

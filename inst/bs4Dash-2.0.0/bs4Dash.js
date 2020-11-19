@@ -97,6 +97,15 @@ $(function () {
     }, 500);
   });
   
+  // dark mode input
+  $(document).one('shiny:connected', function() {
+    if ($('body').hasClass('dark-mode')) {
+      Shiny.setInputValue('dark_mode', true, {priority: 'event'});
+    } else {
+      Shiny.setInputValue('dark_mode', false, {priority: 'event'});
+    }
+  });
+  
   // automatic global theme switcher
   $navbar = $('.main-header.navbar');
   var $dark_mode_checkbox = $('<input />', {
@@ -140,6 +149,9 @@ $(function () {
         .removeClass('fa-sun')
         .addClass('fa-moon');
         
+      // refresh shiny input value  
+      Shiny.setInputValue('dark_mode', true, {priority: 'event'});
+        
     } else {
       $('body').removeClass('dark-mode');
       $navbar
@@ -173,6 +185,9 @@ $(function () {
       $('.dark-theme-icon')
         .removeClass('fa-moon')
         .addClass('fa-sun');
+      
+      // refresh shiny input value  
+      Shiny.setInputValue('dark_mode', false, {priority: 'event'});
     }
   });
   

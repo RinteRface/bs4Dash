@@ -2,7 +2,9 @@
 % Please edit documentation in R/useful-items.R
 \name{bs4Table}
 \alias{bs4Table}
-\title{Create a Boostrap 4 table container}
+\alias{bs4TableItems}
+\alias{bs4TableItem}
+\title{Boostrap 4 table container}
 \usage{
 bs4Table(
   ...,
@@ -12,9 +14,13 @@ bs4Table(
   striped = FALSE,
   width = 12
 )
+
+bs4TableItems(...)
+
+bs4TableItem(..., dataCell = FALSE)
 }
 \arguments{
-\item{...}{\link{bs4TableItems}.}
+\item{...}{Any HTML element.}
 
 \item{cardWrap}{Whether to wrap the table in a card. FALSE by default.}
 
@@ -26,19 +32,26 @@ bs4Table(
 \item{striped}{Whether to displayed striped in elements. FALSE by default.}
 
 \item{width}{Table width. 12 by default.}
+
+\item{dataCell}{Whether the cell should be contain data or text. <td> by default.}
 }
 \description{
 Build an argon table container
+
+Build an bs4 table item row
+
+Build an bs4 table item
 }
 \examples{
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
+ 
  shinyApp(
-  ui = bs4DashPage(
-    navbar = bs4DashNavbar(), 
-    sidebar = bs4DashSidebar(),
-    body = bs4DashBody(
+  ui = dashboardPage(
+    header = dashboardHeader(), 
+    sidebar = dashboardSidebar(),
+    body = dashboardBody(
      bs4Table(
       cardWrap = TRUE,
       bordered = TRUE,
@@ -56,15 +69,15 @@ if (interactive()) {
        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
        bs4TableItem(
         dataCell = TRUE, 
-        bs4Badge(
+        dashboardBadge(
          "Pending",
          position = "right",
-         status = "danger",
+         color = "danger",
          rounded = TRUE
         )
        ),
        bs4TableItem(
-        progressBar(id = "pb1", value = 50, size = "xxs")
+        progressBar(value = 50)
        ),
        bs4TableItem(
         dataCell = TRUE, 
@@ -79,7 +92,7 @@ if (interactive()) {
       )
      )
     ), 
-    footer = bs4DashFooter()
+    footer = dashboardFooter()
   ),
   server = function(input, output) { }
  )

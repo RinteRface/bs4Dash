@@ -696,3 +696,15 @@ listGroupItem <- bs4ListGroupItem
 #'
 #' @export
 callout <- bs4Callout
+
+
+
+
+
+#' Alias to \link{bs4Loading}
+#' See \link{bs4Loading} for full details
+#'
+#' @rdname loading
+#'
+#' @export
+loadingState <- bs4Loading
