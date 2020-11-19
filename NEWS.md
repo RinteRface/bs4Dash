@@ -151,6 +151,8 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New `useAutoColor()` leveraging new Shiny features and {thematic} to automatically
+style plots depending on the dashboard background color.
 - New bottom area for `dashboardSidebar()`.
 - Add fullscreen widget to `dashboardHeader()`.
 - New `updateAccordion()`.
