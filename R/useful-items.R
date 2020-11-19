@@ -600,8 +600,6 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #'
 #' @param ... Callout content.
 #' @param title Callout title.
-#' @param width Callout width. Between 1 and 12.
-#' @param elevation Callout elevation.
 #' @param status Callout status. Valid statuses:
 #' \itemize{
 #'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
@@ -609,22 +607,26 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
+#' @param width Callout width. Between 1 and 12.
+#' @param elevation Callout elevation.
+#' 
+#' @rdname callout
 #' 
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
+#'      title = "Callout",
 #'      body = bs4DashBody(
 #'        title = "Callouts",
-#'        bs4Callout(
+#'        callout(
 #'         title = "I am a danger callout!",
 #'         elevation = 4,
 #'         status = "danger",
@@ -633,7 +635,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #'         my entire soul, like these sweet mornings of 
 #'         spring which I enjoy with my whole heart."
 #'        ),
-#'        bs4Callout(
+#'        callout(
 #'         title = "I am a danger callout!",
 #'         status = "warning",
 #'         "This is a yellow callout."
@@ -648,8 +650,8 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Callout <- function(..., title, width = 6, elevation = NULL,
-                       status = c("warning", "danger", "info", "success")) {
+bs4Callout <- function(..., title, status = c("warning", "danger", "info", "success"),
+                       width = 6, elevation = NULL) {
   
   validateStatus(status)
   status <- match.arg(status)

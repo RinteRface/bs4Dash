@@ -685,4 +685,14 @@ listGroup <- bs4ListGroup
 #'
 #' @export
 listGroupItem <- bs4ListGroupItem
-listGroup <- bs4ListGroup
+
+
+
+
+#' Alias to \link{bs4Callout}
+#' See \link{bs4Callout} for full details
+#'
+#' @rdname callout
+#'
+#' @export
+callout <- bs4Callout
