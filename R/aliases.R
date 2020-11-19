@@ -652,3 +652,37 @@ sortable <- bs4Sortable
 #'
 #' @export
 blockQuote <- bs4Quote
+
+
+
+
+#' Alias to \link{bs4Jumbotron}
+#' See \link{bs4Jumbotron} for full details
+#'
+#' @rdname jumbotron
+#'
+#' @export
+jumbotron <- bs4Jumbotron
+
+
+
+
+#' Alias to \link{bs4ListGroup}
+#' See \link{bs4ListGroup} for full details
+#'
+#' @rdname listgroup
+#'
+#' @export
+listGroup <- bs4ListGroup
+
+
+
+
+#' Alias to \link{bs4ListGroupItem}
+#' See \link{bs4ListGroupItem} for full details
+#'
+#' @rdname listgroup
+#'
+#' @export
+listGroupItem <- bs4ListGroupItem
+listGroup <- bs4ListGroup
