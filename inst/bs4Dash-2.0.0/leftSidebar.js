@@ -171,7 +171,7 @@ $(function () {
   
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
-      $("[data-widget='pushmenu']").click();
+      $("[data-widget='pushmenu']").PushMenu('toggle');
     },
   
     subscribe: function(el, callback) {
@@ -235,7 +235,7 @@ $(function () {
   var sidebarCollapsed = $('.main-sidebar').attr('data-collapsed');
   if (sidebarCollapsed === "true") {
     // This triggers binding geValue
-    $("[data-widget='pushmenu']").click();
+    $("[data-widget='pushmenu']").PushMenu('toggle');
   }
   
   var sidebarMinified = $('.main-sidebar').attr('data-minified');

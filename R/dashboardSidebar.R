@@ -105,9 +105,9 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
-#'      sidebar = dashboardSidebar(inputId = "sidebar"),
+#'      sidebar = dashboardSidebar(id = "sidebar"),
 #'      body = dashboardBody(
-#'        actionButton(inputId = "controlbarToggle", label = "Toggle Sidebar")
+#'        actionButton(inputId = "sidebarToggle", label = "Toggle Sidebar")
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
@@ -123,8 +123,8 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #'        }
 #'      })
 #'      
-#'      observeEvent(input$controlbarToggle, {
-#'        updatebs4Sidebar(id = "sidebar", session = session)
+#'      observeEvent(input$sidebarToggle, {
+#'        updateSidebar(id = "sidebar", session = session)
 #'      })
 #'      
 #'      observe({
