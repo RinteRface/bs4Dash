@@ -14,7 +14,7 @@ userPost(
   description = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  collapseStatus = NULL
+  collapseStatus = "secondary"
 )
 
 userPostTagItems(...)
@@ -78,8 +78,8 @@ if (interactive()) {
        lovers to Charlie Sheen fans.",
        collapsible = FALSE,
        userPostTagItems(
-        userPostTagItem(bs4Badge("item 1", status = "info")),
-        userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
+        userPostTagItem(dashboardBadge("item 1", color = "info")),
+        userPostTagItem(dashboardBadge("item 2", color = "danger"), side = "right")
        )
       ),
       userPost(
@@ -88,8 +88,8 @@ if (interactive()) {
        author = "Adam Jones",
        userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
        userPostTagItems(
-        userPostTagItem(bs4Badge("item 1", status = "success")),
-        userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
+        userPostTagItem(dashboardBadge("item 1", color = "success")),
+        userPostTagItem(dashboardBadge("item 2", color = "danger"), side = "right")
        )
       )
      )

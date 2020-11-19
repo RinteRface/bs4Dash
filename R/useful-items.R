@@ -2288,15 +2288,6 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #' @param description Post description.
 #' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
-#' @param collapseStatus Color of the collapse button. Valid colors are:
-#' \itemize{
-#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userPost
@@ -2327,8 +2318,8 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'        lovers to Charlie Sheen fans.",
 #'        collapsible = FALSE,
 #'        userPostTagItems(
-#'         userPostTagItem(bs4Badge("item 1", status = "info")),
-#'         userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
+#'         userPostTagItem(dashboardBadge("item 1", color = "info")),
+#'         userPostTagItem(dashboardBadge("item 2", color = "danger"), side = "right")
 #'        )
 #'       ),
 #'       userPost(
@@ -2337,8 +2328,8 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'        author = "Adam Jones",
 #'        userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
 #'        userPostTagItems(
-#'         userPostTagItem(bs4Badge("item 1", status = "success")),
-#'         userPostTagItem(bs4Badge("item 2", status = "danger"), side = "right")
+#'         userPostTagItem(dashboardBadge("item 1", color = "success")),
+#'         userPostTagItem(dashboardBadge("item 2", color = "danger"), side = "right")
 #'        )
 #'       )
 #'      )
@@ -2352,16 +2343,11 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #' @export
 userPost <- function(..., id = NULL, image, author, 
                      description = NULL, collapsible = TRUE, 
-                     collapsed = FALSE, collapseStatus = NULL) {
+                     collapsed = FALSE) {
   
-  cl <- "collapse"
   id <- paste0("post-", id)
   
-  btnCl <- "btn float-right"
-  if(!is.null(collapseStatus)) {
-    validateStatus(collapseStatus)
-    btnCl <- paste0(btnCl, " btn-", collapseStatus)
-  }
+  btnCl <- "btn-tool float-right"
   
   
   # if the input tag is an image, it is better to center it...
@@ -2393,25 +2379,35 @@ userPost <- function(..., id = NULL, image, author,
       shiny::tags$span(
         class = "username", 
         author,
-        
         # box tool
         if (collapsible) {
-          shiny::tags$button(
+          shiny::tags$a(
             class = btnCl,
-            type = "button",
             `data-toggle` = "collapse",
             `data-target` = paste0("#", id),
             `aria-expanded` = tolower(!collapsed),
             `aria-controls` = id,
-            shiny::tags$i(class = "fa fa-eye")
+            if (collapsed) {
+              shiny::tags$i(class = "fa fa-plus")
+            } else {
+              shiny::tags$i(class = "fa fa-minus")
+            }
           )
         }
         
       ),
-      shiny::tags$span(class = "description", description)
+      if (!is.null(description)) {
+        shiny::tags$span(class = "description", description)
+      }
     ),
     shiny::tags$div(
-      class = cl,
+      class = if (collapsible) {
+        if (!collapsed) {
+          "collapse show"
+        } else {
+          "collapse"
+        }
+      },
       id = id,
       items 
     )

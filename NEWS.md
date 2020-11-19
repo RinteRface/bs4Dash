@@ -134,7 +134,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 - In `timelineItemMedia()`, `src` becomes `image`.
 - In `timelineItem()`, `timelineStart()` and `timelineEnd()`, `icon` expects `shiny::icon`.
 - `status` becomes `color` in `timelineItem()`, `timelineLabel()`, `timelineStart()` and `timelineEnd()`.
-- In `userPost()` and `userPostMedia()`, `src` becomes `image`.
+- In `userPost()` and `userPostMedia()`, `src` becomes `image`. Removed `collapseStatus`.
 - In `bs4Stars()`, status becomes `color`.
 - Remove `bs4ShowTab()`, `bs4HideTab()` and `bs4RemoveTab()`. shiny vanilla function should work well now.
 - Remove `bs4TabPanel()`.

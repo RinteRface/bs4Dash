@@ -48,6 +48,15 @@ $(function () {
   }
   
   
+  // data toggle collapse icon update
+  $('.user-block [data-toggle="collapse"]').on('click', function() {
+    if ($(this).children('i').hasClass('fa-plus')) {
+      $(this).children('i').attr('class', 'fa fa-minus');
+    } else {
+      $(this).children('i').attr('class', 'fa fa-plus');
+    }
+  });
+  
   // slide to top button
   var $slideToTop = $('<div />');
 
