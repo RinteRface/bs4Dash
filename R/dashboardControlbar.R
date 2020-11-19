@@ -40,7 +40,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
       )
     },
     shiny::tags$div(
-      class = "p-3",
+      class = "control-sidebar-content",
       id = "controlbarTitle",
       ...
     )
