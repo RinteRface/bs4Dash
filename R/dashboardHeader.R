@@ -16,9 +16,29 @@
 #' @param leftUi Custom left Ui content. Any element like \link{dropdownMenu}.
 #' @param rightUi Custom right Ui content. Any element like \link{dropdownMenu}.
 #' @param skin Navbar skin. "dark" or "light".
-#' @param status Navbar status. "primary", "danger", "warning",
-#' "success", "info", "white", "gray-light" and all other available colors. See
-#' \link{getAdminLTEColors}.
+#' @param status Navbar status. Valid statuses are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' @param border Whether to separate the navbar and body by a border. TRUE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
 #' @param sidebarIcon Icon of the main sidebar toggle.
@@ -50,19 +70,9 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     if (inherits(rightUi, "shiny.tag.list")) {
       lapply(rightUi, function(item) {
         tagAssert(item, type = "li", class = "dropdown")
-        # add dropdown-menu-right class to correctly open the dropdown
-        item$children[[2]]$attribs$class <- paste0(
-          item$children[[2]]$attribs$class,
-          " dropdown-menu-right"
-        )
       })
     } else {
       tagAssert(rightUi, type = "li", class = "dropdown")
-      # add dropdown-menu-right class to correctly open the dropdown
-      rightUi$children[[2]]$attribs$class <- paste0(
-        rightUi$children[[2]]$attribs$class,
-        " dropdown-menu-right"
-      )
     } 
   }
   
@@ -130,7 +140,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     
     # right sidebar elements
     shiny::tags$ul(
-      class = "navbar-nav ml-auto",
+      class = "navbar-nav ml-auto navbar-right",
       rightUi,
       # fullscreen widget
       if (fullscreen) {
