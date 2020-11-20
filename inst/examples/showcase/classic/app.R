@@ -2,17 +2,19 @@ source("global.R")
 
 shinyApp(
   ui = dashboardPage(
+    preloader = list(
+      waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
+      duration = 5
+    ),
     header = dashboardHeader(
       title = dashboardBrand(
         title = "bs4Dash",
         color = "primary",
-        src = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
+        href = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
         image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
         opacity = 0.8
       ),
-      status = "primary",
       fixed = TRUE,
-      skin = "dark",
       fullscreen = TRUE,
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
@@ -152,6 +154,15 @@ shinyApp(
       )
     ),
     body = bs4DashBody(
+      tags$head(
+        tags$script(
+          "$(function() {
+            $('#customSwitch1').click();
+          });
+          "
+        )
+      ),
+      e_theme_register(echarts_dark_theme$options, name = echarts_dark_theme$name),
       bs4TabItems(
         basic_cards_tab,
         cards_api_tab,
@@ -236,50 +247,15 @@ shinyApp(
         e_theme("shine")
     })
     
-    output$plot2 <- renderPlotly({
-      p <- plot_ly(df, x = ~x) %>%
-        add_lines(y = ~y1, name = "A") %>%
-        add_lines(y = ~y2, name = "B", visible = F) %>%
-        layout(
-          xaxis = list(domain = c(0.1, 1)),
-          yaxis = list(title = "y"),
-          updatemenus = list(
-            list(
-              y = 0.8,
-              buttons = list(
-                
-                list(method = "restyle",
-                     args = list("line.color", "blue"),
-                     label = "Blue"),
-                
-                list(method = "restyle",
-                     args = list("line.color", "red"),
-                     label = "Red"))),
-            
-            list(
-              y = 0.7,
-              buttons = list(
-                list(method = "restyle",
-                     args = list("visible", list(TRUE, FALSE)),
-                     label = "Sin"),
-                
-                list(method = "restyle",
-                     args = list("visible", list(FALSE, TRUE)),
-                     label = "Cos")))
-          )
-        )
-    })
-    
-    output$plot3 <- renderPlotly({
-      s <- subplot(
-        plot_ly(x = x, type = "histogram"),
-        plotly_empty(),
-        plot_ly(x = x, y = y, type = "histogram2dcontour"),
-        plot_ly(y = y, type = "histogram"),
-        nrows = 2, heights = c(0.2, 0.8), widths = c(0.8, 0.2), margin = 0,
-        shareX = TRUE, shareY = TRUE, titleX = FALSE, titleY = FALSE
-      )
-      p <- layout(s, showlegend = FALSE)
+    output$rosetype <- renderEcharts4r({
+      
+      plot <- mtcars %>% 
+        head() %>% 
+        dplyr::mutate(model = row.names(.)) %>% 
+        e_charts(model) %>% 
+        e_pie(hp, roseType = "radius")
+      if (input$dark_mode) plot <- plot %>% e_theme(echarts_dark_theme$name)
+      plot
     })
     
     
@@ -296,6 +272,10 @@ shinyApp(
         ))
       }
     })
+    
+
+    # card API ----------------------------------------------------------------
+    
     
     
     output$cardAPIPlot <- renderPlot({
@@ -318,19 +298,27 @@ shinyApp(
       )
     })
     
+    
+    # card sidebar API --------------------------------------------------------
+    
+    observeEvent(input$toggle_card_sidebar, {
+      updateBoxSidebar("mycardsidebar")
+    })
+
+    # controlbar input --------------------------------------------------------
+    
     observeEvent(input$controlbar, {
-      if (input$controlbar) {
-        bs4Toast(
-          title = "Controlbar opened!", 
-          options = list(
-            autohide = TRUE,
-            icon = "fas fa-home",
-            close = FALSE,
-            position = "bottomRight",
-            class = "bg-danger"
-          )
-        )
-      }
+      toastOpts <- list(
+        autohide = TRUE,
+        icon = "fas fa-home",
+        close = FALSE,
+        position = "bottomRight"
+      )
+      toastOpts$class <- if (input$controlbar) "bg-success" else "bg-danger"
+      bs4Toast(
+        title = "Controlbar opened!", 
+        options = toastOpts
+      )
     })
     
     observeEvent(input$controlbarToggle, {

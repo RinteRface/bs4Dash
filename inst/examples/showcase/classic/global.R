@@ -2,11 +2,23 @@
 library(shiny)
 library(shinyWidgets)
 library(bs4Dash)
-library(plotly)
 library(echarts4r)
 library(thematic)
+library(waiter)
 
 thematic_shiny()
+
+# echarts4r theme #3d444c
+echarts_dark_theme <- list(
+  options = '{
+    "color":["#6610f2", "#ffc107", "#e83e8c", "#ff851b", "#17a2b8", "#3d9970"], 
+    "backgroundColor": "#343a40", 
+    "textStyle": {
+        color: "#fff"
+    }
+  }',
+  name = "dark_theme"
+)
 
 # color statuses
 statusColors <- c(
@@ -42,15 +54,6 @@ river <- data.frame(
   pears = runif(length(dates))
 )
 
-
-# plot 2
-x <- seq(-2 * pi, 2 * pi, length.out = 1000)
-df <- data.frame(x, y1 = sin(x), y2 = cos(x))
-
-# plot 3
-x <- rnorm(200)
-y <- rnorm(200)
-
 #' basic_cards_tab ----
 basic_cards_tab <- tabItem(
   tabName = "cards",
@@ -84,6 +87,7 @@ basic_cards_tab <- tabItem(
           value = 500
         )
       ),
+      actionButton("toggle_card_sidebar", "Toggle card sidebar"),
       plotOutput("plot")
     ),
     box(
@@ -91,8 +95,8 @@ basic_cards_tab <- tabItem(
       closable = TRUE, 
       width = 6,
       gradient = TRUE,
-      background = "success",
-      status = "success", 
+      background = "lightblue",
+      status = "lightblue", 
       solidHeader = TRUE, 
       collapsible = TRUE,
       echarts4rOutput("riverPlot")
@@ -107,7 +111,7 @@ basic_cards_tab <- tabItem(
       solidHeader = TRUE, 
       status = "primary",
       collapsible = TRUE,
-      plot_ly(z = ~volcano) %>% add_surface()
+      echarts4rOutput("rosetype")
     ),
     box(
       id = "card4",
@@ -167,8 +171,9 @@ social_cards_tab <- tabItem(
         title = "User card type 1",
         subtitle = "a subtitle here"
       ),
-      status = "info",
+      status = "purple",
       elevation = 4,
+      maximizable = TRUE,
       "Any content here"
     ),
     userBox(
@@ -179,7 +184,9 @@ social_cards_tab <- tabItem(
         subtitle = "a subtitle here",
         imageElevation = 4
       ),
-      status = "success",
+      status = "teal",
+      background = "teal",
+      gradient = TRUE,
       progressBar(
         value = 5,
         striped = FALSE,
@@ -274,10 +281,10 @@ social_cards_tab <- tabItem(
     box(
       title = "Card with messages",
       width = 9,
-      footer = fluidRow(
-        actionButton("remove_message", "Remove message"),
-        actionButton("add_message", "Add message"),
-        actionButton("update_message", "Update message"),
+      footer =  tagList(
+        actionButton("remove_message", "Remove"),
+        actionButton("add_message", "Add"),
+        actionButton("update_message", "Update"),
         numericInput("index_message", "Message index:", 1, min = 1, max = 3)
       ),
       userMessages(
