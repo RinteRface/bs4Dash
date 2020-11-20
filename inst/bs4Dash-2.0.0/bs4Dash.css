@@ -95,3 +95,30 @@
 .control-sidebar .tab-pane, .control-sidebar .tab-content {
     padding: 10px !important;
 }
+
+/* Change BS4 popover background color */
+.dark-mode .popover-header {
+  background-color: #343a40;
+  border-bottom: 1px solid #343a40;
+}
+
+.dark-mode .popover-body {
+  background-color: #454d55;
+  color: #fff;
+}
+
+
+.dark-mode .bs-popover-bottom .popover-header::before,
+.dark-mode .bs-popover-top .popover-header::before,
+.dark-mode .bs-popover-left .popover-header::before,
+.dark-mode .bs-popover-right .popover-header::before
+{
+  border-bottom: #343a40;
+}
+
+.dark-mode .bs-popover-bottom>.arrow::after, 
+.dark-mode .bs-popover-top>.arrow::after,
+.dark-mode .bs-popover-left>.arrow::after,
+.dark-mode .bs-popover-right>.arrow::after {
+  border-bottom-color: #454d55;
+}
