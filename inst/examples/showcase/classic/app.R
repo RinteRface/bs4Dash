@@ -1,144 +1,152 @@
 source("global.R")
 
-shiny::shinyApp(
-  ui = bs4DashPage(
-    sidebar_collapsed = TRUE,
-    enable_preloader = TRUE,
-    loading_duration = 3,
-    controlbar_overlay = FALSE,
-    navbar = bs4DashNavbar(
-      status = "white",
-      fixed = FALSE,
+shinyApp(
+  ui = dashboardPage(
+    header = dashboardHeader(
+      title = dashboardBrand(
+        title = "bs4Dash",
+        color = "primary",
+        src = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
+        opacity = 0.8
+      ),
+      status = "primary",
+      fixed = TRUE,
+      skin = "dark",
+      fullscreen = TRUE,
       actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
       rightUi = tagList(
-        bs4DropdownMenu(
-          show = FALSE,
-          labelText = "!",
-          status = "danger",
-          src = "https://www.google.fr",
-          bs4DropdownMenuItem(
-            message = "update your system",
+        dropdownMenu(
+          badgeStatus = "danger",
+          type = "messages",
+          messageItem(
+            inputId = "triggerAction1",
+            message = "message 1",
+            from = "Divad Nojnarg",
+            image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
             time = "today",
-            type = "notification"
-          ),
-          bs4DropdownMenuItem(
-            src = "https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg",
-            from = "John Doe",
-            message = "Call me whenever you can...",
-            time = "4 Minutes Ago",
-            type = "message"
+            color = "lime"
+          )
+        )
+      ),
+      leftUi = tagList(
+        dropdownMenu(
+          badgeStatus = "info",
+          type = "notifications",
+          notificationItem(
+            inputId = "triggerAction2",
+            text = "Error!",
+            status = "danger"
           )
         ),
-        bs4UserMenu(
-          name = "Divad Nojnarg", 
-          status = "primary",
-          src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
-          title = "bs4Dash",
-          subtitle = "Author", 
-          footer = p("The footer", class = "text-center"),
-          "This is the menu content."
+        dropdownMenu(
+          badgeStatus = "info",
+          type = "tasks",
+          taskItem(
+            inputId = "triggerAction3",
+            text = "My progress",
+            color = "orange",
+            value = 10
+          )
         )
-      )
+      )#,
+      #dashboardUser(
+      #  name = "Divad Nojnarg", 
+      #  status = "primary",
+      #  image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+      #  title = "bs4Dash",
+      #  subtitle = "Author", 
+      #  footer = p("The footer", class = "text-center"),
+      #  "This is the menu content."
+      #)
     ),
-    sidebar = bs4DashSidebar(
-      expand_on_hover = TRUE,
+    sidebar = dashboardSidebar(
       fixed = TRUE,
       skin = "light",
       status = "primary",
-      title = "bs4Dash",
-      brandColor = "primary",
-      url = "https://www.google.fr",
-      src = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
-      elevation = 3,
-      opacity = 0.8,
-      bs4SidebarMenu(
+      sidebarMenu(
         id = "current_tab",
         flat = FALSE,
         compact = FALSE,
-        child_indent = TRUE,
-        bs4SidebarHeader("Cards"),
-        bs4SidebarMenuItem(
+        childIndent = TRUE,
+        sidebarHeader("Cards"),
+        menuItem(
           "Basic cards",
           tabName = "cards",
-          icon = "sliders"
+          icon = icon("sliders")
         ),
-        bs4SidebarMenuItem(
+        menuItem(
           "Cards API",
           tabName = "cardsAPI",
-          icon = "laptop-code"
+          icon = icon("laptop-code")
         ),
-        bs4SidebarMenuItem(
+        menuItem(
           "Social cards",
           tabName = "socialcards",
-          icon = "id-card"
+          icon = icon("id-card")
         ),
-        bs4SidebarMenuItem(
+        menuItem(
           "Tab cards",
           tabName = "tabcards",
-          icon = "picture-o"
+          icon = icon("picture-o")
         ),
-        bs4SidebarMenuItem(
+        menuItem(
           "Sortable cards",
           tabName = "sortablecards",
-          icon = "object-ungroup"
+          icon = icon("object-ungroup")
         ),
-        bs4SidebarMenuItem(
+        menuItem(
           "Stats elements",
           tabName = "statsboxes",
-          icon = "bank"
+          icon = icon("bank")
         ),
-        bs4SidebarHeader("Boxes"),
-        bs4SidebarMenuItem(
-          "Basic boxes",
-          tabName = "boxes",
-          icon = "desktop"
-        ),
-        bs4SidebarMenuItem(
+        sidebarHeader("Other boxes"),
+        menuItem(
           "Value/Info boxes",
           tabName = "valueboxes",
-          icon = "suitcase"
+          icon = icon("suitcase")
         ),
         
-        bs4SidebarHeader("Colors"),
+        sidebarHeader("Colors"),
         
-        bs4SidebarMenuItem(
+        menuItem(
           "Colors",
           tabName = "colors",
-          icon = "tint"
+          icon = icon("tint")
         ),
         
-        bs4SidebarHeader("BS4 gallery"),
-        bs4SidebarMenuItem(
+        sidebarHeader("BS4 gallery"),
+        menuItem(
           text = "Galleries",
-          icon = "cubes",
+          icon = icon("cubes"),
           startExpanded = FALSE,
-          bs4SidebarMenuSubItem(
+          menuSubItem(
             text = HTML(
               paste(
                 "Gallery 1", 
-                bs4Badge(
+                dashboardBadge(
                   "new", 
                   position = "right", 
-                  status = "danger"
+                  color = "danger"
                 )
               )
             ),
             tabName = "gallery1",
-            icon = "circle-thin"
+            icon = icon("circle-thin")
           ),
-          bs4SidebarMenuSubItem(
+          menuSubItem(
             text = HTML(
               paste(
                 "Gallery 2", 
-                bs4Badge(
+                dashboardBadge(
                   "!", 
                   position = "right", 
-                  status = "success"
+                  color = "success"
                 )
               )
             ),
             tabName = "gallery2",
-            icon = "circle-thin"
+            icon = icon("circle-thin")
           )
         )
       )
@@ -151,49 +159,62 @@ shiny::shinyApp(
         tab_cards_tab,
         sortable_cards_tab,
         statsboxes_tab,
-        boxes_tab,
         value_boxes_tab,
         colors_tab,
         gallery_1_tab,
         gallery_2_tab
       )
     ),
-    controlbar = bs4DashControlbar(
-      inputId = "controlbar",
+    controlbar = dashboardControlbar(
+      id = "controlbar",
       skin = "light",
-      title = "My right sidebar",
-      setSliderColor(sliderId = 1, "black"),
-      sliderInput(
-        inputId = "obs", 
-        label = "Number of observations:",
-        min = 0, 
-        max = 1000, 
-        value = 500
-      ),
-      column(
-        width = 12,
-        align = "center",
-        radioButtons(
-          inputId = "dist", 
-          label = "Distribution type:",
-          c("Normal" = "norm",
-            "Uniform" = "unif",
-            "Log-normal" = "lnorm",
-            "Exponential" = "exp")
+      pinned = TRUE,
+      overlay = FALSE,
+      controlbarMenu(
+        id = "controlbarMenu",
+        type = "tabs",
+        controlbarItem(
+          "Inputs",
+          setSliderColor(sliderId = 1, "black"),
+          sliderInput(
+            inputId = "obs", 
+            label = "Number of observations:",
+            min = 0, 
+            max = 1000, 
+            value = 500
+          ),
+          column(
+            width = 12,
+            align = "center",
+            radioButtons(
+              inputId = "dist", 
+              label = "Distribution type:",
+              c("Normal" = "norm",
+                "Uniform" = "unif",
+                "Log-normal" = "lnorm",
+                "Exponential" = "exp")
+            )
+          )
+        ),
+        controlbarItem(
+          "Skin",
+          skinSelector()
         )
       )
     ),
-    footer = bs4DashFooter(
+    footer = dashboardFooter(
       fixed = FALSE,
-      copyrights = a(
+      left = a(
         href = "https://twitter.com/divadnojnarg", 
         target = "_blank", "@DivadNojnarg"
       ),
-      right_text = "2018"
+      right = "2020"
     ),
     title = "bs4Dash Showcase"
   ),
   server = function(input, output, session) {
+    
+    useAutoColor()
     
     output$bigPlot <- renderPlot({
       hist(rnorm(input$bigObs))
@@ -284,7 +305,7 @@ shiny::shinyApp(
     })
     
     observeEvent(input$triggerCard, {
-      updatebs4Card(inputId = "mycard", session = session, action = input$cardAction)
+      updateBox(id = "mycard", action = input$cardAction)
     })
     
     observe({
@@ -299,21 +320,81 @@ shiny::shinyApp(
     
     observeEvent(input$controlbar, {
       if (input$controlbar) {
-        showModal(modalDialog(
-          title = "Alert",
-          "The controlbar is opened.",
-          easyClose = TRUE,
-          footer = NULL
-        ))
+        bs4Toast(
+          title = "Controlbar opened!", 
+          options = list(
+            autohide = TRUE,
+            icon = "fas fa-home",
+            close = FALSE,
+            position = "bottomRight",
+            class = "bg-danger"
+          )
+        )
       }
     })
     
     observeEvent(input$controlbarToggle, {
-      updatebs4Controlbar(inputId = "controlbar", session = session)
+      updateControlbar(id = "controlbar")
     })
     
     observe({
       print(input$controlbar)
+    })
+    
+    
+    observeEvent(input$dropdown_item2, {
+      bs4Toast(
+        title = "I am a toast!", 
+        options = list(
+          autohide = TRUE,
+          icon = "fas fa-home",
+          close = FALSE,
+          position = "topLeft",
+          class = "bg-orange"
+        )
+      )
+    })
+    
+    
+    # user messages -----------------------------------------------------------
+    
+    observeEvent(input$remove_message, {
+      updateUserMessages("message", action = "remove", index = input$index)
+    })
+    observeEvent(input$add_message, {
+      updateUserMessages(
+        "message", 
+        action = "add", 
+        content = list(
+          author = "David",
+          date = "Now",
+          image = "https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg",
+          type = "received",
+          text = "Message content"
+        )
+      )
+    })
+    
+    observeEvent(input$update_message, {
+      updateUserMessages(
+        "message", 
+        action = "update", 
+        index = input$index_message,
+        content = list(
+          text = tagList(
+            appButton(
+              inputId = "reload",
+              label = "Click me!", 
+              icon = icon("sync"), 
+              dashboardBadge(1, color = "primary")
+            )
+          )
+        )
+      )
+    })
+    
+    observeEvent(input$reload, {
+      showNotification("Yeah!", duration = 1, type = "default")
     })
     
   }

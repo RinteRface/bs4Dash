@@ -4,16 +4,20 @@ library(shinyWidgets)
 library(bs4Dash)
 library(plotly)
 library(echarts4r)
+library(thematic)
+
+thematic_shiny()
 
 # color statuses
 statusColors <- c(
-  "navy",
   "gray-dark",
   "gray",
   "secondary",
+  "navy",
   "indigo",
   "purple",
   "primary",
+  "lightblue",
   "info",
   "success",
   "olive",
@@ -48,41 +52,54 @@ x <- rnorm(200)
 y <- rnorm(200)
 
 #' basic_cards_tab ----
-basic_cards_tab <- bs4TabItem(
+basic_cards_tab <- tabItem(
   tabName = "cards",
   fluidRow(
-    bs4Card(
-      title = "Closable card with dropdown", 
+    box(
+      title = "Box with all widgets", 
       closable = TRUE, 
       width = 6,
       status = "warning", 
       solidHeader = FALSE, 
       collapsible = TRUE,
-      cardLabel = bs4CardLabel(
+      label = boxLabel(
         text = 1,
-        status = "danger",
-        tooltip = "Hello!"
+        status = "danger"
       ),
-      dropdownMenu = dropdownItemList(
-        dropdownItem(url = "https://www.google.com", name = "Link to google"),
-        dropdownItem(url = "#", name = "item 2"),
+      dropdownMenu = boxDropdown(
+        boxDropdownItem("Link to google", href = "http://www.google.com"),
+        boxDropdownItem("Item with inputId", id = "dropdown_item2"),
         dropdownDivider(),
-        dropdownItem(url = "#", name = "item 3")
+        boxDropdownItem("item 3", href = "#", icon = icon("th"))
+      ),
+      sidebar = boxSidebar(
+        startOpen = TRUE,
+        id = "mycardsidebar",
+        background = "#7f7f7f",
+        sliderInput(
+          "obs", 
+          "Number of observations:",
+          min = 0, 
+          max = 1000, 
+          value = 500
+        )
       ),
       plotOutput("plot")
     ),
-    bs4Card(
+    box(
       title = "Closable card with gradient", 
       closable = TRUE, 
       width = 6,
-      gradientColor = "success", 
-      solidHeader = FALSE, 
+      gradient = TRUE,
+      background = "success",
+      status = "success", 
+      solidHeader = TRUE, 
       collapsible = TRUE,
       echarts4rOutput("riverPlot")
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       title = "Card with solidHeader and elevation", 
       elevation = 4,
       closable = TRUE, 
@@ -92,8 +109,8 @@ basic_cards_tab <- bs4TabItem(
       collapsible = TRUE,
       plot_ly(z = ~volcano) %>% add_surface()
     ),
-    bs4Card(
-      inputId = "card4",
+    box(
+      id = "card4",
       title = "Maximizable Card", 
       width = 6,
       status = "danger", 
@@ -109,7 +126,7 @@ basic_cards_tab <- bs4TabItem(
 )
 
 #' card API
-cards_api_tab <- bs4TabItem(
+cards_api_tab <- tabItem(
   tabName = "cardsAPI",
   actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
   selectInput(
@@ -123,8 +140,8 @@ cards_api_tab <- bs4TabItem(
     )
   ),
   
-  bs4Card(
-    inputId = "mycard",
+  box(
+    id = "mycard",
     title = "The plot is visible when you maximize the card", 
     closable = TRUE, 
     maximizable = TRUE,
@@ -141,30 +158,34 @@ cards_api_tab <- bs4TabItem(
 
 
 #' social_cards_tab ----
-social_cards_tab <- bs4TabItem(
+social_cards_tab <- tabItem(
   tabName = "socialcards",
   fluidRow(
-    bs4UserCard(
-      src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+    userBox(
+      title = userDescription(
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+        title = "User card type 1",
+        subtitle = "a subtitle here"
+      ),
       status = "info",
-      title = "User card type 1",
-      subtitle = "a subtitle here",
       elevation = 4,
       "Any content here"
     ),
-    bs4UserCard(
-      type = 2,
-      src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+    userBox(
+      title = userDescription(
+        type = 2,
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+        title = "User card type 2",
+        subtitle = "a subtitle here",
+        imageElevation = 4
+      ),
       status = "success",
-      imageElevation = 4,
-      title = "User card type 2",
-      subtitle = "a subtitle here",
-      bs4ProgressBar(
+      progressBar(
         value = 5,
         striped = FALSE,
         status = "info"
       ),
-      bs4ProgressBar(
+      progressBar(
         value = 20,
         striped = TRUE,
         status = "warning"
@@ -172,30 +193,35 @@ social_cards_tab <- bs4TabItem(
     )
   ),
   fluidRow(
-    bs4SocialCard(
-      title = "Social Card",
-      subtitle = "example-01.05.2018",
-      src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-      "Some text here!",
-      comments = tagList(
-        lapply(X = 1:10, FUN = function(i) {
-          cardComment(
-            src = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-            title = paste("Comment", i),
-            date = "01.05.2018",
-            paste0("The ", i, "-th comment")
-          )
-        })
+    socialBox(
+      title = userBlock(
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+        title = "Social Box",
+        subtitle = "example-01.05.2018"
       ),
+      "Some text here!",
+      attachmentBlock(
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+        title = "Test",
+        href = "https://google.com",
+        "This is the content"
+      ),
+      lapply(X = 1:10, FUN = function(i) {
+        boxComment(
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+          title = paste("Comment", i),
+          date = "01.05.2018",
+          paste0("The ", i, "-th comment")
+        )
+      }),
       footer = "The footer here!"
     ),
-    bs4Card(
+    box(
       title = "Box with user comment",
       status = "primary",
       userPost(
         id = 1,
-        collapse_status = "secondary",
-        src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
         author = "Jonathan Burke Jr.",
         description = "Shared publicly - 7:30 PM today",
         "Lorem ipsum represents a long-held tradition for designers, 
@@ -204,69 +230,73 @@ social_cards_tab <- bs4TabItem(
        tools to help create filler text for everyone from bacon 
        lovers to Charlie Sheen fans.",
         userPostTagItems(
-          userPostTagItem(bs4Badge("item 1", status = "warning")),
-          userPostTagItem(bs4Badge("item 2", status = "danger"))
+          userPostTagItem(dashboardBadge("item 1", color = "warning")),
+          userPostTagItem(dashboardBadge("item 2", color = "danger"))
         )
       ),
       userPost(
         id = 2,
-        collapse_status = "secondary",
-        src = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
         author = "Adam Jones",
         description = "Shared publicly - 5 days ago",
-        userPostMedia(src = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
+        userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
         userPostTagItems(
-          userPostTagItem(bs4Badge("item 1", status = "info")),
-          userPostTagItem(bs4Badge("item 2", status = "danger"))
+          userPostTagItem(dashboardBadge("item 1", color = "info")),
+          userPostTagItem(dashboardBadge("item 2", color = "danger"))
         )
       )
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       status = "primary",
       width = 3,
       solidHeader = TRUE,
-      cardProfile(
-        src = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+      boxProfile(
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
         title = "Nina Mcintire",
         subtitle = "Software Engineer",
-        cardProfileItemList(
-          bordered = TRUE,
-          cardProfileItem(
-            title = "Followers",
-            description = 1322
-          ),
-          cardProfileItem(
-            title = "Following",
-            description = 543
-          ),
-          cardProfileItem(
-            title = "Friends",
-            description = 13287
-          )
+        bordered = TRUE,
+        boxProfileItem(
+          title = "Followers",
+          description = 1322
+        ),
+        boxProfileItem(
+          title = "Following",
+          description = 543
+        ),
+        boxProfileItem(
+          title = "Friends",
+          description = 13287
         )
       )
     ),
-    bs4Card(
+    box(
       title = "Card with messages",
       width = 9,
+      footer = fluidRow(
+        actionButton("remove_message", "Remove message"),
+        actionButton("add_message", "Add message"),
+        actionButton("update_message", "Update message"),
+        numericInput("index_message", "Message index:", 1, min = 1, max = 3)
+      ),
       userMessages(
-        width = 12,
-        status = "success",
+        width = 6,
+        status = "danger",
+        id = "message",
         userMessage(
           author = "Alexander Pierce",
           date = "20 Jan 2:00 pm",
-          src = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-          side = NULL,
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+          type = "received",
           "Is this template really for free? That's unbelievable!"
         ),
         userMessage(
-          author = "Dana Pierce",
-          date = "21 Jan 4:00 pm",
-          src = "https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg",
-          side = "right",
-          "Indeed, that's unbelievable!"
+          author = "Sarah Bullock",
+          date = "23 Jan 2:05 pm",
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+          type = "sent",
+          "You better believe it!"
         )
       )
     )
@@ -274,12 +304,12 @@ social_cards_tab <- bs4TabItem(
 )
 
 # tab_cards_tab ----
-tab_cards_tab <- bs4TabItem(
+tab_cards_tab <- tabItem(
   tabName = "tabcards",
   fluidRow(
     column(
       width = 6,
-      bs4TabCard(
+      tabBox(
         title = "A card with tabs",
         elevation = 2,
         id = "tabcard1",
@@ -289,9 +319,9 @@ tab_cards_tab <- bs4TabItem(
         type = "tabs",
         status = "primary",
         solidHeader = TRUE,
-        bs4TabPanel(
-          tabName = "Tab 1",
-          active = FALSE,
+        selected = "Tab 2",
+        tabPanel(
+          "Tab 1",
           "A wonderful serenity has taken possession of my entire soul,
           like these sweet mornings of spring which I enjoy with my
           whole heart. I am alone, and feel the charm of existence in
@@ -301,9 +331,8 @@ tab_cards_tab <- bs4TabItem(
           incapable of drawing a single stroke at the present moment; and yet
           I feel that I never was a greater artist than now"
         ),
-        bs4TabPanel(
-          tabName = "Tab 2",
-          active = TRUE,
+        tabPanel(
+          "Tab 2",
           "The European languages are members of the same family.
           Their separate existence is a myth. For science, music,
           sport, etc, Europe uses the same vocabulary. The languages
@@ -315,9 +344,8 @@ tab_cards_tab <- bs4TabItem(
           languages coalesce, the grammar of the resulting language is
           more simple and regular than that of the individual languages."
         ),
-        bs4TabPanel(
-          tabName = "Tab 3",
-          active = FALSE,
+        tabPanel(
+          "Tab 3",
           "Lorem Ipsum is simply dummy text of the printing and
           typesetting industry. Lorem Ipsum has been the industry's
           standard dummy text ever since the 1500s, when an unknown
@@ -333,20 +361,20 @@ tab_cards_tab <- bs4TabItem(
     ),
     column(
       width = 6,
-      bs4TabCard(
-        title = "A card with tabs on right",
+      tabBox(
+        title = "Tabs on right!",
         side = "right",
         id = "tabcard2",
+        type = "tabs",
         elevation = 2,
         width = 12,
         status = "warning",
-        tabStatus = c("dark", "danger", "primary"),
         maximizable = TRUE,
         collapsible = TRUE, 
         closable = TRUE,
-        bs4TabPanel(
-          tabName = "Tab 4",
-          active = FALSE,
+        selected = "Tab 6",
+        tabPanel(
+          "Tab 4",
           "A wonderful serenity has taken possession of my entire soul,
           like these sweet mornings of spring which I enjoy with my
           whole heart. I am alone, and feel the charm of existence in
@@ -356,9 +384,8 @@ tab_cards_tab <- bs4TabItem(
           incapable of drawing a single stroke at the present moment; and yet
           I feel that I never was a greater artist than now"
         ),
-        bs4TabPanel(
-          tabName = "Tab 5",
-          active = TRUE,
+        tabPanel(
+          "Tab 5",
           "The European languages are members of the same family.
           Their separate existence is a myth. For science, music,
           sport, etc, Europe uses the same vocabulary. The languages
@@ -370,9 +397,8 @@ tab_cards_tab <- bs4TabItem(
           languages coalesce, the grammar of the resulting language is
           more simple and regular than that of the individual languages."
         ),
-        bs4TabPanel(
-          tabName = "Tab 6",
-          active = FALSE,
+        tabPanel(
+          "Tab 6",
           "Lorem Ipsum is simply dummy text of the printing and
           typesetting industry. Lorem Ipsum has been the industry's
           standard dummy text ever since the 1500s, when an unknown
@@ -392,22 +418,19 @@ tab_cards_tab <- bs4TabItem(
     # manually inserted panels
     column(
       width = 6,
-      bs4TabSetPanel(
+      tabsetPanel(
         id = "tabcard",
-        side = "left",
-        bs4TabPanel(
-          tabName = "Tab 1", 
-          active = FALSE,
+        selected = "Tab 2",
+        tabPanel(
+          "Tab 1",
           "Content 1"
         ),
-        bs4TabPanel(
-          tabName = "Tab 2", 
-          active = TRUE,
+        tabPanel(
+          "Tab 2",
           "Content 2"
         ),
-        bs4TabPanel(
-          tabName = "Tab 3", 
-          active = FALSE,
+        tabPanel(
+          "Tab 3",
           "Content 3"
         )
       )
@@ -416,69 +439,33 @@ tab_cards_tab <- bs4TabItem(
     # programmatically inserted panels
     column(
       width = 6,
-      bs4TabSetPanel(
+      tabsetPanel(
         id = "tabset",
-        side = "left",
-        tabStatus = "warning",
+        type = "pills",
         .list = lapply(1:3, function(i) {
-          bs4TabPanel(
-            tabName = paste0("Tab", i), 
-            active = FALSE,
+          tabPanel(
+            paste0("Tab", i),
             paste("Content", i)
           )
         })
       )
     )
   ),
-  br(), br(),
-  # Vertical panels
-  fluidRow(
-    column(
-      width = 6,
-      # vertical tabset
-      bs4TabSetPanel(
-        id = "verttabset",
-        side = "left",
-        vertical = TRUE,
-        .list = lapply(1:3, function(i) {
-          bs4TabPanel(
-            tabName = paste0("Tab", i), 
-            active = FALSE,
-            paste("Content", i)
-          )
-        })
-      )
-    ),
-    column(
-      width = 6,
-      # vertical tabset
-      bs4TabSetPanel(
-        id = "verttabset2",
-        side = "right",
-        vertical = TRUE,
-        .list = lapply(1:3, function(i) {
-          bs4TabPanel(
-            tabName = paste0("Tab", i), 
-            active = FALSE,
-            paste("Content", i)
-          )
-        })
-      )
-    )
-  )
+  br(), br()
+  # Vertical panels: TO DO
 )
 
 
 # sortable_cards_tab ----
-sortable_cards_tab <- bs4TabItem(
+sortable_cards_tab <- tabItem(
   tabName = "sortablecards",
   fluidRow(
     lapply(1:3, FUN = function(i) {
-      bs4Sortable(
+      sortable(
         width = 4,
         p(class = "text-center", paste("Column", i)),
         lapply(1:2, FUN = function(j) {
-          bs4Card(
+          box(
             title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
             width = 12,
             "Click on my header"
@@ -491,10 +478,10 @@ sortable_cards_tab <- bs4TabItem(
 
 
 # statsboxes_tab ----
-statsboxes_tab <- bs4TabItem(
+statsboxes_tab <- tabItem(
   tabName = "statsboxes",
   fluidRow(
-    bs4Card(
+    box(
       solidHeader = FALSE,
       title = "Card with descriptionBlock",
       background = NULL,
@@ -527,14 +514,14 @@ statsboxes_tab <- bs4TabItem(
         )
       )
     ),
-    bs4Card(
+    box(
       title = "Box with right pad",
       status = "warning",
       fluidRow(
         column(width = 6),
         column(
           width = 6,
-          cardPad(
+          boxPad(
             color = "info",
             descriptionBlock(
               header = "8390", 
@@ -562,103 +549,81 @@ statsboxes_tab <- bs4TabItem(
 )
 
 
-# boxes_tab ----
-boxes_tab <- bs4TabItem(
-  tabName = "boxes",
-  fluidRow(
-    bs4Box(
-      height = "600px",
-      title = "Box 1",
-      bs4Ribbon(
-        text = "Plot 1",
-        status = "success"
-      ),
-      plotlyOutput("plot2")
-    ),
-    bs4Box(
-      height = "600px",
-      title = "Box 2",
-      bs4Ribbon(
-        text = "Plot 2",
-        status = "danger",
-        size = "xl"
-      ),
-      plotlyOutput("plot3")
-    )
-  )
-)
-
-
 
 # value_boxes_tab ----
-value_boxes_tab <- bs4TabItem(
+value_boxes_tab <- tabItem(
   tabName = "valueboxes",
   h4("Value Boxes"),
   fluidRow(
-    bs4ValueBox(
+    valueBox(
       value = 150,
       subtitle = "New orders",
-      status = "primary",
-      icon = "shopping-cart",
+      color = "primary",
+      icon = icon("shopping-cart"),
       href = "#"
     ),
-    bs4ValueBox(
+    valueBox(
       elevation = 4,
       value = "53%",
       subtitle = "New orders",
-      status = "danger",
-      icon = "cogs"
+      color = "danger",
+      icon = icon("cogs")
     ),
-    bs4ValueBox(
+    valueBox(
       value = "44",
       subtitle = "User Registrations",
-      status = "warning",
-      icon = "sliders"
+      color = "warning",
+      icon = icon("sliders")
     ),
-    bs4ValueBox(
+    valueBox(
       value = "53%",
       subtitle = "Bounce rate",
-      status = "success",
-      icon = "database"
+      color = "success",
+      icon = icon("database")
     )
   ),
   h4("Info Boxes"),
   fluidRow(
-    bs4InfoBox(
+    infoBox(
       tabName = "cardsAPI",
       title = "Navigate to Cards API section",
       value = 1410,
-      icon = "laptop-code"
+      color = "indigo",
+      icon = icon("laptop-code")
     ),
-    bs4InfoBox(
+    infoBox(
       tabName = "colors",
       title = "Navigate to colors section",
-      status = "info",
+      color = "info",
       value = 240,
-      icon = "tint"
+      icon = icon("tint"),
+      elevation = 4
     ),
-    bs4InfoBox(
+    infoBox(
       title = "Comments",
-      gradientColor = "danger",
+      subtitle = "A subtitle",
+      color = "indigo",
+      gradient = TRUE,
+      fill = TRUE,
       value = 41410,
-      icon = "comments"
+      icon = icon("comments"),
+      href = "https://www.google.com"
     )
   )
 )
 
 
 # gallery_1_tab ----
-gallery_1_tab <- bs4TabItem(
+gallery_1_tab <- tabItem(
   tabName = "gallery1",
   fluidRow(
-    bs4Card(
+    box(
       title = "Accordions",
       footer = tagList(
         h4("There is an accordion in the footer!"),
-        bs4Accordion(
+        accordion(
           id = "accordion1",
-          bs4AccordionItem(
-            id = "item1",
+          accordionItem(
             title = "Item 1", 
             status = "danger",
             "Anim pariatur cliche reprehenderit, enim 
@@ -674,8 +639,7 @@ gallery_1_tab <- bs4TabItem(
             raw denim aesthetic synth nesciunt you probably haven't 
             heard of them accusamus labore sustainable VHS"
           ),
-          bs4AccordionItem(
-            id = "item2",
+          accordionItem(
             title = "Item 2", 
             status = "warning",
             "Anim pariatur cliche reprehenderit, enim 
@@ -694,67 +658,64 @@ gallery_1_tab <- bs4TabItem(
         )
       )
     ),
-    bs4Card(
+    box(
       title = "Carousel",
-      bs4Carousel(
+      carousel(
         id = "mycarousel",
         width = 12,
-        bs4CarouselItem(
-          active = TRUE,
-          src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
+        carouselItem(
+          tags$img(src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap")
         ),
-        bs4CarouselItem(
-          active = FALSE,
-          src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
+        carouselItem(
+          tags$img(src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap")
         ),
-        bs4CarouselItem(
-          active = FALSE,
-          src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
+        carouselItem(
+          tags$img(src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap")
         )
       )
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       title = "bs4Quote",
       fluidRow(
-        bs4Quote("Blablabla", status = "indigo"),
-        bs4Quote("Blablabla", status = "danger"),
-        bs4Quote("Blablabla", status = "teal"),
-        bs4Quote("Blablabla", status = "orange"),
-        bs4Quote("Blablabla", status = "warning"),
-        bs4Quote("Blablabla", status = "fuchsia")
+        blockQuote("Blablabla", color = "indigo"),
+        blockQuote("Blablabla", color = "danger"),
+        blockQuote("Blablabla", color = "teal"),
+        blockQuote("Blablabla", color = "orange"),
+        blockQuote("Blablabla", color = "warning"),
+        blockQuote("Blablabla", color = "fuchsia")
       )
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       title = "Progress bars",
       footer = tagList(
-        bs4ProgressBar(
+        progressBar(
           value = 5,
           striped = FALSE,
           status = "info"
         ),
-        bs4ProgressBar(
-          value = 5,
+        progressBar(
+          value = 10,
           striped = TRUE,
-          status = "warning"
+          status = "maroon"
         )
       ),
-      bs4ProgressBar(
+      progressBar(
         value = 80,
         vertical = TRUE,
         status = "success"
       ),
-      bs4ProgressBar(
+      progressBar(
         value = 100,
         vertical = TRUE,
         striped = TRUE,
         status = "danger"
       )
     ),
-    bs4Card(
+    box(
       title = "Alerts",
       elevation = 4,
       bs4Alert(
@@ -770,9 +731,9 @@ gallery_1_tab <- bs4TabItem(
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       title = "Callouts",
-      bs4Callout(
+      callout(
         title = "I am a danger callout!",
         elevation = 4,
         status = "danger",
@@ -782,89 +743,81 @@ gallery_1_tab <- bs4TabItem(
                 my entire soul, like these sweet mornings of 
                 spring which I enjoy with my whole heart."
       )
-    ),
-    bs4Card(
-      title = "Loading State",
-      bs4Loading()
     )
   ),
   fluidRow(
-    bs4Card(
+    box(
       title = "Timeline",
-      bs4Timeline(
+      timelineBlock(
         width = 12,
         reversed = TRUE,
-        bs4TimelineEnd(status = "danger"),
-        bs4TimelineLabel("10 Feb. 2014", status = "info"),
-        bs4TimelineItem(
-          elevation = 4, 
+        timelineEnd(color = "danger"),
+        timelineLabel("10 Feb. 2014", color = "info"),
+        timelineItem(
           title = "Item 1",
-          icon = "gears",
-          status = "success",
+          icon = icon("gears"),
+          color = "success",
           time = "now",
           footer = "Here is the footer",
           "This is the body"
         ),
-        bs4TimelineItem(
+        timelineItem(
           title = "Item 2",
           border = FALSE
         ),
-        bs4TimelineLabel("3 Jan. 2014", status = "primary"),
-        bs4TimelineItem(
-          elevation = 2,
+        timelineLabel("3 Jan. 2014", color = "primary"),
+        timelineItem(
           title = "Item 3",
-          icon = "paint-brush",
-          status = "warning",
-          bs4TimelineItemMedia(src = "https://placehold.it/150x100"),
-          bs4TimelineItemMedia(src = "https://placehold.it/150x100")
+          icon = icon("paint-brush"),
+          color = "warning",
+          timelineItemMedia(image = "https://placehold.it/150x100"),
+          timelineItemMedia(image = "https://placehold.it/150x100")
         ),
-        bs4TimelineStart(status = "danger")
+        timelineStart(color = "danger")
       )
     ),
-    bs4Timeline(
+    timelineBlock(
       width = 6,
-      bs4TimelineEnd(status = "danger"),
-      bs4TimelineLabel("10 Feb. 2014", status = "info"),
-      bs4TimelineItem(
-        elevation = 4, 
+      timelineEnd(color = "danger"),
+      timelineLabel("10 Feb. 2014", color = "info"),
+      timelineItem(
         title = "Item 1",
-        icon = "gears",
-        status = "success",
+        icon = icon("gears"),
+        color = "success",
         time = "now",
         footer = "Here is the footer",
         "This is the body"
       ),
-      bs4TimelineItem(
+      timelineItem(
         title = "Item 2",
         border = FALSE
       ),
-      bs4TimelineLabel("3 Jan. 2014", status = "primary"),
-      bs4TimelineItem(
-        elevation = 2,
+      timelineLabel("3 Jan. 2014", color = "primary"),
+      timelineItem(
         title = "Item 3",
-        icon = "paint-brush",
-        status = "warning",
-        bs4TimelineItemMedia(src = "https://placehold.it/150x100"),
-        bs4TimelineItemMedia(src = "https://placehold.it/150x100")
+        icon = icon("paint-brush"),
+        color = "warning",
+        timelineItemMedia(image = "https://placehold.it/150x100"),
+        timelineItemMedia(image = "https://placehold.it/150x100")
       ),
-      bs4TimelineStart(status = "danger")
+      timelineStart(color = "danger")
     )
   ),
   br(),
   fluidRow(
-    bs4Card(
+    box(
       title = "Stars",
-      bs4Stars(grade = 5),
-      bs4Stars(grade = 5, status = "success"),
-      bs4Stars(grade = 1, status = "danger"),
-      bs4Stars(grade = 3, status = "info")
+      starBlock(grade = 5),
+      starBlock(grade = 5, color = "success"),
+      starBlock(grade = 1, color = "danger"),
+      starBlock(grade = 3, color = "info")
     ),
-    bs4Card(
+    box(
       title = "Attachment example",
       attachmentBlock(
-        src = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
+        image = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
         title = "Test",
-        titleUrl = "http://google.com",
+        href = "http://google.com",
         "This is the content"
       )
     )
@@ -888,15 +841,15 @@ gallery_1_tab <- bs4TabItem(
         bs4TableItem(dataCell = TRUE, "$2,500 USD"),
         bs4TableItem(
           dataCell = TRUE, 
-          bs4Badge(
+          dashboardBadge(
             "Pending",
             position = "right",
-            status = "danger",
+            color = "danger",
             rounded = TRUE
           )
         ),
         bs4TableItem(
-          progressBar(id = "pb1", value = 50, size = "xxs")
+          progressBar(value = 50, status = "pink", size = "xxs")
         ),
         bs4TableItem(
           dataCell = TRUE, 
@@ -915,9 +868,9 @@ gallery_1_tab <- bs4TabItem(
 
 
 # gallery_2_tab ----
-gallery_2_tab <- bs4TabItem(
+gallery_2_tab <- tabItem(
   tabName = "gallery2",
-  bs4Jumbotron(
+  jumbotron(
     title = "I am a Jumbotron!",
     lead = "This is a simple hero unit, a simple jumbotron-style 
                     component for calling extra attention to featured 
@@ -931,10 +884,10 @@ gallery_2_tab <- bs4TabItem(
   br(),
   
   fluidRow(
-    bs4Card(
+    box(
       title = "Badges",
-      bs4Badge(status = "secondary", "blabla", rounded = TRUE),
-      bs4Badge(status = "info", "blabla", rounded = TRUE)
+      dashboardBadge(color = "secondary", "blabla", rounded = TRUE),
+      dashboardBadge(color = "info", "blabla", rounded = TRUE)
     )
   ),
   
@@ -942,60 +895,49 @@ gallery_2_tab <- bs4TabItem(
   
   h4("BS4 list group"),
   fluidRow(
-    bs4ListGroup(
-      bs4ListGroupItem(
-        type = "basic",
-        "Cras justo odio"
-      ),
-      bs4ListGroupItem(
-        type = "basic",
-        "Dapibus ac facilisis in"
-      ),
-      bs4ListGroupItem(
-        type = "basic",
-        "Morbi leo risus"
-      )
+    listGroup(
+      type = "basic",
+      listGroupItem("Cras justo odio"),
+      listGroupItem("Dapibus ac facilisis in"),
+      listGroupItem("Morbi leo risus")
     ),
-    bs4ListGroup(
-      bs4ListGroupItem(
+    listGroup(
+      type = "action",
+      listGroupItem(
         "Cras justo odio",
         active = TRUE, 
         disabled = FALSE, 
-        type = "action",
-        src = "https://www.google.fr"
+        href = "http://www.google.fr"
       ),
-      bs4ListGroupItem(
+      listGroupItem(
         active = FALSE, 
         disabled = FALSE, 
-        type = "action",
         "Dapibus ac facilisis in",
-        src = "https://www.google.fr"
+        href = "http://www.google.fr"
       ),
-      bs4ListGroupItem(
+      listGroupItem(
         "Morbi leo risus",
         active = FALSE, 
         disabled = TRUE, 
-        type = "action",
-        src = "https://www.google.fr"
+        href = "http://www.google.fr"
       )
     ),
-    bs4ListGroup(
-      bs4ListGroupItem(
+    listGroup(
+      type = "heading",
+      listGroupItem(
         "Donec id elit non mi porta gravida at eget metus. 
-                Maecenas sed diam eget risus varius blandit.",
+         Maecenas sed diam eget risus varius blandit.",
         active = TRUE, 
         disabled = FALSE, 
-        type = "heading",
         title = "List group item heading", 
         subtitle = "3 days ago", 
         footer = "Donec id elit non mi porta."
       ),
-      bs4ListGroupItem(
+      listGroupItem(
         "Donec id elit non mi porta gravida at eget metus. 
-                Maecenas sed diam eget risus varius blandit.",
+         Maecenas sed diam eget risus varius blandit.",
         active = FALSE, 
         disabled = FALSE, 
-        type = "heading",
         title = "List group item heading", 
         subtitle = "3 days ago", 
         footer = "Donec id elit non mi porta."
@@ -1005,13 +947,14 @@ gallery_2_tab <- bs4TabItem(
 )
 
 # color_tab ----
-colors_tab <- bs4TabItem(
+colors_tab <- tabItem(
   tabName = "colors",
   lapply(seq_along(statusColors), function(i) {
     fluidRow(
-      bs4Card(
+      box(
         status = statusColors[i], 
         title = paste(statusColors[i], "card"),
+        solidHeader = TRUE,
         width = 12,
         closable = FALSE,
         collapsible = FALSE
