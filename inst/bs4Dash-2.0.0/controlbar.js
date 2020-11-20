@@ -119,6 +119,7 @@ $(function() {
         setTimeout(
           function() {
             callback();
+            $(window).trigger("resize"); 
           }, 10);
       });
     },
