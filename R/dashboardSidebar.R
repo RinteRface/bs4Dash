@@ -133,7 +133,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #'    }
 #'  )
 #' }
-updatebs4Sidebar <- function(id, session) {
+updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
 }
 

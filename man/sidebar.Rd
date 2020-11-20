@@ -34,7 +34,7 @@ bs4DashSidebar(
   customArea = NULL
 )
 
-updatebs4Sidebar(id, session)
+updatebs4Sidebar(id, session = shiny::getDefaultReactiveDomain())
 
 bs4SidebarMenu(
   ...,
@@ -89,7 +89,7 @@ dashboardSidebar(
   customArea = NULL
 )
 
-updateSidebar(id, session)
+updateSidebar(id, session = shiny::getDefaultReactiveDomain())
 
 sidebarHeader(title)
 
