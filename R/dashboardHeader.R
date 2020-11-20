@@ -104,7 +104,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     `data-fixed` = tolower(fixed),
     class = paste0(
       "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
-      " navbar-", skin, if (isTRUE(border)) " border-bottom-0" else NULL,
+      " navbar-", skin, if (!border) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
     
@@ -170,16 +170,17 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #'
 #' @param title Brand title. 
 #' @param color Brand color.
-#' @param src External link to point to.
+#' @param href External link to point to.
 #' @param image External image location.
 #' @param opacity Brand opacity: value between 0 and 1.
 #'
 #' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
 #' @export
-bs4DashBrand <- function(title, color = NULL, src = NULL, image = NULL, opacity = .8) {
+bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity = .8) {
   shiny::tags$a(
     class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
-    href = if (!is.null(src)) src else "#",
+    href = if (!is.null(href)) href else "#",
+    target = if (!is.null(href)) "_blank",
     if (!is.null(image)) {
       shiny::tags$img(
         src = image,

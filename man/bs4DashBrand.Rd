@@ -5,16 +5,16 @@
 \alias{dashboardBrand}
 \title{Alternative to simple text title}
 \usage{
-bs4DashBrand(title, color = NULL, src = NULL, image = NULL, opacity = 0.8)
+bs4DashBrand(title, color = NULL, href = NULL, image = NULL, opacity = 0.8)
 
-dashboardBrand(title, color = NULL, src = NULL, image = NULL, opacity = 0.8)
+dashboardBrand(title, color = NULL, href = NULL, image = NULL, opacity = 0.8)
 }
 \arguments{
 \item{title}{Brand title.}
 
 \item{color}{Brand color.}
 
-\item{src}{External link to point to.}
+\item{href}{External link to point to.}
 
 \item{image}{External image location.}
 
