@@ -703,12 +703,9 @@ cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
   shiny::tags$a(
     id = id,
     class = paste0("dropdown-item", if (!is.null(id)) " action-button"),
-    href = href,
-    target = "_blank",
+    href = if (!is.null(href)) href else "#",
     target = if (!is.null(href)) {
       "_blank"
-    } else {
-      "#"
     }, 
     icon,
     ...
@@ -877,7 +874,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
         shiny::icon("arrow-circle-right")
       ) 
     } else {
-      NULL
+      shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
     }
   }
   
@@ -1081,7 +1078,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     if (!is.null(subtitle)) shiny::p(subtitle)
   )
   
-  if (!is.null(href)) contentTag <- shiny::a(href = href, contentTag)
+  if (!is.null(href)) contentTag <- shiny::a(href = href, contentTag, target = "_blank")
   
   
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
