@@ -2110,7 +2110,7 @@ userMessage <- function(..., author = NULL, date = NULL,
       class = if (type == "right") {
         "direct-chat-name float-right"
       } else {
-        "direct-chat-name float-left"
+        "direct-chat-name"
       }, 
       author
     ),
@@ -2119,7 +2119,7 @@ userMessage <- function(..., author = NULL, date = NULL,
         class = if (type == "right") {
           "direct-chat-timestamp float-right"
         } else {
-          "direct-chat-timestamp float-left"
+          "direct-chat-timestamp"
         }, 
         date
       )
