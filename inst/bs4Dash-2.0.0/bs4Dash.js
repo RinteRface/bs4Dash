@@ -47,6 +47,15 @@ $(function () {
     $("body").addClass("layout-footer-fixed");
   }
   
+  // add dropdown-menu-right class to correctly open the dropdown to all 
+  // navbar rightUi elements
+  var navbarRight = $('.navbar-right').find('.dropdown-menu');
+  $(navbarRight).each(function() {
+    if (!$(this).hasClass('dropdown-menu-right')) {
+      $(this).addClass('dropdown-menu-right');
+    }
+  });
+  
   
   // data toggle collapse icon update
   $('.user-block [data-toggle="collapse"]').on('click', function() {
