@@ -90,3 +90,8 @@
 .control-sidebar .nav-pills {
   margin: 10px !important;
 }
+
+/* Tweak controlbar tabsetPanel content margins */
+.control-sidebar .tab-pane, .control-sidebar .tab-content {
+    padding: 10px !important;
+}
