@@ -8,6 +8,14 @@ library(waiter)
 
 thematic_shiny()
 
+# toast options
+toastOpts <- list(
+  autohide = TRUE,
+  icon = "fas fa-home",
+  close = FALSE,
+  position = "bottomRight"
+)
+
 # echarts4r theme #3d444c
 echarts_dark_theme <- list(
   options = '{

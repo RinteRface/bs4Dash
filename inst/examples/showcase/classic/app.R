@@ -16,7 +16,8 @@ shinyApp(
       ),
       fixed = TRUE,
       fullscreen = TRUE,
-      actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar"),
+      actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar", class = "mx-2"),
+      actionButton(inputId = "sidebarToggle", label = "Toggle left sidebar", class = "mx-2"),
       rightUi = tagList(
         dropdownMenu(
           badgeStatus = "danger",
@@ -58,6 +59,7 @@ shinyApp(
       fixed = TRUE,
       skin = "light",
       status = "primary",
+      id = "sidebar",
       sidebarMenu(
         id = "current_tab",
         flat = FALSE,
@@ -270,6 +272,15 @@ shinyApp(
     })
     
 
+    # current theme info ---------------------------------------------------------
+    
+    observeEvent(input$dark_mode, {
+      bs4Toast(
+        title = if (input$dark_mode) "Dark theme on!" else "Light theme on",
+        options = list(position = "topRight", class = "bg-warning")
+      )
+    })
+    
     # card API ----------------------------------------------------------------
     
     output$cardAPIPlot <- renderPlot({
@@ -298,6 +309,14 @@ shinyApp(
     observeEvent(input$toggle_card_sidebar, {
       updateBoxSidebar("mycardsidebar")
     })
+    
+    observeEvent(input$sidebar, {
+      toastOpts$class <- if (input$sidebar) "bg-success" else "bg-danger"
+      bs4Toast(
+        title = if (input$sidebar) "Sidebar opened!" else "Sidebar is closed!", 
+        options = toastOpts
+      )
+    })
 
     # controlbar input --------------------------------------------------------
     
@@ -310,7 +329,7 @@ shinyApp(
       )
       toastOpts$class <- if (input$controlbar) "bg-success" else "bg-danger"
       bs4Toast(
-        title = "Controlbar opened!", 
+        title = if (input$controlbar) "Controlbar opened!" else "Controlbar closed!", 
         options = toastOpts
       )
     })
@@ -337,6 +356,12 @@ shinyApp(
       )
     })
     
+
+    # update sidebar ----------------------------------------------------------
+    
+    observeEvent(input$sidebarToggle, {
+      updateSidebar(id = "sidebar")
+    })
     
     # user messages -----------------------------------------------------------
     
