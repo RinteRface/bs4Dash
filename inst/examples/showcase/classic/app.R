@@ -149,7 +149,9 @@ shinyApp(
       tags$head(
         tags$script(
           "$(function() {
-            $('#customSwitch1').click();
+            $(document).on('shiny:connected', function() {
+              $('#customSwitch1').click();
+            });
           });
           "
         )
@@ -179,12 +181,14 @@ shinyApp(
         controlbarItem(
           "Inputs",
           setSliderColor(sliderId = 1, "black"),
-          sliderInput(
-            inputId = "obs", 
-            label = "Number of observations:",
-            min = 0, 
-            max = 1000, 
-            value = 500
+          radioGroupButtons(
+            inputId = "somevalue3",
+            label = "With icons:",
+            choices = names(mtcars)[1:3],
+            checkIcon = list(
+              yes = icon("check-square"),
+              no = icon("square-o")
+            )
           ),
           column(
             width = 12,
