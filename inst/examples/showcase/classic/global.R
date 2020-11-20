@@ -141,6 +141,7 @@ basic_cards_tab <- tabItem(
 cards_api_tab <- tabItem(
   tabName = "cardsAPI",
   actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
+  actionButton("update_box", "Update box"),
   selectInput(
     inputId = "cardAction", 
     label = "Card action", 

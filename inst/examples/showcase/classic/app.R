@@ -293,6 +293,22 @@ shinyApp(
       updateBox(id = "mycard", action = input$cardAction)
     })
     
+    observeEvent(input$update_box, {
+      updateBox(
+        "mycard", 
+        action = "update", 
+        options = list(
+          title = tagList(h2("hello"), dashboardBadge(1, color = "primary")),
+          status = "warning", 
+          solidHeader = TRUE, 
+          width = 12, 
+          background = NULL, 
+          height = "900px", 
+          closable = FALSE
+        )
+      )
+    })
+    
     observe({
       print(
         list(
