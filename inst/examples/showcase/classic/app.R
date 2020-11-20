@@ -29,7 +29,8 @@ shinyApp(
             time = "today",
             color = "lime"
           )
-        )
+        ),
+        userOutput("user")
       ),
       leftUi = tagList(
         dropdownMenu(
@@ -51,16 +52,7 @@ shinyApp(
             value = 10
           )
         )
-      )#,
-      #dashboardUser(
-      #  name = "Divad Nojnarg", 
-      #  status = "primary",
-      #  image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
-      #  title = "bs4Dash",
-      #  subtitle = "Author", 
-      #  footer = p("The footer", class = "text-center"),
-      #  "This is the menu content."
-      #)
+      )
     ),
     sidebar = dashboardSidebar(
       fixed = TRUE,
@@ -276,8 +268,6 @@ shinyApp(
 
     # card API ----------------------------------------------------------------
     
-    
-    
     output$cardAPIPlot <- renderPlot({
       if (input$mycard$maximized) {
         hist(rnorm(input$obsAPI)) 
@@ -383,6 +373,30 @@ shinyApp(
     
     observeEvent(input$reload, {
       showNotification("Yeah!", duration = 1, type = "default")
+    })
+    
+    
+    
+    # user menu ---------------------------------------------------------------
+    
+    output$user <- renderUser({
+      dashboardUser(
+        name = "Divad Nojnarg", 
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+        title = "shinydashboardPlus",
+        subtitle = "Author", 
+        footer = p("The footer", class = "text-center"),
+        fluidRow(
+          dashboardUserItem(
+            width = 6,
+            "Item 1"
+          ),
+          dashboardUserItem(
+            width = 6,
+            "Item 2"
+          )
+        )
+      )
     })
     
   }

@@ -500,7 +500,7 @@ statsboxes_tab <- tabItem(
           descriptionBlock(
             number = "17%", 
             numberColor = "success", 
-            numberIcon = "caret-up",
+            numberIcon = icon("caret-up"),
             header = "$35,210.43", 
             text = "TOTAL REVENUE", 
             rightBorder = TRUE,
@@ -512,7 +512,7 @@ statsboxes_tab <- tabItem(
           descriptionBlock(
             number = "18%", 
             numberColor = "danger", 
-            numberIcon = "caret-down",
+            numberIcon = icon("caret-down"),
             header = "1200", 
             text = "GOAL COMPLETION", 
             rightBorder = FALSE,
