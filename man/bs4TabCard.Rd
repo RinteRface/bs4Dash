@@ -174,6 +174,10 @@ TRUE by default}
 \description{
 Build an adminLTE3 card with tabs
 }
+\note{
+User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
+to get the state of the box and update it on the server with \link{updateBox}.
+}
 \examples{
 if(interactive()){
  library(shiny)

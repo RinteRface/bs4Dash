@@ -168,6 +168,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
       height = height,
       collapsible = collapsible,
       closable = closable,
+      maximizable = maximizable, 
       gradient = gradient
     )
   )
@@ -1142,6 +1143,9 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @param side \link[shiny]{tabPanel} side. Either left or right.
 #' 
 #' @family cards
+#' 
+#' @note User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
+#' to get the state of the box and update it on the server with \link{updateBox}.
 #'
 #' @examples
 #' if(interactive()){
@@ -1301,8 +1305,10 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
     )
   }
   
+  # add custom input id. User will access the tabBox input with input$<tabset_id>_box
+  boxTag$children[[1]]$attribs$id <- paste0(id, "_box")
+  boxTag$children[[2]]$attribs$`data-for` <- paste0(id, "_box")
   boxTag
-  
 }
 
 
