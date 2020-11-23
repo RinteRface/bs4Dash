@@ -1097,7 +1097,12 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     if (!is.null(subtitle)) shiny::p(subtitle)
   )
   
-  if (!is.null(href)) contentTag <- shiny::a(href = href, contentTag, target = "_blank")
+  if (!is.null(href)) contentTag <- shiny::a(
+    href = href, 
+    contentTag, 
+    target = "_blank", 
+    style = "color: inherit;"
+  )
   
   
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
