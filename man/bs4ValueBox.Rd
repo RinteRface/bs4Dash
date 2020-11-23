@@ -13,6 +13,7 @@ bs4ValueBox(
   width = 3,
   href = NULL,
   footer = NULL,
+  gradient = FALSE,
   elevation = NULL
 )
 
@@ -24,6 +25,7 @@ valueBox(
   width = 3,
   href = NULL,
   footer = NULL,
+  gradient = FALSE,
   elevation = NULL
 )
 }
@@ -70,6 +72,8 @@ contains the box.}
 and this parameter be set, `footer` will take precedence.}
 
 \item{footer}{Optional html content for the footer of the box.}
+
+\item{gradient}{Whether to use gradient style for background color. Default to FALSE.}
 
 \item{elevation}{Value box elevation.}
 }

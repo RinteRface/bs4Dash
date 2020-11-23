@@ -769,6 +769,7 @@ dropdownDivider <- function() {
 #' @param href An optional URL to link to in the footer. Should both `footer`
 #'   and this parameter be set, `footer` will take precedence. 
 #' @param footer Optional html content for the footer of the box.
+#' @param gradient Whether to use gradient style for background color. Default to FALSE.
 #' @param elevation Value box elevation. 
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -816,7 +817,16 @@ dropdownDivider <- function() {
 #'
 #' @export
 bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3, 
-                        href = NULL, footer = NULL, elevation = NULL) {
+                        href = NULL, footer = NULL, gradient = FALSE, elevation = NULL) {
+  
+  if (!is.null(icon)) {
+    tagAssert(icon, type = "i")
+  }
+  
+  if (is.null(color) && gradient) {
+    stop("color cannot be NULL when gradient is TRUE. 
+         fill cannot be TRUE when color is NULL.")
+  }
   
   # check conditions
   if (!is.null(width)) {
@@ -840,7 +850,11 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   valueBoxCl <- "small-box"
   if (!is.null(color)) {
     validateStatusPlus(color)
-    valueBoxCl <- paste0(valueBoxCl, " bg-", color)
+    if (gradient) {
+      valueBoxCl <- paste0(valueBoxCl, " bg-gradient-", color)
+    } else {
+      valueBoxCl <- paste0(valueBoxCl, " bg-", color)
+    }
   }
   if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
   
@@ -930,7 +944,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #' the color argument for the background of the icon. If TRUE, use the color argument 
 #' for the background of the content; the icon will use the same color with a slightly 
 #' darkened background.
-#' @param gradient Wether to use gradient style for background color. Default to FALSE.
+#' @param gradient Whether to use gradient style for background color. Default to FALSE.
 #' @param elevation Box elevation.
 #' @param iconElevation Icon elevation compared to the main content (relief). 3 by default.
 #' @param tabName Optional: \link{infoBox} behaves like \link{menuItem} and 
@@ -1011,7 +1025,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   tagAssert(icon, "i")
   if (!is.null(color)) validateStatusPlus(color)
   
-  if (is.null(color) & (fill || gradient)) {
+  if (is.null(color) && (fill || gradient)) {
     stop("color cannot be NULL when gradient is TRUE. 
          fill cannot be TRUE when color is NULL.")
   }

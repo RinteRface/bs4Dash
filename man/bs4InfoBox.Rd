@@ -81,7 +81,7 @@ the color argument for the background of the icon. If TRUE, use the color argume
 for the background of the content; the icon will use the same color with a slightly 
 darkened background.}
 
-\item{gradient}{Wether to use gradient style for background color. Default to FALSE.}
+\item{gradient}{Whether to use gradient style for background color. Default to FALSE.}
 
 \item{elevation}{Box elevation.}
 
