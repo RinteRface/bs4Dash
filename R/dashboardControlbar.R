@@ -21,7 +21,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
                               collapsed = TRUE, overlay = TRUE, skin = "dark", 
                               pinned = NULL) {
   
-  if (is.null(id)) inputId <- "controlbarId"
+  if (is.null(id)) id <- "controlbarId"
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),

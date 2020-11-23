@@ -30,6 +30,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                            minified = TRUE, expandOnHover = TRUE,
                            fixed = TRUE, id = NULL, customArea = NULL) {
   
+  if (is.null(id)) id <- "sidebarId"
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
   # specified in the `collapsed` argument.
