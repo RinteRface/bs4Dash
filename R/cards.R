@@ -1036,10 +1036,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     stopifnot(iconElevation >= 0)
   }
   
-  if (is.null(icon) & (!is.null(iconElevation) | !is.null(tabName))) {
-    stop("iconElevation and/or tabName must be set only if icon is not NULL.")
-  }
-  
   infoBoxCl <- "info-box"
   if (!is.null(color)) {
     if (fill) {
@@ -1053,23 +1049,19 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   
   if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
   
-  # Only do if icon is specified
-  if(!is.null(icon)) {
-    infoBoxIconCl <- "info-box-icon"
-    if (!is.null(color)) {
-      if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
-    }
-    if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
-    
-    iconTag <- shiny::tags$span(
-      class = infoBoxIconCl,
-      id = if(!is.null(tabName)) paste0("icon-", tabName),
-      # icon
-      icon
-    )
-  } else {
-    iconTag <- NULL
+  # icon is mandatory
+  infoBoxIconCl <- "info-box-icon"
+  if (!is.null(color)) {
+    if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
   }
+  if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
+  
+  iconTag <- shiny::tags$span(
+    class = infoBoxIconCl,
+    id = if(!is.null(tabName)) paste0("icon-", tabName),
+    # icon
+    icon
+  )
   
   
   contentTag <- shiny::tags$div(
