@@ -4,6 +4,8 @@
 #' to handle bootstrap 4. 
 #'
 #' @inheritParams shiny::tabsetPanel
+#' @param vertical Whether to displays tabs vertically. Default to FALSE.
+#' @param side Tabs side: \code{"left" or "right"}.
 #' @param .list In case of programmatically generated items. See example.
 #' 
 #' @examples
@@ -166,7 +168,8 @@
 #'
 #' @export
 tabsetPanel <- function(..., id = NULL, selected = NULL, 
-                        type = c("tabs", "pills"), position = NULL, .list = NULL) {
+                        type = c("tabs", "pills"), position = NULL, 
+                        vertical = FALSE, side = "left", .list = NULL) {
   
   items <- c(list(...), .list)
   type <- match.arg(type)
@@ -203,8 +206,37 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     x
   })
   
+  # vertical layout
+  if (vertical) {
+    temp_tabset$children[[1]]$attribs$class <- paste0(
+      temp_tabset$children[[1]]$attribs$class,
+      " flex-column"
+    )
+    temp_tabset$children[[1]]$attribs$`aria-orientation` <- "vertical"
+  }
+  
   temp_tabset$children[[1]]$children[[1]] <- bs4_nav_items
-  temp_tabset
+  
+  if (vertical) {
+    
+    tabsetMenu <- temp_tabset$children[[1]]
+    tabsetContent <- temp_tabset$children[[2]]
+    
+    if (side == "left") {
+      shiny::tagList(
+        shiny::column(width = 2, tabsetMenu),
+        shiny::column(width = 10, tabsetContent)
+      )
+    } else {
+      shiny::tagList(
+        shiny::column(width = 10, tabsetContent),
+        shiny::column(width = 2, tabsetMenu)
+      )
+    }
+  } else {
+    temp_tabset
+  }
+  
 }
 
 
