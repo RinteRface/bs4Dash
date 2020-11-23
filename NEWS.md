@@ -151,6 +151,8 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- New help mode in `dashboardHeader()` to automatically toggle all tooltips and popovers. Use
+with `bs4TooltipUI()` and `bs4PopoverUI()`
 - New `useAutoColor()` leveraging new Shiny features and {thematic} to automatically
 style plots depending on the dashboard background color.
 - New bottom area for `dashboardSidebar()`.
