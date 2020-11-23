@@ -100,7 +100,7 @@ if(interactive()){
       title = bs4DashBrand(
        title = "My dashboard",
        color = "primary",
-       src = "https://adminlte.io/themes/v3",
+       href = "https://adminlte.io/themes/v3",
        image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
       )
      ),
