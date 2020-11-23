@@ -271,11 +271,6 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
   if (!is.null(background)) validateStatusPlus(background)
   
   
-  if (is.null(title) && 
-      (!is.null(label) || !is.null(sidebar) || !is.null(dropdownMenu))) {
-    stop("Cannot use box tools without a title")
-  }
-  
   if (!collapsible & collapsed) {
     stop("Cannot collapse a card that is not collapsible.")
   }

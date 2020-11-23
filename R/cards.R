@@ -1011,6 +1011,11 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   tagAssert(icon, "i")
   if (!is.null(color)) validateStatusPlus(color)
   
+  if (is.null(color) & (fill || gradient)) {
+    stop("color cannot be NULL when gradient is TRUE. 
+         fill cannot be TRUE when color is NULL.")
+  }
+  
   
   if (!is.null(width)) {
     stopifnot(is.numeric(width))
@@ -1036,11 +1041,13 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   }
   
   infoBoxCl <- "info-box"
-  if (fill) {
-    if (gradient) {
-      infoBoxCl <- paste0(infoBoxCl, " bg-gradient-", color)
-    } else {
-      infoBoxCl <- paste0(infoBoxCl, " bg-", color)
+  if (!is.null(color)) {
+    if (fill) {
+      if (gradient) {
+        infoBoxCl <- paste0(infoBoxCl, " bg-gradient-", color)
+      } else {
+        infoBoxCl <- paste0(infoBoxCl, " bg-", color)
+      } 
     } 
   }
   
@@ -1049,7 +1056,9 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   # Only do if icon is specified
   if(!is.null(icon)) {
     infoBoxIconCl <- "info-box-icon"
-    if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
+    if (!is.null(color)) {
+      if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
+    }
     if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
     
     iconTag <- shiny::tags$span(
