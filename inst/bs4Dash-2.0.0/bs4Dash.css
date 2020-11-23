@@ -122,3 +122,25 @@
 .dark-mode .bs-popover-right>.arrow::after {
   border-bottom-color: #454d55;
 }
+
+/* Remove top border for popover in dark mode */
+.dark-mode .popover-header {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+/* Change sliderInput label color in dark mode */
+.dark-mode .irs-max, .dark-mode .irs-min {
+  color: #ffffff !important;
+  background-color: #454d55 !important;
+}
+
+.dark-mode .irs-grid-text {
+  color: #ffffff !important;
+}
+
+.dark-mode .irs-grid-pol {
+  background-color: #ffffff !important;
+}
