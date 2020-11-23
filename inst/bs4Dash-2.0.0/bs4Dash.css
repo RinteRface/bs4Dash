@@ -144,3 +144,10 @@
 .dark-mode .irs-grid-pol {
   background-color: #ffffff !important;
 }
+
+
+/* change sortable background in dark mode */
+.dark-mode .ui-sortable-placeholder {
+  background-color: #a8aeb7;
+  border-color: #343a40;
+}
