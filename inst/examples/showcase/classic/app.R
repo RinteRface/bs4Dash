@@ -15,9 +15,20 @@ shinyApp(
         opacity = 0.8
       ),
       fixed = TRUE,
+      help = TRUE,
       fullscreen = TRUE,
-      actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar", class = "mx-2"),
-      actionButton(inputId = "sidebarToggle", label = "Toggle left sidebar", class = "mx-2"),
+      bs4TooltipUI(
+        title = "This toggles the right sidebar",
+        placement = "bottom",
+        actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar", class = "mx-2")
+      ),
+      bs4PopoverUI(
+        title = "Toggle button",
+        content = "This toggle the left sidebar",
+        placement = "bottom",
+        #`data-trigger` = "hover",
+        actionButton(inputId = "sidebarToggle", label = "Toggle left sidebar", class = "mx-2") 
+      ),
       rightUi = tagList(
         dropdownMenu(
           badgeStatus = "danger",
@@ -179,7 +190,7 @@ shinyApp(
       overlay = FALSE,
       controlbarMenu(
         id = "controlbarMenu",
-        type = "tabs",
+        type = "pills",
         controlbarItem(
           "Inputs",
           setSliderColor(sliderId = 1, "black"),
@@ -224,6 +235,23 @@ shinyApp(
   server = function(input, output, session) {
     
     useAutoColor()
+    
+
+    # tooltips, popovers ------------------------------------------------------
+    observe({
+      #bs4TooltipServer(
+      #  id = "controlbarToggle", 
+      #  options = list(
+      #    title = "This toggles the right sidebar", 
+      #    placement = "bottom"
+      #  )
+      #)
+    })
+    
+
+    # plots -------------------------------------------------------------------
+    
+    
     
     output$bigPlot <- renderPlot({
       hist(rnorm(input$bigObs))
@@ -277,7 +305,7 @@ shinyApp(
     observeEvent(input$dark_mode, {
       bs4Toast(
         title = if (input$dark_mode) "Dark theme on!" else "Light theme on",
-        options = list(position = "topRight", class = "bg-warning")
+        options = list(position = "topRight", class = "bg-warning", autohide = TRUE)
       )
     })
     
@@ -332,6 +360,14 @@ shinyApp(
         title = if (input$sidebar) "Sidebar opened!" else "Sidebar is closed!", 
         options = toastOpts
       )
+    })
+    
+    
+
+    # tabBox API  -------------------------------------------------------------
+    
+    observeEvent(input$update_tabBox2, {
+      updateBox("tabcard2_box", action = "toggleMaximize")
     })
 
     # controlbar input --------------------------------------------------------

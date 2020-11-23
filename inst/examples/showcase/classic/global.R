@@ -84,7 +84,7 @@ basic_cards_tab <- tabItem(
         boxDropdownItem("item 3", href = "#", icon = icon("th"))
       ),
       sidebar = boxSidebar(
-        startOpen = TRUE,
+        startOpen = FALSE,
         id = "mycardsidebar",
         background = "#7f7f7f",
         sliderInput(
@@ -389,6 +389,7 @@ tab_cards_tab <- tabItem(
     ),
     column(
       width = 6,
+      actionButton("update_tabBox2", "Toggle maximize tabBox", class = "my-2"),
       tabBox(
         title = "Tabs on right!",
         side = "right",
@@ -479,8 +480,27 @@ tab_cards_tab <- tabItem(
       )
     )
   ),
-  br(), br()
+  br(), br(),
   # Vertical panels: TO DO
+  fluidRow(
+    tabsetPanel(
+      id = "tabcard",
+      selected = "Tab 2",
+      vertical = TRUE,
+      tabPanel(
+        "Tab 1",
+        "Content 1"
+      ),
+      tabPanel(
+        "Tab 2",
+        "Content 2"
+      ),
+      tabPanel(
+        "Tab 3",
+        "Content 3"
+      )
+    )
+  )
 )
 
 
