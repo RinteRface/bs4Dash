@@ -90,7 +90,7 @@ $.extend(cardBinding, {
           }
           if (value.options.background !== null) {
             if (config.gradient) {
-              $(el).addClass("bg-" + value.options.background + "-gradient"); 
+              $(el).addClass("bg-gradient-" + value.options.background); 
             } else {
               $(el).addClass("bg-" + value.options.background); 
             }
