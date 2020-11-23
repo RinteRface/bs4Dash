@@ -24,7 +24,7 @@ $.extend(cardBinding, {
       }
       
       // toggle collapse button when maximized
-      if (config.maximized) {
+      if (isMaximized) {
         $(el).find("[data-card-widget = 'collapse']").hide();
       } else {
         $(el).find("[data-card-widget = 'collapse']").show();
