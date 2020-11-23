@@ -36,7 +36,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
         id = "controlbarPin",
         class = "m-2 p-1 btn btn-xs btn-outline-secondary",
         type = "button", 
-        shiny::icon("thumbtack")
+        shiny::icon("thumbtack", class = if (pinned) "fa-lg")
       )
     },
     shiny::tags$div(
