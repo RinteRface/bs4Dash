@@ -1,5 +1,7 @@
 $(function () {
   
+  $navbar = $('.main-header.navbar');
+  
   // Modify the shiny tabsetpanel binding to follow BS4 rules
   $(document).on('shiny:connected', function(event) {
     Shiny.unbindAll();
@@ -115,6 +117,34 @@ $(function () {
     }, 500);
   });
   
+  
+  // tooltip/popover toggle
+  if ($('.main-header').attr('data-help') == 1) {
+    var $help_switch_checkbox = $('<input />', {
+      type: 'checkbox',
+      id: 'help_switch',
+      class: 'custom-control-input'
+    }).on('click', function () {
+      if ($(this).is(':checked')) {
+        $('[data-toggle="tooltip"]').tooltip('enable');
+        $('[data-toggle="popover"]').popover({
+          trigger: 'hover'
+        });
+        $('[data-toggle="popover"]').popover('enable');
+      } else {
+        $('[data-toggle="tooltip"]').tooltip('disable');
+        $('[data-toggle="popover"]').popover('disable');
+      }
+    });
+    
+    var $help_switch_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($help_switch_checkbox).append(`<label class="custom-control-label" for="help_switch"><i class="fa fa-question"></i></label>`);
+    $navbar.append($help_switch_container);
+  
+  // trigger first click, if necessary
+  
+    $help_switch_checkbox.click();
+  }
+  
   // dark mode input
   $(document).one('shiny:connected', function() {
     if ($('body').hasClass('dark-mode')) {
@@ -125,7 +155,6 @@ $(function () {
   });
   
   // automatic global theme switcher
-  $navbar = $('.main-header.navbar');
   var $dark_mode_checkbox = $('<input />', {
     type: 'checkbox',
     id: 'customSwitch1',
@@ -210,7 +239,7 @@ $(function () {
   });
   
   var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
-  var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
+  var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
   $navbar.append($dark_mode_container);
   
   // Themer chips

@@ -45,6 +45,9 @@
 #' @param controlbarIcon Icon to toggle the controlbar (left).
 #' @param fixed Whether to fix the navbar to the top. FALSE by default.
 #' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
+#' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use
+#' \link{bs4TooltipUI} and \link{bs4PopoverUI} without having to individually toggle them. Default to FALSE.
+#' if TRUE, a help icon is display in the navigation bar.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -52,7 +55,7 @@
 bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE, 
                           .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = NULL, 
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
-                          controlbarIcon = shiny::icon("th"), fixed = FALSE, fullscreen = FALSE) {
+                          controlbarIcon = shiny::icon("th"), fixed = FALSE, fullscreen = FALSE, help = FALSE) {
   
   items <- c(list(...), .list)
   
@@ -112,6 +115,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     custom_css, 
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
+    `data-help` = if (help) 1 else 0,
     class = paste0(
       "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
       " navbar-", skin, if (!border) " border-bottom-0" else NULL,

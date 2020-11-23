@@ -99,14 +99,17 @@ basic_cards_tab <- tabItem(
       plotOutput("plot")
     ),
     box(
+      bs4Ribbon(
+        text = "New",
+        color = "orange"
+      ),
       title = "Closable card with gradient", 
-      closable = TRUE, 
       width = 6,
       gradient = TRUE,
-      background = "lightblue",
-      status = "lightblue", 
+      background = "teal",
+      status = "teal", 
       solidHeader = TRUE, 
-      collapsible = TRUE,
+      collapsible = FALSE,
       echarts4rOutput("riverPlot")
     )
   ),
@@ -180,9 +183,13 @@ social_cards_tab <- tabItem(
         title = "User card type 1",
         subtitle = "a subtitle here"
       ),
+      collapsible = FALSE,
+      bs4Ribbon(
+        text = "New user",
+        color = "fuchsia"
+      ),
       status = "purple",
       elevation = 4,
-      maximizable = TRUE,
       "Any content here"
     ),
     userBox(
@@ -195,6 +202,7 @@ social_cards_tab <- tabItem(
       ),
       status = "teal",
       background = "teal",
+      maximizable = TRUE,
       gradient = TRUE,
       progressBar(
         value = 5,
@@ -326,6 +334,10 @@ tab_cards_tab <- tabItem(
     column(
       width = 6,
       tabBox(
+        bs4Ribbon(
+          text = "Tabs",
+          color = "pink"
+        ),
         title = "A card with tabs",
         elevation = 2,
         id = "tabcard1",
