@@ -18,17 +18,15 @@ getCardBodyChildren <- function(card) {
 
 
 test_that("Is shiny tag", {
-  golem::expect_shinytag(bs4InfoBox(title = "Infobox", status = "danger", value = 4))
+  golem::expect_shinytag(bs4InfoBox(title = "Infobox", color = "danger", value = 4))
 })
 
 test_that("overall structure", {
   infoBoxTag <- bs4InfoBox(title = "Infobox", value = 4)
   infoBoxChildren <- getCardChildren(infoBoxTag)
-  expect_length(infoBoxChildren, 1)
-  
-  infoBoxTag <- bs4InfoBox(title = "Infobox", value = 4, icon = "cogs")
-  infoBoxChildren <- getCardChildren(infoBoxTag)
   expect_length(infoBoxChildren, 2)
+  
+  expect_error(bs4InfoBox(title = "Infobox", value = 4, icon = NULL))
 })
 
 test_that("css class", {
@@ -36,8 +34,27 @@ test_that("css class", {
     bs4InfoBox(
       title = "Infobox", 
       value = 4,
-      status = "danger", 
-      gradientColor = "warning"
+      color = NULL, 
+      gradient = TRUE,
+      fill = TRUE,
+    )
+  )
+  
+  expect_error(
+    bs4InfoBox(
+      title = "Infobox", 
+      value = 4,
+      color = NULL, 
+      fill = TRUE
+    )
+  )
+  
+  expect_error(
+    bs4InfoBox(
+      title = "Infobox", 
+      value = 4,
+      color = NULL, 
+      gradient = TRUE
     )
   )
   
@@ -45,13 +62,20 @@ test_that("css class", {
   infoBoxCl <- getCardCl(infoBoxTag)
   expect_match(infoBoxCl, "info-box")
   
-  infoBoxTag <- bs4InfoBox(title = "Infobox", status = "danger", value = 4)
+  # class is only applied to icon, not the card when fill is FALSE
+  infoBoxTag <- bs4InfoBox(title = "Infobox", color = "danger", value = 4)
   infoBoxCl <- getCardCl(infoBoxTag)
-  expect_match(infoBoxCl, "info-box bg-danger")
+  expect_match(infoBoxCl, "info-box")
+  iconCl <- infoBoxTag$children[[1]][[2]]$children[[1]]$attribs$class
+  expect_match(iconCl, "info-box-icon bg-danger")
   
-  infoBoxTag <- bs4InfoBox(title = "Infobox", value = 4, gradientColor = "danger")
+  infoBoxTag <- bs4InfoBox(title = "Infobox", value = 4, gradient = TRUE, fill = TRUE, color = "danger")
   infoBoxCl <- getCardCl(infoBoxTag)
   expect_match(infoBoxCl, "info-box bg-gradient-danger")
+  
+  infoBoxTag <- bs4InfoBox(title = "Infobox", value = 4, fill = TRUE, color = "danger")
+  infoBoxCl <- getCardCl(infoBoxTag)
+  expect_match(infoBoxCl, "info-box bg-danger")
 })
 
 test_that("elevation", {
@@ -64,90 +88,43 @@ test_that("elevation", {
   expect_error(bs4InfoBox(title = "Infobox", value = 4, elevation = "2"))
 })
 
-test_that("icon class", {
-  expect_error(bs4InfoBox(title = "Infobox", value = 4, iconStatus = "primary"))
-  expect_error(bs4InfoBox(title = "Infobox", value = 4, iconElevation = 2))
-  expect_error(
-    bs4InfoBox(
-      title = "Infobox", 
-      value = 4,
-      icon = "cogs", 
-      iconElevation = -1
-    )
+test_that("icon elevation", {
+  infoBoxTag <- bs4InfoBox(
+    title = "Infobox",
+    value = 4,
+    icon = shiny::icon("cogs"),
+    iconElevation = 3
   )
-  expect_error(
-    bs4InfoBox(
-      title = "Infobox", 
-      value = 4,
-      icon = "cogs", 
-      iconElevation = "2"
-    )
-  )
-  expect_error(
-    bs4InfoBox(
-      title = "Infobox", 
-      value = 4,
-      icon = "cogs", 
-      iconElevation = 6
-    )
-  )
+  infoBoxIconCl <- getCardChildren(infoBoxTag)[[1]]$attribs$class
+  expect_match(infoBoxIconCl, "info-box-icon elevation-3")
+})
+
+test_that("tabName", {
   
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = "cogs"
+    icon = shiny::icon("cogs")
   )
-  infoBoxIconCl <- getCardChildren(infoBoxTag)[[1]]$attribs$class
-  expect_match(infoBoxIconCl, "info-box-icon")
+  infoBoxId <- getCardChildren(infoBoxTag)[[1]]$attribs$id
+  expect_true(is.null(infoBoxId))
   
   infoBoxTag <- bs4InfoBox(
     title = "Infobox",
     value = 4,
-    icon = "cogs",
-    iconStatus = "primary"
-  )
-  infoBoxIconCl <- getCardChildren(infoBoxTag)[[1]]$attribs$class
-  expect_match(infoBoxIconCl, "info-box-icon bg-primary")
-  
-  infoBoxTag <- bs4InfoBox(
-    title = "Infobox",
-    value = 4,
-    icon = "cogs",
-    iconStatus = "primary",
-    iconElevation = 3
-  )
-  infoBoxIconCl <- getCardChildren(infoBoxTag)[[1]]$attribs$class
-  expect_match(infoBoxIconCl, "info-box-icon bg-primary elevation-3")
-})
-
-test_that("tabName", {
-  # if no icon is provided, specifiying a tabName does not make sense
-  # since it requires to click on the icon tag...
-  expect_error(bs4InfoBox(title = "Infobox", tabName = "pouet"))
-  
-  infoBoxTag <- bs4InfoBox(
-    title = "Infobox",
-    value = 4,
-    icon = "cogs",
+    icon = shiny::icon("cogs"),
     tabName = "pouic"
   )
   infoBoxId <- getCardChildren(infoBoxTag)[[1]]$attribs$id
   expect_true(!is.null(infoBoxId))
   
-  infoBoxTag <- bs4InfoBox(
-    title = "Infobox", 
-    value = 4,
-    icon = "cogs"
-  )
-  infoBoxId <- getCardChildren(infoBoxTag)[[1]]$attribs$id
-  expect_true(is.null(infoBoxId))
 })
 
 test_that("body structure", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = "cogs"
+    icon = shiny::icon("cogs")
   )
   infoBoxBodyChildren <- getCardBodyChildren(infoBoxTag)
   expect_length(infoBoxBodyChildren, 2)
@@ -155,8 +132,8 @@ test_that("body structure", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = "cogs",
-    shiny::p("Extra element")
+    icon = shiny::icon("cogs"),
+    subtitle = shiny::p("Extra element")
   )
   infoBoxBodyChildren <- getCardBodyChildren(infoBoxTag)
   expect_length(infoBoxBodyChildren, 3)

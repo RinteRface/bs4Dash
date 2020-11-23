@@ -1016,6 +1016,9 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
          fill cannot be TRUE when color is NULL.")
   }
   
+  if (gradient && !fill) {
+    stop("gradient cannot be TRUE when fill is FALSE.")
+  }
   
   if (!is.null(width)) {
     stopifnot(is.numeric(width))
