@@ -49,7 +49,7 @@ statusColors <- c(
   "fuchsia",
   "maroon",
   "pink",
-  "light"
+  "white"
 )
 
 # river charts 

@@ -13,7 +13,7 @@ generally appear as follows:
 \itemize{
   \item \code{gray-dark} Gray dark
   \item \code{gray} Gray
-  \item \code{light} Light
+  \item \code{white} White
 }
 }
 \keyword{internal}

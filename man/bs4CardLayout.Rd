@@ -32,7 +32,7 @@ if (interactive()) {
        bs4CardLayout(
          type = "group",
          lapply(1:4, function(i) {
-           bs4Card(
+           box(
              width = NULL,
              title = paste("Card", i), 
              closable = FALSE,
@@ -56,7 +56,7 @@ if (interactive()) {
        bs4CardLayout(
          type = "deck",
          lapply(1:4, function(i) {
-           bs4Card(
+           box(
              width = NULL,
              title = paste("Card", i), 
              closable = FALSE,
@@ -80,7 +80,7 @@ if (interactive()) {
        bs4CardLayout(
          type = "columns",
          lapply(1:12, function(i) {
-           bs4Card(
+           box(
              width = NULL,
              title = paste("Card", i), 
              closable = FALSE,

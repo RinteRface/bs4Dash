@@ -16,7 +16,7 @@
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
 #'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
 #'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
 #'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
 #'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
@@ -749,7 +749,7 @@ dropdownDivider <- function() {
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
 #'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
 #'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
 #'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
 #'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
@@ -922,7 +922,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
 #'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
 #'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
 #'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
 #'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
@@ -1908,7 +1908,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'        bs4CardLayout(
 #'          type = "group",
 #'          lapply(1:4, function(i) {
-#'            bs4Card(
+#'            box(
 #'              width = NULL,
 #'              title = paste("Card", i), 
 #'              closable = FALSE,
@@ -1932,7 +1932,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'        bs4CardLayout(
 #'          type = "deck",
 #'          lapply(1:4, function(i) {
-#'            bs4Card(
+#'            box(
 #'              width = NULL,
 #'              title = paste("Card", i), 
 #'              closable = FALSE,
@@ -1956,7 +1956,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'        bs4CardLayout(
 #'          type = "columns",
 #'          lapply(1:12, function(i) {
-#'            bs4Card(
+#'            box(
 #'              width = NULL,
 #'              title = paste("Card", i), 
 #'              closable = FALSE,

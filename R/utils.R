@@ -170,14 +170,14 @@ validateNuance <- function(nuance) {
 #' \itemize{
 #'   \item \code{gray-dark} Gray dark
 #'   \item \code{gray} Gray
-#'   \item \code{light} Light
+#'   \item \code{white} White
 #' }
 #'
 #' @usage NULL
 #' @format NULL
 #'
 #' @keywords internal
-validNuances <- c("gray-dark", "gray", "light")
+validNuances <- c("gray-dark", "gray", "white")
 
 
 
