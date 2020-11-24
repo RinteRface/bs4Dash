@@ -33,7 +33,7 @@ bs4UserCard(
 bs4UserDescription(
   title,
   subtitle = NULL,
-  image = NULL,
+  image,
   backgroundImage = NULL,
   type = c(1, 2),
   imageElevation = NULL
@@ -65,7 +65,7 @@ userBox(
 userDescription(
   title,
   subtitle = NULL,
-  image = NULL,
+  image,
   backgroundImage = NULL,
   type = c(1, 2),
   imageElevation = NULL
@@ -76,7 +76,7 @@ userDescription(
 
 \item{title}{User card title.}
 
-\item{footer}{User card footer.}
+\item{footer}{Optional footer text.}
 
 \item{status}{The status of the item. This determines the item's background
   color.  Valid statuses are defined as follows:
@@ -117,7 +117,7 @@ userDescription(
   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-  \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
