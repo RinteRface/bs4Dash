@@ -295,6 +295,49 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 
 
 
+# create box icons and return a list of icons
+createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnClass) {
+    collapseTag <- NULL
+    if (collapsible) {
+      collapseIcon <- if (collapsed) 
+        "plus"
+      else "minus"
+      collapseTag <- shiny::tags$button(
+        class = btnClass, 
+        type = "button",
+        `data-card-widget` = "collapse", 
+        shiny::icon(collapseIcon)
+      )
+    }
+
+    closableTag <- NULL
+    if (closable) {
+      closableTag <- shiny::tags$button(
+        class = btnClass, 
+        `data-card-widget` = "remove", 
+        type = "button",
+        shiny::icon("times")
+      )
+    } 
+
+    maximizableTag <- NULL
+    if (maximizable) {
+      maximizableTag <- shiny::tags$button(
+        type = "button",
+        class = btnClass,
+        `data-card-widget` = "maximize",
+        shiny::icon("expand")
+      )
+    }
+
+    shiny::tagList(collapseTag, closableTag, maximizableTag)
+  }
+
+
+
+
+
+
 randomInt <- function (min, max) {
   if (missing(max)) {
     max <- min

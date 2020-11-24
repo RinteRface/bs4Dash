@@ -160,7 +160,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   
   props <- dropNulls(
     list(
-      title = as.character(title),
+      title = if (!is.null(title)) as.character(title) else title,
       status = status,
       solidHeader = solidHeader,
       background = background,
@@ -230,40 +230,6 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     cardToolTag <- shiny::tags$div(class = "card-tools float-right")
   }
   
-  
-  collapseTag <- NULL
-  if (collapsible) {
-    collapseIcon <- if (collapsed) 
-      "plus"
-    else "minus"
-    collapseTag <- shiny::tags$button(
-      class = btnToolClass, 
-      type = "button",
-      `data-card-widget` = "collapse", 
-      shiny::icon(collapseIcon)
-    )
-  }
-  
-  closableTag <- NULL
-  if (closable) {
-    closableTag <- shiny::tags$button(
-      class = btnToolClass, 
-      `data-card-widget` = "remove", 
-      type = "button",
-      shiny::icon("times")
-    )
-  } 
-  
-  maximizableTag <- NULL
-  if (maximizable) {
-    maximizableTag <- shiny::tags$button(
-      type = "button",
-      class = btnToolClass,
-      `data-card-widget` = "maximize",
-      shiny::icon("expand")
-    )
-  }
-  
   # Modify sidebar trigger class if background ...
   if (!is.null(sidebar)) {
     if (is.null(status) && !is.null(background)) {
@@ -299,9 +265,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     cardToolTag, 
     label, 
     dropdownMenu, 
-    collapseTag, 
-    closableTag,
-    maximizableTag,
+    createBoxTools(collapsible, collapsed, closable, maximizable, btnToolClass),
     sidebar[[2]]
   )
   
