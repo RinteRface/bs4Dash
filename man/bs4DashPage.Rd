@@ -97,7 +97,7 @@ if(interactive()){
      ),
      options = NULL,
      header = dashboardHeader(
-      title = bs4DashBrand(
+      title = dashboardBrand(
        title = "My dashboard",
        color = "primary",
        href = "https://adminlte.io/themes/v3",
