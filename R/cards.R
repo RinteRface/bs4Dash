@@ -1488,7 +1488,6 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
 #'
 #' @param title User card title.
 #' @param subtitle User card subtitle.
-#' @param footer User card footer.
 #' @param image User image url or path.
 #' @param backgroundImage image url, if any. Background needs to be TRUE.
 #' @param type User card type. Either 1 or 2. 1 corresponds to a centered user image,
@@ -1497,7 +1496,7 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
 #' 
 #' @rdname bs4UserCard
 #' @export
-bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundImage = NULL,
+bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = NULL,
                                type = c(1, 2), imageElevation = NULL) {
   
   headerCl <- "widget-user-header"
@@ -1526,7 +1525,8 @@ bs4UserDescription <- function(title, subtitle = NULL, image = NULL, backgroundI
       } else {
         "img-circle"
       },
-      src = image
+      src = image,
+      alt = "User Avatar"
     )
   )
   
