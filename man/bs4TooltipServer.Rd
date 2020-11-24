@@ -29,14 +29,13 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-  ui = bs4DashPage(
-    enable_preloader = TRUE,
-    navbar = bs4DashNavbar(),
-    sidebar = bs4DashSidebar(),
-    controlbar = bs4DashControlbar(),
-    footer = bs4DashFooter(),
-    title = "test",
+ shinyApp(
+  ui = dashboardPage(
+    header = dashboardHeader(),
+    sidebar = dashboardSidebar(),
+    controlbar = dashboardControlbar(),
+    footer = dashboardFooter(),
+    title = "Tooltip server",
     body = bs4DashBody(
      actionButton("goButton", "Click on me to add tooltip"),
      actionButton("goButton2", "You can't see me first!")

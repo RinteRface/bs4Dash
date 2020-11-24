@@ -5,7 +5,7 @@
 #'
 #' @param tag Tooltip target.
 #' @param title Tooltip title.
-#' @param placement Tooltipe placement: "top", "bottom", "left" or "right". 
+#' @param placement Tooltip placement: "top", "bottom", "left" or "right". 
 #'
 #' @export
 #'
@@ -14,15 +14,15 @@
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'   ui = bs4DashPage(
+#'  shinyApp(
+#'   ui = dashboardPage(
 #'     enable_preloader = TRUE,
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Tooltip UI",
+#'     body = dashboardBody(
 #'      bs4TooltipUI(
 #'       actionButton("goButton", "Hover to see the tooltip"),
 #'       title = "My tooltip",
@@ -82,14 +82,13 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'   ui = bs4DashPage(
-#'     enable_preloader = TRUE,
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Tooltip server",
 #'     body = bs4DashBody(
 #'      actionButton("goButton", "Click on me to add tooltip"),
 #'      actionButton("goButton2", "You can't see me first!")
@@ -148,15 +147,14 @@ bs4TooltipServer <- function(id = NULL, selector = NULL, options, session = shin
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'   ui = bs4DashPage(
-#'     enable_preloader = TRUE,
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Popover UI",
+#'     body = dashboardBody(
 #'      bs4PopoverUI(
 #'       actionButton("goButton", "Click me to see the popover!"),
 #'        title = "My popover",
@@ -219,15 +217,14 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'   ui = bs4DashPage(
-#'     enable_preloader = TRUE,
-#'     navbar = bs4DashNavbar(),
-#'     sidebar = bs4DashSidebar(),
-#'     controlbar = bs4DashControlbar(),
-#'     footer = bs4DashFooter(),
-#'     title = "test",
-#'     body = bs4DashBody(
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(),
+#'     sidebar = dashboardSidebar(),
+#'     controlbar = dashboardControlbar(),
+#'     footer = dashboardFooter(),
+#'     title = "Popover server",
+#'     body = dashboardBody(
 #'      actionButton("goButton", "Show popover!"),
 #'      actionButton("goButton2", "You can't see me first!")
 #'     )
@@ -286,14 +283,15 @@ bs4PopoverServer <- function(id = NULL, selector = NULL, options, session = shin
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = dashboardPage(
-#'     navbar = dashboardHeader(),
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'       actionButton("sendToast", "Send Toast")
 #'     ),
-#'     controlbar = dashboardControlbar()
+#'     controlbar = dashboardControlbar(),
+#'     title = "Toasts"
 #'   ),
 #'   server = function(input, output) {
 #'     observeEvent(input$sendToast, {
@@ -367,15 +365,14 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
-#'    ui = bs4DashPage(
-#'      navbar = bs4DashNavbar(),
-#'      sidebar = bs4DashSidebar(),
-#'      controlbar = bs4DashControlbar(),
-#'      footer = bs4DashFooter(),
-#'      title = "test",
-#'      body = bs4DashBody(
-#'        title = "Alerts",
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
+#'      sidebar = dashboardSidebar(),
+#'      controlbar = dashboardControlbar(),
+#'      footer = dashboardFooter(),
+#'      title = "Alerts",
+#'      body = dashboardBody(
 #'        bs4Alert(
 #'         title = "Be Careful!",
 #'         status = "danger",
@@ -464,9 +461,9 @@ bs4Alert <- function(..., id = NULL, title, closable = TRUE, width = 6, elevatio
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = dashboardPage(
-#'     navbar = dashboardHeader(),
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'       actionButton("close", "Close Alert"),

@@ -31,14 +31,15 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
+ shinyApp(
   ui = dashboardPage(
-    navbar = dashboardHeader(),
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
       actionButton("sendToast", "Send Toast")
     ),
-    controlbar = dashboardControlbar()
+    controlbar = dashboardControlbar(),
+    title = "Toasts"
   ),
   server = function(input, output) {
     observeEvent(input$sendToast, {

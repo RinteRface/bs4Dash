@@ -11,7 +11,7 @@ bs4TooltipUI(tag, title, placement = c("top", "bottom", "left", "right"))
 
 \item{title}{Tooltip title.}
 
-\item{placement}{Tooltipe placement: "top", "bottom", "left" or "right".}
+\item{placement}{Tooltip placement: "top", "bottom", "left" or "right".}
 }
 \description{
 This replaces the shinyBS tooltip feature that is not compatible
@@ -22,15 +22,15 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-  ui = bs4DashPage(
+ shinyApp(
+  ui = dashboardPage(
     enable_preloader = TRUE,
-    navbar = bs4DashNavbar(),
-    sidebar = bs4DashSidebar(),
-    controlbar = bs4DashControlbar(),
-    footer = bs4DashFooter(),
-    title = "test",
-    body = bs4DashBody(
+    header = dashboardHeader(),
+    sidebar = dashboardSidebar(),
+    controlbar = dashboardControlbar(),
+    footer = dashboardFooter(),
+    title = "Tooltip UI",
+    body = dashboardBody(
      bs4TooltipUI(
       actionButton("goButton", "Hover to see the tooltip"),
       title = "My tooltip",
