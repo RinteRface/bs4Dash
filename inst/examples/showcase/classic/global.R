@@ -1,6 +1,5 @@
 # Load packages
 library(shiny)
-library(shinyWidgets)
 library(bs4Dash)
 library(echarts4r)
 library(thematic)
