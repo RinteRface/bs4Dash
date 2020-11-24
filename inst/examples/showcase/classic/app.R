@@ -417,7 +417,7 @@ shinyApp(
     # user messages -----------------------------------------------------------
     
     observeEvent(input$remove_message, {
-      updateUserMessages("message", action = "remove", index = input$index)
+      updateUserMessages("message", action = "remove", index = input$index_message)
     })
     observeEvent(input$add_message, {
       updateUserMessages(
