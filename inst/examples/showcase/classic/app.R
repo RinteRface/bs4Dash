@@ -193,7 +193,6 @@ shinyApp(
         type = "pills",
         controlbarItem(
           "Inputs",
-          setSliderColor(sliderId = 1, "black"),
           radioGroupButtons(
             inputId = "somevalue3",
             label = "With icons:",
