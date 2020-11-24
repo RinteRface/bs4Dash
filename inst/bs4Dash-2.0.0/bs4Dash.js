@@ -154,6 +154,46 @@ $(function () {
     }
   });
   
+  
+  // Navbar colors
+  getNavbarColor = function() {
+    for (let color of navbar_all_colors) {
+      if ($('.main-header').attr('class').search(color) > -1) {
+        return color;
+      }
+    }
+  };
+  
+  var navbar_dark_skins = [
+    'navbar-primary',
+    'navbar-secondary',
+    'navbar-info',
+    'navbar-success',
+    'navbar-danger',
+    'navbar-indigo',
+    'navbar-purple',
+    'navbar-pink',
+    'navbar-maroon',
+    'navbar-fuchsia',
+    'navbar-navy',
+    'navbar-lightblue',
+    'navbar-lime',
+    'navbar-teal',
+    'navbar-olive',
+    'navbar-gray-dark',
+    'navbar-gray'
+  ];
+
+  var navbar_light_skins = [
+    'navbar-warning',
+    'navbar-white',
+    'navbar-orange'
+  ];
+  
+  var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins);
+  // find navbar color
+  var navbarColor;
+  
   // automatic global theme switcher
   var $dark_mode_checkbox = $('<input />', {
     type: 'checkbox',
@@ -161,11 +201,29 @@ $(function () {
     checked: $('body').hasClass('dark-mode'),
     class: 'custom-control-input'
   }).on('click', function () {
+    
+    // get any selected navbar skin in the navbar themer
+    var newNavbarColor;
+    $('.navbar-themer-chip').filter(function() {
+      if ($(this).css('border-style') === 'solid') {
+        newNavbarColor = 'navbar-' + 
+        $(this)
+          .attr('class')
+          .split('elevation-2')[0]
+          .trim()
+          .replace('bg-', '');
+      }
+    });
+    
     if ($(this).is(':checked')) {
       $('body').addClass('dark-mode');
-      $navbar
-        .removeClass('navbar-light')
-        .addClass('navbar-dark');
+      
+    // use updateNavbarTheme to correctly setup the skin as depending
+    // on the required color. If no color is chosen, we use gray-dark for dark mode
+    if (newNavbarColor === undefined) {
+      newNavbarColor = "navbar-gray-dark";
+    }
+    updateNavbarTheme(newNavbarColor);
       
       // sidebar update  
       if ($('.main-sidebar').length > 0) {
@@ -201,9 +259,13 @@ $(function () {
         
     } else {
       $('body').removeClass('dark-mode');
-      $navbar
-        .removeClass('navbar-dark')
-        .addClass('navbar-light');
+      
+      // use updateNavbarTheme to correctly setup the skin as depending
+      // on the required color. If no color is chosen, we use white for light mode
+      if (newNavbarColor === undefined) {
+        newNavbarColor = "navbar-white";
+      }
+      updateNavbarTheme(newNavbarColor);
       
       // sidebar update
       if ($('.main-sidebar').length > 0) {
@@ -267,36 +329,6 @@ $(function () {
     $('.sidebar-themer-chip').not(this).css({ 'border-color': '', 'border-style': '' });
   });
   
-  
-  // Navbar Themer
-  var navbar_dark_skins = [
-    'navbar-primary',
-    'navbar-secondary',
-    'navbar-info',
-    'navbar-success',
-    'navbar-danger',
-    'navbar-indigo',
-    'navbar-purple',
-    'navbar-pink',
-    'navbar-maroon',
-    'navbar-fuchsia',
-    'navbar-navy',
-    'navbar-lightblue',
-    'navbar-lime',
-    'navbar-teal',
-    'navbar-olive',
-    'navbar-gray-dark',
-    'navbar-gray'
-  ];
-
-  var navbar_light_skins = [
-    'navbar-light',
-    'navbar-warning',
-    'navbar-white',
-    'navbar-orange'
-  ];
-  
-  var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins);
   
   /**
   * Update color theme to navbar tag
