@@ -151,3 +151,40 @@
   background-color: #a8aeb7;
   border-color: #343a40;
 }
+
+
+/* Rework select input in dark mode */
+.dark-mode .selectize-input {
+    border: 1px solid #6c757d;
+}
+
+.dark-mode .selectize-input.full {
+    background-color: #343a40;
+    color: inherit;
+}
+
+.dark-mode .selectize-input, .dark-mode .selectize-control.single .selectize-input.input-active{
+  background: #343a40;
+}
+
+.dark-mode .selectize-control.single .selectize-input.input-active{
+  border-color: #66afe9;
+}
+
+.dark-mode .selectize-dropdown, .dark-mode .selectize-dropdown.form-control {
+  background: #343a40;
+  color: inherit;
+}
+
+.dark-mode .selectize-dropdown .active {
+    background-color: #454d55;
+    color: inherit;
+}
+
+.dark-mode .selectize-control.single .selectize-input:after {
+  border-color: #fff transparent transparent transparent;
+}
+
+.dark-mode .selectize-control.single .selectize-input.dropdown-active:after {
+  border-color: transparent transparent #fff transparent;
+}
