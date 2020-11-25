@@ -401,9 +401,9 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 
 
 
-#' Show AdminLTE3 alert on the server side
+#' Create a Bootstrap 4 alert on the server side
 #' 
-#' \link{showAlert} shows an alert created via \link{alert}.
+#' \link{createAlert} creates an alert and inserts it in the DOM.
 #'
 #' @param id Anchor id. Where to insert the alert. See example. 
 #' @param selector jQuery selector. Allow more customization for the anchor (nested tags).
@@ -496,16 +496,13 @@ bs4CreateAlert <- function(id = NULL, selector = NULL, options, session = shiny:
 
 #' Close AdminLTE3 alert
 #' 
-#' \link{closeAlert} closes an alert created via \link{alert}.
+#' \link{closeAlert} closes an alert created via \link{createAlert}.
 #'
-#' @param id \link{bs4Alert} id.
+#' @param id Anchor id.
 #' @param session Shiny session object.
 #' @export
 #' 
 #' @rdname alert
-#'
-#' @note One may use input$<id>, where id is the alert unique id, to trigger
-#' more actions on the server side after the alert closed.
 bs4CloseAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage("close-alert", session$ns(id))
 }

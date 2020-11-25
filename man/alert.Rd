@@ -5,7 +5,7 @@
 \alias{bs4CloseAlert}
 \alias{createAlert}
 \alias{closeAlert}
-\title{Show AdminLTE3 alert on the server side}
+\title{Create a Bootstrap 4 alert on the server side}
 \usage{
 bs4CreateAlert(
   id = NULL,
@@ -26,7 +26,7 @@ createAlert(
 closeAlert(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{id}{\link{bs4Alert} id.}
+\item{id}{Anchor id.}
 
 \item{selector}{jQuery selector. Allow more customization for the anchor (nested tags).}
 
@@ -43,17 +43,14 @@ closeAlert(id, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{showAlert} shows an alert created via \link{alert}.
+\link{createAlert} creates an alert and inserts it in the DOM.
 
-\link{closeAlert} closes an alert created via \link{alert}.
+\link{closeAlert} closes an alert created via \link{createAlert}.
 }
 \note{
 Unlike shinyBS, there is no need to specify an anchorId and an alertId. id refers to the anchorId,
 and the alertId is simply "anchorId-alert". On the server side, one can access the alert status by
 input$<id>. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
-
-One may use input$<id>, where id is the alert unique id, to trigger
-more actions on the server side after the alert closed.
 }
 \examples{
 if (interactive()) {
