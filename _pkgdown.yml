@@ -18,14 +18,16 @@ reference:
   
   
 - title: Feedback related functions
-  desc: Bootstrap 4 popovers, tooltips, ...
+  desc: Bootstrap 4 popovers, tooltips, toasts, alerts, ...
   contents: 
   - '`bs4Alert`'
   - '`bs4CloseAlert`'
-  - '`bs4PopoverServer`'
+  - '`addPopover`'
+  - '`removePopover`'
   - '`bs4PopoverUI`'
   - '`bs4Toast`'
-  - '`bs4TooltipServer`'
+  - '`addTooltip`'
+  - '`removeTooltip`'
   - '`bs4TooltipUI`'
   
 

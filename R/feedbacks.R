@@ -65,9 +65,11 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
 
 
 
-#' Create a Bootstrap 4 Tooltip from the server side
+#' Create a Bootstrap 4 tooltip from the server side
 #' 
-#' This replaces the shinyBS tooltip feature that is not compatible
+#' \link{addTooltip} adds a tooltip to the given target.
+#' 
+#' @note This replaces the shinyBS tooltip feature that is not compatible
 #' with Bootstrap 4
 #'
 #' @param id Tooltip target id.
@@ -76,61 +78,85 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
 #' @param session Shiny session object.
 #'
 #' @export
+#' @rdname tooltip
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     controlbar = dashboardControlbar(),
-#'     footer = dashboardFooter(),
-#'     title = "Tooltip server",
-#'     body = bs4DashBody(
-#'      actionButton("goButton", "Click on me to add tooltip"),
-#'      actionButton("goButton2", "You can't see me first!")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'    observeEvent(input$goButton, {
-#'      bs4TooltipServer(
-#'       id = "goButton2", 
-#'       options = list(
-#'        title = "Server tooltip", 
-#'        placement = "bottom"
-#'       )
-#'      )
-#'    })
-#'   }
-#'  )
+#'  library(shiny) 
+#'  library(bs4Dash) 
+#'     
+#'  shinyApp( 
+#'    ui = dashboardPage( 
+#'      header = dashboardHeader(), 
+#'      sidebar = dashboardSidebar(), 
+#'      controlbar = dashboardControlbar(), 
+#'      footer = dashboardFooter(), 
+#'      title = "Tooltip server", 
+#'      body = dashboardBody( 
+#'       sliderInput("obs", "Number of observations:", 
+#'         min = 0, max = 1000, value = 500 
+#'       ), 
+#'       plotOutput("distPlot") 
+#'      ) 
+#'    ), 
+#'    server = function(input, output, session) { 
+#'      output$distPlot <- renderPlot({ 
+#'        hist(rnorm(input$obs)) 
+#'      }) 
+#'          
+#'      observeEvent(input$obs, { 
+#'        if (input$obs > 500) { 
+#'         addTooltip( 
+#'           id = "distPlot",  
+#'           options = list(
+#'            title = "Server tooltip",  
+#'            placement = "bottom"
+#'           ) 
+#'         ) 
+#'        } else { 
+#'          removeTooltip(id = "distPlot") 
+#'        } 
+#'      }) 
+#'    } 
+#'   )      
 #' }
-bs4TooltipServer <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   
-  if (!is.null(id) & !is.null(selector)) {
+  if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
   if (is.null(options$title)) stop("Please provide a tooltip title!")
   
-  options <- jsonlite::toJSON(options, auto_unbox = TRUE, pretty = TRUE)
-  
   message <- dropNulls(
     list(
-      id = id,
+      id = session$ns(id),
       selector = selector,
       options = options
     )
   )
-  session$sendCustomMessage("tooltip", message)
+  session$sendCustomMessage("create-tooltip", message)
+}
+
+
+
+
+#' Remove a Bootstrap 4 tooltip from the server side
+#' 
+#' \link{removeTooltip} destroys the current targeted tooltip.
+#'
+#' @param id Tooltip target id.
+#' @param session Shiny session object.
+#' @export
+#' @rdname tooltip
+removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage("remove-tooltip", message = session$ns(id))
 }
 
 
 
 
 
-#' Create a Bootstrap 4 Popover from the UI side
+#' Create a Bootstrap 4 popover from the UI side
 #' 
 #' This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
@@ -201,9 +227,11 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 
 
 
-#' Create a Bootstrap 4 Popover from the server side
+#' Create a Bootstrap 4 popover from the server side
 #' 
-#' This replaces the shinyBS popover feature that is not compatible
+#' \link{addPopover} adds a popover to the given target.
+#' 
+#' @note This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
 #'
 #' @param id Popover target id.
@@ -211,6 +239,7 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #' @param options List of options to pass to the popover. See \url{https://getbootstrap.com/docs/4.0/components/popovers/}.
 #' @param session Shiny session object.
 #' @export
+#' @rdname popover
 #'
 #' @examples
 #' if (interactive()) {
@@ -225,14 +254,21 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #'     footer = dashboardFooter(),
 #'     title = "Popover server",
 #'     body = dashboardBody(
-#'      actionButton("goButton", "Show popover!"),
-#'      actionButton("goButton2", "You can't see me first!")
+#'      sliderInput("obs", "Number of observations:",
+#'        min = 0, max = 1000, value = 500
+#'      ),
+#'      plotOutput("distPlot")
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
-#'    observeEvent(input$goButton, {
-#'       bs4PopoverServer(
-#'         id = "goButton2", 
+#'    output$distPlot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'    })
+#' 
+#'    observeEvent(input$obs, {
+#'      if (input$obs > 500) {
+#'       addPopover(
+#'         id = "distPlot", 
 #'         options = list(
 #'          content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
 #'          title = "Server popover", 
@@ -240,26 +276,42 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
 #'          trigger = "hover"
 #'         )
 #'       )
-#'     })
+#'      } else {
+#'        removePopover(id = "distPlot")
+#'      }
+#'    })
 #'   }
 #'  )
 #' }
-bs4PopoverServer <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+addPopover <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   
-  if (!is.null(id) & !is.null(selector)) {
+  if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
   if (is.null(options$content)) stop("Please provide a popover content!")
-  options <- jsonlite::toJSON(options, auto_unbox = TRUE, pretty = TRUE)
   
   message <- dropNulls(
     list(
-      id = id,
+      id = session$ns(id),
       selector = selector,
       options = options
     )
   )
-  session$sendCustomMessage("popover", message)
+  session$sendCustomMessage("create-popover", message)
+}
+
+
+
+#' Remove a Bootstrap 4 popover from the server side
+#' 
+#' \link{removePopover} destroys the current targeted popover.
+#'
+#' @param id Popover target id.
+#' @param session Shiny session object.
+#' @export
+#' @rdname popover
+removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage("remove-popover", message = session$ns(id))
 }
 
 
@@ -333,13 +385,6 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
     }
   })
   names(message2) <- names(message)
-  
-  # convert to json
-  message <- jsonlite::toJSON(
-    message2,
-    pretty = TRUE,
-    auto_unbox = TRUE
-  )
   
   session$sendCustomMessage("toast", message2)
   

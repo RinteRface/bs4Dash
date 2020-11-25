@@ -2,7 +2,7 @@
 % Please edit documentation in R/feedbacks.R
 \name{bs4PopoverUI}
 \alias{bs4PopoverUI}
-\title{Create a Bootstrap 4 Popover from the UI side}
+\title{Create a Bootstrap 4 popover from the UI side}
 \usage{
 bs4PopoverUI(
   tag,

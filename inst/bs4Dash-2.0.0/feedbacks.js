@@ -1,6 +1,6 @@
 $(function() {
   // handle tooltip from the server side
-  Shiny.addCustomMessageHandler('tooltip', function(message) {
+  Shiny.addCustomMessageHandler('create-tooltip', function(message) {
   var tooltipTarget;
   if (message.id) {
     tooltipTarget = '#' + message.id;
@@ -9,11 +9,24 @@ $(function() {
       tooltipTarget = message.selector;
     }
   }
-  $(tooltipTarget).tooltip(message.options);
+  $(tooltipTarget)
+    .addClass('has-tooltip')
+    .tooltip(message.options);
+    console.log(`"Tooltip created for ${tooltipTarget}"`);
+ });
+
+ Shiny.addCustomMessageHandler('remove-tooltip', function(message) {
+  var tooltipTarget = '#' + message;
+
+  // only destroys if popover exists
+  if ($(tooltipTarget).hasClass('has-tooltip')) {
+    $(tooltipTarget).tooltip('dispose');
+    console.log(`"Tooltip destroyed for ${tooltipTarget}"`);
+  }
  });
  
  // handle popover from the server side
- Shiny.addCustomMessageHandler('popover', function(message) {
+ Shiny.addCustomMessageHandler('create-popover', function(message) {
   var popoverTarget;
   if (message.id) {
     popoverTarget = '#' + message.id;
@@ -22,7 +35,23 @@ $(function() {
       popoverTarget = message.selector;
     }
   }
-  $(popoverTarget).popover(message.options);
+  // indicate target has popover. This is for removePopover to know
+  // whether the popover exists
+  $(popoverTarget)
+    .addClass('has-popover')
+    .popover(message.options);
+  console.log(`"Popover created for ${popoverTarget}"`);
+ });
+
+
+ Shiny.addCustomMessageHandler('remove-popover', function(message) {
+  var popoverTarget = '#' + message;
+
+  // only destroys if popover exists
+  if ($(popoverTarget).hasClass('has-popover')) {
+    $(popoverTarget).popover('dispose');
+    console.log(`"Popover destroyed for ${popoverTarget}"`);
+  }
  });
   
   
