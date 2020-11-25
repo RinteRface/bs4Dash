@@ -713,55 +713,11 @@ loadingState <- bs4Loading
 
 
 
-#' Alias to \link{bs4TooltipUI}
-#' See \link{bs4TooltipUI} for full details
-#'
-#' @rdname bs4Tooltip
-#'
-#' @export
-tooltip <- bs4TooltipUI
-
-
-
-
-#' Alias to \link{bs4PopoverUI}
-#' See \link{bs4PopoverUI} for full details
-#'
-#' @rdname bs4Popover
-#'
-#' @export
-popover <- bs4PopoverUI
 
 
 
 
 
-#' Alias to \link{bs4Toast}
-#' See \link{bs4Toast} for full details
-#'
-#' @rdname toast
-#'
-#' @export
-toast <- bs4Toast
 
 
 
-
-#' Alias to \link{bs4CreateAlert}
-#' See \link{bs4CreateAlert} for full details
-#'
-#' @rdname alert
-#'
-#' @export
-createAlert <- bs4CreateAlert
-
-
-
-
-#' Alias to \link{bs4CloseAlert}
-#' See \link{bs4CloseAlert} for full details
-#'
-#' @rdname alert
-#'
-#' @export
-closeAlert <- bs4CloseAlert

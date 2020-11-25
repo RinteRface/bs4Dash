@@ -14,7 +14,6 @@
 #' @param placement Tooltip placement: "top", "bottom", "left" or "right". 
 #'
 #' @export
-#' @rdname bs4Tooltip
 #'
 #' @examples
 #' if (interactive()) {
@@ -39,7 +38,7 @@
 #'   server = function(input, output) {}
 #'  )
 #' }
-bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "right")) {
+tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right")) {
   
   placement <- match.arg(placement)
   
@@ -180,7 +179,6 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param placement Popover placement: "top", "bottom", "left" or "right". 
 #'
 #' @export
-#' @rdname bs4Popover
 #'
 #' @examples
 #' if (interactive()) {
@@ -206,7 +204,7 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'   server = function(input, output) {}
 #'  )
 #' }
-bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "left", "right")) {
+popover <- function(tag, content, title, placement = c("top", "bottom", "left", "right")) {
   
   placement <- match.arg(placement)
   
@@ -346,7 +344,6 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param session Shiny session object.
 #' 
 #' @export
-#' @rdname toast
 #'
 #' @examples
 #' if (interactive()) {
@@ -380,7 +377,7 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'  
 #' }
 #' @importFrom jsonlite toJSON
-bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL, 
+toast <- function(title, body = NULL, subtitle = NULL, options = NULL, 
                      session = shiny::getDefaultReactiveDomain()) {
   
   props <- dropNulls(
@@ -485,7 +482,7 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #' }
 #' 
 #' @rdname alert
-bs4CreateAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+createAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
 
   if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
@@ -515,6 +512,6 @@ bs4CreateAlert <- function(id = NULL, selector = NULL, options, session = shiny:
 #' @export
 #' 
 #' @rdname alert
-bs4CloseAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
+closeAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage("close-alert", session$ns(id))
 }

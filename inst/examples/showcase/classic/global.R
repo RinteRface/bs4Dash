@@ -765,16 +765,9 @@ gallery_1_tab <- tabItem(
     box(
       title = "Alerts",
       elevation = 4,
-      bs4Alert(
-        title = "Be Careful!",
-        status = "danger",
-        closable = TRUE,
-        width = 12,
-        "Danger alert preview. This alert is dismissable. 
-                A wonderful serenity has taken possession of my entire soul, 
-                like these sweet mornings of spring which 
-                I enjoy with my whole heart."
-      )
+      actionButton("show_alert", "Show"),
+      actionButton("hide_alert", "Hide"),
+      div(id = "alert_anchor")
     )
   ),
   fluidRow(
@@ -786,9 +779,9 @@ gallery_1_tab <- tabItem(
         status = "danger",
         width = 12,
         "There is a problem that we need to fix. 
-                A wonderful serenity has taken possession of 
-                my entire soul, like these sweet mornings of 
-                spring which I enjoy with my whole heart."
+        A wonderful serenity has taken possession of 
+        my entire soul, like these sweet mornings of 
+        spring which I enjoy with my whole heart."
       )
     )
   ),

@@ -17,12 +17,12 @@ shinyApp(
       fixed = TRUE,
       help = TRUE,
       fullscreen = TRUE,
-      bs4TooltipUI(
+      tooltip(
         title = "This toggles the right sidebar",
         placement = "bottom",
         actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar", class = "mx-2")
       ),
-      bs4PopoverUI(
+      popover(
         title = "Toggle button",
         content = "This toggle the left sidebar",
         placement = "bottom",
@@ -158,7 +158,7 @@ shinyApp(
         )
       )
     ),
-    body = bs4DashBody(
+    body = dashboardBody(
       tags$head(
         tags$script(
           "$(function() {
@@ -170,7 +170,7 @@ shinyApp(
         )
       ),
       e_theme_register(echarts_dark_theme$options, name = echarts_dark_theme$name),
-      bs4TabItems(
+      tabItems(
         basic_cards_tab,
         cards_api_tab,
         social_cards_tab,
@@ -225,19 +225,56 @@ shinyApp(
   server = function(input, output, session) {
     
     useAutoColor()
-    
 
-    # tooltips, popovers ------------------------------------------------------
-    observe({
-      #bs4TooltipServer(
-      #  id = "controlbarToggle", 
-      #  options = list(
-      #    title = "This toggles the right sidebar", 
-      #    placement = "bottom"
-      #  )
-      #)
+    # alerts ------------------------------------------------------------------
+
+    observeEvent(input$show_alert, {
+      print("created")
+      createAlert(
+        id = "alert_anchor",
+        options = list(
+          title = "Be Careful!",
+          status = "danger",
+          closable = TRUE,
+          width = 12,
+          content = "Danger alert preview. This alert is dismissable. 
+          A wonderful serenity has taken possession of my entire soul, 
+          like these sweet mornings of spring which 
+          I enjoy with my whole heart."
+        )
+      )
     })
     
+    observeEvent(input$hide_alert, {
+      print("deleted")
+      closeAlert(id = "alert_anchor")
+    })
+
+    # alert callback event
+    observeEvent(input$alert_anchor, {
+      alertStatus <- if (input$alert_anchor) "opened" else "closed"
+      toastColor <- if (input$alert_anchor) "bg-lime" else "bg-fuchsia"
+      toast(
+        title = sprintf("Alert succesfully %s!", alertStatus), 
+        options = list(
+          class = toastColor,
+          autohide = TRUE,
+          position = "bottomRight"
+        )
+      )
+    })
+
+    # tooltips, popovers ------------------------------------------------------
+
+    #observe({
+    #  addTooltip(
+    #    id = "controlbarToggle", 
+    #    options = list(
+    #      title = "This toggles the right sidebar", 
+    #      placement = "bottom"
+    #    )
+    #  )
+    #})
 
     # plots -------------------------------------------------------------------
     
@@ -293,7 +330,7 @@ shinyApp(
     # current theme info ---------------------------------------------------------
     
     observeEvent(input$dark_mode, {
-      bs4Toast(
+      toast(
         title = if (input$dark_mode) "Dark theme on!" else "Light theme on",
         options = list(position = "topRight", class = "bg-warning", autohide = TRUE)
       )
@@ -346,7 +383,7 @@ shinyApp(
     
     observeEvent(input$sidebar, {
       toastOpts$class <- if (input$sidebar) "bg-success" else "bg-danger"
-      bs4Toast(
+      toast(
         title = if (input$sidebar) "Sidebar opened!" else "Sidebar is closed!", 
         options = toastOpts
       )
@@ -370,7 +407,7 @@ shinyApp(
         position = "bottomRight"
       )
       toastOpts$class <- if (input$controlbar) "bg-success" else "bg-danger"
-      bs4Toast(
+      toast(
         title = if (input$controlbar) "Controlbar opened!" else "Controlbar closed!", 
         options = toastOpts
       )
@@ -386,7 +423,7 @@ shinyApp(
     
     
     observeEvent(input$dropdown_item2, {
-      bs4Toast(
+      toast(
         title = "I am a toast!", 
         options = list(
           autohide = TRUE,
