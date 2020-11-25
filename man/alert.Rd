@@ -69,7 +69,8 @@ if (interactive()) {
       ),
       div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
     ),
-    controlbar = dashboardControlbar()
+    controlbar = dashboardControlbar(),
+    title = "Alerts",
   ),
   server = function(input, output, session) {
     observeEvent(input$obs, {

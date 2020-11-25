@@ -2,6 +2,12 @@
 #' 
 #' This replaces the shinyBS tooltip feature that is not compatible
 #' with Bootstrap 4
+#' 
+#' @note \link{tooltip} does not automatically handles tooltip removal and must be seperately implemented.
+#' If the \link{dashboardHeader} help parameter is TRUE, all tooltips may be enabled
+#' or disabled depending on the switch value, which may solve this problem. 
+#' This allows to toggle tooltips whenever required.
+#' 
 #'
 #' @param tag Tooltip target.
 #' @param title Tooltip title.
@@ -162,6 +168,11 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' 
 #' This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
+#' 
+#' @note \link{popover} does not automatically handles tooltip removal and must be seperately implemented.
+#' If the \link{dashboardHeader} help parameter is TRUE, all popovers may be enabled
+#' or disabled depending on the switch value, which may solve this problem. 
+#' This allows to toggle popovers whenever required.
 #'
 #' @param tag Popover target.
 #' @param content Popover content.
@@ -440,7 +451,8 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #'       ),
 #'       div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
 #'     ),
-#'     controlbar = dashboardControlbar()
+#'     controlbar = dashboardControlbar(),
+#'     title = "Alerts",
 #'   ),
 #'   server = function(input, output, session) {
 #'     observeEvent(input$obs, {

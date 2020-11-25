@@ -27,6 +27,12 @@ popover(tag, content, title, placement = c("top", "bottom", "left", "right"))
 This replaces the shinyBS popover feature that is not compatible
 with Bootstrap 4
 }
+\note{
+\link{popover} does not automatically handles tooltip removal and must be seperately implemented.
+If the \link{dashboardHeader} help parameter is TRUE, all popovers may be enabled
+or disabled depending on the switch value, which may solve this problem. 
+This allows to toggle popovers whenever required.
+}
 \examples{
 if (interactive()) {
  library(shiny)
