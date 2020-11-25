@@ -15,7 +15,14 @@ Description: Make 'Bootstrap 4' dashboards. Use the full power
 URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRface/bs4Dash
 BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
-Imports: shiny, htmltools, jsonlite, fresh, waiter, httpuv
+Imports: 
+    shiny,
+    htmltools,
+    jsonlite,
+    fresh,
+    waiter,
+    httpuv,
+    lifecycle
 Suggests: 
     plotly,
     shinyWidgets,
@@ -50,3 +57,4 @@ Collate:
     'inputs.R'
     'skinSelector.R'
     'utils.R'
+RdMacros: lifecycle

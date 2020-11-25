@@ -41,7 +41,7 @@ help you to develop Shiny apps with a more professional look and feel. Below is 
 | theme selector | ❌ |   ✅ | ✅ |
 | social box | ❌ |   ✅ | ✅ |
 | user box | ❌ |   ✅ | ✅ |
-| control AdminLTE options | ❌ |   ✅ | 
+| control AdminLTE options | ❌ |   ✅ |  | 
 | seamlessly customize appearance | ❌ |  ✅| ✅ |
 | beautiful preloaders | ❌ |   ✅ | ✅ |
 | scroll to top button! | ❌ |   ✅ | ✅ |

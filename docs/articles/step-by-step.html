@@ -168,23 +168,28 @@
 <span id="cb2-30"><a href="#cb2-30"></a> )</span>
 <span id="cb2-31"><a href="#cb2-31"></a>)</span></code></pre></div>
 <p>A lot of options are available:</p>
-<pre><code>- __disable__ to disable the sidebar.
-- __width__ controls the sidebar width.
-- Two __skins__, namely "light" or "dark".
-- __elevation__ is a number between 0 and 5, which applies a shadow to the sidebar to
-add a shadow effect.
-- The sidebar status determins which color `menuItem()` have. 
-There are 20 different colors listed in `getAdminLTEColors()`.
-- __collapsed__ , if TRUE the sidebar is collapsed at start.
-- __minified__, if TRUE the sidebar is minified at start. What is the difference between collapse and minified?
-Minified means a little part of the sidebar is still visible. 
-- __expandOnHover__, when minified is TRUE, if this property is TRUE, the sidebar opens when hovering but re-collapses
-as soon as the focus is lost.
-- __fixed__, if TRUE, the sidebar has a vertical overflow, which allows to see all menus at once without
-scrolling up and down.
-- __id__ is used by the `updateSidebar()` function to programmatically toggle the sidebar on the server.
-`input$&lt;id&gt;` indicates the state of the sidebar: TRUE means open and FALSE means collapsed/minified.
-- __customArea__ is an area at the bottom of the sidebar to contain elements like buttons.</code></pre>
+<ul>
+<li>
+<strong>disable</strong> to disable the sidebar.</li>
+<li>
+<strong>width</strong> controls the sidebar width.</li>
+<li>Two <strong>skins</strong>, namely “light” or “dark”.</li>
+<li>
+<strong>elevation</strong> is a number between 0 and 5, which applies a shadow to the sidebar to add a shadow effect.</li>
+<li>The sidebar status determins which color <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code> have. There are 20 different colors listed in <code><a href="../reference/getAdminLTEColors.html">getAdminLTEColors()</a></code>.</li>
+<li>
+<strong>collapsed</strong> , if TRUE the sidebar is collapsed at start.</li>
+<li>
+<strong>minified</strong>, if TRUE the sidebar is minified at start. What is the difference between collapse and minified? Minified means a little part of the sidebar is still visible.</li>
+<li>
+<strong>expandOnHover</strong>, when minified is TRUE, if this property is TRUE, the sidebar opens when hovering but re-collapses as soon as the focus is lost.</li>
+<li>
+<strong>fixed</strong>, if TRUE, the sidebar has a vertical overflow, which allows to see all menus at once without scrolling up and down.</li>
+<li>
+<strong>id</strong> is used by the <code><a href="../reference/bs4DashSidebar.html">updateSidebar()</a></code> function to programmatically toggle the sidebar on the server. <code>input$&lt;id&gt;</code> indicates the state of the sidebar: TRUE means open and FALSE means collapsed/minified.</li>
+<li>
+<strong>customArea</strong> is an area at the bottom of the sidebar to contain elements like buttons.</li>
+</ul>
 <p>The skin switch feature allows to automatically toggle the sidebar skin.</p>
 <p><img src="figures/bs4Dash_sidebar.png"><br></p>
 <p>Importantly, the sidebar contains <code><a href="../reference/bs4DashSidebar.html">sidebarMenu()</a></code> as well as other items like …</p>
@@ -193,26 +198,26 @@ scrolling up and down.
 <h2 class="hasAnchor">
 <a href="#navbar-setup" class="anchor"></a>Navbar Setup</h2>
 <p>The <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code> function creates a navbar for <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">dashboardHeader</span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">title =</span> <span class="ot">NULL</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">titleWidth =</span> <span class="ot">NULL</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">disable =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">.list =</span> <span class="ot">NULL</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="dt">status =</span> <span class="st">"white"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="dt">border =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="dt">compact =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-10"><a href="#cb4-10"></a>  <span class="dt">sidebarIcon =</span> shiny<span class="op">::</span><span class="kw">icon</span>(<span class="st">"bars"</span>),</span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="dt">controlbarIcon =</span> shiny<span class="op">::</span><span class="kw">icon</span>(<span class="st">"th"</span>),</span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">fullscreen =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">help =</span> <span class="ot">FALSE</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">leftUi =</span> <span class="ot">NULL</span>,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="dt">rightUi =</span> <span class="ot">NULL</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">dashboardHeader</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">title =</span> <span class="ot">NULL</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">titleWidth =</span> <span class="ot">NULL</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">disable =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">.list =</span> <span class="ot">NULL</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">skin =</span> <span class="st">"light"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">status =</span> <span class="st">"white"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="dt">border =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">compact =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="dt">sidebarIcon =</span> shiny<span class="op">::</span><span class="kw">icon</span>(<span class="st">"bars"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="dt">controlbarIcon =</span> shiny<span class="op">::</span><span class="kw">icon</span>(<span class="st">"th"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">fixed =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">fullscreen =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">help =</span> <span class="ot">FALSE</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">leftUi =</span> <span class="ot">NULL</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">rightUi =</span> <span class="ot">NULL</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>)</span></code></pre></div>
 <p><img src="figures/bs4Dash_navbar.png"><br></p>
 <p>The <strong>title</strong> parameter can host simple text but more complex content like <code><a href="../reference/bs4DashBrand.html">dashboardBrand()</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">title</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bs4DashBrand.html">dashboardBrand</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"My dashboard"</span>,
     color <span class="op">=</span> <span class="st">"primary"</span>,
@@ -226,7 +231,7 @@ scrolling up and down.
 <h2 class="hasAnchor">
 <a href="#right-sidebar-setup" class="anchor"></a>Right Sidebar Setup</h2>
 <p><code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> provides an extra sidebar, on the right side:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">dashboardControlbar</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="cn">NULL</span>,
     disable <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -238,7 +243,7 @@ scrolling up and down.
 <span class="op">)</span></code></pre></div>
 <p>Like the <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>, <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> may be programmatically toggled on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbar()</a></code>, provided that the <strong>id</strong> parameter has a value. In practice, if no id is passed by the user, <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> assigns a specific id. One can control the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> state at start with <strong>collapsed</strong>. If TRUE, the controlbar is collapsed and inversely. By default, <strong>overlay</strong> is TRUE, meaning that the controlbar opens on top of the body content. If FALSE, it pushes and the body content to the left. <strong>pinned</strong> allows the controlbar to remain open even after a click outside (clicking outside collapses the controlbar by default). This is useful to keep focus on important options whenever necessary. Finally, the controlbar is entirely themable, like <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code> and <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>.</p>
 <p><code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> contains <code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> that hosts <code><a href="../reference/bs4DashControlbar.html">controlbarItem()</a></code>. This feature is built on top the <code><a href="https://shiny.rstudio.com/reference/shiny/latest/tabsetPanel.html">shiny::tabsetPanel</a></code>, that has been rebranded for Bootstrap 4 compatibility:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">controlbarMenu</a></span><span class="op">(</span>
     <span class="va">...</span>,
     id <span class="op">=</span> <span class="cn">NULL</span>,
@@ -250,7 +255,7 @@ scrolling up and down.
     .list <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
 <p><code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> may be updated on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbarMenu()</a></code> (which is no more than <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>). If you want to have a simple container without menu, you’ll have to add a specific class to account for padding, as shown below:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">dashboardControlbar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>
         class <span class="op">=</span> <span class="st">"p-3"</span>,
@@ -263,7 +268,7 @@ scrolling up and down.
 <h2 class="hasAnchor">
 <a href="#footer-setup" class="anchor"></a>Footer Setup</h2>
 <p>We will use <code><a href="../reference/bs4DashFooter.html">dashboardFooter()</a></code>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashFooter.html">dashboardFooter</a></span><span class="op">(</span>
  left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">a</a></span><span class="op">(</span>
    href <span class="op">=</span> <span class="st">"https://twitter.com/divadnojnarg"</span>, 
@@ -277,7 +282,7 @@ scrolling up and down.
 <h2 class="hasAnchor">
 <a href="#setting-up-the-body-content" class="anchor"></a>Setting up the body content</h2>
 <p><code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> is the main dashboard container:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashBody.html">dashboardBody</a></span><span class="op">(</span>
  <span class="fu"><a href="../reference/bs4DashBody.html">tabItems</a></span><span class="op">(</span>
    <span class="fu"><a href="../reference/bs4DashBody.html">tabItem</a></span><span class="op">(</span>
@@ -334,7 +339,7 @@ scrolling up and down.
 <a href="#wrap-up" class="anchor"></a>Wrap Up</h2>
 <p>Below is the code for your first <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> application:</p>
 <details><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Basic Dashboard"</span>,

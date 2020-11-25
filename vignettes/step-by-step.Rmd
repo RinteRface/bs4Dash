@@ -79,23 +79,23 @@ dashboardSidebar(
 
 A lot of options are available:
 
-    - __disable__ to disable the sidebar.
-    - __width__ controls the sidebar width.
-    - Two __skins__, namely "light" or "dark".
-    - __elevation__ is a number between 0 and 5, which applies a shadow to the sidebar to
-    add a shadow effect.
-    - The sidebar status determins which color `menuItem()` have. 
-    There are 20 different colors listed in `getAdminLTEColors()`.
-    - __collapsed__ , if TRUE the sidebar is collapsed at start.
-    - __minified__, if TRUE the sidebar is minified at start. What is the difference between collapse and minified?
-    Minified means a little part of the sidebar is still visible. 
-    - __expandOnHover__, when minified is TRUE, if this property is TRUE, the sidebar opens when hovering but re-collapses
-    as soon as the focus is lost.
-    - __fixed__, if TRUE, the sidebar has a vertical overflow, which allows to see all menus at once without
-    scrolling up and down.
-    - __id__ is used by the `updateSidebar()` function to programmatically toggle the sidebar on the server.
-    `input$<id>` indicates the state of the sidebar: TRUE means open and FALSE means collapsed/minified.
-    - __customArea__ is an area at the bottom of the sidebar to contain elements like buttons.
+- __disable__ to disable the sidebar.
+- __width__ controls the sidebar width.
+- Two __skins__, namely "light" or "dark".
+- __elevation__ is a number between 0 and 5, which applies a shadow to the sidebar to
+add a shadow effect.
+- The sidebar status determins which color `menuItem()` have. 
+There are 20 different colors listed in `getAdminLTEColors()`.
+- __collapsed__ , if TRUE the sidebar is collapsed at start.
+- __minified__, if TRUE the sidebar is minified at start. What is the difference between collapse and minified?
+Minified means a little part of the sidebar is still visible. 
+- __expandOnHover__, when minified is TRUE, if this property is TRUE, the sidebar opens when hovering but re-collapses
+as soon as the focus is lost.
+- __fixed__, if TRUE, the sidebar has a vertical overflow, which allows to see all menus at once without
+scrolling up and down.
+- __id__ is used by the `updateSidebar()` function to programmatically toggle the sidebar on the server.
+`input$<id>` indicates the state of the sidebar: TRUE means open and FALSE means collapsed/minified.
+- __customArea__ is an area at the bottom of the sidebar to contain elements like buttons.
 
 The skin switch feature allows to automatically toggle the sidebar skin. 
 
