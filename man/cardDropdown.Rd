@@ -43,7 +43,5 @@ Other boxWidgets:
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
-
-David Granjon, \email{dgranjon@ymail.com}
 }
 \concept{boxWidgets}

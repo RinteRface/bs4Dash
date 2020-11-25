@@ -42,7 +42,9 @@
   
 
 <meta property="og:title" content="AdminLTE3 card profile — cardProfile" />
-<meta property="og:description" content="Create card profile" />
+<meta property="og:description" content="boxProfile goes inside a box. Displays user informations in an elegant
+container.
+Create card profile item" />
 
 
 
@@ -74,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -117,94 +119,124 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>AdminLTE3 card profile</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>cardProfile.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create card profile</p>
+    <p>boxProfile goes inside a <a href='descriptionBlock.html'>box</a>. Displays user informations in an elegant
+container.</p>
+<p>Create card profile item</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cardProfile</span>(<span class='no'>...</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cardProfile</span><span class='op'>(</span><span class='va'>...</span>, image <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>title</span>, subtitle <span class='op'>=</span> <span class='cn'>NULL</span>, bordered <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>cardProfileItem</span><span class='op'>(</span><span class='va'>title</span>, <span class='va'>description</span><span class='op'>)</span>
+
+<span class='fu'>boxProfile</span><span class='op'>(</span><span class='va'>...</span>, image <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>title</span>, subtitle <span class='op'>=</span> <span class='cn'>NULL</span>, bordered <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>boxProfileItem</span><span class='op'>(</span><span class='va'>title</span>, <span class='va'>description</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Any element such as <a href='cardProfileItemList.html'>cardProfileItemList</a>.</p></td>
+      <td><p>Any element such as boxProfileItem.</p></td>
     </tr>
     <tr>
-      <th>src</th>
+      <th>image</th>
       <td><p>Profile image, if any.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Title.</p></td>
+      <td><p>Item title.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
       <td><p>Subtitle.</p></td>
     </tr>
+    <tr>
+      <th>bordered</th>
+      <td><p>Whether the container should have a border or not. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td><p>Item info.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other boxWidgets: 
+<code><a href='attachmentBlock.html'>attachmentBlock</a>()</code>,
+<code><a href='bs4CardLabel.html'>bs4CardLabel</a>()</code>,
+<code><a href='bs4CardSidebar.html'>bs4CardSidebar</a>()</code>,
+<code><a href='bs4Carousel.html'>bs4Carousel</a>()</code>,
+<code><a href='bs4SocialCard.html'>bs4SocialCard</a>()</code>,
+<code><a href='bs4Timeline.html'>bs4Timeline</a>()</code>,
+<code><a href='cardDropdown.html'>cardDropdown</a>()</code>,
+<code><a href='descriptionBlock.html'>descriptionBlock</a>()</code>,
+<code><a href='userPost.html'>userPost</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(
-      <span class='fu'><a href='bs4SidebarMenu.html'>bs4SidebarMenu</a></span>(
-       <span class='fu'><a href='bs4SidebarHeader.html'>bs4SidebarHeader</a></span>(<span class='st'>"Main content"</span>),
-       <span class='fu'><a href='bs4SidebarMenuItem.html'>bs4SidebarMenuItem</a></span>(
-         <span class='st'>"Profile Card"</span>,
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"profile_card"</span>,
-         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"desktop"</span>
-       )
-      )
-     ),
-     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-      <span class='fu'><a href='bs4TabItems.html'>bs4TabItems</a></span>(
-       <span class='fu'><a href='bs4TabItem.html'>bs4TabItem</a></span>(
-         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"profile_card"</span>,
-         <span class='fu'><a href='bs4Card.html'>bs4Card</a></span>(
-          <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
-          <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='fu'>cardProfile</span>(
-           <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Nina Mcintire"</span>,
-           <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Software Engineer"</span>,
-           <span class='fu'><a href='cardProfileItemList.html'>cardProfileItemList</a></span>(
-            <span class='kw'>bordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='cardProfileItem.html'>cardProfileItem</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Followers"</span>,
-             <span class='kw'>description</span> <span class='kw'>=</span> <span class='fl'>1322</span>
-            ),
-            <span class='fu'><a href='cardProfileItem.html'>cardProfileItem</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Following"</span>,
-             <span class='kw'>description</span> <span class='kw'>=</span> <span class='fl'>543</span>
-            ),
-            <span class='fu'><a href='cardProfileItem.html'>cardProfileItem</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Friends"</span>,
-             <span class='kw'>description</span> <span class='kw'>=</span> <span class='fl'>13287</span>
-            )
-           )
-          )
-        )
-       )
-      )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
+      header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
+      sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span>
+        <span class='fu'><a href='bs4DashSidebar.html'>sidebarMenu</a></span><span class='op'>(</span>
+          <span class='fu'><a href='bs4DashSidebar.html'>sidebarHeader</a></span><span class='op'>(</span><span class='st'>"Main content"</span><span class='op'>)</span>,
+          <span class='fu'><a href='bs4DashSidebar.html'>menuItem</a></span><span class='op'>(</span>
+            <span class='st'>"Profile Card"</span>,
+            tabName <span class='op'>=</span> <span class='st'>"profile_card"</span>,
+            icon <span class='op'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"desktop"</span><span class='op'>)</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>,
+      controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
+      footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
+      title <span class='op'>=</span> <span class='st'>"boxProfile"</span>,
+      body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
+        <span class='fu'><a href='bs4DashBody.html'>tabItems</a></span><span class='op'>(</span>
+          <span class='fu'><a href='bs4DashBody.html'>tabItem</a></span><span class='op'>(</span>
+            tabName <span class='op'>=</span> <span class='st'>"profile_card"</span>,
+            <span class='fu'><a href='descriptionBlock.html'>bs4Card</a></span><span class='op'>(</span>
+              status <span class='op'>=</span> <span class='st'>"primary"</span>,
+              solidHeader <span class='op'>=</span> <span class='cn'>TRUE</span>,
+              <span class='fu'>boxProfile</span><span class='op'>(</span>
+                image <span class='op'>=</span> <span class='st'>"https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"</span>,
+                title <span class='op'>=</span> <span class='st'>"Nina Mcintire"</span>,
+                subtitle <span class='op'>=</span> <span class='st'>"Software Engineer"</span>,
+                bordered <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                <span class='fu'>boxProfileItem</span><span class='op'>(</span>
+                  title <span class='op'>=</span> <span class='st'>"Followers"</span>,
+                  description <span class='op'>=</span> <span class='fl'>1322</span>
+                <span class='op'>)</span>,
+                <span class='fu'>boxProfileItem</span><span class='op'>(</span>
+                  title <span class='op'>=</span> <span class='st'>"Following"</span>,
+                  description <span class='op'>=</span> <span class='fl'>543</span>
+                <span class='op'>)</span>,
+                <span class='fu'>boxProfileItem</span><span class='op'>(</span>
+                  title <span class='op'>=</span> <span class='st'>"Friends"</span>,
+                  description <span class='op'>=</span> <span class='fl'>13287</span>
+                <span class='op'>)</span>
+              <span class='op'>)</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>,
+    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -220,7 +252,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

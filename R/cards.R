@@ -654,8 +654,6 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
 #'
 #' @rdname cardDropdown
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
 #' @export
 cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
   shiny::tags$a(
@@ -731,6 +729,8 @@ dropdownDivider <- function() {
 #' @param elevation Value box elevation.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @rdname bs4ValueBox
 #'
 #' @family cards
 #' @examples
@@ -907,6 +907,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #' may be used to navigate between multiple \link{tabItem}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname bs4InfoBox
 #'
 #' @family cards
 #' @examples
@@ -1612,8 +1613,6 @@ cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FA
 #' @param title Item title.
 #' @param description Item info.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
 #' @rdname cardProfile
 #'
 #' @export
@@ -1796,8 +1795,6 @@ userBlock <- function(image, title, subtitle = NULL) {
 #' @rdname socialBox
 #' @family boxWidgets
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
 #' @export
 cardComment <- function(..., image, title = NULL, date = NULL) {
   comment <- list(...)
@@ -1847,7 +1844,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'       header = dashboardHeader(),
 #'       sidebar = dashboardSidebar(),
 #'       body = dashboardBody(
-#'         bs4CardLayout(
+#'         boxLayout(
 #'           type = "group",
 #'           lapply(1:4, function(i) {
 #'             box(
@@ -1860,7 +1857,8 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'           })
 #'         )
 #'       ),
-#'       controlbar = dashboardControlbar()
+#'       controlbar = dashboardControlbar(),
+#'       title = "Box layout group"
 #'     ),
 #'     server = function(input, output) {}
 #'   )
@@ -1871,7 +1869,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'       header = dashboardHeader(),
 #'       sidebar = dashboardSidebar(),
 #'       body = dashboardBody(
-#'         bs4CardLayout(
+#'         boxLayout(
 #'           type = "deck",
 #'           lapply(1:4, function(i) {
 #'             box(
@@ -1884,7 +1882,8 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'           })
 #'         )
 #'       ),
-#'       controlbar = dashboardControlbar()
+#'       controlbar = dashboardControlbar(),
+#'       title = "Box layout deck"
 #'     ),
 #'     server = function(input, output) {}
 #'   )
@@ -1895,7 +1894,7 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'       header = dashboardHeader(),
 #'       sidebar = dashboardSidebar(),
 #'       body = dashboardBody(
-#'         bs4CardLayout(
+#'         boxLayout(
 #'           type = "columns",
 #'           lapply(1:12, function(i) {
 #'             box(
@@ -1911,7 +1910,8 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'           })
 #'         )
 #'       ),
-#'       controlbar = dashboardControlbar()
+#'       controlbar = dashboardControlbar(),
+#'       title = "Box layout columns"
 #'     ),
 #'     server = function(input, output) {}
 #'   )

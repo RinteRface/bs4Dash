@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Boostrap 4 dashboard footer — bs4DashFooter • bs4Dash</title>
+<title>Dashboard Footer — bs4DashFooter • bs4Dash</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Boostrap 4 dashboard footer — bs4DashFooter" />
-<meta property="og:description" content="Build an adminLTE3 dashboard footer" />
+<meta property="og:title" content="Dashboard Footer — bs4DashFooter" />
+<meta property="og:description" content="This creates a dashboard footer to insert in dashboardPage." />
 
 
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -116,32 +116,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Boostrap 4 dashboard footer</h1>
+    <h1>Dashboard Footer</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardFooter.R'><code>R/dashboardFooter.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>bs4DashFooter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Build an adminLTE3 dashboard footer</p>
+    <p>This creates a dashboard footer to insert in <a href='bs4DashPage.html'>dashboardPage</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4DashFooter</span>(<span class='no'>...</span>, <span class='kw'>copyrights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>right_text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>bs4DashFooter</span><span class='op'>(</span>left <span class='op'>=</span> <span class='cn'>NULL</span>, right <span class='op'>=</span> <span class='cn'>NULL</span>, fixed <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>dashboardFooter</span>(<span class='no'>...</span>, <span class='kw'>copyrights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>right_text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>dashboardFooter</span><span class='op'>(</span>left <span class='op'>=</span> <span class='cn'>NULL</span>, right <span class='op'>=</span> <span class='cn'>NULL</span>, fixed <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
+      <th>left</th>
       <td><p>Left text.</p></td>
     </tr>
     <tr>
-      <th>copyrights</th>
-      <td><p>Copyrights, if any.</p></td>
-    </tr>
-    <tr>
-      <th>right_text</th>
+      <th>right</th>
       <td><p>Right text.</p></td>
     </tr>
     <tr>
@@ -150,6 +146,9 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -166,7 +165,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

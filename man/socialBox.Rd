@@ -108,54 +108,53 @@ Create a card comment to insert in \link{socialBox}
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    dashboardHeader(),
-    dashboardSidebar(),
-    dashboardBody(
-     socialBox(
-      title = userBlock(
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-       title = "Social Box",
-       subtitle = "example-01.05.2018"
-      ),
-      "Some text here!",
-      attachmentBlock(
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
-       title = "Test",
-       href = "https://google.com",
-       "This is the content"
-      ),
-      lapply(X = 1:10, FUN = function(i) {
-        boxComment(
-          image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-          title = paste("Comment", i),
-          date = "01.05.2018",
-          paste0("The ", i, "-th comment")
-        )
-      }),
-      footer = "The footer here!"
-     )
-    ),
-    controlbar = dashboardControlbar(),
-    title = "socialBox"
-  ),
-  server = function(input, output) { }
- )
-}
+  library(shiny)
+  library(bs4Dash)
 
+  shinyApp(
+    ui = dashboardPage(
+      dashboardHeader(),
+      dashboardSidebar(),
+      dashboardBody(
+        socialBox(
+          title = userBlock(
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+            title = "Social Box",
+            subtitle = "example-01.05.2018"
+          ),
+          "Some text here!",
+          attachmentBlock(
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+            title = "Test",
+            href = "https://google.com",
+            "This is the content"
+          ),
+          lapply(X = 1:10, FUN = function(i) {
+            boxComment(
+              image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+              title = paste("Comment", i),
+              date = "01.05.2018",
+              paste0("The ", i, "-th comment")
+            )
+          }),
+          footer = "The footer here!"
+        )
+      ),
+      controlbar = dashboardControlbar(),
+      title = "socialBox"
+    ),
+    server = function(input, output) { }
+  )
+}
 }
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4InfoBox}()},
 \code{\link{bs4TabCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()},
-\code{\link{descriptionBlock}()}
+\code{\link{descriptionBlock}()},
+\code{\link{renderbs4InfoBox}()},
+\code{\link{renderbs4ValueBox}()}
 
 Other boxWidgets: 
 \code{\link{attachmentBlock}()},
@@ -180,8 +179,6 @@ Other boxWidgets:
 \code{\link{userPost}()}
 }
 \author{
-David Granjon, \email{dgranjon@ymail.com}
-
 David Granjon, \email{dgranjon@ymail.com}
 }
 \concept{boxWidgets}

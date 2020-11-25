@@ -63,38 +63,37 @@ To insert in the sidebar slot of \link{box}.
 \examples{
 # Toggle a box sidebar
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
-    body = dashboardBody(
-      box(
-        title = "Update box sidebar", 
-        closable = TRUE, 
-        width = 12,
-        height = "500px",
-        solidHeader = FALSE, 
-        collapsible = TRUE,
-        actionButton("update", "Toggle card sidebar"),
-        sidebar = boxSidebar(
-          id = "mycardsidebar",
-          p("Sidebar Content")
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      body = dashboardBody(
+        box(
+          title = "Update box sidebar",
+          closable = TRUE,
+          width = 12,
+          height = "500px",
+          solidHeader = FALSE,
+          collapsible = TRUE,
+          actionButton("update", "Toggle card sidebar"),
+          sidebar = boxSidebar(
+            id = "mycardsidebar",
+            p("Sidebar Content")
+          )
         )
-      )
+      ),
+      sidebar = dashboardSidebar()
     ),
-    sidebar = dashboardSidebar()
-  ),
-  server = function(input, output, session) {
-    observe(print(input$mycardsidebar))
-    
-    observeEvent(input$update, {
-      updateBoxSidebar("mycardsidebar")
-    })
-    
-  }
- )
+    server = function(input, output, session) {
+      observe(print(input$mycardsidebar))
+
+      observeEvent(input$update, {
+        updateBoxSidebar("mycardsidebar")
+      })
+    }
+  )
 }
 }
 \seealso{

@@ -179,53 +179,52 @@ User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
 to get the state of the box and update it on the server with \link{updateBox}.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(bs4Dash)
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
 
- shinyApp(
-   ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
-    controlbar = dashboardControlbar(),
-    footer = dashboardFooter(),
-    title = "tabBox",
-    body = dashboardBody(
-     tabBox(
-      id = "tabcard",
-      title = "A card with tabs",
-      selected = "Tab 2",
-      status = "primary",
-      solidHeader = FALSE, 
-      type = "tabs",
-      tabPanel(
-       title = "Tab 1", 
-       "Content 1"
-      ),
-      tabPanel(
-       title = "Tab 2", 
-       "Content 2"
-      ),
-      tabPanel(
-       title = "Tab 3", 
-       "Content 3"
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "tabBox",
+      body = dashboardBody(
+        tabBox(
+          id = "tabcard",
+          title = "A card with tabs",
+          selected = "Tab 2",
+          status = "primary",
+          solidHeader = FALSE,
+          type = "tabs",
+          tabPanel(
+            title = "Tab 1",
+            "Content 1"
+          ),
+          tabPanel(
+            title = "Tab 2",
+            "Content 2"
+          ),
+          tabPanel(
+            title = "Tab 3",
+            "Content 3"
+          )
+        )
       )
-     )
-    )
-   ),
-   server = function(input, output) {}
- )
+    ),
+    server = function(input, output) {}
+  )
 }
-
 }
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()},
-\code{\link{descriptionBlock}()}
+\code{\link{descriptionBlock}()},
+\code{\link{renderbs4InfoBox}()},
+\code{\link{renderbs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

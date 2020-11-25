@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -71,13 +71,14 @@
 
       
 
-      </header><script src="bs4Themes_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="bs4Themes_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="bs4Themes_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="bs4Themes_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Themes</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-08-28</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Themes.Rmd"><code>vignettes/bs4Themes.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Themes.Rmd</code></div>
@@ -91,96 +92,98 @@
 <h2 class="hasAnchor">
 <a href="#default-theme" class="anchor"></a>Default theme</h2>
 <p><img src="figures/bs4DashClassic.png"><br></p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bs4Dash</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
 
- <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
-   <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
-     <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),
-     <span class="kw">sidebar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(
-      <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>,
-      <span class="fu"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(
-       <span class="fu"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Main content"</span>),
-       <span class="fu"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
+ <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span><span class="op">(</span>
+     navbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span><span class="op">(</span><span class="op">)</span>,
+     sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span><span class="op">(</span>
+      skin <span class="op">=</span> <span class="st">"light"</span>,
+      <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu</a></span><span class="op">(</span>
+       <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarHeader</a></span><span class="op">(</span><span class="st">"Main content"</span><span class="op">)</span>,
+       <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem</a></span><span class="op">(</span>
          <span class="st">"Classic theme"</span>,
-         <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"classic"</span>,
-         <span class="kw">icon</span> <span class="kw">=</span> <span class="st">"desktop"</span>
-       )
-      )
-     ),
-     <span class="kw">controlbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(
-      <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>
-     ),
-     <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),
-     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Classic theme"</span>,
-     <span class="kw">body</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(
-      <span class="fu"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(
-       <span class="fu"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
-         <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"classic"</span>,
-         <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
-          <span class="fu"><a href="../reference/bs4Box.html">bs4Box</a></span>(
-           <span class="kw">height</span> <span class="kw">=</span> <span class="st">"600px"</span>,
-           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Box 1"</span>
-          ),
-          <span class="fu"><a href="../reference/bs4Box.html">bs4Box</a></span>(
-           <span class="kw">height</span> <span class="kw">=</span> <span class="st">"600px"</span>,
-           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Box 2"</span>
-          )
-         )
-       )
-      )
-     )
-   ),
-   <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {}
- )</pre></body></html></div>
+         tabName <span class="op">=</span> <span class="st">"classic"</span>,
+         icon <span class="op">=</span> <span class="st">"desktop"</span>
+       <span class="op">)</span>
+      <span class="op">)</span>
+     <span class="op">)</span>,
+     controlbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span><span class="op">(</span>
+      skin <span class="op">=</span> <span class="st">"light"</span>
+     <span class="op">)</span>,
+     footer <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span><span class="op">(</span><span class="op">)</span>,
+     title <span class="op">=</span> <span class="st">"Classic theme"</span>,
+     body <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span><span class="op">(</span>
+      <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItems</a></span><span class="op">(</span>
+       <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItem</a></span><span class="op">(</span>
+         tabName <span class="op">=</span> <span class="st">"classic"</span>,
+         <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+          <span class="fu">bs4Box</span><span class="op">(</span>
+           height <span class="op">=</span> <span class="st">"600px"</span>,
+           title <span class="op">=</span> <span class="st">"Box 1"</span>
+          <span class="op">)</span>,
+          <span class="fu">bs4Box</span><span class="op">(</span>
+           height <span class="op">=</span> <span class="st">"600px"</span>,
+           title <span class="op">=</span> <span class="st">"Box 2"</span>
+          <span class="op">)</span>
+         <span class="op">)</span>
+       <span class="op">)</span>
+      <span class="op">)</span>
+     <span class="op">)</span>
+   <span class="op">)</span>,
+   server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span>
+ <span class="op">)</span></code></pre></div>
 </div>
 <div id="old-school-theme" class="section level2">
 <h2 class="hasAnchor">
 <a href="#old-school-theme" class="anchor"></a>Old school theme</h2>
 <p><img src="figures/bs4DashOldSchool.png"><br></p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bs4Dash</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
 
- <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
-   <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
-     <span class="kw">old_school</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-     <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),
-     <span class="kw">sidebar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(
-      <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>,
-      <span class="fu"><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu</a></span>(
-       <span class="fu"><a href="../reference/bs4SidebarHeader.html">bs4SidebarHeader</a></span>(<span class="st">"Main content"</span>),
-       <span class="fu"><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem</a></span>(
+ <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span><span class="op">(</span>
+     old_school <span class="op">=</span> <span class="cn">TRUE</span>,
+     navbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span><span class="op">(</span><span class="op">)</span>,
+     sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span><span class="op">(</span>
+      skin <span class="op">=</span> <span class="st">"light"</span>,
+      <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu</a></span><span class="op">(</span>
+       <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarHeader</a></span><span class="op">(</span><span class="st">"Main content"</span><span class="op">)</span>,
+       <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem</a></span><span class="op">(</span>
          <span class="st">"Old-school theme"</span>,
-         <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"old-school"</span>,
-         <span class="kw">icon</span> <span class="kw">=</span> <span class="st">"desktop"</span>
-       )
-      )
-     ),
-     <span class="kw">controlbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(
-      <span class="kw">skin</span> <span class="kw">=</span> <span class="st">"light"</span>
-     ),
-     <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),
-     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Old-school theme"</span>,
-     <span class="kw">body</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(
-      <span class="fu"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(
-       <span class="fu"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
-         <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"old-school"</span>,
-         <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
-          <span class="fu"><a href="../reference/bs4Box.html">bs4Box</a></span>(
-           <span class="kw">height</span> <span class="kw">=</span> <span class="st">"600px"</span>,
-           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Box 1"</span>
-          ),
-          <span class="fu"><a href="../reference/bs4Box.html">bs4Box</a></span>(
-           <span class="kw">height</span> <span class="kw">=</span> <span class="st">"600px"</span>,
-           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Box 2"</span>
-          )
-         )
-       )
-      )
-     )
-   ),
-   <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {}
- )</pre></body></html></div>
+         tabName <span class="op">=</span> <span class="st">"old-school"</span>,
+         icon <span class="op">=</span> <span class="st">"desktop"</span>
+       <span class="op">)</span>
+      <span class="op">)</span>
+     <span class="op">)</span>,
+     controlbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span><span class="op">(</span>
+      skin <span class="op">=</span> <span class="st">"light"</span>
+     <span class="op">)</span>,
+     footer <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span><span class="op">(</span><span class="op">)</span>,
+     title <span class="op">=</span> <span class="st">"Old-school theme"</span>,
+     body <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span><span class="op">(</span>
+      <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItems</a></span><span class="op">(</span>
+       <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItem</a></span><span class="op">(</span>
+         tabName <span class="op">=</span> <span class="st">"old-school"</span>,
+         <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+          <span class="fu">bs4Box</span><span class="op">(</span>
+           height <span class="op">=</span> <span class="st">"600px"</span>,
+           title <span class="op">=</span> <span class="st">"Box 1"</span>
+          <span class="op">)</span>,
+          <span class="fu">bs4Box</span><span class="op">(</span>
+           height <span class="op">=</span> <span class="st">"600px"</span>,
+           title <span class="op">=</span> <span class="st">"Box 2"</span>
+          <span class="op">)</span>
+         <span class="op">)</span>
+       <span class="op">)</span>
+      <span class="op">)</span>
+     <span class="op">)</span>
+   <span class="op">)</span>,
+   server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span>
+ <span class="op">)</span></code></pre></div>
 </div>
 <div id="limitations" class="section level2">
 <h2 class="hasAnchor">
@@ -204,7 +207,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

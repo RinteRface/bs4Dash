@@ -3,7 +3,7 @@ reference:
   desc: Dashboard skeleton functions
   contents: 
   - '`dashboardPage`'
-  - '`dashboardNavbar`'
+  - '`dashboardHeader`'
   - '`dashboardBody`'
   - '`dashboardFooter`'
   - '`dashboardSidebar`'
@@ -13,6 +13,7 @@ reference:
   desc: Bootstrap 4 Layout utils
   contents: 
   - '`column`'
+  - '`boxLayout`'
   
   
 - title: Feedback related functions
@@ -83,7 +84,7 @@ reference:
   contents:
   - '`controlbarMenu`'
   - '`controlbarItem`'
-  
+
 
 - title: Boxes
   desc: Main containers
@@ -108,8 +109,7 @@ reference:
 
   
 - title: Tabs elements
-  desc: Functions that are to be used in tabBox or standalone. They overwrite {shiny} default to be
-  compatible with Bootstrap 4.
+  desc: Functions that are to be used in tabBox or standalone. They overwrite {shiny} default to be compatible with Bootstrap 4.
   contents:
   - '`insertTab`'
   - '`tabsetPanel`'
@@ -141,8 +141,8 @@ reference:
   - '`userMessage`'
   - '`userMessages`'
   - '`userPost`'
-  - '`userPostToolItems`'
-  - '`userPostToolItem`'
+  - '`userPostTagItems`'
+  - '`userPostTagItem`'
   - '`userPostMedia`'
 
   
@@ -181,14 +181,21 @@ reference:
   - '`loadingState`'
   - '`progressBar`'
   - '`ribbon`'
-  - '`starsBlock`'
-  - '`timeline`'
+  - '`starBlock`'
+  - '`timelineBlock`'
   - '`timelineEnd`'
   - '`timelineItem`'
   - '`timelineItemMedia`'
   - '`timelineLabel`'
   - '`timelineStart`'
   - '`getAdminLTEColors`'
+
+
+- title: CSS extras
+  desc: Pimp your app
+  contents:
+  - '`skinSelector`'
+  - '`useAutoColor`' 
 
 
 - title: Gallery

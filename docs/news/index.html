@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -119,24 +119,270 @@
       <small>Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bs4dash-0609000" class="section level1">
-<h1 class="page-header" data-toc-text="0.6.0.9000">
-<a href="#bs4dash-0609000" class="anchor"></a>bs4Dash 0.6.0.9000<small> Unreleased </small>
+    <div id="bs4dash-2009000" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.9000">
+<a href="#bs4dash-2009000" class="anchor"></a>bs4Dash 2.0.0.9000<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<p>This is to align with shinydashboard and shinydashboardPlus.</p>
+<div id="bs4dashpagedashboardpage" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dashpagedashboardpage" class="anchor"></a>bs4DashPage/dashboardPage</h3>
 <ul>
 <li>
-<code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code>: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)</li>
-<li>remove all sidebar related parameters from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is now part of the new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>
+<code>navbar</code> param becomes <code>header</code>.</li>
+<li>Remove <code>old_school</code>, <code>sidebar_mini</code>, <code>sidebar_collapsed</code>, <code>controlbar_collapsed</code>, <code>controlbar_overlay</code>, <code>enable_preloader</code>, <code>loading_duration</code> and <code>loading_background</code>. These parameters move to dashboardSidebar, controlbar …</li>
+<li>New <code>freshTheme</code> parameter to pass <a href="https://github.com/dreamRs/fresh">fresh</a> powered themes.</li>
+<li>New <code>options</code> parameter to configure AdminLTE3.</li>
+<li>New <code>preloader</code> to use <a href="https://waiter.john-coene.com/">waiter</a> as a preloading engine.</li>
+</ul>
+</div>
+<div id="bs4dashfooter" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dashfooter" class="anchor"></a>bs4DashFooter</h3>
+<ul>
+<li>
+<code>...</code> becomes <code>left</code>.</li>
+<li>
+<code>right_text</code> becomes <code>right</code>.</li>
+</ul>
+</div>
+<div id="bs4dashnavbardashboardheader" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dashnavbardashboardheader" class="anchor"></a>bs4DashNavbar/dashboardHeader</h3>
+<ul>
+<li>
+<code>controlbarIcon</code> accepts <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code> instead of the icon name.</li>
+<li>
+<code>sidebarIcon</code> accepts <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code> instead of the icon name.</li>
+<li>add <code>title</code>, <code>titleWidth</code> and <code>disable</code>
 </li>
-<li>remove dropdownIcon parameter from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. It is now part of the <code><a href="../reference/dropdownItemList.html">dropdownItemList()</a></code>
+</ul>
+</div>
+<div id="bs4usermenu" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4usermenu" class="anchor"></a>bs4UserMenu</h3>
+<ul>
+<li>
+<code>src</code> becomes <code>image</code>.</li>
+</ul>
+</div>
+<div id="bs4dashcontrolbardashboardcontrolbar" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dashcontrolbardashboardcontrolbar" class="anchor"></a>bs4DashControlbar/dashboardControlbar</h3>
+<ul>
+<li>Add <code>collapsed</code> and <code>overlay</code>.</li>
+<li>Remove <code>title</code>.</li>
+<li>Rename <code>inputId</code> to <code>id</code>.</li>
+</ul>
+</div>
+<div id="updatebs4controlbar" class="section level3">
+<h3 class="hasAnchor">
+<a href="#updatebs4controlbar" class="anchor"></a>updatebs4Controlbar</h3>
+<ul>
+<li>
+<code>inputId</code> becomes <code>id</code>.</li>
+<li>New alias: <code>updateControlbar</code>.</li>
+<li>
+<code>session</code> is not mandatory</li>
+</ul>
+</div>
+<div id="bs4dashsidebardashboardsidebarupdatesidebar" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dashsidebardashboardsidebarupdatesidebar" class="anchor"></a>bs4DashSidebar/dashboardSidebar/updateSidebar</h3>
+<ul>
+<li>
+<code>inputId</code> moved to the end.</li>
+<li>
+<code>inputId</code> renamed to <code>id</code>.</li>
+<li>Added <code>collapsed</code> and <code>minified</code>.</li>
+<li>Add <code>width</code>.</li>
+<li>Remove <code>opacity</code>, <code>title</code>, <code>brandColor</code>, <code>url</code> and <code>src</code>.</li>
+</ul>
+</div>
+<div id="bs4sidebarmenu" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4sidebarmenu" class="anchor"></a>bs4SidebarMenu</h3>
+<ul>
+<li>
+<code>child_indent</code> becomes <code>childIndent</code>.</li>
+<li>Add <code>.list</code> to pass programmatically generated <code>bs4SidebarMenuItem</code>.</li>
+</ul>
+</div>
+<div id="bs4sidebarmenuitem" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4sidebarmenuitem" class="anchor"></a>bs4SidebarMenuItem</h3>
+<ul>
+<li>Add <code>href</code> and <code>newTab</code>.</li>
+<li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+</ul>
+</div>
+<div id="bs4sidebaruserpanel" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4sidebaruserpanel" class="anchor"></a>bs4SidebarUserPanel</h3>
+<ul>
+<li>
+<code>img</code> and <code>text</code> become <code>image</code> and <code>name</code>, respectively.</li>
+</ul>
+</div>
+<div id="bs4card" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4card" class="anchor"></a>bs4Card</h3>
+<ul>
+<li>Change <code>solidHeader</code> behavior.</li>
+<li>Remove all sidebar related parameters from <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>. This is now part of the new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>.</li>
+<li>Remove dropdownIcon parameter from <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>. It is now part of the <code>dropdownItemList()</code>.</li>
+<li>Remove labelStatus, labelText and labelTooltip params from <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>. This is to reduce the number of parameters of cards.</li>
+<li>By default, <code>closable</code> is now FALSE for <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>.</li>
+<li>Rename <code>dropdownItemList</code> by <code>cardDropdown</code>
 </li>
-<li>remove labelStatus, labelText and labelTooltip params from <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. This is to reduce the number of parameters of cards</li>
-<li>By default, closable is now FALSE for <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+<li>Rename <code>dropdownItemListItem</code> by <code>cardDropdownItem</code>
 </li>
-<li>value is now mandatory in <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code>
+</ul>
+</div>
+<div id="bs4cardsidebar" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4cardsidebar" class="anchor"></a>bs4CardSidebar</h3>
+<ul>
+<li>
+<code>inputId</code> becomes <code>id</code>.</li>
+<li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+</ul>
+</div>
+<div id="bs4tabcard" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4tabcard" class="anchor"></a>bs4TabCard</h3>
+<ul>
+<li>Change <code>solidHeader</code> behavior.</li>
+</ul>
+</div>
+<div id="bs4valuebox" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4valuebox" class="anchor"></a>bs4ValueBox</h3>
+<ul>
+<li>
+<code>status</code> becomes <code>color</code>.</li>
+<li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+</ul>
+</div>
+<div id="bs4infobox" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4infobox" class="anchor"></a>bs4InfoBox</h3>
+<ul>
+<li>
+<code>status</code> becomes color</li>
+<li>Remove <code>...</code> for <code>subtitle</code>
+</li>
+<li>Remove <code>iconStatus</code>.</li>
+<li>Add <code>href</code> and <code>fill</code>.</li>
+<li>Rename <code>gradientColor</code> to <code>gradient</code>.</li>
+</ul>
+</div>
+<div id="bs4usercard" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4usercard" class="anchor"></a>bs4UserCard</h3>
+<ul>
+<li>
+<code>src</code> becomes <code>image</code>.</li>
+<li>
+<code>status</code> becomes <code>color</code>.</li>
+</ul>
+</div>
+<div id="bs4socialbox" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4socialbox" class="anchor"></a>bs4SocialBox</h3>
+<ul>
+<li>rework component</li>
+<li>add <code><a href="../reference/bs4SocialCard.html">userBlock()</a></code> to pass on title.</li>
+</ul>
+</div>
+<div id="attachmentblock" class="section level3">
+<h3 class="hasAnchor">
+<a href="#attachmentblock" class="anchor"></a>attachmentBlock</h3>
+<ul>
+<li>
+<code>src</code> becomes <code>image</code>.</li>
+<li>
+<code>titleUrl</code> becomes <code>href</code>.</li>
+</ul>
+</div>
+<div id="descriptionblock" class="section level3">
+<h3 class="hasAnchor">
+<a href="#descriptionblock" class="anchor"></a>descriptionBlock</h3>
+<ul>
+<li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+</ul>
+</div>
+<div id="bs4box" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4box" class="anchor"></a>bs4Box</h3>
+<ul>
+<li>This component has been removed</li>
+</ul>
+</div>
+<div id="bs4tabcard-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4tabcard-1" class="anchor"></a>bs4TabCard</h3>
+<ul>
+<li>rework component. Like <code><a href="../reference/bs4TabCard.html">tabBox()</a></code> from <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>
+</li>
+</ul>
+</div>
+<div id="bs4dropdownmenu" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dropdownmenu" class="anchor"></a>bs4DropdownMenu</h3>
+<ul>
+<li>
+<code>badge</code> becomes <code>badgeStatus</code>
+</li>
+<li>Add <code>type</code>.</li>
+<li>icon expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+<li>Replace <code>labelText</code> by <code>headerText</code>.</li>
+<li>Add <code>.list</code> and <code>href</code>.</li>
+<li>Remove <code>align</code>.</li>
+</ul>
+</div>
+<div id="bs4dropdownmenuitem" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dropdownmenuitem" class="anchor"></a>bs4DropdownMenuItem</h3>
+<ul>
+<li>This has been replaced by <code><a href="../reference/notificationItem.html">notificationItem()</a></code> and <code><a href="../reference/messageItem.html">messageItem()</a></code>
+</li>
+</ul>
+</div>
+<div id="others" class="section level3">
+<h3 class="hasAnchor">
+<a href="#others" class="anchor"></a>Others</h3>
+<ul>
+<li>In <code><a href="../reference/bs4ListGroup.html">listGroupItem()</a></code>, remove <code>type</code> and put it in <code><a href="../reference/bs4ListGroup.html">listGroup()</a></code>. <code>src</code> becomes <code>href</code>.</li>
+<li>
+<code>status</code> becomes <code>color</code> in <code>blockQuote</code>.</li>
+<li>Remove <code>src</code> from <code><a href="../reference/bs4Carousel.html">carouselItem()</a></code>
+</li>
+<li>In <code><a href="../reference/bs4Ribbon.html">bs4Ribbon()</a></code>, <code>status</code> becomes <code>color</code>. Remove <code>size</code>.</li>
+<li>In <code><a href="../reference/bs4Badge.html">bs4Badge()</a></code>, <code>status</code> becomes <code>color</code>.</li>
+<li>In <code><a href="../reference/userMessages.html">userMessage()</a></code>, <code>src</code> becomes <code>image</code> and <code>side</code> becomes <code>type</code>.</li>
+<li>In <code><a href="../reference/bs4Timeline.html">timelineItemMedia()</a></code>, <code>src</code> becomes <code>image</code>.</li>
+<li>In <code><a href="../reference/bs4Timeline.html">timelineItem()</a></code>, <code><a href="../reference/bs4Timeline.html">timelineStart()</a></code> and <code><a href="../reference/bs4Timeline.html">timelineEnd()</a></code>, <code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">shiny::icon</a></code>.</li>
+<li>
+<code>status</code> becomes <code>color</code> in <code><a href="../reference/bs4Timeline.html">timelineItem()</a></code>, <code><a href="../reference/bs4Timeline.html">timelineLabel()</a></code>, <code><a href="../reference/bs4Timeline.html">timelineStart()</a></code> and <code><a href="../reference/bs4Timeline.html">timelineEnd()</a></code>.</li>
+<li>In <code><a href="../reference/userPost.html">userPost()</a></code> and <code><a href="../reference/userPostMedia.html">userPostMedia()</a></code>, <code>src</code> becomes <code>image</code>. Removed <code>collapseStatus</code>.</li>
+<li>In <code><a href="../reference/bs4Stars.html">bs4Stars()</a></code>, status becomes <code>color</code>.</li>
+<li>Remove <code>bs4ShowTab()</code>, <code>bs4HideTab()</code> and <code>bs4RemoveTab()</code>. shiny vanilla function should work well now.</li>
+<li>Remove <code>bs4TabPanel()</code>.</li>
+<li>
+<code>bs4TabSetPanel()</code> becomes <code>bs4TabsetPanel()</code> and is built on top of <code><a href="https://shiny.rstudio.com/reference/shiny/latest/tabsetPanel.html">shiny::tabsetPanel</a></code>.</li>
+<li>In <code><a href="../reference/cardProfile.html">cardProfile()</a></code>, add <code>bordered</code>. <code>src</code> becomes <code>image</code>.</li>
+<li>Remove <code>cardProfileItemList()</code>.</li>
+<li>
+<code>updatebs4TabSetPanel()</code>: selected takes the name of the tab instead of its index. This is more convenient (same as in shinydashboard)</li>
+<li>value is now mandatory in <code><a href="../reference/renderbs4InfoBox.html">bs4InfoBox()</a></code>
 </li>
 <li>change <code><a href="../reference/attachmentBlock.html">attachmentBlock()</a></code> title_url to titleUrl (to match with a new upcoming package…)</li>
 <li>
@@ -148,66 +394,93 @@
 <code><a href="../reference/userPost.html">userPost()</a></code>: collapse_status becomes collapseStatus</li>
 </ul>
 </div>
+</div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
-<li>add <code><a href="../reference/toggleTabs.html">bs4ShowTab()</a></code> and <code><a href="../reference/toggleTabs.html">bs4HideTab()</a></code>: thanks <a href='https://github.com/fmmattioni'>@fmmattioni</a> for the reminder ;)</li>
-<li>New <code><a href="../reference/bs4CardLayout.html">bs4CardLayout()</a></code>: simplify the way to deal with <code><a href="../reference/bs4Card.html">bs4Card()</a></code>!</li>
-<li>New <code><a href="../reference/bs4CloseAlert.html">bs4CloseAlert()</a></code>: programmatically close <code><a href="../reference/bs4Alert.html">bs4Alert()</a></code>
+<li>New <code>gradient</code> parameter to <code>valuebox()</code>.</li>
+<li>New help mode in <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code> to automatically toggle all tooltips and popovers. Use with <code>bs4TooltipUI()</code> and <code>bs4PopoverUI()</code>.</li>
+<li>New <code><a href="../reference/useAutoColor.html">useAutoColor()</a></code> leveraging new Shiny features and {thematic} to automatically style plots depending on the dashboard background color.</li>
+<li>New bottom area for <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>.</li>
+<li>Add fullscreen widget to <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>.</li>
+<li>New <code><a href="../reference/bs4Accordion.html">updateAccordion()</a></code>.</li>
+<li>
+<code><a href="../reference/actionButton.html">actionButton()</a></code> is updated to provide Bootstrap 4 features.</li>
+<li>New <code><a href="../reference/appButton.html">appButton()</a></code>.</li>
+<li>New <code><a href="../reference/userMessages.html">updateUserMessages()</a></code>.</li>
+<li>New <code><a href="../reference/userList.html">userList()</a></code> and <code><a href="../reference/userList.html">userListItem()</a></code>.</li>
+<li>New <code><a href="../reference/productList.html">productList()</a></code> and <code><a href="../reference/productList.html">productListItem()</a></code>.</li>
+<li>New <code><a href="../reference/bs4UserCard.html">userDescription()</a></code> and <code><a href="../reference/bs4SocialCard.html">userBlock()</a></code>.</li>
+<li>New built-in <code>skinSelector</code>.</li>
+<li>New built-in dark/light mode switcher.</li>
+<li>New “go to top” feature.</li>
+<li>New <code><a href="../reference/dashboardUserItem.html">dashboardUserItem()</a></code>, <code><a href="../reference/userOutput.html">userOutput()</a></code> and <code><a href="../reference/renderUser.html">renderUser()</a></code>.</li>
+<li>New <code>bs4DashBrand</code> for better dashboard titles.</li>
+<li>add <code>bs4ShowTab()</code> and <code>bs4HideTab()</code>: thanks <a href='https://github.com/fmmattioni'>@fmmattioni</a> for the reminder ;)</li>
+<li>New <code><a href="../reference/bs4CardLayout.html">bs4CardLayout()</a></code>: simplify the way to deal with <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>!</li>
+<li>New <code>bs4CloseAlert()</code>: programmatically close <code>bs4Alert()</code>
 </li>
-<li>New <code><a href="../reference/bs4Toast.html">bs4Toast()</a></code>: include the builtin AdminLTE3 toasts!</li>
-<li>Add options to select <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code> and <code><a href="../reference/bs4SidebarMenuSubItem.html">bs4SidebarMenuSubItem()</a></code> at start.</li>
-<li>Now <code><a href="../reference/bs4DropdownMenuItem.html">bs4DropdownMenuItem()</a></code> may act as an actionButton</li>
-<li>Whenever a <code><a href="../reference/bs4Card.html">bs4Card()</a></code> is maximized, the collapsible icon is hidden (does not make sense to have it)</li>
-<li>new <code><a href="../reference/bs4CardLabel.html">bs4CardLabel()</a></code> to add text labels in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+<li>New <code>bs4Toast()</code>: include the builtin AdminLTE3 toasts!</li>
+<li>Add options to select <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem()</a></code> and <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuSubItem()</a></code> at start.</li>
+<li>Now <code>bs4DropdownMenuItem()</code> may act as an actionButton</li>
+<li>Whenever a <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> is maximized, the collapsible icon is hidden (does not make sense to have it)</li>
+<li>new <code><a href="../reference/bs4CardLabel.html">bs4CardLabel()</a></code> to add text labels in <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>
 </li>
-<li>new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>: access the status via input$id. Add <code><a href="../reference/updatebs4CardSidebar.html">updatebs4CardSidebar()</a></code> to toggle the card sidebar</li>
-<li>add <code><a href="../reference/bs4PopoverServer.html">bs4PopoverServer()</a></code>, <code><a href="../reference/bs4PopoverUI.html">bs4PopoverUI()</a></code>, <code><a href="../reference/bs4TooltipUI.html">bs4TooltipUI()</a></code> and <code><a href="../reference/bs4TooltipServer.html">bs4TooltipServer()</a></code>
+<li>new <code><a href="../reference/bs4CardSidebar.html">bs4CardSidebar()</a></code>: access the status via input$id. Add <code><a href="../reference/bs4CardSidebar.html">updatebs4CardSidebar()</a></code> to toggle the card sidebar</li>
+<li>add <code>bs4PopoverServer()</code>, <code>bs4PopoverUI()</code>, <code>bs4TooltipUI()</code> and <code>bs4TooltipServer()</code>
 </li>
 <li>
-<code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>: you may access the currently selected tab with input$id</li>
-<li>add type parameter to <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code> so as to select between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)</li>
+<code>bs4TabSetPanel()</code>: you may access the currently selected tab with input$id</li>
+<li>add type parameter to <code>bs4TabSetPanel()</code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code> so as to select between pills or tabs (cosmetic choice). If type is not provided, the behaviour is unchanged (pills are the default)</li>
 <li>add fixed param to <code><a href="../reference/bs4DashFooter.html">bs4DashFooter()</a></code>
 </li>
 <li>add fixed parameter to <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code>. Thanks <a href='https://github.com/mppallante'>@mppallante</a></li>
 <li>re-add fixed parameter to <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code>. This is reintroduced by adminlte with a new css class name</li>
 <li>add animated, label parameters to <code><a href="../reference/bs4ProgressBar.html">bs4ProgressBar()</a></code>
 </li>
-<li>add iconStatus parameter to <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> to allow icon color to be independant from the card status (<a href="https://adminlte.io/themes/v3/pages/widgets.html" class="uri">https://adminlte.io/themes/v3/pages/widgets.html</a>). Thanks <a href='https://github.com/rolando-gsw'>@rolando-gsw</a></li>
+<li>add iconStatus parameter to <code><a href="../reference/renderbs4InfoBox.html">bs4InfoBox()</a></code> to allow icon color to be independant from the card status (<a href="https://adminlte.io/themes/v3/pages/widgets.html" class="uri">https://adminlte.io/themes/v3/pages/widgets.html</a>). Thanks <a href='https://github.com/rolando-gsw'>@rolando-gsw</a></li>
 </ul>
 </div>
 <div id="minor-change" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-change" class="anchor"></a>Minor change</h2>
 <ul>
-<li>New legacy parameter in <code><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu()</a></code>: to use old AdminLTE2 styling for item selection</li>
+<li>New <code><a href="../reference/taskItem.html">taskItem()</a></code>.</li>
+<li>Add <code>indicators</code> and <code>.list</code> to <code><a href="../reference/bs4Carousel.html">carousel()</a></code>.</li>
+<li>
+<code><a href="../reference/insertTab.html">insertTab()</a></code> is using more shiny vanilla elements.</li>
+<li>
+<code><a href="../reference/bs4UserMenu.html">bs4UserMenu()</a></code> does not close when clicked inside.</li>
+<li>Add glyphicons as an html dependency</li>
+<li>New legacy parameter in <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu()</a></code>: to use old AdminLTE2 styling for item selection</li>
 <li>Now, clicking outside the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code> when it is opened will close it. To keep it open, see below</li>
 <li>New pinned option for <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>: allow to block the controlbar state</li>
 <li>New expandedName param for <code>bs4SidebarMenuItem</code> to align with shinydashboard</li>
-<li>id is NULL in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> by default</li>
-<li>side is default to left in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+<li>id is NULL in <code>bs4TabSetPanel()</code> by default</li>
+<li>side is default to left in <code>bs4TabSetPanel()</code>
 </li>
-<li>change <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code> param order to align with shiny</li>
+<li>change <code>bs4TabPanel()</code> param order to align with shiny</li>
 </ul>
 </div>
 <div id="bug-fix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
-<li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/110'>#110</a>: due to the fact that the <code>bs4Controlbar()</code> now collapse when clicked outside, clicking on an input triggering the <code><a href="../reference/updatebs4Controlbar.html">updatebs4Controlbar()</a></code> would toggle it twice. Thanks <a href='https://github.com/dwhdai'>@dwhdai</a></li>
+<li>Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!</li>
+<li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/110'>#110</a>: due to the fact that the <code>bs4Controlbar()</code> now collapse when clicked outside, clicking on an input triggering the <code>updatebs4Controlbar()</code> would toggle it twice. Thanks <a href='https://github.com/dwhdai'>@dwhdai</a></li>
 <li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/112'>#112</a> with <code>sliderInput</code> z-index and <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> preloader. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a> for the report</li>
 <li>Fix issue in <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> url link. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
-<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/30'>#30</a>: programmatically close <code><a href="../reference/bs4Alert.html">bs4Alert()</a></code>
+<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/30'>#30</a>: programmatically close <code>bs4Alert()</code>
 </li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/47'>#47</a>: Control bar not showing top elements when collapsed is FALSE</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/99'>#99</a>: rework the way sidebar items work. By default, when sidebar items has subitems and is selected, the first item is not selected. We leave the choice to the user. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a></li>
 <li>Fix <code><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu()</a></code> example</li>
-<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/94'>#94</a>: cannot render element with dependencies in <code><a href="../reference/bs4InsertTab.html">bs4InsertTab()</a></code>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/94'>#94</a>: cannot render element with dependencies in <code>bs4InsertTab()</code>
 </li>
 <li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/93'>#93</a>: set default inputId when it is not provided in <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code> so that <code>renderUI</code> works. Thanks <a href='https://github.com/artemklevtsov'>@artemklevtsov</a></li>
-<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/86'>#86</a> : cannot use <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code> with <code>renderUI</code>. Thanks <a href='https://github.com/jyjek'>@jyjek</a></li>
-<li>add condition argument to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>. See <a href="https://github.com/RinteRface/bs4Dash/issues/35" class="uri">https://github.com/RinteRface/bs4Dash/issues/35</a>. Thanks <a href='https://github.com/aldomann'>@aldomann</a></li>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/86'>#86</a> : cannot use <code>updatebs4TabSetPanel()</code> with <code>renderUI</code>. Thanks <a href='https://github.com/jyjek'>@jyjek</a></li>
+<li>add condition argument to <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem()</a></code>. See <a href="https://github.com/RinteRface/bs4Dash/issues/35" class="uri">https://github.com/RinteRface/bs4Dash/issues/35</a>. Thanks <a href='https://github.com/aldomann'>@aldomann</a></li>
 <li>some vignettes examples were not up to date</li>
 </ul>
 </div>
@@ -230,12 +503,12 @@
 <ul>
 <li>add link back to <a href="https://www.glyphicons.com" class="uri">https://www.glyphicons.com</a>. Thanks <a href='https://github.com/statnmap'>@statnmap</a></li>
 <li>upgrade AdminLTE3 version to rc4</li>
-<li>add <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code><a href="../reference/updatebs4Sidebar.html">updatebs4Sidebar()</a></code> to programmatically toggle its state</li>
-<li>add <code>bs4Controlbar()</code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code><a href="../reference/updatebs4Controlbar.html">updatebs4Controlbar()</a></code> to programmatically toggle its state</li>
-<li>add <code><a href="../reference/bs4Card.html">bs4Card()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, …) as well as <code><a href="../reference/updatebs4Card.html">updatebs4Card()</a></code> to programmatically toggle its state</li>
-<li>add <code><a href="../reference/bs4InsertTab.html">bs4InsertTab()</a></code> to programmatically insert <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code> in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+<li>add <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code><a href="../reference/bs4DashSidebar.html">updatebs4Sidebar()</a></code> to programmatically toggle its state</li>
+<li>add <code>bs4Controlbar()</code> input binding to indicate the state (collapse: FALSE, open: TRUE) as well as <code>updatebs4Controlbar()</code> to programmatically toggle its state</li>
+<li>add <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> input binding to indicate the state (collapse: FALSE, open: TRUE, maximize, closed, …) as well as <code><a href="../reference/descriptionBlock.html">updatebs4Card()</a></code> to programmatically toggle its state</li>
+<li>add <code>bs4InsertTab()</code> to programmatically insert <code>bs4TabPanel()</code> in <code>bs4TabSetPanel()</code>
 </li>
-<li>add <code><a href="../reference/bs4RemoveTab.html">bs4RemoveTab()</a></code> to programmatically remove <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code> in <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+<li>add <code>bs4RemoveTab()</code> to programmatically remove <code>bs4TabPanel()</code> in <code>bs4TabSetPanel()</code>
 </li>
 </ul>
 </div>
@@ -246,9 +519,9 @@
 <li>
 <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has a new sidebar_mini parameter. When TRUE, the sidebar has a minimum width when collapsed (you still see icons). When false, it behaves like in shinydashboard</li>
 <li>
-<code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> can now navigate between tabs if the tabName parameter is specified. It must however correspond to an existing <code><a href="../reference/bs4TabItem.html">bs4TabItem()</a></code> in the body!</li>
+<code><a href="../reference/renderbs4InfoBox.html">bs4InfoBox()</a></code> can now navigate between tabs if the tabName parameter is specified. It must however correspond to an existing <code><a href="../reference/bs4DashBody.html">bs4TabItem()</a></code> in the body!</li>
 <li>
-<code><a href="../reference/bs4ValueBox.html">bs4ValueBox()</a></code> has a footer argument. It is different from the href parameter. Thanks <a href='https://github.com/stefanfritsch'>@stefanfritsch</a></li>
+<code><a href="../reference/renderbs4ValueBox.html">bs4ValueBox()</a></code> has a footer argument. It is different from the href parameter. Thanks <a href='https://github.com/stefanfritsch'>@stefanfritsch</a></li>
 <li>add expand_on_hover parameter to <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code>
 </li>
 <li>add compact parameters to <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> to reduce the navbar size</li>
@@ -257,8 +530,8 @@
 <li>
 <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> has options to change the <code>bs4Controlbar()</code> behavior when it expands (see controlbar_overlay)</li>
 <li>
-<code><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu()</a></code> has 3 new parameters: flat (design effect), child_indent and compact</li>
-<li>add sidebar in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+<code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu()</a></code> has 3 new parameters: flat (design effect), child_indent and compact</li>
+<li>add sidebar in <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>
 </li>
 <li>add <code><a href="../reference/bs4UserMenu.html">bs4UserMenu()</a></code> for <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code>
 </li>
@@ -273,7 +546,7 @@
 <li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/66'>#66</a> and <a href='https://github.com/RinteRface/bs4Dash/issues/71'>#71</a>: sidebar_collapsed was not working. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a> and <a href='https://github.com/federicomarini'>@federicomarini</a></li>
 <li>remove hardcoded style for navbar dropdown icons</li>
 <li>remove hardcoded style for navbar icons (fixed in the last adminLTE3 release). Thanks <a href='https://github.com/federicomarini'>@federicomarini</a></li>
-<li>fix height issue in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a></li>
+<li>fix height issue in <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a></li>
 <li>Rework the <code><a href="../reference/column.html">column()</a></code> function from Shiny to make it work with Bootstrap 4. Thanks <a href='https://github.com/federicomarini'>@federicomarini</a></li>
 <li>fix <code><a href="../reference/bs4DashNavbar.html">bs4DashNavbar()</a></code> background color issue.</li>
 <li>rework <code><a href="../reference/bs4DashBody.html">bs4DashBody()</a></code> so that when no element is in the sidebar and no tabItems are in the body, margin between the sidebar, the controlbar is not 0</li>
@@ -290,20 +563,20 @@
 <h2 class="hasAnchor">
 <a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
-<li>add <code><a href="../reference/bs4TabSetPanel.html">bs4DashControlbarMenu()</a></code>, <code><a href="../reference/bs4TabPanel.html">bs4DashControlbarItem()</a></code> and <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4ControlbarMenu()</a></code>
+<li>add <code>bs4DashControlbarMenu()</code>, <code>bs4DashControlbarItem()</code> and <code>updatebs4ControlbarMenu()</code>
 </li>
-<li>add <code><a href="../reference/updatebs4TabItems.html">updatebs4TabItems()</a></code> and <code><a href="../reference/updatebs4TabItems.html">updateTabItems()</a></code> to programatically update the selected sidebar tab and the corresponding body tab</li>
-<li>add <code><a href="../reference/updatebs4TabSetPanel.html">updatebs4TabSetPanel()</a></code> and <code><a href="../reference/updatebs4TabSetPanel.html">updateTabsetPanel()</a></code> (aliases) to dynamically update <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> from the server side</li>
-<li>add maximizable option for <code><a href="../reference/bs4Card.html">bs4Card()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. In other words, allow full screen option</li>
-<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/8'>#8</a>: add input binding to the <code><a href="../reference/bs4SidebarMenu.html">bs4SidebarMenu()</a></code>. Now by adding an id to the menu, the user can recover the currently selected tab. Thanks <a href='https://github.com/rpodcast'>@rpodcast</a></li>
+<li>add <code><a href="../reference/bs4DashSidebar.html">updatebs4TabItems()</a></code> and <code><a href="../reference/bs4DashSidebar.html">updateTabItems()</a></code> to programatically update the selected sidebar tab and the corresponding body tab</li>
+<li>add <code>updatebs4TabSetPanel()</code> and <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">updateTabsetPanel()</a></code> (aliases) to dynamically update <code>bs4TabSetPanel()</code> from the server side</li>
+<li>add maximizable option for <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. In other words, allow full screen option</li>
+<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/8'>#8</a>: add input binding to the <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu()</a></code>. Now by adding an id to the menu, the user can recover the currently selected tab. Thanks <a href='https://github.com/rpodcast'>@rpodcast</a></li>
 <li>add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). For instance <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> can also be <code><a href="../reference/bs4DashPage.html">dashboardPage()</a></code>
 </li>
 <li>update adminLTE dependencies</li>
-<li>add vertical mode to <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code>
+<li>add vertical mode to <code>bs4TabSetPanel()</code>
 </li>
-<li>add <code><a href="../reference/bs4SidebarMenuSubItem.html">bs4SidebarMenuSubItem()</a></code>
+<li>add <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuSubItem()</a></code>
 </li>
-<li>add <code><a href="../reference/bs4Table.html">bs4Table()</a></code>, <code><a href="../reference/bs4TableItems.html">bs4TableItems()</a></code> and <code><a href="../reference/bs4TableItem.html">bs4TableItem()</a></code>
+<li>add <code><a href="../reference/bs4Table.html">bs4Table()</a></code>, <code><a href="../reference/bs4Table.html">bs4TableItems()</a></code> and <code><a href="../reference/bs4Table.html">bs4TableItem()</a></code>
 </li>
 </ul>
 </div>
@@ -311,9 +584,9 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
-<li>add text arg to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>
+<li>add text arg to <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem()</a></code>
 </li>
-<li>Now the … arg is for <code><a href="../reference/bs4SidebarMenuSubItem.html">bs4SidebarMenuSubItem()</a></code>
+<li>Now the … arg is for <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuSubItem()</a></code>
 </li>
 </ul>
 </div>
@@ -324,9 +597,9 @@
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/41'>#41</a>: add disable argument to <code><a href="../reference/bs4DashSidebar.html">bs4DashSidebar()</a></code> and <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code>. Thanks <a href='https://github.com/jamiebono'>@jamiebono</a></li>
 <li>images are centered in <code><a href="../reference/userPost.html">userPost()</a></code>
 </li>
-<li>add startExpanded arg to <code><a href="../reference/bs4SidebarMenuItem.html">bs4SidebarMenuItem()</a></code>
+<li>add startExpanded arg to <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenuItem()</a></code>
 </li>
-<li>add <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> to the gallery</li>
+<li>add <code>bs4TabSetPanel()</code> to the gallery</li>
 </ul>
 </div>
 <div id="bug-fix-2" class="section level2">
@@ -335,7 +608,7 @@
 <ul>
 <li>fix overflow-y issue in <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>
 </li>
-<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/44'>#44</a>: update <code><a href="../reference/bs4InfoBox.html">bs4InfoBox()</a></code> class. Thanks <a href='https://github.com/henry090'>@henry090</a>.</li>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/44'>#44</a>: update <code><a href="../reference/renderbs4InfoBox.html">bs4InfoBox()</a></code> class. Thanks <a href='https://github.com/henry090'>@henry090</a>.</li>
 <li>update adminLTE dependencies (fix sidebar horizontal overflow, …)</li>
 <li>hide the <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code> toggle if no <code><a href="../reference/bs4DashControlbar.html">bs4DashControlbar()</a></code> is given in <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code>
 </li>
@@ -354,7 +627,7 @@
 <h2 class="hasAnchor">
 <a href="#breaking-change" class="anchor"></a>Breaking change</h2>
 <ul>
-<li>rework <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code><a href="../reference/bs4TabSetPanel.html">bs4TabSetPanel()</a></code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</li>
+<li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</li>
 </ul>
 </div>
 <div id="major-changes-2" class="section level2">
@@ -370,17 +643,17 @@
 </li>
 <li>move to RinteRface</li>
 <li>add <code><a href="../reference/bs4Sortable.html">bs4Sortable()</a></code> and all necessary javascript dependencies</li>
-<li>add <code><a href="../reference/userPost.html">userPost()</a></code>, <code><a href="../reference/userPostMedia.html">userPostMedia()</a></code>, <code><a href="../reference/userPostTagItems.html">userPostTagItems()</a></code> and <code><a href="../reference/userPostTagItem.html">userPostTagItem()</a></code>
+<li>add <code><a href="../reference/userPost.html">userPost()</a></code>, <code><a href="../reference/userPostMedia.html">userPostMedia()</a></code>, <code><a href="../reference/userPost.html">userPostTagItems()</a></code> and <code><a href="../reference/userPost.html">userPostTagItem()</a></code>
 </li>
-<li>add <code><a href="../reference/userMessages.html">userMessages()</a></code> and <code><a href="../reference/userMessage.html">userMessage()</a></code>
+<li>add <code><a href="../reference/userMessages.html">userMessages()</a></code> and <code><a href="../reference/userMessages.html">userMessage()</a></code>
 </li>
-<li>add <code><a href="../reference/descriptionBlock.html">descriptionBlock()</a></code>, <code><a href="../reference/attachmentBlock.html">attachmentBlock()</a></code> and <code><a href="../reference/cardPad.html">cardPad()</a></code>
+<li>add <code><a href="../reference/descriptionBlock.html">descriptionBlock()</a></code>, <code><a href="../reference/attachmentBlock.html">attachmentBlock()</a></code> and <code><a href="../reference/descriptionBlock.html">cardPad()</a></code>
 </li>
-<li>add <code><a href="../reference/bs4SidebarUserPanel.html">bs4SidebarUserPanel()</a></code>
+<li>add <code><a href="../reference/bs4DashSidebar.html">bs4SidebarUserPanel()</a></code>
 </li>
-<li>add <code><a href="../reference/cardProfile.html">cardProfile()</a></code>, <code><a href="../reference/cardProfileItemList.html">cardProfileItemList()</a></code> and <code><a href="../reference/cardProfileItem.html">cardProfileItem()</a></code>
+<li>add <code><a href="../reference/cardProfile.html">cardProfile()</a></code>, <code>cardProfileItemList()</code> and <code><a href="../reference/cardProfile.html">cardProfileItem()</a></code>
 </li>
-<li>add <code><a href="../reference/bs4SocialCard.html">bs4SocialCard()</a></code> and <code><a href="../reference/cardComment.html">cardComment()</a></code>
+<li>add <code><a href="../reference/bs4SocialCard.html">bs4SocialCard()</a></code> and <code><a href="../reference/bs4SocialCard.html">cardComment()</a></code>
 </li>
 </ul>
 </div>
@@ -391,8 +664,8 @@
 <li>add collapse_status argument to <code><a href="../reference/userPost.html">userPost()</a></code>
 </li>
 <li>add glyphicons (BS3 old dependency) thanks to <a href='https://github.com/ntncmch'>@ntncmch</a></li>
-<li>add overflow argument to <code><a href="../reference/bs4Card.html">bs4Card()</a></code> to enable or disable overflow</li>
-<li>hide <code><a href="../reference/bs4Card.html">bs4Card()</a></code> footer when footer is NULL</li>
+<li>add overflow argument to <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> to enable or disable overflow</li>
+<li>hide <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> footer when footer is NULL</li>
 <li>patch for <code><a href="../reference/bs4Accordion.html">bs4Accordion()</a></code>: click on 1 item collapse all other items in the same accordion add an id argument.</li>
 <li>add licence</li>
 <li>add controlbar_collapsed argument to <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code>
@@ -410,13 +683,13 @@
 <a href="#bug-fix-3" class="anchor"></a>Bug fix</h2>
 <ul>
 <li>Fix icon rendering issue due to a change in shiny 1.2.0 dependencies (font awesome)</li>
-<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/19'>#19</a>: Whenever a <code><a href="../reference/bs4Card.html">bs4Card()</a></code> starts on a collapsed state, the content is displayed when uncollapsed is pressed. Thanks <a href='https://github.com/stanmap'>@stanmap</a> for the remark. (See <a href="https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f">here</a> for a similar issue)</li>
+<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/19'>#19</a>: Whenever a <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> starts on a collapsed state, the content is displayed when uncollapsed is pressed. Thanks <a href='https://github.com/stanmap'>@stanmap</a> for the remark. (See <a href="https://github.com/rstudio/shinydashboard/commit/73f602736efe496dc0e2b54882c1036eacaef79f">here</a> for a similar issue)</li>
 <li>
-<code><a href="../reference/bs4Card.html">bs4Card()</a></code>: the collapse icon changes to + and - depending on the current collapse status.</li>
+<code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>: the collapse icon changes to + and - depending on the current collapse status.</li>
 <li>fix various issues in <code><a href="../reference/bs4DropdownMenu.html">bs4DropdownMenu()</a></code>
 </li>
 <li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/12'>#12</a>: Compatibility with shinyWidgets pickerInput. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
-<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/13'>#13</a> in <code><a href="../reference/bs4TabPanel.html">bs4TabPanel()</a></code>: handle tabName with space and with punctuation characters. Thanks <a href='https://github.com/stephLH'>@stephLH</a></li>
+<li>fix <a href='https://github.com/RinteRface/bs4Dash/issues/13'>#13</a> in <code>bs4TabPanel()</code>: handle tabName with space and with punctuation characters. Thanks <a href='https://github.com/stephLH'>@stephLH</a></li>
 <li>fix <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>: when the user set 2 or more active tabs at the same time, only the first one is selected</li>
 <li>related to <a href='https://github.com/RinteRface/bs4Dash/issues/16'>#16</a>: modify bs4Dash.js file so that only the first body content tab is selected and not that of the <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>, as they have the same class (tab-pane).</li>
 </ul>
@@ -438,12 +711,12 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>close and collapse buttons not shown when the title is NULL in <code><a href="../reference/bs4Card.html">bs4Card()</a></code>
+<li>close and collapse buttons not shown when the title is NULL in <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>
 </li>
 <li>
-<code><a href="../reference/bs4ValueBox.html">bs4ValueBox()</a></code> footer is not shown when the external link is NULL</li>
+<code><a href="../reference/renderbs4ValueBox.html">bs4ValueBox()</a></code> footer is not shown when the external link is NULL</li>
 <li>
-<code><a href="../reference/bs4ValueBox.html">bs4ValueBox()</a></code> external link opens in a new page</li>
+<code><a href="../reference/renderbs4ValueBox.html">bs4ValueBox()</a></code> external link opens in a new page</li>
 <li>add sidebar_collapsed argument to <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> to control the sidebar opening at start</li>
 <li>update <code><a href="../reference/bs4DashGallery.html">bs4DashGallery()</a></code>. Add a “theme” argument</li>
 <li>add <code><a href="../reference/ionicon.html">ionicon()</a></code> (implementation of ionicons)</li>
@@ -478,7 +751,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

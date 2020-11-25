@@ -268,7 +268,7 @@ infoBox <- bs4InfoBox
 #' See \link{bs4InfoBoxOutput} for full details
 #'
 #' @inheritParams bs4InfoBoxOutput
-#' @rdname bs4InfoBoxOutput
+#' @rdname bs4InfoBox
 #'
 #' @export
 infoBoxOutput <- bs4InfoBoxOutput
@@ -281,7 +281,7 @@ infoBoxOutput <- bs4InfoBoxOutput
 #' See \link{renderbs4InfoBox} for full details
 #'
 #' @inheritParams renderbs4InfoBox
-#' @rdname renderbs4InfoBox
+#' @rdname bs4InfoBox
 #'
 #' @export
 renderInfoBox <- renderbs4InfoBox
@@ -305,7 +305,7 @@ valueBox <- bs4ValueBox
 #' Alias to \link{bs4ValueBoxOutput}
 #' See \link{bs4ValueBoxOutput} for full details
 #'
-#' @rdname bs4ValueBoxOutput
+#' @rdname bs4ValueBox
 #'
 #' @export
 valueBoxOutput <- bs4ValueBoxOutput
@@ -317,7 +317,7 @@ valueBoxOutput <- bs4ValueBoxOutput
 #' Alias to \link{renderbs4ValueBox}
 #' See \link{renderbs4ValueBox} for full details
 #'
-#' @rdname renderbs4ValueBox
+#' @rdname bs4ValueBox
 #'
 #' @export
 renderValueBox <- renderbs4ValueBox

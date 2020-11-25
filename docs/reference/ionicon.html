@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
     <p>Create a ionicon.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ionicon</span>(<span class='no'>name</span>)</pre>
+    <pre class="usage"><span class='fu'>ionicon</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,27 +139,32 @@
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Similar to the icon function from shiny.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
+ 
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
+     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
+     sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
+     controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
+     footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
+     title <span class='op'>=</span> <span class='st'>"Ionicons"</span>,
+     body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
+      <span class='fu'>ionicon</span><span class='op'>(</span>name <span class='op'>=</span><span class='st'>"heart"</span><span class='op'>)</span>,
+      <span class='fu'>ionicon</span><span class='op'>(</span>name <span class='op'>=</span><span class='st'>"beer"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-      <span class='fu'>ionicon</span>(<span class='kw'>name</span> <span class='kw'>=</span><span class='st'>"heart"</span>),
-      <span class='fu'>ionicon</span>(<span class='kw'>name</span> <span class='kw'>=</span><span class='st'>"beer"</span>)
-    )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -175,7 +180,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

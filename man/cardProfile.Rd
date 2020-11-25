@@ -36,57 +36,57 @@ Create card profile item
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(),
-     sidebar = dashboardSidebar(
-      sidebarMenu(
-       sidebarHeader("Main content"),
-       menuItem(
-         "Profile Card",
-         tabName = "profile_card",
-         icon = icon("desktop")
-       )
-      )
-     ),
-     controlbar = dashboardControlbar(),
-     footer = dashboardFooter(),
-     title = "boxProfile",
-     body = dashboardBody(
-      tabItems(
-       tabItem(
-         tabName = "profile_card",
-         bs4Card(
-          status = "primary",
-          solidHeader = TRUE,
-          boxProfile(
-           image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
-           title = "Nina Mcintire",
-           subtitle = "Software Engineer",
-           bordered = TRUE,
-           boxProfileItem(
-             title = "Followers",
-             description = 1322
-            ),
-            boxProfileItem(
-             title = "Following",
-             description = 543
-            ),
-            boxProfileItem(
-             title = "Friends",
-             description = 13287
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(
+        sidebarMenu(
+          sidebarHeader("Main content"),
+          menuItem(
+            "Profile Card",
+            tabName = "profile_card",
+            icon = icon("desktop")
+          )
+        )
+      ),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "boxProfile",
+      body = dashboardBody(
+        tabItems(
+          tabItem(
+            tabName = "profile_card",
+            bs4Card(
+              status = "primary",
+              solidHeader = TRUE,
+              boxProfile(
+                image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+                title = "Nina Mcintire",
+                subtitle = "Software Engineer",
+                bordered = TRUE,
+                boxProfileItem(
+                  title = "Followers",
+                  description = 1322
+                ),
+                boxProfileItem(
+                  title = "Following",
+                  description = 543
+                ),
+                boxProfileItem(
+                  title = "Friends",
+                  description = 13287
+                )
+              )
             )
           )
         )
-       )
       )
-     )
-   ),
-   server = function(input, output) {}
- )
+    ),
+    server = function(input, output) {}
+  )
 }
 }
 \seealso{
@@ -102,8 +102,6 @@ Other boxWidgets:
 \code{\link{userPost}()}
 }
 \author{
-David Granjon, \email{dgranjon@ymail.com}
-
 David Granjon, \email{dgranjon@ymail.com}
 }
 \concept{boxWidgets}

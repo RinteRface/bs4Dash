@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Boostrap 4 info box — bs4InfoBox • bs4Dash</title>
+<title>Boostrap 4 info box — renderbs4InfoBox • bs4Dash</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Boostrap 4 info box — bs4InfoBox" />
+<meta property="og:title" content="Boostrap 4 info box — renderbs4InfoBox" />
 <meta property="og:description" content="A beautiful AdminLTE3 info box." />
 
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Boostrap 4 info box</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/render-functions.R'><code>R/render-functions.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>bs4InfoBox.Rd</code></div>
     </div>
 
@@ -125,44 +125,54 @@
     <p>A beautiful AdminLTE3 info box.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4InfoBox</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>title</span>,
-  <span class='no'>value</span>,
-  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iconStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iconElevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)
+    <pre class="usage"><span class='fu'>renderbs4InfoBox</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>, quoted <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>infoBox</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>title</span>,
-  <span class='no'>value</span>,
-  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iconStatus</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iconElevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>elevation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+<span class='fu'>bs4InfoBoxOutput</span><span class='op'>(</span><span class='va'>outputId</span>, width <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+
+<span class='fu'>bs4InfoBox</span><span class='op'>(</span>
+  <span class='va'>title</span>,
+  value <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"bar-chart"</span><span class='op'>)</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='fl'>4</span>,
+  href <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fill <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  gradient <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  elevation <span class='op'>=</span> <span class='cn'>NULL</span>,
+  iconElevation <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tabName <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='fu'>infoBox</span><span class='op'>(</span>
+  <span class='va'>title</span>,
+  value <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"bar-chart"</span><span class='op'>)</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='fl'>4</span>,
+  href <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fill <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  gradient <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  elevation <span class='op'>=</span> <span class='cn'>NULL</span>,
+  iconElevation <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tabName <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='fu'>infoBoxOutput</span><span class='op'>(</span><span class='va'>outputId</span>, width <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+
+<span class='fu'>renderInfoBox</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>, quoted <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Any extra UI element.</p></td>
-    </tr>
-    <tr>
-      <th>tabName</th>
-      <td><p>Optional: bs4InfoBox may be used to navigate between tabs.</p></td>
+      <th>width</th>
+      <td><p>The width of the box, using the Bootstrap grid system. This is
+used for row-based layouts. The overall width of a region is 12, so the
+default width of 4 occupies 1/3 of that width. For column-based
+layouts, use <code>NULL</code> for the width; the width is set by the column that
+contains the box.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -173,84 +183,164 @@
       <td><p>The value to display in the box. Usually a number or short text.</p></td>
     </tr>
     <tr>
+      <th>subtitle</th>
+      <td><p>Any extra UI element.</p></td>
+    </tr>
+    <tr>
       <th>icon</th>
       <td><p>An icon tag, created by <code><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></code>.</p></td>
     </tr>
     <tr>
-      <th>iconStatus</th>
-      <td><p>Icon color. Only if status is NULL.</p></td>
+      <th>color</th>
+      <td><p>A color for the box. Valid colors are defined as follows:</p><ul>
+<li><p><code>primary</code>: <span style='width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#007bff
+.</p></li>
+<li><p><code>secondary</code>: <span style='width:12px;height:12px;background:#6c757d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6c757d
+.</p></li>
+<li><p><code>info</code>: <span style='width:12px;height:12px;background:#17a2b8;border-radius:2px;display:inline-block;margin-right:5px;'></span>#17a2b8
+.</p></li>
+<li><p><code>success</code>: <span style='width:12px;height:12px;background:#28a745;border-radius:2px;display:inline-block;margin-right:5px;'></span>#28a745
+.</p></li>
+<li><p><code>warning</code>: <span style='width:12px;height:12px;background:#ffc107;border-radius:2px;display:inline-block;margin-right:5px;'></span>#ffc107
+.</p></li>
+<li><p><code>danger</code>: <span style='width:12px;height:12px;background:#dc3545;border-radius:2px;display:inline-block;margin-right:5px;'></span>#dc3545
+.</p></li>
+<li><p><code>gray-dark</code>: <span style='width:12px;height:12px;background:#343a40;border-radius:2px;display:inline-block;margin-right:5px;'></span>#343a40
+.</p></li>
+<li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
+.</p></li>
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+.</p></li>
+<li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
+.</p></li>
+<li><p><code>lightblue</code>: <span style='width:12px;height:12px;background:#3c8dbc;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3c8dbc
+.</p></li>
+<li><p><code>navy</code>: <span style='width:12px;height:12px;background:#001f3f;border-radius:2px;display:inline-block;margin-right:5px;'></span>#001f3f
+.</p></li>
+<li><p><code>purple</code>: <span style='width:12px;height:12px;background:#605ca8;border-radius:2px;display:inline-block;margin-right:5px;'></span>#605ca8
+.</p></li>
+<li><p><code>fuchsia</code>: <span style='width:12px;height:12px;background:#f012be;border-radius:2px;display:inline-block;margin-right:5px;'></span>#f012be
+.</p></li>
+<li><p><code>pink</code>: <span style='width:12px;height:12px;background:#e83e8c;border-radius:2px;display:inline-block;margin-right:5px;'></span>#e83e8c
+.</p></li>
+<li><p><code>maroon</code>: <span style='width:12px;height:12px;background:#d81b60;border-radius:2px;display:inline-block;margin-right:5px;'></span>#d81b60
+.</p></li>
+<li><p><code>orange</code>: <span style='width:12px;height:12px;background:#ff851b;border-radius:2px;display:inline-block;margin-right:5px;'></span>#ff851b
+.</p></li>
+<li><p><code>lime</code>: <span style='width:12px;height:12px;background:#01ff70;border-radius:2px;display:inline-block;margin-right:5px;'></span>#01ff70
+.</p></li>
+<li><p><code>teal</code>: <span style='width:12px;height:12px;background:#39cccc;border-radius:2px;display:inline-block;margin-right:5px;'></span>#39cccc
+.</p></li>
+<li><p><code>olive</code>: <span style='width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3d9970
+.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>href</th>
+      <td><p>An optional URL to link to.</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p>If FALSE (the default), use a white background for the content, and
+the color argument for the background of the icon. If TRUE, use the color argument
+for the background of the content; the icon will use the same color with a slightly
+darkened background.</p></td>
+    </tr>
+    <tr>
+      <th>gradient</th>
+      <td><p>Whether to use gradient style for background color. Default to FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>elevation</th>
+      <td><p>Box elevation.</p></td>
     </tr>
     <tr>
       <th>iconElevation</th>
       <td><p>Icon elevation compared to the main content (relief). 3 by default.</p></td>
     </tr>
     <tr>
-      <th>status</th>
-      <td><p>A color for the box. "primary", "info", "success", "warning", "danger" or NULL.</p></td>
-    </tr>
-    <tr>
-      <th>gradientColor</th>
-      <td><p>If NULL (the default), the background of the box will be
-white. Otherwise, a color string. "primary", "success", "warning" or "danger".</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>The width of the box, using the Bootstrap grid system. This is
-used for row-based layouts. The overall width of a region is 12, so the
-default width of 4 occupies 1/3 of that width. For column-based
-layouts, use <code>NULL</code> for the width; the width is set by the column that
-contains the box.</p></td>
-    </tr>
-    <tr>
-      <th>elevation</th>
-      <td><p>Infobox elevation.</p></td>
+      <th>tabName</th>
+      <td><p>Optional: infoBox behaves like <a href='bs4DashSidebar.html'>menuItem</a> and
+may be used to navigate between multiple <a href='bs4DashBody.html'>tabItem</a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other cards: 
-<code><a href='bs4Card.html'>bs4Card</a>()</code>,
+<code><a href='bs4CardLayout.html'>bs4CardLayout</a>()</code>,
+<code><a href='bs4SocialCard.html'>bs4SocialCard</a>()</code>,
 <code><a href='bs4TabCard.html'>bs4TabCard</a>()</code>,
-<code><a href='bs4ValueBox.html'>bs4ValueBox</a>()</code></p></div>
+<code><a href='bs4UserCard.html'>bs4UserCard</a>()</code>,
+<code><a href='descriptionBlock.html'>descriptionBlock</a>()</code>,
+<code><a href='renderbs4ValueBox.html'>renderbs4ValueBox</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashPage.html'>bs4DashPage</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-     <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-     <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>(
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-       <span class='fu'>bs4InfoBox</span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Messages"</span>,
-        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>1410</span>,
-        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"envelope"</span>
-       ),
-       <span class='fu'>bs4InfoBox</span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Bookmarks"</span>,
-        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"info"</span>,
-        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>240</span>,
-        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"bookmark"</span>
-       ),
-       <span class='fu'>bs4InfoBox</span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Comments"</span>,
-        <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>41410</span>,
-        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"comments"</span>
-       )
-      )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
+      header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
+      sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span>
+        <span class='fu'><a href='bs4DashSidebar.html'>sidebarMenu</a></span><span class='op'>(</span>
+          <span class='fu'><a href='bs4DashSidebar.html'>menuItem</a></span><span class='op'>(</span>
+            text <span class='op'>=</span> <span class='st'>"Item 1"</span>,
+            tabName <span class='op'>=</span> <span class='st'>"tab1"</span>
+          <span class='op'>)</span>,
+          <span class='fu'><a href='bs4DashSidebar.html'>menuItem</a></span><span class='op'>(</span>
+            text <span class='op'>=</span> <span class='st'>"Item 2"</span>,
+            tabName <span class='op'>=</span> <span class='st'>"tab2"</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>,
+      controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
+      footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
+      title <span class='op'>=</span> <span class='st'>"test"</span>,
+      body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
+        <span class='fu'><a href='bs4DashBody.html'>tabItems</a></span><span class='op'>(</span>
+          <span class='fu'><a href='bs4DashBody.html'>tabItem</a></span><span class='op'>(</span>
+            tabName <span class='op'>=</span> <span class='st'>"tab1"</span>,
+            <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
+              <span class='fu'>infoBox</span><span class='op'>(</span>
+                title <span class='op'>=</span> <span class='st'>"Messages"</span>,
+                value <span class='op'>=</span> <span class='fl'>1410</span>,
+                icon <span class='op'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"envelope"</span><span class='op'>)</span>,
+                color <span class='op'>=</span> <span class='st'>"orange"</span>,
+                fill <span class='op'>=</span> <span class='cn'>TRUE</span>,
+              <span class='op'>)</span>,
+              <span class='fu'>infoBox</span><span class='op'>(</span>
+                title <span class='op'>=</span> <span class='st'>"Bookmarks"</span>,
+                color <span class='op'>=</span> <span class='st'>"info"</span>,
+                value <span class='op'>=</span> <span class='fl'>240</span>,
+                icon <span class='op'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"bookmark"</span><span class='op'>)</span>,
+                tabName <span class='op'>=</span> <span class='st'>"tab2"</span>
+              <span class='op'>)</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>,
+          <span class='fu'><a href='bs4DashBody.html'>tabItem</a></span><span class='op'>(</span>
+            tabName <span class='op'>=</span> <span class='st'>"tab2"</span>,
+            <span class='fu'>infoBox</span><span class='op'>(</span>
+              title <span class='op'>=</span> <span class='st'>"Comments"</span>,
+              color <span class='op'>=</span> <span class='st'>"indigo"</span>,
+              gradient <span class='op'>=</span> <span class='cn'>TRUE</span>,
+              value <span class='op'>=</span> <span class='fl'>41410</span>,
+              subtitle <span class='op'>=</span> <span class='st'>"A subtitle"</span>,
+              icon <span class='op'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"comments"</span><span class='op'>)</span>,
+              tabName <span class='op'>=</span> <span class='st'>"tab1"</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>,
+    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -266,7 +356,7 @@ contains the box.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

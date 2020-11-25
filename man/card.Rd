@@ -259,7 +259,7 @@ TRUE by default}
 \item{action}{Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore", "update")}.}
 
 \item{options}{If action is update, a list of new options to configure the box, such as
-\code{list(title = "new title", status = NULL, solidHeader = FALSE, 
+\code{list(title = "new title", status = NULL, solidHeader = FALSE,
 background = "red", width = 6, height = "200px", collapsible = FALSE, closable = FALSE)}.}
 
 \item{session}{Shiny session.}
@@ -374,151 +374,149 @@ if (interactive()) {
 }
 
 # A box with label, sidebar, dropdown menu
-if(interactive()){
- library(shiny)
- library(bs4Dash)
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
 
- shinyApp(
-   ui = dashboardPage(
-     dashboardHeader(),
-     dashboardSidebar(),
-     dashboardBody(
-      box(
-        title = "Closable Box with dropdown", 
-        closable = TRUE, 
-        width = 12,
-        status = "warning", 
-        solidHeader = FALSE, 
-        collapsible = TRUE,
-        label = boxLabel(
-         text = 1,
-         status = "danger"
-        ),
-        dropdownMenu = boxDropdown(
-         boxDropdownItem("Link to google", href = "http://www.google.com"),
-         boxDropdownItem("item 2", href = "#"),
-         dropdownDivider(),
-         boxDropdownItem("item 3", href = "#", icon = icon("th"))
-        ),
-        sidebar = boxSidebar(
-         startOpen = TRUE,
-         id = "mycardsidebar",
-         sliderInput(
-          "obs", 
-          "Number of observations:",
-          min = 0, 
-          max = 1000, 
-          value = 500
-         )
-        ),
-        plotOutput("distPlot")
-       )
-     )
-   ),
-   server = function(input, output) {
-    output$distPlot <- renderPlot({
-     hist(rnorm(input$obs))
-    })
-   }
- )
+  shinyApp(
+    ui = dashboardPage(
+      dashboardHeader(),
+      dashboardSidebar(),
+      dashboardBody(
+        box(
+          title = "Closable Box with dropdown",
+          closable = TRUE,
+          width = 12,
+          status = "warning",
+          solidHeader = FALSE,
+          collapsible = TRUE,
+          label = boxLabel(
+            text = 1,
+            status = "danger"
+          ),
+          dropdownMenu = boxDropdown(
+            boxDropdownItem("Link to google", href = "http://www.google.com"),
+            boxDropdownItem("item 2", href = "#"),
+            dropdownDivider(),
+            boxDropdownItem("item 3", href = "#", icon = icon("th"))
+          ),
+          sidebar = boxSidebar(
+            startOpen = TRUE,
+            id = "mycardsidebar",
+            sliderInput(
+              "obs",
+              "Number of observations:",
+              min = 0,
+              max = 1000,
+              value = 500
+            )
+          ),
+          plotOutput("distPlot")
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$distPlot <- renderPlot({
+        hist(rnorm(input$obs))
+      })
+    }
+  )
 }
-
 # Toggle a box on the client
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- ui <- dashboardPage(
-   dashboardHeader(),
-   dashboardSidebar(),
-   dashboardBody(
-     tags$style("body { background-color: ghostwhite}"),
-     fluidRow(
-       actionButton("toggle_box", "Toggle Box"),
-       actionButton("remove_box", "Remove Box", class = "bg-danger"),
-       actionButton("restore_box", "Restore Box", class = "bg-success")
-     ),
-     actionButton("update_box", "Update Box", class = "bg-info"), 
-     actionButton("update_box2", "Update Box 2", class = "bg-info"),
-     br(),
-     br(),
-     box(
-       title = textOutput("box_state"),
-       id = "mybox",
-       status = "danger", 
-       background = "maroon", 
-       gradient = TRUE,
-       collapsible = TRUE,
-       closable = TRUE,
-       plotOutput("plot")
-     )
-   )
- )
- 
- server <- function(input, output, session) {
-   output$plot <- renderPlot({
-     req(!input$mybox$collapsed)
-     plot(rnorm(200))
-   })
-   
-   output$box_state <- renderText({
-     state <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
-     paste("My box is", state)
-   })
-   
-   observeEvent(input$toggle_box, {
-     updateBox("mybox", action = "toggle")
-   })
-   
-   observeEvent(input$remove_box, {
-     updateBox("mybox", action = "remove")
-   })
-   
-   observeEvent(input$restore_box, {
-     updateBox("mybox", action = "restore")
-   })
-   
-   observeEvent(input$mybox$visible, {
-     collapsed <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
-     visible <- if (input$mybox$visible) "visible" else "hidden"
-     message <- paste("My box is", collapsed, "and", visible)
-     showNotification(message, type = "warning", duration = 1)
-   })
-   
-   observeEvent(input$update_box, {
-     updateBox(
-       "mybox", 
-       action = "update", 
-       options = list(
-         title = tagList(h2("hello"), dashboardLabel(1, status = "primary")),
-         status = "warning", 
-         solidHeader = TRUE, 
-         width = 12, 
-         background = NULL, 
-         height = "900px", 
-         closable = FALSE
-       )
-     )
-   })
-    
+  library(shiny)
+  library(bs4Dash)
+
+  ui <- dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+      tags$style("body { background-color: ghostwhite}"),
+      fluidRow(
+        actionButton("toggle_box", "Toggle Box"),
+        actionButton("remove_box", "Remove Box", class = "bg-danger"),
+        actionButton("restore_box", "Restore Box", class = "bg-success")
+      ),
+      actionButton("update_box", "Update Box", class = "bg-info"),
+      actionButton("update_box2", "Update Box 2", class = "bg-info"),
+      br(),
+      br(),
+      box(
+        title = textOutput("box_state"),
+        id = "mybox",
+        status = "danger",
+        background = "maroon",
+        gradient = TRUE,
+        collapsible = TRUE,
+        closable = TRUE,
+        plotOutput("plot")
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+    output$plot <- renderPlot({
+      req(!input$mybox$collapsed)
+      plot(rnorm(200))
+    })
+
+    output$box_state <- renderText({
+      state <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+      paste("My box is", state)
+    })
+
+    observeEvent(input$toggle_box, {
+      updateBox("mybox", action = "toggle")
+    })
+
+    observeEvent(input$remove_box, {
+      updateBox("mybox", action = "remove")
+    })
+
+    observeEvent(input$restore_box, {
+      updateBox("mybox", action = "restore")
+    })
+
+    observeEvent(input$mybox$visible, {
+      collapsed <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+      visible <- if (input$mybox$visible) "visible" else "hidden"
+      message <- paste("My box is", collapsed, "and", visible)
+      showNotification(message, type = "warning", duration = 1)
+    })
+
+    observeEvent(input$update_box, {
+      updateBox(
+        "mybox",
+        action = "update",
+        options = list(
+          title = tagList(h2("hello"), dashboardLabel(1, status = "primary")),
+          status = "warning",
+          solidHeader = TRUE,
+          width = 12,
+          background = NULL,
+          height = "900px",
+          closable = FALSE
+        )
+      )
+    })
+
     observeEvent(input$update_box2, {
       updateBox(
-        "mybox", 
-        action = "update", 
+        "mybox",
+        action = "update",
         options = list(
-          status = NULL, 
+          status = NULL,
           solidHeader = FALSE,
-          width = 4, 
-          background = "green", 
-          height = "500px", 
+          width = 4,
+          background = "green",
+          height = "500px",
           closable = TRUE
         )
       )
     })
-   
- }
- 
- shinyApp(ui, server)
+  }
+
+  shinyApp(ui, server)
 }
 }
 \seealso{
@@ -546,11 +544,11 @@ Other boxWidgets:
 
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4TabCard}()},
 \code{\link{bs4UserCard}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{renderbs4InfoBox}()},
+\code{\link{renderbs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

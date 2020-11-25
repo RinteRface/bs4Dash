@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -71,13 +71,14 @@
 
       
 
-      </header><script src="bs4sortable_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="bs4sortable_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="bs4sortable_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="bs4sortable_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Sortable Elements</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-08-28</h4>
+            <h4 class="date">2020-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4sortable.Rmd"><code>vignettes/bs4sortable.Rmd</code></a></small>
       <div class="hidden name"><code>bs4sortable.Rmd</code></div>
@@ -92,46 +93,47 @@
 <p>With bs4Dash, it is possible to sort elements by row and columns without the need of any external package. This does not work on mobiles.</p>
 <p><img src="figures/bs4Sortable.gif"><br></p>
 <details open><p><summary>Code</summary></p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
- <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">bs4Dash</span>)
- <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
-  <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span>(
-    <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span>(),
-    <span class="kw">sidebar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span>(),
-    <span class="kw">controlbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span>(),
-    <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span>(),
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"test"</span>,
-    <span class="kw">body</span> <span class="kw">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span>(
-      <span class="fu"><a href="../reference/bs4TabItems.html">bs4TabItems</a></span>(
-        <span class="fu"><a href="../reference/bs4TabItem.html">bs4TabItem</a></span>(
-          <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"sortabled"</span>,
-          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
-            <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">i</span>) {
-              <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span>(
-                <span class="kw">width</span> <span class="kw">=</span> <span class="fl">4</span>,
-                <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">p</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Column"</span>, <span class="no">i</span>)),
-                <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">j</span>) {
-                  <span class="fu"><a href="../reference/bs4Card.html">bs4Card</a></span>(
-                    <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"I am the "</span>, <span class="no">j</span>,<span class="st">"-th card of the "</span>, <span class="no">i</span>, <span class="st">"-th column"</span>),
-                    <span class="kw">width</span> <span class="kw">=</span> <span class="fl">12</span>,
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+ <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
+ <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+  ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">bs4DashPage</a></span><span class="op">(</span>
+    navbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">bs4DashNavbar</a></span><span class="op">(</span><span class="op">)</span>,
+    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span><span class="op">(</span><span class="op">)</span>,
+    controlbar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashControlbar.html">bs4DashControlbar</a></span><span class="op">(</span><span class="op">)</span>,
+    footer <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashFooter.html">bs4DashFooter</a></span><span class="op">(</span><span class="op">)</span>,
+    title <span class="op">=</span> <span class="st">"test"</span>,
+    body <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashBody.html">bs4DashBody</a></span><span class="op">(</span>
+      <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItems</a></span><span class="op">(</span>
+        <span class="fu"><a href="../reference/bs4DashBody.html">bs4TabItem</a></span><span class="op">(</span>
+          tabName <span class="op">=</span> <span class="st">"sortabled"</span>,
+          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+            <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span>
+              <span class="fu"><a href="../reference/bs4Sortable.html">bs4Sortable</a></span><span class="op">(</span>
+                width <span class="op">=</span> <span class="fl">4</span>,
+                <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">p</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"text-center"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Column"</span>, <span class="va">i</span><span class="op">)</span><span class="op">)</span>,
+                <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">j</span><span class="op">)</span> <span class="op">{</span>
+                  <span class="fu"><a href="../reference/descriptionBlock.html">bs4Card</a></span><span class="op">(</span>
+                    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"I am the "</span>, <span class="va">j</span>,<span class="st">"-th card of the "</span>, <span class="va">i</span>, <span class="st">"-th column"</span><span class="op">)</span>, 
+                    width <span class="op">=</span> <span class="fl">12</span>,
                     <span class="st">"Click on my header"</span>
-                  )
-                })
-              )
-            })
-          )
-        )
-      )
-    )
-  ),
-  <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {}
- )</pre></body></html></div>
+                  <span class="op">)</span>
+                <span class="op">}</span><span class="op">)</span>
+              <span class="op">)</span>
+            <span class="op">}</span><span class="op">)</span>
+          <span class="op">)</span>
+        <span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>,
+  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span>
+ <span class="op">)</span></code></pre></div>
 </details><p><br></p>
 </div>
 <div id="limitations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#limitations" class="anchor"></a>Limitations</h2>
-<p>Only works with <code><a href="../reference/bs4Card.html">bs4Card()</a></code>, <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>, <code><a href="../reference/bs4SocialCard.html">bs4SocialCard()</a></code> and <code><a href="../reference/bs4Box.html">bs4Box()</a></code>.</p>
+<p>Only works with <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code>, <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>, <code><a href="../reference/bs4SocialCard.html">bs4SocialCard()</a></code> and <code>bs4Box()</code>.</p>
 </div>
   </div>
 
@@ -150,7 +152,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

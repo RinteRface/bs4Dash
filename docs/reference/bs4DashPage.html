@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -125,45 +125,35 @@
     <p>Build an adminLTE3 dashboard page</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4DashPage</span>(
-  <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_mini</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>controlbar_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>loading_background</span> <span class='kw'>=</span> <span class='st'>"#1E90FF"</span>
-)
+    <pre class="usage"><span class='fu'>bs4DashPage</span><span class='op'>(</span>
+  <span class='va'>header</span>,
+  <span class='va'>sidebar</span>,
+  <span class='va'>body</span>,
+  controlbar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  footer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  freshTheme <span class='op'>=</span> <span class='cn'>NULL</span>,
+  preloader <span class='op'>=</span> <span class='cn'>NULL</span>,
+  options <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>dashboardPage</span>(
-  <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>body</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sidebar_mini</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebar_collapsed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>controlbar_collapsed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>controlbar_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>loading_background</span> <span class='kw'>=</span> <span class='st'>"#1E90FF"</span>
-)</pre>
+<span class='fu'>dashboardPage</span><span class='op'>(</span>
+  <span class='va'>header</span>,
+  <span class='va'>sidebar</span>,
+  <span class='va'>body</span>,
+  controlbar <span class='op'>=</span> <span class='cn'>NULL</span>,
+  footer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  freshTheme <span class='op'>=</span> <span class='cn'>NULL</span>,
+  preloader <span class='op'>=</span> <span class='cn'>NULL</span>,
+  options <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>navbar</th>
+      <th>header</th>
       <td><p>Slot for <a href='bs4DashNavbar.html'>bs4DashNavbar</a>.</p></td>
     </tr>
     <tr>
@@ -187,135 +177,90 @@
       <td><p>App title.</p></td>
     </tr>
     <tr>
-      <th>old_school</th>
-      <td><p>Whether to use the wonderful sketchy design for Bootstrap 4. FALSE
-by default.</p></td>
+      <th>freshTheme</th>
+      <td><p>A skin powered by the fresh package. Not compatible with skin.
+See <a href='https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html'>https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html</a>.</p></td>
     </tr>
     <tr>
-      <th>sidebar_mini</th>
-      <td><p>Whether to see sidebar icons when <a href='bs4DashSidebar.html'>bs4DashSidebar</a>.
-is collapsed. TRUE by default.</p></td>
+      <th>preloader</th>
+      <td><p>bs4Dash uses waiter (see <a href='https://waiter.john-coene.com/#/'>https://waiter.john-coene.com/#/</a>).
+Pass a nested list with 2 elements like <code><a href='https://rdrr.io/r/base/list.html'>list(waiter = list(html = spin_1(), color = "#333e48"), duration = 5)</a></code>.
+<code>waiter</code> expects to provide a sub-list to configure <a href='https://rdrr.io/pkg/waiter/man/waiter.html'>waiter_show_on_load</a> (refer to
+the package help for all styles). <code>duration</code> defines the loader timeout.</p></td>
     </tr>
     <tr>
-      <th>sidebar_collapsed</th>
-      <td><p>Whether the sidebar is collapsed of not at start. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>controlbar_collapsed</th>
-      <td><p>Whether the sidebar is collapsed of not at start. TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>controlbar_overlay</th>
-      <td><p>Whether the sidebar covers the content when expanded.
-Default to TRUE.</p></td>
-    </tr>
-    <tr>
-      <th>enable_preloader</th>
-      <td><p>Whether to enable a page loader. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>loading_duration</th>
-      <td><p>Loader duration in seconds. 2s by default.</p></td>
-    </tr>
-    <tr>
-      <th>loading_background</th>
-      <td><p>Background color during page startup. Blue by default: 
+      <th>options</th>
+      <td><p>Extra option to overwrite the vanilla AdminLTE configuration. See 
+<a href='https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options'>https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options</a>.
+Expect a list.
 <a href='https://www.w3schools.com/cssref/css_colors.asp'>https://www.w3schools.com/cssref/css_colors.asp</a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dreamRs/fresh'>fresh</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>bs4DashPage</span>(
-    <span class='kw'>enable_preloader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>bs4DashNavbar</a></span>(),
-    <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>bs4DashSidebar</a></span>(),
-    <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>bs4DashControlbar</a></span>(),
-    <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashFooter.html'>bs4DashFooter</a></span>(),
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-    <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>bs4DashBody</a></span>()
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'>dashboardPage</span><span class='op'>(</span>
+     freshTheme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/create_theme.html'>create_theme</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4dash_vars.html'>bs4dash_vars</a></span><span class='op'>(</span>
+        navbar_light_color <span class='op'>=</span> <span class='st'>"#bec5cb"</span>,
+        navbar_light_active_color <span class='op'>=</span> <span class='st'>"#FFF"</span>,
+        navbar_light_hover_color <span class='op'>=</span> <span class='st'>"#FFF"</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4dash_yiq.html'>bs4dash_yiq</a></span><span class='op'>(</span>
+        contrasted_threshold <span class='op'>=</span> <span class='fl'>10</span>,
+        text_dark <span class='op'>=</span> <span class='st'>"#FFF"</span>, 
+        text_light <span class='op'>=</span> <span class='st'>"#272c30"</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4dash_layout.html'>bs4dash_layout</a></span><span class='op'>(</span>
+        main_bg <span class='op'>=</span> <span class='st'>"#353c42"</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4Dash-sidebar.html'>bs4dash_sidebar_light</a></span><span class='op'>(</span>
+        bg <span class='op'>=</span> <span class='st'>"#272c30"</span>, 
+        color <span class='op'>=</span> <span class='st'>"#bec5cb"</span>,
+        hover_color <span class='op'>=</span> <span class='st'>"#FFF"</span>,
+        submenu_bg <span class='op'>=</span> <span class='st'>"#272c30"</span>, 
+        submenu_color <span class='op'>=</span> <span class='st'>"#FFF"</span>, 
+        submenu_hover_color <span class='op'>=</span> <span class='st'>"#FFF"</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4dash_status.html'>bs4dash_status</a></span><span class='op'>(</span>
+        primary <span class='op'>=</span> <span class='st'>"#5E81AC"</span>, danger <span class='op'>=</span> <span class='st'>"#BF616A"</span>, light <span class='op'>=</span> <span class='st'>"#272c30"</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/fresh/man/bs4dash_color.html'>bs4dash_color</a></span><span class='op'>(</span>
+        gray_900 <span class='op'>=</span> <span class='st'>"#FFF"</span>, white <span class='op'>=</span> <span class='st'>"#272c30"</span>
+      <span class='op'>)</span>
+     <span class='op'>)</span>,
+     options <span class='op'>=</span> <span class='cn'>NULL</span>,
+     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span>
+      title <span class='op'>=</span> <span class='fu'><a href='bs4DashBrand.html'>dashboardBrand</a></span><span class='op'>(</span>
+       title <span class='op'>=</span> <span class='st'>"My dashboard"</span>,
+       color <span class='op'>=</span> <span class='st'>"primary"</span>,
+       href <span class='op'>=</span> <span class='st'>"https://adminlte.io/themes/v3"</span>,
+       image <span class='op'>=</span> <span class='st'>"https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"</span>
+      <span class='op'>)</span>
+     <span class='op'>)</span>,
+     sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
+     body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
+      <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>status <span class='op'>=</span> <span class='st'>"danger"</span><span class='op'>)</span>,
+      <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>status <span class='op'>=</span> <span class='st'>"primary"</span><span class='op'>)</span>,
+      <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>status <span class='op'>=</span> <span class='st'>"orange"</span><span class='op'>)</span>
+     <span class='op'>)</span>,
+     controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
+     title <span class='op'>=</span> <span class='st'>"DashboardPage"</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span> <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
 
-<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bs4Dash</span>)
-
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'>dashboardPage</span>(
-   <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span>(),
-   <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span>(),
-   <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span>(
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)),
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)),
-       <span class='fu'><a href='column.html'>column</a></span>(<span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"result"</span>))
-     )
-   ),
-   <span class='kw'>controlbar</span> <span class='kw'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span>(
-     <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-     <span class='fu'><a href='bs4TabSetPanel.html'>tabsetPanel</a></span>(
-       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabsetpanel"</span>,
-       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html'>sliderInput</a></span>(
-           <span class='st'>"obs"</span>,
-           <span class='st'>"Number of observations:"</span>,
-           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
-         )
-       ),
-       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html'>checkboxGroupInput</a></span>(
-           <span class='st'>"variable"</span>,
-           <span class='st'>"Variables to show:"</span>,
-           <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
-             <span class='st'>"Transmission"</span> <span class='kw'>=</span> <span class='st'>"am"</span>,
-             <span class='st'>"Gears"</span> <span class='kw'>=</span> <span class='st'>"gear"</span>)
-         )
-       ),
-       <span class='fu'><a href='bs4TabPanel.html'>tabPanel</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/selectInput.html'>selectInput</a></span>(
-           <span class='st'>"state"</span>,
-           <span class='st'>"Choose a state:"</span>,
-           <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`East Coast`</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"NY"</span>, <span class='st'>"NJ"</span>, <span class='st'>"CT"</span>),
-                <span class='kw'>`West Coast`</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"WA"</span>, <span class='st'>"OR"</span>, <span class='st'>"CA"</span>),
-                <span class='kw'>`Midwest`</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"MN"</span>, <span class='st'>"WI"</span>, <span class='st'>"IA"</span>)
-           )
-         )
-       )
-     )
-    )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
-     <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
-    })
-
-    <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderTable.html'>renderTable</a></span>({
-      <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>])
-    }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-    <span class='no'>output</span>$<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>({
-      <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"You chose"</span>, <span class='no'>input</span>$<span class='no'>state</span>)
-    })
-   }
- )
-}</div></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -331,7 +276,7 @@ Default to TRUE.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

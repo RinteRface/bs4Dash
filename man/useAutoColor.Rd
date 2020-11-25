@@ -19,42 +19,42 @@ at the top of the main server function.
 }
 \description{
 This piece of code is necessary so that plots get the
-good background color, automatically. It requires the use 
+good background color, automatically. It requires the use
 of the thematic package and shiny dev.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- library(thematic)
+  library(shiny)
+  library(bs4Dash)
+  library(thematic)
 
- thematic_shiny()
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(
-       title = bs4DashBrand(
-         title = "My dashboard",
-         color = "primary",
-         src = "https://adminlte.io/themes/v3",
-         image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
-       )
-     ),
-     sidebar = dashboardSidebar(),
-     body = dashboardBody(
-       sliderInput("obs", "Number of observations:",
-                   min = 0, max = 1000, value = 500
-       ),
-       plotOutput("distPlot")
-     ),
-     controlbar = dashboardControlbar(),
-     title = "DashboardPage"
-   ),
-   server = function(input, output, session) { 
-     useAutoColor()
-     output$distPlot <- renderPlot({
-       hist(rnorm(input$obs))
-     })
-   }
- )
+  thematic_shiny()
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(
+        title = bs4DashBrand(
+          title = "My dashboard",
+          color = "primary",
+          href = "https://adminlte.io/themes/v3",
+          image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+        )
+      ),
+      sidebar = dashboardSidebar(),
+      body = dashboardBody(
+        sliderInput("obs", "Number of observations:",
+          min = 0, max = 1000, value = 500
+        ),
+        plotOutput("distPlot")
+      ),
+      controlbar = dashboardControlbar(),
+      title = "DashboardPage"
+    ),
+    server = function(input, output, session) {
+      useAutoColor()
+      output$distPlot <- renderPlot({
+        hist(rnorm(input$obs))
+      })
+    }
+  )
 }
 }

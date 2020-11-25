@@ -184,72 +184,71 @@ while 2 is a left aligned user image.}
 \link{userDescription} creates a customized title tag for \link{userBox}.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(),
-     sidebar = dashboardSidebar(),
-     controlbar = dashboardControlbar(),
-     footer = dashboardFooter(),
-     title = "test",
-     body = dashboardBody(
-      userBox(
-       title = userDescription(
-        title = "Nadia Carmichael",
-        subtitle = "lead Developer",
-        type = 2,
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
-       ),
-       status = "primary",
-       gradient = TRUE, 
-       background = "primary",
-       boxToolSize = "xl",
-       "Some text here!",
-       footer = "The footer here!"
-      ),
-      userBox(
-       title = userDescription(
-        title = "Alexander Pierce",
-        subtitle = "Founder & CEO",
-        type = 1,
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-       ),
-       status = "indigo",
-       closable = TRUE,
-       "Some text here!",
-       footer = "The footer here!"
-      ),
-      userBox(
-       title = userDescription(
-        title = "Elizabeth Pierce",
-        subtitle = "Web Designer",
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
-        backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
-       ),
-       status = "olive",
-       closable = TRUE,
-       maximizable = TRUE,
-       "Some text here!",
-       footer = "The footer here!"
-      )
-     )
-   ),
-   server = function(input, output) {}
- )
-}
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
 
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "test",
+      body = dashboardBody(
+        userBox(
+          title = userDescription(
+            title = "Nadia Carmichael",
+            subtitle = "lead Developer",
+            type = 2,
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+          ),
+          status = "primary",
+          gradient = TRUE,
+          background = "primary",
+          boxToolSize = "xl",
+          "Some text here!",
+          footer = "The footer here!"
+        ),
+        userBox(
+          title = userDescription(
+            title = "Alexander Pierce",
+            subtitle = "Founder & CEO",
+            type = 1,
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+          ),
+          status = "indigo",
+          closable = TRUE,
+          "Some text here!",
+          footer = "The footer here!"
+        ),
+        userBox(
+          title = userDescription(
+            title = "Elizabeth Pierce",
+            subtitle = "Web Designer",
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+            backgroundImage = "https://cdn.statically.io/img/wallpaperaccess.com/full/1119564.jpg",
+          ),
+          status = "olive",
+          closable = TRUE,
+          maximizable = TRUE,
+          "Some text here!",
+          footer = "The footer here!"
+        )
+      )
+    ),
+    server = function(input, output) {}
+  )
+}
 }
 \seealso{
 Other cards: 
 \code{\link{bs4CardLayout}()},
-\code{\link{bs4InfoBox}()},
 \code{\link{bs4SocialCard}()},
 \code{\link{bs4TabCard}()},
-\code{\link{bs4ValueBox}()},
-\code{\link{descriptionBlock}()}
+\code{\link{descriptionBlock}()},
+\code{\link{renderbs4InfoBox}()},
+\code{\link{renderbs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
