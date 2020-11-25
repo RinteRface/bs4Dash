@@ -43,52 +43,58 @@ input$<id>. If TRUE, the alert has been created and is visible, if FALSE the ale
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
-    body = dashboardBody(
-      tooltip(
-       sliderInput("obs", "Observations:", 10, min = 1, max = 100),
-       placement = "right",
-       title = "Set me higher than 50!"
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      body = dashboardBody(
+        tooltip(
+          sliderInput("obs", "Observations:", 10, min = 1, max = 100),
+          placement = "right",
+          title = "Set me higher than 50!"
+        ),
+        div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
       ),
-      div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
+      controlbar = dashboardControlbar(),
+      title = "Alerts",
     ),
-    controlbar = dashboardControlbar(),
-    title = "Alerts",
-  ),
-  server = function(input, output, session) {
-    observeEvent(input$obs, {
-      if (input$obs > 50) {
-       createAlert(
-         id = "myalert",
-         options = list(
-          title = "Alert",
-          closable = TRUE,
-          width = 12,
-          elevations = 4,
-          status = "primary",
-          content = "Alert content ..."
-         )
-       )
-      } else {
-       closeAlert(id = "myalert")
-      }
-      
-    })
+    server = function(input, output, session) {
+      observeEvent(input$obs, {
+        if (input$obs > 50) {
+          createAlert(
+            id = "myalert",
+            options = list(
+              title = "Alert",
+              closable = TRUE,
+              width = 12,
+              elevations = 4,
+              status = "primary",
+              content = "Alert content ..."
+            )
+          )
+        } else {
+          closeAlert(id = "myalert")
+        }
+      })
 
-    observe(print(input$myalert))
-    
-    observeEvent(input$myalert, {
-      status <- if (input$myalert) "opened" else "closed"
-      toast(title = sprintf("Alert succesfully \%s!", status))
-    })
-  }
- )
+      observe(print(input$myalert))
+
+      observeEvent(input$myalert, {
+        alertStatus <- if (input$myalert) "opened" else "closed"
+        toastColor <- if (input$myalert) "bg-lime" else "bg-fuchsia"
+        toast(
+          title = sprintf("Alert succesfully \%s!", alertStatus),
+          options = list(
+            class = toastColor,
+            autohide = TRUE,
+            position = "topRight"
+          )
+        )
+      })
+    }
+  )
 }
-
 }

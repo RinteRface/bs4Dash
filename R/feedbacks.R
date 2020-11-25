@@ -1,56 +1,55 @@
 #' Create a Bootstrap 4 Tooltip from the UI side
-#' 
+#'
 #' This replaces the shinyBS tooltip feature that is not compatible
 #' with Bootstrap 4
-#' 
+#'
 #' @note \link{tooltip} does not automatically handles tooltip removal and must be seperately implemented.
 #' If the \link{dashboardHeader} help parameter is TRUE, all tooltips may be enabled
-#' or disabled depending on the switch value, which may solve this problem. 
+#' or disabled depending on the switch value, which may solve this problem.
 #' This allows to toggle tooltips whenever required.
-#' 
+#'
 #'
 #' @param tag Tooltip target.
 #' @param title Tooltip title.
-#' @param placement Tooltip placement: "top", "bottom", "left" or "right". 
+#' @param placement Tooltip placement: "top", "bottom", "left" or "right".
 #'
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     controlbar = dashboardControlbar(),
-#'     footer = dashboardFooter(),
-#'     title = "Tooltip UI",
-#'     body = dashboardBody(
-#'      tooltip(
-#'       actionButton("goButton", "Hover to see the tooltip"),
-#'       title = "My tooltip",
-#'       placement = "top"
-#'      )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
-#'  )
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       controlbar = dashboardControlbar(),
+#'       footer = dashboardFooter(),
+#'       title = "Tooltip UI",
+#'       body = dashboardBody(
+#'         tooltip(
+#'           actionButton("goButton", "Hover to see the tooltip"),
+#'           title = "My tooltip",
+#'           placement = "top"
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
 #' }
 tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right")) {
-  
   placement <- match.arg(placement)
-  
+
   tag <- shiny::tagAppendAttributes(
-    tag, 
+    tag,
     `data-toggle` = "tooltip",
-    `data-placement` = placement, 
+    `data-placement` = placement,
     title = title
   )
-  
+
   tagId <- tag$attribs$id
-  
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
@@ -73,15 +72,15 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 
 
 #' Create a Bootstrap 4 tooltip from the server side
-#' 
+#'
 #' \link{addTooltip} adds a tooltip to the given target.
-#' 
+#'
 #' @note This replaces the shinyBS tooltip feature that is not compatible
 #' with Bootstrap 4
 #'
 #' @param id Tooltip target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param options List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}. 
+#' @param options List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -89,51 +88,50 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny) 
-#'  library(bs4Dash) 
-#'     
-#'  shinyApp( 
-#'    ui = dashboardPage( 
-#'      header = dashboardHeader(), 
-#'      sidebar = dashboardSidebar(), 
-#'      controlbar = dashboardControlbar(), 
-#'      footer = dashboardFooter(), 
-#'      title = "Tooltip server", 
-#'      body = dashboardBody( 
-#'       sliderInput("obs", "Number of observations:", 
-#'         min = 0, max = 1000, value = 500 
-#'       ), 
-#'       plotOutput("distPlot") 
-#'      ) 
-#'    ), 
-#'    server = function(input, output, session) { 
-#'      output$distPlot <- renderPlot({ 
-#'        hist(rnorm(input$obs)) 
-#'      }) 
-#'          
-#'      observeEvent(input$obs, { 
-#'        if (input$obs > 500) { 
-#'         addTooltip( 
-#'           id = "distPlot",  
-#'           options = list(
-#'            title = "Server tooltip",  
-#'            placement = "bottom"
-#'           ) 
-#'         ) 
-#'        } else { 
-#'          removeTooltip(id = "distPlot") 
-#'        } 
-#'      }) 
-#'    } 
-#'   )      
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       controlbar = dashboardControlbar(),
+#'       footer = dashboardFooter(),
+#'       title = "Tooltip server",
+#'       body = dashboardBody(
+#'         sliderInput("obs", "Number of observations:",
+#'           min = 0, max = 1000, value = 500
+#'         ),
+#'         plotOutput("distPlot")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$distPlot <- renderPlot({
+#'         hist(rnorm(input$obs))
+#'       })
+#'
+#'       observeEvent(input$obs, {
+#'         if (input$obs > 500) {
+#'           addTooltip(
+#'             id = "distPlot",
+#'             options = list(
+#'               title = "Server tooltip",
+#'               placement = "bottom"
+#'             )
+#'           )
+#'         } else {
+#'           removeTooltip(id = "distPlot")
+#'         }
+#'       })
+#'     }
+#'   )
 #' }
 addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
-  
   if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
   if (is.null(options$title)) stop("Please provide a tooltip title!")
-  
+
   message <- dropNulls(
     list(
       id = session$ns(id),
@@ -148,7 +146,7 @@ addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::get
 
 
 #' Remove a Bootstrap 4 tooltip from the server side
-#' 
+#'
 #' \link{removeTooltip} destroys the current targeted tooltip.
 #'
 #' @param id Tooltip target id.
@@ -164,61 +162,60 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 
 
 #' Create a Bootstrap 4 popover from the UI side
-#' 
+#'
 #' This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
-#' 
+#'
 #' @note \link{popover} does not automatically handles tooltip removal and must be seperately implemented.
 #' If the \link{dashboardHeader} help parameter is TRUE, all popovers may be enabled
-#' or disabled depending on the switch value, which may solve this problem. 
+#' or disabled depending on the switch value, which may solve this problem.
 #' This allows to toggle popovers whenever required.
 #'
 #' @param tag Popover target.
 #' @param content Popover content.
 #' @param title Popover title.
-#' @param placement Popover placement: "top", "bottom", "left" or "right". 
+#' @param placement Popover placement: "top", "bottom", "left" or "right".
 #'
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     controlbar = dashboardControlbar(),
-#'     footer = dashboardFooter(),
-#'     title = "Popover UI",
-#'     body = dashboardBody(
-#'      popover(
-#'       actionButton("goButton", "Click me to see the popover!"),
-#'        title = "My popover",
-#'        placement = "right",
-#'        content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-#'      )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
-#'  )
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       controlbar = dashboardControlbar(),
+#'       footer = dashboardFooter(),
+#'       title = "Popover UI",
+#'       body = dashboardBody(
+#'         popover(
+#'           actionButton("goButton", "Click me to see the popover!"),
+#'           title = "My popover",
+#'           placement = "right",
+#'           content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
 #' }
 popover <- function(tag, content, title, placement = c("top", "bottom", "left", "right")) {
-  
   placement <- match.arg(placement)
-  
+
   tag <- shiny::tagAppendAttributes(
-    tag, 
+    tag,
     `data-container` = "body",
     `data-toggle` = "popover",
-    `data-placement` = placement, 
+    `data-placement` = placement,
     `data-content` = content,
     title = title
   )
-  
+
   tagId <- tag$attribs$id
-  
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
@@ -243,9 +240,9 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 
 
 #' Create a Bootstrap 4 popover from the server side
-#' 
+#'
 #' \link{addPopover} adds a popover to the given target.
-#' 
+#'
 #' @note This replaces the shinyBS popover feature that is not compatible
 #' with Bootstrap 4
 #'
@@ -258,53 +255,52 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     controlbar = dashboardControlbar(),
-#'     footer = dashboardFooter(),
-#'     title = "Popover server",
-#'     body = dashboardBody(
-#'      sliderInput("obs", "Number of observations:",
-#'        min = 0, max = 1000, value = 500
-#'      ),
-#'      plotOutput("distPlot")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'    output$distPlot <- renderPlot({
-#'      hist(rnorm(input$obs))
-#'    })
-#' 
-#'    observeEvent(input$obs, {
-#'      if (input$obs > 500) {
-#'       addPopover(
-#'         id = "distPlot", 
-#'         options = list(
-#'          content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
-#'          title = "Server popover", 
-#'          placement = "bottom",
-#'          trigger = "hover"
-#'         )
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       controlbar = dashboardControlbar(),
+#'       footer = dashboardFooter(),
+#'       title = "Popover server",
+#'       body = dashboardBody(
+#'         sliderInput("obs", "Number of observations:",
+#'           min = 0, max = 1000, value = 500
+#'         ),
+#'         plotOutput("distPlot")
 #'       )
-#'      } else {
-#'        removePopover(id = "distPlot")
-#'      }
-#'    })
-#'   }
-#'  )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$distPlot <- renderPlot({
+#'         hist(rnorm(input$obs))
+#'       })
+#'
+#'       observeEvent(input$obs, {
+#'         if (input$obs > 500) {
+#'           addPopover(
+#'             id = "distPlot",
+#'             options = list(
+#'               content = "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.",
+#'               title = "Server popover",
+#'               placement = "bottom",
+#'               trigger = "hover"
+#'             )
+#'           )
+#'         } else {
+#'           removePopover(id = "distPlot")
+#'         }
+#'       })
+#'     }
+#'   )
 #' }
 addPopover <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
-  
   if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
   if (is.null(options$content)) stop("Please provide a popover content!")
-  
+
   message <- dropNulls(
     list(
       id = session$ns(id),
@@ -318,7 +314,7 @@ addPopover <- function(id = NULL, selector = NULL, options, session = shiny::get
 
 
 #' Remove a Bootstrap 4 popover from the server side
-#' 
+#'
 #' \link{removePopover} destroys the current targeted popover.
 #'
 #' @param id Popover target id.
@@ -342,44 +338,42 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param subtitle Toast subtitle.
 #' @param options Toasts options: a list. See \url{https://adminlte.io/docs/3.0/javascript/toasts.html}.
 #' @param session Shiny session object.
-#' 
+#'
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     body = dashboardBody(
-#'       actionButton("sendToast", "Send Toast")
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       body = dashboardBody(
+#'         actionButton("sendToast", "Send Toast")
+#'       ),
+#'       controlbar = dashboardControlbar(),
+#'       title = "Toasts"
 #'     ),
-#'     controlbar = dashboardControlbar(),
-#'     title = "Toasts"
-#'   ),
-#'   server = function(input, output) {
-#'     observeEvent(input$sendToast, {
-#'       toast(
-#'         title = "My Toast", 
-#'         body = h4("I am a toast!"),
-#'         options = list(
-#'           autohide = TRUE,
-#'           icon = "fas fa-home",
-#'           close = FALSE
+#'     server = function(input, output) {
+#'       observeEvent(input$sendToast, {
+#'         toast(
+#'           title = "My Toast",
+#'           body = h4("I am a toast!"),
+#'           options = list(
+#'             autohide = TRUE,
+#'             icon = "fas fa-home",
+#'             close = FALSE
+#'           )
 #'         )
-#'       )
-#'     })
-#'   }
-#'  )
-#'  
+#'       })
+#'     }
+#'   )
 #' }
 #' @importFrom jsonlite toJSON
-toast <- function(title, body = NULL, subtitle = NULL, options = NULL, 
-                     session = shiny::getDefaultReactiveDomain()) {
-  
+toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
+                  session = shiny::getDefaultReactiveDomain()) {
   props <- dropNulls(
     list(
       title = title,
@@ -387,9 +381,9 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
       subtitle = subtitle
     )
   )
-  
+
   message <- c(props, options)
-  
+
   # make sure that shiny tags are evaluated and converted
   # to strings since the toast api only accept strings
   message2 <- lapply(seq_along(message), function(i) {
@@ -400,9 +394,8 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
     }
   })
   names(message2) <- names(message)
-  
+
   session$sendCustomMessage("toast", message2)
-  
 }
 
 
@@ -410,10 +403,10 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 
 
 #' Create a Bootstrap 4 alert on the server side
-#' 
+#'
 #' \link{createAlert} creates an alert and inserts it in the DOM.
 #'
-#' @param id Anchor id. Where to insert the alert. See example. 
+#' @param id Anchor id. Where to insert the alert. See example.
 #' @param selector jQuery selector. Allow more customization for the anchor (nested tags).
 #' @param options List of options to pass to the alert. See below:
 #' \itemize{
@@ -426,64 +419,69 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #' }
 #' @param session Shiny session object.
 #' @export
-#' 
+#'
 #' @note Unlike shinyBS, there is no need to specify an anchorId and an alertId. id refers to the anchorId,
 #' and the alertId is simply "anchorId-alert". On the server side, one can access the alert status by
 #' input$<id>. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
-#' 
+#'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
-#'     body = dashboardBody(
-#'       tooltip(
-#'        sliderInput("obs", "Observations:", 10, min = 1, max = 100),
-#'        placement = "right",
-#'        title = "Set me higher than 50!"
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(),
+#'       body = dashboardBody(
+#'         tooltip(
+#'           sliderInput("obs", "Observations:", 10, min = 1, max = 100),
+#'           placement = "right",
+#'           title = "Set me higher than 50!"
+#'         ),
+#'         div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
 #'       ),
-#'       div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
+#'       controlbar = dashboardControlbar(),
+#'       title = "Alerts",
 #'     ),
-#'     controlbar = dashboardControlbar(),
-#'     title = "Alerts",
-#'   ),
-#'   server = function(input, output, session) {
-#'     observeEvent(input$obs, {
-#'       if (input$obs > 50) {
-#'        createAlert(
-#'          id = "myalert",
-#'          options = list(
-#'           title = "Alert",
-#'           closable = TRUE,
-#'           width = 12,
-#'           elevations = 4,
-#'           status = "primary",
-#'           content = "Alert content ..."
-#'          )
-#'        )
-#'       } else {
-#'        closeAlert(id = "myalert")
-#'       }
-#'       
-#'     })
-#' 
-#'     observe(print(input$myalert))
-#'     
-#'     observeEvent(input$myalert, {
-#'       status <- if (input$myalert) "opened" else "closed"
-#'       toast(title = sprintf("Alert succesfully %s!", status))
-#'     })
-#'   }
-#'  )
+#'     server = function(input, output, session) {
+#'       observeEvent(input$obs, {
+#'         if (input$obs > 50) {
+#'           createAlert(
+#'             id = "myalert",
+#'             options = list(
+#'               title = "Alert",
+#'               closable = TRUE,
+#'               width = 12,
+#'               elevations = 4,
+#'               status = "primary",
+#'               content = "Alert content ..."
+#'             )
+#'           )
+#'         } else {
+#'           closeAlert(id = "myalert")
+#'         }
+#'       })
+#'
+#'       observe(print(input$myalert))
+#'
+#'       observeEvent(input$myalert, {
+#'         alertStatus <- if (input$myalert) "opened" else "closed"
+#'         toastColor <- if (input$myalert) "bg-lime" else "bg-fuchsia"
+#'         toast(
+#'           title = sprintf("Alert succesfully %s!", alertStatus),
+#'           options = list(
+#'             class = toastColor,
+#'             autohide = TRUE,
+#'             position = "topRight"
+#'           )
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
-#' 
 #' @rdname alert
 createAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
-
   if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
@@ -496,7 +494,7 @@ createAlert <- function(id = NULL, selector = NULL, options, session = shiny::ge
     )
   )
 
-  session$sendCustomMessage("create-alert", message)  
+  session$sendCustomMessage("create-alert", message)
 }
 
 
@@ -504,13 +502,13 @@ createAlert <- function(id = NULL, selector = NULL, options, session = shiny::ge
 
 
 #' Close AdminLTE3 alert
-#' 
+#'
 #' \link{closeAlert} closes an alert created via \link{createAlert}.
 #'
 #' @param id Anchor id.
 #' @param session Shiny session object.
 #' @export
-#' 
+#'
 #' @rdname alert
 closeAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage("close-alert", session$ns(id))

@@ -28,33 +28,32 @@ Builtin AdminLTE3 toasts
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
-    body = dashboardBody(
-      actionButton("sendToast", "Send Toast")
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      body = dashboardBody(
+        actionButton("sendToast", "Send Toast")
+      ),
+      controlbar = dashboardControlbar(),
+      title = "Toasts"
     ),
-    controlbar = dashboardControlbar(),
-    title = "Toasts"
-  ),
-  server = function(input, output) {
-    observeEvent(input$sendToast, {
-      toast(
-        title = "My Toast", 
-        body = h4("I am a toast!"),
-        options = list(
-          autohide = TRUE,
-          icon = "fas fa-home",
-          close = FALSE
+    server = function(input, output) {
+      observeEvent(input$sendToast, {
+        toast(
+          title = "My Toast",
+          body = h4("I am a toast!"),
+          options = list(
+            autohide = TRUE,
+            icon = "fas fa-home",
+            close = FALSE
+          )
         )
-      )
-    })
-  }
- )
- 
+      })
+    }
+  )
 }
 }

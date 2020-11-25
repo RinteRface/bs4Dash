@@ -43,7 +43,7 @@ with Bootstrap 4
 \note{
 \link{tooltip} does not automatically handles tooltip removal and must be seperately implemented.
 If the \link{dashboardHeader} help parameter is TRUE, all tooltips may be enabled
-or disabled depending on the switch value, which may solve this problem. 
+or disabled depending on the switch value, which may solve this problem.
 This allows to toggle tooltips whenever required.
 
 This replaces the shinyBS tooltip feature that is not compatible
@@ -51,64 +51,64 @@ with Bootstrap 4
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
-    controlbar = dashboardControlbar(),
-    footer = dashboardFooter(),
-    title = "Tooltip UI",
-    body = dashboardBody(
-     tooltip(
-      actionButton("goButton", "Hover to see the tooltip"),
-      title = "My tooltip",
-      placement = "top"
-     )
-    )
-  ),
-  server = function(input, output) {}
- )
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "Tooltip UI",
+      body = dashboardBody(
+        tooltip(
+          actionButton("goButton", "Hover to see the tooltip"),
+          title = "My tooltip",
+          placement = "top"
+        )
+      )
+    ),
+    server = function(input, output) {}
+  )
 }
 if (interactive()) {
- library(shiny) 
- library(bs4Dash) 
-    
- shinyApp( 
-   ui = dashboardPage( 
-     header = dashboardHeader(), 
-     sidebar = dashboardSidebar(), 
-     controlbar = dashboardControlbar(), 
-     footer = dashboardFooter(), 
-     title = "Tooltip server", 
-     body = dashboardBody( 
-      sliderInput("obs", "Number of observations:", 
-        min = 0, max = 1000, value = 500 
-      ), 
-      plotOutput("distPlot") 
-     ) 
-   ), 
-   server = function(input, output, session) { 
-     output$distPlot <- renderPlot({ 
-       hist(rnorm(input$obs)) 
-     }) 
-         
-     observeEvent(input$obs, { 
-       if (input$obs > 500) { 
-        addTooltip( 
-          id = "distPlot",  
-          options = list(
-           title = "Server tooltip",  
-           placement = "bottom"
-          ) 
-        ) 
-       } else { 
-         removeTooltip(id = "distPlot") 
-       } 
-     }) 
-   } 
-  )      
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "Tooltip server",
+      body = dashboardBody(
+        sliderInput("obs", "Number of observations:",
+          min = 0, max = 1000, value = 500
+        ),
+        plotOutput("distPlot")
+      )
+    ),
+    server = function(input, output, session) {
+      output$distPlot <- renderPlot({
+        hist(rnorm(input$obs))
+      })
+
+      observeEvent(input$obs, {
+        if (input$obs > 500) {
+          addTooltip(
+            id = "distPlot",
+            options = list(
+              title = "Server tooltip",
+              placement = "bottom"
+            )
+          )
+        } else {
+          removeTooltip(id = "distPlot")
+        }
+      })
+    }
+  )
 }
 }
