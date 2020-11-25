@@ -93,16 +93,86 @@
 </div>
 <p><br></p>
 <p>See a working example on shinyapps.io <a href="https://dgranjon.shinyapps.io/bs4DashDemo/">here</a>.</p>
-<div id="useful-informations-if-any" class="section level2">
+<div id="new-users-moving-to-bs4dash-v200" class="section level2">
 <h2 class="hasAnchor">
-<a href="#useful-informations-if-any" class="anchor"></a>Useful Informations (if any)</h2>
-<p>Recent breaking change in dev version: <em>label</em> becomes <em>cardLabel</em> in <code><a href="reference/descriptionBlock.html">bs4Card()</a></code>!</p>
+<a href="#new-users-moving-to-bs4dash-v200" class="anchor"></a>New users moving to bs4Dash v2.0.0</h2>
+<p>Taking the simple <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a> example:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a></span><span class="op">)</span>
+
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/bs4DashNavbar.html">dashboardHeader</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Basic dashboard"</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/bs4DashSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/bs4DashBody.html">dashboardBody</a></span><span class="op">(</span>
+    <span class="co"># Boxes need to be put in a row (or column)</span>
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+      <span class="fu"><a href="reference/descriptionBlock.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,
+
+      <span class="fu"><a href="reference/descriptionBlock.html">box</a></span><span class="op">(</span>
+        title <span class="op">=</span> <span class="st">"Controls"</span>,
+        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">122</span><span class="op">)</span>
+  <span class="va">histdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>
+
+  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">histdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">slider</span><span class="op">)</span><span class="op">]</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<p>Starting from v2.0.0, moving to <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is rather simple:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/bs4DashNavbar.html">dashboardHeader</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Basic dashboard"</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/bs4DashSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="reference/bs4DashBody.html">dashboardBody</a></span><span class="op">(</span>
+    <span class="co"># Boxes need to be put in a row (or column)</span>
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+      <span class="fu"><a href="reference/descriptionBlock.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,
+
+      <span class="fu"><a href="reference/descriptionBlock.html">box</a></span><span class="op">(</span>
+        title <span class="op">=</span> <span class="st">"Controls"</span>,
+        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">122</span><span class="op">)</span>
+  <span class="va">histdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>
+
+  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">histdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">slider</span><span class="op">)</span><span class="op">]</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="upgrading-bs4dash-to-200" class="section level2">
+<h2 class="hasAnchor">
+<a href="#upgrading-bs4dash-to-200" class="anchor"></a>Upgrading bs4Dash to 2.0.0</h2>
+<ul>
+<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is undergoing major rework to make it easier to come from <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>. The current development version 2.0.0 provides a 1:1 supports, in other word moving from <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a> to <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is accomplished by changing <code><a href="https://rdrr.io/r/base/library.html">library(shinydashboard)</a></code> to <code><a href="https://rdrr.io/r/base/library.html">library(bs4Dash)</a></code>.</p></li>
+<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> v2.0.0 also provides 1:1 with <a href="https://github.com/RinteRface/shinydashboardPlus">shinydashboardPlus</a> to ease compatibility.</p></li>
+<li><p>Apps built with <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> version &lt;= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.</p></li>
+</ul>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This package is on CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># from CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"bs4Dash"</span><span class="op">)</span>
 <span class="co"># latest devel version</span>
@@ -111,14 +181,16 @@
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
+<div id="bs4dash--v050" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bs4dash--v050" class="anchor"></a>bs4Dash &lt;= v0.5.0</h3>
 <p>See a preview of the package <a href="https://rinterface.com/shiny/bs4Dash/classic/">here</a> and <a href="https://rinterface.com/shiny/bs4Dash/old_school/">here</a> or run</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
 <span class="co"># classic theme</span>
-<span class="fu"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co"># old_school theme</span>
-<span class="fu"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="st">"old_school"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>An applied example can be found <a href="https://rinterface.com/shiny/showcase/ratp/">here</a> (the original dashboard was made by <a href="https://twitter.com/PhilippineRs">Philippine Rheins</a> from <a href="https://twitter.com/dreamRs_fr">dreamRs</a>).</p>
+</div>
 </div>
 <div id="issues" class="section level2">
 <h2 class="hasAnchor">
@@ -133,7 +205,7 @@
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the bs4Dash project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<p>Please note that the bs4Dash project is released with a <a href="https:/contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree toabide by its terms.</p>
 </div>
 </div>
   </div>
