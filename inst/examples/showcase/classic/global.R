@@ -98,7 +98,7 @@ basic_cards_tab <- tabItem(
       plotOutput("plot")
     ),
     box(
-      bs4Ribbon(
+      ribbon(
         text = "New",
         color = "orange"
       ),
@@ -183,7 +183,7 @@ social_cards_tab <- tabItem(
         subtitle = "a subtitle here"
       ),
       collapsible = FALSE,
-      bs4Ribbon(
+      ribbon(
         text = "New user",
         color = "fuchsia"
       ),
@@ -333,7 +333,7 @@ tab_cards_tab <- tabItem(
     column(
       width = 6,
       tabBox(
-        bs4Ribbon(
+        ribbon(
           text = "Tabs",
           color = "pink"
         ),

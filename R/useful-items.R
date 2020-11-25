@@ -2899,6 +2899,7 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #' 
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname ribbon
 #'
 #' @export
 bs4Ribbon <- function(text, color) {

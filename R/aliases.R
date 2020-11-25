@@ -266,7 +266,7 @@ infoBox <- bs4InfoBox
 
 #' Alias to \link{bs4InfoBoxOutput}
 #' See \link{bs4InfoBoxOutput} for full details
-#' 
+#'
 #' @inheritParams bs4InfoBoxOutput
 #' @rdname bs4InfoBoxOutput
 #'
@@ -421,7 +421,7 @@ boxDropdown <- cardDropdown
 #' @rdname cardDropdown
 #'
 #' @export
-boxDropdownItem <- cardDropdownItem 
+boxDropdownItem <- cardDropdownItem
 
 
 
@@ -714,10 +714,10 @@ loadingState <- bs4Loading
 
 
 
-
-
-
-
-
-
-
+#' Alias to \link{bs4Ribbon}
+#' See \link{bs4Ribbon} for full details
+#'
+#' @rdname ribbon
+#'
+#' @export
+ribbon <- bs4Ribbon

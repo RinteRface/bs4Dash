@@ -318,7 +318,7 @@ shinyApp(
           title = "This event only triggers for the first tab!",
           "You clicked me! This event is the result of
           an input bound to the menu. By adding an id to the
-          bs4SidebarMenu, input$id will give the currently selected
+          sidebarMenu, input$id will give the currently selected
           tab. This is useful to trigger some events.",
           easyClose = TRUE,
           footer = NULL
