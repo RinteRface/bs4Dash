@@ -53,8 +53,12 @@ reference:
   desc: Functions that are to be used in the dashboardSidebar
   contents:
   - '`sidebarMenu`'
+  - '`sidebarMenuOutput`'
   - '`menuItem`'
+  - '`menuItemOutput`'
   - '`menuSubItem`'
+  - '`menuOutput`'
+  - '`renderMenu`'
   - '`sidebarHeader`'
   - '`sidebarUserPanel`'
 
@@ -68,6 +72,7 @@ reference:
   - '`renderUser`'
   - '`userOutput`'
   - '`dropdownMenu`'
+  - '`dropdownMenuOutput`'
   - '`messageItem`'
   - '`notificationItem`'
   - '`taskItem`'
