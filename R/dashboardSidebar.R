@@ -1,6 +1,6 @@
 #' Create a Boostrap 4 dashboard main sidebar
 #'
-#' \link{dashboardSidebar} creates an adminLTE3 dashboard main sidebar to 
+#' \link{dashboardSidebar} creates an adminLTE3 dashboard main sidebar to
 #' insert in the sidebar slot of \link{dashboardPage}.
 #'
 #' @param ... Slot for \link{sidebarMenu}.
@@ -9,7 +9,29 @@
 #'   specifies the width in pixels, or a string that specifies the width in CSS
 #'   units.
 #' @param skin Sidebar skin. "dark" or "light".
-#' @param status Sidebar status. "primary", "danger", "warning", "success", "info".
+#' @param status Sidebar status. Valid statuses are defined as follows:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#' }
 #' @param elevation Sidebar elevation. 4 by default (until 5).
 #' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
 #' @param minified Whether to slightly close the sidebar but still show item icons. Default
@@ -24,12 +46,11 @@
 #' @seealso \link{dashboardBody}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, width = NULL, 
+bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                            skin = "dark", status = "primary",
                            elevation = 4, collapsed = FALSE,
                            minified = TRUE, expandOnHover = TRUE,
                            fixed = TRUE, id = NULL, customArea = NULL) {
-  
   if (is.null(id)) id <- "sidebarId"
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
@@ -52,19 +73,19 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
   sidebarTag <- shiny::tags$aside(
     id = id,
     `data-fixed` = tolower(fixed),
-    `data-minified` = if (minified) "true" else "false", 
-    `data-collapsed` = dataValueString, 
+    `data-minified` = if (minified) "true" else "false",
+    `data-collapsed` = dataValueString,
     class = paste0(
-      "main-sidebar sidebar-", skin, "-", 
+      "main-sidebar sidebar-", skin, "-",
       status, " elevation-", elevation,
       if (expandOnHover) NULL else " sidebar-no-expand",
       if (!is.null(customArea)) " main-sidebar-custom"
     ),
     style = if (disable) "display: none;"
-   )
+  )
 
   sidebarTag <- shiny::tagAppendChildren(sidebarTag, contentTag)
-  
+
   # bottom sidebar
   if (!is.null(customArea)) {
     sidebarTag <- shiny::tagAppendChild(
@@ -72,7 +93,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
       shiny::tags$div(class = "sidebar-custom", customArea)
     )
   }
-  
+
   customCSS <- shiny::singleton(
     shiny::tags$style(
       ".content-wrapper, .main-footer, .main-header {
@@ -81,7 +102,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
       "
     )
   )
-  
+
   if (disable) shiny::tagList(customCSS, sidebarTag) else sidebarTag
 }
 
@@ -89,50 +110,49 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 
 
 #' Toggle sidebar state
-#' 
+#'
 #' \link{updateSidebar} toggles a \link{dashboardSidebar} on the client.
 #'
 #' @param id Sidebar id.
 #' @param session Shiny session object.
 #' @export
-#' 
+#'
 #' @rdname sidebar
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      header = dashboardHeader(),
-#'      sidebar = dashboardSidebar(id = "sidebar"),
-#'      body = dashboardBody(
-#'        actionButton(inputId = "sidebarToggle", label = "Toggle Sidebar")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      
-#'      observeEvent(input$sidebar, {
-#'        if (input$sidebar) {
-#'          showModal(modalDialog(
-#'            title = "Alert",
-#'            "The sidebar is opened.",
-#'            easyClose = TRUE,
-#'            footer = NULL
-#'          ))
-#'        }
-#'      })
-#'      
-#'      observeEvent(input$sidebarToggle, {
-#'        updateSidebar(id = "sidebar", session = session)
-#'      })
-#'      
-#'      observe({
-#'        print(input$sidebar)
-#'      })
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(),
+#'       sidebar = dashboardSidebar(id = "sidebar"),
+#'       body = dashboardBody(
+#'         actionButton(inputId = "sidebarToggle", label = "Toggle Sidebar")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$sidebar, {
+#'         if (input$sidebar) {
+#'           showModal(modalDialog(
+#'             title = "Alert",
+#'             "The sidebar is opened.",
+#'             easyClose = TRUE,
+#'             footer = NULL
+#'           ))
+#'         }
+#'       })
+#'
+#'       observeEvent(input$sidebarToggle, {
+#'         updateSidebar(id = "sidebar", session = session)
+#'       })
+#'
+#'       observe({
+#'         print(input$sidebar)
+#'       })
+#'     }
+#'   )
 #' }
 updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
@@ -161,11 +181,10 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname sidebar
 #' @export
-bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE, 
+bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
                            compact = FALSE, childIndent = TRUE, legacy = FALSE) {
-  
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
-  
+
   # make sure only 1 item is selected at start
   items <- c(list(...), .list)
   items <- findSidebarItem(items, "nav-item")
@@ -173,13 +192,13 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
     if (length(items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
   }))
   if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
-  
+
   menuCl <- "nav nav-pills nav-sidebar flex-column"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
   if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
   if (legacy) menuCl <- paste0(menuCl, " nav-legacy")
-  
+
   # menu Tag
   shiny::tags$ul(
     class = menuCl,
@@ -192,12 +211,11 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
     # bound to tabItemInputBinding in the JS side.
     shiny::tags$div(
-      id = id, 
-      class = "sidebarMenuSelectedTabItem", 
+      id = id,
+      class = "sidebarMenuSelectedTabItem",
       `data-value` = "null"
     )
   )
-  
 }
 
 
@@ -241,65 +259,64 @@ findSidebarItem <- function(items, regex) {
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
 #'
 #' @rdname sidebar
-#' 
+#'
 #' @note See examples for a use case of the condition parameter.
 #'
 #' @export
-#' @examples 
+#' @examples
 #' if (interactive()) {
-#'  # sidebarItem with conditional value
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  ui <- dashboardPage(
-#'   dashboardHeader(),
-#'   dashboardSidebar(
-#'     sidebarMenu(
-#'       id = "sidebarMenu",
-#'       menuItem(
-#'         text = "Tab 1",
-#'         tabName = "tab1"
-#'       ),
-#'       menuItem(
-#'         condition = "input.show == true",
-#'         text = "Tab 2",
-#'         tabName = "tab2"
+#'   # sidebarItem with conditional value
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   ui <- dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(
+#'       sidebarMenu(
+#'         id = "sidebarMenu",
+#'         menuItem(
+#'           text = "Tab 1",
+#'           tabName = "tab1"
+#'         ),
+#'         menuItem(
+#'           condition = "input.show == true",
+#'           text = "Tab 2",
+#'           tabName = "tab2"
+#'         )
+#'       )
+#'     ),
+#'     dashboardBody(
+#'       tabItems(
+#'         tabItem(
+#'           tabName = "tab1",
+#'           h1("Welcome!"),
+#'           checkboxInput("show", "Show Tab 2", FALSE)
+#'         ),
+#'         tabItem(
+#'           tabName = "tab2",
+#'           h1("Hey! You found me!")
+#'         )
 #'       )
 #'     )
-#'   ),
-#'   dashboardBody(
-#'     tabItems(
-#'       tabItem(
-#'         tabName = "tab1",
-#'         h1("Welcome!"),
-#'         checkboxInput("show", "Show Tab 2", FALSE)
-#'       ),
-#'       tabItem(
-#'         tabName = "tab2",
-#'         h1("Hey! You found me!")
-#'       )
-#'     )
-#'    )
 #'   )
-#'   server <- function(input, output){}
+#'   server <- function(input, output) {}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NULL, 
+bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NULL,
                                newTab = TRUE, selected = NULL,
-                               expandedName = as.character(gsub("[[:space:]]", "", text)), 
+                               expandedName = as.character(gsub("[[:space:]]", "", text)),
                                startExpanded = FALSE, condition = NULL) {
-  
   subItems <- list(...)
-  
+
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
   }
-  
-  if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1 ) {
+
+  if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
     stop("Must have either href, tabName, or sub-items (contained in ...).")
   }
-  
+
   # classic menuItem with 1 element
   if (length(subItems) == 0) {
     return(
@@ -332,7 +349,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
     )
     # in case we have multiple subitems
   } else {
-    
+
     # add special class for leftSidebar.js
     for (i in seq_along(subItems)) {
       subItems[[i]]$children[[1]]$attribs$class <- paste(
@@ -340,7 +357,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
         "treeview-link"
       )
     }
-    
+
     # If we're restoring a bookmarked app, this holds the value of what menuItem (if any)
     # was expanded (this has be to stored separately from the selected menuItem, since
     # these actually independent in AdminLTE). If no menuItem was expanded, `dataExpanded`
@@ -348,17 +365,17 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
     # do `%OR% ""` to assure this.
     default <- if (startExpanded) expandedName else ""
     dataExpanded <- shiny::restoreInput(id = "sidebarItemExpanded", default) %OR% ""
-    
+
     # If `dataExpanded` is not the empty string, we need to check that it is eqaul to the
     # this menuItem's `expandedName``
     isExpanded <- nzchar(dataExpanded) && (dataExpanded == expandedName)
-    
+
     # handle case of multiple selected subitems and raise an error if so...
     selectedItems <- dropNulls(lapply(seq_along(subItems), function(i) {
       if (length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
     }))
     if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
-    
+
     shiny::tags$li(
       class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
       shiny::tags$a(
@@ -378,7 +395,6 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
       )
     )
   }
-  
 }
 
 
@@ -402,14 +418,13 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
 #' @rdname sidebar
 #'
 #' @export
-bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL, 
+bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
                                   newTab = NULL, icon = NULL, selected = NULL) {
-  
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
   }
-  
+
   shiny::tags$li(
     class = "nav-item",
     shiny::tags$a(
@@ -489,149 +504,160 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'
 #' \link{updateTabItems} controls the active tab of \code{\link{tabItems}} from the
 #' server. It behaves just like \code{\link[shiny]{updateTabsetPanel}}.
-#' 
+#'
 #' @rdname sidebar
 #'
 #' @inheritParams shiny::updateTabsetPanel
 #' @examples
 #' ## Only run this example in interactive R sessions
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      header = dashboardHeader(skin = "dark"),
-#'      body = dashboardBody(
-#'        tabItems(
-#'          tabItem(
-#'            tabName = "tab1",
-#'            sliderInput("obs", "Number of observations:",
-#'                        min = 0, max = 1000, value = 500
-#'            ),
-#'            plotOutput("distPlot")
-#'          ),
-#'          tabItem(
-#'            tabName = "tab2",
-#'            checkboxGroupInput("variable", "Variables to show:",
-#'                               c("Cylinders" = "cyl",
-#'                                 "Transmission" = "am",
-#'                                 "Gears" = "gear")),
-#'            tableOutput("data")
-#'          ),
-#'          tabItem(
-#'            tabName = "tab3",
-#'            checkboxInput("val", "Some value", FALSE),
-#'            textOutput("value")
-#'          ),
-#'          tabItem(
-#'            tabName = "tab4",
-#'            "Nothing special here!"
-#'          ),
-#'          tabItem(
-#'            tabName = "tab5",
-#'            "Tab 5"
-#'          ),
-#'          tabItem(
-#'            tabName = "tab6",
-#'            "Tab 6"
-#'          ),
-#'          tabItem(
-#'            tabName = "tab7",
-#'            "Tab 7"
-#'          )
-#'        )
-#'      ),
-#'      sidebar = dashboardSidebar(
-#'        skin = "light",
-#'        inputId = "sidebarState",
-#'        sidebarMenu(
-#'          id = "sidebar",
-#'          menuItem(
-#'            text = "Tab 1",
-#'            tabName = "tab1",
-#'            icon = icon("shuttle-van")
-#'          ),
-#'          menuItem(
-#'            text = "Tab 2",
-#'            tabName = "tab2",
-#'            icon = icon("space-shuttle"),
-#'            selected = TRUE
-#'          ),
-#'          menuItem(
-#'            text = "Item List 1",
-#'            icon = icon("bars"),
-#'            startExpanded = TRUE,
-#'            menuSubItem(
-#'              text = "Item 3",
-#'              tabName = "tab3",
-#'              icon = icon("circle-thin")
-#'            ),
-#'            menuSubItem(
-#'              text = "Item 4",
-#'              tabName = "tab4",
-#'              icon = icon("circle-thin")
-#'            )
-#'          ),
-#'          menuItem(
-#'            text = "Item List 2",
-#'            icon = icon("bars"),
-#'            startExpanded = FALSE,
-#'            menuSubItem(
-#'              text = "Item 5",
-#'              tabName = "tab5",
-#'              icon = icon("circle-thin")
-#'            ),
-#'            menuSubItem(
-#'              text = "Item 6",
-#'              tabName = "tab6",
-#'              icon = icon("circle-thin")
-#'            )
-#'          ),
-#'          menuItem(
-#'            text = "Tab 7",
-#'            tabName = "tab7",
-#'            icon = icon("home")
-#'          )
-#'        )
-#'      ),
-#'      controlbar = dashboardControlbar(
-#'        skin = "light",
-#'        sliderInput(
-#'          inputId = "controller",
-#'          label = "Update the first tabset",
-#'          min = 1,
-#'          max = 6,
-#'          value = 2
-#'        )
-#'      ),
-#'      footer = bs4DashFooter()
-#'    ),
-#'    server = function(input, output, session) {
-#'      observe(print(input$sidebarItemExpanded))
-#'      observe(print(input$sidebar))
-#'      
-#'      # update tabset1
-#'      observeEvent(input$controller, {
-#'        updateTabItems(
-#'          session, 
-#'          inputId = "sidebar", 
-#'          selected = paste0("tab", input$controller)
-#'        )
-#'      }, ignoreInit = TRUE)
-#'      
-#'      output$distPlot <- renderPlot({
-#'        hist(rnorm(input$obs))
-#'      })
-#'      
-#'      output$data <- renderTable({
-#'        mtcars[, c("mpg", input$variable), drop = FALSE]
-#'      }, rownames = TRUE)
-#'      
-#'      output$value <- renderText({ input$val })
-#'      
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(skin = "dark"),
+#'       body = dashboardBody(
+#'         tabItems(
+#'           tabItem(
+#'             tabName = "tab1",
+#'             sliderInput("obs", "Number of observations:",
+#'               min = 0, max = 1000, value = 500
+#'             ),
+#'             plotOutput("distPlot")
+#'           ),
+#'           tabItem(
+#'             tabName = "tab2",
+#'             checkboxGroupInput(
+#'               "variable", "Variables to show:",
+#'               c(
+#'                 "Cylinders" = "cyl",
+#'                 "Transmission" = "am",
+#'                 "Gears" = "gear"
+#'               )
+#'             ),
+#'             tableOutput("data")
+#'           ),
+#'           tabItem(
+#'             tabName = "tab3",
+#'             checkboxInput("val", "Some value", FALSE),
+#'             textOutput("value")
+#'           ),
+#'           tabItem(
+#'             tabName = "tab4",
+#'             "Nothing special here!"
+#'           ),
+#'           tabItem(
+#'             tabName = "tab5",
+#'             "Tab 5"
+#'           ),
+#'           tabItem(
+#'             tabName = "tab6",
+#'             "Tab 6"
+#'           ),
+#'           tabItem(
+#'             tabName = "tab7",
+#'             "Tab 7"
+#'           )
+#'         )
+#'       ),
+#'       sidebar = dashboardSidebar(
+#'         skin = "light",
+#'         inputId = "sidebarState",
+#'         sidebarMenu(
+#'           id = "sidebar",
+#'           menuItem(
+#'             text = "Tab 1",
+#'             tabName = "tab1",
+#'             icon = icon("shuttle-van")
+#'           ),
+#'           menuItem(
+#'             text = "Tab 2",
+#'             tabName = "tab2",
+#'             icon = icon("space-shuttle"),
+#'             selected = TRUE
+#'           ),
+#'           menuItem(
+#'             text = "Item List 1",
+#'             icon = icon("bars"),
+#'             startExpanded = TRUE,
+#'             menuSubItem(
+#'               text = "Item 3",
+#'               tabName = "tab3",
+#'               icon = icon("circle-thin")
+#'             ),
+#'             menuSubItem(
+#'               text = "Item 4",
+#'               tabName = "tab4",
+#'               icon = icon("circle-thin")
+#'             )
+#'           ),
+#'           menuItem(
+#'             text = "Item List 2",
+#'             icon = icon("bars"),
+#'             startExpanded = FALSE,
+#'             menuSubItem(
+#'               text = "Item 5",
+#'               tabName = "tab5",
+#'               icon = icon("circle-thin")
+#'             ),
+#'             menuSubItem(
+#'               text = "Item 6",
+#'               tabName = "tab6",
+#'               icon = icon("circle-thin")
+#'             )
+#'           ),
+#'           menuItem(
+#'             text = "Tab 7",
+#'             tabName = "tab7",
+#'             icon = icon("home")
+#'           )
+#'         )
+#'       ),
+#'       controlbar = dashboardControlbar(
+#'         skin = "light",
+#'         sliderInput(
+#'           inputId = "controller",
+#'           label = "Update the first tabset",
+#'           min = 1,
+#'           max = 6,
+#'           value = 2
+#'         )
+#'       ),
+#'       footer = bs4DashFooter()
+#'     ),
+#'     server = function(input, output, session) {
+#'       observe(print(input$sidebarItemExpanded))
+#'       observe(print(input$sidebar))
+#'
+#'       # update tabset1
+#'       observeEvent(input$controller,
+#'         {
+#'           updateTabItems(
+#'             session,
+#'             inputId = "sidebar",
+#'             selected = paste0("tab", input$controller)
+#'           )
+#'         },
+#'         ignoreInit = TRUE
+#'       )
+#'
+#'       output$distPlot <- renderPlot({
+#'         hist(rnorm(input$obs))
+#'       })
+#'
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
+#'
+#'       output$value <- renderText({
+#'         input$val
+#'       })
+#'     }
+#'   )
 #' }
 #' @export
 updatebs4TabItems <- shiny::updateTabsetPanel

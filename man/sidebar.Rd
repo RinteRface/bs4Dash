@@ -140,7 +140,29 @@ units.}
 
 \item{skin}{Sidebar skin. "dark" or "light".}
 
-\item{status}{Sidebar status. "primary", "danger", "warning", "success", "info".}
+\item{status}{Sidebar status. Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+}}
 
 \item{elevation}{Sidebar elevation. 4 by default (until 5).}
 
@@ -212,7 +234,7 @@ the application.}
 or \code{navbarPage} object.}
 }
 \description{
-\link{dashboardSidebar} creates an adminLTE3 dashboard main sidebar to 
+\link{dashboardSidebar} creates an adminLTE3 dashboard main sidebar to
 insert in the sidebar slot of \link{dashboardPage}.
 
 \link{updateSidebar} toggles a \link{dashboardSidebar} on the client.
@@ -235,216 +257,226 @@ See examples for a use case of the condition parameter.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(),
-     sidebar = dashboardSidebar(id = "sidebar"),
-     body = dashboardBody(
-       actionButton(inputId = "sidebarToggle", label = "Toggle Sidebar")
-     )
-   ),
-   server = function(input, output, session) {
-     
-     observeEvent(input$sidebar, {
-       if (input$sidebar) {
-         showModal(modalDialog(
-           title = "Alert",
-           "The sidebar is opened.",
-           easyClose = TRUE,
-           footer = NULL
-         ))
-       }
-     })
-     
-     observeEvent(input$sidebarToggle, {
-       updateSidebar(id = "sidebar", session = session)
-     })
-     
-     observe({
-       print(input$sidebar)
-     })
-   }
- )
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(id = "sidebar"),
+      body = dashboardBody(
+        actionButton(inputId = "sidebarToggle", label = "Toggle Sidebar")
+      )
+    ),
+    server = function(input, output, session) {
+      observeEvent(input$sidebar, {
+        if (input$sidebar) {
+          showModal(modalDialog(
+            title = "Alert",
+            "The sidebar is opened.",
+            easyClose = TRUE,
+            footer = NULL
+          ))
+        }
+      })
+
+      observeEvent(input$sidebarToggle, {
+        updateSidebar(id = "sidebar", session = session)
+      })
+
+      observe({
+        print(input$sidebar)
+      })
+    }
+  )
 }
 if (interactive()) {
- # sidebarItem with conditional value
- library(shiny)
- library(bs4Dash)
- 
- ui <- dashboardPage(
-  dashboardHeader(),
-  dashboardSidebar(
-    sidebarMenu(
-      id = "sidebarMenu",
-      menuItem(
-        text = "Tab 1",
-        tabName = "tab1"
-      ),
-      menuItem(
-        condition = "input.show == true",
-        text = "Tab 2",
-        tabName = "tab2"
+  # sidebarItem with conditional value
+  library(shiny)
+  library(bs4Dash)
+
+  ui <- dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(
+      sidebarMenu(
+        id = "sidebarMenu",
+        menuItem(
+          text = "Tab 1",
+          tabName = "tab1"
+        ),
+        menuItem(
+          condition = "input.show == true",
+          text = "Tab 2",
+          tabName = "tab2"
+        )
+      )
+    ),
+    dashboardBody(
+      tabItems(
+        tabItem(
+          tabName = "tab1",
+          h1("Welcome!"),
+          checkboxInput("show", "Show Tab 2", FALSE)
+        ),
+        tabItem(
+          tabName = "tab2",
+          h1("Hey! You found me!")
+        )
       )
     )
-  ),
-  dashboardBody(
-    tabItems(
-      tabItem(
-        tabName = "tab1",
-        h1("Welcome!"),
-        checkboxInput("show", "Show Tab 2", FALSE)
-      ),
-      tabItem(
-        tabName = "tab2",
-        h1("Hey! You found me!")
-      )
-    )
-   )
   )
-  server <- function(input, output){}
+  server <- function(input, output) {}
   shinyApp(ui = ui, server = server)
 }
 ## Only run this example in interactive R sessions
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(skin = "dark"),
-     body = dashboardBody(
-       tabItems(
-         tabItem(
-           tabName = "tab1",
-           sliderInput("obs", "Number of observations:",
-                       min = 0, max = 1000, value = 500
-           ),
-           plotOutput("distPlot")
-         ),
-         tabItem(
-           tabName = "tab2",
-           checkboxGroupInput("variable", "Variables to show:",
-                              c("Cylinders" = "cyl",
-                                "Transmission" = "am",
-                                "Gears" = "gear")),
-           tableOutput("data")
-         ),
-         tabItem(
-           tabName = "tab3",
-           checkboxInput("val", "Some value", FALSE),
-           textOutput("value")
-         ),
-         tabItem(
-           tabName = "tab4",
-           "Nothing special here!"
-         ),
-         tabItem(
-           tabName = "tab5",
-           "Tab 5"
-         ),
-         tabItem(
-           tabName = "tab6",
-           "Tab 6"
-         ),
-         tabItem(
-           tabName = "tab7",
-           "Tab 7"
-         )
-       )
-     ),
-     sidebar = dashboardSidebar(
-       skin = "light",
-       inputId = "sidebarState",
-       sidebarMenu(
-         id = "sidebar",
-         menuItem(
-           text = "Tab 1",
-           tabName = "tab1",
-           icon = icon("shuttle-van")
-         ),
-         menuItem(
-           text = "Tab 2",
-           tabName = "tab2",
-           icon = icon("space-shuttle"),
-           selected = TRUE
-         ),
-         menuItem(
-           text = "Item List 1",
-           icon = icon("bars"),
-           startExpanded = TRUE,
-           menuSubItem(
-             text = "Item 3",
-             tabName = "tab3",
-             icon = icon("circle-thin")
-           ),
-           menuSubItem(
-             text = "Item 4",
-             tabName = "tab4",
-             icon = icon("circle-thin")
-           )
-         ),
-         menuItem(
-           text = "Item List 2",
-           icon = icon("bars"),
-           startExpanded = FALSE,
-           menuSubItem(
-             text = "Item 5",
-             tabName = "tab5",
-             icon = icon("circle-thin")
-           ),
-           menuSubItem(
-             text = "Item 6",
-             tabName = "tab6",
-             icon = icon("circle-thin")
-           )
-         ),
-         menuItem(
-           text = "Tab 7",
-           tabName = "tab7",
-           icon = icon("home")
-         )
-       )
-     ),
-     controlbar = dashboardControlbar(
-       skin = "light",
-       sliderInput(
-         inputId = "controller",
-         label = "Update the first tabset",
-         min = 1,
-         max = 6,
-         value = 2
-       )
-     ),
-     footer = bs4DashFooter()
-   ),
-   server = function(input, output, session) {
-     observe(print(input$sidebarItemExpanded))
-     observe(print(input$sidebar))
-     
-     # update tabset1
-     observeEvent(input$controller, {
-       updateTabItems(
-         session, 
-         inputId = "sidebar", 
-         selected = paste0("tab", input$controller)
-       )
-     }, ignoreInit = TRUE)
-     
-     output$distPlot <- renderPlot({
-       hist(rnorm(input$obs))
-     })
-     
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-     
-     output$value <- renderText({ input$val })
-     
-   }
- )
+  library(shiny)
+  library(bs4Dash)
+
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(skin = "dark"),
+      body = dashboardBody(
+        tabItems(
+          tabItem(
+            tabName = "tab1",
+            sliderInput("obs", "Number of observations:",
+              min = 0, max = 1000, value = 500
+            ),
+            plotOutput("distPlot")
+          ),
+          tabItem(
+            tabName = "tab2",
+            checkboxGroupInput(
+              "variable", "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
+              )
+            ),
+            tableOutput("data")
+          ),
+          tabItem(
+            tabName = "tab3",
+            checkboxInput("val", "Some value", FALSE),
+            textOutput("value")
+          ),
+          tabItem(
+            tabName = "tab4",
+            "Nothing special here!"
+          ),
+          tabItem(
+            tabName = "tab5",
+            "Tab 5"
+          ),
+          tabItem(
+            tabName = "tab6",
+            "Tab 6"
+          ),
+          tabItem(
+            tabName = "tab7",
+            "Tab 7"
+          )
+        )
+      ),
+      sidebar = dashboardSidebar(
+        skin = "light",
+        inputId = "sidebarState",
+        sidebarMenu(
+          id = "sidebar",
+          menuItem(
+            text = "Tab 1",
+            tabName = "tab1",
+            icon = icon("shuttle-van")
+          ),
+          menuItem(
+            text = "Tab 2",
+            tabName = "tab2",
+            icon = icon("space-shuttle"),
+            selected = TRUE
+          ),
+          menuItem(
+            text = "Item List 1",
+            icon = icon("bars"),
+            startExpanded = TRUE,
+            menuSubItem(
+              text = "Item 3",
+              tabName = "tab3",
+              icon = icon("circle-thin")
+            ),
+            menuSubItem(
+              text = "Item 4",
+              tabName = "tab4",
+              icon = icon("circle-thin")
+            )
+          ),
+          menuItem(
+            text = "Item List 2",
+            icon = icon("bars"),
+            startExpanded = FALSE,
+            menuSubItem(
+              text = "Item 5",
+              tabName = "tab5",
+              icon = icon("circle-thin")
+            ),
+            menuSubItem(
+              text = "Item 6",
+              tabName = "tab6",
+              icon = icon("circle-thin")
+            )
+          ),
+          menuItem(
+            text = "Tab 7",
+            tabName = "tab7",
+            icon = icon("home")
+          )
+        )
+      ),
+      controlbar = dashboardControlbar(
+        skin = "light",
+        sliderInput(
+          inputId = "controller",
+          label = "Update the first tabset",
+          min = 1,
+          max = 6,
+          value = 2
+        )
+      ),
+      footer = bs4DashFooter()
+    ),
+    server = function(input, output, session) {
+      observe(print(input$sidebarItemExpanded))
+      observe(print(input$sidebar))
+
+      # update tabset1
+      observeEvent(input$controller,
+        {
+          updateTabItems(
+            session,
+            inputId = "sidebar",
+            selected = paste0("tab", input$controller)
+          )
+        },
+        ignoreInit = TRUE
+      )
+
+      output$distPlot <- renderPlot({
+        hist(rnorm(input$obs))
+      })
+
+      output$data <- renderTable(
+        {
+          mtcars[, c("mpg", input$variable), drop = FALSE]
+        },
+        rownames = TRUE
+      )
+
+      output$value <- renderText({
+        input$val
+      })
+    }
+  )
 }
 }
 \seealso{

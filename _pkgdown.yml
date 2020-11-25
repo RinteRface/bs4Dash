@@ -235,13 +235,18 @@ navbar:
       
 
 articles:
-- title: All vignettes
+- title: User guide
   desc: ~
+  navbar: User Guide
   contents:
-  #- '`bs4Intro`'
-  #- '`bs4Themes`'
-  #- '`bs4cards`'
-  #- '`bs4sortable`'
+  - '`step-by-step`'
+  #- '`improved-boxes`'
+  #- '`box-elements`'
+  #- '`extra-elements`'
+  #- '`controlbar`'
+  #- '`more-skins`'
+  #- '`css-preloader`'
+  #- '`enhanced-header`'
   
   
 news:
