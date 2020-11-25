@@ -202,11 +202,6 @@ reference:
   desc: bs4Dash showcase
   contents:
   - '`bs4DashGallery`'
-
-
-template:
-  params:
-    bootswatch: journal
     
     
 navbar:

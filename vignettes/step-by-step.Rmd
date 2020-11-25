@@ -224,7 +224,7 @@ dashboardFooter(
    href = "https://twitter.com/divadnojnarg", 
    target = "_blank", "@DivadNojnarg"
  ),
- right = "2018"
+ right = "2020"
 )
 ```
 

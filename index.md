@@ -1,4 +1,4 @@
-# bs4Dash <img src="https://rinterface.com/inst/images/bs4Dash.svg" width="200px" align="right"/>
+# bs4Dash 
 
 [![R build status](https://github.com/RinteRface/bs4Dash/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/bs4Dash/actions)
 [![version](http://www.r-pkg.org/badges/version/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
@@ -122,6 +122,9 @@ install.packages("bs4Dash")
 # latest devel version
 devtools::install_github("RinteRface/bs4Dash")
 ```
+<br>
+
+<div style="text-align:center;"><a href="articles/bs4Dash.html" class="btn btn-outline-secondary btn-lg">Go to Get Started</a></div>
 
 ## Demo
 
