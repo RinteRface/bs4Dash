@@ -721,3 +721,14 @@ loadingState <- bs4Loading
 #'
 #' @export
 ribbon <- bs4Ribbon
+
+
+
+
+#' Alias to \link{bs4CardLayout}
+#' See \link{bs4CardLayout} for full details
+#'
+#' @rdname boxLayout
+#'
+#' @export
+boxLayout <- bs4CardLayout

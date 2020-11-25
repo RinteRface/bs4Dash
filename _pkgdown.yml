@@ -83,6 +83,7 @@ reference:
   contents:
   - '`controlbarMenu`'
   - '`controlbarItem`'
+  
 
 - title: Boxes
   desc: Main containers
@@ -230,10 +231,10 @@ articles:
 - title: All vignettes
   desc: ~
   contents:
-  - '`bs4Intro`'
-  - '`bs4Themes`'
-  - '`bs4cards`'
-  - '`bs4sortable`'
+  #- '`bs4Intro`'
+  #- '`bs4Themes`'
+  #- '`bs4cards`'
+  #- '`bs4sortable`'
   
   
 news:
