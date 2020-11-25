@@ -12,7 +12,7 @@ $(function() {
   $(tooltipTarget)
     .addClass('has-tooltip')
     .tooltip(message.options);
-    console.log(`"Tooltip created for ${tooltipTarget}"`);
+    console.log(`'Tooltip created for ${tooltipTarget}'`);
  });
 
  Shiny.addCustomMessageHandler('remove-tooltip', function(message) {
@@ -23,7 +23,7 @@ $(function() {
     $(tooltipTarget)
       .removeClass('has-tooltip')
       .tooltip('dispose');
-    console.log(`"Tooltip destroyed for ${tooltipTarget}"`);
+    console.log(`'Tooltip destroyed for ${tooltipTarget}'`);
   }
  });
  
@@ -42,7 +42,7 @@ $(function() {
   $(popoverTarget)
     .addClass('has-popover')
     .popover(message.options);
-  console.log(`"Popover created for ${popoverTarget}"`);
+  console.log(`'Popover created for ${popoverTarget}'`);
  });
 
 
@@ -54,7 +54,7 @@ $(function() {
     $(popoverTarget)
       .removeClass('has-popover')
       .popover('dispose');
-    console.log(`"Popover destroyed for ${popoverTarget}"`);
+    console.log(`'Popover destroyed for ${popoverTarget}'`);
   }
  });
   
@@ -116,24 +116,37 @@ $(function() {
       alertTag = `<div class="col-sm-${config.width}">${alertTag}</div>`
     } 
 
-    // add it to the DOM
-    $(alertTarget).append(alertTag);
-    Shiny.setInputValue(message.id, true);
+    // add it to the DOM if no existing alert is found in the anchor
+    if ($(`#${message.id}-alert`).length === 0) {
+      $(alertTarget).append(alertTag);
+      Shiny.setInputValue(message.id, true, {priority: 'event'});
+
+      // add events only after element is inserted
+
+      // callback -> give ability to perform more actions on the Shiny side
+      // once the alert is closed
+      $(`#${message.id}-alert`).on('closed.bs.alert', function () {
+        Shiny.setInputValue(message.id, false, {priority: 'event'});
+      });
+      // Clicking on close button does not trigger any event.
+      // Trigger the closed.bs.alert event.
+      $('[data-dismiss="alert"]').on('click', function() {
+        var alertId = $(this).parent.attr(id);
+        $(`#${alertId}.`).trigger('closed.bs.alert');
+      });
+
+    } else {
+      console.warn(`${alertTarget} already has an alert!`);
+    }
   });
 
-  // Clicking on close button does not trigger any event.
-  // This makes sure input$alertId is false.
-  $('[data-dismiss="alert"]').on('click', function() {
-    var alertId = $(this).parent.attr(id);
-    $(`#${alertId}`).trigger('closed.bs.alert');
-  })
 
   Shiny.addCustomMessageHandler('close-alert', function(message) {
-    // callback -> give ability to perform more actions on the Shiny side
-    // once the alert is closed
-    $(`#${message}-alert`).on('closed.bs.alert', function () {
-      Shiny.setInputValue(message, false);
-    });
-    $(`#${message}-alert`).alert('close');
+    // only closes if element exists
+    if ($(`#${message}-alert`).length > 0) {
+      $(`#${message}-alert`).alert('close');
+    } else {
+      console.warn('Nothing to delete!');
+    }
   });
 });
