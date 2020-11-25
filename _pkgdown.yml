@@ -95,6 +95,7 @@ reference:
   - '`tabBox`'
   - '`userBox`'
 
+
 - title: Box toolbar components
   desc: Build dropdown menu in the tool area (close, collapse)
   contents:
@@ -103,6 +104,7 @@ reference:
   - '`boxLabel`'
   - '`boxSidebar`'
   - '`dropdownDivider`'
+
   
 - title: Tabs elements
   desc: Functions that are to be used in tabBox or standalone. They overwrite {shiny} default to be
@@ -110,6 +112,14 @@ reference:
   contents:
   - '`insertTab`'
   - '`tabsetPanel`'
+
+
+- title: Inputs
+  desc: New inputs compatible with Bootstrap 4.
+  contents:
+  - '`actionButton`'
+  - '`appButton`'
+
   
 - title: Box extra elements
   desc: Add more shiny elements to your cards
@@ -133,11 +143,13 @@ reference:
   - '`userPostToolItems`'
   - '`userPostToolItem`'
   - '`userPostMedia`'
+
   
 - title: Sortable UI
   desc: Sort elements such as cards
   contents:
   - '`sortable`'
+
     
 - title: Render functions
   desc: Dynamically generate items
@@ -146,6 +158,7 @@ reference:
   - '`infoBoxOutput`'
   - '`renderValueBox`'
   - '`renderInfoBox`'
+
     
 - title: Other Bootstrap 4 items
   desc: To better customize your app
@@ -175,6 +188,7 @@ reference:
   - '`timelineLabel`'
   - '`timelineStart`'
   - '`getAdminLTEColors`'
+
 
 - title: Gallery
   desc: bs4Dash showcase
