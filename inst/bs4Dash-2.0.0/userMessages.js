@@ -30,11 +30,16 @@
       var author = content.author, date = content.date, image = content.image, type = content.type;
       
       // build the new message 
-      var newMessage = '<div class="direct-chat-info clearfix">' +
-        '<span class="direct-chat-name">' + author + '</span>' +
-        '<span class="direct-chat-timestamp" style="margin-left: 4px">' + date + '</span>' + '</div>' +
-        '<img class="direct-chat-img" src="' + image + '"/>' + 
-        '<div class="direct-chat-text">' + text + '</div>'
+      var authorWrapper, dateWrapper;
+      if (type === "sent") {
+        authorWrapper = '<span class="direct-chat-name float-right">' + author + '</span>';
+        dateWrapper = '<span class="direct-chat-timestamp float-left">' + date + '</span>';
+      } else {
+        authorWrapper = '<span class="direct-chat-name float-left">' + author + '</span>';
+        dateWrapper = '<span class="direct-chat-timestamp float-right">' + date + '</span>';
+      }
+
+      var newMessage = `<div class="direct-chat-infos clearfix">${authorWrapper}${dateWrapper}</div><img class="direct-chat-img" src="${image}"/><div class="direct-chat-text">${text}</div>`
         
       // build wrapper
       var newMessageWrapper;
