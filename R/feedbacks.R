@@ -8,6 +8,7 @@
 #' @param placement Tooltip placement: "top", "bottom", "left" or "right". 
 #'
 #' @export
+#' @rdname bs4Tooltip
 #'
 #' @examples
 #' if (interactive()) {
@@ -16,14 +17,13 @@
 #'  
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     enable_preloader = TRUE,
 #'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     controlbar = dashboardControlbar(),
 #'     footer = dashboardFooter(),
 #'     title = "Tooltip UI",
 #'     body = dashboardBody(
-#'      bs4TooltipUI(
+#'      tooltip(
 #'       actionButton("goButton", "Hover to see the tooltip"),
 #'       title = "My tooltip",
 #'       placement = "top"
@@ -50,12 +50,14 @@ bs4TooltipUI <- function(tag, title, placement = c("top", "bottom", "left", "rig
     shiny::singleton(
       shiny::tags$head(
         shiny::tags$script(
-          "$(function () {
-           // enable all tooltips
-           var target = '#' + ", tagId, ";
-           $('target').tooltip();
-          });
-          "
+          sprintf(
+            "$(function () {
+              // enable tooltip
+              $('#%s').tooltip();
+            });
+            ",
+            tagId
+          )
         )
       )
     ),
@@ -167,6 +169,7 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param placement Popover placement: "top", "bottom", "left" or "right". 
 #'
 #' @export
+#' @rdname bs4Popover
 #'
 #' @examples
 #' if (interactive()) {
@@ -181,7 +184,7 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'     footer = dashboardFooter(),
 #'     title = "Popover UI",
 #'     body = dashboardBody(
-#'      bs4PopoverUI(
+#'      popover(
 #'       actionButton("goButton", "Click me to see the popover!"),
 #'        title = "My popover",
 #'        placement = "right",
@@ -211,11 +214,14 @@ bs4PopoverUI <- function(tag, content, title, placement = c("top", "bottom", "le
     shiny::singleton(
       shiny::tags$head(
         shiny::tags$script(
-          "$(function () {
-           // enable all popovers
-           $('[data-toggle=\"popover\"]').popover();
-          });
-          "
+          sprintf(
+            "$(function () {
+              // enable popover
+              $('#%s').popover();
+            });
+            ",
+            tagId
+          )
         )
       )
     ),
@@ -329,6 +335,7 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param session Shiny session object.
 #' 
 #' @export
+#' @rdname toast
 #'
 #' @examples
 #' if (interactive()) {
@@ -347,7 +354,7 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'   ),
 #'   server = function(input, output) {
 #'     observeEvent(input$sendToast, {
-#'       bs4Toast(
+#'       toast(
 #'         title = "My Toast", 
 #'         body = h4("I am a toast!"),
 #'         options = list(
@@ -393,114 +400,29 @@ bs4Toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 
 
 
-#' Create a Bootstrap 4 alert
+
+#' Show AdminLTE3 alert on the server side
 #' 
-#' AdminLTE3 alert
+#' \link{showAlert} shows an alert created via \link{alert}.
 #'
-#' @param ... Alert content.
-#' @param id Alert id. Needed by \link{bs4CloseAlert}.
-#' @param title Alert title.
-#' @param closable Whether to allow the user to close the alert. FALSE by default.
-#' @param width Alert width. Between 1 and 12.
-#' @param elevation Alert elevation.
-#' @param status Alert status. "primary", "success", "warning", "danger" or "info".
-#' 
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      header = dashboardHeader(),
-#'      sidebar = dashboardSidebar(),
-#'      controlbar = dashboardControlbar(),
-#'      footer = dashboardFooter(),
-#'      title = "Alerts",
-#'      body = dashboardBody(
-#'        bs4Alert(
-#'         title = "Be Careful!",
-#'         status = "danger",
-#'         closable = FALSE,
-#'         "Danger alert preview. This alert is not dismissable. 
-#'         A wonderful serenity has taken possession of my entire soul, 
-#'         like these sweet mornings of spring which 
-#'         I enjoy with my whole heart."
-#'        ),
-#'        bs4Alert(
-#'         title = "Congratulation!",
-#'         status = "success",
-#'         closable = TRUE,
-#'         elevation = 4,
-#'         "Warning alert preview. This alert is dismissable. 
-#'         A wonderful serenity has taken possession of my entire soul, 
-#'         like these sweet mornings of spring which 
-#'         I enjoy with my whole heart."
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
+#' @param id Anchor id. Where to insert the alert. See example. 
+#' @param selector jQuery selector. Allow more customization for the anchor (nested tags).
+#' @param options List of options to pass to the alert. See below:
+#' \itemize{
+#'  \item content: Alert content.
+#'  \item title: Alert title.
+#'  \item closable: Whether to allow the user to close the alert. FALSE by default.
+#'  \item width: Alert width. Between 1 and 12.
+#'  \item elevation: Alert elevation.
+#'  \item status: Alert status. "primary", "success", "warning", "danger" or "info".
 #' }
-
-#' 
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-bs4Alert <- function(..., id = NULL, title, closable = TRUE, width = 6, elevation = NULL,
-                     status = c("primary", "warning", "danger", "info", "success")) {
-  
-  status <- match.arg(status)
-  
-  type <- switch(
-    status,
-    primary = "info",
-    danger = "ban",
-    info = "info",
-    warning = "warning",
-    success = "check"
-  )
-  
-  alertCl <- "alert alert-dismissible"
-  if (!is.null(status)) alertCl <- paste0(alertCl, " alert-", status)
-  if (!is.null(elevation)) alertCl <- paste0(alertCl, " elevation-", elevation)
-  
-  alertTag <- shiny::tags$div(
-    id = id, 
-    class = alertCl,
-    if (closable) shiny::tags$button(
-      type = "button",
-      class = "close",
-      `data-dismiss` = "alert",
-      `aria-hidden` = "true",
-      "x"
-    ),
-    shiny::tags$h5(
-      shiny::tags$i(class = paste0("icon fa fa-", type)),
-      title
-    ),
-    ...
-  )
-  
-  shiny::tags$div(
-    class = if (!is.null(width)) paste0("col-sm-", width),
-    alertTag
-  )
-}
-
-
-
-
-#' Close AdminLTE3 alert
-#' 
-#' Server side function
-#'
-#' @param id \link{bs4Alert} id.
 #' @param session Shiny session object.
 #' @export
-#'
-#' @note One may use input$<id>, where id is the alert unique id, to trigger
-#' more actions on the server side after the alert closed.
+#' 
+#' @note Unlike shinyBS, there is no need to specify an anchorId and an alertId. id refers to the anchorId,
+#' and the alertId is simply "anchorId-alert". On the server side, one can access the alert status by
+#' input$<id>. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
+#' 
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -511,24 +433,79 @@ bs4Alert <- function(..., id = NULL, title, closable = TRUE, width = 6, elevatio
 #'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
-#'       actionButton("close", "Close Alert"),
-#'       bs4Alert(id = "myalert", title = "Hello", status = "success")
+#'       tooltip(
+#'        sliderInput("obs", "Observations:", 10, min = 1, max = 100),
+#'        placement = "right",
+#'        title = "Set me higher than 50!"
+#'       ),
+#'       div(id = "myalert", style = "position: absolute; bottom: 0; right: 0;")
 #'     ),
 #'     controlbar = dashboardControlbar()
 #'   ),
 #'   server = function(input, output, session) {
-#'     observeEvent(input$close, {
-#'       bs4CloseAlert(id = "myalert")
+#'     observeEvent(input$obs, {
+#'       if (input$obs > 50) {
+#'        createAlert(
+#'          id = "myalert",
+#'          options = list(
+#'           title = "Alert",
+#'           closable = TRUE,
+#'           width = 12,
+#'           elevations = 4,
+#'           status = "primary",
+#'           content = "Alert content ..."
+#'          )
+#'        )
+#'       } else {
+#'        closeAlert(id = "myalert")
+#'       }
+#'       
 #'     })
-#'     
+#' 
 #'     observe(print(input$myalert))
 #'     
 #'     observeEvent(input$myalert, {
-#'       bs4Toast(title = "Alert succesfully closed!")
+#'       status <- if (input$myalert) "opened" else "closed"
+#'       toast(title = sprintf("Alert succesfully %s!", status))
 #'     })
 #'   }
 #'  )
 #' }
+#' 
+#' @rdname alert
+bs4CreateAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+
+  if (!is.null(id) && !is.null(selector)) {
+    stop("Please choose either target or selector!")
+  }
+
+  message <- dropNulls(
+    list(
+      id = session$ns(id),
+      selector = selector,
+      options = options
+    )
+  )
+
+  session$sendCustomMessage("create-alert", message)  
+}
+
+
+
+
+
+#' Close AdminLTE3 alert
+#' 
+#' \link{closeAlert} closes an alert created via \link{alert}.
+#'
+#' @param id \link{bs4Alert} id.
+#' @param session Shiny session object.
+#' @export
+#' 
+#' @rdname alert
+#'
+#' @note One may use input$<id>, where id is the alert unique id, to trigger
+#' more actions on the server side after the alert closed.
 bs4CloseAlert <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  session$sendCustomMessage("alert", session$ns(id))
+  session$sendCustomMessage("close-alert", session$ns(id))
 }

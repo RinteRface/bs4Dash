@@ -31,6 +31,7 @@ LazyData: true
 RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
 Collate: 
+    'feedbacks.R'
     'useful-items.R'
     'tabs.R'
     'render-functions.R'
@@ -45,7 +46,6 @@ Collate:
     'auto-color.R'
     'bs4DashGallery.R'
     'deps.R'
-    'feedbacks.R'
     'grid.R'
     'inputs.R'
     'skinSelector.R'

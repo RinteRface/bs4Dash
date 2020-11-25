@@ -20,7 +20,9 @@ $(function() {
 
   // only destroys if popover exists
   if ($(tooltipTarget).hasClass('has-tooltip')) {
-    $(tooltipTarget).tooltip('dispose');
+    $(tooltipTarget)
+      .removeClass('has-tooltip')
+      .tooltip('dispose');
     console.log(`"Tooltip destroyed for ${tooltipTarget}"`);
   }
  });
@@ -49,7 +51,9 @@ $(function() {
 
   // only destroys if popover exists
   if ($(popoverTarget).hasClass('has-popover')) {
-    $(popoverTarget).popover('dispose');
+    $(popoverTarget)
+      .removeClass('has-popover')
+      .popover('dispose');
     console.log(`"Popover destroyed for ${popoverTarget}"`);
   }
  });
@@ -60,13 +64,76 @@ $(function() {
     $(document).Toasts('create', message);
   });
   
-  // handle alert
-  Shiny.addCustomMessageHandler('alert', function(message) {
+  // Create an alert
+  Shiny.addCustomMessageHandler('create-alert', function(message) {
+    // setup target
+    var alertTarget;
+    if (message.id) {
+      alertTarget = `#${message.id}`;
+    } else {
+      if (message.selector){
+        alertTarget = message.selector;
+      }
+    }
+
+    // build the tag from options
+    var config = message.options, alertCl, alertTag, iconType, closeButton, titleTag, contentTag;
+    alertCl = 'alert alert-dismissible';
+    if (config.status !== undefined) {
+      alertCl = `${alertCl} alert-${config.status}`;
+    }
+    if (config.elevation !== undefined) {
+      alertCl = `${alertCl} elevation-${config.elevation}`;
+    }
+
+    switch(config.status) {
+      case 'primary': iconType = 'info';
+      break;
+      case 'danger': iconType = 'ban';
+      break;
+      case 'info': iconType = 'info';
+      break;
+      case 'warning': iconType = 'warning';
+      break;
+      case 'success': iconType = 'check';
+      break;
+      default: console.warn(`${config.status} does not belong to allowed statuses!`)
+    }
+
+    if (config.closable) {
+      closeButton = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>'
+    }
+
+    titleTag = `<h5><i class="icon fa fa-${iconType}"></i></h5>`
+    contentTag = config.content;
+
+    alertTag = `<div 
+      id="${message.id}-alert" 
+      class="${alertCl}">
+        ${closeButton}${titleTag}${contentTag}
+    </div>`
+    if (config.width !== undefined) {
+      alertTag = `<div class="col-sm-${config.width}">${alertTag}</div>`
+    } 
+
+    // add it to the DOM
+    $(alertTarget).append(alertTag);
+    Shiny.setInputValue(message.id, true);
+  });
+
+  // Clicking on close button does not trigger any event.
+  // This makes sure input$alertId is false.
+  $('[data-dismiss="alert"]').on('click', function() {
+    var alertId = $(this).parent.attr(id);
+    $(`#${alertId}`).trigger('closed.bs.alert');
+  })
+
+  Shiny.addCustomMessageHandler('close-alert', function(message) {
     // callback -> give ability to perform more actions on the Shiny side
     // once the alert is closed
-    $('#' + message).on('closed.bs.alert', function () {
-      Shiny.setInputValue(message, true);
+    $(`#${message}-alert`).on('closed.bs.alert', function () {
+      Shiny.setInputValue(message, false);
     });
-    $('#' + message).alert('close');
+    $(`#${message}-alert`).alert('close');
   });
 });
