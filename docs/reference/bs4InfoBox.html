@@ -167,6 +167,24 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>expr</th>
+      <td><p>An expression that returns a Shiny tag object, <code><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML()</a></code>,
+or a list of such objects.</p></td>
+    </tr>
+    <tr>
+      <th>env</th>
+      <td><p>The environment in which to evaluate <code>expr</code>.</p></td>
+    </tr>
+    <tr>
+      <th>quoted</th>
+      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://rdrr.io/r/base/substitute.html'>quote()</a></code>)? This
+is useful if you want to save an expression in a variable.</p></td>
+    </tr>
+    <tr>
+      <th>outputId</th>
+      <td><p>Output variable name.</p></td>
+    </tr>
+    <tr>
       <th>width</th>
       <td><p>The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the

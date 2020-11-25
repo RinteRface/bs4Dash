@@ -46,23 +46,22 @@
 #' @param fixed Whether to fix the navbar to the top. FALSE by default.
 #' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
 #' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use
-#' \link{bs4TooltipUI} and \link{bs4PopoverUI} without having to individually toggle them. Default to FALSE.
+#' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
 #' if TRUE, a help icon is display in the navigation bar.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE, 
-                          .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = "white", 
+bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
+                          .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = "white",
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
                           controlbarIcon = shiny::icon("th"), fixed = FALSE, fullscreen = FALSE, help = FALSE) {
-  
   items <- c(list(...), .list)
-  
+
   # make sure default status for dark skin is gray-dark if status is not specified
   # by the end user.
   if (skin == "dark" && is.null(status)) status <- "gray-dark"
-  
+
   if (!is.null(leftUi)) {
     if (inherits(leftUi, "shiny.tag.list")) {
       lapply(leftUi, function(item) {
@@ -72,7 +71,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       tagAssert(leftUi, type = "li", class = "dropdown")
     }
   }
-  
+
   if (!is.null(rightUi)) {
     if (inherits(rightUi, "shiny.tag.list")) {
       lapply(rightUi, function(item) {
@@ -80,11 +79,11 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       })
     } else {
       tagAssert(rightUi, type = "li", class = "dropdown")
-    } 
+    }
   }
-  
+
   titleWidth <- shiny::validateCssUnit(titleWidth)
-  
+
   # Set up custom CSS for custom width.
   custom_css <- NULL
   if (!is.null(titleWidth)) {
@@ -97,10 +96,10 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       shiny::tags$style(
         shiny::HTML(
           gsub(
-            "_WIDTH_", 
-            titleWidth, 
-            fixed = TRUE, 
-            '@media (min-width: 768px) {
+            "_WIDTH_",
+            titleWidth,
+            fixed = TRUE,
+            "@media (min-width: 768px) {
               .main-header.navbar {
                 margin-left: _WIDTH_;
               }
@@ -108,15 +107,15 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
                 width: _WIDTH_;
               }
             }
-           '
+           "
           )
         )
       )
     )
   }
-  
+
   headerTag <- shiny::tags$nav(
-    custom_css, 
+    custom_css,
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     `data-help` = if (help) 1 else 0,
@@ -125,11 +124,11 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       " navbar-", skin, if (!border) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
-    
+
     # left sidebar elements
     shiny::tags$ul(
       class = "navbar-nav",
-      
+
       # sidebar toggle (left)
       shiny::tags$li(
         class = "nav-item",
@@ -142,10 +141,10 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
       ),
       leftUi
     ),
-    
+
     # in between content
     items,
-    
+
     # right sidebar elements
     shiny::tags$ul(
       class = "navbar-nav ml-auto navbar-right",
@@ -173,10 +172,10 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
           href = "#",
           controlbarIcon
         )
-      ) 
+      )
     )
   )
-  
+
   list(headerTag, title)
 }
 
@@ -184,9 +183,9 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 
 
 
-#' Alternative to simple text title 
+#' Alternative to simple text title
 #'
-#' @param title Brand title. 
+#' @param title Brand title.
 #' @param color Brand color.
 #' @param href External link to point to.
 #' @param image External image location.
@@ -233,7 +232,7 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
 #'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#' }. 
+#' }.
 #' A value of \code{NULL} means to not display a badge.
 #' @param icon An icon to display in the header. By default, the icon is
 #'   automatically selected depending on \code{type}, but it can be overriden
@@ -248,80 +247,78 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #'   \code{...} arguments, but in list format. This can be useful when working
 #'   with programmatically generated items.
 #' @param href External link.
-#' 
+#'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      header = dashboardHeader(
-#'       rightUi = dropdownMenu(
-#'        badgeStatus = "danger",
-#'        type = "messages",
-#'        messageItem(
-#'          inputId = "triggerAction1",
-#'          message = "message 1",
-#'          from = "Divad Nojnarg",
-#'          image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
-#'          time = "today",
-#'          color = "lime"
-#'        )
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(
+#'         rightUi = dropdownMenu(
+#'           badgeStatus = "danger",
+#'           type = "messages",
+#'           messageItem(
+#'             inputId = "triggerAction1",
+#'             message = "message 1",
+#'             from = "Divad Nojnarg",
+#'             image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+#'             time = "today",
+#'             color = "lime"
+#'           )
+#'         ),
+#'         leftUi = tagList(
+#'           dropdownMenu(
+#'             badgeStatus = "info",
+#'             type = "notifications",
+#'             notificationItem(
+#'               inputId = "triggerAction2",
+#'               text = "Error!",
+#'               status = "danger"
+#'             )
+#'           ),
+#'           dropdownMenu(
+#'             badgeStatus = "info",
+#'             type = "tasks",
+#'             taskItem(
+#'               inputId = "triggerAction3",
+#'               text = "My progress",
+#'               color = "orange",
+#'               value = 10
+#'             )
+#'           )
+#'         )
 #'       ),
-#'       leftUi = tagList(
-#'        dropdownMenu(
-#'         badgeStatus = "info",
-#'         type = "notifications",
-#'         notificationItem(
-#'           inputId = "triggerAction2",
-#'           text = "Error!",
-#'           status = "danger"
-#'         )
-#'        ),
-#'        dropdownMenu(
-#'         badgeStatus = "info",
-#'         type = "tasks",
-#'         taskItem(
-#'           inputId = "triggerAction3",
-#'           text = "My progress",
-#'           color = "orange",
-#'           value = 10
-#'         )
-#'        )
-#'       )
-#'      ),
-#'      sidebar = dashboardSidebar(),
-#'      controlbar = dashboardControlbar(),
-#'      footer = dashboardFooter(),
-#'      title = "dropdownMenu",
-#'      body = dashboardBody()
-#'    ),
-#'    server = function(input, output) {
-#'     observeEvent(input$triggerAction1, {
-#'      showModal(modalDialog(
-#'       title = "Important message",
-#'       "This is an important message!"
-#'      ))
-#'     })
-#'    }
-#'  )
+#'       sidebar = dashboardSidebar(),
+#'       controlbar = dashboardControlbar(),
+#'       footer = dashboardFooter(),
+#'       title = "dropdownMenu",
+#'       body = dashboardBody()
+#'     ),
+#'     server = function(input, output) {
+#'       observeEvent(input$triggerAction1, {
+#'         showModal(modalDialog(
+#'           title = "Important message",
+#'           "This is an important message!"
+#'         ))
+#'       })
+#'     }
+#'   )
 #' }
-#' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
-                            badgeStatus = "primary", icon = NULL, headerText = NULL, 
+                            badgeStatus = "primary", icon = NULL, headerText = NULL,
                             .list = NULL, href = NULL) {
-  
   type <- match.arg(type)
   if (!is.null(badgeStatus)) validateStatus(badgeStatus)
   items <- c(list(...), .list)
-  
+
   # Make sure the items are a tags
-  #lapply(items, tagAssert, type = "a", class = "dropdown-item")
-  
+  # lapply(items, tagAssert, type = "a", class = "dropdown-item")
+
   if (is.null(icon)) {
     icon <- switch(
       type,
@@ -330,19 +327,19 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
       tasks = shiny::icon("tasks")
     )
   }
-  
+
   numItems <- length(items)
-  
+
   if (is.null(badgeStatus)) {
     badge <- NULL
   } else {
     badge <- shiny::span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
   }
-  
+
   if (is.null(headerText)) {
     headerText <- paste("You have", numItems, type)
   }
-  
+
   shiny::tags$li(
     class = "nav-item dropdown",
     shiny::tags$a(
@@ -356,7 +353,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
     shiny::tags$div(
       class = sprintf("dropdown-menu dropdown-menu-lg"),
       shiny::tags$span(
-        class = "dropdown-item dropdown-header", 
+        class = "dropdown-item dropdown-header",
         headerText
       ),
       shiny::tags$div(class = "dropdown-divider"),
@@ -367,7 +364,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
           href = href,
           target = "_blank",
           "More"
-        ) 
+        )
       }
     )
   )
@@ -388,7 +385,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #'   "today", or "12:30pm yesterday", or an absolute time, like "2014-12-01 13:45".
 #'   If NULL, no time will be displayed.
 #' @param href An optional URL to link to.
-#' @param image User image. 
+#' @param image User image.
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -418,16 +415,15 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL, 
+messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
                         href = NULL, image = NULL, color = "secondary", inputId = NULL) {
-  
   tagAssert(icon, type = "i")
   if (is.null(href)) href <- "#"
   if (!is.null(color)) validateStatusPlus(color)
-  
+
   itemCl <- "dropdown-item"
   if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
-  
+
   shiny::tagList(
     shiny::a(
       class = itemCl,
@@ -444,8 +440,8 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
         class = "media",
         if (!is.null(image)) {
           shiny::img(
-            src = image, 
-            alt = "User Avatar", 
+            src = image,
+            alt = "User Avatar",
             class = "img-size-50 mr-3 img-circle"
           )
         },
@@ -510,20 +506,19 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("warning"), 
+notificationItem <- function(text, icon = shiny::icon("warning"),
                              status = "success", href = NULL, inputId = NULL) {
-  
   tagAssert(icon, type = "i")
   if (is.null(href)) href <- "#"
   if (!is.null(status)) validateStatusPlus(status)
-  
+
   itemCl <- "dropdown-item"
   if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
-  
+
   if (!is.null(status)) {
-    icon <- shiny::tagAppendAttributes(icon, class = paste0("text-", status)) 
+    icon <- shiny::tagAppendAttributes(icon, class = paste0("text-", status))
   }
-  
+
   shiny::tagList(
     shiny::tags$a(
       class = itemCl,
@@ -584,10 +579,10 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
 taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
   validateStatusPlus(color)
   if (is.null(href)) href <- "#"
-  
+
   itemCl <- "dropdown-item"
   if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
-  
+
   shiny::tagList(
     shiny::tags$a(
       class = itemCl,
@@ -620,8 +615,8 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 
 
 #' Bootstrap 4 user profile.
-#' 
-#' \link{dashboardUser} to insert in the rightUi or leftUi slot of 
+#'
+#' \link{dashboardUser} to insert in the rightUi or leftUi slot of
 #' \link{dashboardHeader}.
 #'
 #' @param ... Body content. Slot for \link{dashboardUserItem}.
@@ -653,56 +648,54 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     header = dashboardHeader(rightUi = userOutput("user")),
-#'     sidebar = dashboardSidebar(),
-#'     body = dashboardBody(),
-#'     title = "DashboardPage"
-#'   ),
-#'   server = function(input, output) {
-#'    output$user <- renderUser({
-#'     dashboardUser(
-#'        name = "Divad Nojnarg", 
-#'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
-#'        title = "shinydashboardPlus",
-#'        subtitle = "Author", 
-#'        footer = p("The footer", class = "text-center"),
-#'        fluidRow(
-#'         dashboardUserItem(
-#'          width = 6,
-#'          "Item 1"
-#'         ),
-#'         dashboardUserItem(
-#'          width = 6,
-#'          "Item 2"
+#'   library(shiny)
+#'   library(bs4Dash)
+#'
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       header = dashboardHeader(rightUi = userOutput("user")),
+#'       sidebar = dashboardSidebar(),
+#'       body = dashboardBody(),
+#'       title = "DashboardPage"
+#'     ),
+#'     server = function(input, output) {
+#'       output$user <- renderUser({
+#'         dashboardUser(
+#'           name = "Divad Nojnarg",
+#'           image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
+#'           title = "shinydashboardPlus",
+#'           subtitle = "Author",
+#'           footer = p("The footer", class = "text-center"),
+#'           fluidRow(
+#'             dashboardUserItem(
+#'               width = 6,
+#'               "Item 1"
+#'             ),
+#'             dashboardUserItem(
+#'               width = 6,
+#'               "Item 2"
+#'             )
+#'           )
 #'         )
-#'        )
-#'       )
-#'    })
-#'   }
-#'  )
+#'       })
+#'     }
+#'   )
 #' }
-#' 
 #' @export
 bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
                         subtitle = NULL, footer = NULL, status = NULL) {
-  
   if (!is.null(status)) validateStatusPlus(status)
-  
+
   # Create line 1 for menu
   if (!is.null(title)) {
     line_1 <- paste0(name, " - ", title)
   } else {
     line_1 <- name
   }
-  
+
   # Create user_text based on if subtitle exists
   # If subtitle doesn't exist, make the menu height smaller
   if (!is.null(subtitle)) {
@@ -710,9 +703,9 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     user_header_height <- NULL
   } else {
     user_text <- shiny::tags$p(line_1)
-    user_header_height <- shiny::tags$script(shiny::HTML('$(".user-header").css("height", "145px")'));
+    user_header_height <- shiny::tags$script(shiny::HTML('$(".user-header").css("height", "145px")'))
   }
-  
+
   shiny::tagList(
     shiny::tags$head(
       shiny::tags$script(
@@ -723,7 +716,7 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
         });
         "
       )
-    ), 
+    ),
     shiny::tags$a(
       href = "#",
       class = "nav-link dropdown-toggle",
@@ -732,7 +725,8 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
       shiny::tags$img(
         src = image,
         class = "user-image img-circle elevation-2",
-        alt = "User Image"),
+        alt = "User Image"
+      ),
       shiny::tags$span(class = "d-none d-md-inline", name)
     ),
     shiny::tags$ul(
@@ -744,9 +738,10 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
           class = "img-circle elevation-2",
           alt = "User Image"
         ),
-        shiny::tags$p(title, shiny::tags$small(subtitle))),
-      if(length(list(...)) > 0) shiny::tags$li(class = "user-body", shiny::fluidRow(...)),
-      if(!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
+        shiny::tags$p(title, shiny::tags$small(subtitle))
+      ),
+      if (length(list(...)) > 0) shiny::tags$li(class = "user-body", shiny::fluidRow(...)),
+      if (!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
     )
   )
 }
@@ -754,7 +749,7 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
 
 
 
-#' Create a dashboard user profile item 
+#' Create a dashboard user profile item
 #'
 #' This can be inserted in a \code{\link{dashboardUser}}.
 #'
@@ -766,7 +761,7 @@ dashboardUserItem <- function(item, width) {
   item <- shiny::div(
     class = paste0("col-", width, " text-center"),
     item
-  ) 
+  )
 }
 
 

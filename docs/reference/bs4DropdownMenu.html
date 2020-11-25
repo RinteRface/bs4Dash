@@ -178,7 +178,7 @@ a <a href='bs4DashNavbar.html'>dashboardHeader</a>.</p>
 .</p></li>
 <li><p><code>danger</code>: <span style='width:12px;height:12px;background:#dc3545;border-radius:2px;display:inline-block;margin-right:5px;'></span>#dc3545
 .</p></li>
-</ul><p>. 
+</ul><p>.
 A value of <code>NULL</code> means to not display a badge.</p></td>
     </tr>
     <tr>
@@ -213,64 +213,63 @@ with programmatically generated items.</p></td>
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
- 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
-     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span>
-      rightUi <span class='op'>=</span> <span class='fu'>dropdownMenu</span><span class='op'>(</span>
-       badgeStatus <span class='op'>=</span> <span class='st'>"danger"</span>,
-       type <span class='op'>=</span> <span class='st'>"messages"</span>,
-       <span class='fu'><a href='messageItem.html'>messageItem</a></span><span class='op'>(</span>
-         inputId <span class='op'>=</span> <span class='st'>"triggerAction1"</span>,
-         message <span class='op'>=</span> <span class='st'>"message 1"</span>,
-         from <span class='op'>=</span> <span class='st'>"Divad Nojnarg"</span>,
-         image <span class='op'>=</span> <span class='st'>"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,
-         time <span class='op'>=</span> <span class='st'>"today"</span>,
-         color <span class='op'>=</span> <span class='st'>"lime"</span>
-       <span class='op'>)</span>
-      <span class='op'>)</span>,
-      leftUi <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
-       <span class='fu'>dropdownMenu</span><span class='op'>(</span>
-        badgeStatus <span class='op'>=</span> <span class='st'>"info"</span>,
-        type <span class='op'>=</span> <span class='st'>"notifications"</span>,
-        <span class='fu'><a href='notificationItem.html'>notificationItem</a></span><span class='op'>(</span>
-          inputId <span class='op'>=</span> <span class='st'>"triggerAction2"</span>,
-          text <span class='op'>=</span> <span class='st'>"Error!"</span>,
-          status <span class='op'>=</span> <span class='st'>"danger"</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>,
-       <span class='fu'>dropdownMenu</span><span class='op'>(</span>
-        badgeStatus <span class='op'>=</span> <span class='st'>"info"</span>,
-        type <span class='op'>=</span> <span class='st'>"tasks"</span>,
-        <span class='fu'><a href='taskItem.html'>taskItem</a></span><span class='op'>(</span>
-          inputId <span class='op'>=</span> <span class='st'>"triggerAction3"</span>,
-          text <span class='op'>=</span> <span class='st'>"My progress"</span>,
-          color <span class='op'>=</span> <span class='st'>"orange"</span>,
-          value <span class='op'>=</span> <span class='fl'>10</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>
-      <span class='op'>)</span>
-     <span class='op'>)</span>,
-     sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
-     controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
-     footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
-     title <span class='op'>=</span> <span class='st'>"dropdownMenu"</span>,
-     body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span><span class='op'>)</span>
-   <span class='op'>)</span>,
-   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>triggerAction1</span>, <span class='op'>{</span>
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/showModal.html'>showModal</a></span><span class='op'>(</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/modalDialog.html'>modalDialog</a></span><span class='op'>(</span>
-      title <span class='op'>=</span> <span class='st'>"Important message"</span>,
-      <span class='st'>"This is an important message!"</span>
-     <span class='op'>)</span><span class='op'>)</span>
-    <span class='op'>}</span><span class='op'>)</span>
-   <span class='op'>}</span>
- <span class='op'>)</span>
-<span class='op'>}</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
 
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
+      header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span>
+        rightUi <span class='op'>=</span> <span class='fu'>dropdownMenu</span><span class='op'>(</span>
+          badgeStatus <span class='op'>=</span> <span class='st'>"danger"</span>,
+          type <span class='op'>=</span> <span class='st'>"messages"</span>,
+          <span class='fu'><a href='messageItem.html'>messageItem</a></span><span class='op'>(</span>
+            inputId <span class='op'>=</span> <span class='st'>"triggerAction1"</span>,
+            message <span class='op'>=</span> <span class='st'>"message 1"</span>,
+            from <span class='op'>=</span> <span class='st'>"Divad Nojnarg"</span>,
+            image <span class='op'>=</span> <span class='st'>"https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg"</span>,
+            time <span class='op'>=</span> <span class='st'>"today"</span>,
+            color <span class='op'>=</span> <span class='st'>"lime"</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>,
+        leftUi <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+          <span class='fu'>dropdownMenu</span><span class='op'>(</span>
+            badgeStatus <span class='op'>=</span> <span class='st'>"info"</span>,
+            type <span class='op'>=</span> <span class='st'>"notifications"</span>,
+            <span class='fu'><a href='notificationItem.html'>notificationItem</a></span><span class='op'>(</span>
+              inputId <span class='op'>=</span> <span class='st'>"triggerAction2"</span>,
+              text <span class='op'>=</span> <span class='st'>"Error!"</span>,
+              status <span class='op'>=</span> <span class='st'>"danger"</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>,
+          <span class='fu'>dropdownMenu</span><span class='op'>(</span>
+            badgeStatus <span class='op'>=</span> <span class='st'>"info"</span>,
+            type <span class='op'>=</span> <span class='st'>"tasks"</span>,
+            <span class='fu'><a href='taskItem.html'>taskItem</a></span><span class='op'>(</span>
+              inputId <span class='op'>=</span> <span class='st'>"triggerAction3"</span>,
+              text <span class='op'>=</span> <span class='st'>"My progress"</span>,
+              color <span class='op'>=</span> <span class='st'>"orange"</span>,
+              value <span class='op'>=</span> <span class='fl'>10</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>,
+      sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
+      controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
+      footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
+      title <span class='op'>=</span> <span class='st'>"dropdownMenu"</span>,
+      body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>triggerAction1</span>, <span class='op'>{</span>
+        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/showModal.html'>showModal</a></span><span class='op'>(</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/modalDialog.html'>modalDialog</a></span><span class='op'>(</span>
+          title <span class='op'>=</span> <span class='st'>"Important message"</span>,
+          <span class='st'>"This is an important message!"</span>
+        <span class='op'>)</span><span class='op'>)</span>
+      <span class='op'>}</span><span class='op'>)</span>
+    <span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

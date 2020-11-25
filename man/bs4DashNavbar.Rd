@@ -102,7 +102,7 @@ working with programmatically generated items.}
 \item{fullscreen}{Whether to allow fullscreen feature in the navbar. Default to FALSE.}
 
 \item{help}{Whether to enable/disable popovers and tooltips. This allows to seamlessly use
-\link{bs4TooltipUI} and \link{bs4PopoverUI} without having to individually toggle them. Default to FALSE.
+\link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
 if TRUE, a help icon is display in the navigation bar.}
 }
 \description{

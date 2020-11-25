@@ -48,6 +48,16 @@ infoBoxOutput(outputId, width = 4)
 renderInfoBox(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
+\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:reexports]{HTML()}},
+or a list of such objects.}
+
+\item{env}{The environment in which to evaluate \code{expr}.}
+
+\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
+is useful if you want to save an expression in a variable.}
+
+\item{outputId}{Output variable name.}
+
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
 default width of 4 occupies 1/3 of that width. For column-based

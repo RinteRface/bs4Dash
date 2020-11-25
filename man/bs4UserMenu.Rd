@@ -63,43 +63,42 @@ dashboardUser(
 }}
 }
 \description{
-\link{dashboardUser} to insert in the rightUi or leftUi slot of 
+\link{dashboardUser} to insert in the rightUi or leftUi slot of
 \link{dashboardHeader}.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(rightUi = userOutput("user")),
-    sidebar = dashboardSidebar(),
-    body = dashboardBody(),
-    title = "DashboardPage"
-  ),
-  server = function(input, output) {
-   output$user <- renderUser({
-    dashboardUser(
-       name = "Divad Nojnarg", 
-       image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
-       title = "shinydashboardPlus",
-       subtitle = "Author", 
-       footer = p("The footer", class = "text-center"),
-       fluidRow(
-        dashboardUserItem(
-         width = 6,
-         "Item 1"
-        ),
-        dashboardUserItem(
-         width = 6,
-         "Item 2"
-        )
-       )
-      )
-   })
-  }
- )
-}
+  library(shiny)
+  library(bs4Dash)
 
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(rightUi = userOutput("user")),
+      sidebar = dashboardSidebar(),
+      body = dashboardBody(),
+      title = "DashboardPage"
+    ),
+    server = function(input, output) {
+      output$user <- renderUser({
+        dashboardUser(
+          name = "Divad Nojnarg",
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
+          title = "shinydashboardPlus",
+          subtitle = "Author",
+          footer = p("The footer", class = "text-center"),
+          fluidRow(
+            dashboardUserItem(
+              width = 6,
+              "Item 1"
+            ),
+            dashboardUserItem(
+              width = 6,
+              "Item 2"
+            )
+          )
+        )
+      })
+    }
+  )
+}
 }

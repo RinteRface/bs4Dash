@@ -43,7 +43,7 @@ dropdownMenu(
   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-}. 
+}.
 A value of \code{NULL} means to not display a badge.}
 
 \item{icon}{An icon to display in the header. By default, the icon is
@@ -68,64 +68,63 @@ with programmatically generated items.}
 a \link{dashboardHeader}.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(bs4Dash)
- 
- shinyApp(
-   ui = dashboardPage(
-     header = dashboardHeader(
-      rightUi = dropdownMenu(
-       badgeStatus = "danger",
-       type = "messages",
-       messageItem(
-         inputId = "triggerAction1",
-         message = "message 1",
-         from = "Divad Nojnarg",
-         image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
-         time = "today",
-         color = "lime"
-       )
-      ),
-      leftUi = tagList(
-       dropdownMenu(
-        badgeStatus = "info",
-        type = "notifications",
-        notificationItem(
-          inputId = "triggerAction2",
-          text = "Error!",
-          status = "danger"
-        )
-       ),
-       dropdownMenu(
-        badgeStatus = "info",
-        type = "tasks",
-        taskItem(
-          inputId = "triggerAction3",
-          text = "My progress",
-          color = "orange",
-          value = 10
-        )
-       )
-      )
-     ),
-     sidebar = dashboardSidebar(),
-     controlbar = dashboardControlbar(),
-     footer = dashboardFooter(),
-     title = "dropdownMenu",
-     body = dashboardBody()
-   ),
-   server = function(input, output) {
-    observeEvent(input$triggerAction1, {
-     showModal(modalDialog(
-      title = "Important message",
-      "This is an important message!"
-     ))
-    })
-   }
- )
-}
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
 
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(
+        rightUi = dropdownMenu(
+          badgeStatus = "danger",
+          type = "messages",
+          messageItem(
+            inputId = "triggerAction1",
+            message = "message 1",
+            from = "Divad Nojnarg",
+            image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+            time = "today",
+            color = "lime"
+          )
+        ),
+        leftUi = tagList(
+          dropdownMenu(
+            badgeStatus = "info",
+            type = "notifications",
+            notificationItem(
+              inputId = "triggerAction2",
+              text = "Error!",
+              status = "danger"
+            )
+          ),
+          dropdownMenu(
+            badgeStatus = "info",
+            type = "tasks",
+            taskItem(
+              inputId = "triggerAction3",
+              text = "My progress",
+              color = "orange",
+              value = 10
+            )
+          )
+        )
+      ),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "dropdownMenu",
+      body = dashboardBody()
+    ),
+    server = function(input, output) {
+      observeEvent(input$triggerAction1, {
+        showModal(modalDialog(
+          title = "Important message",
+          "This is an important message!"
+        ))
+      })
+    }
+  )
+}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

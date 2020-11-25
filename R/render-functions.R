@@ -68,6 +68,7 @@ renderbs4ValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 
 #' @rdname bs4InfoBox
+#' @inheritParams renderbs4ValueBox
 #' @export
 renderbs4InfoBox <- renderbs4ValueBox
 
@@ -90,6 +91,7 @@ bs4ValueBoxOutput <- function(outputId, width = 4) {
 
 
 #' @rdname bs4InfoBox
+#' @inheritParams bs4ValueBoxOutput
 #' @export
 bs4InfoBoxOutput <- bs4ValueBoxOutput
 
