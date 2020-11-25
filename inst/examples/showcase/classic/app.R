@@ -193,15 +193,6 @@ shinyApp(
         type = "pills",
         controlbarItem(
           "Inputs",
-          radioGroupButtons(
-            inputId = "somevalue3",
-            label = "With icons:",
-            choices = names(mtcars)[1:3],
-            checkIcon = list(
-              yes = icon("check-square"),
-              no = icon("square-o")
-            )
-          ),
           column(
             width = 12,
             align = "center",
