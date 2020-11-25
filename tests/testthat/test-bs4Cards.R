@@ -70,20 +70,21 @@ test_that("card tools", {
   cardTag <- do.call(bs4Card, parms)
   expect_error(getCardTools(cardTag))
   
+  # collapsible/closable and maximizable are contained in a sublist
   parms$collapsible <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 1)
+  expect_length(toolsTag[[1]], 1)
   
   parms$closable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 2)
+  expect_length(toolsTag[[1]], 2)
   
   parms$maximizable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 3)
+  expect_length(toolsTag[[1]], 3)
   
   parms$dropdownMenu <- boxDropdown(
     boxDropdownItem("plop"),
@@ -91,17 +92,17 @@ test_that("card tools", {
   )
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 4)
+  expect_length(toolsTag, 2)
   
   parms$sidebar <- boxSidebar()
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 5)
+  expect_length(toolsTag, 3)
   
   parms$label <- boxLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 6)
+  expect_length(toolsTag, 4)
 })
 
 test_that("default", {

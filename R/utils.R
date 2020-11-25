@@ -330,7 +330,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnCla
       )
     }
 
-    shiny::tagList(collapseTag, closableTag, maximizableTag)
+    dropNulls(list(collapseTag, closableTag, maximizableTag))
   }
 
 
