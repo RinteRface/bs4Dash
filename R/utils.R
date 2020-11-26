@@ -110,3 +110,481 @@ processDeps <- function (tags, session) {
   names(dependencies) <- NULL
   list(html = htmltools::doRenderTags(ui), deps = dependencies)
 }
+
+
+
+# Returns TRUE if a status is valid; throws error otherwise.
+validateStatus <- function(status) {
+  
+  if (status %in% validStatuses) {
+    return(TRUE)
+  }
+  
+  stop("Invalid status: ", status, ". Valid statuses are: ",
+       paste(validStatuses, collapse = ", "), ".")
+}
+
+
+#' Valid statuses
+#'
+#' These status strings correspond to colors as defined in Bootstrap's CSS.
+#' Although the colors can vary depending on the particular CSS selector, they
+#' generally appear as follows:
+#'
+#' \itemize{
+#'   \item \code{primary} Blue (sometimes dark blue)
+#'   \item \code{secondary} Light gray
+#'   \item \code{info} Blue
+#'   \item \code{success} Green
+#'   \item \code{warning} Orange
+#'   \item \code{danger} Red
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger")
+
+
+
+
+# Returns TRUE if a nuance is valid; throws error otherwise.
+validateNuance <- function(nuance) {
+  
+  if (nuance %in% validNuances) {
+    return(TRUE)
+  }
+  
+  stop("Invalid nuance: ", nuance, ". Valid nuances are: ",
+       paste(validNuances, collapse = ", "), ".")
+}
+
+
+#' Valid nuances
+#'
+#' These nuances strings correspond to colors as defined in AdminLTE's CSS.
+#' Although the colors can vary depending on the particular CSS selector, they
+#' generally appear as follows:
+#'
+#' \itemize{
+#'   \item \code{gray-dark} Gray dark
+#'   \item \code{gray} Gray
+#'   \item \code{white} White
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validNuances <- c("gray-dark", "gray", "white")
+
+
+
+
+# Returns TRUE if a color is a valid color defined in AdminLTE, throws error
+# otherwise.
+validateColor <- function(color) {
+  if (color %in% validColors) {
+    return(TRUE)
+  }
+  
+  stop("Invalid color: ", color, ". Valid colors are: ",
+       paste(validColors, collapse = ", "), ".")
+}
+
+#' Valid colors
+#'
+#' These are valid colors for various dashboard components. Valid colors are
+#' listed below:
+#'
+#' \itemize{
+#'   \item \code{indigo} Indigo
+#'   \item \code{lightblue} Light blue
+#'   \item \code{navy} Dark Grey/Blue
+#'   \item \code{purple} Purple
+#'   \item \code{fuchsia} Fuchsia
+#'   \item \code{pink} Pink
+#'   \item \code{maroon} Pink
+#'   \item \code{orange} Orange
+#'   \item \code{lime} Light green
+#'   \item \code{teal} Blue/Green
+#'   \item \code{olive} Pastel green
+#' }
+#'
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink", 
+                 "maroon", "orange", "lime", "teal", "olive")
+
+
+
+# Returns TRUE if a status is valid; throws error otherwise.
+validateStatusPlus <- function(status) {
+  
+  if (status %in% validStatusesPlus) {
+    return(TRUE)
+  }
+  
+  stop("Invalid status: ", status, ". Valid statuses are: ",
+       paste(validStatusesPlus, collapse = ", "), ".")
+}
+
+
+#' Valid statuses extra
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validStatusesPlus <- c(validStatuses, validNuances, validColors)
+
+
+
+
+# used to generate color tags in the documentation
+rd_color_tag <- function(color, label = color) {
+  style <- sprintf(
+    "width:12px;height:12px;background:%s;border-radius:2px;display:inline-block;margin-right:5px;",
+    color
+  )
+  sprintf(
+    "\\ifelse{html}{\\out{<span style='%s'></span>%s}}{%s}",
+    style, label, label
+  )
+}
+
+
+# Insert HTML tag at any position
+tagInsertChild <- function(tag, child, position) {
+  tag$children <- append(tag$children, list(child), position - 1)
+  tag
+}
+
+
+# Tool to validate the card props
+validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradient, collapsible, 
+                             collapsed, solidHeader, background, elevation, width) {
+  
+  if (!is.null(status)) validateStatusPlus(status)
+  if (!is.null(background)) validateStatusPlus(background)
+  
+  
+  if (!collapsible & collapsed) {
+    stop("Cannot collapse a card that is not collapsible.")
+  }
+  
+  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
+  if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
+  
+  
+  if (!is.null(elevation)) {
+    stopifnot(is.numeric(elevation))
+    stopifnot(elevation < 6)
+    stopifnot(elevation >= 0)
+  }
+  
+  if (!is.null(width)) {
+    stopifnot(is.numeric(width))
+    # respect the bootstrap grid
+    stopifnot(width <= 12)
+    stopifnot(width >= 0)
+  }
+}
+
+
+
+# create box icons and return a list of icons
+createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnClass) {
+    collapseTag <- NULL
+    if (collapsible) {
+      collapseIcon <- if (collapsed) 
+        "plus"
+      else "minus"
+      collapseTag <- shiny::tags$button(
+        class = btnClass, 
+        type = "button",
+        `data-card-widget` = "collapse", 
+        shiny::icon(collapseIcon)
+      )
+    }
+
+    closableTag <- NULL
+    if (closable) {
+      closableTag <- shiny::tags$button(
+        class = btnClass, 
+        `data-card-widget` = "remove", 
+        type = "button",
+        shiny::icon("times")
+      )
+    } 
+
+    maximizableTag <- NULL
+    if (maximizable) {
+      maximizableTag <- shiny::tags$button(
+        type = "button",
+        class = btnClass,
+        `data-card-widget` = "maximize",
+        shiny::icon("expand")
+      )
+    }
+
+    dropNulls(list(collapseTag, closableTag, maximizableTag))
+  }
+
+
+
+
+
+
+randomInt <- function (min, max) {
+  if (missing(max)) {
+    max <- min
+    min <- 0
+  }
+  if (min < 0 || max <= min)
+    stop("Invalid min/max values")
+  min + sample(max - min, 1) - 1
+}
+
+
+# A scope where we can put mutable global state
+.globals <- new.env(parent = emptyenv())
+.globals$ownSeed <- NULL
+
+withPrivateSeed <-function (expr) {
+  if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
+    hasOrigSeed <- TRUE
+    origSeed <- .GlobalEnv$.Random.seed
+  }
+  else {
+    hasOrigSeed <- FALSE
+  }
+  if (is.null(.globals$ownSeed)) {
+    if (hasOrigSeed) {
+      rm(.Random.seed, envir = .GlobalEnv, inherits = FALSE)
+    }
+  }
+  else {
+    .GlobalEnv$.Random.seed <- .globals$ownSeed
+  }
+  on.exit({
+    .globals$ownSeed <- .GlobalEnv$.Random.seed
+    if (hasOrigSeed) {
+      .GlobalEnv$.Random.seed <- origSeed
+    } else {
+      rm(.Random.seed, envir = .GlobalEnv, inherits = FALSE)
+    }
+    httpuv::getRNGState()
+  })
+  expr
+}
+
+
+p_randomInt <- function (...) {
+  withPrivateSeed(randomInt(...))
+}
+
+
+markTabAsSelected <- function (x) {
+  attr(x, "selected") <- TRUE
+  x
+}
+
+
+`%OR%` <- function (x, y)
+{
+  if (is.null(x) || isTRUE(is.na(x)))
+    y
+  else x
+}
+
+
+findAndMarkSelectedTab <- function (tabs, selected, foundSelected) {
+  tabs <- lapply(tabs, function(div) {
+    if (foundSelected || is.character(div)) {
+    }
+    else if (inherits(div, "shiny.navbarmenu")) {
+      res <- findAndMarkSelectedTab(div$tabs, selected,
+                                    foundSelected)
+      div$tabs <- res$tabs
+      foundSelected <<- res$foundSelected
+    }
+    else {
+      if (is.null(selected)) {
+        foundSelected <<- TRUE
+        div <- markTabAsSelected(div)
+      }
+      else {
+        tabValue <- div$attribs$`data-value` %OR% div$attribs$title
+        if (identical(selected, tabValue)) {
+          foundSelected <<- TRUE
+          div <- markTabAsSelected(div)
+        }
+      }
+    }
+    return(div)
+  })
+  return(list(tabs = tabs, foundSelected = foundSelected))
+}
+
+
+
+anyNamed <- function (x)
+{
+  if (length(x) == 0)
+    return(FALSE)
+  nms <- names(x)
+  if (is.null(nms))
+    return(FALSE)
+  any(nzchar(nms))
+}
+
+
+
+buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected = NULL,
+                         foundSelected = FALSE) {
+  res <- findAndMarkSelectedTab(tabs, selected, foundSelected)
+  tabs <- res$tabs
+  foundSelected <- res$foundSelected
+  if (!is.null(id))
+    ulClass <- paste(ulClass, "shiny-tab-input")
+  if (anyNamed(tabs)) {
+    nms <- names(tabs)
+    nms <- nms[nzchar(nms)]
+    stop("Tabs should all be unnamed arguments, but some are named: ",
+         paste(nms, collapse = ", "))
+  }
+  tabsetId <- p_randomInt(1000, 10000)
+  tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
+                 foundSelected = foundSelected, tabs = tabs, textFilter = textFilter)
+  tabNavList <- shiny::tags$ul(class = ulClass, id = id, `data-tabsetid` = tabsetId,
+                        lapply(tabs, "[[", 1))
+  tabContent <- shiny::tags$div(class = "tab-content", `data-tabsetid` = tabsetId,
+                         lapply(tabs, "[[", 2))
+  list(navList = tabNavList, content = tabContent)
+}
+
+
+isTabSelected <- function (x) {
+  isTRUE(attr(x, "selected", exact = TRUE))
+}
+
+
+containsSelectedTab <- function (tabs) {
+  any(vapply(tabs, isTabSelected, logical(1)))
+}
+
+
+getIcon <- function (tab = NULL, iconClass = NULL) {
+  if (!is.null(tab))
+    iconClass <- tab$attribs$`data-icon-class`
+  if (!is.null(iconClass)) {
+    if (grepl("fa-", iconClass, fixed = TRUE)) {
+      iconClass <- paste(iconClass, "fa-fw")
+    }
+    shiny::icon(name = NULL, class = iconClass)
+  }
+  else NULL
+}
+
+
+navbarMenuTextFilter <- function (text) {
+  if (grepl("^\\-+$", text))
+    shiny::tags$li(class = "divider")
+  else shiny::tags$li(class = "dropdown-header", text)
+}
+
+
+buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = NULL,
+                          textFilter = NULL) {
+  divTag <- if (!is.null(divTag))
+    divTag
+  else tabs[[index]]
+  if (is.character(divTag) && !is.null(textFilter)) {
+    liTag <- textFilter(divTag)
+    divTag <- NULL
+  }
+  else if (inherits(divTag, "shiny.navbarmenu")) {
+    tabset <- buildTabset(divTag$tabs, "dropdown-menu", navbarMenuTextFilter,
+                          foundSelected = foundSelected)
+    containsSelected <- containsSelectedTab(divTag$tabs)
+    liTag <- shiny::tags$li(class = paste0("dropdown", if (containsSelected)
+      " active"), shiny::tags$a(href = "#", class = "dropdown-toggle",
+                         `data-toggle` = "dropdown", `data-value` = divTag$menuName,
+                         getIcon(iconClass = divTag$iconClass), divTag$title,
+                         shiny::tags$b(class = "caret")), tabset$navList)
+    divTag <- tabset$content$children
+  }
+  else {
+    tabId <- paste("tab", tabsetId, index, sep = "-")
+    liTag <- shiny::tags$li(shiny::tags$a(href = paste("#", tabId, sep = ""),
+                            `data-toggle` = "tab", `data-value` = divTag$attribs$`data-value`,
+                            getIcon(iconClass = divTag$attribs$`data-icon-class`),
+                            divTag$attribs$title))
+    if (isTabSelected(divTag)) {
+      liTag$attribs$class <- "active"
+      divTag$attribs$class <- "tab-pane active"
+    }
+    divTag$attribs$id <- tabId
+    divTag$attribs$title <- NULL
+  }
+  return(list(liTag = liTag, divTag = divTag))
+}
+
+
+
+shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call(sys.parent()))[1L], 
+          version = NULL) 
+{
+  if (getOption("shiny.deprecation.messages") %OR% TRUE == 
+      FALSE) 
+    return(invisible())
+  if (is.null(msg)) {
+    msg <- paste(old, "is deprecated.")
+    if (!is.null(new)) {
+      msg <- paste(msg, "Please use", new, "instead.", 
+                   "To disable this message, run options(shiny.deprecation.messages=FALSE)")
+    }
+  }
+  if (!is.null(version)) {
+    msg <- paste0(msg, " (Last used in version ", version, 
+                  ")")
+  }
+  message(msg)
+}
+
+
+
+bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, type = c("tabs", "pills", 
+                                                    "hidden"), position = NULL) 
+{
+  if (!is.null(position)) {
+    shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
+                                "it has been discontinued in Bootstrap 3."), version = "0.10.2.2")
+  }
+  if (!is.null(id)) 
+    selected <- shiny::restoreInput(id = id, default = selected)
+  type <- match.arg(type)
+  tabset <- buildTabset(tabs, paste0("nav nav-", type), NULL, id, selected)
+  first <- tabset$navList
+  second <- tabset$content
+  shiny::tags$div(class = "tabbable", first, second)
+}
+
+
+
+
+validateIcon <- function (icon) 
+{
+  if (is.null(icon) || identical(icon, character(0))) {
+    return(icon)
+  }
+  else if (inherits(icon, "shiny.tag") && icon$name == "i") {
+    return(icon)
+  }
+  else {
+    stop("Invalid icon. Use Shiny's 'icon()' function to generate a valid icon")
+  }
+}

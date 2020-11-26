@@ -2,147 +2,142 @@ reference:
 - title: Basic dashboard functions
   desc: Dashboard skeleton functions
   contents: 
-  - '`bs4DashPage`'
-  - '`bs4DashNavbar`'
-  - '`bs4DashBody`'
-  - '`bs4DashFooter`'
-  - '`bs4DashSidebar`'
-  - '`bs4DashControlbar`'
-  - '`bs4DashControlbarItem`'
-  - '`bs4DashControlbarMenu`'
+  - '`dashboardPage`'
+  - '`dashboardHeader`'
+  - '`dashboardBody`'
+  - '`dashboardFooter`'
+  - '`dashboardSidebar`'
+  - '`dashboardControlbar`'
   
 - title: Layout functions
   desc: Bootstrap 4 Layout utils
   contents: 
   - '`column`'
+  - '`boxLayout`'
   
   
 - title: Feedback related functions
-  desc: Bootstrap 4 popovers, tooltips, ...
+  desc: Bootstrap 4 popovers, tooltips, toasts, alerts, ... They replace {shinyBS} elements.
   contents: 
-  - '`bs4Alert`'
-  - '`bs4CloseAlert`'
-  - '`bs4PopoverServer`'
-  - '`bs4PopoverUI`'
-  - '`bs4Toast`'
-  - '`bs4TooltipServer`'
-  - '`bs4TooltipUI`'
+  - '`createAlert`'
+  - '`closeAlert`'
+  - '`popover`'
+  - '`addPopover`'
+  - '`removePopover`'
+  - '`toast`'
+  - '`tooltip`'
+  - '`addTooltip`'
+  - '`removeTooltip`'
   
 
 - title: Update functions
   desc: Dynamically update UI elements
   contents: 
-  - '`updatebs4Card`'
-  - '`updatebs4CardSidebar`'
-  - '`updatebs4Controlbar`'
-  - '`updatebs4ControlbarMenu`'
-  - '`updatebs4Sidebar`'
-  - '`updatebs4TabItems`'
-  - '`updatebs4TabSetPanel`'
+  - '`updateAccordion`'
+  - '`updateBox`'
+  - '`updateBoxSidebar`'
+  - '`updateControlbar`'
+  - '`updateControlbarMenu`'
+  - '`updateSidebar`'
+  - '`updateTabItems`'
+  - '`updateUserMessages`'
+
     
 - title: Body content functions
-  desc: Functions that are to be used in the bs4DashBody
+  desc: Functions that are to be used in the dashboardBody
   contents:
-  - '`bs4TabItems`'
-  - '`bs4TabItem`'
-    
-- title: Sidebar Content functions
-  desc: Functions that are to be used in the bs4DashSidebar
-  contents:
-  - '`bs4SidebarMenu`'
-  - '`bs4SidebarMenuItem`'
-  - '`bs4SidebarMenuSubItem`'
-  - '`bs4SidebarHeader`'
-  - '`bs4SidebarUserPanel`'
-    
-- title: Navbar Content functions
-  desc: Functions that are to be used in the bs4DashNavbar
-  contents:
-  - '`bs4DropdownMenu`'
-  - '`bs4DropdownMenuItem`'
-  - '`bs4UserMenu`'
-    
-- title: Cards and boxes
-  desc: Build cards and boxes
-  contents:
-  - '`bs4Box`'
-  - '`bs4InfoBox`'
-  - '`bs4ValueBox`'
-  - '`bs4Card`'
-  - '`bs4CardLayout`'
-  - '`bs4CardLabel`'
-  - '`bs4CardSidebar`'
-  - '`bs4TabCard`'
-  - '`bs4UserCard`'
-  - '`bs4SocialCard`'
+  - '`tabItems`'
+  - '`tabItem`'
 
-- title: Card Toolbar components
+    
+- title: Sidebar content functions
+  desc: Functions that are to be used in the dashboardSidebar
+  contents:
+  - '`sidebarMenu`'
+  - '`sidebarMenuOutput`'
+  - '`menuItem`'
+  - '`menuItemOutput`'
+  - '`menuSubItem`'
+  - '`menuOutput`'
+  - '`renderMenu`'
+  - '`sidebarHeader`'
+  - '`sidebarUserPanel`'
+
+    
+- title: Header content functions
+  desc: Functions that are to be used in the dashboardHeader
+  contents:
+  - '`dashboardBrand`'
+  - '`dashboardUser`'
+  - '`dashboardUserItem`'
+  - '`renderUser`'
+  - '`userOutput`'
+  - '`dropdownMenu`'
+  - '`dropdownMenuOutput`'
+  - '`messageItem`'
+  - '`notificationItem`'
+  - '`taskItem`'
+
+
+- title: Controlbar content functions
+  desc: Functions that are to be used in the dashboardControlbar
+  contents:
+  - '`controlbarMenu`'
+  - '`controlbarItem`'
+
+
+- title: Boxes
+  desc: Main containers
+  contents:
+  - '`infoBox`'
+  - '`valueBox`'
+  - '`box`'
+  - '`boxLayout`'
+  - '`socialBox`'
+  - '`tabBox`'
+  - '`userBox`'
+
+
+- title: Box toolbar components
   desc: Build dropdown menu in the tool area (close, collapse)
   contents:
+  - '`boxDropdown`'
+  - '`boxDropdownItem`'
+  - '`boxLabel`'
+  - '`boxSidebar`'
   - '`dropdownDivider`'
-  - '`dropdownItem`'
-  - '`dropdownItemList`'
+
   
-- title: Tab card elements
-  desc: Functions that are to be used in bs4TabCard
+- title: Tabs elements
+  desc: Functions that are to be used in tabBox or standalone. They overwrite {shiny} default to be compatible with Bootstrap 4.
   contents:
-  - '`bs4InsertTab`'
-  - '`bs4RemoveTab`'
-  - '`bs4TabPanel`'
-  - '`bs4TabSetPanel`'
+  - '`insertTab`'
+  - '`tabsetPanel`'
+
+
+- title: Inputs
+  desc: New inputs compatible with Bootstrap 4.
+  contents:
+  - '`actionButton`'
+  - '`appButton`'
+
   
-- title: Card extra elements
+- title: Box extra elements
   desc: Add more shiny elements to your cards
   contents:
   - '`attachmentBlock`'
+  - '`boxComment`'
+  - '`boxPad`'
+  - '`boxProfile`'
+  - '`boxProfileItem`'
   - '`descriptionBlock`' 
-  - '`cardComment`'
-  - '`cardPad`'
-  - '`cardProfile`'
-  - '`cardProfileItemList`'
-  - '`cardProfileItem`'
   - '`bs4Ribbon`'
-  
-- title: Sortable UI
-  desc: Sort elements such as cards
-  contents:
-  - '`bs4Sortable`'
-    
-- title: Render functions
-  desc: Dynamically generate items
-  contents:
-  - '`bs4ValueBoxOutput`'
-  - '`bs4InfoBoxOutput`'
-  - '`renderbs4ValueBox`'
-  - '`renderbs4InfoBox`'
-    
-- title: Other bs4 items
-  desc: To better customize your app
-  contents:
-  - '`bs4Accordion`'
-  - '`bs4AccordionItem`'
-  - '`bs4Badge`'
-  - '`bs4Callout`'
-  - '`bs4Carousel`'
-  - '`bs4CarouselItem`'
-  - '`bs4Jumbotron`'
-  - '`bs4ListGroup`'
-  - '`bs4ListGroupItem`'
-  - '`bs4Loading`'
-  - '`bs4ProgressBar`'
-  - '`bs4Quote`'
-  - '`bs4Stars`'
-  - '`bs4Table`'
-  - '`bs4TableItem`'
-  - '`bs4TableItems`'
-  - '`bs4Timeline`'
-  - '`bs4TimelineEnd`'
-  - '`bs4TimelineItem`'
-  - '`bs4TimelineItemMedia`'
-  - '`bs4TimelineLabel`'
-  - '`bs4TimelineStart`'
-  - '`getAdminLTEColors`'
-  - '`ionicon`'
+  - '`productList`'
+  - '`productListItem`'
+  - '`userBlock`'
+  - '`userDescription`'
+  - '`userList`'
+  - '`userListItem`'
   - '`userMessage`'
   - '`userMessages`'
   - '`userPost`'
@@ -150,15 +145,63 @@ reference:
   - '`userPostTagItem`'
   - '`userPostMedia`'
 
+  
+- title: Sortable UI
+  desc: Sort elements such as cards
+  contents:
+  - '`sortable`'
+
+    
+- title: Render functions
+  desc: Dynamically generate items
+  contents:
+  - '`valueBoxOutput`'
+  - '`infoBoxOutput`'
+  - '`renderValueBox`'
+  - '`renderInfoBox`'
+
+    
+- title: Other Bootstrap 4 items
+  desc: To better customize your app
+  contents:
+  - '`accordion`'
+  - '`accordionItem`'
+  - '`blockQuote`'
+  - '`bs4Table`'
+  - '`bs4TableItem`'
+  - '`bs4TableItems`'
+  - '`callout`'
+  - '`carousel`'
+  - '`carouselItem`'
+  - '`dashboardBadge`'
+  - '`ionicon`'
+  - '`jumbotron`'
+  - '`listGroup`'
+  - '`listGroupItem`'
+  - '`loadingState`'
+  - '`progressBar`'
+  - '`ribbon`'
+  - '`starBlock`'
+  - '`timelineBlock`'
+  - '`timelineEnd`'
+  - '`timelineItem`'
+  - '`timelineItemMedia`'
+  - '`timelineLabel`'
+  - '`timelineStart`'
+  - '`getAdminLTEColors`'
+
+
+- title: CSS extras
+  desc: Pimp your app
+  contents:
+  - '`skinSelector`'
+  - '`useAutoColor`' 
+
+
 - title: Gallery
   desc: bs4Dash showcase
   contents:
   - '`bs4DashGallery`'
-
-
-template:
-  params:
-    bootswatch: journal
     
     
 navbar:
@@ -187,18 +230,21 @@ navbar:
       
 
 articles:
-- title: All vignettes
+- title: User guide
   desc: ~
+  navbar: User Guide
   contents:
-  - '`bs4Intro`'
-  - '`bs4Themes`'
-  - '`bs4cards`'
-  - '`bs4sortable`'
+  - '`step-by-step`'
+  - '`improved-boxes`'
+  #- '`box-elements`'
+  - '`extra-elements`'
+  - '`more-skins`'
+  - '`css-preloader`'
   
   
 news:
  releases:
- - text: "bs4Dash 0.6.0.9000"
+ - text: "bs4Dash 2.0.0.9000"
  - text: "bs4Dash 0.5.0"
  - text: "bs4Dash 0.4.0"
  - text: "bs4Dash 0.3.0"

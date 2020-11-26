@@ -20,14 +20,14 @@ if(interactive()){
  library(shiny)
  library(bs4Dash)
  
- shiny::shinyApp(
-   ui = bs4DashPage(
-     navbar = bs4DashNavbar(),
-     sidebar = bs4DashSidebar(),
-     controlbar = bs4DashControlbar(),
-     footer = bs4DashFooter(),
-     title = "test",
-     body = bs4DashBody(
+ shinyApp(
+   ui = dashboardPage(
+     header = dashboardHeader(),
+     sidebar = dashboardSidebar(),
+     controlbar = dashboardControlbar(),
+     footer = dashboardFooter(),
+     title = "Ionicons",
+     body = dashboardBody(
       ionicon(name ="heart"),
       ionicon(name ="beer")
     )

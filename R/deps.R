@@ -1,16 +1,5 @@
-# Add an html dependency, without overwriting existing ones
-appendDependencies <- function(x, value) {
-  if (inherits(value, "html_dependency"))
-    value <- list(value)
-  
-  old <- attr(x, "html_dependencies", TRUE)
-  
-  htmltools::htmlDependencies(x) <- c(old, value)
-  x
-}
-
 # Add dashboard dependencies to a tag object
-addDeps <- function(x, theme) {
+add_bs4Dash_deps <- function(tag, options) {
   
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
@@ -19,12 +8,13 @@ addDeps <- function(x, theme) {
   bs4Dash_css <- "bs4Dash.css"
   jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
-  old_school_css <- "https://bootswatch.com/4/sketchy/"
+  os_js <- "jquery.overlayScrollbars.min.js"
+  os_css <- "OverlayScrollbars.min.css"
   fontawesome_css <- "https://use.fontawesome.com/releases/v5.0.13/css/"
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
   
-  dashboardDeps <- list(
+  bs4Dash_deps <- list(
     # jquery UI deps for sortable elements
     htmltools::htmlDependency(
       name = "jquery-ui", 
@@ -35,33 +25,66 @@ addDeps <- function(x, theme) {
     # bootstrap deps
     htmltools::htmlDependency(
       name = "bootstrap", 
-      version = "4.3.1",
-      src = c(file = system.file("bootstrap-4.3.1", package = "bs4Dash")),
-      script = bootstrap_js
+      version = "4.5.2",
+      src = c(file = "bootstrap-4.5.2"),
+      script = bootstrap_js,
+      package = "bs4Dash"
     ),
+    # overlay scrollbars
+    htmltools::htmlDependency(
+      name = "os", 
+      version = "1.13.0",
+      src = c(file = "os-1.13.0"),
+      script = os_js,
+      stylesheet = os_css,
+      package = "bs4Dash"
+    ),
+    # custom options
+    if (!is.null(options)) {
+      # additional options (this needs to be loaded before shinydashboardPlus deps)
+      htmltools::htmlDependency(
+        "options",
+        as.character(utils::packageVersion("bs4Dash")),
+        src = c(file = "bs4Dash-2.0.0"),
+        head = paste0(
+          "<script>var AdminLTEOptions = ", 
+          jsonlite::toJSON(
+            options, 
+            auto_unbox = TRUE,
+            pretty = TRUE
+          ),
+          ";</script>"
+        ),
+        package = "bs4Dash"
+      )
+    },
     # adminLTE3 deps
     htmltools::htmlDependency(
       name = "AdminLTE3", 
-      version = "3.0.0",
-      src = c(file = system.file("AdminLTE3-3.0.0", package = "bs4Dash")),
+      version = "3.1.0",
+      src = c(file = "AdminLTE3-3.1.0"),
       script = adminLTE3_js,
-      stylesheet = adminLTE3_css
+      stylesheet = adminLTE3_css,
+      package = "bs4Dash"
     ),
-    # bs4Dash custom js
+    # bs4Dash custom js/css (must come after adminlte, bootstrap 4)
     htmltools::htmlDependency(
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
-      src = c(file = system.file("bs4Dash-0.2.0", package = "bs4Dash")),
+      src = c(file = "bs4Dash-2.0.0"),
       script = c(
         bs4Dash_js, 
         "leftSidebar.js", 
-        "navbar.js", 
-        "update-tabs.js", 
+        "navbar.js",
         "controlbar.js",
         "cards.js",
-        "feedbacks.js"
+        "feedbacks.js",
+        "userMessages.js",
+        "output-bindings.js",
+        "accordions-binding.js"
       ),
-      stylesheet = bs4Dash_css
+      stylesheet = bs4Dash_css,
+      package = "bs4Dash"
     ),
     # fontawesome
     htmltools::htmlDependency(
@@ -73,7 +96,7 @@ addDeps <- function(x, theme) {
     # ionicons
     htmltools::htmlDependency(
       name = "ionicons",
-      version = as.character(utils::packageVersion("bs4Dash")),
+      version = "4.4.2",
       src = c(href = ionicons_css),
       stylesheet = "ionicons.min.css"
     ),
@@ -84,15 +107,15 @@ addDeps <- function(x, theme) {
       src = c(href = google_fonts),
       stylesheet = ""
     ),
-    # old school skin
-    if (theme) {
-      htmltools::htmlDependency(
-        name = "old_school",
-        version = as.character(utils::packageVersion("bs4Dash")),
-        src = c(href = old_school_css),
-        stylesheet = "bootstrap.min.css"
-      )
-    }
+    # glyphicons
+    htmltools::htmlDependency(
+      name = "glyphicons",
+      version = as.character(utils::packageVersion("bs4Dash")),
+      src = c(file = "glyphicons"),
+      stylesheet = "glyphicons.min.css",
+      package = "bs4Dash"
+    )
   )
-  appendDependencies(x, dashboardDeps)
+  
+  shiny::tagList(tag, bs4Dash_deps)
 }

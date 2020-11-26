@@ -40,7 +40,7 @@ getCardBodyStyle <- function(card) {
 
 getCardTools <- function(card) {
   header <- getCardHeader(card)
-  bs4Dash:::dropNulls(header$children[[2]]$children)
+  bs4Dash:::dropNulls(header$children[[3]]$children)
 }
 
 test_that("is shiny tag?", {
@@ -70,35 +70,39 @@ test_that("card tools", {
   cardTag <- do.call(bs4Card, parms)
   expect_error(getCardTools(cardTag))
   
+  # collapsible/closable and maximizable are contained in a sublist
   parms$collapsible <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 1)
+  expect_length(toolsTag[[1]], 1)
   
   parms$closable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 2)
+  expect_length(toolsTag[[1]], 2)
   
   parms$maximizable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag[[1]], 3)
+  
+  parms$dropdownMenu <- boxDropdown(
+    boxDropdownItem("plop"),
+    boxDropdownItem("plop2")
+  )
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
+  expect_length(toolsTag, 2)
+  
+  parms$sidebar <- boxSidebar()
+  cardTag <- do.call(bs4Card, parms)
+  toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 3)
   
-  parms$dropdownMenu <- dropdownItemList()
+  parms$label <- boxLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 4)
-  
-  parms$sidebar <- bs4CardSidebar()
-  cardTag <- do.call(bs4Card, parms)
-  toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 5)
-  
-  parms$cardLabel <- bs4CardLabel(text = "label", status = "danger")
-  cardTag <- do.call(bs4Card, parms)
-  toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 6)
 })
 
 test_that("default", {
@@ -113,24 +117,24 @@ test_that("status", {
   expect_match(cardCl, "card card-success")
 })
 
-test_that("gradientColor", {
-  cardTag <- bs4Card(gradientColor = "danger")
+test_that("gradient", {
+  expect_error(bs4Card(gradient = TRUE, background = NULL))
+  cardTag <- bs4Card(gradient = TRUE, background = "danger", solidHeader = TRUE, status = "danger")
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card bg-gradient-danger")
+  expect_match(cardCl, "card card-danger bg-gradient-danger")
 })
 
 test_that("solidheader", {
   
   expect_error(bs4Card(solidHeader = TRUE, status = NULL))
   
-  cardTag <- bs4Card(solidHeader = TRUE, status = "warning")
+  cardTag <- bs4Card(solidHeader = FALSE, status = "warning")
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-outline card-warning")
+  expect_match(cardCl, "card card-warning card-outline")
 })
 
 test_that("gradientStatus vs solidHeader vs status", {
-  expect_error(bs4Card(gradientColor = "primary", status = "danger"))
-  expect_error(bs4Card(gradientColor = "primary", solidHeader = TRUE))
+  expect_error(bs4Card(gradient = "primary", status = NULL))
 })
 
 test_that("card sidebar class", {
@@ -138,7 +142,7 @@ test_that("card sidebar class", {
     sidebar = bs4CardSidebar(startOpen = TRUE)
   )
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-default direct-chat direct-chat-contacts-open")
+  expect_match(cardCl, "card card-outline direct-chat direct-chat-contacts-open")
 })
 
 test_that("collapsible and collapsed", {
@@ -146,13 +150,13 @@ test_that("collapsible and collapsed", {
   
   cardTag <- bs4Card(collapsible = TRUE, collapsed = TRUE)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-default collapsed-card")
+  expect_match(cardCl, "card card-outline collapsed-card")
 })
 
 test_that("elevation", {
   cardTag <- bs4Card(elevation = 4)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-default elevation-")
+  expect_match(cardCl, "card card-outline elevation-")
   expect_error(bs4Card(elevation = 6))
   expect_error(bs4Card(elevation = -1))
   expect_error(bs4Card(elevation = "2"))
@@ -164,9 +168,9 @@ test_that("headerBorder", {
   expect_match(cardHeaderCl, "card-header no-border")
 })
 
-test_that("overflow without height", {
-  expect_error(bs4Card(height = "500px", overflow = TRUE))
-})
+# test_that("overflow without height", {
+#   expect_error(bs4Card(height = "500px", overflow = TRUE))
+# })
 
 test_that("height", {
   # check if shiny::validateCssUnit does its job
@@ -176,9 +180,9 @@ test_that("height", {
   bodyStyle <- getCardBodyStyle(cardTag)
   expect_match(bodyStyle, "height: 400px")
   
-  cardTag <- bs4Card(overflow = TRUE)
-  bodyStyle <- getCardBodyStyle(cardTag)
-  expect_match(bodyStyle, "overflow-y: auto; max-height: 500px;")
+  # cardTag <- bs4Card(overflow = TRUE)
+  # bodyStyle <- getCardBodyStyle(cardTag)
+  # expect_match(bodyStyle, "overflow-y: auto; max-height: 500px;")
 })
 
 test_that("body content", {
@@ -202,7 +206,7 @@ test_that("card sidebar in card body", {
 })
 
 test_that("find id", {
-  cardTag <- bs4Card(inputId = "test")
+  cardTag <- bs4Card(id = "test")
   id <- getCardId(cardTag)
   expect_match(id, "test")
 })

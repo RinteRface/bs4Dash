@@ -2,7 +2,7 @@
 % Please edit documentation in R/dashboardSidebar.R
 \name{findSidebarItem}
 \alias{findSidebarItem}
-\title{Internally used by \link{bs4SidebarMenu} to find treeview items
+\title{Internally used by \link{sidebarMenu} to find treeview items
 and normal items.}
 \usage{
 findSidebarItem(items, regex)
@@ -13,6 +13,7 @@ findSidebarItem(items, regex)
 \item{regex}{Regex to apply.}
 }
 \description{
-Internally used by \link{bs4SidebarMenu} to find treeview items
+Internally used by \link{sidebarMenu} to find treeview items
 and normal items.
 }
+\keyword{internal}

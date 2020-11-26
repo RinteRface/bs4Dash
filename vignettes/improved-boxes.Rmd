@@ -1,0 +1,444 @@
+---
+title: "Improved boxes"
+author: "David Granjon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Improved boxes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css" type="text/css" />
+
+  
+## Boxes on Steroids!
+  
+### The box state
+`box()` is without any doubt a central component of `{bs4Dash}`. Thanks to the AdminLTE API, `{bs4Dash}` 
+is able to provide more interactivity to this component. For instance, you may:
+  
+  - Know the state of any box at any time. This state captures different parameters such as
+  collapsed, closed, maximized.
+  - Toggle a box.
+  - Close/Restore a box.
+  - update box properties: title, status, solidHeader, background, width, height, 
+  collapsible, closable and maximizable.
+  
+To benefit from that feature, one must pass the _id_ parameter and access it on the server side 
+with `input$<id>`. Let's consider an example:
+  
+```{r boxAPI-code, eval=FALSE}
+library(shiny)
+library(bs4Dash)
+ui <- dashboardPage(
+  title = "Box API",
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody(
+    tags$style("body { background-color: ghostwhite}"),
+    fluidRow(
+      actionButton("toggle_box", "Toggle Box"),
+      actionButton("remove_box", "Remove Box", class = "bg-danger"),
+      actionButton("restore_box", "Restore Box", class = "bg-success"),
+      actionButton("update_box", "Update Box", class = "bg-primary")
+    ),
+    br(),
+    box(
+      title = textOutput("box_state"),
+      "Box body",
+      id = "mybox",
+      collapsible = TRUE,
+      closable = TRUE,
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    req(!input$mybox$collapsed)
+    plot(rnorm(200))
+  })
+
+  output$box_state <- renderText({
+    state <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+    paste("My box is", state)
+  })
+
+  observeEvent(input$toggle_box, {
+    updateBox("mybox", action = "toggle")
+  })
+
+  observeEvent(input$remove_box, {
+    updateBox("mybox", action = "remove")
+  })
+
+  observeEvent(input$restore_box, {
+    updateBox("mybox", action = "restore")
+  })
+
+  observeEvent(input$update_box, {
+    updateBox(
+      "mybox",
+      action = "update",
+      options = list(
+        title = tagList(h2("New title"), dashboardBadge(1, color = "primary")),
+        status = "danger",
+        solidHeader = TRUE,
+        width = 4
+      )
+    )
+  })
+
+  observeEvent(input$mybox$visible, {
+    collapsed <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
+    visible <- if (input$mybox$visible) "visible" else "hidden"
+    message <- paste("My box is", collapsed, "and", visible)
+    toast(
+      title = message,
+      options = list(
+        autohide = TRUE,
+        class = "bg-pink",
+        position = "topRight"
+      )
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+We call the `updateBox()` function, specifying the action to accomplish:
+
+- toggle
+- remove
+- restore
+- update
+
+Knowing the state of a box significantly opens new possibilities within the application, thereby increasing interactivity. 
+If you want to know more about the underlying mechanisms, have a look at the box widget [documentation](https://adminlte.io/docs/3.1//javascript/card-widget.html). 
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-box-api/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+
+
+### Box components
+With `{bs4Dash}`, you may embed labels, a sidebar and dropdown menus in the 
+box header. 
+
+```{r boxTools, echo=FALSE, fig.cap='Box Tools. From left to right: boxLabel, boxDropdown, collapsible and closable buttons, boxSidebar trigger.', fig.align = 'center', out.width='50%'}
+knitr::include_graphics("figures/boxTools.png")
+``` 
+
+#### Box Labels
+`boxLabel()` are passed in the `box()` _label_ slot. They typically contain number or a short text.
+
+#### Box Sidebar
+`boxSidebar()` is invoked through the `box()` sidebar parameter. The sidebar has an _id_ allowing to programmatically
+toggle it on the server side with `updateBoxSidebar()`. This component is generally used to contain input element that you 
+do not want to show in the box, while the box body generally contains visualizations such as plots or tables. 
+`boxSidebar()` is highly customizable as one may change the background color, the width and the icon trigger, 
+the latter displayed on the very right side of the box header, as depicted in Figure \@ref(fig:boxTools). 
+Below is an example showing how to set up the sidebar and toggle it.
+
+```{r boxSidebar-code, eval=FALSE}
+shinyApp(
+  ui = dashboardPage(
+    header = dashboardHeader(),
+    body = dashboardBody(
+      box(
+        title = "Update box sidebar",
+        closable = TRUE,
+        width = 12,
+        height = "500px",
+        solidHeader = FALSE,
+        collapsible = TRUE,
+        actionButton("update", "Toggle card sidebar"),
+        sidebar = boxSidebar(
+          id = "mycardsidebar",
+          sliderInput(
+            "obs",
+            "Number of observations:",
+            min = 0,
+            max = 1000,
+            value = 500
+          )
+        ),
+        plotOutput("distPlot")
+      )
+    ),
+    sidebar = dashboardSidebar()
+  ),
+  server = function(input, output, session) {
+    observe(print(input$mycardsidebar))
+
+    output$distPlot <- renderPlot({
+      hist(rnorm(input$obs))
+    })
+
+    observeEvent(input$update, {
+      updateBoxSidebar("mycardsidebar")
+    })
+  }
+)
+```
+
+What is the interest of being able to toggle the sidebar on the server? Image you want
+to open the sidebar as soon as the user clicks on a specific action button. This is definitely possible.
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-box-sidebar/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+
+#### Box Dropdown
+`boxDropdown()` is a super powerful tool since all dropdown items may behave like action buttons.
+This feature allows to seamlessly add interactivity to the box component and gather features in one place.
+In the example below, clicking on the first item triggers a `toast()`.
+
+```{r boxDropdown-code, eval=FALSE}
+shinyApp(
+  ui = dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+      box(
+        title = "Closable Box with dropdown",
+        closable = TRUE,
+        width = 12,
+        status = "warning",
+        solidHeader = FALSE,
+        collapsible = TRUE,
+        dropdownMenu = boxDropdown(
+          boxDropdownItem("Click me", id = "dropdownItem", icon = icon("heart")),
+          boxDropdownItem("item 2", href = "https://www.google.com/"),
+          dropdownDivider(),
+          boxDropdownItem("item 3", icon = icon("th"))
+        ),
+        "My box"
+      )
+    )
+  ),
+  server = function(input, output) {
+    observeEvent(input$dropdownItem, {
+      toast(
+        title = "Hi!",
+        options = list(
+          autohide = TRUE,
+          class = "bg-pink",
+          position = "topRight"
+        )
+      )
+    })
+  }
+)
+```
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-box-dropdown/" allowfullscreen="" frameborder="0" scrolling="no" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+
+### Other Boxes
+`{bs4Dash}` provides more box components to be able to adapt to various situations. What if you wanted
+to create a box with comments, with social content?
+
+#### userBox
+
+`userBox()` is intended to highlight user profiles. It has many common parameters with `box()` and overall the same layout.
+The 2 major diffences between `box()` and `userBox()` are:
+
+- The ability to add a user image in the box header.
+- Optionally add a background image in the box header.
+- The _color_ parameter is only applied to the box header.
+
+Additionally, you may also select 2 types: centered image or left-aligned image.
+
+The __title__ argument expects a `userDescription()`:
+
+```{r user-description, eval=FALSE}
+userDescription(
+  title = "Nadia Carmichael",
+  subtitle = "lead Developer",
+  type = 2,
+  image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+)
+```
+
+`userBox()` is also entirely updatable from the server side, as it is built on top the `box()` function:
+
+```{r userBox-code, eval=FALSE}
+shinyApp(
+  ui = dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+      actionButton("update_box", "Update"),
+      userBox(
+        id = "userbox",
+        title = userDescription(
+          title = "Nadia Carmichael",
+          subtitle = "lead Developer",
+          type = 2,
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+        ),
+        status = "primary",
+        gradient = TRUE,
+        background = "primary",
+        boxToolSize = "xl",
+        "Some text here!",
+        footer = "The footer here!"
+      )
+    ),
+    title = "userBox"
+  ),
+  server = function(input, output) {
+    observeEvent(input$update_box, {
+      updateBox(
+        "userbox",
+        action = "update",
+        options = list(
+          title = userDescription(
+            title = "Jean Box",
+            subtitle = "Developer",
+            type = 1,
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+          ),
+          status = "danger",
+          background = NULL,
+          solidHeader = FALSE,
+          width = 4
+        )
+      )
+    })
+  }
+)
+```
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-userBox/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+
+#### socialBox
+
+A `socialBox()` is dedicated to contain events, comments, anything related to people. 
+The __title__ parameter hosts `userBlock()`:
+
+```{r user-block, eval=FALSE}
+userBlock(
+  image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+  title = "Social Box",
+  subtitle = "example-01.05.2018"
+)
+```
+
+Elements like `attachmentBlock()` and `userMessages()` are a good fit with this component. 
+The `...` slot may hosts multiple `boxComment`, consisting in user comments. 
+Right now, there is no programmatic way (understand no __update__ function is available) to handle them but a future release of `{bs4Dash}` 
+will obviously fill this gap. The app below shows a combination of multiple elements in a 
+`socialBox()`:
+
+
+```{r, eval=FALSE}
+shinyApp(
+  ui = dashboardPage(
+    dashboardHeader(),
+    dashboardSidebar(),
+    dashboardBody(
+      socialBox(
+        id = "socialbox",
+        title = userBlock(
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg",
+          title = "Social Box",
+          subtitle = "example-01.05.2018"
+        ),
+        actionButton("update_box", "Refresh"),
+        "Some text here!",
+        br(),
+        tabsetPanel(
+          tabPanel(
+            "News",
+            attachmentBlock(
+              image = "https://www.sammobile.com/wp-content/uploads/2017/11/Camel.png",
+              title = "Test",
+              href = "http://google.com",
+              "This is the content"
+            )
+          ),
+          tabPanel(
+            "Messages",
+            userMessages(
+              width = 12,
+              status = "danger",
+              userMessage(
+                author = "Alexander Pierce",
+                date = "20 Jan 2:00 pm",
+                image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+                type = "received",
+                "Is this template really for free? That's unbelievable!"
+              ),
+              userMessage(
+                author = "Sarah Bullock",
+                date = "23 Jan 2:05 pm",
+                image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+                type = "sent",
+                "You better believe it!"
+              )
+            )
+          )
+        ),
+        lapply(X = 1:10, FUN = function(i) {
+          boxComment(
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+            title = paste("Comment", i),
+            date = "01.05.2018",
+            paste0("The ", i, "-th comment")
+          )
+        }),
+        footer = "The footer here!"
+      )
+    ),
+    title = "Social Box"
+  ),
+  server = function(input, output) {
+    observeEvent(input$update_box, {
+      updateBox(
+        "socialbox",
+        action = "update",
+        options = list(
+          title = userBlock(
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg",
+            title = "Social Box updated",
+            subtitle = "today"
+          )
+        )
+      )
+    })
+  }
+)
+```
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-socialBox/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+

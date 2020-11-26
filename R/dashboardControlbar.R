@@ -3,40 +3,45 @@
 #' Build an adminLTE3 dashboard right sidebar
 #'
 #' @param ... Any UI element.
-#' @param inputId To acces the current state of the controlbar. Open is TRUE, closed
+#' @param id To access the current state of the controlbar. Open is TRUE, closed
 #' is FALSE. NULL by default.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
-#' @param skin Controlbar skin. "dark" or "light".
-#' @param title Controlbar title.
 #' @param width Controlbar width. 250 px by default.
+#' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.
+#' @param overlay Whether the sidebar covers the content when expanded. Default to TRUE.
+#' @param skin Controlbar skin. "dark" or "light".
 #' @param pinned Whether to block the controlbar state (TRUE or FALSE). Default to NULL.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname controlbar
 #'
 #' @export
-bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark", 
-                              title = NULL, width = 250, pinned = NULL) {
+bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
+                              collapsed = TRUE, overlay = TRUE, skin = "dark", 
+                              pinned = NULL) {
   
-  if (is.null(inputId)) inputId <- "controlbarId"
+  if (is.null(id)) id <- "controlbarId"
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),
-    id = inputId,
+    id = id,
+    `data-collapsed` = if (collapsed) "true" else "false",
+    `data-overlay` = if (overlay) "true" else "false",
     `data-show` = if (disable) "false" else "true",
-    `data-slide` = "true",
     `data-pin` = if (!is.null(pinned)) tolower(pinned),
+    `data-slide` = "true",
     if (!is.null(pinned)) {
       shiny::tags$button(
         id = "controlbarPin",
         class = "m-2 p-1 btn btn-xs btn-outline-secondary",
         type = "button", 
-        shiny::icon("thumbtack")
+        shiny::icon("thumbtack", class = if (pinned) "fa-lg")
       )
     },
     shiny::tags$div(
-      class = "p-3",
+      class = "control-sidebar-content",
       id = "controlbarTitle",
-      shiny::tags$h5(title),
       ...
     )
   )
@@ -68,48 +73,56 @@ bs4DashControlbar <- function(..., inputId = NULL, disable = FALSE, skin = "dark
 
 
 
-#' @rdname bs4TabSetPanel
+#' @inheritParams tabsetPanel
+#' @rdname controlbar
 #' @export
-bs4DashControlbarMenu <- bs4TabSetPanel
+controlbarMenu <- tabsetPanel
 
 
 
 
-#' @rdname bs4TabPanel
+#' @inheritParams shiny::tabPanel
+#' @rdname controlbar
 #' @export
-bs4DashControlbarItem <- bs4TabPanel
+controlbarItem <- shiny::tabPanel
 
 
 
 
-#' @rdname updatebs4TabSetPanel
+#' @inheritParams shiny::updateTabsetPanel
+#' @rdname controlbar
 #' @export
-updatebs4ControlbarMenu <- updatebs4TabSetPanel
+updateControlbarMenu <- shiny::updateTabsetPanel
 
 
 
 
 #' Function to programmatically toggle the state of the controlbar
 #'
-#' @param inputId Controlbar id.
+#' @param id Controlbar id.
 #' @param session Shiny session object.
 #' @export
+#' 
+#' @rdname controlbar
 #'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = dashboardPage(
-#'      controlbar_collapsed = FALSE,
-#'      controlbar_overlay = TRUE,
-#'      navbar = dashboardHeader(),
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'        actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar")
 #'      ),
-#'      controlbar = dashboardControlbar(inputId = "controlbar")
+#'      controlbar = dashboardControlbar(
+#'        id = "controlbar",
+#'        collapsed = FALSE,
+#'        overlay = TRUE
+#'      ),
+#'      title = "updateControlbar"
 #'    ),
 #'    server = function(input, output, session) {
 #'      
@@ -125,7 +138,7 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'      })
 #'      
 #'      observeEvent(input$controlbarToggle, {
-#'        updatebs4Controlbar(inputId = "controlbar", session = session)
+#'        updateControlbar(id = "controlbar", session = session)
 #'      })
 #'      
 #'      observe({
@@ -134,6 +147,6 @@ updatebs4ControlbarMenu <- updatebs4TabSetPanel
 #'    }
 #'  )
 #' }
-updatebs4Controlbar <- function(inputId, session) {
-  session$sendInputMessage(inputId, NULL)
+updateControlbar <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(id, NULL)
 }

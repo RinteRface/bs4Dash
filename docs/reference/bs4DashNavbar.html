@@ -6,14 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Boostrap 4 dashboard navbar — bs4DashNavbar • bs4Dash</title>
+<title>Boostrap 4 dashboard navbar — bs4DashNavbar • bs4Dash</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -39,10 +46,12 @@
 
 
   <link href="../extra.css" rel="stylesheet">
-  
+  <script src="../extra.js"></script>
 
-<meta property="og:title" content="Create a Boostrap 4 dashboard navbar — bs4DashNavbar" />
-<meta property="og:description" content="Build an adminLTE3 dashboard navbar" />
+<meta property="og:title" content="Boostrap 4 dashboard navbar — bs4DashNavbar" />
+<meta property="og:description" content="dashboardHeader creates an adminLTE3 dashboard navbar to be included in
+dashboardPage." />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -74,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -87,10 +96,36 @@
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/bs4Dash.html">Get started</a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="divider"></li>
+    <li class="dropdown-header">User Guide</li>
+    <li>
+      <a href="../articles/step-by-step.html">How to start?</a>
+    </li>
+    <li>
+      <a href="../articles/improved-boxes.html">Improved boxes</a>
+    </li>
+    <li>
+      <a href="../articles/extra-elements.html">Extra Elements</a>
+    </li>
+    <li>
+      <a href="../articles/more-skins.html">Improved Skins</a>
+    </li>
+    <li>
+      <a href="../articles/css-preloader.html">CSS preloaders</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -116,40 +151,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Boostrap 4 dashboard navbar</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardNavbar.R'><code>R/dashboardNavbar.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <h1>Boostrap 4 dashboard navbar</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardHeader.R'><code>R/dashboardHeader.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
     <div class="hidden name"><code>bs4DashNavbar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Build an adminLTE3 dashboard navbar</p>
+    <p>dashboardHeader creates an adminLTE3 dashboard navbar to be included in
+<a href='bs4DashPage.html'>dashboardPage</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4DashNavbar</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>,
-  <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>,
-  <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>bs4DashNavbar</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  titleWidth <span class='op'>=</span> <span class='cn'>NULL</span>,
+  disable <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .list <span class='op'>=</span> <span class='cn'>NULL</span>,
+  leftUi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rightUi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  skin <span class='op'>=</span> <span class='st'>"light"</span>,
+  status <span class='op'>=</span> <span class='st'>"white"</span>,
+  border <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  compact <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sidebarIcon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"bars"</span><span class='op'>)</span>,
+  controlbarIcon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"th"</span><span class='op'>)</span>,
+  fixed <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>dashboardHeader</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sidebarIcon</span> <span class='kw'>=</span> <span class='st'>"bars"</span>,
-  <span class='kw'>compact</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>controlbarIcon</span> <span class='kw'>=</span> <span class='st'>"th"</span>,
-  <span class='kw'>leftUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rightUi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>dashboardHeader</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  titleWidth <span class='op'>=</span> <span class='cn'>NULL</span>,
+  disable <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  .list <span class='op'>=</span> <span class='cn'>NULL</span>,
+  leftUi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rightUi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  skin <span class='op'>=</span> <span class='st'>"light"</span>,
+  status <span class='op'>=</span> <span class='st'>"white"</span>,
+  border <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  compact <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sidebarIcon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"bars"</span><span class='op'>)</span>,
+  controlbarIcon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"th"</span><span class='op'>)</span>,
+  fixed <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,45 +203,108 @@
       <td><p>Any UI element between left and right Ui.</p></td>
     </tr>
     <tr>
+      <th>title</th>
+      <td><p>Dashboard title (displayed top-left side). Alternatively, use <a href='bs4DashBrand.html'>bs4DashBrand</a>
+for more evolved title.</p></td>
+    </tr>
+    <tr>
+      <th>titleWidth</th>
+      <td><p>The width of the title area. This must either be a number
+which specifies the width in pixels, or a string that specifies the width
+in CSS units.</p></td>
+    </tr>
+    <tr>
+      <th>disable</th>
+      <td><p>If <code>TRUE</code>, don't display the header bar.</p></td>
+    </tr>
+    <tr>
+      <th>.list</th>
+      <td><p>An optional list containing items to put in the header. Same as
+the <code>...</code> arguments, but in list format. This can be useful when
+working with programmatically generated items.</p></td>
+    </tr>
+    <tr>
+      <th>leftUi</th>
+      <td><p>Custom left Ui content. Any element like <a href='bs4DropdownMenu.html'>dropdownMenu</a>.</p></td>
+    </tr>
+    <tr>
+      <th>rightUi</th>
+      <td><p>Custom right Ui content. Any element like <a href='bs4DropdownMenu.html'>dropdownMenu</a>.</p></td>
+    </tr>
+    <tr>
       <th>skin</th>
       <td><p>Navbar skin. "dark" or "light".</p></td>
     </tr>
     <tr>
       <th>status</th>
-      <td><p>Navbar status. "primary", "danger", "warning",
-"success", "info", "white", "gray-light" and all other available colors. See
-<a href='getAdminLTEColors.html'>getAdminLTEColors</a>.</p></td>
+      <td><p>Navbar status. Valid statuses are defined as follows:</p><ul>
+<li><p><code>primary</code>: <span style='width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#007bff
+.</p></li>
+<li><p><code>secondary</code>: <span style='width:12px;height:12px;background:#6c757d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6c757d
+.</p></li>
+<li><p><code>info</code>: <span style='width:12px;height:12px;background:#17a2b8;border-radius:2px;display:inline-block;margin-right:5px;'></span>#17a2b8
+.</p></li>
+<li><p><code>success</code>: <span style='width:12px;height:12px;background:#28a745;border-radius:2px;display:inline-block;margin-right:5px;'></span>#28a745
+.</p></li>
+<li><p><code>warning</code>: <span style='width:12px;height:12px;background:#ffc107;border-radius:2px;display:inline-block;margin-right:5px;'></span>#ffc107
+.</p></li>
+<li><p><code>danger</code>: <span style='width:12px;height:12px;background:#dc3545;border-radius:2px;display:inline-block;margin-right:5px;'></span>#dc3545
+.</p></li>
+<li><p><code>gray-dark</code>: <span style='width:12px;height:12px;background:#343a40;border-radius:2px;display:inline-block;margin-right:5px;'></span>#343a40
+.</p></li>
+<li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
+.</p></li>
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+.</p></li>
+<li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
+.</p></li>
+<li><p><code>lightblue</code>: <span style='width:12px;height:12px;background:#3c8dbc;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3c8dbc
+.</p></li>
+<li><p><code>navy</code>: <span style='width:12px;height:12px;background:#001f3f;border-radius:2px;display:inline-block;margin-right:5px;'></span>#001f3f
+.</p></li>
+<li><p><code>purple</code>: <span style='width:12px;height:12px;background:#605ca8;border-radius:2px;display:inline-block;margin-right:5px;'></span>#605ca8
+.</p></li>
+<li><p><code>fuchsia</code>: <span style='width:12px;height:12px;background:#f012be;border-radius:2px;display:inline-block;margin-right:5px;'></span>#f012be
+.</p></li>
+<li><p><code>pink</code>: <span style='width:12px;height:12px;background:#e83e8c;border-radius:2px;display:inline-block;margin-right:5px;'></span>#e83e8c
+.</p></li>
+<li><p><code>maroon</code>: <span style='width:12px;height:12px;background:#d81b60;border-radius:2px;display:inline-block;margin-right:5px;'></span>#d81b60
+.</p></li>
+<li><p><code>orange</code>: <span style='width:12px;height:12px;background:#ff851b;border-radius:2px;display:inline-block;margin-right:5px;'></span>#ff851b
+.</p></li>
+<li><p><code>lime</code>: <span style='width:12px;height:12px;background:#01ff70;border-radius:2px;display:inline-block;margin-right:5px;'></span>#01ff70
+.</p></li>
+<li><p><code>teal</code>: <span style='width:12px;height:12px;background:#39cccc;border-radius:2px;display:inline-block;margin-right:5px;'></span>#39cccc
+.</p></li>
+<li><p><code>olive</code>: <span style='width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;'></span>#3d9970
+.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>border</th>
       <td><p>Whether to separate the navbar and body by a border. TRUE by default.</p></td>
     </tr>
     <tr>
-      <th>sidebarIcon</th>
-      <td><p>Icon of the main sidebar toggle.</p></td>
-    </tr>
-    <tr>
       <th>compact</th>
       <td><p>Whether items should be compacted. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>sidebarIcon</th>
+      <td><p>Icon of the main sidebar toggle.</p></td>
     </tr>
     <tr>
       <th>controlbarIcon</th>
       <td><p>Icon to toggle the controlbar (left).</p></td>
     </tr>
     <tr>
-      <th>leftUi</th>
-      <td><p>Custom left Ui content. Any Ui element.</p></td>
-    </tr>
-    <tr>
-      <th>rightUi</th>
-      <td><p>Custom right Ui content. Any Ui element.</p></td>
-    </tr>
-    <tr>
       <th>fixed</th>
-      <td><p>Whether to fix the navbar to the top. FALSE by default</p></td>
+      <td><p>Whether to fix the navbar to the top. FALSE by default.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -214,7 +321,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

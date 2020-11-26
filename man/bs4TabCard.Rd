@@ -8,76 +8,141 @@
 bs4TabCard(
   ...,
   id,
+  selected = NULL,
   title = NULL,
-  status = NULL,
-  elevation = NULL,
-  solidHeader = FALSE,
-  headerBorder = TRUE,
-  gradientColor = NULL,
-  tabStatus = NULL,
   width = 6,
   height = NULL,
+  side = c("left", "right"),
+  type = NULL,
+  footer = NULL,
+  status = NULL,
+  solidHeader = FALSE,
+  background = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  closable = TRUE,
+  closable = FALSE,
   maximizable = FALSE,
-  overflow = FALSE,
-  side = c("left", "right"),
-  type = NULL
+  icon = NULL,
+  gradient = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL
 )
 
 tabBox(
   ...,
   id,
+  selected = NULL,
   title = NULL,
-  status = NULL,
-  elevation = NULL,
-  solidHeader = FALSE,
-  headerBorder = TRUE,
-  gradientColor = NULL,
-  tabStatus = NULL,
   width = 6,
   height = NULL,
+  side = c("left", "right"),
+  type = NULL,
+  footer = NULL,
+  status = NULL,
+  solidHeader = FALSE,
+  background = NULL,
   collapsible = TRUE,
   collapsed = FALSE,
-  closable = TRUE,
+  closable = FALSE,
   maximizable = FALSE,
-  overflow = FALSE,
-  side = c("left", "right"),
-  type = NULL
+  icon = NULL,
+  gradient = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL
 )
 }
 \arguments{
-\item{...}{Contents of the box: should be \link{bs4TabPanel}.}
+\item{...}{Contents of the box.}
 
-\item{id}{Unique \link{bs4TabSetPanel} id.}
+\item{id}{Card id.}
 
-\item{title}{TabCard title.}
+\item{selected}{The \code{value} (or, if none was supplied, the \code{title})
+of the tab that should be selected by default. If \code{NULL}, the first
+tab will be selected.}
 
-\item{status}{The status of the card header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent". NULL by default.}
-
-\item{elevation}{tabCard elevation.}
-
-\item{solidHeader}{Should the header be shown with a solid color background?}
-
-\item{headerBorder}{Whether to display a border between the header and body.
-TRUE by default}
-
-\item{gradientColor}{If NULL (the default), the background of the box will be
-white. Otherwise, a color string. "primary", "success", "warning" or "danger".}
-
-\item{tabStatus}{The status of the tabs buttons over header. "primary", "secondary", "success", "warning", "danger", "white", "light", "dark", "transparent".
-NULL by default, "light" if status is set.   
-A vector is possible with a colour for each tab button}
+\item{title}{Optional title.}
 
 \item{width}{The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
-default width of 4 occupies 1/3 of that width. For column-based
+default card width of 4 occupies 1/3 of that width. For column-based
 layouts, use \code{NULL} for the width; the width is set by the column that
 contains the box.}
 
 \item{height}{The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.}
+
+\item{side}{\link[shiny]{tabPanel} side. Either left or right.}
+
+\item{type}{\describe{
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
+\item{\code{"hidden"}}{Hides the selectable tabs. Use \code{type = "hidden"} in
+conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
+active tab via other input controls. (See example below)}
+}}
+
+\item{footer}{Optional footer text.}
+
+\item{status}{The status of the item. This determines the item's background
+  color.  Valid statuses are defined as follows:
+\itemize{
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+}}
+
+\item{solidHeader}{Should the header be shown with a solid color background?}
+
+\item{background}{If NULL (the default), the background of the box will be
+  white. Otherwise, a color string. Valid colors are listed in
+  \link{validColors}. See below:
+\itemize{
+ \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+}}
 
 \item{collapsible}{If TRUE, display a button in the upper right that allows
 the user to collapse the box.}
@@ -89,60 +154,77 @@ the user to collapse the box.}
 
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
-\item{overflow}{Whether to enable overflow in the card body and footer. FALSE by default.}
+\item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
 
-\item{side}{Side of the box the tabs should be on (\code{"left"} or
-\code{"right"}).}
+\item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 
-\item{type}{TabPanel type: "tabs" or "pills". "pills" is the default if type is NULL.}
+\item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}
+
+\item{elevation}{Card elevation.}
+
+\item{headerBorder}{Whether to display a border between the header and body.
+TRUE by default}
+
+\item{label}{Slot for \link{boxLabel}.}
+
+\item{dropdownMenu}{List of items in the boxtool dropdown menu. Use \link{boxDropdown}.}
+
+\item{sidebar}{Slot for \link{boxSidebar}.}
 }
 \description{
 Build an adminLTE3 card with tabs
 }
-\examples{
-if(interactive()){
- library(shiny)
- library(bs4Dash)
-
- shiny::shinyApp(
-   ui = bs4DashPage(
-    navbar = bs4DashNavbar(),
-    sidebar = bs4DashSidebar(),
-    controlbar = bs4DashControlbar(),
-    footer = bs4DashFooter(),
-    title = "test",
-    body = bs4DashBody(
-     bs4TabCard(
-      id = "tabcard",
-      title = "A card with tabs",
-      bs4TabPanel(
-       tabName = "Tab 1", 
-       active = FALSE,
-       "Content 1"
-      ),
-      bs4TabPanel(
-       tabName = "Tab 2", 
-       active = TRUE,
-       "Content 2"
-      ),
-      bs4TabPanel(
-       tabName = "Tab 3", 
-       active = FALSE,
-       "Content 3"
-      )
-     )
-    )
-   ),
-   server = function(input, output) {}
- )
+\note{
+User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
+to get the state of the box and update it on the server with \link{updateBox}.
 }
+\examples{
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
 
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
+      title = "tabBox",
+      body = dashboardBody(
+        tabBox(
+          id = "tabcard",
+          title = "A card with tabs",
+          selected = "Tab 2",
+          status = "primary",
+          solidHeader = FALSE,
+          type = "tabs",
+          tabPanel(
+            title = "Tab 1",
+            "Content 1"
+          ),
+          tabPanel(
+            title = "Tab 2",
+            "Content 2"
+          ),
+          tabPanel(
+            title = "Tab 3",
+            "Content 3"
+          )
+        )
+      )
+    ),
+    server = function(input, output) {}
+  )
+}
 }
 \seealso{
 Other cards: 
-\code{\link{bs4Card}()},
-\code{\link{bs4InfoBox}()},
-\code{\link{bs4ValueBox}()}
+\code{\link{bs4CardLayout}()},
+\code{\link{bs4SocialCard}()},
+\code{\link{bs4UserCard}()},
+\code{\link{descriptionBlock}()},
+\code{\link{renderbs4InfoBox}()},
+\code{\link{renderbs4ValueBox}()}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 0.6.0.9000
+Version: 2.0.0.9000
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -15,7 +15,14 @@ Description: Make 'Bootstrap 4' dashboards. Use the full power
 URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRface/bs4Dash
 BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
-Imports: shiny, htmltools, jsonlite
+Imports: 
+    shiny (>= 1.5.0.9005),
+    htmltools (>= 0.5.0.9001),
+    jsonlite (>= 0.9.16),
+    fresh,
+    waiter,
+    httpuv (>= 1.5.2),
+    lifecycle
 Suggests: 
     plotly,
     shinyWidgets,
@@ -24,25 +31,34 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     golem,
-    DT
+    DT, 
+    thematic
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
 Collate: 
-    'update-functions.R'
+    'feedbacks.R'
+    'useful-items.R'
+    'tabs.R'
     'render-functions.R'
     'cards.R'
     'dashboardSidebar.R'
     'dashboardBody.R'
     'dashboardFooter.R'
     'dashboardControlbar.R'
-    'dashboardNavbar.R'
+    'dashboardHeader.R'
     'dashboardPage.R'
     'aliases.R'
+    'auto-color.R'
     'bs4DashGallery.R'
     'deps.R'
-    'feedbacks.R'
     'grid.R'
-    'useful-items.R'
+    'inputs.R'
+    'skinSelector.R'
     'utils.R'
+RdMacros: lifecycle
+Remotes: 
+    rstudio/htmltools,
+    rstudio/shiny,
+    rstudio/thematic

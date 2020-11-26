@@ -2,19 +2,19 @@
 % Please edit documentation in R/useful-items.R
 \name{userPostMedia}
 \alias{userPostMedia}
-\title{AdminLTE2 user post media}
+\title{AdminLTE3 user post media}
 \usage{
-userPostMedia(src = NULL, height = NULL, width = NULL)
+userPostMedia(image = NULL, height = NULL, width = NULL)
 }
 \arguments{
-\item{src}{Image path or url ...}
+\item{image}{Image path or url ...}
 
 \item{height}{Media height in pixels.}
 
 \item{width}{Media width in pixels.}
 }
 \description{
-Create a user post media (image)
+\link{userPostMedia} creates a container to include an image in \link{userPost}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

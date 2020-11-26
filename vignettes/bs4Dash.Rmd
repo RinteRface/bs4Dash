@@ -1,0 +1,124 @@
+---
+title: "bs4Dash"
+author: "David Granjon"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bs4Dash}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+```
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css" type="text/css" />
+
+
+## Introduction
+
+`{bs4Dash}` relies on the same basis as `{shinydashboard}`, that is the AdminLTE HTML [template](https://adminlte.io/themes/v3/), except the version
+is higher (3.1.0 vs 2.4). The biggest difference is the dependence on Bootstrap 4, which is not natively
+supported by `{Shiny}`. That's why elements like `tabsetPanel()`, `actionButton()`, ... have been rewritten
+to provide full Bootstrap4 support. In addition, `{bs4Dash}` comes with extra elements that will 
+help you to develop Shiny apps with a more professional look and feel. Below is a summary of the main features:
+
+|  Features (sample)  |      shinydashboard      |  shinydashboardPlus | bs4Dash |
+|----------|:-------------:|------:|------:|
+| Popover, tooltips enhanced support |    ❌   |  ❌ |   ✅ |
+| Fullscreen toggle |    ❌   |  ❌ |   ✅ |
+| dark/light skin switch |    ❌   |  ❌ |   ✅ |
+| right sidebar (controlbar) |    ❌   |  ✅ |   ✅ |
+| semi collapsible sidebar (sidebar mini) |    ❌   |  ✅ | ✅ |
+| expand on hover sidebar |    ❌   |  ✅ | ✅ |
+| closable boxes | ❌ |   ✅ | ✅ |
+| box sidebar | ❌ |   ✅ | ✅ |
+| get box state on the server (open, closed, ...) | ❌ |   ✅ | ✅ |
+| control sidebars on the server | ❌ |   ✅| ✅ |
+| dashboard user dropdown |    ❌   |  ✅ | ✅ |
+| theme selector | ❌ |   ✅ | ✅ |
+| social box | ❌ |   ✅ | ✅ |
+| user box | ❌ |   ✅ | ✅ |
+| control AdminLTE options | ❌ |   ✅ |  | 
+| seamlessly customize appearance | ❌ |  ✅| ✅ |
+| beautiful preloaders | ❌ |   ✅ | ✅ |
+| scroll to top button! | ❌ |   ✅ | ✅ |
+
+
+Since the 2.0.0 release, `{bs4Dash}` overwrites most of the `{shinydashboard}` functions 
+such as `dashboardPage()` and `box()` to facilitate the transition from one package to another.
+
+## What changes in v2.0.0 ?
+
+### Breaking changes 
+v2.0.0 is clearly a __major breaking change__ for `{bs4Dash}`. It means that coming
+from v0.5.0 (latest CRAN version to date), you will have to rewrite part of the code.
+It was not an easy decision to take but necessary to improve the package quality (naming consistency, ...). 
+Now the transition from `{shinydashboard}` to `{bs4Dash}` will be easier since 
+function parameters have been harmonized. The reverse is not always guaranteed because of the number
+of extra parameters in `{bs4Dash}`.
+
+### More checks
+Under the hood, functions are safer and more controls are done on the user inputs to reduce the risk of accidentally providing wrong values. 
+
+### New features
+The most exiting features of 2.0.0 are probably the ability to leverage the awesome `{fresh}` 
+package (see [here](https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html) for more details) 
+through the `dashboardPage()` _freshTheme_ parameter. Additionally, the `skinSelector()` 
+allows to dynamically change the dashboard skin on the client side. 
+There are also more `update_` functions to programmatically control elements from the server. 
+Now the `dashboardSidebar()` may be collapsed, so is the `dashboardControlbar()`. 
+The `dashboardPage()` _options_ parameter is an easy way to fine tune the AdminLTE behavior (see [here](https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options) for the
+list of available options). The `box()` component has been reworked to reduce the number of 
+parameters and include new sub-components like the `boxSidebar()` that may be programmatically collapsed, 
+or the `boxLabel()`. `box()` has an input binding indicating its current state on the 
+server side, to perform specific tasks. Finally, colors are better documented thanks to 
+Victor Perrier from dreamRs. For instance, the primary color is shown 
+as <span style='width:12px;height:12px;background:#3c8dbc;border-radius:2px;display:inline-block;margin-right:5px;'></span>, danger is <span style='width:12px;height:12px;background:#dd4b39;border-radius:2px;display:inline-block;margin-right:5px;'></span>, which eventually helps users to choose between all available options.
+
+
+## Basic Example
+Below is a simple app you may build with `{bs4Dash}`. Interestingly, you'll be able to notice 
+the scroll to top button feature if you scroll to the bottom (bottom-right corner), as well as the live theme
+switcher in the navigation bar that goes from light to dark. This new feature is exclusive to `{bs4Dash}`.
+
+```{r basic-demo-code, eval=FALSE}
+library(shiny)
+library(bs4Dash)
+
+shinyApp(
+    ui = dashboardPage(,
+        header = dashboardHeader(
+            title = dashboardBrand(
+                title = "My dashboard",
+                color = "primary",
+                href = "https://adminlte.io/themes/v3",
+                image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+            )
+        ),
+        sidebar = dashboardSidebar(),
+        body = dashboardBody(
+            lapply(getAdminLTEColors(), function(color) {
+                box(status = color)
+            })
+        ),
+        controlbar = dashboardControlbar(),
+        title = "DashboardPage"
+    ),
+    server = function(input, output) { }
+)
+```
+
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-scrollToTop/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+

@@ -23,9 +23,83 @@
 
 See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
 
-## Useful Informations (if any)
+## New users moving to bs4Dash v2.0.0
 
-Recent breaking change in dev version: _label_ becomes _cardLabel_ in `bs4Card()`!
+Taking the simple `{shinydashboard}` example:
+
+```r
+library(shiny)
+library(shinydashboard)
+
+ui <- dashboardPage(
+  dashboardHeader(title = "Basic dashboard"),
+  dashboardSidebar(),
+  dashboardBody(
+    # Boxes need to be put in a row (or column)
+    fluidRow(
+      box(plotOutput("plot1", height = 250)),
+
+      box(
+        title = "Controls",
+        sliderInput("slider", "Number of observations:", 1, 100, 50)
+      )
+    )
+  )
+)
+
+server <- function(input, output) {
+  set.seed(122)
+  histdata <- rnorm(500)
+
+  output$plot1 <- renderPlot({
+    data <- histdata[seq_len(input$slider)]
+    hist(data)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+Starting from v2.0.0, moving to `{bs4Dash}` is rather simple:
+
+```r
+library(bs4Dash)
+ui <- dashboardPage(
+  dashboardHeader(title = "Basic dashboard"),
+  dashboardSidebar(),
+  dashboardBody(
+    # Boxes need to be put in a row (or column)
+    fluidRow(
+      box(plotOutput("plot1", height = 250)),
+
+      box(
+        title = "Controls",
+        sliderInput("slider", "Number of observations:", 1, 100, 50)
+      )
+    )
+  )
+)
+
+server <- function(input, output) {
+  set.seed(122)
+  histdata <- rnorm(500)
+
+  output$plot1 <- renderPlot({
+    data <- histdata[seq_len(input$slider)]
+    hist(data)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+
+## Upgrading bs4Dash to 2.0.0
+- `{bs4Dash}` is undergoing major rework to make it easier to come from `{shinydashboard}`. The current development version 2.0.0 provides a 1:1 supports, in other word moving from `{shinydashboard}` to `{bs4Dash}` is accomplished by changing `library(shinydashboard)` to `library(bs4Dash)`. 
+
+- `{bs4Dash}` v2.0.0 also provides 1:1 with `{shinydashboardPlus}` to ease compatibility.
+
+- Apps built with `{bs4Dash}` version <= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.
 
 ## Installation
 
@@ -40,6 +114,7 @@ devtools::install_github("RinteRface/bs4Dash")
 
 ## Demo
 
+### bs4Dash <= v0.5.0
 See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic/) and
 [here](https://rinterface.com/shiny/bs4Dash/old_school/) or run
 
@@ -47,8 +122,6 @@ See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic
 library(bs4Dash)
 # classic theme
 bs4DashGallery()
-# old_school theme
-bs4DashGallery(theme = "old_school")
 ```
 
 An applied example can be found [here](https://rinterface.com/shiny/showcase/ratp/) (the 
@@ -66,4 +139,4 @@ I warmly thank [Glyphicons](https://www.glyphicons.com) creator for providing th
 
 ## Code of Conduct
   
-  Please note that the bs4Dash project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the bs4Dash project is released with a [Contributor Code of Conduct](https:/contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree toabide by its terms.
