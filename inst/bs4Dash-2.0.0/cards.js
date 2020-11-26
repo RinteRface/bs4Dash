@@ -2,73 +2,73 @@
 var cardBinding = new Shiny.InputBinding();
 
 $.extend(cardBinding, {
-  
-  find: function(scope) {
+
+  find: function (scope) {
     return $(scope).find(".card");
   },
-  
+
   // Given the DOM element for the input, return the value
-  getValue: function(el) {
+  getValue: function (el) {
     var config = $(el).parent().find("script[data-for='" + el.id + "']");
-      config = JSON.parse(config.html());
-      
-      var isCollapsed = $(el).hasClass('collapsed-card');
-      var display = $(el).css('display');
-      var isMaximized = $(el).hasClass('maximized-card');
-    
-      var visible;
-      if (display === "none") {
-        visible = false;
-      } else {
-        visible = true;
-      }
-      
-      // toggle collapse button when maximized
-      if (isMaximized) {
-        $(el).find("[data-card-widget = 'collapse']").hide();
-      } else {
-        $(el).find("[data-card-widget = 'collapse']").show();
-      }
-      
-      return {
-        collapsible: config.collapsible,
-        collapsed: isCollapsed, 
-        closable: config.closable,
-        visible: visible, 
-        maximizable: config.maximizable,
-        maximized: isMaximized,
-        status: config.status,
-        solidHeader : config.solidHeader,
-        background: config.background,
-        width: config.width,
-        height: config.height
-      }; // this will be a list in R
+    config = JSON.parse(config.html());
+
+    var isCollapsed = $(el).hasClass('collapsed-card');
+    var display = $(el).css('display');
+    var isMaximized = $(el).hasClass('maximized-card');
+
+    var visible;
+    if (display === "none") {
+      visible = false;
+    } else {
+      visible = true;
+    }
+
+    // toggle collapse button when maximized
+    if (isMaximized) {
+      $(el).find("[data-card-widget = 'collapse']").hide();
+    } else {
+      $(el).find("[data-card-widget = 'collapse']").show();
+    }
+
+    return {
+      collapsible: config.collapsible,
+      collapsed: isCollapsed,
+      closable: config.closable,
+      visible: visible,
+      maximizable: config.maximizable,
+      maximized: isMaximized,
+      status: config.status,
+      solidHeader: config.solidHeader,
+      background: config.background,
+      width: config.width,
+      height: config.height
+    }; // this will be a list in R
   },
-  _updateWidth: function(el, o, n) {
+  _updateWidth: function (el, o, n) {
     $(el).parent().toggleClass("col-sm-" + o);
-    $(el).parent().addClass("col-sm-" + n); 
+    $(el).parent().addClass("col-sm-" + n);
     // trigger resize so that output resize
     $(el).trigger('resize');
   },
-    
-  setValue: function(el, value) {
-      
+
+  setValue: function (el, value) {
+
     var config = $(el).parent().find("script[data-for='" + el.id + "']");
     config = JSON.parse(config.html());
-      
+
     if (value.action === "update") {
       // To remove status explicitly set status = NULL in updateBox
       if (value.options.hasOwnProperty("status")) {
         if (value.options.status !== config.status) {
           // don't touch if null
           if (config.status !== null) {
-            $(el).toggleClass("card-" + config.status); 
+            $(el).toggleClass("card-" + config.status);
           }
           if (value.options.status !== null) {
             $(el).addClass("card-" + value.options.status);
           }
           config.status = value.options.status;
-        } 
+        }
       }
       if (value.options.hasOwnProperty("solidHeader")) {
         // only update if config an new value are different
@@ -80,24 +80,37 @@ $.extend(cardBinding, {
       // To remove background explicitly set background = NULL in updateBox
       if (value.options.hasOwnProperty("background")) {
         if (value.options.background !== config.background) {
+          var newBoxClass;
+          if (config.gradient) {
+            newBoxClass = "bg-gradient-";
+          } else {
+            newBoxClass = "bg-";
+          }
           // don't touch if null
           if (config.background !== null) {
             // if gradient, the class has a gradient at the end!
-            if (config.gradient) {
-              $(el).toggleClass("bg-gradient-" + config.background );
-            } else {
-              $(el).toggleClass("bg-" + config.background);
+            newBoxClass = newBoxClass + config.background;
+            // handle card widget such as socialBox and userBox
+            // for which we also have to toggle the header bg color
+            // and the box tools buttons color
+            if ($(el).hasClass('card-widget')) {
+              var header = $(el).find('.widget-user-header');
+              $(header).toggleClass(newBoxClass);
+              $(header).find('.btn-tool').toggleClass("btn-" + config.background);
             }
+            $(el).toggleClass(newBoxClass);
           }
           if (value.options.background !== null) {
-            if (config.gradient) {
-              $(el).addClass("bg-gradient-" + value.options.background); 
-            } else {
-              $(el).addClass("bg-" + value.options.background); 
+            newBoxClass = newBoxClass + value.options.background;
+            if ($(el).hasClass('card-widget')) {
+              var header = $(el).find('.widget-user-header');
+              $(header).addClass(newBoxClass);
+              $(header).find('.btn-tool').addClass("btn-" + config.background);
             }
+            $(el).addClass(newBoxClass);
           }
-          config.background = value.options.background; 
-        } 
+          config.background = value.options.background;
+        }
       }
       if (value.options.hasOwnProperty("width")) {
         if (value.options.width !== config.width) {
@@ -112,7 +125,7 @@ $.extend(cardBinding, {
           } else {
             $(el).find(".card-body").css("height", value.options.height);
           }
-          
+
           config.height = value.options.height;
           // don't need to trigger resize since the output height
           // is not controlled by the box size ...
@@ -149,7 +162,7 @@ $.extend(cardBinding, {
           }
         }
       }
-      
+
       if (value.options.hasOwnProperty("maximizable")) {
         if (value.options.maximizable !== config.maximizable) {
           if (!value.options.maximizable) {
@@ -165,7 +178,7 @@ $.extend(cardBinding, {
           }
         }
       }
-      
+
       // handle HTML tags (harder)
       if (value.options.hasOwnProperty("title")) {
         if (value.options.title !== config.title) {
@@ -174,7 +187,7 @@ $.extend(cardBinding, {
           $(el).find("h3").replaceWith($(newTitle));
         }
       }
-      
+
       // replace the old JSON config by the new one to update the input value 
       $(el).parent().find("script[data-for='" + el.id + "']").replaceWith(
         '<script type="application/json" data-for="' + el.id + '">' + JSON.stringify(config) + '</script>'
@@ -182,7 +195,7 @@ $.extend(cardBinding, {
     } else {
       if (value != "restore") {
         if ($(el).css('display') != 'none') {
-          $(el).CardWidget(value);  
+          $(el).CardWidget(value);
         }
       } else {
         $(el).show();
@@ -192,46 +205,46 @@ $.extend(cardBinding, {
       }
     }
   },
-  receiveMessage: function(el, data) {
+  receiveMessage: function (el, data) {
     this.setValue(el, data);
     $(el).trigger('change');
   },
-  
-  subscribe: function(el, callback) {
-    $(el).on('expanded.lte.cardwidget collapsed.lte.cardwidget', function(e) {
+
+  subscribe: function (el, callback) {
+    $(el).on('expanded.lte.cardwidget collapsed.lte.cardwidget', function (e) {
       // set a delay so that SHiny get the input value when the collapse animation
       // is finished. 
       setTimeout(
-        function() {
+        function () {
           callback();
         }, 500);
     });
-    
-    $(el).on('maximized.lte.cardwidget minimized.lte.cardwidget', function(e) {
+
+    $(el).on('maximized.lte.cardwidget minimized.lte.cardwidget', function (e) {
       callback();
     });
-    
-    $(el).on('removed.lte.cardwidget', function(e) {
+
+    $(el).on('removed.lte.cardwidget', function (e) {
       setTimeout(
-        function() {
+        function () {
           callback();
         }, 500);
     });
     // we need to split removed and shown event since shown is immediate whereas close
     // takes some time
-    $(el).on('shown.cardBinding', function(e) {
+    $(el).on('shown.cardBinding', function (e) {
       callback();
     });
-    
+
     // handle change event triggered in the setValue method 
-    $(el).on('change.cardBinding', function(event) {
-      setTimeout(function() {
+    $(el).on('change.cardBinding', function (event) {
+      setTimeout(function () {
         callback();
       }, 500);
     });
   },
-  
-  unsubscribe: function(el) {
+
+  unsubscribe: function (el) {
     $(el).off(".cardBinding");
   }
 });
@@ -243,19 +256,19 @@ Shiny.inputBindings.register(cardBinding);
 // Card sidebar input binding
 var cardSidebarBinding = new Shiny.InputBinding();
 $.extend(cardSidebarBinding, {
-  
-  find: function(scope) {
+
+  find: function (scope) {
     return $(scope).find('[data-widget="chat-pane-toggle"]');
   },
-  
+
   // Given the DOM element for the input, return the value
-  getValue: function(el) {
+  getValue: function (el) {
     var cardWrapper = $(el).closest(".card");
     return $(cardWrapper).hasClass("direct-chat-contacts-open");
   },
-  
+
   // see updatebs4Card
-  receiveMessage: function(el, data) {
+  receiveMessage: function (el, data) {
     // In theory, adminLTE3 has a builtin function
     // we could use $(el).DirectChat('toggle');
     // However, it does not update the related input.
@@ -263,19 +276,19 @@ $.extend(cardSidebarBinding, {
     $(el).trigger('click');
     $(el).trigger("shown");
   },
-  
-  subscribe: function(el, callback) {
-    $(el).on('click', function(e) {
+
+  subscribe: function (el, callback) {
+    $(el).on('click', function (e) {
       // set a delay so that Shiny get the input value when the collapse animation
       // is finished. 
       setTimeout(
-        function() {
+        function () {
           callback();
         }, 10);
     });
   },
-  
-  unsubscribe: function(el) {
+
+  unsubscribe: function (el) {
     $(el).off(".cardSidebarBinding");
   }
 });
