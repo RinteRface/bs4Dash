@@ -444,7 +444,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 #'
 #' @export
 bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
-                                  newTab = NULL, icon = NULL, selected = NULL) {
+                                  newTab = NULL, icon = shiny::icon("angle-double-right"), selected = NULL) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")

@@ -66,7 +66,7 @@ bs4SidebarMenuSubItem(
   tabName = NULL,
   href = NULL,
   newTab = NULL,
-  icon = NULL,
+  icon = shiny::icon("angle-double-right"),
   selected = NULL
 )
 
@@ -127,7 +127,7 @@ menuSubItem(
   tabName = NULL,
   href = NULL,
   newTab = NULL,
-  icon = NULL,
+  icon = shiny::icon("angle-double-right"),
   selected = NULL
 )
 

@@ -165,8 +165,7 @@ shinyApp(
                 )
               )
             ),
-            tabName = "gallery2",
-            icon = icon("circle-thin")
+            tabName = "gallery2"
           )
         )
       )
