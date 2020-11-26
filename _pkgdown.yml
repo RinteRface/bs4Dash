@@ -240,7 +240,7 @@ articles:
   #- '`extra-elements`'
   #- '`controlbar`'
   #- '`more-skins`'
-  #- '`css-preloader`'
+  - '`css-preloader`'
   #- '`enhanced-header`'
   
   
