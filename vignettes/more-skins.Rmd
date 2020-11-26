@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -57,9 +57,6 @@ shinyApp(
 </div>
 <div class="home"></div>
 </div>
-
-Important: this feature is still <a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>!
-
 
 ## Fresh
 [`{fresh}`](https://dreamrs.github.io/fresh/index.html) is developed by the 

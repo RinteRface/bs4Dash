@@ -213,7 +213,7 @@ shinyApp(
       toast(title = "Yeah")
     })
   }
- )
+)
 ```
 
 <div class="marvel-device ipad black">
