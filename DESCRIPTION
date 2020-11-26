@@ -59,6 +59,6 @@ Collate:
     'utils.R'
 RdMacros: lifecycle
 Remotes: 
-    rstudio/shiny,
     rstudio/htmltools,
+    rstudio/shiny,
     rstudio/thematic
