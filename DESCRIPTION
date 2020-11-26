@@ -16,12 +16,12 @@ URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRf
 BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
 Imports: 
-    shiny,
+    shiny (>= 1.5.0.9005),
     htmltools (>= 0.5.0.9001),
-    jsonlite,
+    jsonlite (>= 0.9.16),
     fresh,
     waiter,
-    httpuv,
+    httpuv (>= 1.5.2),
     lifecycle
 Suggests: 
     plotly,
@@ -61,5 +61,4 @@ RdMacros: lifecycle
 Remotes: 
     rstudio/shiny,
     rstudio/htmltools,
-    rstudio/bslib,
     rstudio/thematic
