@@ -4,7 +4,7 @@
 #' a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 #'
 #' @param ... Badge content.
-#' @param color Bdage color. Valid colors:
+#' @param color Badge color. Valid colors:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
 #'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.

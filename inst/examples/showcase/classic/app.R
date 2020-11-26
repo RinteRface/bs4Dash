@@ -95,6 +95,8 @@ shinyApp(
         ),
         menuItem(
           "Cards API",
+          badgeLabel = "New",
+          badgeColor = "success",
           tabName = "cardsAPI",
           icon = icon("laptop-code")
         ),

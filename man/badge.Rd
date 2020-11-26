@@ -12,7 +12,7 @@ dashboardBadge(..., color, position = c("left", "right"), rounded = FALSE)
 \arguments{
 \item{...}{Badge content.}
 
-\item{color}{Bdage color. Valid colors:
+\item{color}{Badge color. Valid colors:
 \itemize{
   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.

@@ -243,6 +243,17 @@ findSidebarItem <- function(items, regex) {
 #' @param ... \link{menuSubItem}.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
 #'   \code{NULL}, don't display an icon.
+#' @param badgeLabel A label for an optional badge. Usually a number or a short
+#'   word like "new".
+#' @param badgeColor A color for the badge. Valid colors:
+#' \itemize{
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#' }
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
 #' @param href An link address. Not compatible with \code{tabName}.
 #' @param newTab If \code{href} is supplied, should the link open in a new
@@ -302,7 +313,8 @@ findSidebarItem <- function(items, regex) {
 #'   server <- function(input, output) {}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NULL,
+bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeColor = "success",
+                               tabName = NULL, href = NULL,
                                newTab = TRUE, selected = NULL,
                                expandedName = as.character(gsub("[[:space:]]", "", text)),
                                startExpanded = FALSE, condition = NULL) {
@@ -315,6 +327,18 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
 
   if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
     stop("Must have either href, tabName, or sub-items (contained in ...).")
+  }
+
+  if (!is.null(badgeLabel) && length(subItems) != 0) {
+    stop("Can't have both badge and subItems")
+  }
+
+  # Generate badge if needed
+  if (!is.null(badgeLabel)) {
+    validateStatus(badgeColor)
+    badgeTag <- dashboardBadge(badgeLabel, color = badgeColor, position = "right")
+  } else {
+    badgeTag <- NULL
   }
 
   # classic menuItem with 1 element
@@ -343,7 +367,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, tabName = NULL, href = NU
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           icon,
-          shiny::tags$p(text)
+          shiny::tags$p(text),
+          badgeTag
         )
       )
     )
