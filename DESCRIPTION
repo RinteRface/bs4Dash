@@ -58,3 +58,6 @@ Collate:
     'skinSelector.R'
     'utils.R'
 RdMacros: lifecycle
+Remotes: 
+    rstudio/shiny,
+    rstudio/thematic
