@@ -17,7 +17,7 @@ BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
 Imports: 
     shiny,
-    htmltools,
+    htmltools (>= 0.5.0.9001),
     jsonlite,
     fresh,
     waiter,
@@ -60,4 +60,5 @@ Collate:
 RdMacros: lifecycle
 Remotes: 
     rstudio/shiny,
+    rstudio/htmltools,
     rstudio/thematic
