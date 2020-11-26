@@ -128,6 +128,14 @@ $(function () {
   });
 
 
+  // nav item click also triggers scroll to top
+  $('.main-sidebar .nav-item').on('click', function () {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 0);
+  });
+
+
   // tooltip/popover toggle
   if ($('body').attr('data-help') == 1) {
     var $help_switch_checkbox = $('<input />', {
