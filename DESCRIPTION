@@ -61,4 +61,5 @@ RdMacros: lifecycle
 Remotes: 
     rstudio/shiny,
     rstudio/htmltools,
+    rstudio/bslib,
     rstudio/thematic
