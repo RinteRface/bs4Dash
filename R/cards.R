@@ -159,7 +159,24 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   props <- dropNulls(
     list(
-      title = if (!is.null(title)) as.character(title) else title,
+      title = if (!is.null(title)) {
+        if (inherits(title, "list")) {
+          unlist(
+            dropNulls(
+              lapply(title, function(e) {
+                if (inherits(e, "shiny.tag.list") ||
+                  inherits(e, "shiny.tag")) {
+                  as.character(e)
+                }
+              })
+            )
+          )
+        } else {
+          as.character(title)
+        }
+      } else {
+        title
+      },
       status = status,
       solidHeader = solidHeader,
       background = background,
@@ -540,6 +557,20 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
   if (action == "update") {
     # handle case whare options are shiny tag or a list of tags ...
     options <- lapply(options, function(o) {
+      if (inherits(o, "list")) {
+        o <- unlist(
+          dropNulls(
+            lapply(o, function(e) {
+              if (inherits(e, "shiny.tag.list") ||
+                inherits(e, "shiny.tag")) {
+                as.character(e)
+              } else {
+                e
+              }
+            })
+          )
+        )
+      }
       if (inherits(o, "shiny.tag") || inherits(o, "shiny.tag.list")) {
         o <- as.character(o)
       }
@@ -1379,7 +1410,7 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
   type <- title[[2]]
 
   # specific class for userDescription
-  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget")
+  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget user-card")
   if (!is.null(type)) {
     boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user-", type)
   } else {
@@ -1685,25 +1716,34 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
                           sidebar = NULL, id = NULL) {
   items <- list(...)
   # recover comments
-  comments <- dropNulls(lapply(items, function(item) {
-    if (inherits(item, "list")) {
-      lapply(item, function(nested) {
-        if (inherits(nested, "card-comment")) nested
-      })
-    } else {
-      if (inherits(item, "card-comment")) item
-    }
-  })) [[1]]
 
-  otherItems <- dropNulls(lapply(items, function(item) {
-    if (inherits(item, "list")) {
-      lapply(item, function(nested) {
-        if (!inherits(nested, "card-comment")) nested
-      })
-    } else {
-      if (!inherits(item, "card-comment")) item
-    }
-  }))
+  comments <- if (length(items) > 0) {
+    dropNulls(lapply(items, function(item) {
+      if (inherits(item, "list")) {
+        lapply(item, function(nested) {
+          if (inherits(nested, "card-comment")) nested
+        })
+      } else {
+        if (inherits(item, "card-comment")) item
+      }
+    })) [[1]]
+  } else {
+    NULL
+  }
+
+  otherItems <- if (length(items) > 0) {
+    dropNulls(lapply(items, function(item) {
+      if (inherits(item, "list")) {
+        lapply(item, function(nested) {
+          if (!inherits(nested, "card-comment")) nested
+        })
+      } else {
+        if (!inherits(item, "card-comment")) item
+      }
+    }))
+  } else {
+    NULL
+  }
 
   # userBox is built on top of the box function. The difference is the title tag
   # that is replaced by userDescription ...
@@ -1729,7 +1769,7 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
   )
 
   # specific class
-  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget")
+  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget social-card")
 
   # replace title tag by the user widget
   boxTag$children[[1]]$children[[1]]$children[[2]] <- title

@@ -69,6 +69,9 @@
     <li>
       <a href="../articles/step-by-step.html">How to start?</a>
     </li>
+    <li>
+      <a href="../articles/improved-boxes.html">Improved boxes</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -146,7 +149,7 @@ Basic page template
     preloader <span class="op">=</span> <span class="cn">NULL</span>,
     options <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
-<p>has mandatory slots for the navbar (<code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>), sidebar (<code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>) and (<code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code>). Note the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> and <code><a href="../reference/bs4DashFooter.html">dashboardFooter()</a></code> are optional. The <strong>title</strong> parameter gives its name to the web browser tab. <strong>freshTheme</strong>, when provided, expects a <a href="https://github.com/dreamRs/fresh">fresh</a> powered <a href="%22https://dreamrs.github.io/fresh/articles/vars-bs4dash.html%22">theme</a> created with <code><a href="https://rdrr.io/pkg/fresh/man/create_theme.html">fresh::create_theme()</a></code>. It allows deeper customization of colors to fit very specific needs like industry brand colors. <strong>preloader</strong> expects a loader tag built with <code>waiter</code>, see more <a href="%22https://waiter.john-coene.com/%22">here</a>, for instance:</p>
+<p>has mandatory slots for the navbar (<code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>), sidebar (<code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>) and (<code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code>). Note the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> and <code><a href="../reference/bs4DashFooter.html">dashboardFooter()</a></code> are optional. The <strong>title</strong> parameter gives its name to the web browser tab. <strong>freshTheme</strong>, when provided, expects a <a href="https://github.com/dreamRs/fresh">fresh</a> powered <a href="https://dreamrs.github.io/fresh/articles/vars-bs4dash.html">theme</a> created with <code><a href="https://rdrr.io/pkg/fresh/man/create_theme.html">fresh::create_theme()</a></code>. It allows deeper customization of colors to fit very specific needs like industry brand colors. <strong>preloader</strong> expects a loader tag built with <code>waiter</code>, see more <a href="https://waiter.john-coene.com/">here</a>, for instance:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">preloader</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     waiter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>html <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span><span class="fu">spin_1</span><span class="op">(</span><span class="op">)</span>, <span class="st">"Loading ..."</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#343a40"</span><span class="op">)</span>,
@@ -314,7 +317,7 @@ Basic page template
     side <span class="op">=</span> <span class="st">"left"</span>,
     .list <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
-<p><code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> may be updated on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbarMenu()</a></code> (which is no more than <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>). If you want to have a simple container without menu, you’ll have to add a specific class to account for padding, as shown below:</p>
+<p><code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> may be updated on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbarMenu()</a></code> (which is no more than <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>). If you want to have a simple container without menu, you will have to add a specific class to account for padding, as shown below:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">dashboardControlbar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>

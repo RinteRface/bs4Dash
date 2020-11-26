@@ -54,9 +54,9 @@ dashboardPage(
 
 has mandatory slots for the navbar (`dashboardHeader()`), sidebar (`dashboardSidebar()`) and (`dashboardBody()`).
 Note the `dashboardControlbar()` and `dashboardFooter()` are optional. The __title__ parameter gives its name to the
-web browser tab. __freshTheme__, when provided, expects a `{fresh}` powered [theme]("https://dreamrs.github.io/fresh/articles/vars-bs4dash.html") created with `fresh::create_theme()`.
+web browser tab. __freshTheme__, when provided, expects a `{fresh}` powered [theme](https://dreamrs.github.io/fresh/articles/vars-bs4dash.html) created with `fresh::create_theme()`.
 It allows deeper customization of colors to fit very specific needs like industry brand colors. __preloader__ expects
-a loader tag built with `waiter`, see more [here]("https://waiter.john-coene.com/"), for instance:
+a loader tag built with `waiter`, see more [here](https://waiter.john-coene.com/), for instance:
 
 ```{r loading, eval=FALSE}
 preloader <- list(
@@ -272,7 +272,7 @@ controlbarMenu(
 ```
 
 `controlbarMenu()` may be updated on the server with `updateControlbarMenu()` (which is no more than 
-`shiny::updateTabsetPanel`). If you want to have a simple container without menu, you'll have to add a specific
+`shiny::updateTabsetPanel`). If you want to have a simple container without menu, you will have to add a specific
 class to account for padding, as shown below:
 
 ```{r controlbar-without-menu, eval=FALSE}
