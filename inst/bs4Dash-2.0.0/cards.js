@@ -57,6 +57,8 @@ $.extend(cardBinding, {
     config = JSON.parse(config.html());
 
     if (value.action === "update") {
+      var isUserCard = $(el).hasClass('user-card');
+      var isSocialCard = $(el).hasClass('social-card');
       // To remove status explicitly set status = NULL in updateBox
       if (value.options.hasOwnProperty("status")) {
         if (value.options.status !== config.status) {
@@ -90,24 +92,24 @@ $.extend(cardBinding, {
           if (config.background !== null) {
             // if gradient, the class has a gradient at the end!
             newBoxClass = newBoxClass + config.background;
-            // handle card widget such as socialBox and userBox
+            // handle userBox
             // for which we also have to toggle the header bg color
             // and the box tools buttons color
-            if ($(el).hasClass('card-widget')) {
+            if (isUserCard) {
               var header = $(el).find('.widget-user-header');
               $(header).toggleClass(newBoxClass);
-              $(header).find('.btn-tool').toggleClass("btn-" + config.background);
             }
             $(el).toggleClass(newBoxClass);
+            $(el).find('.btn-tool').toggleClass("btn-" + config.background);
           }
           if (value.options.background !== null) {
             newBoxClass = newBoxClass + value.options.background;
-            if ($(el).hasClass('card-widget')) {
+            if (isUserCard) {
               var header = $(el).find('.widget-user-header');
               $(header).addClass(newBoxClass);
-              $(header).find('.btn-tool').addClass("btn-" + config.background);
             }
             $(el).addClass(newBoxClass);
+            $(el).find('.btn-tool').toggleClass("btn-" + value.options.background);
           }
           config.background = value.options.background;
         }
@@ -183,8 +185,42 @@ $.extend(cardBinding, {
       if (value.options.hasOwnProperty("title")) {
         if (value.options.title !== config.title) {
           var newTitle = $.parseHTML(value.options.title);
-          $(newTitle).addClass("card-title");
-          $(el).find("h3").replaceWith($(newTitle));
+          // social box
+          if (isSocialCard) {
+            $(el).find(".user-block").replaceWith($(newTitle));
+          } else if (isUserCard) {
+            var tools = $(el).find('.card-tools');
+            // handle 2 cards types
+            if (newTitle.length === 3) {
+              // don't take newTitle[1] (contains some text)
+              newTitle = [newTitle[0], newTitle[2]]
+              // change widget-use class 
+              $(el)
+                .removeClass('widget-user-2')
+                .addClass('widget-user');
+              // insert header and image after
+              $(el).find('.widget-user-header').replaceWith($(newTitle[0]));
+              $(newTitle[1]).insertAfter($(el).find('.widget-user-header'));
+
+            } else {
+              $(el)
+                .removeClass('widget-user')
+                .addClass('widget-user-2');
+              $(el).find('.widget-user-header').replaceWith($(newTitle));
+              if (value.options.status !== null) {
+                if (value.options.gradient) {
+                  $(el).find('.widget-user-header').addClass('bg-gradient-', status);
+                } else {
+                  $(el).find('.widget-user-header').addClass('bg-', status);
+                }
+              }
+            }
+            // add tools as first child of widget-user-header
+            $(el).find('.widget-user-header').prepend($(tools));
+          } else {
+            $(newTitle).addClass("card-title");
+            $(el).find("h3").replaceWith($(newTitle));
+          }
         }
       }
 
