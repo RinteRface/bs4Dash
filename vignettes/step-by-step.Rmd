@@ -32,10 +32,41 @@ library(bs4Dash)
 )
 ```
 
-<img src="figures/bs4Dash_basicPage.png">
-<br>
+```{r basic-page-image, echo=FALSE, fig.cap='Basic page template', fig.align = 'center', out.width='100%'}
+knitr::include_graphics("figures/basicPage.png")
+``` 
 
-The `bs4DashPage()` takes optional argument such as ... TO DO
+The `dashboardPage()` is the main wrapper:
+
+```{r page, eval=FALSE}
+dashboardPage(
+    header,
+    sidebar,
+    body,
+    controlbar = NULL,
+    footer = NULL,
+    title = NULL,
+    freshTheme = NULL,
+    preloader = NULL,
+    options = NULL
+)
+```
+
+has mandatory slots for the navbar (`dashboardHeader()`), sidebar (`dashboardSidebar()`) and (`dashboardBody()`).
+Note the `dashboardControlbar()` and `dashboardFooter()` are optional. The __title__ parameter gives its name to the
+web browser tab. __freshTheme__, when provided, expects a `{fresh}` powered [theme]("https://dreamrs.github.io/fresh/articles/vars-bs4dash.html") created with `fresh::create_theme()`.
+It allows deeper customization of colors to fit very specific needs like industry brand colors. __preloader__ expects
+a loader tag built with `waiter`, see more [here]("https://waiter.john-coene.com/"), for instance:
+
+```{r loading, eval=FALSE}
+preloader <- list(
+    waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
+    duration = 5
+)
+```
+
+At the moment, __options__ are not available, but the idea is to provide deeper customization of the AdminLTE3 
+template like changing the sidebars and cards animation speed, ...
 
 Now, it is time to fill this template!
 
@@ -55,25 +86,8 @@ dashboardSidebar(
  expandOnHover = TRUE,
  fixed = TRUE,
  id = "sidebar",
- customArea = NULL
- sidebarUserPanel(
-  image = "https://image.flaticon.com/icons/svg/1149/1149168.svg", 
-  name = "Welcome Onboard!"
- ),
- sidebarMenu(
-   id = "sidebarmenu",
-   sidebarHeader("Header 1"),
-   menuItem(
-     "Item 1",
-     tabName = "item1",
-     icon = icon("sliders")
-   ),
-   menuItem(
-     "Item 2",
-     tabName = "item2",
-     icon = icon("id-card")
-   )
- )
+ customArea = NULL,
+ ...
 )
 ```
 
@@ -99,10 +113,74 @@ scrolling up and down.
 
 The skin switch feature allows to automatically toggle the sidebar skin. 
 
-<img src="figures/bs4Dash_sidebar.png">
-<br>
+Importantly, the sidebar contains `sidebarMenu()` as well as other items like `sidebarUserPanel()`, 
+`sidebarHeader()`:
 
-Importantly, the sidebar contains `sidebarMenu()` as well as other items like ...
+```{r sidebar-items, eval=FALSE} 
+sidebarUserPanel(
+    image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
+    name = "Welcome Onboard!"
+)
+
+sidebarMenu(
+  id = "sidebarmenu",
+  sidebarHeader("Header 1"),
+  menuItem(
+    "Item 1",
+    tabName = "item1",
+    icon = icon("sliders")
+  ),
+  menuItem(
+    "Item 2",
+    tabName = "item2",
+    icon = icon("id-card")
+  )
+)
+```
+
+`sidebarMenu()` drives the navigation within your dashboard. It has an id parameter
+which allows to :
+
+- Get the name of the currently selected tab, with `input$<id>`.
+- Update the currently selected tab with `updateTabItems()`, which is actually
+`shiny::updateTabsetPanel`. 
+
+`sidebarMenu()` also offers 4 cosmetic parameters:
+
+- __flat__ is a style parameter like in material design.
+- __compact__ makes the sidebar content smaller.
+- __childIndent__ shows an indentation between the parent item and nested subitems.
+- __legacy__ allows to use the old AdminLTE2 style.
+
+Interestingly, `menuItem()` can be more than a simple item and contain sub-items,
+namely `menuSubItem()`:
+
+```{r subitems, eval=FALSE}
+menuItem(
+    text = "Item List 1",
+    icon = icon("bars"),
+    startExpanded = TRUE,
+    menuSubItem(
+        text = "Item 3",
+        tabName = "tab3",
+        icon = icon("circle-thin")
+    ),
+    menuSubItem(
+        text = "Item 4",
+        tabName = "tab4",
+        icon = icon("circle-thin")
+    )
+)
+```
+
+__startExpanded__ defines whether the item container has to be opened when the app
+starts. When a `menuItem()` contains nested items, it is not necessary to give it
+a __tabName__. __text__ may also contain more complex HTML tags like `dashboardBadge()`.
+If you want to use `menuItem()` to browse to an external website, use the __href__ parameter
+as well as __newTab__ to open a new web browser tab. 
+
+Like in `{shinydashboard}`, `input$sidebarItemExpanded` hosts the value of the currently
+expanded sidebarItem. 
 
 ## Navbar Setup
 
@@ -127,9 +205,6 @@ dashboardHeader(
   rightUi = NULL
 )
 ```
-
-<img src="figures/bs4Dash_navbar.png">
-<br>
 
 The __title__ parameter can host simple text but more complex content like `dashboardBrand()`:
 
@@ -210,10 +285,6 @@ dashboardControlbar(
 ```
 
 
-<img src="figures/bs4Dash_controlbar.png">
-<br>
-
-
 ## Footer Setup
 
 We will use `dashboardFooter()`:
@@ -283,9 +354,6 @@ dashboardBody(
  )
 )
 ```
-
-<img src="figures/bs4Dash_body.png">
-<br>
 
 The principle is pretty straightforward: all `dashboardBody()` elements must be embeded in a `tabItems()` 
 list containing as may elements as the number of items. Each item is a `tabItem()`. 
@@ -471,8 +539,20 @@ shinyApp(
 </details>
 <br>
 
-<img src="figures/bs4Dash_wrapup.png">
+
+<figure class="cd-image-container">
+<img src="figures/wrapup-light.png" alt="Original Image">
+<span class="cd-image-label" data-type="original">Light</span>
+<div class="cd-resize-img"> <!-- the resizable image on top -->
+<img src="figures/wrapup-dark.png" alt="Modified Image">
+<span class="cd-image-label" data-type="modified">Dark</span>
+</div>
+<span class="cd-handle"></span> <!-- slider handle -->
+</figure> <!-- cd-image-container -->
 <br>
+
+<sup>*</sup> All credits go to https://codyhouse.co/gem/css-jquery-image-comparison-slider/ for
+the nice image slider widget!
 
 Advanced shiny user would probably design shiny modules to generate this page, 
 which I really encourage. However, how to deal with modules is not the purpose of this article.
