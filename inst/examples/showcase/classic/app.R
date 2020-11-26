@@ -82,6 +82,10 @@ shinyApp(
           dashboardBadge(textOutput("btnVal"), color = "danger")
         )
       ),
+      sidebarUserPanel(
+        image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
+        name = "Welcome Onboard!"
+      ),
       sidebarMenu(
         id = "current_tab",
         flat = FALSE,

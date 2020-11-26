@@ -54,6 +54,11 @@
     
 }
 
+/* Fix #135: different padding for first header in AdminLTE3 */
+.nav-sidebar .nav-header {
+    padding: 0rem 1rem .5rem;
+}
+
 /* Fix issueswith dropdown links in card with solidHeader */
 .dropdown-item { 
    color: #000 !important; 
