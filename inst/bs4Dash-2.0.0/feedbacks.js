@@ -1,77 +1,77 @@
-$(function() {
+$(function () {
   // handle tooltip from the server side
-  Shiny.addCustomMessageHandler('create-tooltip', function(message) {
-  var tooltipTarget;
-  if (message.id) {
-    tooltipTarget = '#' + message.id;
-  } else {
-    if (message.selector){
-      tooltipTarget = message.selector;
+  Shiny.addCustomMessageHandler('create-tooltip', function (message) {
+    var tooltipTarget;
+    if (message.id) {
+      tooltipTarget = '#' + message.id;
+    } else {
+      if (message.selector) {
+        tooltipTarget = message.selector;
+      }
     }
-  }
-  $(tooltipTarget)
-    .addClass('has-tooltip')
-    .tooltip(message.options);
-    console.log(`'Tooltip created for ${tooltipTarget}'`);
- });
-
- Shiny.addCustomMessageHandler('remove-tooltip', function(message) {
-  var tooltipTarget = '#' + message;
-
-  // only destroys if popover exists
-  if ($(tooltipTarget).hasClass('has-tooltip')) {
     $(tooltipTarget)
-      .removeClass('has-tooltip')
-      .tooltip('dispose');
-    console.log(`'Tooltip destroyed for ${tooltipTarget}'`);
-  }
- });
- 
- // handle popover from the server side
- Shiny.addCustomMessageHandler('create-popover', function(message) {
-  var popoverTarget;
-  if (message.id) {
-    popoverTarget = '#' + message.id;
-  } else {
-    if (message.selector){
-      popoverTarget = message.selector;
+      .addClass('has-tooltip')
+      .tooltip(message.options);
+    console.log(`'Tooltip created for ${tooltipTarget}'`);
+  });
+
+  Shiny.addCustomMessageHandler('remove-tooltip', function (message) {
+    var tooltipTarget = '#' + message;
+
+    // only destroys if popover exists
+    if ($(tooltipTarget).hasClass('has-tooltip')) {
+      $(tooltipTarget)
+        .removeClass('has-tooltip')
+        .tooltip('dispose');
+      console.log(`'Tooltip destroyed for ${tooltipTarget}'`);
     }
-  }
-  // indicate target has popover. This is for removePopover to know
-  // whether the popover exists
-  $(popoverTarget)
-    .addClass('has-popover')
-    .popover(message.options);
-  console.log(`'Popover created for ${popoverTarget}'`);
- });
+  });
 
-
- Shiny.addCustomMessageHandler('remove-popover', function(message) {
-  var popoverTarget = '#' + message;
-
-  // only destroys if popover exists
-  if ($(popoverTarget).hasClass('has-popover')) {
+  // handle popover from the server side
+  Shiny.addCustomMessageHandler('create-popover', function (message) {
+    var popoverTarget;
+    if (message.id) {
+      popoverTarget = '#' + message.id;
+    } else {
+      if (message.selector) {
+        popoverTarget = message.selector;
+      }
+    }
+    // indicate target has popover. This is for removePopover to know
+    // whether the popover exists
     $(popoverTarget)
-      .removeClass('has-popover')
-      .popover('dispose');
-    console.log(`'Popover destroyed for ${popoverTarget}'`);
-  }
- });
-  
-  
+      .addClass('has-popover')
+      .popover(message.options);
+    console.log(`'Popover created for ${popoverTarget}'`);
+  });
+
+
+  Shiny.addCustomMessageHandler('remove-popover', function (message) {
+    var popoverTarget = '#' + message;
+
+    // only destroys if popover exists
+    if ($(popoverTarget).hasClass('has-popover')) {
+      $(popoverTarget)
+        .removeClass('has-popover')
+        .popover('dispose');
+      console.log(`'Popover destroyed for ${popoverTarget}'`);
+    }
+  });
+
+
   // handle builtin toasts
-  Shiny.addCustomMessageHandler('toast', function(message) {
+  Shiny.addCustomMessageHandler('toast', function (message) {
     $(document).Toasts('create', message);
   });
-  
+
   // Create an alert
-  Shiny.addCustomMessageHandler('create-alert', function(message) {
+  Shiny.addCustomMessageHandler('create-alert', function (message) {
     // setup target
     var alertTarget;
     if (message.id) {
       alertTarget = `#${message.id}`;
     } else {
-      if (message.selector){
+      if (message.selector) {
         alertTarget = message.selector;
       }
     }
@@ -86,17 +86,17 @@ $(function() {
       alertCl = `${alertCl} elevation-${config.elevation}`;
     }
 
-    switch(config.status) {
+    switch (config.status) {
       case 'primary': iconType = 'info';
-      break;
+        break;
       case 'danger': iconType = 'ban';
-      break;
+        break;
       case 'info': iconType = 'info';
-      break;
+        break;
       case 'warning': iconType = 'warning';
-      break;
+        break;
       case 'success': iconType = 'check';
-      break;
+        break;
       default: console.warn(`${config.status} does not belong to allowed statuses!`)
     }
 
@@ -114,24 +114,24 @@ $(function() {
     </div>`
     if (config.width !== undefined) {
       alertTag = `<div class="col-sm-${config.width}">${alertTag}</div>`
-    } 
+    }
 
     // add it to the DOM if no existing alert is found in the anchor
     if ($(`#${message.id}-alert`).length === 0) {
       $(alertTarget).append(alertTag);
-      Shiny.setInputValue(message.id, true, {priority: 'event'});
+      Shiny.setInputValue(message.id, true, { priority: 'event' });
 
       // add events only after element is inserted
 
       // callback -> give ability to perform more actions on the Shiny side
       // once the alert is closed
       $(`#${message.id}-alert`).on('closed.bs.alert', function () {
-        Shiny.setInputValue(message.id, false, {priority: 'event'});
+        Shiny.setInputValue(message.id, false, { priority: 'event' });
       });
       // Clicking on close button does not trigger any event.
       // Trigger the closed.bs.alert event.
-      $('[data-dismiss="alert"]').on('click', function() {
-        var alertId = $(this).parent.attr(id);
+      $('[data-dismiss="alert"]').on('click', function () {
+        var alertId = $(this).parent.attr('id');
         $(`#${alertId}.`).trigger('closed.bs.alert');
       });
 
@@ -141,7 +141,7 @@ $(function() {
   });
 
 
-  Shiny.addCustomMessageHandler('close-alert', function(message) {
+  Shiny.addCustomMessageHandler('close-alert', function (message) {
     // only closes if element exists
     if ($(`#${message}-alert`).length > 0) {
       $(`#${message}-alert`).alert('close');
