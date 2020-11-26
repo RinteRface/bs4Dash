@@ -19,9 +19,7 @@ bs4DashNavbar(
   compact = FALSE,
   sidebarIcon = shiny::icon("bars"),
   controlbarIcon = shiny::icon("th"),
-  fixed = FALSE,
-  fullscreen = FALSE,
-  help = FALSE
+  fixed = FALSE
 )
 
 dashboardHeader(
@@ -38,9 +36,7 @@ dashboardHeader(
   compact = FALSE,
   sidebarIcon = shiny::icon("bars"),
   controlbarIcon = shiny::icon("th"),
-  fixed = FALSE,
-  fullscreen = FALSE,
-  help = FALSE
+  fixed = FALSE
 )
 }
 \arguments{
@@ -98,12 +94,6 @@ working with programmatically generated items.}
 \item{controlbarIcon}{Icon to toggle the controlbar (left).}
 
 \item{fixed}{Whether to fix the navbar to the top. FALSE by default.}
-
-\item{fullscreen}{Whether to allow fullscreen feature in the navbar. Default to FALSE.}
-
-\item{help}{Whether to enable/disable popovers and tooltips. This allows to seamlessly use
-\link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
-if TRUE, a help icon is display in the navigation bar.}
 }
 \description{
 \link{dashboardHeader} creates an adminLTE3 dashboard navbar to be included in

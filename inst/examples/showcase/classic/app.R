@@ -6,6 +6,8 @@ shinyApp(
       waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
       duration = 5
     ),
+    help = TRUE,
+    fullscreen = TRUE,
     header = dashboardHeader(
       title = dashboardBrand(
         title = "bs4Dash",
@@ -15,8 +17,6 @@ shinyApp(
         opacity = 0.8
       ),
       fixed = TRUE,
-      help = TRUE,
-      fullscreen = TRUE,
       tooltip(
         title = "This toggles the right sidebar",
         placement = "bottom",

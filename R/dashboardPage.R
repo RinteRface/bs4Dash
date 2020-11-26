@@ -14,76 +14,78 @@
 #' Pass a nested list with 2 elements like \code{list(waiter = list(html = spin_1(), color = "#333e48"), duration = 5)}.
 #' \code{waiter} expects to provide a sub-list to configure \link[waiter]{waiter_show_on_load} (refer to
 #' the package help for all styles). \code{duration} defines the loader timeout.
-#' @param options Extra option to overwrite the vanilla AdminLTE configuration. See 
+#' @param options Extra option to overwrite the vanilla AdminLTE configuration. See
 #' \url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
 #' Expect a list.
-#' \url{https://www.w3schools.com/cssref/css_colors.asp}.
+#' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
+#' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use
+#' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
+#' if TRUE, a help icon is display in the navigation bar.
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  library(fresh)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(bs4Dash)
+#'   library(fresh)
 #'
-#'  shinyApp(
-#'    ui = dashboardPage(
-#'      freshTheme = create_theme(
-#'       bs4dash_vars(
-#'         navbar_light_color = "#bec5cb",
-#'         navbar_light_active_color = "#FFF",
-#'         navbar_light_hover_color = "#FFF"
+#'   shinyApp(
+#'     ui = dashboardPage(
+#'       freshTheme = create_theme(
+#'         bs4dash_vars(
+#'           navbar_light_color = "#bec5cb",
+#'           navbar_light_active_color = "#FFF",
+#'           navbar_light_hover_color = "#FFF"
+#'         ),
+#'         bs4dash_yiq(
+#'           contrasted_threshold = 10,
+#'           text_dark = "#FFF",
+#'           text_light = "#272c30"
+#'         ),
+#'         bs4dash_layout(
+#'           main_bg = "#353c42"
+#'         ),
+#'         bs4dash_sidebar_light(
+#'           bg = "#272c30",
+#'           color = "#bec5cb",
+#'           hover_color = "#FFF",
+#'           submenu_bg = "#272c30",
+#'           submenu_color = "#FFF",
+#'           submenu_hover_color = "#FFF"
+#'         ),
+#'         bs4dash_status(
+#'           primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
+#'         ),
+#'         bs4dash_color(
+#'           gray_900 = "#FFF", white = "#272c30"
+#'         )
 #'       ),
-#'       bs4dash_yiq(
-#'         contrasted_threshold = 10,
-#'         text_dark = "#FFF", 
-#'         text_light = "#272c30"
+#'       options = NULL,
+#'       header = dashboardHeader(
+#'         title = dashboardBrand(
+#'           title = "My dashboard",
+#'           color = "primary",
+#'           href = "https://adminlte.io/themes/v3",
+#'           image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+#'         )
 #'       ),
-#'       bs4dash_layout(
-#'         main_bg = "#353c42"
+#'       sidebar = dashboardSidebar(),
+#'       body = dashboardBody(
+#'         box(status = "danger"),
+#'         box(status = "primary"),
+#'         box(status = "orange")
 #'       ),
-#'       bs4dash_sidebar_light(
-#'         bg = "#272c30", 
-#'         color = "#bec5cb",
-#'         hover_color = "#FFF",
-#'         submenu_bg = "#272c30", 
-#'         submenu_color = "#FFF", 
-#'         submenu_hover_color = "#FFF"
-#'       ),
-#'       bs4dash_status(
-#'         primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
-#'       ),
-#'       bs4dash_color(
-#'         gray_900 = "#FFF", white = "#272c30"
-#'       )
-#'      ),
-#'      options = NULL,
-#'      header = dashboardHeader(
-#'       title = dashboardBrand(
-#'        title = "My dashboard",
-#'        color = "primary",
-#'        href = "https://adminlte.io/themes/v3",
-#'        image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
-#'       )
-#'      ),
-#'      sidebar = dashboardSidebar(),
-#'      body = dashboardBody(
-#'       box(status = "danger"),
-#'       box(status = "primary"),
-#'       box(status = "orange")
-#'      ),
-#'      controlbar = dashboardControlbar(),
-#'      title = "DashboardPage"
-#'    ),
-#'    server = function(input, output) { }
-#'  )
+#'       controlbar = dashboardControlbar(),
+#'       title = "DashboardPage"
+#'     ),
+#'     server = function(input, output) { }
+#'   )
 #' }
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
-                        freshTheme = NULL, preloader = NULL, options = NULL){
-  
+                        freshTheme = NULL, preloader = NULL, options = NULL,
+                        fullscreen = FALSE, help = FALSE) {
   titleTag <- header[[2]]
   # look for custom area and move it to third slot
   if (length(sidebar$children) > 1) {
@@ -91,7 +93,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   }
   # sidebar stuff are moved to second child
   sidebar$children[[2]] <- sidebar$children[[1]]
-  
+
   # header content (brand logo) is moved to sidebar first child
   sidebar$children[[1]] <- if (!is.null(titleTag)) {
     if (inherits(titleTag, "shiny.tag")) {
@@ -110,8 +112,8 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   }
   if (!is.null(footer)) {
     tagAssert(footer, type = "footer", class = "main-footer")
-  } 
-  
+  }
+
   # create the body content
   bodyContent <- shiny::tags$div(
     class = "wrapper",
@@ -125,7 +127,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
       fresh::use_theme(freshTheme)
     }
   )
-  
+
   # page wrapper
   shiny::tagList(
     # Head
@@ -141,6 +143,8 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     # Body
     add_bs4Dash_deps(
       shiny::tags$body(
+        `data-help` = if (help) 1 else 0,
+        `data-fullscreen` = if (fullscreen) 1 else 0,
         if (!is.null(preloader)) {
           shiny::tagList(
             waiter::use_waiter(), # dependencies
@@ -155,7 +159,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
           )
         },
         bodyContent
-      ), 
+      ),
       options = options
     )
   )

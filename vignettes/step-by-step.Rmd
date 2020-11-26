@@ -19,14 +19,14 @@ This is the template to start with `{bs4Dash}`:
 library(shiny)
 library(bs4Dash)
 
- shinyApp(
+shinyApp(
   ui = dashboardPage(
-   title = "Basic Dashboard",
-   header = dashboardHeader(),
-   sidebar = dashboardSidebar(),
-   controlbar = dashboardControlbar(),
-   footer = dashboardFooter(),
-   body = dashboardBody()
+    title = "Basic Dashboard",
+    header = dashboardHeader(),
+    sidebar = dashboardSidebar(),
+    controlbar = dashboardControlbar(),
+    footer = dashboardFooter(),
+    body = dashboardBody()
   ),
   server = function(input, output) {}
 )
@@ -40,15 +40,17 @@ The `dashboardPage()` is the main wrapper:
 
 ```{r page, eval=FALSE}
 dashboardPage(
-    header,
-    sidebar,
-    body,
-    controlbar = NULL,
-    footer = NULL,
-    title = NULL,
-    freshTheme = NULL,
-    preloader = NULL,
-    options = NULL
+  header,
+  sidebar,
+  body,
+  controlbar = NULL,
+  footer = NULL,
+  title = NULL,
+  freshTheme = NULL,
+  preloader = NULL,
+  options = NULL,
+  fullscreen = FALSE,
+  help = FALSE
 )
 ```
 
@@ -68,6 +70,11 @@ preloader <- list(
 At the moment, __options__ are not available, but the idea is to provide deeper customization of the AdminLTE3 
 template like changing the sidebars and cards animation speed, ...
 
+ When __fullscreen__ is TRUE, an icon is displayed in the navbar to switch to full screen mode. 
+ __help__ automatically enable/disable all tooltips and popover that are present in the shiny app. 
+ This is an easier approach than using the server methods `addPopover()`, `addTooltip()`, ... but less 
+ specific.
+
 Now, it is time to fill this template!
 
 ## Sidebar Setup
@@ -76,18 +83,18 @@ Below we quickly describe the `dashboardSidebar()` function:
 
 ```{r sidebar, eval=FALSE}
 dashboardSidebar(
- disable = FALSE,
- width = NULL,
- skin = "dark",
- status = "primary",
- elevation = 4,
- collapsed = FALSE,
- minified = TRUE,
- expandOnHover = TRUE,
- fixed = TRUE,
- id = "sidebar",
- customArea = NULL,
- ...
+  disable = FALSE,
+  width = NULL,
+  skin = "dark",
+  status = "primary",
+  elevation = 4,
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = "sidebar",
+  customArea = NULL,
+  ...
 )
 ```
 
@@ -199,8 +206,6 @@ dashboardHeader(
   sidebarIcon = shiny::icon("bars"),
   controlbarIcon = shiny::icon("th"),
   fixed = FALSE,
-  fullscreen = FALSE,
-  help = FALSE
   leftUi = NULL,
   rightUi = NULL
 )
@@ -222,10 +227,7 @@ The title width can be controlled by __titleWidth__, like in `{shinydashboard}`.
 `dashboardHeader()` offers a lot of theming options with __skin__ and __status__, but also with __border__ and 
 __compact__. They respectively show a bottom border and smaller text. __sidebarIcon__ and __controlbarIcon__ control
 icons for sidebar and controlbar, respectively. The __fixed__ parameter is useful when one wants to see the
-navbar even at the bottom of the dashboard, without having to scroll up. When __fullscreen__ is TRUE, an icon is
-displayed in the navbar to switch to full screen mode. __help__ automatically enable/disable all tooltips and popover
-that are present in the shiny app. This is an easier approach than using the server methods `addPopover()`, 
-`addTooltip()`, ... but less specific.
+navbar even at the bottom of the dashboard, without having to scroll up.
 
 `leftUi`, `...` and `rightUi` are containers that can contains content from left to right. Ideally, we put
 `dropdownMenu()` as well as `taskItem()`, `messageItem()`, `notificationItem()`, `dashboardUser()`...
@@ -291,11 +293,11 @@ We will use `dashboardFooter()`:
 
 ```{r footer, eval=FALSE}
 dashboardFooter(
- left = a(
-   href = "https://twitter.com/divadnojnarg", 
-   target = "_blank", "@DivadNojnarg"
- ),
- right = "2020"
+  left = a(
+    href = "https://twitter.com/divadnojnarg",
+    target = "_blank", "@DivadNojnarg"
+  ),
+  right = "2020"
 )
 ```
 
@@ -307,51 +309,51 @@ Nothing special to add here!
 
 ```{r body, eval=FALSE}
 dashboardBody(
- tabItems(
-   tabItem(
-    tabName = "item1",
-    fluidRow(
-      lapply(1:3, FUN = function(i) {
-        sortable(
-          width = 4,
-          p(class = "text-center", paste("Column", i)),
-          lapply(1:2, FUN = function(j) {
-            box(
-              title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
-              width = 12,
-              "Click on my header"
-            )
-          })
+  tabItems(
+    tabItem(
+      tabName = "item1",
+      fluidRow(
+        lapply(1:3, FUN = function(i) {
+          sortable(
+            width = 4,
+            p(class = "text-center", paste("Column", i)),
+            lapply(1:2, FUN = function(j) {
+              box(
+                title = paste0("I am the ", j, "-th card of the ", i, "-th column"),
+                width = 12,
+                "Click on my header"
+              )
+            })
+          )
+        })
+      )
+    ),
+    tabItem(
+      tabName = "item2",
+      box(
+        title = "Card with messages",
+        width = 9,
+        userMessages(
+          width = 12,
+          status = "success",
+          userMessage(
+            author = "Alexander Pierce",
+            date = "20 Jan 2:00 pm",
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
+            type = "received",
+            "Is this template really for free? That's unbelievable!"
+          ),
+          userMessage(
+            author = "Dana Pierce",
+            date = "21 Jan 4:00 pm",
+            image = "https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg",
+            type = "sent",
+            "Indeed, that's unbelievable!"
+          )
         )
-      })
+      )
     )
-   ),
-   tabItem(
-     tabName = "item2",
-     box(
-       title = "Card with messages",
-       width = 9,
-       userMessages(
-         width = 12,
-         status = "success",
-         userMessage(
-           author = "Alexander Pierce",
-           date = "20 Jan 2:00 pm",
-           image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
-           type = "received",
-           "Is this template really for free? That's unbelievable!"
-         ),
-         userMessage(
-           author = "Dana Pierce",
-           date = "21 Jan 4:00 pm",
-           image = "https://adminlte.io/themes/AdminLTE/dist/img/user5-128x128.jpg",
-           type = "sent",
-           "Indeed, that's unbelievable!"
-         )
-       )
-     )
-   )
- )
+  )
 )
 ```
 
@@ -374,9 +376,10 @@ Below is the code for your first `{bs4Dash}` application:
 shinyApp(
   ui = dashboardPage(
     title = "Basic Dashboard",
+    fullscreen = TRUE,
     header = dashboardHeader(
       title = dashboardBrand(
-        title =  "bs4Dash",
+        title = "bs4Dash",
         color = "primary",
         href = "https://www.google.fr",
         image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
@@ -388,37 +391,37 @@ shinyApp(
       controlbarIcon = icon("th"),
       fixed = FALSE,
       leftUi = tagList(
-               dropdownMenu(
-                 badgeStatus = "info",
-                 type = "notifications",
-                 notificationItem(
-                   inputId = "triggerAction2",
-                   text = "Error!",
-                   status = "danger"
-                 )
-               ),
-               dropdownMenu(
-                 badgeStatus = "info",
-                 type = "tasks",
-                 taskItem(
-                   inputId = "triggerAction3",
-                   text = "My progress",
-                   color = "orange",
-                   value = 10
-                 )
-               )
-             ),
-      rightUi = dropdownMenu(
-          badgeStatus = "danger",
-          type = "messages",
-          messageItem(
-              inputId = "triggerAction1",
-              message = "message 1",
-              from = "Divad Nojnarg",
-              image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
-              time = "today",
-              color = "lime"
+        dropdownMenu(
+          badgeStatus = "info",
+          type = "notifications",
+          notificationItem(
+            inputId = "triggerAction2",
+            text = "Error!",
+            status = "danger"
           )
+        ),
+        dropdownMenu(
+          badgeStatus = "info",
+          type = "tasks",
+          taskItem(
+            inputId = "triggerAction3",
+            text = "My progress",
+            color = "orange",
+            value = 10
+          )
+        )
+      ),
+      rightUi = dropdownMenu(
+        badgeStatus = "danger",
+        type = "messages",
+        messageItem(
+          inputId = "triggerAction1",
+          message = "message 1",
+          from = "Divad Nojnarg",
+          image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
+          time = "today",
+          color = "lime"
+        )
       )
     ),
     sidebar = bs4DashSidebar(
@@ -426,7 +429,7 @@ shinyApp(
       status = "primary",
       elevation = 3,
       sidebarUserPanel(
-        image = "https://image.flaticon.com/icons/svg/1149/1149168.svg", 
+        image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
         name = "Welcome Onboard!"
       ),
       sidebarMenu(
@@ -449,38 +452,40 @@ shinyApp(
       collapsed = FALSE,
       overlay = FALSE,
       controlbarMenu(
-          id = "controlbarmenu",
-          controlbarItem(
-              title = "Item 1",
-              sliderInput(
-        inputId = "obs", 
-        label = "Number of observations:",
-        min = 0, 
-        max = 1000, 
-        value = 500
-      ),
-      column(
-        width = 12,
-        align = "center",
-        radioButtons(
-          inputId = "dist", 
-          label = "Distribution type:",
-          c("Normal" = "norm",
-            "Uniform" = "unif",
-            "Log-normal" = "lnorm",
-            "Exponential" = "exp")
-        )
-      )
+        id = "controlbarmenu",
+        controlbarItem(
+          title = "Item 1",
+          sliderInput(
+            inputId = "obs",
+            label = "Number of observations:",
+            min = 0,
+            max = 1000,
+            value = 500
           ),
-          controlbarItem(
-              "Item 2",
-              "Simple text"
+          column(
+            width = 12,
+            align = "center",
+            radioButtons(
+              inputId = "dist",
+              label = "Distribution type:",
+              c(
+                "Normal" = "norm",
+                "Uniform" = "unif",
+                "Log-normal" = "lnorm",
+                "Exponential" = "exp"
+              )
+            )
           )
+        ),
+        controlbarItem(
+          "Item 2",
+          "Simple text"
+        )
       )
     ),
     footer = dashboardFooter(
       left = a(
-        href = "https://twitter.com/divadnojnarg", 
+        href = "https://twitter.com/divadnojnarg",
         target = "_blank", "@DivadNojnarg"
       ),
       right = "2018"
@@ -496,7 +501,7 @@ shinyApp(
                 p(class = "text-center", paste("Column", i)),
                 lapply(1:2, FUN = function(j) {
                   box(
-                    title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+                    title = paste0("I am the ", j, "-th card of the ", i, "-th column"),
                     width = 12,
                     "Click on my header"
                   )

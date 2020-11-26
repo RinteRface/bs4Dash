@@ -14,7 +14,9 @@ bs4DashPage(
   title = NULL,
   freshTheme = NULL,
   preloader = NULL,
-  options = NULL
+  options = NULL,
+  fullscreen = FALSE,
+  help = FALSE
 )
 
 dashboardPage(
@@ -26,7 +28,9 @@ dashboardPage(
   title = NULL,
   freshTheme = NULL,
   preloader = NULL,
-  options = NULL
+  options = NULL,
+  fullscreen = FALSE,
+  help = FALSE
 )
 }
 \arguments{
@@ -50,73 +54,77 @@ Pass a nested list with 2 elements like \code{list(waiter = list(html = spin_1()
 \code{waiter} expects to provide a sub-list to configure \link[waiter]{waiter_show_on_load} (refer to
 the package help for all styles). \code{duration} defines the loader timeout.}
 
-\item{options}{Extra option to overwrite the vanilla AdminLTE configuration. See 
+\item{options}{Extra option to overwrite the vanilla AdminLTE configuration. See
 \url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
-Expect a list.
-\url{https://www.w3schools.com/cssref/css_colors.asp}.}
+Expect a list.}
+
+\item{fullscreen}{Whether to allow fullscreen feature in the navbar. Default to FALSE.}
+
+\item{help}{Whether to enable/disable popovers and tooltips. This allows to seamlessly use
+\link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
+if TRUE, a help icon is display in the navigation bar.}
 }
 \description{
 Build an adminLTE3 dashboard page
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(bs4Dash)
- library(fresh)
+if (interactive()) {
+  library(shiny)
+  library(bs4Dash)
+  library(fresh)
 
- shinyApp(
-   ui = dashboardPage(
-     freshTheme = create_theme(
-      bs4dash_vars(
-        navbar_light_color = "#bec5cb",
-        navbar_light_active_color = "#FFF",
-        navbar_light_hover_color = "#FFF"
+  shinyApp(
+    ui = dashboardPage(
+      freshTheme = create_theme(
+        bs4dash_vars(
+          navbar_light_color = "#bec5cb",
+          navbar_light_active_color = "#FFF",
+          navbar_light_hover_color = "#FFF"
+        ),
+        bs4dash_yiq(
+          contrasted_threshold = 10,
+          text_dark = "#FFF",
+          text_light = "#272c30"
+        ),
+        bs4dash_layout(
+          main_bg = "#353c42"
+        ),
+        bs4dash_sidebar_light(
+          bg = "#272c30",
+          color = "#bec5cb",
+          hover_color = "#FFF",
+          submenu_bg = "#272c30",
+          submenu_color = "#FFF",
+          submenu_hover_color = "#FFF"
+        ),
+        bs4dash_status(
+          primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
+        ),
+        bs4dash_color(
+          gray_900 = "#FFF", white = "#272c30"
+        )
       ),
-      bs4dash_yiq(
-        contrasted_threshold = 10,
-        text_dark = "#FFF", 
-        text_light = "#272c30"
+      options = NULL,
+      header = dashboardHeader(
+        title = dashboardBrand(
+          title = "My dashboard",
+          color = "primary",
+          href = "https://adminlte.io/themes/v3",
+          image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+        )
       ),
-      bs4dash_layout(
-        main_bg = "#353c42"
+      sidebar = dashboardSidebar(),
+      body = dashboardBody(
+        box(status = "danger"),
+        box(status = "primary"),
+        box(status = "orange")
       ),
-      bs4dash_sidebar_light(
-        bg = "#272c30", 
-        color = "#bec5cb",
-        hover_color = "#FFF",
-        submenu_bg = "#272c30", 
-        submenu_color = "#FFF", 
-        submenu_hover_color = "#FFF"
-      ),
-      bs4dash_status(
-        primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
-      ),
-      bs4dash_color(
-        gray_900 = "#FFF", white = "#272c30"
-      )
-     ),
-     options = NULL,
-     header = dashboardHeader(
-      title = dashboardBrand(
-       title = "My dashboard",
-       color = "primary",
-       href = "https://adminlte.io/themes/v3",
-       image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
-      )
-     ),
-     sidebar = dashboardSidebar(),
-     body = dashboardBody(
-      box(status = "danger"),
-      box(status = "primary"),
-      box(status = "orange")
-     ),
-     controlbar = dashboardControlbar(),
-     title = "DashboardPage"
-   ),
-   server = function(input, output) { }
- )
+      controlbar = dashboardControlbar(),
+      title = "DashboardPage"
+    ),
+    server = function(input, output) { }
+  )
 }
-
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

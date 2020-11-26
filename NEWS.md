@@ -152,12 +152,12 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 
 ## New features
 - New `gradient` parameter to `valuebox()`.
-- New help mode in `dashboardHeader()` to automatically toggle all tooltips and popovers. Use
+- New help mode in `dashboardPage()` to automatically toggle all tooltips and popovers. Use
 with `bs4TooltipUI()` and `bs4PopoverUI()`. 
 - New `useAutoColor()` leveraging new Shiny features and {thematic} to automatically
 style plots depending on the dashboard background color.
 - New bottom area for `dashboardSidebar()`.
-- Add fullscreen widget to `dashboardHeader()`.
+- Add fullscreen widget to `dashboardPage()`.
 - New `updateAccordion()`.
 - `actionButton()` is updated to provide Bootstrap 4 features.
 - New `appButton()`.
