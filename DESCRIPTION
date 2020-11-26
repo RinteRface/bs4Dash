@@ -9,7 +9,7 @@ Authors@R: c(
   person("Winston", "Chang", role = c("ctb", "cph"), comment = "Utils functions from shinydashboard"),
   person("Thomas", "Park", role = c("ctb", "cph"), comment = "Bootswatch Sketchy theme CSS"))
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Make 'Bootstrap 4' dashboards. Use the full power
+Description: Make 'Bootstrap 4' Shiny dashboards. Use the full power
     of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
     <https://github.com/ColorlibHQ/AdminLTE>.
 URL: https://rinterface.github.io/bs4Dash/index.html, https://github.com/RinteRface/bs4Dash
@@ -33,6 +33,10 @@ Suggests:
     golem,
     DT, 
     thematic
+Remotes: 
+    rstudio/htmltools,
+    rstudio/shiny,
+    rstudio/thematic
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000
@@ -58,7 +62,3 @@ Collate:
     'skinSelector.R'
     'utils.R'
 RdMacros: lifecycle
-Remotes: 
-    rstudio/htmltools,
-    rstudio/shiny,
-    rstudio/thematic
