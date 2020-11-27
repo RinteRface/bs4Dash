@@ -229,17 +229,24 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   cardToolTag <- NULL
 
-  if (collapsible || closable || maximizable || !is.null(dropdownMenu) ||
-    !is.null(label) || !is.null(sidebar)) {
-    btnToolClass <- "btn btn-tool"
-    btnToolClass <- if (
-      is.null(status) ||
-        !(is.null(status) && is.null(background))
-    ) {
-      paste0(
+  if (collapsible || closable || maximizable || !is.null(dropdownMenu) || !is.null(sidebar)) {
+    btnToolClass <- paste0("btn btn-tool btn-", boxToolSize)
+    if (is.null(status) && !is.null(background)){
+      btnToolClass <- paste0(
         btnToolClass,
-        if (!is.null(background)) paste0(" btn-", background),
-        " btn-", boxToolSize
+        if (background %in% validStatuses) {
+          paste0(" btn-", background)
+        }
+      )
+    }
+    
+    # status has always priority compared to background
+    if (!is.null(status) && solidHeader) {
+      btnToolClass <- paste0(
+        btnToolClass,
+        if (status %in% validStatuses) {
+          paste0(" btn-", status)
+        }
       )
     }
 
@@ -1407,10 +1414,6 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
 
   # recover box tools
   boxTools <- boxTag$children[[1]]$children[[1]]$children[[3]]
-  boxTools$children <- lapply(dropNulls(boxTools$children), function(tool) {
-    if (solidHeader && !is.null(status)) tool$attribs$class <- paste0(tool$attribs$class, " btn-", status)
-    tool
-  })
 
   # replace title tag by the user widget
   boxTag$children[[1]]$children[[1]] <- title[[1]]
