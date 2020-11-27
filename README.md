@@ -21,8 +21,6 @@
 
 <br>
 
-See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
-
 ## New users moving to bs4Dash v2.0.0
 
 Taking the simple `{shinydashboard}` example:
@@ -101,28 +99,46 @@ shinyApp(ui, server)
 
 - Apps built with `{bs4Dash}` version <= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.
 
+__Disclaimer__: as of now, `{bs4Dash}` 2.0.0 needs:
+
+```r
+remotes::install_github("rstudio/htmltools")
+remotes::install_github("rstudio/shiny")
+# optional for plot autocolor
+remotes::install_github("rstudio/thematic")
+```
+
+
 ## Installation
 
+### bs4Dash >= v2.0.0
+
+```r
+# latest devel version
+devtools::install_github("RinteRface/bs4Dash")
+```
+
+### bs4Dash <= v0.5.0
 This package is on CRAN:
 
 ```r
 # from CRAN
 install.packages("bs4Dash")
-# latest devel version
-devtools::install_github("RinteRface/bs4Dash")
 ```
 
 ## Demo
+### bs4Dash >= v2.0.0
+See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
+You may also run:
+
+```r
+library(bs4Dash)
+bs4DashGallery()
+```
 
 ### bs4Dash <= v0.5.0
 See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic/) and
 [here](https://rinterface.com/shiny/bs4Dash/old_school/) or run
-
-```r
-library(bs4Dash)
-# classic theme
-bs4DashGallery()
-```
 
 An applied example can be found [here](https://rinterface.com/shiny/showcase/ratp/) (the 
 original dashboard was made by [Philippine Rheins](https://twitter.com/PhilippineRs) 
