@@ -1218,38 +1218,36 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
 
 
   # Remove title and add it to tab list
-  if (!is.null(title)) {
-    titleTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
-    boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
-    titleNavTag <- shiny::tags$li(
-      class = "pt-2 px-3",
-      titleTag
-    )
-
-    boxToolTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
-    boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
-
-    if (side == "right") {
-      content$children[[1]] <- tagInsertChild(
-        content$children[[1]],
-        titleNavTag,
-        1
-      )
-    } else {
-      content$children[[1]] <- tagInsertChild(
-        content$children[[1]],
-        titleNavTag,
-        length(content$children[[1]])
-      )
-    }
-
-    # Insert box tools at the end of the list
+  titleTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
+  boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
+  titleNavTag <- shiny::tags$li(
+    class = "pt-2 px-3",
+    titleTag
+  )
+  
+  boxToolTag <- boxTag$children[[1]]$children[[1]]$children[[2]]
+  boxTag$children[[1]]$children[[1]]$children[[2]] <- NULL
+  
+  if (side == "right") {
     content$children[[1]] <- tagInsertChild(
       content$children[[1]],
-      shiny::tags$li(class = "ml-auto", boxToolTag),
+      titleNavTag,
+      1
+    )
+  } else {
+    content$children[[1]] <- tagInsertChild(
+      content$children[[1]],
+      titleNavTag,
       length(content$children[[1]])
     )
   }
+  
+  # Insert box tools at the end of the list
+  content$children[[1]] <- tagInsertChild(
+    content$children[[1]],
+    shiny::tags$li(class = "ml-auto", boxToolTag),
+    length(content$children[[1]])
+  )
 
   # Insert tabs at different position in the header tag
   if (side == "right") {
