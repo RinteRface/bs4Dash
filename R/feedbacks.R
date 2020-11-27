@@ -134,7 +134,7 @@ addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::get
 
   message <- dropNulls(
     list(
-      id = session$ns(id),
+      id = if (!is.null(id)) session$ns(id),
       selector = selector,
       options = options
     )
@@ -303,7 +303,7 @@ addPopover <- function(id = NULL, selector = NULL, options, session = shiny::get
 
   message <- dropNulls(
     list(
-      id = session$ns(id),
+      id = if (!is.null(id)) session$ns(id),
       selector = selector,
       options = options
     )
@@ -488,7 +488,7 @@ createAlert <- function(id = NULL, selector = NULL, options, session = shiny::ge
 
   message <- dropNulls(
     list(
-      id = session$ns(id),
+      id = if (!is.null(id)) session$ns(id),
       selector = selector,
       options = options
     )
