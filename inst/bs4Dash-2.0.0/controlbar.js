@@ -116,6 +116,7 @@ $(function() {
   
     subscribe: function(el, callback) {
       $("#controlbar-toggle").on("collapsed.lte.controlsidebar expanded.lte.controlsidebar", function(e) {
+        $('.control-sidebar').trigger('shown');
         // add a delay so that Shiny get the input value 
         // after the AdminLTE3 animation is finished!
         setTimeout(
