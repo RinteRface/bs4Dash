@@ -207,8 +207,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
 
   if (!is.null(sidebar)) {
-    sidebarToggle <- sidebar[[2]]
-    startOpen <- sidebar[[2]]$attribs$`data-start-open`
+    sidebarToggle <- sidebar[[1]]
+    startOpen <- sidebar[[1]]$attribs$`data-start-open`
     if (startOpen == "true") {
       cardCl <- paste0(cardCl, " direct-chat direct-chat-contacts-open")
     } else {
@@ -223,7 +223,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   }
   # add padding if box sidebar
   if (!is.null(sidebar)) {
-    style <- paste(style, "; padding: 10px;")
+    style <- paste0(style, "; padding: 10px;")
   }
 
 
@@ -249,7 +249,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   # Modify sidebar trigger class if background ...
   if (!is.null(sidebar)) {
     if (is.null(status) && !is.null(background)) {
-      sidebar[[2]]$attribs$class <- paste0(
+      sidebar[[1]]$attribs$class <- paste0(
         "btn",
         if (!is.null(background)) {
           paste0(" bg-", background)
@@ -281,7 +281,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     label,
     dropdownMenu,
     createBoxTools(collapsible, collapsed, closable, maximizable, btnToolClass),
-    sidebar[[2]]
+    sidebar[[1]]
   )
 
 
@@ -302,7 +302,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     class = "card-body",
     style = style,
     ...,
-    sidebar[c(1, 3)]
+    sidebar[[2]]
   )
 
   footerTag <- if (!is.null(footer)) {
@@ -361,7 +361,9 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #'
 #' @param ... Sidebar content.
 #' @param id Unique sidebar id. Useful if you want to use \link{updateBoxSidebar}.
-#' @param width Sidebar width in percentage. 25\% by default. A character value of any width CSS understands (e.g. "100px").
+#' @param width Sidebar opening width in percentage. 50\% by default, 
+#' means the card sidebar will take 50% of the card width, when opened. 
+#' A numeric value between 25 and 100.
 #' @param background Sidebar background color. Dark by default.
 #' @param startOpen Whether the sidebar is open at start. FALSE by default.
 #' @param icon Sidebar icon. Expect \code{\link[shiny]{icon}}.
@@ -370,13 +372,17 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @rdname cardSidebar
 #' @family boxWidgets
 #' @export
-bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40",
+bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
                            startOpen = FALSE, icon = shiny::icon("cogs")) {
 
+  stopifnot(width > 25 && width <= 100)
+  
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
     class = "btn btn-tool",
     id = id,
+    `data-background`= background, 
+    `data-width` = width,
     `data-widget` = "chat-pane-toggle",
     `data-toggle` = "tooltip",
     `data-original-title` = "More",
@@ -387,52 +393,17 @@ bs4CardSidebar <- function(..., id = NULL, width = "25%", background = "#333a40"
 
   # sidebar content
   contentTag <- shiny::tags$div(
-    style = "z-index: 1;",
+    style = "z-index: 1; height: inherit;",
     class = "direct-chat-contacts",
     shiny::tags$ul(
       class = "contacts-list",
       shiny::tags$li(
-        style = paste0("width: ", width, ";"),
         ...
       )
     )
   )
 
-  # custom CSS
-  translation_rate <- paste0("calc(100% - ", width, ")")
-  sidebarCSS <- shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$style(
-        shiny::HTML(
-          paste0(
-            ".direct-chat-contacts {
-                -webkit-transform: translate(100%, 0);
-                -ms-transform: translate(100%, 0);
-                -o-transform: translate(100%, 0);
-                transform: translate(100%, 0);
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                height: 100%;
-                width: 100%;
-                background: ", background, ";
-                color: #fff;
-                overflow: auto;
-              }
-              .direct-chat-contacts-open .direct-chat-contacts {
-                -webkit-transform: translate(", translation_rate, ", 0);
-                -ms-transform: translate(", translation_rate, ", 0);
-                -o-transform: translate(", translation_rate, ", 0);
-                transform: translate(", translation_rate, ", 0);
-              }
-              "
-          )
-        )
-      )
-    )
-  )
-
-  shiny::tagList(sidebarCSS, toolbarTag, contentTag)
+  shiny::tagList(toolbarTag, contentTag)
 }
 
 

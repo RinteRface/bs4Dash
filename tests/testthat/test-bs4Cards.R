@@ -165,7 +165,7 @@ test_that("elevation", {
 test_that("headerBorder", {
   cardTag <- bs4Card(headerBorder = FALSE)
   cardHeaderCl <- getCardHeaderCl(cardTag)
-  expect_match(cardHeaderCl, "card-header no-border")
+  expect_match(cardHeaderCl, "card-header border-0")
 })
 
 # test_that("overflow without height", {

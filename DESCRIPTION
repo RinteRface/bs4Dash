@@ -24,15 +24,14 @@ Imports:
     httpuv (>= 1.5.2),
     lifecycle
 Suggests: 
-    plotly,
-    shinyWidgets,
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
     covr,
     golem,
     DT, 
-    thematic
+    thematic,
+    echarts4r
 Remotes: 
     rstudio/htmltools,
     rstudio/shiny,
