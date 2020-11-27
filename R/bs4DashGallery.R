@@ -2,8 +2,6 @@
 #'
 #' @description A gallery of all components available in bs4Dash.
 #' 
-#' @param theme bs4Dash theme. Either "classic" or "old_school". "classic" by default.
-#'
 #' @export
 #'
 #' @examples
@@ -13,15 +11,17 @@
 #'  bs4DashGallery()
 #'
 #' }
-bs4DashGallery <- function(theme = "classic") { # nocov start
-  if (!requireNamespace(package = "shinyWidgets"))
-    message("Package 'shinyWidgets' is required to run this function")
-  if (!requireNamespace(package = "plotly"))
-    message("Package 'plotly' is required to run this function")
+bs4DashGallery <- function() { # nocov start
+  if (!requireNamespace(package = "echarts4r"))
+    message("Package 'echarts4r' is required to run this function")
+  if (!requireNamespace(package = "thematic"))
+    message("Package 'thematic' is required to run this function")
+  if (!requireNamespace(package = "waiter"))
+    message("Package 'waiter' is required to run this function")
   
-  shiny::shinyAppFile(
+  shiny::shinyAppDir(
     system.file(
-      paste0("examples/showcase/", theme, "/app.R"), 
+      "examples/showcase", 
       package = 'bs4Dash', 
       mustWork = TRUE
     )
