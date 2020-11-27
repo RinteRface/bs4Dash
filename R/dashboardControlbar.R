@@ -6,7 +6,8 @@
 #' @param id To access the current state of the controlbar. Open is TRUE, closed
 #' is FALSE. NULL by default.
 #' @param disable If \code{TRUE}, the sidebar will be disabled.
-#' @param width Controlbar width. 250 px by default.
+#' @param width Controlbar width. This must either be a number which specifies the width 
+#' in pixels, or a string that specifies the width in CSS units. 250 px by default.
 #' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.
 #' @param overlay Whether the sidebar covers the content when expanded. Default to TRUE.
 #' @param skin Controlbar skin. "dark" or "light".
@@ -53,8 +54,8 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
           shiny::HTML(
             paste0(
               ".control-sidebar, .control-sidebar:before {
-                width: ", width, "px;
-                right: ", -width, "px;
+                width: ", shiny::validateCssUnit(width), ";
+                right: -", shiny::validateCssUnit(width), ";
                 bottom: 0;
                 transition: right 0.3s ease-in-out;
               }
@@ -62,7 +63,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
               .control-sidebar-slide-open.control-sidebar-push .main-footer, 
               .control-sidebar-slide-open.control-sidebar-push-slide .content-wrapper, 
               .control-sidebar-slide-open.control-sidebar-push-slide .main-footer {
-                margin-right: ", width, "px;
+                margin-right: ", shiny::validateCssUnit(width), ";
               }
 
               @media (min-width: 768px)
@@ -70,7 +71,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
                 body:not(.sidebar-mini-md) .main-footer, 
                 body:not(.sidebar-mini-md) .main-header {
                   transition: margin-left .3s ease-in-out;
-                  margin-left: ", width, "px;
+                  margin-left: ", shiny::validateCssUnit(width), ";
                 }
               "
             )
