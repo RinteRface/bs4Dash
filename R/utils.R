@@ -334,6 +334,35 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnCla
   }
 
 
+# extract social item in socialBox
+extractSocialItem <- function(items, isComment = TRUE) {
+
+  if (length(items) > 0) {
+    dropNulls(lapply(items, function(item) {
+      if (inherits(item, "list")) {
+        lapply(item, function(nested) {
+          cond <- if (isComment) {
+            inherits(nested, "card-comment")
+          } else {
+            !inherits(nested, "card-comment")
+          }
+          if (cond) nested
+        })
+      } else {
+        cond <- if (isComment) {
+          inherits(item, "card-comment")
+        } else {
+          !inherits(item, "card-comment")
+        }
+        if (cond) item
+      }
+    }))
+  } else {
+    NULL
+  }
+}
+
+
 
 
 

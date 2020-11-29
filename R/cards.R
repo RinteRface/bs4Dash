@@ -1689,33 +1689,8 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
   items <- list(...)
   # recover comments
 
-  comments <- if (length(items) > 0) {
-    dropNulls(lapply(items, function(item) {
-      if (inherits(item, "list")) {
-        lapply(item, function(nested) {
-          if (inherits(nested, "card-comment")) nested
-        })
-      } else {
-        if (inherits(item, "card-comment")) item
-      }
-    })) [[1]]
-  } else {
-    NULL
-  }
-
-  otherItems <- if (length(items) > 0) {
-    dropNulls(lapply(items, function(item) {
-      if (inherits(item, "list")) {
-        lapply(item, function(nested) {
-          if (!inherits(nested, "card-comment")) nested
-        })
-      } else {
-        if (!inherits(item, "card-comment")) item
-      }
-    }))
-  } else {
-    NULL
-  }
+  comments <- extractSocialItem(items)
+  otherItems <- extractSocialItem(items, FALSE)
 
   # userBox is built on top of the box function. The difference is the title tag
   # that is replaced by userDescription ...
