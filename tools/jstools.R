@@ -10,11 +10,16 @@ bs4DashJS <- list.files(
   full.names = TRUE
 )
 
-jshint_file(input = bs4DashJS, options = jshint_options(jquery = TRUE, globals = list("Shiny", "app")))
+#jshint_file(input = bs4DashJS, options = jshint_options(jquery = TRUE, globals = list("Shiny", "app")))
 
+outputDir <- "inst/bs4Dash-2.0.0"
+
+# Concat -----------------------------------------------------------------
+
+# This just aggregates all srcjs files into one big .js file. There is no minifications, ... See next step for terser
+system(sprintf("cat %s > %s/bs4Dash.js", paste(bs4DashJS, collapse = " "), outputDir))
 
 # Concat + Compress + source maps ----------------------------------------------------------------
-
 
 # modified to register source maps
 terser_file <- function (input, options = terser_options(), output = NULL) {
@@ -45,11 +50,13 @@ terser_file <- function (input, options = terser_options(), output = NULL) {
 
 terser_file(
   input = bs4DashJS, 
-  output = "inst/bs4Dash-2.0.0/bs4Dash.min.js", 
+  output = sprintf("%s/bs4Dash.min.js", outputDir), 
   options = terser_options(
     sourceMap = list(
-      filename = "inst/bs4Dash-2.0.0/bs4Dash.min.js",
-      url = "bs4Dash.min.js.map"
+      root = "../../bs4Dash-build",
+      filename = "bs4Dash.min.js",
+      url = "bs4Dash.min.js.map",
+      includeSources = TRUE
     )
   )
 )

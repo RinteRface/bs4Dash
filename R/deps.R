@@ -71,7 +71,7 @@ add_bs4Dash_deps <- function(tag, options) {
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
       src = c(file = "bs4Dash-2.0.0"),
-      script = "bs4Dash.min.js",
+      script = if (getOption("shiny.minified", TRUE)) "bs4Dash.min.js" else "bs4Dash.js" ,
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
     ),

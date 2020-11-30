@@ -349,7 +349,7 @@ $.extend(cardSidebarBinding, {
       var openTranslationRate = closeTranslationRate - 100;
       // set a delay so that Shiny get the input value when the collapse animation
       // is finished. 
-      var target = e.currentTarget
+      var target = e.currentTarget;
       setTimeout(
         function (e = target) {
           // apply correct translation rate depending on current state
