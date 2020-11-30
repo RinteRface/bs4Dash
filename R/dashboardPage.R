@@ -81,7 +81,7 @@
 #'   )
 #' }
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname dashboardPage
 #'
 #' @export
@@ -89,25 +89,36 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
                         freshTheme = NULL, preloader = NULL, options = NULL,
                         fullscreen = FALSE, help = FALSE) {
   titleTag <- header[[2]]
-  # look for custom area and move it to third slot
-  if (length(sidebar$children) > 1) {
-    sidebar$children[[3]] <- sidebar$children[[2]]
-  }
-  # sidebar stuff are moved to second child
-  sidebar$children[[2]] <- sidebar$children[[1]]
 
-  # header content (brand logo) is moved to sidebar first child
-  sidebar$children[[1]] <- if (!is.null(titleTag)) {
-    if (inherits(titleTag, "shiny.tag")) {
-      titleTag
-    } else {
-      shiny::div(class = "brand-link", titleTag)
+  sidebarDisabled <- sidebar$attribs$`data-disable`
+
+  # layout changes if main sidebar is disabled
+  if (!sidebarDisabled) {
+    tagAssert(sidebar, type = "aside", class = "main-sidebar")
+    # look for custom area and move it to third slot
+    if (length(sidebar$children) > 1) {
+      sidebar$children[[3]] <- sidebar$children[[2]]
     }
+    # sidebar stuff are moved to second child
+    sidebar$children[[2]] <- sidebar$children[[1]]
+
+    # header content (brand logo) is moved to sidebar first child
+    sidebar$children[[1]] <- if (!is.null(titleTag)) {
+      if (inherits(titleTag, "shiny.tag")) {
+        titleTag
+      } else {
+        shiny::div(class = "brand-link", titleTag)
+      }
+    }
+  } else {
+    header[[1]] <- tagInsertChild(header[[1]], header[[2]], 1)
+    # remove navbar padding to better fit the brand logo
+    header[[1]]$attribs$style <- "padding: 0rem 0rem;"
   }
+
 
   # some checks
   tagAssert(header[[1]], type = "nav", class = "main-header")
-  tagAssert(sidebar, type = "aside", class = "main-sidebar")
   tagAssert(body, type = "div", class = "content-wrapper")
   if (!is.null(controlbar)) {
     tagAssert(controlbar[[2]], type = "aside", class = "control-sidebar")
@@ -120,7 +131,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   bodyContent <- shiny::tags$div(
     class = "wrapper",
     header[[1]],
-    sidebar,
+    if (!sidebarDisabled) sidebar,
     # page content
     body,
     controlbar,
@@ -147,6 +158,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
       shiny::tags$body(
         `data-help` = if (help) 1 else 0,
         `data-fullscreen` = if (fullscreen) 1 else 0,
+        class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
           shiny::tagList(
             waiter::use_waiter(), # dependencies

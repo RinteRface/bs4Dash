@@ -75,6 +75,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     `data-fixed` = tolower(fixed),
     `data-minified` = if (minified) "true" else "false",
     `data-collapsed` = dataValueString,
+    `data-disable` = if (disable) TRUE else FALSE,
     class = paste0(
       "main-sidebar sidebar-", skin, "-",
       status, " elevation-", elevation,
@@ -94,16 +95,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     )
   }
 
-  customCSS <- shiny::singleton(
-    shiny::tags$style(
-      ".content-wrapper, .main-footer, .main-header {
-          margin-left: 0px;
-       }
-      "
-    )
-  )
-
-  if (disable) shiny::tagList(customCSS, sidebarTag) else sidebarTag
+  sidebarTag
 }
 
 
