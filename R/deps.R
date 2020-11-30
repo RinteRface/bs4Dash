@@ -4,7 +4,6 @@ add_bs4Dash_deps <- function(tag, options) {
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
   adminLTE3_css <- "adminlte.min.css"
-  bs4Dash_js <- "bs4Dash.js"
   bs4Dash_css <- "bs4Dash.css"
   jquery_ui_js <- "jquery-ui.min.js"
   bootstrap_js <- "bootstrap.bundle.min.js"
@@ -72,17 +71,7 @@ add_bs4Dash_deps <- function(tag, options) {
       name = "bs4Dash",
       version = as.character(utils::packageVersion("bs4Dash")),
       src = c(file = "bs4Dash-2.0.0"),
-      script = c(
-        bs4Dash_js, 
-        "leftSidebar.js", 
-        "navbar.js",
-        "controlbar.js",
-        "cards.js",
-        "feedbacks.js",
-        "userMessages.js",
-        "output-bindings.js",
-        "accordions-binding.js"
-      ),
+      script = "bs4Dash.min.js",
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
     ),

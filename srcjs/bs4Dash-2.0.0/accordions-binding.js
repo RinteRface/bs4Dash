@@ -1,10 +1,3 @@
-//---------------------------------------------------------------------
-// Source file: ../srcjs/input_binding_accordions.js
-
-/* global Shiny */
-
-// accordion
-// ------------------------------------------------------------------
 // This code creates an input binding for the accordion component
 var accordionBinding = new Shiny.InputBinding();
 
