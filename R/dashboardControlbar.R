@@ -15,7 +15,7 @@
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #'
 #' @export
 bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
@@ -87,7 +87,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
 
 
 #' @inheritParams tabsetPanel
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #' @export
 controlbarMenu <- tabsetPanel
 
@@ -95,7 +95,7 @@ controlbarMenu <- tabsetPanel
 
 
 #' @inheritParams shiny::tabPanel
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #' @export
 controlbarItem <- shiny::tabPanel
 
@@ -103,7 +103,7 @@ controlbarItem <- shiny::tabPanel
 
 
 #' @inheritParams shiny::updateTabsetPanel
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #' @export
 updateControlbarMenu <- shiny::updateTabsetPanel
 
@@ -116,7 +116,7 @@ updateControlbarMenu <- shiny::updateTabsetPanel
 #' @param session Shiny session object.
 #' @export
 #'
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #'
 #' @examples
 #' if (interactive()) {

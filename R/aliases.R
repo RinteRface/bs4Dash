@@ -15,7 +15,7 @@ NULL
 #' Alias to \link{bs4DashboardPage}
 #' See \link{bs4DashboardPage} for full details
 #'
-#' @rdname bs4DashPage
+#' @rdname dashboardPage
 #' @export
 dashboardPage <- bs4DashPage
 
@@ -25,7 +25,7 @@ dashboardPage <- bs4DashPage
 #' Alias to \link{bs4DashNavbar}
 #' See \link{bs4DashNavbar} for full details
 #'
-#' @rdname bs4DashNavbar
+#' @rdname dashboardHeader
 #'
 #' @export
 dashboardHeader <- bs4DashNavbar
@@ -36,7 +36,7 @@ dashboardHeader <- bs4DashNavbar
 #' Alias to \link{bs4DashBrand}
 #' See \link{bs4DashBrand} for full details
 #'
-#' @rdname bs4DashBrand
+#' @rdname dashboardBrand
 #'
 #' @export
 dashboardBrand <- bs4DashBrand
@@ -46,7 +46,7 @@ dashboardBrand <- bs4DashBrand
 #' Alias to \link{bs4UserMenu}
 #' See \link{bs4UserMenu} for full details
 #'
-#' @rdname bs4UserMenu
+#' @rdname dashboardUser
 #'
 #' @export
 dashboardUser <- bs4UserMenu
@@ -57,7 +57,7 @@ dashboardUser <- bs4UserMenu
 #' Alias to \link{bs4DropdownMenu}
 #' See \link{bs4DropdownMenu} for full details
 #'
-#' @rdname bs4DropdownMenu
+#' @rdname dropdownMenu
 #'
 #' @export
 dropdownMenu <- bs4DropdownMenu
@@ -69,7 +69,7 @@ dropdownMenu <- bs4DropdownMenu
 #' Alias to \link{bs4DashControlbar}
 #' See \link{bs4DashControlbar} for full details
 #'
-#' @rdname controlbar
+#' @rdname dashboardControlbar
 #'
 #' @export
 dashboardControlbar <- bs4DashControlbar
@@ -82,7 +82,7 @@ dashboardControlbar <- bs4DashControlbar
 #' Alias to \link{bs4DashFooter}
 #' See \link{bs4DashFooter} for full details
 #'
-#' @rdname bs4DashFooter
+#' @rdname dashboardFooter
 #'
 #' @export
 dashboardFooter <- bs4DashFooter
@@ -94,7 +94,7 @@ dashboardFooter <- bs4DashFooter
 #' Alias to \link{bs4DashSidebar}
 #' See \link{bs4DashSidebar} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 dashboardSidebar <- bs4DashSidebar
@@ -106,7 +106,7 @@ dashboardSidebar <- bs4DashSidebar
 #' Alias to \link{updatebs4Sidebar}
 #' See \link{updatebs4Sidebar} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 updateSidebar <- updatebs4Sidebar
@@ -117,7 +117,7 @@ updateSidebar <- updatebs4Sidebar
 #' Alias to \link{bs4SidebarHeader}
 #' See \link{bs4SidebarHeader} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 sidebarHeader <- bs4SidebarHeader
@@ -129,7 +129,7 @@ sidebarHeader <- bs4SidebarHeader
 #' Alias to \link{bs4SidebarMenu}
 #' See \link{bs4SidebarMenu} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 sidebarMenu <- bs4SidebarMenu
@@ -141,7 +141,7 @@ sidebarMenu <- bs4SidebarMenu
 #' Alias to \link{bs4SidebarUserPanel}
 #' See \link{bs4SidebarUserPanel} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 sidebarUserPanel <- bs4SidebarUserPanel
@@ -153,7 +153,7 @@ sidebarUserPanel <- bs4SidebarUserPanel
 #' Alias to \link{bs4SidebarMenuItem}
 #' See \link{bs4SidebarMenuItem} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 menuItem <- bs4SidebarMenuItem
@@ -165,7 +165,7 @@ menuItem <- bs4SidebarMenuItem
 #' Alias to \link{bs4SidebarMenuSubItem}
 #' See \link{bs4SidebarMenuSubItem} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 menuSubItem <- bs4SidebarMenuSubItem
@@ -177,7 +177,7 @@ menuSubItem <- bs4SidebarMenuSubItem
 #' Alias to \link{bs4DashBody}
 #' See \link{bs4DashBody} for full details
 #'
-#' @rdname body
+#' @rdname dashboardBody
 #'
 #' @export
 dashboardBody <- bs4DashBody
@@ -187,7 +187,7 @@ dashboardBody <- bs4DashBody
 #' Alias to \link{bs4TabItems}
 #' See \link{bs4TabItems} for full details
 #'
-#' @rdname body
+#' @rdname dashboardBody
 #'
 #' @export
 tabItems <- bs4TabItems
@@ -198,7 +198,7 @@ tabItems <- bs4TabItems
 #' Alias to \link{bs4TabItem}
 #' See \link{bs4TabItem} for full details
 #'
-#' @rdname body
+#' @rdname dashboardBody
 #'
 #' @export
 tabItem <- bs4TabItem
@@ -211,7 +211,7 @@ tabItem <- bs4TabItem
 #' Alias to \link{bs4Card}
 #' See \link{bs4Card} for full details
 #'
-#' @rdname card
+#' @rdname box
 #'
 #' @export
 box <- bs4Card
@@ -222,7 +222,7 @@ box <- bs4Card
 #' Alias to \link{bs4UserCard}
 #' See \link{bs4UserCard} for full details
 #'
-#' @rdname bs4UserCard
+#' @rdname userBox
 #'
 #' @export
 userBox <- bs4UserCard
@@ -232,7 +232,7 @@ userBox <- bs4UserCard
 #' Alias to \link{bs4UserDescription}
 #' See \link{bs4UserDescription} for full details
 #'
-#' @rdname bs4UserCard
+#' @rdname userBox
 #'
 #' @export
 userDescription <- bs4UserDescription
@@ -243,7 +243,7 @@ userDescription <- bs4UserDescription
 #' Alias to \link{bs4TabCard}
 #' See \link{bs4TabCard} for full details
 #'
-#' @rdname bs4TabCard
+#' @rdname tabBox
 #'
 #' @export
 tabBox <- bs4TabCard
@@ -255,7 +255,7 @@ tabBox <- bs4TabCard
 #' Alias to \link{bs4InfoBox}
 #' See \link{bs4InfoBox} for full details
 #'
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #'
 #' @export
 infoBox <- bs4InfoBox
@@ -268,7 +268,7 @@ infoBox <- bs4InfoBox
 #' See \link{bs4InfoBoxOutput} for full details
 #'
 #' @inheritParams bs4InfoBoxOutput
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #'
 #' @export
 infoBoxOutput <- bs4InfoBoxOutput
@@ -281,7 +281,7 @@ infoBoxOutput <- bs4InfoBoxOutput
 #' See \link{renderbs4InfoBox} for full details
 #'
 #' @inheritParams renderbs4InfoBox
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #'
 #' @export
 renderInfoBox <- renderbs4InfoBox
@@ -293,7 +293,7 @@ renderInfoBox <- renderbs4InfoBox
 #' Alias to \link{bs4ValueBox}
 #' See \link{bs4ValueBox} for full details
 #'
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 #'
 #' @export
 valueBox <- bs4ValueBox
@@ -305,7 +305,7 @@ valueBox <- bs4ValueBox
 #' Alias to \link{bs4ValueBoxOutput}
 #' See \link{bs4ValueBoxOutput} for full details
 #'
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 #'
 #' @export
 valueBoxOutput <- bs4ValueBoxOutput
@@ -317,7 +317,7 @@ valueBoxOutput <- bs4ValueBoxOutput
 #' Alias to \link{renderbs4ValueBox}
 #' See \link{renderbs4ValueBox} for full details
 #'
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 #'
 #' @export
 renderValueBox <- renderbs4ValueBox
@@ -329,7 +329,7 @@ renderValueBox <- renderbs4ValueBox
 #' Alias to \link{updatebs4TabItems}
 #' See \link{updatebs4TabItems} for full details
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 updateTabItems <- updatebs4TabItems
@@ -340,7 +340,7 @@ updateTabItems <- updatebs4TabItems
 #' Alias to \link{bs4CardSidebar}
 #' See \link{bs4CardSidebar} for full details
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #'
 #' @export
 cardSidebar <- bs4CardSidebar
@@ -351,7 +351,7 @@ cardSidebar <- bs4CardSidebar
 #' Alias to \link{bs4CardSidebar}
 #' See \link{bs4CardSidebar} for full details
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #'
 #' @export
 boxSidebar <- bs4CardSidebar
@@ -363,7 +363,7 @@ boxSidebar <- bs4CardSidebar
 #' Alias to \link{updatebs4CardSidebar}
 #' See \link{updatebs4CardSidebar} for full details
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #'
 #' @export
 updateCardSidebar <- updatebs4CardSidebar
@@ -374,7 +374,7 @@ updateCardSidebar <- updatebs4CardSidebar
 #' Alias to \link{updatebs4CardSidebar}
 #' See \link{updatebs4CardSidebar} for full details
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #'
 #' @export
 updateBoxSidebar <- updatebs4CardSidebar
@@ -385,7 +385,7 @@ updateBoxSidebar <- updatebs4CardSidebar
 #' Alias to \link{updatebs4Card}
 #' See \link{updatebs4Card} for full details
 #'
-#' @rdname card
+#' @rdname box
 #'
 #' @export
 updateCard <- updatebs4Card
@@ -396,7 +396,7 @@ updateCard <- updatebs4Card
 #' Alias to \link{updatebs4Card}
 #' See \link{updatebs4Card} for full details
 #'
-#' @rdname card
+#' @rdname box
 #'
 #' @export
 updateBox <- updatebs4Card
@@ -407,7 +407,7 @@ updateBox <- updatebs4Card
 #' Alias to \link{cardDropdown}
 #' See \link{cardDropdown} for full details
 #'
-#' @rdname cardDropdown
+#' @rdname boxDropdown
 #'
 #' @export
 boxDropdown <- cardDropdown
@@ -418,7 +418,7 @@ boxDropdown <- cardDropdown
 #' Alias to \link{cardDropdownItem}
 #' See \link{cardDropdownItem} for full details
 #'
-#' @rdname cardDropdown
+#' @rdname boxDropdown
 #'
 #' @export
 boxDropdownItem <- cardDropdownItem
@@ -429,7 +429,7 @@ boxDropdownItem <- cardDropdownItem
 #' Alias to \link{bs4CardLabel}
 #' See \link{bs4CardLabel} for full details
 #'
-#' @rdname bs4CardLabel
+#' @rdname boxLabel
 #'
 #' @export
 cardLabel <- bs4CardLabel
@@ -440,7 +440,7 @@ cardLabel <- bs4CardLabel
 #' Alias to \link{bs4CardLabel}
 #' See \link{bs4CardLabel} for full details
 #'
-#' @rdname bs4CardLabel
+#' @rdname boxLabel
 #'
 #' @export
 boxLabel <- bs4CardLabel
@@ -449,7 +449,7 @@ boxLabel <- bs4CardLabel
 #' Alias to \link{cardProfile}
 #' See \link{cardProfile} for full details
 #'
-#' @rdname cardProfile
+#' @rdname boxProfile
 #'
 #' @export
 boxProfile <- cardProfile
@@ -460,7 +460,7 @@ boxProfile <- cardProfile
 #' Alias to \link{cardProfileItem}
 #' See \link{cardProfileItem} for full details
 #'
-#' @rdname cardProfile
+#' @rdname boxProfile
 #'
 #' @export
 boxProfileItem <- cardProfileItem
@@ -490,7 +490,7 @@ boxComment <- cardComment
 #' Alias to \link{cardPad}
 #' See \link{cardPad} for full details
 #'
-#' @rdname card
+#' @rdname box
 #'
 #' @export
 boxPad <- cardPad

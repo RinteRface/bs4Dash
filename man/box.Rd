@@ -131,7 +131,7 @@ boxPad(..., color = NULL, style = NULL)
 separate two blocks. The last block on the right should not have a right border.}
 
 \item{marginBottom}{FALSE by default. Set it to TRUE when the
-descriptionBlock is used in a \link{cardPad} context.}
+descriptionBlock is used in a \link{boxPad} context.}
 
 \item{...}{Contents of the box.}
 

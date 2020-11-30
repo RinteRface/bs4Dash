@@ -2,6 +2,8 @@
 #'
 #' \link{dashboardHeader} creates an adminLTE3 dashboard navbar to be included in
 #' \link{dashboardPage}.
+#' 
+#' @rdname dashboardHeader
 #'
 #' @param ... Any UI element between left and right Ui.
 #' @param title Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
@@ -172,6 +174,8 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #' @param href External link to point to.
 #' @param image External image location.
 #' @param opacity Brand opacity: value between 0 and 1.
+#' 
+#' @rdname dashboardBrand
 #'
 #' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
 #' @export
@@ -289,6 +293,8 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #'   )
 #' }
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname dropdownMenu
 #'
 #' @export
 bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
@@ -394,7 +400,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #' If not NULL, Indicate the message priority.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname dropdownMenu
 #'
 #' @export
 messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
@@ -486,6 +492,8 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' }
 #' @param href An optional URL to link to.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
+#' 
+#' @rdname dropdownMenu
 #'
 #' @export
 notificationItem <- function(text, icon = shiny::icon("warning"),
@@ -557,6 +565,9 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
 #'
 #' @family menu items
 #' @seealso \code{\link{dashboardHeader}} for example usage.
+#' 
+#' @rdname dropdownMenu
+#' 
 #' @export
 taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
   validateStatusPlus(color)
@@ -600,6 +611,8 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #'
 #' \link{dashboardUser} to insert in the rightUi or leftUi slot of
 #' \link{dashboardHeader}.
+#' 
+#' @rdname dashboardUser
 #'
 #' @param ... Body content. Slot for \link{dashboardUserItem}.
 #' @param name User name.
@@ -737,6 +750,8 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
 #'
 #' @param item HTML Tag.
 #' @param width Item width between 1 and 12.
+#' 
+#' @rdname dashboardUser
 #'
 #' @export
 dashboardUserItem <- function(item, width) {
@@ -759,6 +774,7 @@ dashboardUserItem <- function(item, width) {
 #' @seealso \code{\link{renderUser}} for the corresponding server side function
 #'   and examples.
 #' @family user outputs
+#' @rdname dashboardUser
 #' @export
 userOutput <- function(id, tag = shiny::tags$li) {
   shiny::uiOutput(outputId = id, container = tag, class = "nav-item dropdown user-menu")
@@ -771,6 +787,7 @@ userOutput <- function(id, tag = shiny::tags$li) {
 #' @seealso \code{\link{userOutput}} for the corresponding client side function
 #'   and examples.
 #' @family user outputs
+#' @rdname dashboardUser
 #' @export
 renderUser <- shiny::renderUI
 

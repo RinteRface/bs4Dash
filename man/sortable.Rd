@@ -10,7 +10,7 @@ bs4Sortable(..., width = 12)
 sortable(..., width = 12)
 }
 \arguments{
-\item{...}{Slot for UI elements such as \link{bs4Card}.}
+\item{...}{Slot for UI elements such as \link{box}.}
 
 \item{width}{Section width: between 1 and 12.}
 }

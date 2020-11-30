@@ -81,6 +81,8 @@
 #'   )
 #' }
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' 
+#' @rdname dashboardPage
 #'
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,

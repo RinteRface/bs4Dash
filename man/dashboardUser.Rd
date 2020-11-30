@@ -2,6 +2,9 @@
 % Please edit documentation in R/dashboardHeader.R, R/aliases.R
 \name{bs4UserMenu}
 \alias{bs4UserMenu}
+\alias{dashboardUserItem}
+\alias{userOutput}
+\alias{renderUser}
 \alias{dashboardUser}
 \title{Bootstrap 4 user profile.}
 \usage{
@@ -14,6 +17,12 @@ bs4UserMenu(
   footer = NULL,
   status = NULL
 )
+
+dashboardUserItem(item, width)
+
+userOutput(id, tag = shiny::tags$li)
+
+renderUser(expr, env = parent.frame(), quoted = FALSE, outputArgs = list())
 
 dashboardUser(
   ...,
@@ -61,10 +70,34 @@ dashboardUser(
   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 }}
+
+\item{item}{HTML Tag.}
+
+\item{width}{Item width between 1 and 12.}
+
+\item{id}{Output variable name.}
+
+\item{tag}{A tag function, like \code{tags$li} or \code{tags$ul}.}
+
+\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:reexports]{HTML()}},
+or a list of such objects.}
+
+\item{env}{The environment in which to evaluate \code{expr}.}
+
+\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
+is useful if you want to save an expression in a variable.}
+
+\item{outputArgs}{A list of arguments to be passed through to the implicit
+call to \code{\link[shiny:htmlOutput]{uiOutput()}} when \code{renderUI} is used in an
+interactive R Markdown document.}
 }
 \description{
 \link{dashboardUser} to insert in the rightUi or leftUi slot of
 \link{dashboardHeader}.
+
+This can be inserted in a \code{\link{dashboardUser}}.
+
+This can be used as a placeholder for dynamically-generated \code{\link{dashboardUser}}.
 }
 \examples{
 if (interactive()) {
@@ -102,3 +135,11 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link{renderUser}} for the corresponding server side function
+  and examples.
+
+\code{\link{userOutput}} for the corresponding client side function
+  and examples.
+}
+\concept{user outputs}

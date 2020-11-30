@@ -79,7 +79,7 @@
 #' @param sidebar Slot for \link{boxSidebar}.
 #' @param id Box unique id. \link{updateBox} target.
 #'
-#' @rdname card
+#' @rdname box
 #' @family cards
 #'
 #' @examples
@@ -291,6 +291,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 #' @param status label color status. See \link{getAdminLTEColors}.
 #' @param tooltip Label tooltip text on hover.
 #' @family boxWidgets
+#' @rdname boxLabel
 #' @export
 bs4CardLabel <- function(text, status, tooltip = NULL) {
   if (nchar(text) > 10) warning("Avoid long texts in avaCardLabel.")
@@ -321,7 +322,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @param icon Sidebar icon. Expect \code{\link[shiny]{icon}}.
 #'
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #' @family boxWidgets
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
@@ -373,7 +374,7 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
 #'
 #' @export
 #'
-#' @rdname card
+#' @rdname box
 #'
 #' @examples
 #' # Toggle a box on the client
@@ -515,7 +516,7 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
 #' @param id Card sidebar id.
 #' @param session Shiny session object.
 #'
-#' @rdname cardSidebar
+#' @rdname boxSidebar
 #'
 #' @export
 #' @examples
@@ -569,7 +570,7 @@ updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
-#' @rdname cardDropdown
+#' @rdname boxDropdown
 #' @family boxWidgets
 #' @export
 cardDropdown <- function(..., icon = shiny::icon("wrench")) {
@@ -605,7 +606,7 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
 #' @param href Target url or page.
 #' @param icon Optional icon. Expect \link[shiny]{icon}.
 #'
-#' @rdname cardDropdown
+#' @rdname boxDropdown
 #'
 #' @export
 cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
@@ -683,7 +684,7 @@ dropdownDivider <- function() {
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 #'
 #' @family cards
 #' @examples
@@ -860,7 +861,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #' may be used to navigate between multiple \link{tabItem}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #'
 #' @family cards
 #' @examples
@@ -1058,6 +1059,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @param side \link[shiny]{tabPanel} side. Either left or right.
 #'
 #' @family cards
+#' @rdname tabBox
 #'
 #' @note User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
 #' to get the state of the box and update it on the server with \link{updateBox}.
@@ -1232,7 +1234,7 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
-#' @rdname bs4UserCard
+#' @rdname userBox
 #' @family cards
 #'
 #' @examples
@@ -1392,7 +1394,7 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
 #' while 2 is a left aligned user image.
 #' @param imageElevation User card image elevation (numeric). NULL by default.
 #'
-#' @rdname bs4UserCard
+#' @rdname userBox
 #' @export
 bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = NULL,
                                type = c(1, 2), imageElevation = NULL) {
@@ -1529,7 +1531,7 @@ bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = 
 #'     server = function(input, output) {}
 #'   )
 #' }
-#' @rdname cardProfile
+#' @rdname boxProfile
 #' @family boxWidgets
 #' @export
 cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FALSE) {
@@ -1560,7 +1562,7 @@ cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FA
 #' @param title Item title.
 #' @param description Item info.
 #'
-#' @rdname cardProfile
+#' @rdname boxProfile
 #'
 #' @export
 cardProfileItem <- function(title, description) {

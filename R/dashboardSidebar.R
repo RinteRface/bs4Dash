@@ -42,7 +42,7 @@
 #' @param customArea Sidebar bottom space area. Only works if sidebar is fixed.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #' @seealso \link{dashboardBody}
 #'
 #' @export
@@ -117,7 +117,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 #' @param session Shiny session object.
 #' @export
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @examples
 #' if (interactive()) {
@@ -179,7 +179,7 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param legacy Whether to use the old adminLTE2 item selection display. Default
 #' to FALSE.
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #' @export
 bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
                            compact = FALSE, childIndent = TRUE, legacy = FALSE) {
@@ -269,7 +269,7 @@ findSidebarItem <- function(items, regex) {
 #' @param condition When using \link{menuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @note See examples for a use case of the condition parameter.
 #'
@@ -440,7 +440,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 #' @param selected If \code{TRUE}, this \code{menuSubItem}
 #'   will start selected. If no item have \code{selected=TRUE}.
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
@@ -484,7 +484,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
 #'
 #' @param title title.
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 bs4SidebarHeader <- function(title) {
@@ -502,7 +502,7 @@ bs4SidebarHeader <- function(title) {
 #' local file, the image should be contained under the www/ subdirectory of
 #' the application.
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @export
 bs4SidebarUserPanel <- function(name, image = NULL) {
@@ -530,7 +530,7 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #' \link{updateTabItems} controls the active tab of \code{\link{tabItems}} from the
 #' server. It behaves just like \code{\link[shiny]{updateTabsetPanel}}.
 #'
-#' @rdname sidebar
+#' @rdname dashboardSidebar
 #'
 #' @inheritParams shiny::updateTabsetPanel
 #' @examples

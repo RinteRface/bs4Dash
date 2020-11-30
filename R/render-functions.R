@@ -6,7 +6,7 @@
 #' @inheritParams shiny::renderUI
 #' @seealso \code{\link{bs4ValueBoxOutput}} for the corresponding UI-side function.
 #'
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 #'
 #' @examples
 #' if (interactive()) {
@@ -67,7 +67,7 @@ renderbs4ValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 
 
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #' @inheritParams renderbs4ValueBox
 #' @export
 renderbs4InfoBox <- renderbs4ValueBox
@@ -83,14 +83,14 @@ renderbs4InfoBox <- renderbs4ValueBox
 #' @seealso \code{\link{renderbs4ValueBox}} for the corresponding server-side
 #'   function and examples.
 #' @export
-#' @rdname bs4ValueBox
+#' @rdname valueBox
 bs4ValueBoxOutput <- function(outputId, width = 4) {
   shiny::uiOutput(outputId, class = paste0("col-sm-", width))
 }
 
 
 
-#' @rdname bs4InfoBox
+#' @rdname infoBox
 #' @inheritParams bs4ValueBoxOutput
 #' @export
 bs4InfoBoxOutput <- bs4ValueBoxOutput

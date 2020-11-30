@@ -6,7 +6,7 @@
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
-#' @rdname body
+#' @rdname dashboardBody
 #' 
 #' @seealso \link{dashboardSidebar}
 #'
@@ -31,7 +31,7 @@ bs4DashBody <- function(...) {
 #' @param ... Items to put in the container. Each item should be a
 #'   \code{\link{tabItem}}.
 #'   
-#' @rdname body
+#' @rdname dashboardBody
 #'   
 #' @export
 bs4TabItems <- function(...) {
@@ -48,7 +48,7 @@ bs4TabItems <- function(...) {
 #'   of a sidebar \code{\link{menuItem}}.
 #' @param ... Contents of the tab.
 #' 
-#' @rdname body
+#' @rdname dashboardBody
 #' @export
 bs4TabItem <- function(tabName = NULL, ...) {
   if (is.null(tabName))

@@ -1572,9 +1572,9 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #' @param rightBorder TRUE by default. Whether to display a right border to
 #'   separate two blocks. The last block on the right should not have a right border.
 #' @param marginBottom FALSE by default. Set it to TRUE when the
-#'   descriptionBlock is used in a \link{cardPad} context.
+#'   descriptionBlock is used in a \link{boxPad} context.
 #'   
-#' @rdname card
+#' @rdname box
 #' @family boxWidgets
 #'
 #' @examples
@@ -1688,7 +1688,7 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' }
 #' @param style Custom CSS, if any.
 #' 
-#' @rdname card
+#' @rdname box
 #' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -2486,7 +2486,7 @@ userPostMedia <- function(image = NULL, height = NULL, width = NULL) {
 #'
 #' @description Create a sortable UI section
 #'
-#' @param ... Slot for UI elements such as \link{bs4Card}.
+#' @param ... Slot for UI elements such as \link{box}.
 #' @param width Section width: between 1 and 12.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
