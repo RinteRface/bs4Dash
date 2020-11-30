@@ -42,7 +42,7 @@ dashboardHeader(
 \arguments{
 \item{...}{Any UI element between left and right Ui.}
 
-\item{title}{Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
+\item{title}{Dashboard title (displayed top-left side). Alternatively, use \link{dashboardBrand}
 for more evolved title.}
 
 \item{titleWidth}{This argument is deprecated; bs4Dash (AdminLTE3) title width

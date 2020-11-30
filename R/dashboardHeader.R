@@ -6,7 +6,7 @@
 #' @rdname dashboardHeader
 #'
 #' @param ... Any UI element between left and right Ui.
-#' @param title Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
+#' @param title Dashboard title (displayed top-left side). Alternatively, use \link{dashboardBrand}
 #' for more evolved title.
 #' @param titleWidth This argument is deprecated; bs4Dash (AdminLTE3) title width
 #' is tightly related to the sidebar width, contrary to shinydashboard (AdminLTE2).
