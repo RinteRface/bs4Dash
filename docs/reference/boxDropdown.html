@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BS4 sortable section — bs4Sortable • bs4Dash</title>
+<title>Create a box dropdown item list — cardDropdown • bs4Dash</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="BS4 sortable section — bs4Sortable" />
-<meta property="og:description" content="Create a sortable UI section" />
+<meta property="og:title" content="Create a box dropdown item list — cardDropdown" />
+<meta property="og:description" content="Can be used to add dropdown items to a cardtool.
+To insert in boxDropdown." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -150,71 +151,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>BS4 sortable section</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/useful-items.R'><code>R/useful-items.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>sortable.Rd</code></div>
+    <h1>Create a box dropdown item list</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/cards.R'><code>R/cards.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>boxDropdown.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a sortable UI section</p>
+    <p>Can be used to add dropdown items to a cardtool.</p>
+<p>To insert in boxDropdown.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4Sortable</span><span class='op'>(</span><span class='va'>...</span>, width <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>cardDropdown</span><span class='op'>(</span><span class='va'>...</span>, icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"wrench"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>sortable</span><span class='op'>(</span><span class='va'>...</span>, width <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span></pre>
+<span class='fu'>cardDropdownItem</span><span class='op'>(</span><span class='va'>...</span>, id <span class='op'>=</span> <span class='cn'>NULL</span>, href <span class='op'>=</span> <span class='cn'>NULL</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+
+<span class='fu'>boxDropdown</span><span class='op'>(</span><span class='va'>...</span>, icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"wrench"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>boxDropdownItem</span><span class='op'>(</span><span class='va'>...</span>, id <span class='op'>=</span> <span class='cn'>NULL</span>, href <span class='op'>=</span> <span class='cn'>NULL</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for UI elements such as <a href='descriptionBlock.html'>box</a>.</p></td>
+      <td><p>Item content.</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>Section width: between 1 and 12.</p></td>
+      <th>icon</th>
+      <td><p>Optional icon. Expect <a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a>.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>If passed, the item will behave like an action button.</p></td>
+    </tr>
+    <tr>
+      <th>href</th>
+      <td><p>Target url or page.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other boxWidgets: 
+<code><a href='attachmentBlock.html'>attachmentBlock</a>()</code>,
+<code><a href='bs4CardLabel.html'>bs4CardLabel</a>()</code>,
+<code><a href='bs4CardSidebar.html'>bs4CardSidebar</a>()</code>,
+<code><a href='bs4Carousel.html'>bs4Carousel</a>()</code>,
+<code><a href='bs4SocialCard.html'>bs4SocialCard</a>()</code>,
+<code><a href='bs4Timeline.html'>bs4Timeline</a>()</code>,
+<code><a href='cardProfile.html'>cardProfile</a>()</code>,
+<code><a href='descriptionBlock.html'>descriptionBlock</a>()</code>,
+<code><a href='userPost.html'>userPost</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
- 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-  ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
-    header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
-    sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
-    controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
-    footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
-    title <span class='op'>=</span> <span class='st'>"Sortable UI"</span>,
-    body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
-       <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, FUN <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
-         <span class='fu'>sortable</span><span class='op'>(</span>
-           width <span class='op'>=</span> <span class='fl'>4</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span>class <span class='op'>=</span> <span class='st'>"text-center"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Column"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>,
-           <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, FUN <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
-             <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>
-               title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"I am the "</span>, <span class='va'>j</span>,<span class='st'>"-th card of the "</span>, <span class='va'>i</span>, <span class='st'>"-th column"</span><span class='op'>)</span>, 
-               width <span class='op'>=</span> <span class='fl'>12</span>,
-               <span class='st'>"Click on my header"</span>
-             <span class='op'>)</span>
-           <span class='op'>}</span><span class='op'>)</span>
-         <span class='op'>)</span>
-       <span class='op'>}</span><span class='op'>)</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span>,
-  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
- <span class='op'>)</span>
-<span class='op'>}</span>  
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

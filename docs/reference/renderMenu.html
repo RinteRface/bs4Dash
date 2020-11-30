@@ -235,7 +235,7 @@ interactive R Markdown document.</p></td>
       <span class='co'># is a data frame with two columns, 'from' and 'message'.</span>
       <span class='co'># Also add on slider value to the message content, so that messages update.</span>
       <span class='va'>msgs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>messageData</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>row</span><span class='op'>)</span> <span class='op'>{</span>
-        <span class='fu'><a href='messageItem.html'>messageItem</a></span><span class='op'>(</span>
+        <span class='fu'><a href='bs4DropdownMenu.html'>messageItem</a></span><span class='op'>(</span>
           from <span class='op'>=</span> <span class='va'>row</span><span class='op'>[[</span><span class='st'>"from"</span><span class='op'>]</span><span class='op'>]</span>,
           message <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>row</span><span class='op'>[[</span><span class='st'>"message"</span><span class='op'>]</span><span class='op'>]</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>slider</span><span class='op'>)</span>
         <span class='op'>)</span>

@@ -2,15 +2,14 @@
 #'
 #' \link{dashboardHeader} creates an adminLTE3 dashboard navbar to be included in
 #' \link{dashboardPage}.
-#' 
+#'
 #' @rdname dashboardHeader
 #'
 #' @param ... Any UI element between left and right Ui.
 #' @param title Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
 #' for more evolved title.
-#' @param titleWidth The width of the title area. This must either be a number
-#'   which specifies the width in pixels, or a string that specifies the width
-#'   in CSS units.
+#' @param titleWidth This argument is deprecated; bs4Dash (AdminLTE3) title width
+#' is tightly related to the sidebar width, contrary to shinydashboard (AdminLTE2).
 #' @param disable If \code{TRUE}, don't display the header bar.
 #' @param .list An optional list containing items to put in the header. Same as
 #'   the \code{...} arguments, but in list format. This can be useful when
@@ -80,40 +79,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     }
   }
 
-  titleWidth <- shiny::validateCssUnit(titleWidth)
-
-  # Set up custom CSS for custom width.
-  custom_css <- NULL
-  if (!is.null(titleWidth)) {
-    # This CSS is derived from the header-related instances of '230px' (the
-    # default sidebar width) from inst/AdminLTE/AdminLTE.css. One change is that
-    # instead making changes to the global settings, we've put them in a media
-    # query (min-width: 768px), so that it won't override other media queries
-    # (like max-width: 767px) that work for narrower screens.
-    custom_css <- shiny::tags$head(
-      shiny::tags$style(
-        shiny::HTML(
-          gsub(
-            "_WIDTH_",
-            titleWidth,
-            fixed = TRUE,
-            "@media (min-width: 768px) {
-              .main-header.navbar {
-                margin-left: _WIDTH_;
-              }
-              .main-header .brand-link {
-                width: _WIDTH_;
-              }
-            }
-           "
-          )
-        )
-      )
-    )
-  }
-
   headerTag <- shiny::tags$nav(
-    custom_css,
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
@@ -174,7 +140,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #' @param href External link to point to.
 #' @param image External image location.
 #' @param opacity Brand opacity: value between 0 and 1.
-#' 
+#'
 #' @rdname dashboardBrand
 #'
 #' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
@@ -293,7 +259,7 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #'   )
 #' }
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname dropdownMenu
 #'
 #' @export
@@ -492,7 +458,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' }
 #' @param href An optional URL to link to.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
-#' 
+#'
 #' @rdname dropdownMenu
 #'
 #' @export
@@ -565,9 +531,9 @@ notificationItem <- function(text, icon = shiny::icon("warning"),
 #'
 #' @family menu items
 #' @seealso \code{\link{dashboardHeader}} for example usage.
-#' 
+#'
 #' @rdname dropdownMenu
-#' 
+#'
 #' @export
 taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
   validateStatusPlus(color)
@@ -611,7 +577,7 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #'
 #' \link{dashboardUser} to insert in the rightUi or leftUi slot of
 #' \link{dashboardHeader}.
-#' 
+#'
 #' @rdname dashboardUser
 #'
 #' @param ... Body content. Slot for \link{dashboardUserItem}.
@@ -750,7 +716,7 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
 #'
 #' @param item HTML Tag.
 #' @param width Item width between 1 and 12.
-#' 
+#'
 #' @rdname dashboardUser
 #'
 #' @export

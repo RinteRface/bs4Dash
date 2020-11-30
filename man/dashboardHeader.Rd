@@ -45,9 +45,8 @@ dashboardHeader(
 \item{title}{Dashboard title (displayed top-left side). Alternatively, use \link{bs4DashBrand}
 for more evolved title.}
 
-\item{titleWidth}{The width of the title area. This must either be a number
-which specifies the width in pixels, or a string that specifies the width
-in CSS units.}
+\item{titleWidth}{This argument is deprecated; bs4Dash (AdminLTE3) title width
+is tightly related to the sidebar width, contrary to shinydashboard (AdminLTE2).}
 
 \item{disable}{If \code{TRUE}, don't display the header bar.}
 

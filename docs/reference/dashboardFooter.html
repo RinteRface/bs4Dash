@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BS4 sortable section — bs4Sortable • bs4Dash</title>
+<title>Dashboard Footer — bs4DashFooter • bs4Dash</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="BS4 sortable section — bs4Sortable" />
-<meta property="og:description" content="Create a sortable UI section" />
+<meta property="og:title" content="Dashboard Footer — bs4DashFooter" />
+<meta property="og:description" content="This creates a dashboard footer to insert in dashboardPage." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -150,29 +150,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>BS4 sortable section</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/useful-items.R'><code>R/useful-items.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
-    <div class="hidden name"><code>sortable.Rd</code></div>
+    <h1>Dashboard Footer</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/dashboardFooter.R'><code>R/dashboardFooter.R</code></a>, <a href='https://github.com/RinteRface/bs4Dash/blob/master/R/aliases.R'><code>R/aliases.R</code></a></small>
+    <div class="hidden name"><code>dashboardFooter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a sortable UI section</p>
+    <p>This creates a dashboard footer to insert in <a href='bs4DashPage.html'>dashboardPage</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4Sortable</span><span class='op'>(</span><span class='va'>...</span>, width <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>bs4DashFooter</span><span class='op'>(</span>left <span class='op'>=</span> <span class='cn'>NULL</span>, right <span class='op'>=</span> <span class='cn'>NULL</span>, fixed <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>sortable</span><span class='op'>(</span><span class='va'>...</span>, width <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span></pre>
+<span class='fu'>dashboardFooter</span><span class='op'>(</span>left <span class='op'>=</span> <span class='cn'>NULL</span>, right <span class='op'>=</span> <span class='cn'>NULL</span>, fixed <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for UI elements such as <a href='descriptionBlock.html'>box</a>.</p></td>
+      <th>left</th>
+      <td><p>Left text.</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>Section width: between 1 and 12.</p></td>
+      <th>right</th>
+      <td><p>Right text.</p></td>
+    </tr>
+    <tr>
+      <th>fixed</th>
+      <td><p>Whether to fix the footer. Default to FALSE.</p></td>
     </tr>
     </table>
 
@@ -180,41 +184,6 @@
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
- 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-  ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
-    header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
-    sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
-    controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
-    footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
-    title <span class='op'>=</span> <span class='st'>"Sortable UI"</span>,
-    body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
-       <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, FUN <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
-         <span class='fu'>sortable</span><span class='op'>(</span>
-           width <span class='op'>=</span> <span class='fl'>4</span>,
-           <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span>class <span class='op'>=</span> <span class='st'>"text-center"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Column"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>,
-           <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, FUN <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
-             <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>
-               title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"I am the "</span>, <span class='va'>j</span>,<span class='st'>"-th card of the "</span>, <span class='va'>i</span>, <span class='st'>"-th column"</span><span class='op'>)</span>, 
-               width <span class='op'>=</span> <span class='fl'>12</span>,
-               <span class='st'>"Click on my header"</span>
-             <span class='op'>)</span>
-           <span class='op'>}</span><span class='op'>)</span>
-         <span class='op'>)</span>
-       <span class='op'>}</span><span class='op'>)</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span>,
-  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
- <span class='op'>)</span>
-<span class='op'>}</span>  
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
