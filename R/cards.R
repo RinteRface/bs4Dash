@@ -189,119 +189,61 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     )
   )
 
+  # set card class
+  cardCl <- setBoxClass(
+    status, 
+    solidHeader, 
+    collapsible, 
+    collapsed,
+    elevation, 
+    gradient, 
+    background, 
+    sidebar
+  )
 
-  cardCl <- "card"
-
-  if (!is.null(status)) {
-    cardCl <- paste0(cardCl, " card-", status)
-  }
-
-  if (!solidHeader) cardCl <- paste0(cardCl, " card-outline")
-
-  if (collapsible && collapsed) cardCl <- paste0(cardCl, " collapsed-card")
-  if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
-
-  if (!is.null(background)) {
-    cardCl <- paste0(cardCl, " bg-", if (gradient) "gradient-", background)
-  }
-
-
-  if (!is.null(sidebar)) {
-    sidebarToggle <- sidebar[[1]]
-    startOpen <- sidebar[[1]]$attribs$`data-start-open`
-    if (startOpen == "true") {
-      cardCl <- paste0(cardCl, " direct-chat direct-chat-contacts-open")
-    } else {
-      cardCl <- paste0(cardCl, " direct-chat")
-    }
-  }
-
-
-  style <- NULL
-  if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height))
-  }
-  # add padding if box sidebar
-  if (!is.null(sidebar)) {
-    style <- paste0(style, "; padding: 10px;")
-  }
+  # set style
+  style <- setBoxStyle(height, sidebar)
 
 
   cardToolTag <- NULL
-
-  if (collapsible || closable || maximizable || !is.null(dropdownMenu) || !is.null(sidebar)) {
-    btnToolClass <- paste0("btn btn-tool btn-", boxToolSize)
-    if (is.null(status) && !is.null(background)){
-      btnToolClass <- paste0(
-        btnToolClass,
-        if (background %in% validStatuses) {
-          paste0(" btn-", background)
-        }
-      )
-    }
-    
-    # status has always priority compared to background
-    if (!is.null(status) && solidHeader) {
-      btnToolClass <- paste0(
-        btnToolClass,
-        if (status %in% validStatuses) {
-          paste0(" btn-", status)
-        }
-      )
-    }
-
+  # create card tools whenever necessary
+  if (collapsible || closable || maximizable || 
+      !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)) {
     cardToolTag <- shiny::tags$div(class = "card-tools float-right")
-  }
-
-  # Modify sidebar trigger class if background ...
-  if (!is.null(sidebar)) {
-    if (is.null(status) && !is.null(background)) {
-      sidebar[[1]]$attribs$class <- paste0(
-        "btn",
-        if (!is.null(background)) {
-          paste0(" bg-", background)
-        },
-        " btn-", boxToolSize
-      )
-    }
-  }
-
-  # modify dropdown trigger if background
-  if (!is.null(dropdownMenu)) {
-    if (is.null(status) && !is.null(background)) {
-      dropdownMenu$children[[1]]$attribs$class <- paste0(
-        "btn",
-        paste0(
-          if (!is.null(background)) {
-            paste0(" bg-", background)
-          },
-          " btn-", boxToolSize
-        ),
-        " dropdown-toggle"
-      )
-    }
   }
 
   # update boxToolTag
   cardToolTag <- shiny::tagAppendChildren(
     cardToolTag,
     label,
-    dropdownMenu,
-    createBoxTools(collapsible, collapsed, closable, maximizable, btnToolClass),
-    sidebar[[1]]
+    createBoxTools(
+      collapsible, 
+      collapsed, 
+      closable, 
+      maximizable, 
+      sidebar, 
+      dropdownMenu,
+      boxToolSize,
+      status,
+      background,
+      solidHeader
+    )
   )
 
 
 
   # header
-  if (is.null(title) & (maximizable | closable | collapsible)) title <- "\u200C"
+  if (is.null(title) && 
+    (maximizable || closable || collapsible || 
+    !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)
+  )) title <- "\u200C"
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
     icon,
-    if (!is.null(title)) shiny::tags$h3(class = "card-title", title) else NULL
+    shiny::tags$h3(class = "card-title", title)
   )
-  headerTag <- if (!is.null(title)) shiny::tagAppendChild(headerTag, cardToolTag)
+  headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
 
 
   # body
@@ -312,6 +254,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     sidebar[[2]]
   )
 
+  # footer
   footerTag <- if (!is.null(footer)) {
     shiny::tags$div(
       class = "card-footer",
@@ -321,10 +264,12 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   cardTag <- shiny::tags$div(class = cardCl, id = id)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
-
+  
+  # wrapper
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     cardTag,
+    # config script to be used by card input binding
     shiny::tags$script(
       type = "application/json",
       `data-for` = id,
@@ -386,7 +331,6 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
   
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
-    class = "btn btn-tool",
     id = id,
     `data-background`= background, 
     `data-width` = width,
@@ -535,6 +479,10 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
   if (action == "update") {
     # handle case whare options are shiny tag or a list of tags ...
     options <- lapply(options, function(o) {
+      if (inherits(o, "shiny.tag") || inherits(o, "shiny.tag.list")) {
+        o <- as.character(o)
+        return(o)
+      }
       if (inherits(o, "list")) {
         o <- unlist(
           dropNulls(
@@ -548,9 +496,6 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
             })
           )
         )
-      }
-      if (inherits(o, "shiny.tag") || inherits(o, "shiny.tag.list")) {
-        o <- as.character(o)
       }
       o
     })
@@ -639,7 +584,6 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
     class = "btn-group",
     shiny::tags$button(
       type = "button",
-      class = "btn btn-tool dropdown-toggle",
       `data-toggle` = "dropdown",
       icon
     ),

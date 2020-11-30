@@ -218,8 +218,7 @@ $.extend(cardBinding, {
             // add tools as first child of widget-user-header
             $(el).find('.widget-user-header').prepend($(tools));
           } else {
-            $(newTitle).addClass("card-title");
-            $(el).find("h3").replaceWith($(newTitle));
+            $(el).find(".card-title").replaceWith($(newTitle));
           }
         }
       }

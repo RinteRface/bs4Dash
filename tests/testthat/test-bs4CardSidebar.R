@@ -8,7 +8,7 @@ test_that("structure", {
   sidebarTag <- bs4CardSidebar()
   golem::expect_shinytaglist(sidebarTag)
   expect_length(sidebarTag, 2)
-  expect_match(sidebarTag[[1]]$attribs$class, "btn btn-tool")
+  expect_null(sidebarTag[[1]]$attribs$class)
   expect_match(sidebarTag[[2]]$attribs$class, "direct-chat-contacts")
 })
 

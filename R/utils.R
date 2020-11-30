@@ -296,7 +296,34 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 
 
 # create box icons and return a list of icons
-createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnClass) {
+createBoxTools <- function(collapsible, collapsed, closable, maximizable, 
+                           sidebar, dropdownMenu, boxToolSize, status, 
+                           background, solidHeader) {
+
+    btnClass <- paste0(
+      "btn btn-tool", 
+      if (!is.null(boxToolSize)) paste0(" btn-", boxToolSize)
+    )
+
+    if (is.null(status) && !is.null(background)) {
+      btnClass <- paste0(
+        btnClass,
+        if (background %in% validStatuses) {
+          paste0(" btn-", background)
+        }
+      )
+    }
+    
+    # status has always priority compared to background
+    if (!is.null(status) &&  solidHeader) {
+      btnClass <- paste0(
+        btnClass,
+        if (status %in% validStatuses) {
+          paste0(" btn-", status)
+        }
+      )
+    }
+
     collapseTag <- NULL
     if (collapsible) {
       collapseIcon <- if (collapsed) 
@@ -330,8 +357,65 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable, btnCla
       )
     }
 
-    dropNulls(list(collapseTag, closableTag, maximizableTag))
+    sidebarToolTag <- NULL
+    if (!is.null(sidebar)) {
+      sidebar[[1]]$attribs$class <- btnClass
+      sidebarToolTag <- sidebar[[1]]
+    }
+
+    dropdownMenuToolTag <- NULL
+    if (!is.null(dropdownMenu)) {
+      dropdownMenu$children[[1]]$attribs$class <- paste0(btnClass, " dropdown-toggle")
+      dropdownMenuToolTag <- dropdownMenu
+    }
+
+    dropNulls(list(dropdownMenuToolTag, collapseTag, closableTag, maximizableTag, sidebarToolTag))
   }
+
+
+setBoxStyle <- function(height, sidebar) {
+  style <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height))
+  }
+  # add padding if box sidebar
+  if (!is.null(sidebar)) {
+    style <- paste0(style, "; padding: 10px;")
+  }
+  style
+}
+
+
+setBoxClass <- function(status, solidHeader, collapsible, collapsed,
+elevation, gradient, background, sidebar) {
+  cardCl <- "card"
+
+  if (!is.null(status)) {
+    cardCl <- paste0(cardCl, " card-", status)
+  }
+
+  if (!solidHeader) cardCl <- paste0(cardCl, " card-outline")
+
+  if (collapsible && collapsed) cardCl <- paste0(cardCl, " collapsed-card")
+  if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
+
+  if (!is.null(background)) {
+    cardCl <- paste0(cardCl, " bg-", if (gradient) "gradient-", background)
+  }
+
+
+  if (!is.null(sidebar)) {
+    sidebarToggle <- sidebar[[1]]
+    startOpen <- sidebarToggle$attribs$`data-start-open`
+    if (startOpen == "true") {
+      cardCl <- paste0(cardCl, " direct-chat direct-chat-contacts-open")
+    } else {
+      cardCl <- paste0(cardCl, " direct-chat")
+    }
+  }
+
+  cardCl
+}
 
 
 # extract social item in socialBox

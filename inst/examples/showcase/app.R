@@ -375,7 +375,7 @@ shinyApp(
         "mycard",
         action = "update",
         options = list(
-          title = tagList(h2("hello"), dashboardBadge(1, color = "primary")),
+          title = h3(class = "card-title", "hello", dashboardBadge(1, color = "primary")),
           status = "warning",
           solidHeader = TRUE,
           width = 12,

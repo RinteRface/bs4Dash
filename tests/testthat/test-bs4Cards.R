@@ -55,9 +55,10 @@ test_that("card structure", {
   cardChildren <- getCardChildren(bs4Card())
   expect_length(cardChildren, 2)
   
-  # if collapsible is FALSE, there is no header at all
+  # if collapsible is FALSE, there is still header with title "\u200C"
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE))
-  expect_length(cardChildren, 1)
+  expect_length(cardChildren, 2)
+  expect_equal(getCardChildren(bs4Card(collapsible = FALSE))[[1]]$children[[2]]$attribs$class, "card-title")
   
   # if collapsible is FALSE but title is not NULL, the header is included
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE, title = "card title"))
@@ -65,10 +66,7 @@ test_that("card structure", {
 })
 
 test_that("card tools", {
-  # if collapsible is FALSE, there is no header at all
-  parms <- list(collapsible = FALSE)
-  cardTag <- do.call(bs4Card, parms)
-  expect_error(getCardTools(cardTag))
+  parms <- list()
   
   # collapsible/closable and maximizable are contained in a sublist
   parms$collapsible <- TRUE
@@ -92,17 +90,18 @@ test_that("card tools", {
   )
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 2)
+  expect_length(toolsTag[[1]], 4)
   
   parms$sidebar <- boxSidebar()
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 3)
+  expect_length(toolsTag[[1]], 5)
   
+  # label does not belong to the toolsTag list
   parms$label <- boxLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 4)
+  expect_length(toolsTag, 2)
 })
 
 test_that("default", {
