@@ -70,7 +70,59 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     )
   )
 
+  # Handle different width
+  customCSS <- NULL
+  if (!is.null(width)) {
+    customCSS <- shiny::tags$head(
+      shiny::tags$style(
+        shiny::HTML(
+          gsub(
+            "_WIDTH_",
+            width,
+            fixed = TRUE,
+            "@media (min-width: 768px) {
+              body:not(.sidebar-mini-md) .content-wrapper, 
+              body:not(.sidebar-mini-md) .main-footer, 
+              body:not(.sidebar-mini-md) .main-header {
+                transition: margin-left .3s ease-in-out;
+                margin-left: _WIDTH_;
+              }
+            }
+            
+            @media (min-width: 992px) {
+              .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused, 
+              .sidebar-mini.sidebar-collapse .main-sidebar:hover {
+                width: _WIDTH_;
+              }
+            }
+
+            @media (min-width: 992px) {
+              .sidebar-mini.sidebar-collapse.layout-fixed .main-sidebar:hover .brand-link {
+                width: _WIDTH_;
+              }
+            }
+    
+            .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
+              margin-left: -_WIDTH_;
+            }
+
+            .main-sidebar, .main-sidebar::before {
+              transition: margin-left .3s ease-in-out,width .3s ease-in-out;
+              width: _WIDTH_;
+            }
+
+            .layout-fixed .brand-link {
+              width: _WIDTH_;
+            }
+          "
+          )
+        )
+      )
+    )
+  }
+
   sidebarTag <- shiny::tags$aside(
+    customCSS,
     id = id,
     `data-fixed` = tolower(fixed),
     `data-minified` = if (minified) "true" else "false",
