@@ -193,3 +193,8 @@
 .dark-mode .selectize-control.single .selectize-input.dropdown-active:after {
   border-color: transparent transparent #fff transparent;
 }
+
+/* Fix verbatimTextOutput in dark mode */
+.dark-mode pre {
+  color: #fff;
+}
