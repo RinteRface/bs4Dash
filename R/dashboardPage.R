@@ -8,6 +8,7 @@
 #' @param controlbar Slot for \link{bs4DashControlbar} (right side).
 #' @param footer Slot for \link{bs4DashFooter}.
 #' @param title App title.
+#' @param skin Deprecated skin parameters. See \link{skinSelector} for live theming.
 #' @param freshTheme A skin powered by the fresh package. Not compatible with skin.
 #' See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.
 #' @param preloader bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
@@ -86,7 +87,7 @@
 #'
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
-                        freshTheme = NULL, preloader = NULL, options = NULL,
+                        skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
                         fullscreen = FALSE, help = FALSE) {
   titleTag <- header[[2]]
 

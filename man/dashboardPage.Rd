@@ -12,6 +12,7 @@ bs4DashPage(
   controlbar = NULL,
   footer = NULL,
   title = NULL,
+  skin = NULL,
   freshTheme = NULL,
   preloader = NULL,
   options = NULL,
@@ -26,6 +27,7 @@ dashboardPage(
   controlbar = NULL,
   footer = NULL,
   title = NULL,
+  skin = NULL,
   freshTheme = NULL,
   preloader = NULL,
   options = NULL,
@@ -45,6 +47,8 @@ dashboardPage(
 \item{footer}{Slot for \link{bs4DashFooter}.}
 
 \item{title}{App title.}
+
+\item{skin}{Deprecated skin parameters. See \link{skinSelector} for live theming.}
 
 \item{freshTheme}{A skin powered by the fresh package. Not compatible with skin.
 See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.}
