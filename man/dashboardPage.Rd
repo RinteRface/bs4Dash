@@ -17,7 +17,8 @@ bs4DashPage(
   preloader = NULL,
   options = NULL,
   fullscreen = FALSE,
-  help = FALSE
+  help = FALSE,
+  dark = TRUE
 )
 
 dashboardPage(
@@ -32,7 +33,8 @@ dashboardPage(
   preloader = NULL,
   options = NULL,
   fullscreen = FALSE,
-  help = FALSE
+  help = FALSE,
+  dark = TRUE
 )
 }
 \arguments{
@@ -67,6 +69,9 @@ Expect a list.}
 \item{help}{Whether to enable/disable popovers and tooltips. This allows to seamlessly use
 \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
 if TRUE, a help icon is display in the navigation bar.}
+
+\item{dark}{Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
+Default to TRUE.}
 }
 \description{
 Build an adminLTE3 dashboard page

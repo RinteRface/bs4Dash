@@ -730,18 +730,18 @@ $(function () {
   });
 });
 $(function () {
-  
+
 
   // Whenever the sidebar finishes a transition (which it does every time it
   // changes from collapsed to expanded and vice versa), trigger resize,
   // so that all outputs are resized.
   $(".main-sidebar").on(
     'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
-      function() {
-        $(window).trigger("resize");
-      });
-  
-  
+    function () {
+      $(window).trigger("resize");
+    });
+
+
   // This function handles a special case in the AdminLTE sidebar: when there
   // is a sidebar-menu with items, and one of those items has sub-items, and
   // they are used for tab navigation. Normally, if one of the items is
@@ -749,7 +749,7 @@ $(function () {
   // retain the "active" class, so they will both be highlighted. This happens
   // because they're not designed to be used together for tab panels. This
   // code ensures that only one item will have the "active" class.
-  var deactivateOtherTabs = function() {
+  var deactivateOtherTabs = function () {
     // Find all tab links under sidebar-menu even if they don't have a
     // tabName (which is why the second selector is necessary)
     var $tablinks = $("#sidebar-menu a[data-toggle='tab']," +
@@ -757,13 +757,13 @@ $(function () {
 
     // If any other items are active, deactivate them
     $tablinks.not($(this)).removeClass("active");
-    
+
     // also manually activate the parent link when the selected item
     // is part of a treeview. For some reason, this is not done by AdminLTE3...
     if ($(this).hasClass('treeview-link')) {
       $(this).parents('.has-treeview').children().eq(0).addClass('active');
     }
-    
+
     // Trigger event for the tabItemInputBinding
     var $obj = $('.sidebarMenuSelectedTabItem');
     var inputBinding = $obj.data('shiny-input-binding');
@@ -774,22 +774,22 @@ $(function () {
   };
 
   $(document).on('shown.bs.tab', '#sidebar-menu a[data-toggle="tab"]', deactivateOtherTabs);
-  
-  
+
+
   // When document is ready, if there is a sidebar menu with no activated tabs,
   // activate the one specified by `data-start-selected`, or if that's not
   // present, the first one.
-  var ensureActivatedTab = function() {
-      // get the selected tabs
+  var ensureActivatedTab = function () {
+    // get the selected tabs
     var $tablinks = $("#sidebar-menu a[data-toggle='tab']");
-    
+
     // If there are no tabs, $startTab.length will be 0.
     var $startTab = $tablinks.filter("[data-start-selected='1']");
     if ($startTab.length === 0) {
       // If no tab starts selected, use the first one, if present
       $startTab = $tablinks.first();
-    } 
-    
+    }
+
     // If there's a `data-start-selected` attribute and we can find a tab with
     // that name, activate it.
     if ($startTab.length !== 0) {
@@ -805,45 +805,45 @@ $(function () {
   };
 
   ensureActivatedTab();
-  
-  
+
+
   // Whenever we expand a menuItem (to be expandable, it must have children),
   // update the value for the expandedItem's input binding (this is the
   // tabName of the fist subMenuItem inside the menuItem that is currently
   // expanded)
-  $(document).on("click", ".has-treeview", function() {
+  $(document).on("click", ".has-treeview", function () {
     var $menu = $(this);
     // If this menuItem was already open, then clicking on it again,
     // should trigger the "hidden" event, so Shiny doesn't worry about
     // it while it's hidden (and vice versa).
     if ($menu.hasClass("menu-open")) $menu.trigger("collapsed.lte.treeview");
     else if ($menu.hasClass("has-treeview")) $menu.trigger("expanded.lte.treeview");
-  
+
     // need to set timeout to account for the slideUp/slideDown animation
     var $obj = $('.sidebar.shiny-bound-input');
-    setTimeout(function() { $obj.trigger('change'); }, 600);
+    setTimeout(function () { $obj.trigger('change'); }, 600);
   });
-  
-  
+
+
   //---------------------------------------------------------------------
   // tabItemInputBinding
   // ------------------------------------------------------------------
   // Based on Shiny.tabItemInputBinding, but customized for tabItems in
   // bs4Dash, which have a slightly different structure.
   var tabItemInputBinding = new Shiny.InputBinding();
-    $.extend(tabItemInputBinding, {
-    find: function(scope) {
+  $.extend(tabItemInputBinding, {
+    find: function (scope) {
       return $(scope).find('.sidebarMenuSelectedTabItem');
     },
-    getValue: function(el) {
+    getValue: function (el) {
       var value = $(el).attr('data-value');
       if (value === "null") return null;
       return value;
     },
-    setValue: function(el, value) {
+    setValue: function (el, value) {
       var self = this;
       var anchors = $(el).parent('#sidebar-menu').find('li:not(.treeview)').children('a');
-      anchors.each(function() { // eslint-disable-line consistent-return
+      anchors.each(function () { // eslint-disable-line consistent-return
         if (self._getTabName($(this)) === value) {
           $(this).tab('show');
           // this make sure that treeview items are open when we
@@ -858,76 +858,76 @@ $(function () {
         }
       });
     },
-    receiveMessage: function(el, data) {
+    receiveMessage: function (el, data) {
       if (data.hasOwnProperty('value'))
         this.setValue(el, data.value);
     },
-    subscribe: function(el, callback) {
+    subscribe: function (el, callback) {
       // This event is triggered by deactivateOtherTabs, which is triggered by
       // shown. The deactivation of other tabs must occur before Shiny gets the
       // input value.
-      $(el).on('change.tabItemInputBinding', function() {
+      $(el).on('change.tabItemInputBinding', function () {
         callback();
       });
     },
-    unsubscribe: function(el) {
+    unsubscribe: function (el) {
       $(el).off('.tabItemInputBinding');
     },
-    _getTabName: function(anchor) {
+    _getTabName: function (anchor) {
       return anchor.attr('data-value');
     }
   });
 
   Shiny.inputBindings.register(tabItemInputBinding, 'bs4Dash.tabItemInput');
-  
-  
+
+
   //---------------------------------------------------------------------
   // sidebarInputBinding
   // ------------------------------------------------------------------
   // similar to controlbarInputBinding
   var sidebarBinding = new Shiny.InputBinding();
-  
+
   $.extend(sidebarBinding, {
-  
-    find: function(scope) {
+
+    find: function (scope) {
       return $(scope).find(".main-sidebar");
     },
-  
+
     // Given the DOM element for the input, return the value
-    getValue: function(el) {
+    getValue: function (el) {
       // Warning: we can't look for sidebar-open since this
       // class is only generated on mobile devices
       return !$("body").hasClass("sidebar-collapse");
     },
-  
+
     // see updatebs4Controlbar
-    receiveMessage: function(el, data) {
+    receiveMessage: function (el, data) {
       $("[data-widget='pushmenu']").PushMenu('toggle');
     },
-  
-    subscribe: function(el, callback) {
-      $("[data-widget='pushmenu']").on("collapsed.lte.pushmenu.sidebarBinding shown.lte.pushmenu.sidebarBinding", function(e) {
+
+    subscribe: function (el, callback) {
+      $("[data-widget='pushmenu']").on("collapsed.lte.pushmenu.sidebarBinding shown.lte.pushmenu.sidebarBinding", function (e) {
         callback();
       });
     },
-  
-    unsubscribe: function(el) {
+
+    unsubscribe: function (el) {
       $(el).off(".sidebarBinding");
     }
   });
-  
+
   Shiny.inputBindings.register(sidebarBinding, 'bs4Dash.sidebarInput');
-  
+
   // sidebarmenuExpandedInputBinding
   // ------------------------------------------------------------------
   // This keeps tracks of what menuItem (if any) is expanded
   var sidebarmenuExpandedInputBinding = new Shiny.InputBinding();
   $.extend(sidebarmenuExpandedInputBinding, {
-    find: function(scope) {
+    find: function (scope) {
       // This will also have id="sidebarItemExpanded"
       return $(scope).find('.sidebar');
     },
-    getValue: function(el) {
+    getValue: function (el) {
       var $open = $(el)
         .find('li')
         .filter('.menu-open')
@@ -935,45 +935,45 @@ $(function () {
       if ($open.length === 1) return $open.attr('data-expanded');
       else return null;
     },
-    setValue: function(el, value) {
+    setValue: function (el, value) {
       // does not work (nothing is printed)
       var $menuItem = $(el).find("[data-expanded='" + value + "']");
       // This will trigger actions defined by AdminLTE, as well as actions
       // defined in sidebar.js.
       $menuItem.prev().trigger("click");
     },
-    subscribe: function(el, callback) {
-      $(el).on('change.sidebarmenuExpandedInputBinding', function() {
+    subscribe: function (el, callback) {
+      $(el).on('change.sidebarmenuExpandedInputBinding', function () {
         callback();
       });
     },
-    unsubscribe: function(el) {
+    unsubscribe: function (el) {
       $(el).off('.sidebarmenuExpandedInputBinding');
     }
   });
   Shiny.inputBindings.register(sidebarmenuExpandedInputBinding,
-  'bs4Dash.sidebarmenuExpandedInputBinding');
-  
-  
-  
+    'bs4Dash.sidebarmenuExpandedInputBinding');
+
+
+
   // handle fixed sidebar
   if ($(".main-sidebar").attr("data-fixed") === "true") {
     $('body').addClass('layout-fixed');
     //$('body').Layout('fixLayoutHeight');
   }
-  
+
   // toggle sidebar at start depending on the body class
   var sidebarCollapsed = $('.main-sidebar').attr('data-collapsed');
   if (sidebarCollapsed === "true") {
     // This triggers binding geValue
     $("[data-widget='pushmenu']").PushMenu('toggle');
   }
-  
+
   var sidebarMinified = $('.main-sidebar').attr('data-minified');
   if (sidebarMinified === "true") {
     $('body').addClass('sidebar-mini');
   }
-  
+
 });
 $(function () {
 
@@ -1190,114 +1190,117 @@ $(function () {
   var navbarColor;
 
   // automatic global theme switcher
-  var $dark_mode_checkbox = $('<input />', {
-    type: 'checkbox',
-    id: 'customSwitch1',
-    checked: $('body').hasClass('dark-mode'),
-    class: 'custom-control-input'
-  }).on('click', function () {
+  if ($('body').attr('data-dark') == 1) {
+    var $dark_mode_checkbox = $('<input />', {
+      type: 'checkbox',
+      id: 'customSwitch1',
+      checked: $('body').hasClass('dark-mode'),
+      class: 'custom-control-input'
+    }).on('click', function () {
 
-    // get any selected navbar skin in the navbar themer
-    var newNavbarColor;
-    $('.navbar-themer-chip').filter(function () {
-      if ($(this).css('border-style') === 'solid') {
-        newNavbarColor = 'navbar-' +
-          $(this)
+      // get any selected navbar skin in the navbar themer
+      var newNavbarColor;
+      $('.navbar-themer-chip').filter(function () {
+        if ($(this).css('border-style') === 'solid') {
+          newNavbarColor = 'navbar-' +
+            $(this)
+              .attr('class')
+              .split('elevation-2')[0]
+              .trim()
+              .replace('bg-', '');
+        }
+      });
+
+      if ($(this).is(':checked')) {
+        $('body').addClass('dark-mode');
+
+        // use updateNavbarTheme to correctly setup the skin as depending
+        // on the required color. If no color is chosen, we use gray-dark for dark mode
+        if (newNavbarColor === undefined) {
+          newNavbarColor = "navbar-gray-dark";
+        }
+        updateNavbarTheme(newNavbarColor);
+
+        // sidebar update  
+        if ($('.main-sidebar').length > 0) {
+          $('.main-sidebar').attr('class', $('.main-sidebar')
             .attr('class')
-            .split('elevation-2')[0]
-            .trim()
-            .replace('bg-', '');
+            .replace('light', 'dark'));
+          $('#sidebar-skin').prop("checked", true);
+
+          $('.sidebar-themer-icon')
+            .removeClass('fa-sun')
+            .addClass('fa-moon');
+        }
+
+        // controlbar update
+        if ($('.control-sidebar').length > 0) {
+          $('.control-sidebar').attr('class', $('.control-sidebar')
+            .attr('class')
+            .replace('light', 'dark'));
+          $('#controlbar-skin').prop("checked", true);
+
+          $('.controlbar-themer-icon')
+            .removeClass('fa-sun')
+            .addClass('fa-moon');
+        }
+
+
+        $('.dark-theme-icon')
+          .removeClass('fa-sun')
+          .addClass('fa-moon');
+
+        // refresh shiny input value  
+        Shiny.setInputValue('dark_mode', true, { priority: 'event' });
+
+      } else {
+        $('body').removeClass('dark-mode');
+
+        // use updateNavbarTheme to correctly setup the skin as depending
+        // on the required color. If no color is chosen, we use white for light mode
+        if (newNavbarColor === undefined) {
+          newNavbarColor = "navbar-white";
+        }
+        updateNavbarTheme(newNavbarColor);
+
+        // sidebar update
+        if ($('.main-sidebar').length > 0) {
+          $('.main-sidebar').attr('class', $('.main-sidebar')
+            .attr('class')
+            .replace('dark', 'light'));
+          $('#sidebar-skin').prop("checked", false);
+
+          $('.sidebar-themer-icon')
+            .removeClass('fa-moon')
+            .addClass('fa-sun');
+        }
+
+        // controlbar update
+        if ($('.control-sidebar').length > 0) {
+          $('.control-sidebar').attr('class', $('.control-sidebar')
+            .attr('class')
+            .replace('dark', 'light'));
+          $('#controlbar-skin').prop("checked", false);
+
+          $('.controlbar-themer-icon')
+            .removeClass('fa-moon')
+            .addClass('fa-sun');
+        }
+
+        $('.dark-theme-icon')
+          .removeClass('fa-moon')
+          .addClass('fa-sun');
+
+        // refresh shiny input value  
+        Shiny.setInputValue('dark_mode', false, { priority: 'event' });
       }
     });
 
-    if ($(this).is(':checked')) {
-      $('body').addClass('dark-mode');
-
-      // use updateNavbarTheme to correctly setup the skin as depending
-      // on the required color. If no color is chosen, we use gray-dark for dark mode
-      if (newNavbarColor === undefined) {
-        newNavbarColor = "navbar-gray-dark";
-      }
-      updateNavbarTheme(newNavbarColor);
-
-      // sidebar update  
-      if ($('.main-sidebar').length > 0) {
-        $('.main-sidebar').attr('class', $('.main-sidebar')
-          .attr('class')
-          .replace('light', 'dark'));
-        $('#sidebar-skin').prop("checked", true);
-
-        $('.sidebar-themer-icon')
-          .removeClass('fa-sun')
-          .addClass('fa-moon');
-      }
-
-      // controlbar update
-      if ($('.control-sidebar').length > 0) {
-        $('.control-sidebar').attr('class', $('.control-sidebar')
-          .attr('class')
-          .replace('light', 'dark'));
-        $('#controlbar-skin').prop("checked", true);
-
-        $('.controlbar-themer-icon')
-          .removeClass('fa-sun')
-          .addClass('fa-moon');
-      }
-
-
-      $('.dark-theme-icon')
-        .removeClass('fa-sun')
-        .addClass('fa-moon');
-
-      // refresh shiny input value  
-      Shiny.setInputValue('dark_mode', true, { priority: 'event' });
-
-    } else {
-      $('body').removeClass('dark-mode');
-
-      // use updateNavbarTheme to correctly setup the skin as depending
-      // on the required color. If no color is chosen, we use white for light mode
-      if (newNavbarColor === undefined) {
-        newNavbarColor = "navbar-white";
-      }
-      updateNavbarTheme(newNavbarColor);
-
-      // sidebar update
-      if ($('.main-sidebar').length > 0) {
-        $('.main-sidebar').attr('class', $('.main-sidebar')
-          .attr('class')
-          .replace('dark', 'light'));
-        $('#sidebar-skin').prop("checked", false);
-
-        $('.sidebar-themer-icon')
-          .removeClass('fa-moon')
-          .addClass('fa-sun');
-      }
-
-      // controlbar update
-      if ($('.control-sidebar').length > 0) {
-        $('.control-sidebar').attr('class', $('.control-sidebar')
-          .attr('class')
-          .replace('dark', 'light'));
-        $('#controlbar-skin').prop("checked", false);
-
-        $('.controlbar-themer-icon')
-          .removeClass('fa-moon')
-          .addClass('fa-sun');
-      }
-
-      $('.dark-theme-icon')
-        .removeClass('fa-moon')
-        .addClass('fa-sun');
-
-      // refresh shiny input value  
-      Shiny.setInputValue('dark_mode', false, { priority: 'event' });
-    }
-  });
-
-  var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
-  var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
-  $navbar.append($dark_mode_container);
+    var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
+    var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
+    $navbar.append($dark_mode_container);
+  }
+  
 
   // Themer chips
 
@@ -1545,37 +1548,37 @@ $(function () {
   });
 
 });
-$(function() {
+$(function () {
   // hide the right sidebar toggle 
   // if no right sidebar is specified
   noControlbar = ($(".control-sidebar").length === 0);
   if (noControlbar) {
     $("#controlbar-toggle").hide();
   }
-  
+
   // hide the right sidebar toggle if the controlbar is disable
   disableControlbar = ($(".control-sidebar").attr("data-show"));
   if (!disableControlbar) {
     $("#controlbar-toggle").hide();
   }
-  
+
   // controlbar slide
   controlbarSlide = ($(".control-sidebar").attr("data-slide"));
   if (controlbarSlide) {
     $("#controlbar-toggle").attr('data-controlsidebar-slide', controlbarSlide);
   }
-  
+
   // when the sidebar is disabled, hide the sidebar toggle
-  disableSidebar = ($(".main-sidebar").css("display") == "none");
+  disableSidebar = ($(".main-sidebar").length === 0);
   if (disableSidebar) {
     $(".nav-item > a[data-widget='pushmenu']").css("visibility", "hidden");
   }
-  
+
   // handle fixed navbar
   if ($(".navbar").attr("data-fixed") === "true") {
     $("body").addClass("layout-navbar-fixed");
   }
-  
+
 });
 var menuOutputBinding = new Shiny.OutputBinding();
 $.extend(menuOutputBinding, {

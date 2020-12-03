@@ -22,6 +22,8 @@
 #' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use
 #' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
 #' if TRUE, a help icon is display in the navigation bar.
+#' @param dark Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
+#' Default to TRUE.
 #'
 #' @examples
 #' if (interactive()) {
@@ -88,7 +90,7 @@
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
                         skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
-                        fullscreen = FALSE, help = FALSE) {
+                        fullscreen = FALSE, help = FALSE, dark = TRUE) {
   titleTag <- header[[2]]
 
   sidebarDisabled <- sidebar$attribs$`data-disable`
@@ -159,6 +161,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
       shiny::tags$body(
         `data-help` = if (help) 1 else 0,
         `data-fullscreen` = if (fullscreen) 1 else 0,
+        `data-dark` = if (dark) 1 else 0,
         class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
           shiny::tagList(

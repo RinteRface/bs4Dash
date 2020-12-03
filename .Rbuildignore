@@ -17,3 +17,4 @@
 ^tools$
 ^srcjs$
 ^.*\.icloud$
+^netlify\.toml$

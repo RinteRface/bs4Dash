@@ -213,114 +213,117 @@ $(function () {
   var navbarColor;
 
   // automatic global theme switcher
-  var $dark_mode_checkbox = $('<input />', {
-    type: 'checkbox',
-    id: 'customSwitch1',
-    checked: $('body').hasClass('dark-mode'),
-    class: 'custom-control-input'
-  }).on('click', function () {
+  if ($('body').attr('data-dark') == 1) {
+    var $dark_mode_checkbox = $('<input />', {
+      type: 'checkbox',
+      id: 'customSwitch1',
+      checked: $('body').hasClass('dark-mode'),
+      class: 'custom-control-input'
+    }).on('click', function () {
 
-    // get any selected navbar skin in the navbar themer
-    var newNavbarColor;
-    $('.navbar-themer-chip').filter(function () {
-      if ($(this).css('border-style') === 'solid') {
-        newNavbarColor = 'navbar-' +
-          $(this)
+      // get any selected navbar skin in the navbar themer
+      var newNavbarColor;
+      $('.navbar-themer-chip').filter(function () {
+        if ($(this).css('border-style') === 'solid') {
+          newNavbarColor = 'navbar-' +
+            $(this)
+              .attr('class')
+              .split('elevation-2')[0]
+              .trim()
+              .replace('bg-', '');
+        }
+      });
+
+      if ($(this).is(':checked')) {
+        $('body').addClass('dark-mode');
+
+        // use updateNavbarTheme to correctly setup the skin as depending
+        // on the required color. If no color is chosen, we use gray-dark for dark mode
+        if (newNavbarColor === undefined) {
+          newNavbarColor = "navbar-gray-dark";
+        }
+        updateNavbarTheme(newNavbarColor);
+
+        // sidebar update  
+        if ($('.main-sidebar').length > 0) {
+          $('.main-sidebar').attr('class', $('.main-sidebar')
             .attr('class')
-            .split('elevation-2')[0]
-            .trim()
-            .replace('bg-', '');
+            .replace('light', 'dark'));
+          $('#sidebar-skin').prop("checked", true);
+
+          $('.sidebar-themer-icon')
+            .removeClass('fa-sun')
+            .addClass('fa-moon');
+        }
+
+        // controlbar update
+        if ($('.control-sidebar').length > 0) {
+          $('.control-sidebar').attr('class', $('.control-sidebar')
+            .attr('class')
+            .replace('light', 'dark'));
+          $('#controlbar-skin').prop("checked", true);
+
+          $('.controlbar-themer-icon')
+            .removeClass('fa-sun')
+            .addClass('fa-moon');
+        }
+
+
+        $('.dark-theme-icon')
+          .removeClass('fa-sun')
+          .addClass('fa-moon');
+
+        // refresh shiny input value  
+        Shiny.setInputValue('dark_mode', true, { priority: 'event' });
+
+      } else {
+        $('body').removeClass('dark-mode');
+
+        // use updateNavbarTheme to correctly setup the skin as depending
+        // on the required color. If no color is chosen, we use white for light mode
+        if (newNavbarColor === undefined) {
+          newNavbarColor = "navbar-white";
+        }
+        updateNavbarTheme(newNavbarColor);
+
+        // sidebar update
+        if ($('.main-sidebar').length > 0) {
+          $('.main-sidebar').attr('class', $('.main-sidebar')
+            .attr('class')
+            .replace('dark', 'light'));
+          $('#sidebar-skin').prop("checked", false);
+
+          $('.sidebar-themer-icon')
+            .removeClass('fa-moon')
+            .addClass('fa-sun');
+        }
+
+        // controlbar update
+        if ($('.control-sidebar').length > 0) {
+          $('.control-sidebar').attr('class', $('.control-sidebar')
+            .attr('class')
+            .replace('dark', 'light'));
+          $('#controlbar-skin').prop("checked", false);
+
+          $('.controlbar-themer-icon')
+            .removeClass('fa-moon')
+            .addClass('fa-sun');
+        }
+
+        $('.dark-theme-icon')
+          .removeClass('fa-moon')
+          .addClass('fa-sun');
+
+        // refresh shiny input value  
+        Shiny.setInputValue('dark_mode', false, { priority: 'event' });
       }
     });
 
-    if ($(this).is(':checked')) {
-      $('body').addClass('dark-mode');
-
-      // use updateNavbarTheme to correctly setup the skin as depending
-      // on the required color. If no color is chosen, we use gray-dark for dark mode
-      if (newNavbarColor === undefined) {
-        newNavbarColor = "navbar-gray-dark";
-      }
-      updateNavbarTheme(newNavbarColor);
-
-      // sidebar update  
-      if ($('.main-sidebar').length > 0) {
-        $('.main-sidebar').attr('class', $('.main-sidebar')
-          .attr('class')
-          .replace('light', 'dark'));
-        $('#sidebar-skin').prop("checked", true);
-
-        $('.sidebar-themer-icon')
-          .removeClass('fa-sun')
-          .addClass('fa-moon');
-      }
-
-      // controlbar update
-      if ($('.control-sidebar').length > 0) {
-        $('.control-sidebar').attr('class', $('.control-sidebar')
-          .attr('class')
-          .replace('light', 'dark'));
-        $('#controlbar-skin').prop("checked", true);
-
-        $('.controlbar-themer-icon')
-          .removeClass('fa-sun')
-          .addClass('fa-moon');
-      }
-
-
-      $('.dark-theme-icon')
-        .removeClass('fa-sun')
-        .addClass('fa-moon');
-
-      // refresh shiny input value  
-      Shiny.setInputValue('dark_mode', true, { priority: 'event' });
-
-    } else {
-      $('body').removeClass('dark-mode');
-
-      // use updateNavbarTheme to correctly setup the skin as depending
-      // on the required color. If no color is chosen, we use white for light mode
-      if (newNavbarColor === undefined) {
-        newNavbarColor = "navbar-white";
-      }
-      updateNavbarTheme(newNavbarColor);
-
-      // sidebar update
-      if ($('.main-sidebar').length > 0) {
-        $('.main-sidebar').attr('class', $('.main-sidebar')
-          .attr('class')
-          .replace('dark', 'light'));
-        $('#sidebar-skin').prop("checked", false);
-
-        $('.sidebar-themer-icon')
-          .removeClass('fa-moon')
-          .addClass('fa-sun');
-      }
-
-      // controlbar update
-      if ($('.control-sidebar').length > 0) {
-        $('.control-sidebar').attr('class', $('.control-sidebar')
-          .attr('class')
-          .replace('dark', 'light'));
-        $('#controlbar-skin').prop("checked", false);
-
-        $('.controlbar-themer-icon')
-          .removeClass('fa-moon')
-          .addClass('fa-sun');
-      }
-
-      $('.dark-theme-icon')
-        .removeClass('fa-moon')
-        .addClass('fa-sun');
-
-      // refresh shiny input value  
-      Shiny.setInputValue('dark_mode', false, { priority: 'event' });
-    }
-  });
-
-  var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
-  var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
-  $navbar.append($dark_mode_container);
+    var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
+    var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
+    $navbar.append($dark_mode_container);
+  }
+  
 
   // Themer chips
 
