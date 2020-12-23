@@ -5,14 +5,14 @@
 \alias{starBlock}
 \title{AdminLTE3 stars}
 \usage{
-bs4Stars(maxstar = 5, grade, color = "warning")
+bs4Stars(grade, maxstar = 5, color = "warning")
 
-starBlock(maxstar = 5, grade, color = "warning")
+starBlock(grade, maxstar = 5, color = "warning")
 }
 \arguments{
-\item{maxstar}{Maximum number of stars by block.}
-
 \item{grade}{Current score. Should be positive and lower or equal to maxstar.}
+
+\item{maxstar}{Maximum number of stars by block.}
 
 \item{color}{Star color. Valid colors are listed below:
 \itemize{
@@ -53,10 +53,10 @@ if(interactive()){
     dashboardBody(
      box(
       title = "Star example",
-      starBlock(grade = 5),
-      starBlock(grade = 5, color = "fuchsia"),
-      starBlock(grade = 1, color = "danger"),
-      starBlock(grade = 3, color = "secondary")
+      starBlock(5),
+      starBlock(5, color = "fuchsia"),
+      starBlock(1, color = "danger"),
+      starBlock(3, color = "secondary")
      )
     ),
     title = "starBlock"

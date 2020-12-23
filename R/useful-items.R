@@ -1111,10 +1111,10 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #'     dashboardBody(
 #'      box(
 #'       title = "Star example",
-#'       starBlock(grade = 5),
-#'       starBlock(grade = 5, color = "fuchsia"),
-#'       starBlock(grade = 1, color = "danger"),
-#'       starBlock(grade = 3, color = "secondary")
+#'       starBlock(5),
+#'       starBlock(5, color = "fuchsia"),
+#'       starBlock(1, color = "danger"),
+#'       starBlock(3, color = "secondary")
 #'      )
 #'     ),
 #'     title = "starBlock"
@@ -1124,7 +1124,7 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #' }
 #'
 #' @export
-bs4Stars <- function(maxstar = 5, grade, color = "warning") {
+bs4Stars <- function(grade, maxstar = 5, color = "warning") {
   
   stopifnot(!is.null(color))
   validateStatusPlus(color)
