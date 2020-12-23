@@ -328,7 +328,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
                            startOpen = FALSE, icon = shiny::icon("cogs")) {
 
-  stopifnot(width > 25 && width <= 100)
+  stopifnot(width >= 25 && width <= 100)
   
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
@@ -444,7 +444,7 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
 #'         "mybox",
 #'         action = "update",
 #'         options = list(
-#'           title = tagList(h2("hello"), dashboardLabel(1, status = "primary")),
+#'           title = h2("hello", dashboardBadge(1, color = "primary")),
 #'           status = "warning",
 #'           solidHeader = TRUE,
 #'           width = 12,
