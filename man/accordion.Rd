@@ -10,25 +10,32 @@
 \usage{
 bs4Accordion(..., id, width = 12)
 
-bs4AccordionItem(..., title, status = NULL, collapsed = TRUE)
+bs4AccordionItem(
+  ...,
+  title,
+  status = NULL,
+  collapsed = TRUE,
+  solidHeader = TRUE
+)
 
 updateAccordion(id, selected, session = shiny::getDefaultReactiveDomain())
 
 accordion(..., id, width = 12)
 
-accordionItem(..., title, status = NULL, collapsed = TRUE)
+accordionItem(..., title, status = NULL, collapsed = TRUE, solidHeader = TRUE)
 }
 \arguments{
-\item{...}{Item content.}
+\item{...}{slot for \link{accordionItem}.}
 
 \item{id}{Accordion to target.}
 
 \item{width}{The width of the accordion.}
 
-\item{title}{Item title.}
+\item{title}{Optional title.}
 
-\item{status}{Item color. Valid colors are defined as below: 
-  \itemize{
+\item{status}{The status of the item. This determines the item's background
+  color.  Valid statuses are defined as follows:
+\itemize{
   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
@@ -37,7 +44,7 @@ accordionItem(..., title, status = NULL, collapsed = TRUE)
   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-  \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1f2d3d")}.
   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
@@ -51,7 +58,10 @@ accordionItem(..., title, status = NULL, collapsed = TRUE)
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 }}
 
-\item{collapsed}{Whether to expand or collapse the item. TRUE by default. Set it to FALSE if you want to expand it.}
+\item{collapsed}{If TRUE, start collapsed. This must be used with
+\code{collapsible=TRUE}.}
+
+\item{solidHeader}{Should the header be shown with a solid color background?}
 
 \item{selected}{Index of the newly selected \link{accordionItem}.}
 
