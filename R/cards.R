@@ -1538,7 +1538,7 @@ cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FA
   cl <- if (bordered) "list-group" else "list-group list-group-unbordered"
 
   shiny::tags$div(
-    class = "card-body card-profile",
+    class = "card-profile",
     if (!is.null(image)) {
       shiny::tags$div(
         class = "text-center",
