@@ -835,10 +835,10 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 #' @export
 bs4TimelineLabel <- function(..., color = NULL) {
   
-  cl <- "bg-"
+  cl <- NULL
   if (!is.null(color)) {
     validateStatusPlus(color)
-    cl <- paste0(cl, color)
+    cl <- paste0("bg-", color)
   }
   
   shiny::tags$div(
