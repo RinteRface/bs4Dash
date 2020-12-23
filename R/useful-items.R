@@ -1944,7 +1944,7 @@ userList <- function(...) {
 #' @rdname userList
 #'
 #' @export
-userListItem <- function(image = NULL, title = NULL, subtitle = NULL) {
+userListItem <- function(image, title, subtitle = NULL) {
   shiny::tags$li(
     shiny::tags$img(
       src = image, 

@@ -7,7 +7,7 @@
 \usage{
 userList(...)
 
-userListItem(image = NULL, title = NULL, subtitle = NULL)
+userListItem(image, title, subtitle = NULL)
 }
 \arguments{
 \item{...}{slot for \link{userListItem}.}
