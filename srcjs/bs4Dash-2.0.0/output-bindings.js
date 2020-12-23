@@ -29,6 +29,12 @@ $.extend(menuOutputBinding, {
     // Extract class of wrapper, and add them to the wrapper element
     el.className = 'bs4Dash-menu-output shiny-bound-output ' +
       $html.attr('class');
+    
+    // need this to activate adminLTE3 plugin for treeview  
+    $(el)
+      .attr("data-widget", "treeview")
+      .attr("role", "menu")
+      .attr("data-accordion", "true");
 
     Shiny.initializeInputs(el);
     Shiny.bindAll(el);

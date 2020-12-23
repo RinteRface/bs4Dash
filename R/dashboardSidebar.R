@@ -237,7 +237,7 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
   }))
   if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
 
-  menuCl <- "nav nav-pills nav-sidebar flex-column"
+  menuCl <- "nav nav-pills nav-sidebar flex-column sidebar-menu"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
   if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
@@ -247,7 +247,6 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
   shiny::tags$ul(
     class = menuCl,
     `data-widget` = "treeview",
-    id = "sidebar-menu",
     role = "menu",
     `data-accordion` = "true",
     ...,
