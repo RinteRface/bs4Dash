@@ -2472,7 +2472,7 @@ userPostTagItem <- function(...) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' 
 #' @export
-userPostMedia <- function(image = NULL, height = NULL, width = NULL) {
+userPostMedia <- function(image, height = NULL, width = NULL) {
   shiny::img(
     style = "margin: auto;",
     class = "img-fluid", 
