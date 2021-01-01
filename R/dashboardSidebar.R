@@ -249,7 +249,7 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
     `data-widget` = "treeview",
     role = "menu",
     `data-accordion` = "true",
-    ...,
+    items,
     # This is a 0 height div, whose only purpose is to hold the tabName of the currently
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
     # bound to tabItemInputBinding in the JS side.
