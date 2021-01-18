@@ -18,7 +18,8 @@ bs4DashPage(
   options = NULL,
   fullscreen = FALSE,
   help = FALSE,
-  dark = TRUE
+  dark = TRUE,
+  scrollToTop = FALSE
 )
 
 dashboardPage(
@@ -34,7 +35,8 @@ dashboardPage(
   options = NULL,
   fullscreen = FALSE,
   help = FALSE,
-  dark = TRUE
+  dark = TRUE,
+  scrollToTop = FALSE
 )
 }
 \arguments{
@@ -72,6 +74,9 @@ if TRUE, a help icon is display in the navigation bar.}
 
 \item{dark}{Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
 Default to TRUE.}
+
+\item{scrollToTop}{Whether to display a scroll to top button whenever the page height is too large.
+Default to FALSE.}
 }
 \description{
 Build an adminLTE3 dashboard page
