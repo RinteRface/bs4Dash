@@ -48,10 +48,10 @@ $.extend(accordionBinding, {
     
     // manual click will update
     $(el).find('[data-toggle="collapse"]').on("click", function(e) {
-      if (!$(this).closest(".panel").hasClass("active")) {
+      if (!$(this).closest(".card").hasClass("active")) {
         $(el).find(".active").removeClass("active");
       } 
-      $(this).closest(".panel").addClass("active");
+      $(this).closest(".card").addClass("active");
       callback();
     });
   },
