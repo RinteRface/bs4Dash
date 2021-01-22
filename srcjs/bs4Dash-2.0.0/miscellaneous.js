@@ -218,7 +218,6 @@ $(function () {
     var $dark_mode_checkbox = $('<input />', {
       type: 'checkbox',
       id: 'customSwitch1',
-      checked: $('body').hasClass('dark-mode'),
       class: 'custom-control-input'
     }).on('click', function () {
 
@@ -323,6 +322,11 @@ $(function () {
     var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
     var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
     $navbar.append($dark_mode_container);
+    
+    // Trigger dark mode
+    $(document).on('shiny:connected', function() {
+      $('#customSwitch1').click();
+    });
   }
   
 
