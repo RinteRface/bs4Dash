@@ -94,7 +94,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
                         skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
                         fullscreen = FALSE, help = FALSE, dark = TRUE, scrollToTop = FALSE) {
   titleTag <- header[[2]]
-
+  
   sidebarDisabled <- sidebar$attribs$`data-disable`
 
   # layout changes if main sidebar is disabled
@@ -102,13 +102,13 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     tagAssert(sidebar, type = "aside", class = "main-sidebar")
     # look for custom area and move it to third slot
     if (length(sidebar$children) > 1) {
-      sidebar$children[[3]] <- sidebar$children[[2]]
+      sidebar$children[[4]] <- sidebar$children[[3]]
     }
     # sidebar stuff are moved to second child
-    sidebar$children[[2]] <- sidebar$children[[1]]
+    sidebar$children[[3]] <- sidebar$children[[2]]
 
     # header content (brand logo) is moved to sidebar first child
-    sidebar$children[[1]] <- if (!is.null(titleTag)) {
+    sidebar$children[[2]] <- if (!is.null(titleTag)) {
       if (inherits(titleTag, "shiny.tag")) {
         titleTag
       } else {
