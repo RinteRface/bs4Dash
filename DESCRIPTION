@@ -22,7 +22,8 @@ Imports:
     fresh,
     waiter,
     httpuv (>= 1.5.2),
-    lifecycle
+    lifecycle,
+    bslib
 Suggests: 
     knitr,
     rmarkdown,

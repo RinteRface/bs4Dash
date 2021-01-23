@@ -33,7 +33,11 @@ controlbarMenu(
 
 controlbarItem(title, ..., value = title, icon = NULL)
 
-updateControlbarMenu(session, inputId, selected = NULL)
+updateControlbarMenu(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+)
 
 updateControlbar(id, session = shiny::getDefaultReactiveDomain())
 

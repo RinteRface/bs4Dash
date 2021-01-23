@@ -74,7 +74,11 @@ bs4SidebarHeader(title)
 
 bs4SidebarUserPanel(name, image = NULL)
 
-updatebs4TabItems(session, inputId, selected = NULL)
+updatebs4TabItems(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+)
 
 dashboardSidebar(
   ...,
@@ -131,7 +135,7 @@ menuSubItem(
   selected = NULL
 )
 
-updateTabItems(session, inputId, selected = NULL)
+updateTabItems(session = getDefaultReactiveDomain(), inputId, selected = NULL)
 }
 \arguments{
 \item{...}{\link{menuSubItem}.}
