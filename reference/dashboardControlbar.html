@@ -183,7 +183,11 @@
 
 <span class='fu'>controlbarItem</span><span class='op'>(</span><span class='va'>title</span>, <span class='va'>...</span>, value <span class='op'>=</span> <span class='va'>title</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>updateControlbarMenu</span><span class='op'>(</span><span class='va'>session</span>, <span class='va'>inputId</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='fu'>updateControlbarMenu</span><span class='op'>(</span>
+  session <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>inputId</span>,
+  selected <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
 <span class='fu'>updateControlbar</span><span class='op'>(</span><span class='va'>id</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
