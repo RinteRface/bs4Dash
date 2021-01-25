@@ -101,7 +101,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   if (!sidebarDisabled) {
     tagAssert(sidebar, type = "aside", class = "main-sidebar")
     # look for custom area and move it to third slot
-    if (length(sidebar$children) > 1) {
+    if (length(sidebar$children) > 2) {
       sidebar$children[[4]] <- sidebar$children[[3]]
     }
     # sidebar stuff are moved to second child
