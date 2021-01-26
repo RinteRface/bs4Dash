@@ -657,8 +657,8 @@ verify_compatible_lengths <- function(x, y) {
   if (length(x) == length(y)) return(y)
   else if (length(y) == 1) return(rep(y, length(x)))
   else {
-    name_x <- substitute(x)
-    name_y <- substitute(y)
+    name_x <- deparse(substitute(x))
+    name_y <- deparse(substitute(y))
     error_msg <-
       paste0("`", name_x, "` and `", name_y, "` must have compatible sizes. `",
              name_y, "` must be size ", length(x), " or 1.")
