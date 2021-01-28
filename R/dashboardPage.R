@@ -175,7 +175,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         onload = if (!is.null(preloader)) {
           sprintf(
             "setTimeout(function(){
-            window.loading_screen.finish();
+              $('.waiter-overlay').fadeOut(1000);
           }, %s);", preloader$duration * 1000
           )
         },
