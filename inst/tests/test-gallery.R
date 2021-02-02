@@ -1,5 +1,4 @@
-context("app-function")
-# This file is for testing the applications in the inst/ directory.
+# This file is for testing the applications in the inst/examples/showcase directory.
 
 library(testthat)
 
@@ -7,10 +6,15 @@ test_that("bs4DashGallery app works", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
   
+  p <- processx::process$new(
+    "Rscript", 
+    c( "-e",  "options('shiny.port'= 3515);bs4Dash::bs4DashGallery()" )
+  )
+  
   test <- crrry::CrrryOnPage$new(
     chrome_bin = pagedown::find_chrome(),
     chrome_port = httpuv::randomPort(),
-    url = "https://dgranjon.shinyapps.io/bs4DashDemo",
+    url = "http://localhost:3515",
     headless = TRUE
   )
   
@@ -32,6 +36,7 @@ test_that("bs4DashGallery app works", {
   expect_true(sidebar_state_1$result$value != sidebar_state_2$result$value)
   
   test$stop()
+  p$kill()
   
   #test$gremlins_horde()
   #Sys.sleep(10)
