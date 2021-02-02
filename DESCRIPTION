@@ -23,7 +23,7 @@ Imports:
     waiter,
     httpuv (>= 1.5.2),
     lifecycle,
-    bslib
+    bslib (>= 0.2.4)
 Suggests: 
     knitr,
     rmarkdown,
@@ -31,12 +31,10 @@ Suggests:
     covr,
     golem,
     DT, 
-    thematic,
-    echarts4r
-Remotes: 
-    rstudio/htmltools,
-    rstudio/shiny,
-    rstudio/thematic
+    thematic (>= 0.1.0),
+    echarts4r,
+    crrry,
+    pagedown
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000

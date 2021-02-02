@@ -1012,6 +1012,7 @@ shinyApp(
     dark = TRUE,
     help = TRUE,
     fullscreen = TRUE,
+    scrollToTop = TRUE,
     header = dashboardHeader(
       title = dashboardBrand(
         title = "bs4Dash",
@@ -1179,16 +1180,6 @@ shinyApp(
       )
     ),
     body = dashboardBody(
-      tags$head(
-        tags$script(
-          "$(function() {
-            $(document).on('shiny:connected', function() {
-              $('#customSwitch1').click();
-            });
-          });
-          "
-        )
-      ),
       e_theme_register(echarts_dark_theme$options, name = echarts_dark_theme$name),
       tabItems(
         basic_cards_tab,
