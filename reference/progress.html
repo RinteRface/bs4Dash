@@ -171,7 +171,31 @@
   label <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
 
+<span class='fu'>bs4MultiProgressBar</span><span class='op'>(</span>
+  <span class='va'>value</span>,
+  min <span class='op'>=</span> <span class='fl'>0</span>,
+  max <span class='op'>=</span> <span class='fl'>100</span>,
+  vertical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  striped <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  animated <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  status <span class='op'>=</span> <span class='st'>"primary"</span>,
+  size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
 <span class='fu'>progressBar</span><span class='op'>(</span>
+  <span class='va'>value</span>,
+  min <span class='op'>=</span> <span class='fl'>0</span>,
+  max <span class='op'>=</span> <span class='fl'>100</span>,
+  vertical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  striped <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  animated <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  status <span class='op'>=</span> <span class='st'>"primary"</span>,
+  size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='fu'>multiProgressBar</span><span class='op'>(</span>
   <span class='va'>value</span>,
   min <span class='op'>=</span> <span class='fl'>0</span>,
   max <span class='op'>=</span> <span class='fl'>100</span>,
@@ -265,6 +289,13 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For <code>multiProgressBar()</code>, <code>value</code> can be a vector which
+corresponds to the progress for each segment within the progress bar.
+If supplied, <code>striped</code>, <code>animated</code>, <code>status</code>, and <code>label</code> must be the
+same length as <code>value</code> or length 1, in which case vector recycling is
+used.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
@@ -295,6 +326,11 @@
         value <span class='op'>=</span> <span class='fl'>20</span>,
         status <span class='op'>=</span> <span class='st'>"danger"</span>,
         size <span class='op'>=</span> <span class='st'>"sm"</span>
+       <span class='op'>)</span>,
+       <span class='fu'>multiProgressBar</span><span class='op'>(</span>
+        value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span><span class='op'>)</span>,
+        status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"warning"</span>, <span class='st'>"danger"</span><span class='op'>)</span>,
+        size <span class='op'>=</span> <span class='st'>"sm"</span>
        <span class='op'>)</span>
       <span class='op'>)</span>,
       <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>
@@ -314,6 +350,12 @@
        <span class='fu'>progressBar</span><span class='op'>(</span>
         value <span class='op'>=</span> <span class='fl'>20</span>,
         status <span class='op'>=</span> <span class='st'>"danger"</span>,
+        size <span class='op'>=</span> <span class='st'>"sm"</span>,
+        vertical <span class='op'>=</span> <span class='cn'>TRUE</span>
+       <span class='op'>)</span>,
+       <span class='fu'>multiProgressBar</span><span class='op'>(</span>
+        value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span><span class='op'>)</span>,
+        status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"warning"</span>, <span class='st'>"danger"</span><span class='op'>)</span>,
         size <span class='op'>=</span> <span class='st'>"sm"</span>,
         vertical <span class='op'>=</span> <span class='cn'>TRUE</span>
        <span class='op'>)</span>
