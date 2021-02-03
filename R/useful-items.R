@@ -467,6 +467,13 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
 #' 
+#' @md
+#' @details For `multiProgressBar()`, `value` can be a vector which
+#'   corresponds to the progress for each segment within the progress bar.
+#'   If supplied, `striped`, `animated`, `status`, and `label` must be the
+#'   same length as `value` or length 1, in which case vector recycling is
+#'   used.
+#' 
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -493,6 +500,11 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #'         value = 20,
 #'         status = "danger",
 #'         size = "sm"
+#'        ),
+#'        multiProgressBar(
+#'         value = c(50, 20),
+#'         status = c("warning", "danger"),
+#'         size = "sm"
 #'        )
 #'       ),
 #'       box(
@@ -512,6 +524,12 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #'        progressBar(
 #'         value = 20,
 #'         status = "danger",
+#'         size = "sm",
+#'         vertical = TRUE
+#'        ),
+#'        multiProgressBar(
+#'         value = c(50, 20),
+#'         status = c("warning", "danger"),
 #'         size = "sm",
 #'         vertical = TRUE
 #'        )
@@ -567,7 +585,86 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   progressTag
 }
 
+#' @rdname progress
+#' @export
+bs4MultiProgressBar <- 
+  function(
+    value, 
+    min = 0, 
+    max = 100, 
+    vertical = FALSE, 
+    striped = FALSE, 
+    animated = FALSE,
+    status = "primary",
+    size = NULL,
+    label = NULL
+  ) {
+    status <- verify_compatible_lengths(value, status)
+    striped <- verify_compatible_lengths(value, striped)
+    animated <- verify_compatible_lengths(value, animated)
+    if (!is.null(label)) label <- verify_compatible_lengths(value, label)
+    
+    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
+    stopifnot(all(value >= min))
+    stopifnot(all(value <= max))
+    stopifnot(sum(value) <= max)
+    
+    bar_segment <- function(value, striped, animated, status, label) {
+      # bar class
+      barCl <- "progress-bar"
+      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+      if (striped) barCl <- paste0(barCl, " progress-bar-striped")
+      if (animated) barCl <- paste0(barCl, " progress-bar-animated")
+      
+      shiny::tags$div(
+        class = barCl, 
+        role = "progressbar", 
+        `aria-valuenow` = value, 
+        `aria-valuemin` = min, 
+        `aria-valuemax` = max, 
+        style = if (vertical) {
+          paste0("height: ", paste0(value, "%"))
+        }
+        else {
+          paste0("width: ", paste0(value, "%"))
+        }, 
+        if(!is.null(label)) label
+      )
+    }
+    
+    barSegs <- list()
+    # progress bar segments
+    for (i in seq_along(value)) {
+      barSegs[[i]] <- 
+        bar_segment(
+          value[[i]],
+          striped[[i]],
+          animated[[i]],
+          status[[i]],
+          label[[i]]
+        )
+    }
+    
+    # wrapper class
+    progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+    if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
+    progressTag <- shiny::tags$div(class = progressCl)
+    progressTag <- shiny::tagAppendChild(progressTag, barSegs)
+    progressTag
+  }
 
+verify_compatible_lengths <- function(x, y) {
+  if (length(x) == length(y)) return(y)
+  else if (length(y) == 1) return(rep(y, length(x)))
+  else {
+    name_x <- deparse(substitute(x))
+    name_y <- deparse(substitute(y))
+    error_msg <-
+      paste0("`", name_x, "` and `", name_y, "` must have compatible sizes. `",
+             name_y, "` must be size ", length(x), " or 1.")
+    stop(error_msg)
+  }
+}
 
 
 
