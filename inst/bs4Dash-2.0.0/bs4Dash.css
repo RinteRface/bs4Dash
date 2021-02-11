@@ -198,3 +198,9 @@
 .dark-mode pre {
   color: #fff;
 }
+
+
+/* Fix #171 about daterange input padding */
+.input-daterange .input-group-addon {
+  padding: 0px 0px;
+}
