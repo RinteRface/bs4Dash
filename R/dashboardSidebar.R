@@ -231,9 +231,9 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
 
   # make sure only 1 item is selected at start
   items <- c(list(...), .list)
-  items <- findSidebarItem(items, "nav-item")
-  selectedItems <- dropNulls(lapply(seq_along(items), function(i) {
-    if (length(items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+  nav_items <- findSidebarItem(items, "nav-item")
+  selectedItems <- dropNulls(lapply(seq_along(nav_items), function(i) {
+    if (length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
   }))
   if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
 
