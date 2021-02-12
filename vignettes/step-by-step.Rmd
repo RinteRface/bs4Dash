@@ -63,10 +63,7 @@ It allows deeper customization of colors to fit very specific needs like industr
 a loader tag built with `waiter`, see more [here](https://waiter.john-coene.com/), for instance:
 
 ```{r loading, eval=FALSE}
-preloader <- list(
-    waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
-    duration = 5
-)
+preloader <- list(html = tagList(spin_1(), "Loading ..."), color = "#343a40")
 ```
 
 At the moment, __options__ are not available, but the idea is to provide deeper customization of the AdminLTE3 
