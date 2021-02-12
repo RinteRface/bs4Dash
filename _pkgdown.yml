@@ -188,7 +188,6 @@ reference:
   - '`timelineItemMedia`'
   - '`timelineLabel`'
   - '`timelineStart`'
-  - '`getAdminLTEColors`'
 
 
 - title: CSS extras
@@ -196,6 +195,7 @@ reference:
   contents:
   - '`skinSelector`'
   - '`useAutoColor`' 
+  - '`getAdminLTEColors`'
 
 
 - title: Gallery
