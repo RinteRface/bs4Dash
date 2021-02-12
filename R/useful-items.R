@@ -129,7 +129,7 @@ bs4Accordion <- function(..., id, width = 12) {
   # item. Each accordion must have a unique id.
   lapply(seq_along(items), FUN = function(i) {
     items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id) 
-    items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs[["href"]] <<- paste0("#collapse_", id, "_", i)
+    items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
   
@@ -174,7 +174,7 @@ bs4AccordionItem <- function(..., title, status = NULL,
         class = "card-title w-100",
         shiny::tags$a(
           class = "d-block w-100",
-          href = NULL,
+          href = "#",
           `data-toggle` = "collapse",
           `aria-expanded` = if (collapsed) "false" else "true",
           class = if (collapsed) "collapsed",
@@ -363,7 +363,8 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
       # previous
       shiny::tags$a(
         class = "carousel-control-prev",
-        href = paste0("#", id),
+       `data-target` = paste0("#", id),
+        href = "#",
         role = "button",
         `data-slide` = "prev",
         shiny::tags$span(

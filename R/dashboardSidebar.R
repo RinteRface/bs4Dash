@@ -395,12 +395,11 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           id = if (!is.null(tabName)) {
             paste0("tab-", tabName)
           },
-          href = if (is.null(href)) {
+          href = if (!is.null(href)) href else "#",
+          `data-target` = if (is.null(href)) {
             if (!is.null(tabName)) {
               paste0("#shiny-tab-", tabName)
-            } else {
-              "#"
-            }
+            } 
           },
           target = if (!is.null(href)) {
             if (newTab) "_blank"
@@ -500,12 +499,11 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       id = if (!is.null(tabName)) {
         paste0("tab-", tabName)
       },
-      href = if (is.null(href)) {
+      href = if (!is.null(href)) href else "#",
+      `data-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } else {
-          "#"
-        }
+        } 
       },
       target = if (!is.null(href)) {
         if (newTab) "_blank"
