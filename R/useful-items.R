@@ -1218,7 +1218,7 @@ bs4Stars <- function(value, max = 5, color = "warning") {
         })
       },
       if (value < max) {
-        empty_star <- lapply(seq_len(maxstar - grade), FUN = function(i) {
+        empty_star <- lapply(seq_len(max - value), FUN = function(i) {
           shiny::tags$i(class = paste0("fa text-", color, " fa-star-o"))
         })
       }

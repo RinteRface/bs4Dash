@@ -12,9 +12,8 @@
 #' @param freshTheme A skin powered by the fresh package. Not compatible with skin.
 #' See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.
 #' @param preloader bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
-#' Pass a nested list with 2 elements like \code{list(waiter = list(html = spin_1(), color = "#333e48"), duration = 5)}.
-#' \code{waiter} expects to provide a sub-list to configure \link[waiter]{waiter_show_on_load} (refer to
-#' the package help for all styles). \code{duration} defines the loader timeout.
+#' Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiter_show_on_load} (refer to
+#' the package help for all styles).
 #' @param options Extra option to overwrite the vanilla AdminLTE configuration. See
 #' \url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
 #' Expect a list.
@@ -167,16 +166,25 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         `data-scrollToTop` = if (scrollToTop) 1 else 0,
         class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
+          # handle different waiter versions
+          waiter_func <- if (packageVersion("waiter") >= "0.2.0") {
+            waiter::waiter_show_on_load
+          } else {
+            waiter::show_waiter_on_load
+          }
           shiny::tagList(
             waiter::use_waiter(), # dependencies
-            do.call(waiter::waiter_show_on_load, preloader$waiter)
+            do.call(waiter_func, preloader$waiter)
           )
         },
         onload = if (!is.null(preloader)) {
-          sprintf(
-            "setTimeout(function(){
+          paste0(
+            "window.ran = false;",
+            "$(document).on('shiny:idle', function(event){
+            if(!window.ran)
               $('.waiter-overlay').fadeOut(1000);
-          }, %s);", preloader$duration * 1000
+            window.ran = true;
+          });"
           )
         },
         bodyContent

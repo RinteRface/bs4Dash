@@ -847,10 +847,10 @@ gallery_1_tab <- tabItem(
   fluidRow(
     box(
       title = "Stars",
-      starBlock(grade = 5),
-      starBlock(grade = 5, color = "success"),
-      starBlock(grade = 1, color = "danger"),
-      starBlock(grade = 3, color = "info")
+      starBlock(5),
+      starBlock(5, color = "success"),
+      starBlock(1, color = "danger"),
+      starBlock(3, color = "info")
     ),
     box(
       title = "Attachment example",
