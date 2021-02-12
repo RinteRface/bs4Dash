@@ -199,6 +199,45 @@
   color: #fff;
 }
 
+/* Fix selectize group header in dark mode */
+.dark-mode .selectize-dropdown .optgroup-header {
+    color: #777777;
+    background: #343a40;
+    cursor: default;
+}
+
+
+
+/* Copied from shinydashboard 
+*
+*
+*
+*/
+
+/* So that selectize dropdowns are visible if they go off the bottom. */
+.content {
+  overflow: visible;
+}
+
+/* Inputs in the sidebar */
+div.sidebar .shiny-input-container {
+  /* Proper spacing around inputs. */
+  padding: 12px 15px 0px 15px;
+  /* Wrap content (important for inline inputs). */
+  white-space: normal;
+}
+
+/* Make action buttons/links look good on the sidebar panel */
+div.sidebar .shiny-bound-input.action-button,
+div.sidebar .shiny-bound-input.action-link {
+  margin: 6px 5px 6px 15px;
+  display: block;
+}
+
+/* Shiny inputs in boxes should span full width. */
+div.card-body .shiny-input-container {
+  width: auto;
+}
 
 /* Fix #171 about daterange input padding */
 .input-daterange .input-group-addon {
