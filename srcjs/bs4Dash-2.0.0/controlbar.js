@@ -1,16 +1,18 @@
 $(function() {
   
   // required to show a toast when the controlbar is pinned 
-  // for the first time
+  // for the first time. Show once since it may be annoying ...
   var showToast = true;
   const controlbarToast = () => {
-    $(document).Toasts('create', {
-      title: 'Controlbar is pinned',
-      close: false,
-      autohide: true,
-      delay: 2000
-    });
-    showToast = false;
+    if (showToast) {
+      $(document).Toasts('create', {
+        title: 'Controlbar is pinned',
+        close: false,
+        autohide: true,
+        delay: 2000
+      });
+      showToast = false; 
+    }
   };
 
   // This prevent box content from going outside their container 
@@ -27,7 +29,7 @@ $(function() {
   $(window).click(function(e) { 
     // There is a potential conflict. This function detect any click outside
     // the controlbar and close if if it is not pinned. Yet, if we click on an action       // button controlling the controlbar state (see updatebs4Controlbar), it is also outside the controlbar so the toggle event will be triggered twice. The controlbar will never close as shown in https://github.com/RinteRface/bs4Dash/issues/110. Below we make sure to leave the function as soon as a click on a button holding the class action button. This is not really a fix but a reasonable workaround.
-    var isActionButton = $(e.target).hasClass("action-button shiny-bound-input");
+    var isActionButton = $(e.target).hasClass("action-button");
     if (isActionButton) return null;
       
     if($("aside.control-sidebar").find(e.target).length === 0) {
@@ -40,33 +42,6 @@ $(function() {
     }  
   });
   
-  // if pin is TRUE at start we need to disable the controlbar toggle as soon
-  // as it is opened. Only do this if pin data is present.
-  $("#controlbar-toggle").one("click", function() {
-    var pinned = $(".control-sidebar").attr("data-pin");
-    if (pinned !== undefined && pinned !== "false") {
-      setTimeout(function() {
-        $("#controlbar-toggle").addClass("disabled");
-        $("#controlbarPin").children().css("color", "#007bff");
-        controlbarToast();
-      }, 10); 
-    }
-  });
-  
-  // handle the case where the controlbar is already opened at start
-  $(document).one("shiny:sessioninitialized", function() {
-    var controlbarOpen = $("body").hasClass("control-sidebar-slide-open");
-    var pinned = ($(".control-sidebar").attr("data-pin") === "true");
-    if (controlbarOpen && pinned) {
-      $("#controlbar-toggle").addClass("disabled");
-      $("#controlbarPin")
-        .children()
-        .css("color", "#007bff");
-      controlbarToast();
-    }
-  });
-  
-  
   // handle the pin button: toggle data-pin state
   $("#controlbarPin").on('click', function() {
     var $pinIcon = $(this).children();
@@ -78,15 +53,15 @@ $(function() {
     if ($(".control-sidebar").attr("data-pin") === "true") {
       $pinIcon.css("color", "#007bff");
       $("#controlbar-toggle").addClass("disabled");
-      if (showToast) {
-        controlbarToast();
-      }
+      controlbarToast();
     } else {
       $("#controlbar-toggle").removeClass("disabled");
       $pinIcon.css("color", "");
     }
   });
 
+
+var init = true;
 
   // Input binding
   var controlbarBinding = new Shiny.InputBinding();
@@ -99,11 +74,23 @@ $(function() {
   
     // Given the DOM element for the input, return the value
     getValue: function(el) {
+      // Handles the pin 
+      var controlbarOpen = $("body").hasClass("control-sidebar-slide-open");
+      var pinned = $(el).attr("data-pin") === "true";
+      if (controlbarOpen && pinned && init) {
+        $("#controlbar-toggle").addClass("disabled");
+        $("#controlbarPin")
+          .children()
+          .css("color", "#007bff");
+        controlbarToast();
+        init = false;
+      }
+      
       // this handles the case where the controlbar is not collapsed at start
-      var controlbarCollapsed = $('.control-sidebar').attr('data-collapsed');
+      var controlbarCollapsed = $(el).attr('data-collapsed');
       if (controlbarCollapsed === "false") {
         $("#controlbar-toggle").ControlSidebar('toggle');
-        $('.control-sidebar').attr('data-collapsed', "true");
+        $(el).attr('data-collapsed', "true");
         return true;
       } else {
         return $("body").hasClass("control-sidebar-slide-open");
@@ -116,13 +103,12 @@ $(function() {
   
     subscribe: function(el, callback) {
       $("#controlbar-toggle").on("collapsed.lte.controlsidebar expanded.lte.controlsidebar", function(e) {
-        $('.control-sidebar').trigger('shown');
+        $(el).trigger('shown');
         // add a delay so that Shiny get the input value 
         // after the AdminLTE3 animation is finished!
         setTimeout(
           function() {
             callback();
-            $(window).trigger("resize"); 
           }, 10);
       });
     },
