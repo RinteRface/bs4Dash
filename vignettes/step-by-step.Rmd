@@ -50,7 +50,9 @@ dashboardPage(
   preloader = NULL,
   options = NULL,
   fullscreen = FALSE,
-  help = FALSE
+  help = FALSE,
+  dark = FALSE,
+  scrollToTop = FALSE
 )
 ```
 
@@ -70,10 +72,7 @@ preloader <- list(
 At the moment, __options__ are not available, but the idea is to provide deeper customization of the AdminLTE3 
 template like changing the sidebars and cards animation speed, ...
 
- When __fullscreen__ is TRUE, an icon is displayed in the navbar to switch to full screen mode. 
- __help__ automatically enable/disable all tooltips and popover that are present in the shiny app. 
- This is an easier approach than using the server methods `addPopover()`, `addTooltip()`, ... but less 
- specific.
+ When __fullscreen__ is TRUE, an icon is displayed in the navbar to switch to full screen mode. __help__ automatically enable/disable all tooltips and popover that are present in the shiny app: this is an easier approach than using the server methods `addPopover()`, `addTooltip()`, ... but less specific. __dark__ allows to toggle the dark mode: if FALSE, the theme switch is hidden and the dashboard takes the light design. __scrollToTop__ allows to toggle the scroll to top button shown in the bottom right corner. 
 
 Now, it is time to fill this template!
 
@@ -359,9 +358,9 @@ dashboardBody(
 
 The principle is pretty straightforward: all `dashboardBody()` elements must be embeded in a `tabItems()` 
 list containing as may elements as the number of items. Each item is a `tabItem()`. 
-Importantly, the *tabName* argument must be provide and unique. Moreover, it must be identical to the
+Importantly, the __tabName__ argument must be provide and unique. Moreover, it must be identical to the
 corresponding `menuItem()`, so that the navigation between tabs work. 
-This is exactly the same principle as for shinydashboard. Therefore, users should not be lost.
+This is exactly the same principle as for `{shinydashboard}`. Therefore, users should not be lost.
 
 In practice, if the sidebar is empty (without menu), it is still possible to get rid of 
 `tabItems()` and `tabItem()`.
@@ -424,7 +423,7 @@ shinyApp(
         )
       )
     ),
-    sidebar = bs4DashSidebar(
+    sidebar = dashboardSidebar(
       skin = "light",
       status = "primary",
       elevation = 3,
@@ -512,7 +511,7 @@ shinyApp(
         ),
         tabItem(
           tabName = "item2",
-          bs4Card(
+          box(
             title = "Card with messages",
             width = 9,
             userMessages(
