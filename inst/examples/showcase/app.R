@@ -1005,10 +1005,7 @@ colors_tab <- tabItem(
 
 shinyApp(
   ui = dashboardPage(
-    preloader = list(
-      waiter = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
-      duration = 5
-    ),
+    preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
     dark = TRUE,
     help = TRUE,
     fullscreen = TRUE,

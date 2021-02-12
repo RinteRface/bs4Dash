@@ -174,7 +174,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
           }
           shiny::tagList(
             waiter::use_waiter(), # dependencies
-            do.call(waiter_func, preloader$waiter)
+            do.call(waiter_func, preloader)
           )
         },
         onload = if (!is.null(preloader)) {
