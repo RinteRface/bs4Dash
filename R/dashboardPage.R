@@ -87,6 +87,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @rdname dashboardPage
+#' @importFrom utils packageVersion
 #'
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
@@ -166,15 +167,9 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         `data-scrollToTop` = if (scrollToTop) 1 else 0,
         class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
-          # handle different waiter versions
-          waiter_func <- if (packageVersion("waiter") >= "0.2.0") {
-            waiter::waiter_show_on_load
-          } else {
-            waiter::show_waiter_on_load
-          }
           shiny::tagList(
             waiter::use_waiter(), # dependencies
-            do.call(waiter_func, preloader)
+            do.call(waiter_show_on_load, preloader)
           )
         },
         onload = if (!is.null(preloader)) {
