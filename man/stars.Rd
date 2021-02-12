@@ -5,14 +5,14 @@
 \alias{starBlock}
 \title{AdminLTE3 stars}
 \usage{
-bs4Stars(grade, maxstar = 5, color = "warning")
+bs4Stars(value, max = 5, color = "warning")
 
-starBlock(grade, maxstar = 5, color = "warning")
+starBlock(value, max = 5, color = "warning")
 }
 \arguments{
-\item{grade}{Current score. Should be positive and lower or equal to maxstar.}
+\item{value}{Current value. Should be positive and lower or equal to max.}
 
-\item{maxstar}{Maximum number of stars by block.}
+\item{max}{Maximum number of stars by block.}
 
 \item{color}{Star color. Valid colors are listed below:
 \itemize{

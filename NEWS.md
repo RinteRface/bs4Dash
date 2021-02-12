@@ -125,6 +125,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- In `bs4Stars()`: `grade` and `maxstar`, respectively become `value` and `grade`.
 - In `listGroupItem()`, remove `type` and put it in `listGroup()`. `src` becomes `href`.
 - `status` becomes `color` in `blockQuote`.
 - Remove `src` from `carouselItem()`

@@ -1145,8 +1145,8 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #'
 #' @description Create a block of stars (ideal for rating)
 #'
-#' @param maxstar Maximum number of stars by block.
-#' @param grade Current score. Should be positive and lower or equal to maxstar.
+#' @param value Current value. Should be positive and lower or equal to max.
+#' @param max Maximum number of stars by block.
 #' @param color Star color. Valid colors are listed below:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -1200,25 +1200,25 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #' }
 #'
 #' @export
-bs4Stars <- function(grade, maxstar = 5, color = "warning") {
+bs4Stars <- function(value, max = 5, color = "warning") {
   
   stopifnot(!is.null(color))
   validateStatusPlus(color)
-  stopifnot(!is.null(grade))
-  stopifnot(grade >= 0)
-  stopifnot(grade <= maxstar)
+  stopifnot(!is.null(value))
+  stopifnot(value >= 0)
+  stopifnot(value <= max)
   
   shiny::tags$td(
     class = "mailbox-star",
     shiny::tags$a(
       href = "javascript:void(0)",
-      if (grade > 0) {
-        full_star <- lapply(1:grade, FUN = function(i) {
+      if (value > 0) {
+        full_star <- lapply(seq_len(value), FUN = function(i) {
           shiny::tags$i(class = paste0("fa text-", color, " fa-star"))
         })
       },
-      if (grade < maxstar) {
-        empty_star <- lapply(1:(maxstar - grade), FUN = function(i) {
+      if (value < max) {
+        empty_star <- lapply(seq_len(maxstar - grade), FUN = function(i) {
           shiny::tags$i(class = paste0("fa text-", color, " fa-star-o"))
         })
       }
