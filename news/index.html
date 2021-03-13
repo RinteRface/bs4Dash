@@ -394,6 +394,7 @@
 <h3 class="hasAnchor">
 <a href="#others" class="anchor"></a>Others</h3>
 <ul>
+<li>In <code><a href="../reference/bs4Stars.html">bs4Stars()</a></code>: <code>grade</code> and <code>maxstar</code>, respectively become <code>value</code> and <code>grade</code>.</li>
 <li>In <code><a href="../reference/bs4ListGroup.html">listGroupItem()</a></code>, remove <code>type</code> and put it in <code><a href="../reference/bs4ListGroup.html">listGroup()</a></code>. <code>src</code> becomes <code>href</code>.</li>
 <li>
 <code>status</code> becomes <code>color</code> in <code>blockQuote</code>.</li>
@@ -501,6 +502,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/189'>#189</a>: <code>hidden</code> type is not available for <code><a href="../reference/tabsetPanel.html">bs4Dash::tabsetPanel</a></code> that uses an old version of the <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">shiny::tabsetPanel</a></code>. Thanks <a href='https://github.com/zilch42'>@zilch42</a>.</li>
 <li>Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!</li>
 <li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/110'>#110</a>: due to the fact that the <code>bs4Controlbar()</code> now collapse when clicked outside, clicking on an input triggering the <code>updatebs4Controlbar()</code> would toggle it twice. Thanks <a href='https://github.com/dwhdai'>@dwhdai</a></li>
 <li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/112'>#112</a> with <code>sliderInput</code> z-index and <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> preloader. Thanks <a href='https://github.com/analytichealth'>@analytichealth</a> for the report</li>

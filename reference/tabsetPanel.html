@@ -50,7 +50,8 @@
 
 <meta property="og:title" content="Create a tabsetPanel — tabsetPanel" />
 <meta property="og:description" content="Imported by bs4TabCard but can be used alone. This is a modified shiny::tabsetPanel,
-to handle bootstrap 4." />
+to handle bootstrap 4. This function will be upgraded 
+starting from shiny 1.7.0 (support Bootstrap 4 tabs)." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -158,7 +159,8 @@ to handle bootstrap 4." />
 
     <div class="ref-description">
     <p>Imported by <a href='bs4TabCard.html'>bs4TabCard</a> but can be used alone. This is a modified shiny::tabsetPanel,
-to handle bootstrap 4.</p>
+to handle bootstrap 4. This function will be upgraded 
+starting from shiny 1.7.0 (support Bootstrap 4 tabs).</p>
     </div>
 
     <pre class="usage"><span class='fu'>tabsetPanel</span><span class='op'>(</span>
@@ -195,11 +197,8 @@ tab will be selected.</p></td>
     <tr>
       <th>type</th>
       <td><dl>
-<dt><code>"tabs"</code></dt><dd><p>Standard tab look</p></dd>
-<dt><code>"pills"</code></dt><dd><p>Selected tabs use the background fill color</p></dd>
-<dt><code>"hidden"</code></dt><dd><p>Hides the selectable tabs. Use <code>type = "hidden"</code> in
-conjunction with <code><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanelBody()</a></code> and <code><a href='https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html'>updateTabsetPanel()</a></code> to control the
-active tab via other input controls. (See example below)</p></dd>
+  <dt>`"tabs"`</dt><dd><p>Standard tab look</p></dd>
+  <dt>`"pills"`</dt><dd><p>Selected tabs use the background fill color</p></dd>
 
 </dl></td>
     </tr>
@@ -300,7 +299,7 @@ Bootstrap 3.</p></td>
              <span class='st'>"Transmission"</span> <span class='op'>=</span> <span class='st'>"am"</span>,
              <span class='st'>"Gears"</span> <span class='op'>=</span> <span class='st'>"gear"</span><span class='op'>)</span>
          <span class='op'>)</span>,
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
        <span class='op'>)</span>
      <span class='op'>)</span>,
      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"tabSetPanel2"</span><span class='op'>)</span>

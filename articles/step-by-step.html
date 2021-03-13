@@ -110,7 +110,7 @@
       <h1 data-toc-skip>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-02-03</h4>
+            <h4 class="date">2021-03-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/step-by-step.Rmd"><code>vignettes/step-by-step.Rmd</code></a></small>
       <div class="hidden name"><code>step-by-step.Rmd</code></div>
@@ -157,16 +157,15 @@ Basic page template
   preloader <span class="op">=</span> <span class="cn">NULL</span>,
   options <span class="op">=</span> <span class="cn">NULL</span>,
   fullscreen <span class="op">=</span> <span class="cn">FALSE</span>,
-  help <span class="op">=</span> <span class="cn">FALSE</span>
+  help <span class="op">=</span> <span class="cn">FALSE</span>,
+  dark <span class="op">=</span> <span class="cn">FALSE</span>,
+  scrollToTop <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 <p>has mandatory slots for the navbar (<code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>), sidebar (<code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>) and (<code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code>). Note the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> and <code><a href="../reference/bs4DashFooter.html">dashboardFooter()</a></code> are optional. The <strong>title</strong> parameter gives its name to the web browser tab. <strong>freshTheme</strong>, when provided, expects a <a href="https://github.com/dreamRs/fresh">fresh</a> powered <a href="https://dreamrs.github.io/fresh/articles/vars-bs4dash.html">theme</a> created with <code><a href="https://rdrr.io/pkg/fresh/man/create_theme.html">fresh::create_theme()</a></code>. It allows deeper customization of colors to fit very specific needs like industry brand colors. <strong>preloader</strong> expects a loader tag built with <code>waiter</code>, see more <a href="https://waiter.john-coene.com/">here</a>, for instance:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">preloader</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    waiter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>html <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/waiter/man/spinners.html">spin_1</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"Loading ..."</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#343a40"</span><span class="op">)</span>,
-    duration <span class="op">=</span> <span class="fl">5</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">preloader</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>html <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/waiter/man/spinners.html">spin_1</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"Loading ..."</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#343a40"</span><span class="op">)</span></code></pre></div>
 <p>At the moment, <strong>options</strong> are not available, but the idea is to provide deeper customization of the AdminLTE3 template like changing the sidebars and cards animation speed, …</p>
-<p>When <strong>fullscreen</strong> is TRUE, an icon is displayed in the navbar to switch to full screen mode. <strong>help</strong> automatically enable/disable all tooltips and popover that are present in the shiny app. This is an easier approach than using the server methods <code><a href="../reference/popover.html">addPopover()</a></code>, <code><a href="../reference/tooltip.html">addTooltip()</a></code>, … but less specific.</p>
+<p>When <strong>fullscreen</strong> is TRUE, an icon is displayed in the navbar to switch to full screen mode. <strong>help</strong> automatically enable/disable all tooltips and popover that are present in the shiny app: this is an easier approach than using the server methods <code><a href="../reference/popover.html">addPopover()</a></code>, <code><a href="../reference/tooltip.html">addTooltip()</a></code>, … but less specific. <strong>dark</strong> allows to toggle the dark mode: if FALSE, the theme switch is hidden and the dashboard takes the light design. <strong>scrollToTop</strong> allows to toggle the scroll to top button shown in the bottom right corner.</p>
 <p>Now, it is time to fill this template!</p>
 </div>
 <div id="sidebar-setup" class="section level2">
@@ -402,7 +401,7 @@ Basic page template
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <em>tabName</em> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for shinydashboard. Therefore, users should not be lost.</p>
+<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <strong>tabName</strong> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for <code>{shinydashboard}</code>. Therefore, users should not be lost.</p>
 <p>In practice, if the sidebar is empty (without menu), it is still possible to get rid of <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> and <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>.</p>
 </div>
 <div id="wrap-up" class="section level2">
@@ -462,7 +461,7 @@ Basic page template
         <span class="op">)</span>
       <span class="op">)</span>
     <span class="op">)</span>,
-    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span><span class="op">(</span>
+    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">dashboardSidebar</a></span><span class="op">(</span>
       skin <span class="op">=</span> <span class="st">"light"</span>,
       status <span class="op">=</span> <span class="st">"primary"</span>,
       elevation <span class="op">=</span> <span class="fl">3</span>,
@@ -550,7 +549,7 @@ Basic page template
         <span class="op">)</span>,
         <span class="fu"><a href="../reference/bs4DashBody.html">tabItem</a></span><span class="op">(</span>
           tabName <span class="op">=</span> <span class="st">"item2"</span>,
-          <span class="fu"><a href="../reference/descriptionBlock.html">bs4Card</a></span><span class="op">(</span>
+          <span class="fu"><a href="../reference/descriptionBlock.html">box</a></span><span class="op">(</span>
             title <span class="op">=</span> <span class="st">"Card with messages"</span>,
             width <span class="op">=</span> <span class="fl">9</span>,
             <span class="fu"><a href="../reference/userMessages.html">userMessages</a></span><span class="op">(</span>
