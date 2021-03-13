@@ -28,11 +28,8 @@ of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
 \item{type}{\describe{
-\item{\code{"tabs"}}{Standard tab look}
-\item{\code{"pills"}}{Selected tabs use the background fill color}
-\item{\code{"hidden"}}{Hides the selectable tabs. Use \code{type = "hidden"} in
-conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
-active tab via other input controls. (See example below)}
+  \item{`"tabs"`}{Standard tab look}
+  \item{`"pills"`}{Selected tabs use the background fill color}
 }}
 
 \item{position}{This argument is deprecated; it has been discontinued in
@@ -46,7 +43,8 @@ Bootstrap 3.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
-to handle bootstrap 4.
+to handle bootstrap 4. This function will be upgraded 
+starting from shiny 1.7.0 (support Bootstrap 4 tabs).
 }
 \examples{
 if(interactive()){

@@ -208,6 +208,8 @@ To keep it open, see below
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix #189: `hidden` type is not available for `bs4Dash::tabsetPanel` that uses an old version of the
+`shiny::tabsetPanel`. Thanks @zilch42.
 - Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!
 - Fix issue #110: due to the fact that the `bs4Controlbar()` now collapse when clicked outside, clicking on an input triggering the `updatebs4Controlbar()` would toggle it twice. Thanks @dwhdai
 - Fix issue #112 with `sliderInput` z-index and `bs4DashPage()` preloader. Thanks @analytichealth for the report

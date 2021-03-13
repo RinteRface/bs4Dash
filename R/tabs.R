@@ -1,9 +1,14 @@
 #' Create a tabsetPanel
 #' 
 #' Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
-#' to handle bootstrap 4. 
+#' to handle bootstrap 4. This function will be upgraded 
+#' starting from shiny 1.7.0 (support Bootstrap 4 tabs). 
 #'
 #' @inheritParams shiny::tabsetPanel
+#' @param type \describe{
+#'   \item{`"tabs"`}{Standard tab look}
+#'   \item{`"pills"`}{Selected tabs use the background fill color}
+#' }
 #' @param vertical Whether to displays tabs vertically. Default to FALSE.
 #' @param side Tabs side: \code{"left" or "right"}.
 #' @param .list In case of programmatically generated items. See example.

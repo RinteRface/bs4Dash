@@ -75,11 +75,8 @@ of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
 \item{type}{\describe{
-\item{\code{"tabs"}}{Standard tab look}
-\item{\code{"pills"}}{Selected tabs use the background fill color}
-\item{\code{"hidden"}}{Hides the selectable tabs. Use \code{type = "hidden"} in
-conjunction with \code{\link[shiny:tabPanel]{tabPanelBody()}} and \code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} to control the
-active tab via other input controls. (See example below)}
+  \item{`"tabs"`}{Standard tab look}
+  \item{`"pills"`}{Selected tabs use the background fill color}
 }}
 
 \item{position}{This argument is deprecated; it has been discontinued in
