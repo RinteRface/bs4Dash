@@ -144,11 +144,16 @@ $(function () {
       }
     });
 
-    var $help_switch_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($help_switch_checkbox).append(`<label class="custom-control-label" for="help_switch"><i class="fa fa-question"></i></label>`);
-    $navbar.append($help_switch_container);
+    var $help_switch_container = $('<div />', { class: 'custom-control custom-switch mx-2 mt-2' }).append($help_switch_checkbox).append(`<label class="custom-control-label" for="help_switch"><i class="fa fa-question"></i></label>`);
+    
+    // insert before $('#controlbar-toggle') whenever possible ...
+    if ($('.nav-item #controlbar-toggle')) {
+      $help_switch_container.insertBefore($('#controlbar-toggle').parent());
+    } else {
+      $navbar.append($help_switch_container);
+    }
 
     // trigger first click, if necessary
-
     $help_switch_checkbox.click();
   }
 
@@ -202,7 +207,8 @@ $(function () {
   var navbarColor;
 
   // automatic global theme switcher
-  if ($('body').attr('data-dark') == 1) {
+  if ($('body').attr('data-dark') == 2 || 
+  $('body').attr('data-dark') == 1) {
     var $dark_mode_checkbox = $('<input />', {
       type: 'checkbox',
       id: 'customSwitch1',
@@ -308,13 +314,22 @@ $(function () {
     });
 
     var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
-    var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
-    $navbar.append($dark_mode_container);
+    var $dark_mode_container = $('<div />', { class: 'custom-control custom-switch mx-2 mt-2' }).append($dark_mode_checkbox).append(`<label class="custom-control-label" for="customSwitch1">${$dark_mode_icon}</label>`);
+    
+    // insert before $('#controlbar-toggle') whenever possible ...
+    if ($('.nav-item #controlbar-toggle')) {
+      $dark_mode_container.insertBefore($('#controlbar-toggle').parent());
+    } else {
+      $navbar.append($dark_mode_container);
+    }
+    
     
     // Trigger dark mode
-    $(document).on('shiny:connected', function() {
-      $('#customSwitch1').click();
-    });
+    if ($('body').attr('data-dark') == 2) {
+      $(document).on('shiny:connected', function() {
+        $('#customSwitch1').click();
+      }); 
+    }
   }
   
 

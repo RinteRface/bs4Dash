@@ -18,7 +18,7 @@ bs4DashPage(
   options = NULL,
   fullscreen = FALSE,
   help = FALSE,
-  dark = TRUE,
+  dark = FALSE,
   scrollToTop = FALSE
 )
 
@@ -35,7 +35,7 @@ dashboardPage(
   options = NULL,
   fullscreen = FALSE,
   help = FALSE,
-  dark = TRUE,
+  dark = FALSE,
   scrollToTop = FALSE
 )
 }
@@ -72,7 +72,9 @@ Expect a list.}
 if TRUE, a help icon is display in the navigation bar.}
 
 \item{dark}{Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
-Default to TRUE.}
+Default to FALSE, app starts in light mode, with possibility to switch to dark. 
+If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
+not toggle is shown and the app starts in light, as it has always been.}
 
 \item{scrollToTop}{Whether to display a scroll to top button whenever the page height is too large.
 Default to FALSE.}

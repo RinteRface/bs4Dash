@@ -22,7 +22,9 @@
 #' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
 #' if TRUE, a help icon is display in the navigation bar.
 #' @param dark Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
-#' Default to TRUE.
+#' Default to FALSE, app starts in light mode, with possibility to switch to dark. 
+#' If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
+#' not toggle is shown and the app starts in light, as it has always been. 
 #' @param scrollToTop Whether to display a scroll to top button whenever the page height is too large.
 #' Default to FALSE.
 #'
@@ -91,7 +93,7 @@
 #' @export
 bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
                         skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
-                        fullscreen = FALSE, help = FALSE, dark = TRUE, scrollToTop = FALSE) {
+                        fullscreen = FALSE, help = FALSE, dark = FALSE, scrollToTop = FALSE) {
   titleTag <- header[[2]]
   
   sidebarDisabled <- sidebar$attribs$`data-disable`
@@ -162,7 +164,15 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
       shiny::tags$body(
         `data-help` = if (help) 1 else 0,
         `data-fullscreen` = if (fullscreen) 1 else 0,
-        `data-dark` = if (dark) 1 else 0,
+        `data-dark` = if (!is.null(dark)) {
+          if (dark) {
+            2
+          } else if (!dark) {
+            1
+          }
+        } else {
+          0
+        },
         `data-scrollToTop` = if (scrollToTop) 1 else 0,
         class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
