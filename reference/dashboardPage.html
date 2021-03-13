@@ -172,7 +172,7 @@
   options <span class='op'>=</span> <span class='cn'>NULL</span>,
   fullscreen <span class='op'>=</span> <span class='cn'>FALSE</span>,
   help <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  dark <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dark <span class='op'>=</span> <span class='cn'>FALSE</span>,
   scrollToTop <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
@@ -189,7 +189,7 @@
   options <span class='op'>=</span> <span class='cn'>NULL</span>,
   fullscreen <span class='op'>=</span> <span class='cn'>FALSE</span>,
   help <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  dark <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dark <span class='op'>=</span> <span class='cn'>FALSE</span>,
   scrollToTop <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
@@ -254,7 +254,9 @@ if TRUE, a help icon is display in the navigation bar.</p></td>
     <tr>
       <th>dark</th>
       <td><p>Whether to display toggle to switch between dark and light mode in the <a href='bs4DashNavbar.html'>dashboardHeader</a>.
-Default to TRUE.</p></td>
+Default to FALSE, app starts in light mode, with possibility to switch to dark. 
+If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
+not toggle is shown and the app starts in light, as it has always been.</p></td>
     </tr>
     <tr>
       <th>scrollToTop</th>
