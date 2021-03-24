@@ -75,13 +75,13 @@ add_bs4Dash_deps <- function(tag, options) {
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
     ),
-    # fontawesome
-    htmltools::htmlDependency(
-      name = "fontawesome",
-      version = as.character(utils::packageVersion("bs4Dash")),
-      src = c(href = fontawesome_css),
-      stylesheet = "all.css"
-    ),
+    # fontawesome Commented since Shiny already loads it with icon...
+    #htmltools::htmlDependency(
+    #  name = "fontawesome",
+    #  version = as.character(utils::packageVersion("bs4Dash")),
+    #  src = c(href = fontawesome_css),
+    #  stylesheet = "all.css"
+    #),
     # ionicons
     htmltools::htmlDependency(
       name = "ionicons",
