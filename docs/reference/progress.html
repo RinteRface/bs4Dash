@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -133,7 +133,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -171,7 +171,31 @@
   label <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
 
+<span class='fu'>bs4MultiProgressBar</span><span class='op'>(</span>
+  <span class='va'>value</span>,
+  min <span class='op'>=</span> <span class='fl'>0</span>,
+  max <span class='op'>=</span> <span class='fl'>100</span>,
+  vertical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  striped <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  animated <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  status <span class='op'>=</span> <span class='st'>"primary"</span>,
+  size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
 <span class='fu'>progressBar</span><span class='op'>(</span>
+  <span class='va'>value</span>,
+  min <span class='op'>=</span> <span class='fl'>0</span>,
+  max <span class='op'>=</span> <span class='fl'>100</span>,
+  vertical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  striped <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  animated <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  status <span class='op'>=</span> <span class='st'>"primary"</span>,
+  size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='fu'>multiProgressBar</span><span class='op'>(</span>
   <span class='va'>value</span>,
   min <span class='op'>=</span> <span class='fl'>0</span>,
   max <span class='op'>=</span> <span class='fl'>100</span>,
@@ -229,7 +253,7 @@
 .</p></li>
 <li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
 .</p></li>
-<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#fff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#fff
 .</p></li>
 <li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
 .</p></li>
@@ -265,16 +289,23 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For <code>multiProgressBar()</code>, <code>value</code> can be a vector which
+corresponds to the progress for each segment within the progress bar.
+If supplied, <code>striped</code>, <code>animated</code>, <code>status</code>, and <code>label</code> must be the
+same length as <code>value</code> or length 1, in which case vector recycling is
+used.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
  
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
      header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
      sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -295,6 +326,11 @@
         value <span class='op'>=</span> <span class='fl'>20</span>,
         status <span class='op'>=</span> <span class='st'>"danger"</span>,
         size <span class='op'>=</span> <span class='st'>"sm"</span>
+       <span class='op'>)</span>,
+       <span class='fu'>multiProgressBar</span><span class='op'>(</span>
+        value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span><span class='op'>)</span>,
+        status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"warning"</span>, <span class='st'>"danger"</span><span class='op'>)</span>,
+        size <span class='op'>=</span> <span class='st'>"sm"</span>
        <span class='op'>)</span>
       <span class='op'>)</span>,
       <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>
@@ -314,6 +350,12 @@
        <span class='fu'>progressBar</span><span class='op'>(</span>
         value <span class='op'>=</span> <span class='fl'>20</span>,
         status <span class='op'>=</span> <span class='st'>"danger"</span>,
+        size <span class='op'>=</span> <span class='st'>"sm"</span>,
+        vertical <span class='op'>=</span> <span class='cn'>TRUE</span>
+       <span class='op'>)</span>,
+       <span class='fu'>multiProgressBar</span><span class='op'>(</span>
+        value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>20</span><span class='op'>)</span>,
+        status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"warning"</span>, <span class='st'>"danger"</span><span class='op'>)</span>,
         size <span class='op'>=</span> <span class='st'>"sm"</span>,
         vertical <span class='op'>=</span> <span class='cn'>TRUE</span>
        <span class='op'>)</span>
@@ -341,7 +383,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

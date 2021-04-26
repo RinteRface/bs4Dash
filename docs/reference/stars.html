@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -133,7 +133,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -159,20 +159,20 @@
     <p>Create a block of stars (ideal for rating)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4Stars</span><span class='op'>(</span>maxstar <span class='op'>=</span> <span class='fl'>5</span>, <span class='va'>grade</span>, color <span class='op'>=</span> <span class='st'>"warning"</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>bs4Stars</span><span class='op'>(</span><span class='va'>value</span>, max <span class='op'>=</span> <span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"warning"</span><span class='op'>)</span>
 
-<span class='fu'>starBlock</span><span class='op'>(</span>maxstar <span class='op'>=</span> <span class='fl'>5</span>, <span class='va'>grade</span>, color <span class='op'>=</span> <span class='st'>"warning"</span><span class='op'>)</span></pre>
+<span class='fu'>starBlock</span><span class='op'>(</span><span class='va'>value</span>, max <span class='op'>=</span> <span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"warning"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>maxstar</th>
-      <td><p>Maximum number of stars by block.</p></td>
+      <th>value</th>
+      <td><p>Current value. Should be positive and lower or equal to max.</p></td>
     </tr>
     <tr>
-      <th>grade</th>
-      <td><p>Current score. Should be positive and lower or equal to maxstar.</p></td>
+      <th>max</th>
+      <td><p>Maximum number of stars by block.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -193,7 +193,7 @@
 .</p></li>
 <li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
 .</p></li>
-<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#fff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#fff
 .</p></li>
 <li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
 .</p></li>
@@ -227,20 +227,20 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
  
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
     <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
     <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
     <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
      <span class='fu'><a href='descriptionBlock.html'>box</a></span><span class='op'>(</span>
       title <span class='op'>=</span> <span class='st'>"Star example"</span>,
-      <span class='fu'>starBlock</span><span class='op'>(</span>grade <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>,
-      <span class='fu'>starBlock</span><span class='op'>(</span>grade <span class='op'>=</span> <span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"fuchsia"</span><span class='op'>)</span>,
-      <span class='fu'>starBlock</span><span class='op'>(</span>grade <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"danger"</span><span class='op'>)</span>,
-      <span class='fu'>starBlock</span><span class='op'>(</span>grade <span class='op'>=</span> <span class='fl'>3</span>, color <span class='op'>=</span> <span class='st'>"secondary"</span><span class='op'>)</span>
+      <span class='fu'>starBlock</span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>,
+      <span class='fu'>starBlock</span><span class='op'>(</span><span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"fuchsia"</span><span class='op'>)</span>,
+      <span class='fu'>starBlock</span><span class='op'>(</span><span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"danger"</span><span class='op'>)</span>,
+      <span class='fu'>starBlock</span><span class='op'>(</span><span class='fl'>3</span>, color <span class='op'>=</span> <span class='st'>"secondary"</span><span class='op'>)</span>
      <span class='op'>)</span>
     <span class='op'>)</span>,
     title <span class='op'>=</span> <span class='st'>"starBlock"</span>
@@ -265,7 +265,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

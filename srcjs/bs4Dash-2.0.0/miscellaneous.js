@@ -21,17 +21,6 @@ $(function () {
     Shiny.bindAll();
   });
 
-  // Make the dashboard widgets sortable Using jquery UI
-  $('.connectedSortable').sortable({
-    placeholder: 'sort-highlight',
-    connectWith: '.connectedSortable',
-    handle: '.card-header, .nav-tabs',
-    forcePlaceholderSize: true,
-    zIndex: 999999
-  });
-  $('.connectedSortable .card-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move');
-  
-
   // footer has fixed layout?
   if ($(".main-footer").attr("data-fixed") === "true") {
     $("body").addClass("layout-footer-fixed");

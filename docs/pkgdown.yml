@@ -1,6 +1,12 @@
 pandoc: 2.7.3
-pkgdown: 1.6.0
+pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-12-01T08:49Z
+articles:
+  bs4Dash: bs4Dash.html
+  css-preloader: css-preloader.html
+  extra-elements: extra-elements.html
+  improved-boxes: improved-boxes.html
+  more-skins: more-skins.html
+  step-by-step: step-by-step.html
+last_built: 2021-04-26T14:54Z
 

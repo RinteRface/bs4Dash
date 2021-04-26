@@ -192,6 +192,7 @@ between pills or tabs (cosmetic choice). If type is not provided, the behaviour 
 to be independant from the card status (https://adminlte.io/themes/v3/pages/widgets.html). Thanks @rolando-gsw
 
 ## Minor change
+- `bs4Sortable()` is initialized each time a new sortable element is added. Fixes #198.
 - New `taskItem()`.
 - Add `indicators` and `.list` to `carousel()`.
 - `insertTab()` is using more shiny vanilla elements.

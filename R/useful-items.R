@@ -2610,10 +2610,30 @@ bs4Sortable <- function(..., width = 12) {
   sectionCl <- "connectedSortable ui-sortable"
   if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
   
-  shiny::tags$section(
-    class = sectionCl,
-    ...
-  ) 
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$script(
+          "$(function() {
+            // Make the dashboard widgets sortable Using jquery UI
+            $('.connectedSortable').sortable({
+              placeholder: 'sort-highlight',
+              connectWith: '.connectedSortable',
+              handle: '.card-header, .nav-tabs',
+              forcePlaceholderSize: true,
+              zIndex: 999999
+            });
+            $('.connectedSortable .card-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move');
+          });
+          "
+        )
+      )
+    ),
+    shiny::tags$section(
+      class = sectionCl,
+      ...
+    ) 
+  )
 }
 
 

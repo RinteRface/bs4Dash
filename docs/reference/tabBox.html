@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -133,7 +133,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -249,16 +249,13 @@ the height scales automatically with the content.</p></td>
     </tr>
     <tr>
       <th>side</th>
-      <td><p><a href='https://shiny.rstudio.com/reference/shiny/latest/tabPanel.html'>tabPanel</a> side. Either left or right.</p></td>
+      <td><p><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a> side. Either left or right.</p></td>
     </tr>
     <tr>
       <th>type</th>
       <td><dl>
-<dt><code>"tabs"</code></dt><dd><p>Standard tab look</p></dd>
-<dt><code>"pills"</code></dt><dd><p>Selected tabs use the background fill color</p></dd>
-<dt><code>"hidden"</code></dt><dd><p>Hides the selectable tabs. Use <code>type = "hidden"</code> in
-conjunction with <code><a href='https://shiny.rstudio.com/reference/shiny/latest/tabPanel.html'>tabPanelBody()</a></code> and <code><a href='https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html'>updateTabsetPanel()</a></code> to control the
-active tab via other input controls. (See example below)</p></dd>
+  <dt>`"tabs"`</dt><dd><p>Standard tab look</p></dd>
+  <dt>`"pills"`</dt><dd><p>Selected tabs use the background fill color</p></dd>
 
 </dl></td>
     </tr>
@@ -286,7 +283,7 @@ active tab via other input controls. (See example below)</p></dd>
 .</p></li>
 <li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
 .</p></li>
-<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#fff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#fff
 .</p></li>
 <li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
 .</p></li>
@@ -337,7 +334,7 @@ active tab via other input controls. (See example below)</p></dd>
 .</p></li>
 <li><p><code>gray</code>: <span style='width:12px;height:12px;background:#adb5bd;border-radius:2px;display:inline-block;margin-right:5px;'></span>#adb5bd
 .</p></li>
-<li><p><code>white</code>: <span style='width:12px;height:12px;background:#1f2d3d;border-radius:2px;display:inline-block;margin-right:5px;'></span>#1f2d3d
+<li><p><code>white</code>: <span style='width:12px;height:12px;background:#fff;border-radius:2px;display:inline-block;margin-right:5px;'></span>#fff
 .</p></li>
 <li><p><code>indigo</code>: <span style='width:12px;height:12px;background:#6610f2;border-radius:2px;display:inline-block;margin-right:5px;'></span>#6610f2
 .</p></li>
@@ -383,7 +380,7 @@ the user to collapse the box.</p></td>
     </tr>
     <tr>
       <th>icon</th>
-      <td><p>Header icon. Displayed before title. Expect <code><a href='https://shiny.rstudio.com/reference/shiny/latest/icon.html'>icon</a></code>.</p></td>
+      <td><p>Header icon. Displayed before title. Expect <code><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></code>.</p></td>
     </tr>
     <tr>
       <th>gradient</th>
@@ -435,10 +432,10 @@ to get the state of the box and update it on the server with <a href='descriptio
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
     ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
       header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
       sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -453,15 +450,15 @@ to get the state of the box and update it on the server with <a href='descriptio
           status <span class='op'>=</span> <span class='st'>"primary"</span>,
           solidHeader <span class='op'>=</span> <span class='cn'>FALSE</span>,
           type <span class='op'>=</span> <span class='st'>"tabs"</span>,
-          <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
             title <span class='op'>=</span> <span class='st'>"Tab 1"</span>,
             <span class='st'>"Content 1"</span>
           <span class='op'>)</span>,
-          <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
             title <span class='op'>=</span> <span class='st'>"Tab 2"</span>,
             <span class='st'>"Content 2"</span>
           <span class='op'>)</span>,
-          <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tabPanel.html'>tabPanel</a></span><span class='op'>(</span>
             title <span class='op'>=</span> <span class='st'>"Tab 3"</span>,
             <span class='st'>"Content 3"</span>
           <span class='op'>)</span>
@@ -487,7 +484,7 @@ to get the state of the box and update it on the server with <a href='descriptio
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

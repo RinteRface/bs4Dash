@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -90,7 +90,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -104,14 +104,13 @@
 
       
 
-      </header><script src="step-by-step_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="step-by-step_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
-<script src="step-by-step_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
+      </header><script src="step-by-step_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-12-01</h4>
+            <h4 class="date">2021-04-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/step-by-step.Rmd"><code>vignettes/step-by-step.Rmd</code></a></small>
       <div class="hidden name"><code>step-by-step.Rmd</code></div>
@@ -126,10 +125,10 @@
 <a href="#create-a-basic-page" class="anchor"></a>Create a basic page</h2>
 <p>This is the template to start with <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Basic Dashboard"</span>,
     header <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashNavbar.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,
@@ -158,16 +157,15 @@ Basic page template
   preloader <span class="op">=</span> <span class="cn">NULL</span>,
   options <span class="op">=</span> <span class="cn">NULL</span>,
   fullscreen <span class="op">=</span> <span class="cn">FALSE</span>,
-  help <span class="op">=</span> <span class="cn">FALSE</span>
+  help <span class="op">=</span> <span class="cn">FALSE</span>,
+  dark <span class="op">=</span> <span class="cn">FALSE</span>,
+  scrollToTop <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 <p>has mandatory slots for the navbar (<code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>), sidebar (<code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>) and (<code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code>). Note the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> and <code><a href="../reference/bs4DashFooter.html">dashboardFooter()</a></code> are optional. The <strong>title</strong> parameter gives its name to the web browser tab. <strong>freshTheme</strong>, when provided, expects a <a href="https://github.com/dreamRs/fresh">fresh</a> powered <a href="https://dreamrs.github.io/fresh/articles/vars-bs4dash.html">theme</a> created with <code><a href="https://rdrr.io/pkg/fresh/man/create_theme.html">fresh::create_theme()</a></code>. It allows deeper customization of colors to fit very specific needs like industry brand colors. <strong>preloader</strong> expects a loader tag built with <code>waiter</code>, see more <a href="https://waiter.john-coene.com/">here</a>, for instance:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">preloader</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    waiter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>html <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/waiter/man/spinners.html">spin_1</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"Loading ..."</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#343a40"</span><span class="op">)</span>,
-    duration <span class="op">=</span> <span class="fl">5</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">preloader</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>html <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/waiter/man/spinners.html">spin_1</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"Loading ..."</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#343a40"</span><span class="op">)</span></code></pre></div>
 <p>At the moment, <strong>options</strong> are not available, but the idea is to provide deeper customization of the AdminLTE3 template like changing the sidebars and cards animation speed, …</p>
-<p>When <strong>fullscreen</strong> is TRUE, an icon is displayed in the navbar to switch to full screen mode. <strong>help</strong> automatically enable/disable all tooltips and popover that are present in the shiny app. This is an easier approach than using the server methods <code><a href="../reference/popover.html">addPopover()</a></code>, <code><a href="../reference/tooltip.html">addTooltip()</a></code>, … but less specific.</p>
+<p>When <strong>fullscreen</strong> is TRUE, an icon is displayed in the navbar to switch to full screen mode. <strong>help</strong> automatically enable/disable all tooltips and popover that are present in the shiny app: this is an easier approach than using the server methods <code><a href="../reference/popover.html">addPopover()</a></code>, <code><a href="../reference/tooltip.html">addTooltip()</a></code>, … but less specific. <strong>dark</strong> allows to toggle the dark mode: if FALSE, the theme switch is hidden and the dashboard takes the light design. <strong>scrollToTop</strong> allows to toggle the scroll to top button shown in the bottom right corner.</p>
 <p>Now, it is time to fill this template!</p>
 </div>
 <div id="sidebar-setup" class="section level2">
@@ -226,18 +224,18 @@ Basic page template
   <span class="fu"><a href="../reference/bs4DashSidebar.html">menuItem</a></span><span class="op">(</span>
     <span class="st">"Item 1"</span>,
     tabName <span class="op">=</span> <span class="st">"item1"</span>,
-    icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"sliders"</span><span class="op">)</span>
+    icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"sliders"</span><span class="op">)</span>
   <span class="op">)</span>,
   <span class="fu"><a href="../reference/bs4DashSidebar.html">menuItem</a></span><span class="op">(</span>
     <span class="st">"Item 2"</span>,
     tabName <span class="op">=</span> <span class="st">"item2"</span>,
-    icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"id-card"</span><span class="op">)</span>
+    icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"id-card"</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><code><a href="../reference/bs4DashSidebar.html">sidebarMenu()</a></code> drives the navigation within your dashboard. It has an id parameter which allows to :</p>
 <ul>
 <li>Get the name of the currently selected tab, with <code>input$&lt;id&gt;</code>.</li>
-<li>Update the currently selected tab with <code><a href="../reference/bs4DashSidebar.html">updateTabItems()</a></code>, which is actually <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>.</li>
+<li>Update the currently selected tab with <code><a href="../reference/bs4DashSidebar.html">updateTabItems()</a></code>, which is actually <code><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>.</li>
 </ul>
 <p><code><a href="../reference/bs4DashSidebar.html">sidebarMenu()</a></code> also offers 4 cosmetic parameters:</p>
 <ul>
@@ -254,17 +252,17 @@ Basic page template
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashSidebar.html">menuItem</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="st">"Item List 1"</span>,
-    icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
+    icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
     startExpanded <span class="op">=</span> <span class="cn">TRUE</span>,
     <span class="fu"><a href="../reference/bs4DashSidebar.html">menuSubItem</a></span><span class="op">(</span>
         text <span class="op">=</span> <span class="st">"Item 3"</span>,
         tabName <span class="op">=</span> <span class="st">"tab3"</span>,
-        icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"circle-thin"</span><span class="op">)</span>
+        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"circle-thin"</span><span class="op">)</span>
     <span class="op">)</span>,
     <span class="fu"><a href="../reference/bs4DashSidebar.html">menuSubItem</a></span><span class="op">(</span>
         text <span class="op">=</span> <span class="st">"Item 4"</span>,
         tabName <span class="op">=</span> <span class="st">"tab4"</span>,
-        icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"circle-thin"</span><span class="op">)</span>
+        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"circle-thin"</span><span class="op">)</span>
     <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><strong>startExpanded</strong> defines whether the item container has to be opened when the app starts. When a <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code> contains nested items, it is not necessary to give it a <strong>tabName</strong>. <strong>text</strong> may also contain more complex HTML tags like <code><a href="../reference/bs4Badge.html">dashboardBadge()</a></code>. If you want to use <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code> to browse to an external website, use the <strong>href</strong> parameter as well as <strong>newTab</strong> to open a new web browser tab.</p>
@@ -284,8 +282,8 @@ Basic page template
   status <span class="op">=</span> <span class="st">"white"</span>,
   border <span class="op">=</span> <span class="cn">TRUE</span>,
   compact <span class="op">=</span> <span class="cn">FALSE</span>,
-  sidebarIcon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
-  controlbarIcon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"th"</span><span class="op">)</span>,
+  sidebarIcon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
+  controlbarIcon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"th"</span><span class="op">)</span>,
   fixed <span class="op">=</span> <span class="cn">FALSE</span>,
   leftUi <span class="op">=</span> <span class="cn">NULL</span>,
   rightUi <span class="op">=</span> <span class="cn">NULL</span>
@@ -316,7 +314,7 @@ Basic page template
     pinned <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
 <p>Like the <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>, <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> may be programmatically toggled on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbar()</a></code>, provided that the <strong>id</strong> parameter has a value. In practice, if no id is passed by the user, <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> assigns a specific id. One can control the <code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> state at start with <strong>collapsed</strong>. If TRUE, the controlbar is collapsed and inversely. By default, <strong>overlay</strong> is TRUE, meaning that the controlbar opens on top of the body content. If FALSE, it pushes and the body content to the left. <strong>pinned</strong> allows the controlbar to remain open even after a click outside (clicking outside collapses the controlbar by default). This is useful to keep focus on important options whenever necessary. Finally, the controlbar is entirely themable, like <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code> and <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code>.</p>
-<p><code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> contains <code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> that hosts <code><a href="../reference/bs4DashControlbar.html">controlbarItem()</a></code>. This feature is built on top the <code><a href="https://shiny.rstudio.com/reference/shiny/latest/tabsetPanel.html">shiny::tabsetPanel</a></code>, that has been rebranded for Bootstrap 4 compatibility:</p>
+<p><code><a href="../reference/bs4DashControlbar.html">dashboardControlbar()</a></code> contains <code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> that hosts <code><a href="../reference/bs4DashControlbar.html">controlbarItem()</a></code>. This feature is built on top the <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">shiny::tabsetPanel</a></code>, that has been rebranded for Bootstrap 4 compatibility:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">controlbarMenu</a></span><span class="op">(</span>
     <span class="va">...</span>,
@@ -328,7 +326,7 @@ Basic page template
     side <span class="op">=</span> <span class="st">"left"</span>,
     .list <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
-<p><code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> may be updated on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbarMenu()</a></code> (which is no more than <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>). If you want to have a simple container without menu, you will have to add a specific class to account for padding, as shown below:</p>
+<p><code><a href="../reference/bs4DashControlbar.html">controlbarMenu()</a></code> may be updated on the server with <code><a href="../reference/bs4DashControlbar.html">updateControlbarMenu()</a></code> (which is no more than <code><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html">shiny::updateTabsetPanel</a></code>). If you want to have a simple container without menu, you will have to add a specific class to account for padding, as shown below:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/bs4DashControlbar.html">dashboardControlbar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">div</a></span><span class="op">(</span>
@@ -360,7 +358,7 @@ Basic page template
   <span class="fu"><a href="../reference/bs4DashBody.html">tabItems</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/bs4DashBody.html">tabItem</a></span><span class="op">(</span>
       tabName <span class="op">=</span> <span class="st">"item1"</span>,
-      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span><span class="op">(</span>
         <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span>
           <span class="fu"><a href="../reference/bs4Sortable.html">sortable</a></span><span class="op">(</span>
             width <span class="op">=</span> <span class="fl">4</span>,
@@ -403,7 +401,7 @@ Basic page template
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <em>tabName</em> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for shinydashboard. Therefore, users should not be lost.</p>
+<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <strong>tabName</strong> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>. Therefore, users should not be lost.</p>
 <p>In practice, if the sidebar is empty (without menu), it is still possible to get rid of <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> and <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>.</p>
 </div>
 <div id="wrap-up" class="section level2">
@@ -412,7 +410,7 @@ Basic page template
 <p>Below is the code for your first <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> application:</p>
 <details><p><summary>Code</summary></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Basic Dashboard"</span>,
     fullscreen <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -426,8 +424,8 @@ Basic page template
       skin <span class="op">=</span> <span class="st">"light"</span>,
       status <span class="op">=</span> <span class="st">"white"</span>,
       border <span class="op">=</span> <span class="cn">TRUE</span>,
-      sidebarIcon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
-      controlbarIcon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"th"</span><span class="op">)</span>,
+      sidebarIcon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,
+      controlbarIcon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"th"</span><span class="op">)</span>,
       fixed <span class="op">=</span> <span class="cn">FALSE</span>,
       leftUi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span>
         <span class="fu"><a href="../reference/bs4DropdownMenu.html">dropdownMenu</a></span><span class="op">(</span>
@@ -463,7 +461,7 @@ Basic page template
         <span class="op">)</span>
       <span class="op">)</span>
     <span class="op">)</span>,
-    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">bs4DashSidebar</a></span><span class="op">(</span>
+    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashSidebar.html">dashboardSidebar</a></span><span class="op">(</span>
       skin <span class="op">=</span> <span class="st">"light"</span>,
       status <span class="op">=</span> <span class="st">"primary"</span>,
       elevation <span class="op">=</span> <span class="fl">3</span>,
@@ -476,12 +474,12 @@ Basic page template
         <span class="fu"><a href="../reference/bs4DashSidebar.html">menuItem</a></span><span class="op">(</span>
           <span class="st">"Item 1"</span>,
           tabName <span class="op">=</span> <span class="st">"item1"</span>,
-          icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"sliders"</span><span class="op">)</span>
+          icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"sliders"</span><span class="op">)</span>
         <span class="op">)</span>,
         <span class="fu"><a href="../reference/bs4DashSidebar.html">menuItem</a></span><span class="op">(</span>
           <span class="st">"Item 2"</span>,
           tabName <span class="op">=</span> <span class="st">"item2"</span>,
-          icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html">icon</a></span><span class="op">(</span><span class="st">"id-card"</span><span class="op">)</span>
+          icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html">icon</a></span><span class="op">(</span><span class="st">"id-card"</span><span class="op">)</span>
         <span class="op">)</span>
       <span class="op">)</span>
     <span class="op">)</span>,
@@ -494,7 +492,7 @@ Basic page template
         id <span class="op">=</span> <span class="st">"controlbarmenu"</span>,
         <span class="fu"><a href="../reference/bs4DashControlbar.html">controlbarItem</a></span><span class="op">(</span>
           title <span class="op">=</span> <span class="st">"Item 1"</span>,
-          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html">sliderInput</a></span><span class="op">(</span>
+          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span>
             inputId <span class="op">=</span> <span class="st">"obs"</span>,
             label <span class="op">=</span> <span class="st">"Number of observations:"</span>,
             min <span class="op">=</span> <span class="fl">0</span>,
@@ -504,7 +502,7 @@ Basic page template
           <span class="fu"><a href="../reference/column.html">column</a></span><span class="op">(</span>
             width <span class="op">=</span> <span class="fl">12</span>,
             align <span class="op">=</span> <span class="st">"center"</span>,
-            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/radioButtons.html">radioButtons</a></span><span class="op">(</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html">radioButtons</a></span><span class="op">(</span>
               inputId <span class="op">=</span> <span class="st">"dist"</span>,
               label <span class="op">=</span> <span class="st">"Distribution type:"</span>,
               <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -533,7 +531,7 @@ Basic page template
       <span class="fu"><a href="../reference/bs4DashBody.html">tabItems</a></span><span class="op">(</span>
         <span class="fu"><a href="../reference/bs4DashBody.html">tabItem</a></span><span class="op">(</span>
           tabName <span class="op">=</span> <span class="st">"item1"</span>,
-          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span><span class="op">(</span>
+          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span><span class="op">(</span>
             <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span>
               <span class="fu"><a href="../reference/bs4Sortable.html">sortable</a></span><span class="op">(</span>
                 width <span class="op">=</span> <span class="fl">4</span>,
@@ -551,7 +549,7 @@ Basic page template
         <span class="op">)</span>,
         <span class="fu"><a href="../reference/bs4DashBody.html">tabItem</a></span><span class="op">(</span>
           tabName <span class="op">=</span> <span class="st">"item2"</span>,
-          <span class="fu"><a href="../reference/descriptionBlock.html">bs4Card</a></span><span class="op">(</span>
+          <span class="fu"><a href="../reference/descriptionBlock.html">box</a></span><span class="op">(</span>
             title <span class="op">=</span> <span class="st">"Card with messages"</span>,
             width <span class="op">=</span> <span class="fl">9</span>,
             <span class="fu"><a href="../reference/userMessages.html">userMessages</a></span><span class="op">(</span>
@@ -606,7 +604,7 @@ Basic page template
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
