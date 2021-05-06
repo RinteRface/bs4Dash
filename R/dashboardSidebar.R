@@ -365,7 +365,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
-    icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
+    icon$attribs$class <- paste0(icon$attribs$class, " nav-icon")
   }
 
   if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
