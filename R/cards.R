@@ -1105,7 +1105,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
+bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
                        height = NULL, side = c("left", "right"), type = NULL,
                        footer = NULL, status = NULL, solidHeader = FALSE, background = NULL,
                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
