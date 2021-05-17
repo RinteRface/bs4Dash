@@ -141,6 +141,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
                     gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
                     sidebar = NULL, id = NULL) {
 
+  if (is.null(status)) solidHeader <- TRUE
+  
   # multiple validation
   validateBoxProps(
     title = title,
@@ -1296,7 +1298,7 @@ bs4TabCard <- function(..., id, selected = NULL, title = NULL, width = 6,
 #' }
 #' @export
 bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
-                        solidHeader = TRUE, background = NULL, width = 6, height = NULL,
+                        background = NULL, width = 6, height = NULL,
                         collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
                         gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE,
                         label = NULL, dropdownMenu = NULL, sidebar = NULL, id = NULL) {
@@ -1308,7 +1310,7 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
     title = title,
     footer = footer,
     status = status,
-    solidHeader = solidHeader,
+    solidHeader = TRUE,
     background = background,
     width = width,
     height = height,
@@ -1326,7 +1328,12 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
     sidebar = sidebar,
     id = id
   )
-
+  
+  # remove status class from box that is not necessary for userBox
+  if (!is.null(status)) {
+    temp_pattern <- paste0("card-", status)
+    boxTag$children[[1]]$attribs$class <- gsub(temp_pattern, "", boxTag$children[[1]]$attribs$class) 
+  }
 
   # find the selected type
   type <- title[[2]]

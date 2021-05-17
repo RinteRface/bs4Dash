@@ -275,7 +275,9 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
     stop("Cannot collapse a card that is not collapsible.")
   }
   
-  if (is.null(status) & solidHeader) stop("solidHeader cannot be used when status is NULL.")
+  if (!is.null(status) && !is.null(background) && !solidHeader) {
+    stop("solidHeader must be TRUE whenever background and status are not NULL at the same time.")
+  }
   if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
   
   
@@ -308,8 +310,8 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
     if (is.null(status) && !is.null(background)) {
       btnClass <- paste0(
         btnClass,
-        if (background %in% validStatuses) {
-          paste0(" btn-", background)
+        if (background %in% validStatusesPlus) {
+          paste0(" bg-", background)
         }
       )
     }
