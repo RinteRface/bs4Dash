@@ -125,15 +125,11 @@ test_that("gradient", {
 
 test_that("solidheader", {
   
-  expect_error(bs4Card(solidHeader = TRUE, status = NULL))
+  expect_error(bs4Card(solidHeader = FALSE, status = "primary", background = "purple"))
   
   cardTag <- bs4Card(solidHeader = FALSE, status = "warning")
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card card-warning card-outline")
-})
-
-test_that("gradientStatus vs solidHeader vs status", {
-  expect_error(bs4Card(gradient = "primary", status = NULL))
 })
 
 test_that("card sidebar class", {
@@ -141,7 +137,7 @@ test_that("card sidebar class", {
     sidebar = bs4CardSidebar(startOpen = TRUE)
   )
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-outline direct-chat direct-chat-contacts-open")
+  expect_match(cardCl, "card direct-chat direct-chat-contacts-open")
 })
 
 test_that("collapsible and collapsed", {
@@ -149,13 +145,13 @@ test_that("collapsible and collapsed", {
   
   cardTag <- bs4Card(collapsible = TRUE, collapsed = TRUE)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-outline collapsed-card")
+  expect_match(cardCl, "card collapsed-card")
 })
 
 test_that("elevation", {
   cardTag <- bs4Card(elevation = 4)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-outline elevation-")
+  expect_match(cardCl, "card elevation-")
   expect_error(bs4Card(elevation = 6))
   expect_error(bs4Card(elevation = -1))
   expect_error(bs4Card(elevation = "2"))
