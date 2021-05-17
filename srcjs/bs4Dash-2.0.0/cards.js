@@ -1,10 +1,17 @@
-// Buttons valid colors are part of statuses
-const validStatuses = ["primary", "secondary", "success", "info", "warning", "danger"];
-// Cards may have 6 additional statuses
+// Buttons valid colors are part of statuses like btn-primary, ...
+const validStatuses = [
+  "primary",
+  "secondary",
+  "success",
+  "info",
+  "warning",
+  "danger"
+];
+// Cards may have few additional statuses like bg-orange
 const validStatusesPlus = [
-  "dark", 
-  "white", 
-  "lightblue", 
+  "dark",
+  "white",
+  "lightblue",
   "navy",
   "orange",
   "fuchsia",
@@ -16,26 +23,31 @@ const validStatusesPlus = [
   "maroon",
   "teal",
   "lime",
-  "olive"
+  "olive",
+  "green",
+  "yellow",
+  "red",
+  "blue"
 ];
 
 // Input binding
 var cardBinding = new Shiny.InputBinding();
 
 $.extend(cardBinding, {
-
-  find: function (scope) {
+  find: function(scope) {
     return $(scope).find(".card");
   },
 
   // Given the DOM element for the input, return the value
-  getValue: function (el) {
-    var config = $(el).parent().find("script[data-for='" + el.id + "']");
+  getValue: function(el) {
+    var config = $(el)
+      .parent()
+      .find("script[data-for='" + el.id + "']");
     config = JSON.parse(config.html());
 
-    var isCollapsed = $(el).hasClass('collapsed-card');
-    var display = $(el).css('display');
-    var isMaximized = $(el).hasClass('maximized-card');
+    var isCollapsed = $(el).hasClass("collapsed-card");
+    var display = $(el).css("display");
+    var isMaximized = $(el).hasClass("maximized-card");
 
     var visible;
     if (display === "none") {
@@ -46,9 +58,13 @@ $.extend(cardBinding, {
 
     // toggle collapse button when maximized
     if (isMaximized) {
-      $(el).find("[data-card-widget = 'collapse']").hide();
+      $(el)
+        .find("[data-card-widget = 'collapse']")
+        .hide();
     } else {
-      $(el).find("[data-card-widget = 'collapse']").show();
+      $(el)
+        .find("[data-card-widget = 'collapse']")
+        .show();
     }
 
     return {
@@ -65,22 +81,27 @@ $.extend(cardBinding, {
       height: config.height
     }; // this will be a list in R
   },
-  _updateWidth: function (el, o, n) {
-    $(el).parent().toggleClass("col-sm-" + o);
-    $(el).parent().addClass("col-sm-" + n);
+  _updateWidth: function(el, o, n) {
+    $(el)
+      .parent()
+      .toggleClass("col-sm-" + o);
+    $(el)
+      .parent()
+      .addClass("col-sm-" + n);
     // trigger resize so that output resize
-    $(el).trigger('resize');
+    $(el).trigger("resize");
   },
 
-  setValue: function (el, value) {
-
-    var config = $(el).parent().find("script[data-for='" + el.id + "']");
+  setValue: function(el, value) {
+    var config = $(el)
+      .parent()
+      .find("script[data-for='" + el.id + "']");
     config = JSON.parse(config.html());
 
     if (value.action === "update") {
-      var isUserCard = $(el).hasClass('user-card');
-      var isSocialCard = $(el).hasClass('social-card');
-      
+      var isUserCard = $(el).hasClass("user-card");
+      var isSocialCard = $(el).hasClass("social-card");
+
       if (value.options.hasOwnProperty("title")) {
         if (value.options.title !== config.title) {
           var newTitle;
@@ -121,12 +142,16 @@ $.extend(cardBinding, {
               $(el)
                 .find(".widget-user-header")
                 .replaceWith($(newTitle));
-                
+
               if (value.options.status !== null) {
                 if (value.options.gradient) {
-                  $(el).find('.widget-user-header').addClass('bg-gradient-', status);
+                  $(el)
+                    .find(".widget-user-header")
+                    .addClass("bg-gradient-", status);
                 } else {
-                  $(el).find('.widget-user-header').addClass('bg-', status);
+                  $(el)
+                    .find(".widget-user-header")
+                    .addClass("bg-", status);
                 }
               }
             }
@@ -144,28 +169,36 @@ $.extend(cardBinding, {
           config.title = value.options.title;
         }
       }
-      
+
       if (value.options.hasOwnProperty("collapsible")) {
         if (value.options.collapsible !== config.collapsible) {
           if (!value.options.collapsible) {
-            $(el).find('[data-card-widget = "collapse"]').remove();
+            $(el)
+              .find('[data-card-widget = "collapse"]')
+              .remove();
             config.collapsible = false;
           } else {
             // only add if no collapsible
             if ($(el).find('[data-card-widget = "collapse"]').length === 0) {
               $(el)
                 .find(".card-tools.float-right")
-                .prepend($('<button class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fa fa-minus"></i></button>'));
+                .prepend(
+                  $(
+                    '<button class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fa fa-minus"></i></button>'
+                  )
+                );
               config.collapsible = true;
             }
           }
         }
       }
-      
+
       if (value.options.hasOwnProperty("closable")) {
         if (value.options.closable !== config.closable) {
           if (!value.options.closable) {
-            $(el).find('[data-card-widget = "remove"]').remove();
+            $(el)
+              .find('[data-card-widget = "remove"]')
+              .remove();
             config.closable = false;
           } else {
             if ($(el).find('[data-card-widget = "remove"]').length === 0) {
@@ -173,10 +206,15 @@ $.extend(cardBinding, {
               if ($(el).find('[data-card-widget = "maximize"]').length === 0) {
                 $(el)
                   .find(".card-tools.float-right")
-                  .append($('<button class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fa fa-times"></i></button>'));
+                  .append(
+                    $(
+                      '<button class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fa fa-times"></i></button>'
+                    )
+                  );
               } else {
-                $('<button class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fa fa-times"></i></button>')
-                  .insertBefore($(el).find('[data-card-widget = "maximize"]'));
+                $(
+                  '<button class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fa fa-times"></i></button>'
+                ).insertBefore($(el).find('[data-card-widget = "maximize"]'));
               }
               config.closable = true;
             }
@@ -187,19 +225,25 @@ $.extend(cardBinding, {
       if (value.options.hasOwnProperty("maximizable")) {
         if (value.options.maximizable !== config.maximizable) {
           if (!value.options.maximizable) {
-            $(el).find('[data-card-widget = "maximize"]').remove();
+            $(el)
+              .find('[data-card-widget = "maximize"]')
+              .remove();
             config.maximizable = false;
           } else {
             if ($(el).find('[data-card-widget = "maximize"]').length === 0) {
               $(el)
                 .find(".card-tools.float-right")
-                .append($('<button class="btn btn-tool btn-sm" data-card-widget="maximize"><i class="fa fa-expand"></i></button>'));
+                .append(
+                  $(
+                    '<button class="btn btn-tool btn-sm" data-card-widget="maximize"><i class="fa fa-expand"></i></button>'
+                  )
+                );
               config.maximizable = true;
             }
           }
         }
       }
-      
+
       if (value.options.hasOwnProperty("solidHeader")) {
         // only update if config an new value are different
         if (!isSocialCard && !isUserCard) {
@@ -237,7 +281,7 @@ $.extend(cardBinding, {
           }
         }
       }
-      
+
       // To remove status explicitly set status = NULL in updateBox. Don't apply
       // to socialBox in AdminLTE2!!!
       if (value.options.hasOwnProperty("status")) {
@@ -271,7 +315,7 @@ $.extend(cardBinding, {
             } else if (value.options.status) {
               // apply new status
               if (isUserCard) {
-                newClass = "bg-"; 
+                newClass = "bg-";
                 if (value.options.gradient) {
                   newClass = newClass + "gradient-";
                 }
@@ -283,7 +327,7 @@ $.extend(cardBinding, {
                 newClass = "card-" + value.options.status;
                 $(el).addClass(newClass);
               }
-              
+
               // remove old status, if there was one ...
               if (config.status) {
                 if (isUserCard) {
@@ -304,22 +348,15 @@ $.extend(cardBinding, {
               // Add new color for Buttons. We handle extra statuses in which case
               // the button class changes. Only if solidHeader
               if (!$(el).hasClass("card-outline") || isUserCard) {
-                if (isUserCard) {
+                if (validStatusesPlus.indexOf(value.options.status) > -1) {
                   $(el)
                     .find(".btn-tool")
                     .addClass("bg-" + value.options.status);
-                } else {
-                  if (validStatusesPlus.indexOf(value.options.status) > -1) {
-                    $(el)
-                      .find(".btn-tool")
-                      .addClass("bg-" + value.options.status);
-                  } else if (validStatuses.indexOf(value.options.status) > -1) {
-                    $(el)
-                      .find(".btn-tool")
-                      .addClass("btn-" + value.options.status);
-                  }
+                } else if (validStatuses.indexOf(value.options.status) > -1) {
+                  $(el)
+                    .find(".btn-tool")
+                    .addClass("btn-" + value.options.status);
                 }
-                
               }
             }
 
@@ -335,32 +372,26 @@ $.extend(cardBinding, {
                 status = config.background;
               }
 
-              if (isUserCard) {
+              if (validStatusesPlus.indexOf(status) > -1) {
                 $(el)
-                    .find(".btn-tool")
-                    .removeClass("bg-" + status);
-              } else {
-                if (validStatusesPlus.indexOf(status) > -1) {
-                  $(el)
-                    .find(".btn-tool")
-                    .removeClass("bg-" + status);
-                } else if (validStatuses.indexOf(status) > -1) {
-                  $(el)
-                    .find(".btn-tool")
-                    .removeClass("btn-" + status);
-                }
+                  .find(".btn-tool")
+                  .removeClass("bg-" + status);
+              } else if (validStatuses.indexOf(status) > -1) {
+                $(el)
+                  .find(".btn-tool")
+                  .removeClass("btn-" + status);
               }
             }
             config.status = value.options.status;
           }
         }
       }
-  
+
       // To remove background explicitly set background = NULL in updateBox
       if (value.options.hasOwnProperty("background")) {
         if (value.options.background !== config.background) {
           var oldBgClass = "bg-";
-            newBgClass = oldBgClass;
+          newBgClass = oldBgClass;
           // don't touch if null
           if (config.background) {
             // if gradient, the class has a gradient in between!
@@ -389,27 +420,33 @@ $.extend(cardBinding, {
             }
             $(el).addClass(newBgClass);
           }
-          if (config.gradient !== value.options.gradient &&
-          value.options.gradient !== undefined) {
+          if (
+            config.gradient !== value.options.gradient &&
+            value.options.gradient !== undefined
+          ) {
             config.gradient = value.options.gradient;
           }
           config.background = value.options.background;
         }
       }
-      
+
       if (value.options.hasOwnProperty("width")) {
         if (value.options.width !== config.width) {
           this._updateWidth(el, config.width, value.options.width);
           config.width = value.options.width;
         }
       }
-      
+
       if (value.options.hasOwnProperty("height")) {
         if (value.options.height !== config.height) {
           if (value.options.height === null) {
-            $(el).find(".card-body").css("height", '');
+            $(el)
+              .find(".card-body")
+              .css("height", "");
           } else {
-            $(el).find(".card-body").css("height", value.options.height);
+            $(el)
+              .find(".card-body")
+              .css("height", value.options.height);
           }
 
           config.height = value.options.height;
@@ -417,152 +454,171 @@ $.extend(cardBinding, {
           // is not controlled by the box size ...
         }
       }
-      
 
-      // replace the old JSON config by the new one to update the input value 
-      $(el).parent().find("script[data-for='" + el.id + "']").replaceWith(
-        '<script type="application/json" data-for="' + el.id + '">' + JSON.stringify(config) + '</script>'
-      );
+      // replace the old JSON config by the new one to update the input value
+      $(el)
+        .parent()
+        .find("script[data-for='" + el.id + "']")
+        .replaceWith(
+          '<script type="application/json" data-for="' +
+            el.id +
+            '">' +
+            JSON.stringify(config) +
+            "</script>"
+        );
     } else {
       if (value != "restore") {
-        if ($(el).css('display') != 'none') {
+        if ($(el).css("display") != "none") {
           $(el).CardWidget(value);
         }
       } else {
         $(el).show();
         // this is needed so that the last event handler is considered
-        // in the subscribe method. 
+        // in the subscribe method.
         $(el).trigger("shown");
       }
     }
   },
-  receiveMessage: function (el, data) {
+  receiveMessage: function(el, data) {
     this.setValue(el, data);
-    $(el).trigger('change');
+    $(el).trigger("change");
   },
 
-  subscribe: function (el, callback) {
-    $(el).on('expanded.lte.cardwidget collapsed.lte.cardwidget', function (e) {
+  subscribe: function(el, callback) {
+    $(el).on("expanded.lte.cardwidget collapsed.lte.cardwidget", function(e) {
       // set a delay so that SHiny get the input value when the collapse animation
-      // is finished. 
-      setTimeout(
-        function () {
-          callback();
-        }, 500);
+      // is finished.
+      setTimeout(function() {
+        callback();
+      }, 500);
     });
 
-    $(el).on('maximized.lte.cardwidget minimized.lte.cardwidget', function (e) {
+    $(el).on("maximized.lte.cardwidget minimized.lte.cardwidget", function(e) {
       callback();
     });
 
-    $(el).on('removed.lte.cardwidget', function (e) {
-      setTimeout(
-        function () {
-          callback();
-        }, 500);
+    $(el).on("removed.lte.cardwidget", function(e) {
+      setTimeout(function() {
+        callback();
+      }, 500);
     });
     // we need to split removed and shown event since shown is immediate whereas close
     // takes some time
-    $(el).on('shown.cardBinding', function (e) {
+    $(el).on("shown.cardBinding", function(e) {
       callback();
     });
 
-    // handle change event triggered in the setValue method 
-    $(el).on('change.cardBinding', function (event) {
-      setTimeout(function () {
+    // handle change event triggered in the setValue method
+    $(el).on("change.cardBinding", function(event) {
+      setTimeout(function() {
         callback();
       }, 500);
     });
   },
 
-  unsubscribe: function (el) {
+  unsubscribe: function(el) {
     $(el).off(".cardBinding");
   }
 });
 
 Shiny.inputBindings.register(cardBinding);
 
-
-
 // Card sidebar input binding
 var cardSidebarBinding = new Shiny.InputBinding();
 $.extend(cardSidebarBinding, {
-  
   initialize: function(el) {
     // erase default to avoid seeing moving sidebars on initialization
-  $('.direct-chat-contacts, .direct-chat-messages').css({'transition': 'transform .0s ease-in-out'});
-  
-  var background = $(el).attr('data-background') ? $(el).attr('data-background') : '#343a40';
-    var width = $(el).attr('data-width') ? parseInt($(el).attr('data-width')) : 100;
-    var closeTranslationRate =  100 * 100 / width;
-    var contacts = $(el).closest('.direct-chat').find('.direct-chat-contacts');
-    
+    $(".direct-chat-contacts, .direct-chat-messages").css({
+      transition: "transform .0s ease-in-out"
+    });
+
+    var background = $(el).attr("data-background")
+      ? $(el).attr("data-background")
+      : "#343a40";
+    var width = $(el).attr("data-width")
+      ? parseInt($(el).attr("data-width"))
+      : 100;
+    var closeTranslationRate = (100 * 100) / width;
+    var contacts = $(el)
+      .closest(".direct-chat")
+      .find(".direct-chat-contacts");
+
     // apply width and background
     $(contacts).css({
-      'background': `${background}`,
-      'width': `${width}%`
+      background: `${background}`,
+      width: `${width}%`
     });
-    
+
     // If start open, apply openTranslationRate else apply closeTranslationRate ...
-    if ($(el).attr('data-start-open') === "true") {
+    if ($(el).attr("data-start-open") === "true") {
       var openTranslationRate = closeTranslationRate - 100;
-      $(contacts).css({'transform': `translate(${openTranslationRate}%, 0)`});
+      $(contacts).css({ transform: `translate(${openTranslationRate}%, 0)` });
     } else {
-      $(contacts).css({'transform': `translate(${closeTranslationRate}%, 0)`});
+      $(contacts).css({ transform: `translate(${closeTranslationRate}%, 0)` });
     }
-  
+
     // Restore for better transitions
     setTimeout(function() {
-      $('.direct-chat-contacts, .direct-chat-messages').css({'transition': 'transform .5s ease-in-out'});
+      $(".direct-chat-contacts, .direct-chat-messages").css({
+        transition: "transform .5s ease-in-out"
+      });
     }, 300);
   },
-  
-  find: function (scope) {
+
+  find: function(scope) {
     return $(scope).find('[data-widget="chat-pane-toggle"]');
   },
 
   // Given the DOM element for the input, return the value
-  getValue: function (el) {
+  getValue: function(el) {
     var cardWrapper = $(el).closest(".card");
     return $(cardWrapper).hasClass("direct-chat-contacts-open");
   },
 
   // see updatebs4Card
-  receiveMessage: function (el, data) {
+  receiveMessage: function(el, data) {
     // In theory, adminLTE3 has a builtin function
     // we could use $(el).DirectChat('toggle');
     // However, it does not update the related input.
     // The toggled.lte.directchat event seems to be broken.
-    $(el).trigger('click');
+    $(el).trigger("click");
     $(el).trigger("shown");
   },
 
-  subscribe: function (el, callback) {
+  subscribe: function(el, callback) {
     var self = this;
-    $(el).on('click', function (e) {
-      var width = $(el).attr('data-width') ? parseInt($(el).attr('data-width')) : 100;
-      var closeTranslationRate =  100 * 100 / width;
+    $(el).on("click", function(e) {
+      var width = $(el).attr("data-width")
+        ? parseInt($(el).attr("data-width"))
+        : 100;
+      var closeTranslationRate = (100 * 100) / width;
       var openTranslationRate = closeTranslationRate - 100;
       // set a delay so that Shiny get the input value when the collapse animation
-      // is finished. 
+      // is finished.
       var target = e.currentTarget;
-      setTimeout(
-        function (e = target) {
-          // apply correct translation rate depending on current state
-          var contacts = $(e).closest('.direct-chat').find('.direct-chat-contacts');
-          if (self.getValue(el)) {
-            $(contacts).css({'transform': `translate(${openTranslationRate}%, 0)`});
-          } else {
-            $(contacts).css({'transform': `translate(${closeTranslationRate}%, 0)`});
-          }
-          callback();
-        }, 10);
+      setTimeout(function(e = target) {
+        // apply correct translation rate depending on current state
+        var contacts = $(e)
+          .closest(".direct-chat")
+          .find(".direct-chat-contacts");
+        if (self.getValue(el)) {
+          $(contacts).css({
+            transform: `translate(${openTranslationRate}%, 0)`
+          });
+        } else {
+          $(contacts).css({
+            transform: `translate(${closeTranslationRate}%, 0)`
+          });
+        }
+        callback();
+      }, 10);
     });
   },
 
-  unsubscribe: function (el) {
+  unsubscribe: function(el) {
     $(el).off(".cardSidebarBinding");
   }
 });
 
 Shiny.inputBindings.register(cardSidebarBinding);
+
