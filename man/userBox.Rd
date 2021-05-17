@@ -12,7 +12,6 @@ bs4UserCard(
   title = NULL,
   footer = NULL,
   status = NULL,
-  solidHeader = TRUE,
   background = NULL,
   width = 6,
   height = NULL,
@@ -44,7 +43,6 @@ userBox(
   title = NULL,
   footer = NULL,
   status = NULL,
-  solidHeader = TRUE,
   background = NULL,
   width = 6,
   height = NULL,
@@ -102,8 +100,6 @@ userDescription(
   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 }}
-
-\item{solidHeader}{Should the header be shown with a solid color background?}
 
 \item{background}{If NULL (the default), the background of the box will be
   white. Otherwise, a color string. Valid colors are listed in

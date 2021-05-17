@@ -446,6 +446,7 @@ if (interactive()) {
         id = "mybox",
         status = "danger",
         background = "maroon",
+        solidHeader = TRUE,
         gradient = TRUE,
         collapsible = TRUE,
         closable = TRUE,
