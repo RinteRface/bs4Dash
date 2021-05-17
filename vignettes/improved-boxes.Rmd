@@ -83,7 +83,7 @@ server <- function(input, output, session) {
       "mybox",
       action = "update",
       options = list(
-        title = tagList(h2("New title"), dashboardBadge(1, color = "primary")),
+        title = h2("New title", dashboardBadge(1, color = "primary")),
         status = "danger",
         solidHeader = TRUE,
         width = 4
@@ -370,7 +370,7 @@ shinyApp(
         ),
         actionButton("update_box", "Refresh"),
         "Some text here!",
-        br(),
+        br(), br(),
         tabsetPanel(
           tabPanel(
             "News",
