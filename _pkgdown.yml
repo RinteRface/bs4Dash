@@ -168,8 +168,6 @@ reference:
   - '`accordionItem`'
   - '`blockQuote`'
   - '`bs4Table`'
-  - '`bs4TableItem`'
-  - '`bs4TableItems`'
   - '`callout`'
   - '`carousel`'
   - '`carouselItem`'

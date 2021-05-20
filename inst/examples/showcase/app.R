@@ -868,39 +868,23 @@ gallery_1_tab <- tabItem(
       cardWrap = TRUE,
       bordered = TRUE,
       striped = TRUE,
-      headTitles = c(
-        "PROJECT",
-        "BUDGET",
-        "STATUS",
-        "USERS",
-        "COMPLETION",
-        ""
-      ),
-      bs4TableItems(
-        bs4TableItem("bs4 Design System"),
-        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
-        bs4TableItem(
-          dataCell = TRUE, 
-          dashboardBadge(
+      list(
+        list(
+          income = "$2,500 USD", 
+          status = dashboardBadge(
             "Pending",
             position = "right",
             color = "danger",
             rounded = TRUE
-          )
-        ),
-        bs4TableItem(
-          progressBar(value = 50, status = "pink", size = "xxs")
-        ),
-        bs4TableItem(
-          dataCell = TRUE, 
-          "test"
-        ),
-        bs4TableItem(
-          actionButton(
+          ), 
+          progress = progressBar(value = 50, status = "pink", size = "xxs"), 
+          text = "test", 
+          confirm = actionButton(
             "go",
             "Go"
           )
-        )
+        ),
+        list("$2,500 USD", "NA", "NA", "test", "NA")
       )
     )
   )

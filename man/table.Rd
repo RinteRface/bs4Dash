@@ -6,26 +6,16 @@
 \alias{bs4TableItem}
 \title{Boostrap 4 table container}
 \usage{
-bs4Table(
-  ...,
-  cardWrap = FALSE,
-  headTitles,
-  bordered = FALSE,
-  striped = FALSE,
-  width = 12
-)
+bs4Table(data, cardWrap = FALSE, bordered = FALSE, striped = FALSE, width = 12)
 
 bs4TableItems(...)
 
 bs4TableItem(..., dataCell = FALSE)
 }
 \arguments{
-\item{...}{Any HTML element.}
+\item{data}{Expect dataframe, tibble or list of shiny tags... See examples.}
 
 \item{cardWrap}{Whether to wrap the table in a card. FALSE by default.}
-
-\item{headTitles}{Table header names. Must have the same length as the number of 
-\link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.}
 
 \item{bordered}{Whether to display border between elements. FALSE by default.}
 
@@ -33,10 +23,15 @@ bs4TableItem(..., dataCell = FALSE)
 
 \item{width}{Table width. 12 by default.}
 
+\item{...}{Any HTML element.}
+
 \item{dataCell}{Whether the cell should be contain data or text. <td> by default.}
+
+\item{headTitles}{Table header names. Must have the same length as the number of 
+\link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.}
 }
 \description{
-Build an argon table container
+Build an Bootstrap 4 table container
 
 Build an bs4 table item row
 
@@ -47,6 +42,7 @@ if (interactive()) {
  library(shiny)
  library(bs4Dash)
  
+ # width dataframe as input
  shinyApp(
   ui = dashboardPage(
     header = dashboardHeader(), 
@@ -56,50 +52,52 @@ if (interactive()) {
       cardWrap = TRUE,
       bordered = TRUE,
       striped = TRUE,
-      headTitles = c(
-       "PROJECT",
-       "BUDGET",
-       "STATUS",
-       "USERS",
-       "COMPLETION",
-       ""
-      ),
-      bs4TableItems(
-       bs4TableItem("bs4 Design System"),
-       bs4TableItem(dataCell = TRUE, "$2,500 USD"),
-       bs4TableItem(
-        dataCell = TRUE, 
-        dashboardBadge(
-         "Pending",
-         position = "right",
-         color = "danger",
-         rounded = TRUE
-        )
-       ),
-       bs4TableItem(
-        progressBar(value = 50)
-       ),
-       bs4TableItem(
-        dataCell = TRUE, 
-        "test"
-       ),
-       bs4TableItem(
-        actionButton(
-         "go",
-         "Go"
-        )
-       )
-      )
+      iris
      )
     ), 
     footer = dashboardFooter()
   ),
   server = function(input, output) { }
  )
+ 
+ # with shiny tags as input
+ shinyApp(
+  ui = dashboardPage(
+    header = dashboardHeader(), 
+    sidebar = dashboardSidebar(),
+    body = dashboardBody(
+      bs4Table(
+        cardWrap = TRUE,
+        bordered = TRUE,
+        striped = TRUE,
+        list(
+          list(
+            income = "$2,500 USD", 
+            status = dashboardBadge(
+              "Pending",
+              position = "right",
+              color = "danger",
+              rounded = TRUE
+            ), 
+            progress = progressBar(value = 50, status = "pink", size = "xxs"), 
+            text = "test", 
+            confirm = actionButton(
+              "go",
+              "Go"
+            )
+          ),
+          list("$2,500 USD", "NA", "NA", "test", "NA")
+        )
+      )
+    ), 
+    footer = dashboardFooter()
+  ),
+  server = function(input, output) {}
+ )
 }
-
 
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\keyword{internal}

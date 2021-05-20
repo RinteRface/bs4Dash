@@ -2643,9 +2643,9 @@ bs4Sortable <- function(..., width = 12) {
 
 #' Boostrap 4 table container
 #'
-#' Build an argon table container
+#' Build an Bootstrap 4 table container
 #'
-#' @param ... \link{bs4TableItems}.
+#' @param data Expect dataframe, tibble or list of shiny tags... See examples. 
 #' @param cardWrap Whether to wrap the table in a card. FALSE by default.
 #' @param headTitles Table header names. Must have the same length as the number of 
 #' \link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.
@@ -2658,6 +2658,7 @@ bs4Sortable <- function(..., width = 12) {
 #'  library(shiny)
 #'  library(bs4Dash)
 #'  
+#'  # width dataframe as input
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     header = dashboardHeader(), 
@@ -2667,54 +2668,55 @@ bs4Sortable <- function(..., width = 12) {
 #'       cardWrap = TRUE,
 #'       bordered = TRUE,
 #'       striped = TRUE,
-#'       headTitles = c(
-#'        "PROJECT",
-#'        "BUDGET",
-#'        "STATUS",
-#'        "USERS",
-#'        "COMPLETION",
-#'        ""
-#'       ),
-#'       bs4TableItems(
-#'        bs4TableItem("bs4 Design System"),
-#'        bs4TableItem(dataCell = TRUE, "$2,500 USD"),
-#'        bs4TableItem(
-#'         dataCell = TRUE, 
-#'         dashboardBadge(
-#'          "Pending",
-#'          position = "right",
-#'          color = "danger",
-#'          rounded = TRUE
-#'         )
-#'        ),
-#'        bs4TableItem(
-#'         progressBar(value = 50)
-#'        ),
-#'        bs4TableItem(
-#'         dataCell = TRUE, 
-#'         "test"
-#'        ),
-#'        bs4TableItem(
-#'         actionButton(
-#'          "go",
-#'          "Go"
-#'         )
-#'        )
-#'       )
+#'       iris
 #'      )
 #'     ), 
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
+#'  
+#'  # with shiny tags as input
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
+#'       bs4Table(
+#'         cardWrap = TRUE,
+#'         bordered = TRUE,
+#'         striped = TRUE,
+#'         list(
+#'           list(
+#'             income = "$2,500 USD", 
+#'             status = dashboardBadge(
+#'               "Pending",
+#'               position = "right",
+#'               color = "danger",
+#'               rounded = TRUE
+#'             ), 
+#'             progress = progressBar(value = 50, status = "pink", size = "xxs"), 
+#'             text = "test", 
+#'             confirm = actionButton(
+#'               "go",
+#'               "Go"
+#'             )
+#'           ),
+#'           list("$2,500 USD", "NA", "NA", "test", "NA")
+#'         )
+#'       )
+#'     ), 
+#'     footer = dashboardFooter()
+#'   ),
+#'   server = function(input, output) {}
+#'  )
 #' }
 #' 
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname table
 #'
 #' @export
-bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE, 
+bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE, 
                      striped = FALSE, width = 12) {
   
   # handle theme
@@ -2722,15 +2724,59 @@ bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE,
   if (bordered) tableCl <- paste0(tableCl, " table-bordered")
   if (striped) tableCl <- paste0(tableCl, " table-striped")
   
-  # column headers
-  tableHead <- shiny::tags$thead(
-    shiny::tags$tr(
-      lapply(seq_along(headTitles), function(i) shiny::tags$th(headTitles[[i]])) 
+  if (!inherits(data, "list") && 
+      !inherits(data, "data.frame")) {
+    stop("data must be a dataframe, tibble or list")
+  }
+  
+  if (inherits(data, "data.frame")) {
+    
+    # column headers
+    tableHead <- shiny::tags$thead(
+      shiny::tags$tr(
+        lapply(
+          seq_along(colnames(data)), 
+          function(i) shiny::tags$th(colnames(data)[[i]])
+        ) 
+      )
     )
-  )
+    
+    table <- lapply(seq_len(nrow(data)), function(i) {
+      bs4TableItems(
+        lapply(seq_len(ncol(data)), function(j) {
+          bs4TableItem(
+            data[i, j],
+            dataCell = TRUE
+          )
+        })
+      )
+    }) 
+  } else if (inherits(data, "list")) {
+    
+    # column headers
+    tableHead <- shiny::tags$thead(
+      shiny::tags$tr(
+        lapply(
+          seq_along(names(data[[1]])), 
+          function(i) shiny::tags$th(names(data[[1]])[[i]])
+        ) 
+      )
+    )
+    
+    table <- lapply(seq_along(data), function(i) {
+      bs4TableItems(
+        lapply(seq_along(data[[i]]), function(j) {
+          bs4TableItem(
+            data[[i]][[j]],
+            dataCell = TRUE
+          )
+        })
+      )
+    }) 
+  }
   
   # body rows
-  tableBody <- shiny::tags$tbody(...)
+  tableBody <- shiny::tags$tbody(table)
   
   # table tag
   tableTag <- shiny::tags$table(
@@ -2766,8 +2812,7 @@ bs4Table <- function(..., cardWrap = FALSE, headTitles, bordered = FALSE,
 #' @param ... Slot for \link{tableItem}.
 #'
 #' @rdname table
-#'
-#' @export
+#' @keywords internal
 bs4TableItems <- function(...) {
   shiny::tags$tr(...)
 }
@@ -2782,8 +2827,7 @@ bs4TableItems <- function(...) {
 #' @param dataCell Whether the cell should be contain data or text. <td> by default.
 #'
 #' @rdname table
-#'
-#' @export
+#' @keywords internal
 bs4TableItem <- function(..., dataCell = FALSE) {
   if (dataCell) {
     shiny::tags$td(...)

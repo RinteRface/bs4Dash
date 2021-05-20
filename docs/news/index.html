@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -132,7 +132,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -394,6 +394,7 @@
 <h3 class="hasAnchor">
 <a href="#others" class="anchor"></a>Others</h3>
 <ul>
+<li>Reworked <code><a href="../reference/bs4Table.html">bs4Table()</a></code> API.</li>
 <li>In <code><a href="../reference/bs4Stars.html">bs4Stars()</a></code>: <code>grade</code> and <code>maxstar</code>, respectively become <code>value</code> and <code>grade</code>.</li>
 <li>In <code><a href="../reference/bs4ListGroup.html">listGroupItem()</a></code>, remove <code>type</code> and put it in <code><a href="../reference/bs4ListGroup.html">listGroup()</a></code>. <code>src</code> becomes <code>href</code>.</li>
 <li>
@@ -504,6 +505,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug Fix</h2>
 <ul>
+<li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/200'>#200</a>: simplified <code><a href="../reference/bs4Table.html">bs4Table()</a></code> API.</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/189'>#189</a>: <code>hidden</code> type is not available for <code><a href="../reference/tabsetPanel.html">bs4Dash::tabsetPanel</a></code> that uses an old version of the <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html">shiny::tabsetPanel</a></code>. Thanks <a href='https://github.com/zilch42'>@zilch42</a>.</li>
 <li>Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!</li>
 <li>Fix issue <a href='https://github.com/RinteRface/bs4Dash/issues/110'>#110</a>: due to the fact that the <code>bs4Controlbar()</code> now collapse when clicked outside, clicking on an input triggering the <code>updatebs4Controlbar()</code> would toggle it twice. Thanks <a href='https://github.com/dwhdai'>@dwhdai</a></li>
@@ -604,7 +606,7 @@
 <li>add <code>bs4DashControlbarMenu()</code>, <code>bs4DashControlbarItem()</code> and <code>updatebs4ControlbarMenu()</code>
 </li>
 <li>add <code><a href="../reference/bs4DashSidebar.html">updatebs4TabItems()</a></code> and <code><a href="../reference/bs4DashSidebar.html">updateTabItems()</a></code> to programatically update the selected sidebar tab and the corresponding body tab</li>
-<li>add <code>updatebs4TabSetPanel()</code> and <code><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html">updateTabsetPanel()</a></code> (aliases) to dynamically update <code>bs4TabSetPanel()</code> from the server side</li>
+<li>add <code>updatebs4TabSetPanel()</code> and <code>updateTabsetPanel()</code> (aliases) to dynamically update <code>bs4TabSetPanel()</code> from the server side</li>
 <li>add maximizable option for <code><a href="../reference/descriptionBlock.html">bs4Card()</a></code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. In other words, allow full screen option</li>
 <li>Fix <a href='https://github.com/RinteRface/bs4Dash/issues/8'>#8</a>: add input binding to the <code><a href="../reference/bs4DashSidebar.html">bs4SidebarMenu()</a></code>. Now by adding an id to the menu, the user can recover the currently selected tab. Thanks <a href='https://github.com/rpodcast'>@rpodcast</a></li>
 <li>add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). For instance <code><a href="../reference/bs4DashPage.html">bs4DashPage()</a></code> can also be <code><a href="../reference/bs4DashPage.html">dashboardPage()</a></code>

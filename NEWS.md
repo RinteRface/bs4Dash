@@ -125,6 +125,7 @@ This is to align with shinydashboard and shinydashboardPlus.
 
 
 ### Others
+- Reworked `bs4Table()` API.
 - In `bs4Stars()`: `grade` and `maxstar`, respectively become `value` and `grade`.
 - In `listGroupItem()`, remove `type` and put it in `listGroup()`. `src` becomes `href`.
 - `status` becomes `color` in `blockQuote`.
@@ -209,6 +210,7 @@ To keep it open, see below
 - change `bs4TabPanel()` param order to align with shiny
 
 ## Bug Fix
+- Fix #200: simplified `bs4Table()` API. 
 - Fix #189: `hidden` type is not available for `bs4Dash::tabsetPanel` that uses an old version of the
 `shiny::tabsetPanel`. Thanks @zilch42.
 - Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!

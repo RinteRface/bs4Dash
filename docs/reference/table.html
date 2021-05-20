@@ -49,7 +49,7 @@
   <script src="../extra.js"></script>
 
 <meta property="og:title" content="Boostrap 4 table container — bs4Table" />
-<meta property="og:description" content="Build an argon table container
+<meta property="og:description" content="Build an Bootstrap 4 table container
 Build an bs4 table item row
 Build an bs4 table item" />
 <meta property="og:image" content="/logo.svg" />
@@ -158,19 +158,12 @@ Build an bs4 table item" />
     </div>
 
     <div class="ref-description">
-    <p>Build an argon table container</p>
+    <p>Build an Bootstrap 4 table container</p>
 <p>Build an bs4 table item row</p>
 <p>Build an bs4 table item</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bs4Table</span><span class='op'>(</span>
-  <span class='va'>...</span>,
-  cardWrap <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  <span class='va'>headTitles</span>,
-  bordered <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  striped <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  width <span class='op'>=</span> <span class='fl'>12</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>bs4Table</span><span class='op'>(</span><span class='va'>data</span>, cardWrap <span class='op'>=</span> <span class='cn'>FALSE</span>, bordered <span class='op'>=</span> <span class='cn'>FALSE</span>, striped <span class='op'>=</span> <span class='cn'>FALSE</span>, width <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
 
 <span class='fu'>bs4TableItems</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
@@ -180,17 +173,12 @@ Build an bs4 table item" />
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Any HTML element.</p></td>
+      <th>data</th>
+      <td><p>Expect dataframe, tibble or list of shiny tags... See examples.</p></td>
     </tr>
     <tr>
       <th>cardWrap</th>
       <td><p>Whether to wrap the table in a card. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>headTitles</th>
-      <td><p>Table header names. Must have the same length as the number of 
-bs4TableItem in bs4TableItems. Set "" to have an empty title field.</p></td>
     </tr>
     <tr>
       <th>bordered</th>
@@ -205,8 +193,17 @@ bs4TableItem in bs4TableItems. Set "" to have an empty title field.</p></td>
       <td><p>Table width. 12 by default.</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>Any HTML element.</p></td>
+    </tr>
+    <tr>
       <th>dataCell</th>
       <td><p>Whether the cell should be contain data or text. &lt;td&gt; by default.</p></td>
+    </tr>
+    <tr>
+      <th>headTitles</th>
+      <td><p>Table header names. Must have the same length as the number of 
+bs4TableItem in bs4TableItems. Set "" to have an empty title field.</p></td>
     </tr>
     </table>
 
@@ -219,6 +216,7 @@ bs4TableItem in bs4TableItems. Set "" to have an empty title field.</p></td>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
  
+ <span class='co'># width dataframe as input</span>
  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>, 
@@ -228,48 +226,49 @@ bs4TableItem in bs4TableItems. Set "" to have an empty title field.</p></td>
       cardWrap <span class='op'>=</span> <span class='cn'>TRUE</span>,
       bordered <span class='op'>=</span> <span class='cn'>TRUE</span>,
       striped <span class='op'>=</span> <span class='cn'>TRUE</span>,
-      headTitles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-       <span class='st'>"PROJECT"</span>,
-       <span class='st'>"BUDGET"</span>,
-       <span class='st'>"STATUS"</span>,
-       <span class='st'>"USERS"</span>,
-       <span class='st'>"COMPLETION"</span>,
-       <span class='st'>""</span>
-      <span class='op'>)</span>,
-      <span class='fu'>bs4TableItems</span><span class='op'>(</span>
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span><span class='st'>"bs4 Design System"</span><span class='op'>)</span>,
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span>dataCell <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='st'>"$2,500 USD"</span><span class='op'>)</span>,
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span>
-        dataCell <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-        <span class='fu'><a href='bs4Badge.html'>dashboardBadge</a></span><span class='op'>(</span>
-         <span class='st'>"Pending"</span>,
-         position <span class='op'>=</span> <span class='st'>"right"</span>,
-         color <span class='op'>=</span> <span class='st'>"danger"</span>,
-         rounded <span class='op'>=</span> <span class='cn'>TRUE</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>,
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span>
-        <span class='fu'><a href='bs4ProgressBar.html'>progressBar</a></span><span class='op'>(</span>value <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-       <span class='op'>)</span>,
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span>
-        dataCell <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-        <span class='st'>"test"</span>
-       <span class='op'>)</span>,
-       <span class='fu'>bs4TableItem</span><span class='op'>(</span>
-        <span class='fu'><a href='actionButton.html'>actionButton</a></span><span class='op'>(</span>
-         <span class='st'>"go"</span>,
-         <span class='st'>"Go"</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>
-      <span class='op'>)</span>
+      <span class='va'>iris</span>
      <span class='op'>)</span>
     <span class='op'>)</span>, 
     footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>)</span>,
   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span> <span class='op'>}</span>
  <span class='op'>)</span>
+ 
+ <span class='co'># with shiny tags as input</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
+    header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>, 
+    sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
+    body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
+      <span class='fu'>bs4Table</span><span class='op'>(</span>
+        cardWrap <span class='op'>=</span> <span class='cn'>TRUE</span>,
+        bordered <span class='op'>=</span> <span class='cn'>TRUE</span>,
+        striped <span class='op'>=</span> <span class='cn'>TRUE</span>,
+        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+            income <span class='op'>=</span> <span class='st'>"$2,500 USD"</span>, 
+            status <span class='op'>=</span> <span class='fu'><a href='bs4Badge.html'>dashboardBadge</a></span><span class='op'>(</span>
+              <span class='st'>"Pending"</span>,
+              position <span class='op'>=</span> <span class='st'>"right"</span>,
+              color <span class='op'>=</span> <span class='st'>"danger"</span>,
+              rounded <span class='op'>=</span> <span class='cn'>TRUE</span>
+            <span class='op'>)</span>, 
+            progress <span class='op'>=</span> <span class='fu'><a href='bs4ProgressBar.html'>progressBar</a></span><span class='op'>(</span>value <span class='op'>=</span> <span class='fl'>50</span>, status <span class='op'>=</span> <span class='st'>"pink"</span>, size <span class='op'>=</span> <span class='st'>"xxs"</span><span class='op'>)</span>, 
+            text <span class='op'>=</span> <span class='st'>"test"</span>, 
+            confirm <span class='op'>=</span> <span class='fu'><a href='actionButton.html'>actionButton</a></span><span class='op'>(</span>
+              <span class='st'>"go"</span>,
+              <span class='st'>"Go"</span>
+            <span class='op'>)</span>
+          <span class='op'>)</span>,
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"$2,500 USD"</span>, <span class='st'>"NA"</span>, <span class='st'>"NA"</span>, <span class='st'>"test"</span>, <span class='st'>"NA"</span><span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>, 
+    footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+ <span class='op'>)</span>
 <span class='op'>}</span>
-
 
 </div></pre>
   </div>
