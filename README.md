@@ -101,11 +101,11 @@ shinyApp(ui, server)
 
 __Disclaimer__: as of now, `{bs4Dash}` 2.0.0 needs:
 
-```r
-remotes::install_github("rstudio/htmltools")
-remotes::install_github("rstudio/shiny")
-# optional for plot autocolor
-remotes::install_github("rstudio/thematic")
+```
+shiny (>= 1.6.0)
+htmltools (>= 0.5.1.1)
+bslib (>= 0.2.4)
+thematic (>= 0.1.2)
 ```
 
 
