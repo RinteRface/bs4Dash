@@ -153,6 +153,7 @@ camel case parms (numberColor, numberIcon, rightBorder and marginBottom)
 - `userPost()`: collapse_status becomes collapseStatus 
 
 ## New features
+- Add `easyClose` param to `boxSidebar()` to allow to close sidebar on outside-click. Thanks @predict42-patrick for the suggestion and JS code. 
 - New `gradient` parameter to `valuebox()`.
 - New help mode in `dashboardPage()` to automatically toggle all tooltips and popovers. Use
 with `bs4TooltipUI()` and `bs4PopoverUI()`. 

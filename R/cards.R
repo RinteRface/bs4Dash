@@ -322,13 +322,14 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @param background Sidebar background color. Dark by default.
 #' @param startOpen Whether the sidebar is open at start. FALSE by default.
 #' @param icon Sidebar icon. Expect \code{\link[shiny]{icon}}.
-#'
+#' @param easyClose Whether to close sidebar on click outside. Default to TRUE. 
 #'
 #' @rdname boxSidebar
 #' @family boxWidgets
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
-                           startOpen = FALSE, icon = shiny::icon("cogs")) {
+                           startOpen = FALSE, icon = shiny::icon("cogs"), 
+                           easyClose = TRUE) {
 
   stopifnot(width >= 25 && width <= 100)
   
@@ -341,6 +342,7 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
     `data-toggle` = "tooltip",
     `data-original-title` = "More",
     `data-start-open` = tolower(startOpen),
+    `data-easy-close` = tolower(easyClose),
     type = "button",
     icon
   )

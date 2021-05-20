@@ -165,7 +165,8 @@
   width <span class='op'>=</span> <span class='fl'>50</span>,
   background <span class='op'>=</span> <span class='st'>"#333a40"</span>,
   startOpen <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>
+  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>,
+  easyClose <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 
 <span class='fu'>updatebs4CardSidebar</span><span class='op'>(</span><span class='va'>id</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
@@ -176,7 +177,8 @@
   width <span class='op'>=</span> <span class='fl'>50</span>,
   background <span class='op'>=</span> <span class='st'>"#333a40"</span>,
   startOpen <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>
+  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>,
+  easyClose <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 
 <span class='fu'>boxSidebar</span><span class='op'>(</span>
@@ -185,7 +187,8 @@
   width <span class='op'>=</span> <span class='fl'>50</span>,
   background <span class='op'>=</span> <span class='st'>"#333a40"</span>,
   startOpen <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>
+  icon <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span><span class='op'>(</span><span class='st'>"cogs"</span><span class='op'>)</span>,
+  easyClose <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 
 <span class='fu'>updateCardSidebar</span><span class='op'>(</span><span class='va'>id</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
@@ -220,6 +223,10 @@ A numeric value between 25 and 100.</p></td>
     <tr>
       <th>icon</th>
       <td><p>Sidebar icon. Expect <code><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>easyClose</th>
+      <td><p>Whether to close sidebar on click outside. Default to TRUE.</p></td>
     </tr>
     <tr>
       <th>session</th>

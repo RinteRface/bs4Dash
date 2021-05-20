@@ -627,6 +627,22 @@ $.extend(cardSidebarBinding, {
         transition: "transform .5s ease-in-out"
       });
     }, 300);
+    
+    // Easyclose feature
+    if ($(el).attr("data-easy-close") === "true") {
+      $(document).mouseup(function(e) {
+        var container = $(".direct-chat-contacts");
+        var openContainer = $(".direct-chat-contacts-open");
+        // if the target of the click isn't the container nor a descendant of the container and also not if the filter symbol was clicke  d
+        if (!container.is(e.target) && 
+            container.has(e.target).length === 0 && 
+            $(e.target).parents('.card-tools').length !== 1) {
+            openContainer
+              .find("[data-widget='chat-pane-toggle']")
+              .click();
+        }
+      }); 
+    }
   },
 
   find: function(scope) {

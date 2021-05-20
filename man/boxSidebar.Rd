@@ -15,7 +15,8 @@ bs4CardSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs")
+  icon = shiny::icon("cogs"),
+  easyClose = TRUE
 )
 
 updatebs4CardSidebar(id, session = shiny::getDefaultReactiveDomain())
@@ -26,7 +27,8 @@ cardSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs")
+  icon = shiny::icon("cogs"),
+  easyClose = TRUE
 )
 
 boxSidebar(
@@ -35,7 +37,8 @@ boxSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs")
+  icon = shiny::icon("cogs"),
+  easyClose = TRUE
 )
 
 updateCardSidebar(id, session = shiny::getDefaultReactiveDomain())
@@ -56,6 +59,8 @@ A numeric value between 25 and 100.}
 \item{startOpen}{Whether the sidebar is open at start. FALSE by default.}
 
 \item{icon}{Sidebar icon. Expect \code{\link[shiny]{icon}}.}
+
+\item{easyClose}{Whether to close sidebar on click outside. Default to TRUE.}
 
 \item{session}{Shiny session object.}
 }
