@@ -1,4 +1,4 @@
-# bs4Dash 2.0.0.9000
+# bs4Dash 2.0.0
 
 ## Breaking changes
 This is to align with shinydashboard and shinydashboardPlus.
