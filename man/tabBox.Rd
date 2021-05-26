@@ -7,7 +7,7 @@
 \usage{
 bs4TabCard(
   ...,
-  id,
+  id = NULL,
   selected = NULL,
   title = NULL,
   width = 6,
@@ -34,7 +34,7 @@ bs4TabCard(
 
 tabBox(
   ...,
-  id,
+  id = NULL,
   selected = NULL,
   title = NULL,
   width = 6,
@@ -172,7 +172,7 @@ TRUE by default}
 Build an adminLTE3 card with tabs
 }
 \note{
-User will access the \link{tabBox} input with input$<tabset_id>_box. This allows
+User will access the \link{tabBox} input with input$<id>_box. This allows
 to get the state of the box and update it on the server with \link{updateBox}.
 }
 \examples{
