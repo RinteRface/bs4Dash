@@ -1503,7 +1503,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'
 #' @description Create a ionicon. 
 #'
-#' @param name Name of icon. See \url{https://ionicons.com}.
+#' @param name Name of icon. See \url{https://ionic.io/ionicons/}.
 #' 
 #' @note Similar to the icon function from shiny.
 #'

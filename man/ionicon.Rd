@@ -7,7 +7,7 @@
 ionicon(name)
 }
 \arguments{
-\item{name}{Name of icon. See \url{https://ionicons.com}.}
+\item{name}{Name of icon. See \url{https://ionic.io/ionicons/}.}
 }
 \description{
 Create a ionicon.
