@@ -18,3 +18,5 @@
 ^srcjs$
 ^.*\.icloud$
 ^netlify\.toml$
+^inst/vignettes-demos$
+
