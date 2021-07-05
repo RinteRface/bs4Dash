@@ -242,8 +242,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
-    icon,
-    shiny::tags$h3(class = "card-title", title)
+    shiny::tags$h3(class = "card-title", icon, title)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
 

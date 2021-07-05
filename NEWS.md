@@ -1,7 +1,7 @@
 # bs4Dash 2.0.1.9000
 
 ## Bug Fix
-
+- Fix #219: icon appears after header in bs4Card/box.
 
 # bs4Dash 2.0.0
 
