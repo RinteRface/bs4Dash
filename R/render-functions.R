@@ -116,7 +116,7 @@ bs4InfoBoxOutput <- bs4ValueBoxOutput
 #' @seealso \code{\link{renderMenu}} for the corresponding server side function
 #'   and examples.
 menuOutput <- function(outputId, tag = shiny::tags$li) {
-  tag(id = outputId, class = "bs4Dash-menu-output")
+  tag(id = outputId, class = "bs4Dash-menu-output dropdown")
 }
 
 
