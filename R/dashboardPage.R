@@ -185,8 +185,12 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
           paste0(
             "window.ran = false;",
             "$(document).on('shiny:idle', function(event){
-            if(!window.ran)
+            if(!window.ran){
               $('.waiter-overlay').fadeOut(1000);
+              setTimeout(function(){
+                $('.waiter-overlay').remove();
+              }, 1200);
+            }
             window.ran = true;
           });"
           )
