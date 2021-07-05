@@ -1023,24 +1023,26 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
   infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
 
-  # handle icon color (white or black depending on the box background)
+  # handle tabName 
   infoBoxTag <- shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          shiny::HTML(
-            paste0(
-              "$(function() {
+    if (!is.null(tabName)) {
+      shiny::singleton(
+        shiny::tags$head(
+          shiny::tags$script(
+            shiny::HTML(
+              paste0(
+                "$(function() {
                 $('#icon-", tabName, "').on('click', function() {
-                  $('#tab-", tabName, "').click();
+                  $('#tab-", tabName, ").click();
                 });
               });
               "
+              )
             )
           )
         )
       )
-    ),
+    },
     infoBoxTag
   )
 
