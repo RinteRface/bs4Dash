@@ -1,6 +1,7 @@
 # bs4Dash 2.0.1.9000
 
 ## Bug Fix
+- Fix #220: Disable badgeLabel in SidebarMenuItem when collapsed. Wrong tag structure fixed.
 - Fix #219: icon appears after header in bs4Card/box.
 
 # bs4Dash 2.0.0
