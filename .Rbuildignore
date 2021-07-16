@@ -18,5 +18,5 @@
 ^srcjs$
 ^.*\.icloud$
 ^netlify\.toml$
-^inst/examples/vignettes-demos$
+^inst/examples/vignettes-demos/.*./rsconnect$
 

@@ -40,7 +40,7 @@ getCardBodyStyle <- function(card) {
 
 getCardTools <- function(card) {
   header <- getCardHeader(card)
-  bs4Dash:::dropNulls(header$children[[3]]$children)
+  bs4Dash:::dropNulls(header$children[[2]]$children[[2]])
 }
 
 test_that("is shiny tag?", {
@@ -58,7 +58,7 @@ test_that("card structure", {
   # if collapsible is FALSE, there is still header with title "\u200C"
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE))
   expect_length(cardChildren, 2)
-  expect_equal(getCardChildren(bs4Card(collapsible = FALSE))[[1]]$children[[2]]$attribs$class, "card-title")
+  expect_equal(getCardChildren(bs4Card(collapsible = FALSE))[[1]]$children[[1]]$attribs$class, "card-title")
   
   # if collapsible is FALSE but title is not NULL, the header is included
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE, title = "card title"))
@@ -72,17 +72,17 @@ test_that("card tools", {
   parms$collapsible <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag[[1]], 1)
+  expect_length(toolsTag, 1)
   
   parms$closable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag[[1]], 2)
+  expect_length(toolsTag, 2)
   
   parms$maximizable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag[[1]], 3)
+  expect_length(toolsTag, 3)
   
   parms$dropdownMenu <- boxDropdown(
     boxDropdownItem("plop"),
@@ -90,18 +90,18 @@ test_that("card tools", {
   )
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag[[1]], 4)
+  expect_length(toolsTag, 4)
   
   parms$sidebar <- boxSidebar()
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag[[1]], 5)
+  expect_length(toolsTag, 5)
   
   # label does not belong to the toolsTag list
   parms$label <- boxLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
-  expect_length(toolsTag, 2)
+  expect_length(toolsTag, 5)
 })
 
 test_that("default", {

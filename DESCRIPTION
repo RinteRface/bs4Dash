@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 2.0.1.9000
+Version: 2.0.1
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -50,6 +50,7 @@ Collate:
     'dashboardPage.R'
     'aliases.R'
     'auto-color.R'
+    'bs4Dash-package.r'
     'bs4DashGallery.R'
     'deps.R'
     'grid.R'

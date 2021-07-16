@@ -1,4 +1,8 @@
-# bs4Dash 2.0.1.9000
+# bs4Dash 2.0.1
+
+## Minor changes
+- Simple patch to fix wrong .Rbuildignore [rule](https://github.com/DivadNojnarg/outstanding-shiny-ui/issues/52).
+- Update internal file structure. 
 
 ## Bug Fix
 - Fix #220: Disable badgeLabel in SidebarMenuItem when collapsed. Wrong tag structure fixed.

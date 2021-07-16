@@ -13,6 +13,8 @@ add_bs4Dash_deps <- function(tag, options) {
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
   
+  bs4Dash_version <- as.character(utils::packageVersion("bs4Dash"))
+  
   bs4Dash_deps <- list(
     # jquery UI deps for sortable elements
     htmltools::htmlDependency(
@@ -43,8 +45,8 @@ add_bs4Dash_deps <- function(tag, options) {
       # additional options (this needs to be loaded before shinydashboardPlus deps)
       htmltools::htmlDependency(
         "options",
-        as.character(utils::packageVersion("bs4Dash")),
-        src = c(file = "bs4Dash-2.0.0"),
+        bs4Dash_version,
+        src = c(file = sprintf("bs4Dash-%s", bs4Dash_version)),
         head = paste0(
           "<script>var AdminLTEOptions = ", 
           jsonlite::toJSON(
@@ -69,8 +71,8 @@ add_bs4Dash_deps <- function(tag, options) {
     # bs4Dash custom js/css (must come after adminlte, bootstrap 4)
     htmltools::htmlDependency(
       name = "bs4Dash",
-      version = as.character(utils::packageVersion("bs4Dash")),
-      src = c(file = "bs4Dash-2.0.0"),
+      version = bs4Dash_version,
+      src = c(file = sprintf("bs4Dash-%s", bs4Dash_version)),
       script = if (getOption("shiny.minified", TRUE)) "bs4Dash.min.js" else "bs4Dash.js" ,
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
@@ -78,7 +80,7 @@ add_bs4Dash_deps <- function(tag, options) {
     # fontawesome Commented since Shiny already loads it with icon...
     #htmltools::htmlDependency(
     #  name = "fontawesome",
-    #  version = as.character(utils::packageVersion("bs4Dash")),
+    #  version = bs4Dash_version,
     #  src = c(href = fontawesome_css),
     #  stylesheet = "all.css"
     #),
@@ -92,14 +94,14 @@ add_bs4Dash_deps <- function(tag, options) {
     # google fonts
     htmltools::htmlDependency(
       name = "googlefonts",
-      version = as.character(utils::packageVersion("bs4Dash")),
+      version = bs4Dash_version,
       src = c(href = google_fonts),
       stylesheet = ""
     ),
     # glyphicons
     htmltools::htmlDependency(
       name = "glyphicons",
-      version = as.character(utils::packageVersion("bs4Dash")),
+      version = bs4Dash_version,
       src = c(file = "glyphicons"),
       stylesheet = "glyphicons.min.css",
       package = "bs4Dash"
