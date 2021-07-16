@@ -3,6 +3,7 @@
 ## Minor changes
 - Simple patch to fix wrong .Rbuildignore [rule](https://github.com/DivadNojnarg/outstanding-shiny-ui/issues/52).
 - Update internal file structure. 
+- Clean NOTE: https://cran.rstudio.com//web/checks/check_results_bs4Dash.html
 
 ## Bug Fix
 - Fix #220: Disable badgeLabel in SidebarMenuItem when collapsed. Wrong tag structure fixed.
