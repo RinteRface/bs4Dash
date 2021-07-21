@@ -707,7 +707,7 @@ validateIcon <- function (icon)
 
 
 
-waiter_show_on_load <- function(
+waiterShowOnLoad <- function(
   html = waiter::spin_1(), color = "#333e48"
 ){
   
@@ -715,11 +715,11 @@ waiter_show_on_load <- function(
   html <- gsub("\n", "", html)
   
   show <- sprintf(
-    "show_waiter(
-      null,
-      html = '%s', 
-      color = '%s'
-    );",
+    "waiter.show({
+      id: null,
+      html: '%s', 
+      color: '%s'
+    });",
     html, color
   )
   
