@@ -726,3 +726,49 @@ waiter_show_on_load <- function(
   shiny::HTML(sprintf("<script>%s</script>", show))
   
 }
+
+
+#' @param url app URL. httr GET test is run before. If failed,
+#' function returns NULL.
+#' @param deps Whether to include marvel device assets. Default to FALSE.
+#' The first occurence must set deps to TRUE so that CSS is loaded in the page.
+#' @keywords internal
+app_container <- function(url, deps = FALSE) {
+  
+  # test app availability
+  req <- httr::GET(url)
+  show_app <- req$status_code == 200
+  
+  if (show_app) {
+    device_tag <- shiny::div(
+      class="marvel-device ipad black",
+      shiny::div(class = "camera"),
+      shiny::div(
+        class = "screen",
+        shiny::tags$iframe(
+          width = "100%",
+          src = url,
+          allowfullscreen = "",
+          frameborder = "0",
+          scrolling = "yes",
+          height = "770px"
+        )
+      ),
+      shiny::div(class = "home")
+    )
+    if (deps){
+      shiny::tagList(
+        shiny::tags$link(
+          rel = "stylesheet",
+          href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "bs4Dash"),
+          type = "text/css"
+        ),
+        device_tag
+      )
+    } else {
+      device_tag
+    }
+  } else {
+    NULL
+  }
+}

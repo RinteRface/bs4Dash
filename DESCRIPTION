@@ -23,7 +23,8 @@ Imports:
     waiter,
     httpuv (>= 1.5.2),
     lifecycle,
-    bslib (>= 0.2.4)
+    bslib (>= 0.2.4),
+    httr
 Suggests: 
     knitr,
     rmarkdown,

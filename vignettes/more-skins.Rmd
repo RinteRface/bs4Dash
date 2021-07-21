@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
+library(shiny)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -50,13 +51,10 @@ shinyApp(
 )
 ```
 
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-skinSelector/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>
+```{r, echo=FALSE}
+# App output
+bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-skinSelector/", TRUE)
+```
 
 ## Fresh
 [`{fresh}`](https://dreamrs.github.io/fresh/index.html) is developed by the 
@@ -158,11 +156,7 @@ shinyApp(
 )
 ```
 
-
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-fresh-theming/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>
+```{r, echo=FALSE}
+# App output
+bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-fresh-theming/")
+```

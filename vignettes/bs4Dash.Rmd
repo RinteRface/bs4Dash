@@ -16,9 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css" type="text/css" />
-
-
 ## Introduction
 
 `{bs4Dash}` relies on the same basis as `{shinydashboard}`, that is the AdminLTE HTML [template](https://adminlte.io/themes/v3/), except the version
@@ -113,12 +110,6 @@ shinyApp(
 )
 ```
 
-
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-scrollToTop/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>
-
+```{r, echo=FALSE}
+bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-scrollToTop/", TRUE)
+```
