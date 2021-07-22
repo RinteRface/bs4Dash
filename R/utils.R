@@ -768,7 +768,5 @@ app_container <- function(url, deps = FALSE) {
     } else {
       device_tag
     }
-  } else {
-    NULL
-  }
+  } 
 }
