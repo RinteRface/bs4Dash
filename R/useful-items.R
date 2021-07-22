@@ -2316,7 +2316,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'            inputId = "reload",
 #'            label = "Click me!", 
 #'            icon = icon("sync"), 
-#'            dashboardBadge(1, color = "orange")
+#'            dashboardBadge(1, color = "primary")
 #'           )
 #'          )
 #'         )
@@ -2338,7 +2338,7 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
     if (inherits(c, "shiny.tag") || inherits(c, "shiny.tag.list")) {
       # necessary if the user pass input/output with deps
       # that are not yet available in the page before inserting the new tag
-      c <- processDeps(c, session)
+      c <- htmltools::renderTags(c)
     }
     c
   })

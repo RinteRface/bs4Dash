@@ -220,7 +220,7 @@ if (interactive()) {
            inputId = "reload",
            label = "Click me!", 
            icon = icon("sync"), 
-           dashboardBadge(1, color = "orange")
+           dashboardBadge(1, color = "primary")
           )
          )
         )

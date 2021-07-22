@@ -10,7 +10,7 @@ Shiny.addCustomMessageHandler("user-messages", function(message) {
     if (content.text.html === undefined) {
       text = content.text;
     } else {
-      text = Shiny.renderHtml(content.text.html, $([]), content.text.deps).html;
+      text = Shiny.renderHtml(content.text.html, $([]), content.text.dependencies).html;
     } 
   }
   
