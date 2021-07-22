@@ -19,4 +19,4 @@
 ^.*\.icloud$
 ^netlify\.toml$
 ^inst/examples/vignettes-demos/.*./rsconnect$
-
+^index\.Rmd$
