@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extra Elements</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-07-21</h4>
+            <h4 class="date">2021-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/extra-elements.Rmd"><code>vignettes/extra-elements.Rmd</code></a></small>
       <div class="hidden name"><code>extra-elements.Rmd</code></div>
@@ -179,14 +179,7 @@
     <span class="op">}</span><span class="op">)</span>
   <span class="op">}</span>
  <span class="op">)</span></code></pre></div>
-<link rel="stylesheet" href="/Users/runner/work/_temp/Library/bs4Dash/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-accordions/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>
+<pre><code>## NULL</code></pre>
 </div>
 <div id="user-messages" class="section level2">
 <h2 class="hasAnchor">
@@ -198,23 +191,23 @@
 <li>Edit an existing message.</li>
 </ul>
 <p>Importantly, we assume that a message structure is composed as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">list</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">author =</span> <span class="st">"David"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">date =</span> <span class="st">"Now"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">image =</span> <span class="st">"https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">type =</span> <span class="st">"received"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">text =</span> <span class="kw">tagList</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">sliderInput</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>      <span class="st">"obs"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9"></a>      <span class="st">"Number of observations:"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="dt">min =</span> <span class="dv">0</span>, </span>
-<span id="cb2-11"><a href="#cb2-11"></a>      <span class="dt">max =</span> <span class="dv">1000</span>, </span>
-<span id="cb2-12"><a href="#cb2-12"></a>      <span class="dt">value =</span> <span class="dv">500</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>    ),</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">list</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">author =</span> <span class="st">"David"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">date =</span> <span class="st">"Now"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">image =</span> <span class="st">"https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">type =</span> <span class="st">"received"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">text =</span> <span class="kw">tagList</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">sliderInput</span>(</span>
+<span id="cb3-8"><a href="#cb3-8"></a>      <span class="st">"obs"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9"></a>      <span class="st">"Number of observations:"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>      <span class="dt">min =</span> <span class="dv">0</span>, </span>
+<span id="cb3-11"><a href="#cb3-11"></a>      <span class="dt">max =</span> <span class="dv">1000</span>, </span>
+<span id="cb3-12"><a href="#cb3-12"></a>      <span class="dt">value =</span> <span class="dv">500</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    ),</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  )</span></code></pre></div>
 <p>The <strong>type</strong> parameter controls the message background color. For a sent message, the color is inherited from the <code><a href="../reference/userMessages.html">userMessages()</a></code> status, while for a received message, the color is gray by default. The <strong>text</strong> argument refers to the message content. It may be simple text, shiny tags or event any combinations of shiny inputs/ouput, as shown in the below example.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/bs4DashNavbar.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,
@@ -304,13 +297,7 @@
     <span class="op">}</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">)</span></code></pre></div>
-<div class="marvel-device ipad black">
-<div class="camera"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/bs4Dash-userMessages/" allowfullscreen="" frameborder="0" scrolling="yes" height="770px"></iframe>
-</div>
-<div class="home"></div>
-</div>
+<pre><code>## NULL</code></pre>
 </div>
   </div>
 
