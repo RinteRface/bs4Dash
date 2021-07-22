@@ -1,3 +1,11 @@
+# bs4Dash 2.0.2
+
+Patch to fix CRAN warning on Mac M1. 
+
+## Minor changes
+
+
+
 # bs4Dash 2.0.1
 
 ## Minor changes

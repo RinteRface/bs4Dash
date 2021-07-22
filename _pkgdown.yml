@@ -242,6 +242,7 @@ articles:
   
 news:
  releases:
+ - text: "bs4Dash 2.0.2"
  - text: "bs4Dash 2.0.1"
  - text: "bs4Dash 2.0.0"
  - text: "bs4Dash 0.5.0"
