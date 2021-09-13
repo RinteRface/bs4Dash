@@ -69,6 +69,7 @@
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
 #' @param maximizable If TRUE, the card can be displayed in full screen mode.
 #' @param icon Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.
+#' @param tip_icon Tip icon. Tooltip Icon displayed after title. Expect \code{\link[tippy]{tippy}}.
 #' @param gradient Whether to allow gradient effect for the background color. Default to FALSE.
 #' @param boxToolSize Size of the toolbox: choose among "xs", "sm", "md", "lg".
 #' @param elevation Card elevation.
@@ -137,7 +138,7 @@
 #' @export
 bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
                     solidHeader = FALSE, background = NULL, width = 6, height = NULL,
-                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL,
+                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL, tip_icon = NULL,
                     gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
                     sidebar = NULL, id = NULL) {
 
@@ -242,7 +243,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
-    shiny::tags$h3(class = "card-title", icon, title)
+    shiny::tags$h3(class = "card-title", icon, title, tip_icon)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
 
@@ -283,6 +284,36 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     if (maximizable)
       shiny::tags$script(
         type = "text/javascript",
+      #   paste0("
+      #   $(document).ready(function() {
+      #   var ids = $('div",ifelse(is.null(id), "", paste0("#",id))," div.card-body div').map(function(){
+      # return $(this).attr('id');
+      # }).get();
+      # function resizeBoxContent(trigger, target) {
+      #         var target = '#' + target
+      #         $(trigger).on('click', function() {
+      #           setTimeout(function() {
+      #             var isMaximized = $('html').hasClass('maximized-card');
+      #               if (isMaximized) {
+      #                 $(target).css('height', '100%');
+      #                 $(target).css('width', 'auto');
+      #               } else {
+      #                 $(target).css('height', '400px');
+      #                 $(target).css('width', 'auto');
+      #               }
+      #             console.log('resizing '+ target)
+      #           }, 300);
+      #           $(target).trigger('resize');
+      #         });
+      #       };
+      # setTimeout(function() {
+      #         ids.map(function(x){
+      #           resizeBoxContent('div.card button[data-card-widget=\"maximize\"]', x);
+      #         })
+      #         
+      #       }, 500);
+      # console.log(ids);
+      # });"),
         paste0("
                $(document).ready(function() {
                $('[data-card-widget=\"maximize\"]').on('click', function() {
@@ -297,6 +328,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
                }
                ")
       )
+      
   )
 }
 
