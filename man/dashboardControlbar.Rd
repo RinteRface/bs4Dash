@@ -34,7 +34,7 @@ controlbarMenu(
 controlbarItem(title, ..., value = title, icon = NULL)
 
 updateControlbarMenu(
-  session = getDefaultReactiveDomain(),
+  session = shiny::getDefaultReactiveDomain(),
   inputId,
   selected = NULL
 )

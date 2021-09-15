@@ -107,7 +107,7 @@ controlbarItem <- function(title, ..., value = title, icon = NULL) {
 #' @inheritParams shiny::updateTabsetPanel
 #' @rdname dashboardControlbar
 #' @export
-updateControlbarMenu <- function (session = getDefaultReactiveDomain(), inputId, selected = NULL) {
+updateControlbarMenu <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }
   
