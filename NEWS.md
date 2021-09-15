@@ -1,3 +1,10 @@
+# bs4Dash 2.0.3
+This release is a patch to fix an issue preventing the release of Shiny 1.7.0. 
+
+## Minor changes
+- Internal change regarding the `{waiter}` package but no user impact. Thanks @JohnCoene.
+
+
 # bs4Dash 2.0.2
 
 Patch to fix CRAN warning on Mac M1. 

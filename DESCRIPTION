@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 2.0.2
+Version: 2.0.3
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
