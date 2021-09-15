@@ -58,7 +58,7 @@ dashboardPage(
 See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.}
 
 \item{preloader}{bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
-Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiter_show_on_load} (refer to
+Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiterShowOnLoad} (refer to
 the package help for all styles).}
 
 \item{options}{Extra option to overwrite the vanilla AdminLTE configuration. See

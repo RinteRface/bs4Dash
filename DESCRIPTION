@@ -35,7 +35,7 @@ Suggests:
     thematic (>= 0.1.2),
     echarts4r
 Encoding: UTF-8
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Collate: 
     'feedbacks.R'
