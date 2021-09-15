@@ -1032,11 +1032,11 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
             shiny::HTML(
               paste0(
                 "$(function() {
-                $('#icon-", tabName, "').on('click', function() {
-                  $('#tab-", tabName, ").click();
+                    $('#icon-", tabName, "').on('click', function() {
+                    $('#tab-", tabName, "').click();
+                  });
                 });
-              });
-              "
+                "
               )
             )
           )
