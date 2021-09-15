@@ -725,4 +725,7 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'   )
 #' }
 #' @export
-updatebs4TabItems <- shiny::updateTabsetPanel
+updatebs4TabItems <- function (session = getDefaultReactiveDomain(), inputId, selected = NULL) {
+  shiny::updateTabsetPanel(session, inputId, selected)
+}
+
