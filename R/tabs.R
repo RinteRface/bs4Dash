@@ -351,8 +351,8 @@ insertTab <- function(inputId, tab, target, position = c("before", "after"),
   callback <- function() {
     session$sendInsertTab(
       inputId = inputId, 
-      liTag = processDeps(item$liTag, session), 
-      divTag = processDeps(item$divTag, session), 
+      liTag = htmltools::renderTags(item$liTag), 
+      divTag = htmltools::renderTags(item$divTag), 
       menuName = NULL, 
       target = target, 
       position = position, 
