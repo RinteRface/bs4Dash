@@ -233,7 +233,7 @@ server. It behaves just like <code><a href='https://rdrr.io/pkg/shiny/man/update
 <span class='fu'>bs4SidebarUserPanel</span><span class='op'>(</span><span class='va'>name</span>, image <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='fu'>updatebs4TabItems</span><span class='op'>(</span>
-  session <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
   <span class='va'>inputId</span>,
   selected <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
@@ -293,7 +293,11 @@ server. It behaves just like <code><a href='https://rdrr.io/pkg/shiny/man/update
   selected <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
 
-<span class='fu'>updateTabItems</span><span class='op'>(</span>session <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>inputId</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+<span class='fu'>updateTabItems</span><span class='op'>(</span>
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>inputId</span>,
+  selected <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
