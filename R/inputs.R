@@ -200,7 +200,7 @@ appButton <- function(..., inputId, label, icon = NULL, width = NULL, color = NU
   if (!is.null(color)) validateStatusPlus(color)
   
   shiny::tagAppendAttributes(
-    shiny::actionButton(inputId, label, icon, width, ...),
+    shiny::actionButton(inputId, label, icon = icon, width = width, ...),
     class = "btn-app",
     class = if (!is.null(color)) paste0("bg-", color)
   )

@@ -47,14 +47,13 @@
 #'     }
 #'   )
 #' }
-useAutoColor <- function(input, output, session) {
+useAutoColor <- function(input, output, session = shiny::getDefaultReactiveDomain()) {
   input <- get("input", envir = parent.frame())
   # Now we need to set up a initial theme so that 
   # session$setCurrentTheme does not complain about 
   # changing the bootstrap version
-  theme <- bslib::bs_theme()
+  theme <- bslib::bs_theme(version = 4)
   shiny::shinyOptions(bootstrapTheme = theme)
-  session <- shiny::getDefaultReactiveDomain()
   # input$dark_mode is created on the client
   shiny::observeEvent(input$dark_mode, {
     # We actually don't do anything fancy. We send the same theme as

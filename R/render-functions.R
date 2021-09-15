@@ -254,7 +254,7 @@ menuItemOutput <- function(outputId) {
 #'   shinyApp(ui, server)
 #' }
 renderMenu <- function (expr, env = parent.frame(), quoted = FALSE, outputArgs = list()) {
-  shiny::renderUI(expr, env, quoted, outputArgs)
+  shiny::renderUI(expr, env = env, quoted = quoted, outputArgs = outputArgs)
 }
   
   
