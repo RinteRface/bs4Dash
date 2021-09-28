@@ -1261,7 +1261,7 @@ $(function() {
   // toggle sidebar at start depending on the body class
   var sidebarCollapsed = $(".main-sidebar").attr("data-collapsed");
   if (sidebarCollapsed === "true") {
-    console.log("sidebar toggled")
+    
     // This triggers binding geValue
     $("[data-widget='pushmenu']").PushMenu("toggle");
     $(".sidebar-mini").addClass("sidebar-collapse")
