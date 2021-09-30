@@ -2036,11 +2036,3 @@ Shiny.addCustomMessageHandler("user-messages", function(message) {
   Shiny.initializeInputs();
   Shiny.bindAll(); // bind all inputs/outputs
 });
-
-$(document).ready(function(){
-var sidebarCollapsed = $(".main-sidebar").attr("data-collapsed");
-  if (sidebarCollapsed === "true") {
-    // This triggers binding geValue
-    $("[data-widget='pushmenu']").PushMenu("toggle");
-  }  
-});
