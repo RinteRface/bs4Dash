@@ -1261,10 +1261,8 @@ $(function() {
   // toggle sidebar at start depending on the body class
   var sidebarCollapsed = $(".main-sidebar").attr("data-collapsed");
   if (sidebarCollapsed === "true") {
-    
     // This triggers binding geValue
     $("[data-widget='pushmenu']").PushMenu("toggle");
-    $(".sidebar-mini").addClass("sidebar-collapse")
   }
 });
 
@@ -2037,4 +2035,12 @@ Shiny.addCustomMessageHandler("user-messages", function(message) {
   // in the given scope (document)
   Shiny.initializeInputs();
   Shiny.bindAll(); // bind all inputs/outputs
+});
+
+$(document).ready(function(){
+var sidebarCollapsed = $(".main-sidebar").attr("data-collapsed");
+  if (sidebarCollapsed === "true") {
+    // This triggers binding geValue
+    $("[data-widget='pushmenu']").PushMenu("toggle");
+  }  
 });

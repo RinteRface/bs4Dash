@@ -279,10 +279,10 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
         auto_unbox = TRUE,
         json_verbatim = TRUE
       )
-    ),
-    if (maximizable)
-      shiny::tags$script(
-        type = "text/javascript",
+    )
+    # , if (maximizable)
+      # shiny::tags$script(
+      #   type = "text/javascript",
       #   paste0("
       #   $(document).ready(function() {
       #   var ids = $('div",ifelse(is.null(id), "", paste0("#",id))," div.card-body div').map(function(){
@@ -309,24 +309,24 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
       #         ids.map(function(x){
       #           resizeBoxContent('div.card button[data-card-widget=\"maximize\"]', x);
       #         })
-      #         
+      # 
       #       }, 500);
       # console.log(ids);
       # });"),
-        paste0("
-               $(document).ready(function() {
-               $('[data-card-widget=\"maximize\"]').on('click', function() {
-                setTimeout(function() {
-                  var isMaximized = $('html').hasClass('maximized-card');
-                  if (isMaximized) {
-                   window.location.reload()
-                  }
-                }, 300);
-                $('#",ifelse(is.null(id), "", paste0("#",id)),"').trigger('resize');
-              });
-               }
-               ")
-      )
+        # paste0("
+        #        $(document).ready(function() {
+        #        $('[data-card-widget=\"maximize\"]').on('click', function() {
+        #         setTimeout(function() {
+        #           var isMaximized = $('html').hasClass('maximized-card');
+        #           if (isMaximized) {
+        #            window.location.reload()
+        #           }
+        #         }, 300);
+        #         $('",ifelse(is.null(id), "", paste0(id)),"').resize();
+        #       });
+        #        }
+        #        ")
+      # )
       
   )
 }
