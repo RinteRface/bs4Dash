@@ -77,7 +77,7 @@ basic_cards_tab <- tabItem(
         status = "danger"
       ),
       dropdownMenu = boxDropdown(
-        boxDropdownItem("Link to google", href = "http://www.google.com"),
+        boxDropdownItem("Link to google", href = "https://www.google.com"),
         boxDropdownItem("Item with inputId", id = "dropdown_item2"),
         dropdownDivider(),
         boxDropdownItem("item 3", href = "#", icon = icon("th"))
@@ -857,7 +857,7 @@ gallery_1_tab <- tabItem(
       attachmentBlock(
         image = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
         title = "Test",
-        href = "http://google.com",
+        href = "https://google.com",
         "This is the content"
       )
     )
@@ -931,19 +931,19 @@ gallery_2_tab <- tabItem(
         "Cras justo odio",
         active = TRUE, 
         disabled = FALSE, 
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       ),
       listGroupItem(
         active = FALSE, 
         disabled = FALSE, 
         "Dapibus ac facilisis in",
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       ),
       listGroupItem(
         "Morbi leo risus",
         active = FALSE, 
         disabled = TRUE, 
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       )
     ),
     listGroup(

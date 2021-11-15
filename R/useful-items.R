@@ -846,8 +846,8 @@ bs4Loading <- function() {
 #'         title = "Item 3",
 #'         icon = icon("paint-brush"),
 #'         status = "orange",
-#'         timelineItemMedia(image = "http://placehold.it/150x100"),
-#'         timelineItemMedia(image = "http://placehold.it/150x100")
+#'         timelineItemMedia(image = "https://via.placeholder.com/150x100"),
+#'         timelineItemMedia(image = "https://via.placeholder.com/150x100")
 #'        ),
 #'        timelineStart(color = "secondary")
 #'       )
@@ -1265,7 +1265,7 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #'       "It uses utility classes for typography and spacing 
 #'       to space content out within the larger container.",
 #'       status = "primary",
-#'       href = "http://www.google.fr"
+#'       href = "https://www.google.com"
 #'       )
 #'      )
 #'    ),
@@ -1347,19 +1347,19 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #'          "Cras justo odio",
 #'          active = TRUE, 
 #'          disabled = FALSE, 
-#'          href = "http://www.google.fr"
+#'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
 #'          active = FALSE, 
 #'          disabled = FALSE, 
 #'          "Dapibus ac facilisis in",
-#'          href = "http://www.google.fr"
+#'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
 #'          "Morbi leo risus",
 #'          active = FALSE, 
 #'          disabled = TRUE, 
-#'          href = "http://www.google.fr"
+#'          href = "https://www.google.com"
 #'         )
 #'        ),
 #'        listGroup(

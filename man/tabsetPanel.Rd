@@ -32,9 +32,6 @@ tab will be selected.}
   \item{`"pills"`}{Selected tabs use the background fill color}
 }}
 
-\item{position}{This argument is deprecated; it has been discontinued in
-Bootstrap 3.}
-
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}
 
 \item{side}{Tabs side: \code{"left" or "right"}.}
