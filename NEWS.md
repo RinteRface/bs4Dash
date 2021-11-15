@@ -1,3 +1,9 @@
+# bs4Dash 2.0.4.9000
+
+## Minor changes
+- Fix regression introduced in 2.0.3: renderMenu not working. See #234
+
+
 # bs4Dash 2.0.3
 This release is a patch to fix an issue preventing the release of Shiny 1.7.0. 
 

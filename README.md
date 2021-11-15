@@ -17,6 +17,11 @@
 <a href="https://dgranjon.shinyapps.io/virtual_patient_v2/" target="_blank"><img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif"></a>
 </div>
 </div>
+<div class="col-sm-6" align="center">
+<div class="card">
+<a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif"></a>
+</div>
+</div>
 </div>
 
 <br>
@@ -135,14 +140,6 @@ You may also run:
 library(bs4Dash)
 bs4DashGallery()
 ```
-
-### bs4Dash <= v0.5.0
-See a preview of the package [here](https://rinterface.com/shiny/bs4Dash/classic/) and
-[here](https://rinterface.com/shiny/bs4Dash/old_school/) or run
-
-An applied example can be found [here](https://rinterface.com/shiny/showcase/ratp/) (the 
-original dashboard was made by [Philippine Rheins](https://twitter.com/PhilippineRs) 
-from [dreamRs](https://twitter.com/dreamRs_fr)).
 
 ## Issues
 

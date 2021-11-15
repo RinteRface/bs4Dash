@@ -1,4 +1,4 @@
-pandoc: 2.7.3
+pandoc: 2.14.0.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -8,5 +8,5 @@ articles:
   improved-boxes: improved-boxes.html
   more-skins: more-skins.html
   step-by-step: step-by-step.html
-last_built: 2021-09-15T21:25Z
+last_built: 2021-11-15T09:26Z
 
