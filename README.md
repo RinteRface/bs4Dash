@@ -113,23 +113,15 @@ thematic (>= 0.1.2)
 
 ## Installation
 
-### bs4Dash >= v2.0.0
-
 ```r
 # latest devel version
 devtools::install_github("RinteRface/bs4Dash")
-```
-
-### bs4Dash <= v0.5.0
-This package is on CRAN:
-
-```r
 # from CRAN
 install.packages("bs4Dash")
 ```
 
 ## Demo
-### bs4Dash >= v2.0.0
+
 See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
 You may also run:
 
