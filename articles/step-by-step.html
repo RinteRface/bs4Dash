@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.4.9000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>How to start?</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-09-15</h4>
+            <h4 class="date">2021-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/step-by-step.Rmd"><code>vignettes/step-by-step.Rmd</code></a></small>
       <div class="hidden name"><code>step-by-step.Rmd</code></div>
@@ -266,7 +266,7 @@ Basic page template
     <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><strong>startExpanded</strong> defines whether the item container has to be opened when the app starts. When a <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code> contains nested items, it is not necessary to give it a <strong>tabName</strong>. <strong>text</strong> may also contain more complex HTML tags like <code><a href="../reference/bs4Badge.html">dashboardBadge()</a></code>. If you want to use <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code> to browse to an external website, use the <strong>href</strong> parameter as well as <strong>newTab</strong> to open a new web browser tab.</p>
-<p>Like in <code>{shinydashboard}</code>, <code>input$sidebarItemExpanded</code> hosts the value of the currently expanded sidebarItem.</p>
+<p>Like in <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>, <code>input$sidebarItemExpanded</code> hosts the value of the currently expanded sidebarItem.</p>
 </div>
 <div id="navbar-setup" class="section level2">
 <h2 class="hasAnchor">
@@ -296,7 +296,7 @@ Basic page template
     href <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3"</span>,
     image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"</span>
 <span class="op">)</span></code></pre></div>
-<p><code><a href="../reference/bs4DashBrand.html">dashboardBrand()</a></code> is an enhanced title which has a color status, points to an optional url and may contain a logo. The title width can be controlled by <strong>titleWidth</strong>, like in <code>{shinydashboard}</code>. Like <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>, <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code> offers a lot of theming options with <strong>skin</strong> and <strong>status</strong>, but also with <strong>border</strong> and <strong>compact</strong>. They respectively show a bottom border and smaller text. <strong>sidebarIcon</strong> and <strong>controlbarIcon</strong> control icons for sidebar and controlbar, respectively. The <strong>fixed</strong> parameter is useful when one wants to see the navbar even at the bottom of the dashboard, without having to scroll up.</p>
+<p><code><a href="../reference/bs4DashBrand.html">dashboardBrand()</a></code> is an enhanced title which has a color status, points to an optional url and may contain a logo. The title width can be controlled by <strong>titleWidth</strong>, like in <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>. Like <code><a href="../reference/bs4DashSidebar.html">dashboardSidebar()</a></code>, <code><a href="../reference/bs4DashNavbar.html">dashboardHeader()</a></code> offers a lot of theming options with <strong>skin</strong> and <strong>status</strong>, but also with <strong>border</strong> and <strong>compact</strong>. They respectively show a bottom border and smaller text. <strong>sidebarIcon</strong> and <strong>controlbarIcon</strong> control icons for sidebar and controlbar, respectively. The <strong>fixed</strong> parameter is useful when one wants to see the navbar even at the bottom of the dashboard, without having to scroll up.</p>
 <p><code>leftUi</code>, <code>...</code> and <code>rightUi</code> are containers that can contains content from left to right. Ideally, we put <code><a href="../reference/bs4DropdownMenu.html">dropdownMenu()</a></code> as well as <code><a href="../reference/bs4DropdownMenu.html">taskItem()</a></code>, <code><a href="../reference/bs4DropdownMenu.html">messageItem()</a></code>, <code><a href="../reference/bs4DropdownMenu.html">notificationItem()</a></code>, <code><a href="../reference/bs4UserMenu.html">dashboardUser()</a></code>…</p>
 </div>
 <div id="right-sidebar-setup" class="section level2">
@@ -401,7 +401,7 @@ Basic page template
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <strong>tabName</strong> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for <code>{shinydashboard}</code>. Therefore, users should not be lost.</p>
+<p>The principle is pretty straightforward: all <code><a href="../reference/bs4DashBody.html">dashboardBody()</a></code> elements must be embeded in a <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> list containing as may elements as the number of items. Each item is a <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>. Importantly, the <strong>tabName</strong> argument must be provide and unique. Moreover, it must be identical to the corresponding <code><a href="../reference/bs4DashSidebar.html">menuItem()</a></code>, so that the navigation between tabs work. This is exactly the same principle as for <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>. Therefore, users should not be lost.</p>
 <p>In practice, if the sidebar is empty (without menu), it is still possible to get rid of <code><a href="../reference/bs4DashBody.html">tabItems()</a></code> and <code><a href="../reference/bs4DashBody.html">tabItem()</a></code>.</p>
 </div>
 <div id="wrap-up" class="section level2">

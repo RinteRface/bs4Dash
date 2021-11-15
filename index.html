@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.4.9000</span>
       </span>
     </div>
 
@@ -123,6 +123,11 @@
 <a href="https://dgranjon.shinyapps.io/virtual_patient_v2/" target="_blank"><img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif"></a>
 </div>
 </div>
+<div class="col-sm-6" align="center">
+<div class="card">
+<a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif"></a>
+</div>
+</div>
 </div>
 <p><br></p>
 <div class="marvel-device iphone8 black">
@@ -138,10 +143,10 @@
 <div id="new-users-moving-to-bs4dash-v200" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-users-moving-to-bs4dash-v200" class="anchor"></a>New users moving to bs4Dash v2.0.0</h2>
-<p>Taking the simple <code>{shinydashboard}</code> example:</p>
+<p>Taking the simple <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a> example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">shinydashboard</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a></span><span class="op">)</span>
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bs4DashPage.html">dashboardPage</a></span><span class="op">(</span>
   <span class="fu"><a href="reference/bs4DashNavbar.html">dashboardHeader</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Basic dashboard"</span><span class="op">)</span>,
@@ -205,8 +210,8 @@
 <h2 class="hasAnchor">
 <a href="#upgrading-bs4dash-to-200" class="anchor"></a>Upgrading bs4Dash to 2.0.0</h2>
 <ul>
-<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is undergoing major rework to make it easier to come from <code>{shinydashboard}</code>. The current development version 2.0.0 provides a 1:1 supports, in other word moving from <code>{shinydashboard}</code> to <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is accomplished by changing <code><a href="https://rdrr.io/r/base/library.html">library(shinydashboard)</a></code> to <code><a href="https://rinterface.github.io/bs4Dash/index.html">library(bs4Dash)</a></code>.</p></li>
-<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> v2.0.0 also provides 1:1 with <code>{shinydashboardPlus}</code> to ease compatibility.</p></li>
+<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is undergoing major rework to make it easier to come from <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a>. The current development version 2.0.0 provides a 1:1 supports, in other word moving from <a href="http://rstudio.github.io/shinydashboard/">shinydashboard</a> to <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> is accomplished by changing <code><a href="http://rstudio.github.io/shinydashboard/">library(shinydashboard)</a></code> to <code><a href="https://rinterface.github.io/bs4Dash/index.html">library(bs4Dash)</a></code>.</p></li>
+<li><p><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> v2.0.0 also provides 1:1 with <a href="https://github.com/RinteRface/shinydashboardPlus">shinydashboardPlus</a> to ease compatibility.</p></li>
 <li><p>Apps built with <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> version &lt;= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.</p></li>
 </ul>
 <p><strong>Disclaimer</strong>: as of now, <a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a> 2.0.0 needs:</p>
@@ -244,12 +249,6 @@ thematic (&gt;= 0.1.2)</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html">bs4Dash</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/bs4DashGallery.html">bs4DashGallery</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="bs4dash--v050-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bs4dash--v050-1" class="anchor"></a>bs4Dash &lt;= v0.5.0</h3>
-<p>See a preview of the package <a href="https://rinterface.com/shiny/bs4Dash/classic/">here</a> and <a href="https://rinterface.com/shiny/bs4Dash/old_school/">here</a> or run</p>
-<p>An applied example can be found <a href="https://rinterface.com/shiny/showcase/ratp/">here</a> (the original dashboard was made by <a href="https://twitter.com/PhilippineRs">Philippine Rheins</a> from <a href="https://twitter.com/dreamRs_fr">dreamRs</a>).</p>
 </div>
 </div>
 <div id="issues" class="section level2">
