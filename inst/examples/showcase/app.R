@@ -4,6 +4,7 @@ library(bs4Dash)
 library(echarts4r)
 library(thematic)
 library(waiter)
+library(magrittr)
 
 thematic_shiny()
 
