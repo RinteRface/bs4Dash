@@ -486,7 +486,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @rdname dropdownMenu
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("warning"),
+notificationItem <- function(text, icon = shiny::icon("exclamation-triangle"),
                              status = "success", href = NULL, inputId = NULL) {
   tagAssert(icon, type = "i")
   if (is.null(href)) href <- "#"

@@ -288,11 +288,11 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #'        id = "mycarousel",
 #'        carouselItem(
 #'         caption = "Item 1",
-#'         tags$img(src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap")
+#'         tags$img(src = "https://via.placeholder.com/500")
 #'        ),
 #'        carouselItem(
 #'         caption = "Item 2",
-#'         tags$img(src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap")
+#'         tags$img(src = "https://via.placeholder.com/500")
 #'        )
 #'       )
 #'      ),
@@ -994,7 +994,7 @@ bs4TimelineItem <- function(..., icon = NULL,
       #timelineItem time/date
       shiny::tags$span(
         class = "time",
-        shiny::icon("clock-o"),
+        shiny::icon("clock"),
         time
       ),
       
@@ -1051,7 +1051,7 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 #'
 #' \link{timelineStart} indicates a starting point.
 #'
-#' @param icon Item icon such as "clock-o", "times", ...
+#' @param icon Item icon such as "clock", "times", ...
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -1079,7 +1079,7 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 #' @rdname timeline
 #' 
 #' @export
-bs4TimelineStart <- function(icon = shiny::icon("clock-o"), color = NULL) {
+bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
   
   iconTag <- icon
   if (!is.null(color)) {
@@ -1095,7 +1095,7 @@ bs4TimelineStart <- function(icon = shiny::icon("clock-o"), color = NULL) {
 #'
 #' \link{timelineEnd} indicates an end point.
 #'
-#' @param icon Item icon such as "clock-o", "times", ...
+#' @param icon Item icon such as "clock", "times", ...
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
