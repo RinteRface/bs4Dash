@@ -157,11 +157,18 @@
 <h1 class="page-header" data-toc-text="2.0.4.9000">
 <a href="#bs4dash-2049000" class="anchor"></a>bs4Dash 2.0.4.9000<small> Unreleased </small>
 </h1>
+<div id="breaking-change" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-change" class="anchor"></a>Breaking change</h2>
+<ul>
+<li>Align with <a href="https://shiny.rstudio.com/">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Fix regression introduced in 2.0.3: renderMenu not working. See <a href='https://github.com/RinteRface/bs4Dash/issues/234'>#234</a></li>
+<li>Fix regression introduced in 2.0.3: <code><a href="../reference/renderMenu.html">renderMenu()</a></code> not working. See <a href='https://github.com/RinteRface/bs4Dash/issues/234'>#234</a></li>
 </ul>
 </div>
 </div>
@@ -725,9 +732,9 @@
 <h1 class="page-header" data-toc-text="0.3.0">
 <a href="#bs4dash-030" class="anchor"></a>bs4Dash 0.3.0<small> 2019-04-06 </small>
 </h1>
-<div id="breaking-change" class="section level2">
+<div id="breaking-change-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-change" class="anchor"></a>Breaking change</h2>
+<a href="#breaking-change-1" class="anchor"></a>Breaking change</h2>
 <ul>
 <li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/bs4TabCard.html">bs4TabCard()</a></code>.</li>
 </ul>
