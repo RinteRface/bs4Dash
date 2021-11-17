@@ -1126,8 +1126,7 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
     ...,
     id = id,
     selected = selected,
-    type = type,
-    position = NULL
+    type = type
   )
 
   # Re-use box function
