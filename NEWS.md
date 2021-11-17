@@ -1,7 +1,11 @@
 # bs4Dash 2.0.4.9000
 
+## Breaking change
+- Align with `{shiny}` and remove `position` from `tabsetPanel()`. This was long
+time deprecated. 
+
 ## Minor changes
-- Fix regression introduced in 2.0.3: renderMenu not working. See #234
+- Fix regression introduced in 2.0.3: `renderMenu()` not working. See #234
 
 
 # bs4Dash 2.0.3

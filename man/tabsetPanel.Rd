@@ -9,7 +9,6 @@ tabsetPanel(
   id = NULL,
   selected = NULL,
   type = c("tabs", "pills"),
-  position = NULL,
   vertical = FALSE,
   side = "left",
   .list = NULL

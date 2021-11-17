@@ -101,16 +101,6 @@ shinyApp(ui, server)
 
 - Apps built with `{bs4Dash}` version <= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.
 
-__Disclaimer__: as of now, `{bs4Dash}` 2.0.0 needs:
-
-```
-shiny (>= 1.6.0)
-htmltools (>= 0.5.1.1)
-bslib (>= 0.2.4)
-thematic (>= 0.1.2)
-```
-
-
 ## Installation
 
 ```r

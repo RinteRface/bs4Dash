@@ -644,13 +644,9 @@ shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call
 
 
 
-bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, type = c("tabs", "pills", 
-                                                    "hidden"), position = NULL) 
+bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, 
+                             type = c("tabs", "pills", "hidden")) 
 {
-  if (!is.null(position)) {
-    shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
-                                "it has been discontinued in Bootstrap 3."), version = "0.10.2.2")
-  }
   if (!is.null(id)) 
     selected <- shiny::restoreInput(id = id, default = selected)
   type <- match.arg(type)
@@ -700,6 +696,10 @@ waiterShowOnLoad <- function(
 }
 
 
+#' Create container for bs4Dash demo app
+#' 
+#' Container based on device.css
+#'
 #' @param url app URL. httr GET test is run before. If failed,
 #' function returns NULL.
 #' @param deps Whether to include marvel device assets. Default to FALSE.
