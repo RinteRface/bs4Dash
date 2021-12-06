@@ -362,7 +362,7 @@ setBoxStyle <- function(height, sidebar) {
 
 setBoxClass <- function(status, solidHeader, collapsible, collapsed,
 elevation, gradient, background, sidebar) {
-  cardCl <- "card"
+  cardCl <- "card bs4Dash"
 
   if (!is.null(status)) {
     cardCl <- paste0(cardCl, " card-", status)
