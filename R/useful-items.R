@@ -549,7 +549,9 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @export
 bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
                             animated = FALSE, status = "primary", size = NULL, 
-                            label = NULL) {
+                            label = NULL,
+                            style = NULL,
+                            id = NULL) {
   
   if (!is.null(status)) validateStatusPlus(status)
   stopifnot(value >= min)
@@ -573,15 +575,15 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     `aria-valuemin` = min, 
     `aria-valuemax` = max, 
     style = if (vertical) {
-      paste0("height: ", paste0(value, "%"))
+      paste0("height: ", paste0(value * 100 / max, "%"))
     }
     else {
-      paste0("width: ", paste0(value, "%"))
+      paste0("width: ", paste0(value * 100 / max, "%"))
     }, 
     if(!is.null(label)) label
   )
   
-  progressTag <- shiny::tags$div(class = progressCl)
+  progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
 }
@@ -598,7 +600,9 @@ bs4MultiProgressBar <-
     animated = FALSE,
     status = "primary",
     size = NULL,
-    label = NULL
+    label = NULL,
+    id = NULL,
+    style = NULL
   ) {
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
@@ -624,10 +628,10 @@ bs4MultiProgressBar <-
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
         style = if (vertical) {
-          paste0("height: ", paste0(value, "%"))
+          paste0("height: ", paste0(value * 100 / max, "%"))
         }
         else {
-          paste0("width: ", paste0(value, "%"))
+          paste0("width: ", paste0(value * 100 / max, "%"))
         }, 
         if(!is.null(label)) label
       )
@@ -649,7 +653,7 @@ bs4MultiProgressBar <-
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-    progressTag <- shiny::tags$div(class = progressCl)
+    progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
