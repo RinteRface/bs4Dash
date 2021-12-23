@@ -60,7 +60,7 @@ if(interactive()){
       "It uses utility classes for typography and spacing 
       to space content out within the larger container.",
       status = "primary",
-      href = "http://www.google.fr"
+      href = "https://www.google.com"
       )
      )
    ),

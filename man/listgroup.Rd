@@ -90,19 +90,19 @@ if(interactive()){
          "Cras justo odio",
          active = TRUE, 
          disabled = FALSE, 
-         href = "http://www.google.fr"
+         href = "https://www.google.com"
         ),
         listGroupItem(
          active = FALSE, 
          disabled = FALSE, 
          "Dapibus ac facilisis in",
-         href = "http://www.google.fr"
+         href = "https://www.google.com"
         ),
         listGroupItem(
          "Morbi leo risus",
          active = FALSE, 
          disabled = TRUE, 
-         href = "http://www.google.fr"
+         href = "https://www.google.com"
         )
        ),
        listGroup(

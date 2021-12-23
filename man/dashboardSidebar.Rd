@@ -75,7 +75,7 @@ bs4SidebarHeader(title)
 bs4SidebarUserPanel(name, image = NULL)
 
 updatebs4TabItems(
-  session = getDefaultReactiveDomain(),
+  session = shiny::getDefaultReactiveDomain(),
   inputId,
   selected = NULL
 )
@@ -135,7 +135,11 @@ menuSubItem(
   selected = NULL
 )
 
-updateTabItems(session = getDefaultReactiveDomain(), inputId, selected = NULL)
+updateTabItems(
+  session = shiny::getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+)
 }
 \arguments{
 \item{...}{\link{menuSubItem}.}

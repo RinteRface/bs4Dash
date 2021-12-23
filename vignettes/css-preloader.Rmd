@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## How to set up a preloader?
 
-Pass the argument `preloader` to the `dashboardPage()` function. It expects a list containing all parameters necessary to `waiter::waiter_show_on_load`. The duration is automatically handled by listening to the `shiny:idle` [event](https://shiny.rstudio.com/articles/js-events.html). Please have a look to the 
+Pass the argument `preloader` to the `dashboardPage()` function. It expects a list containing all parameters necessary to `waiter::waiterShowOnLoad`. The duration is automatically handled by listening to the `shiny:idle` [event](https://shiny.rstudio.com/articles/js-events.html). Please have a look to the 
 `{waiter}` [documentation](https://waiter.john-coene.com/) for more details.
 
 That's all!

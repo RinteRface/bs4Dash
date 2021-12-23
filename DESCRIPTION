@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 2.0.2
+Version: 2.0.4.9000
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -20,7 +20,7 @@ Imports:
     htmltools (>= 0.5.1.1),
     jsonlite (>= 0.9.16),
     fresh,
-    waiter,
+    waiter (>= 0.2.3),
     httpuv (>= 1.5.2),
     lifecycle,
     bslib (>= 0.2.4),
@@ -36,7 +36,7 @@ Suggests:
     tippy,
     echarts4r
 Encoding: UTF-8
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Collate: 
     'feedbacks.R'

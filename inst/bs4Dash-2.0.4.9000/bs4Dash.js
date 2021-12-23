@@ -99,7 +99,7 @@ var cardBinding = new Shiny.InputBinding();
 
 $.extend(cardBinding, {
   find: function(scope) {
-    return $(scope).find(".card");
+    return $(scope).find(".card.bs4Dash");
   },
 
   // Given the DOM element for the input, return the value

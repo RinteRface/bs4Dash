@@ -32,7 +32,7 @@ bs4TimelineItem(
 
 bs4TimelineItemMedia(image = NULL, height = NULL, width = NULL)
 
-bs4TimelineStart(icon = shiny::icon("clock-o"), color = NULL)
+bs4TimelineStart(icon = shiny::icon("clock"), color = NULL)
 
 bs4TimelineEnd(icon = shiny::icon("hourglass-end"), color = NULL)
 
@@ -53,7 +53,7 @@ timelineItem(
 
 timelineItemMedia(image = NULL, height = NULL, width = NULL)
 
-timelineStart(icon = shiny::icon("clock-o"), color = NULL)
+timelineStart(icon = shiny::icon("clock"), color = NULL)
 
 timelineEnd(icon = shiny::icon("hourglass-end"), color = NULL)
 }
@@ -88,7 +88,7 @@ timelineEnd(icon = shiny::icon("hourglass-end"), color = NULL)
   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 }}
 
-\item{icon}{Item icon such as "clock-o", "times", ...}
+\item{icon}{Item icon such as "clock", "times", ...}
 
 \item{time}{Item date or time.}
 
@@ -161,8 +161,8 @@ if(interactive()){
         title = "Item 3",
         icon = icon("paint-brush"),
         status = "orange",
-        timelineItemMedia(image = "http://placehold.it/150x100"),
-        timelineItemMedia(image = "http://placehold.it/150x100")
+        timelineItemMedia(image = "https://via.placeholder.com/150x100"),
+        timelineItemMedia(image = "https://via.placeholder.com/150x100")
        ),
        timelineStart(color = "secondary")
       )

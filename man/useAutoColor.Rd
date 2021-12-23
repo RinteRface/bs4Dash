@@ -4,7 +4,7 @@
 \alias{useAutoColor}
 \title{Plot auto-color module}
 \usage{
-useAutoColor(input, output, session)
+useAutoColor(input, output, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{input}{Shiny input object.}
