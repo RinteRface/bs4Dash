@@ -574,10 +574,10 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     `aria-valuemin` = min, 
     `aria-valuemax` = max, 
     style = if (vertical) {
-      paste0("height: ", paste0((value - min) / max, "%"))
+      paste0("height: ", ((value - min) / (max - min) * 100), "%"))
     }
     else {
-      paste0("width: ", paste0((value - min) / max, "%"))
+      paste0("width: ", ((value - min) / (max - min) * 100), "%"))
     }, 
     if(!is.null(label)) label
   )
@@ -626,10 +626,10 @@ bs4MultiProgressBar <-
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
         style = if (vertical) {
-          paste0("height: ", paste0(value, "%"))
+          paste0("height: ", paste0(((value - min) / (max - min) * 100), "%"))
         }
         else {
-          paste0("width: ", paste0(value, "%"))
+          paste0("width: ", paste0(((value - min) / (max - min) * 100), "%"))
         }, 
         if(!is.null(label)) label
       )
@@ -640,7 +640,7 @@ bs4MultiProgressBar <-
     for (i in seq_along(value)) {
       barSegs[[i]] <- 
         bar_segment(
-          ((value - min) / max * 100)[[i]],
+          value[[i]],
           striped[[i]],
           animated[[i]],
           status[[i]],
