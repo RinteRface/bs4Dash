@@ -6,6 +6,10 @@ time deprecated.
 
 ## Minor changes
 - Fix regression introduced in 2.0.3: `renderMenu()` not working. See #234
+- Update Github actions.
+- Add bs4Dash class for card [binding](https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d). Thanks @galachad.
+- Use <span> instead of <p> on bs4SidebarMenuItem. Thanks @yogat3ch.
+- Typo in vignette. Thanks @Duque-de-Sealand.
 
 
 # bs4Dash 2.0.3

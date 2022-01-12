@@ -211,7 +211,7 @@ navbar:
     - articles
     - tutorials
     - news
-    right: github
+    right: [github, twitter]
   components:
     home:
       icon: fa-home fa-lg
@@ -225,6 +225,10 @@ navbar:
     github:
       icon: fa-github fa-lg
       href: https://github.com/RinteRface/bs4Dash
+    twitter:
+      icon: fa-twitter
+      href: http://twitter.com/divadnojnarg
+      aria-label: Twitter
       
 
 articles:
@@ -234,7 +238,6 @@ articles:
   contents:
   - '`step-by-step`'
   - '`improved-boxes`'
-  #- '`box-elements`'
   - '`extra-elements`'
   - '`more-skins`'
   - '`css-preloader`'
