@@ -173,7 +173,7 @@
 #'
 #' @export
 tabsetPanel <- function(..., id = NULL, selected = NULL, 
-                        type = c("tabs", "pills"), position = NULL, 
+                        type = c("tabs", "pills"), 
                         vertical = FALSE, side = "left", .list = NULL) {
   
   items <- c(list(...), .list)
@@ -185,8 +185,7 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     tabs = items,
     id = id,
     selected = selected,
-    type = type,
-    position = position
+    type = type
   )
   # Some edit below since Bootstrap 4 significantly changed the layout
   nav_items <- temp_tabset$children[[1]]$children[[1]]
@@ -351,8 +350,8 @@ insertTab <- function(inputId, tab, target, position = c("before", "after"),
   callback <- function() {
     session$sendInsertTab(
       inputId = inputId, 
-      liTag = processDeps(item$liTag, session), 
-      divTag = processDeps(item$divTag, session), 
+      liTag = htmltools::renderTags(item$liTag), 
+      divTag = htmltools::renderTags(item$divTag), 
       menuName = NULL, 
       target = target, 
       position = position, 

@@ -4,6 +4,7 @@ library(bs4Dash)
 library(echarts4r)
 library(thematic)
 library(waiter)
+library(magrittr)
 
 thematic_shiny()
 
@@ -77,7 +78,7 @@ basic_cards_tab <- tabItem(
         status = "danger"
       ),
       dropdownMenu = boxDropdown(
-        boxDropdownItem("Link to google", href = "http://www.google.com"),
+        boxDropdownItem("Link to google", href = "https://www.google.com"),
         boxDropdownItem("Item with inputId", id = "dropdown_item2"),
         dropdownDivider(),
         boxDropdownItem("item 3", href = "#", icon = icon("th"))
@@ -620,7 +621,7 @@ value_boxes_tab <- tabItem(
       value = "44",
       subtitle = "User Registrations",
       color = "warning",
-      icon = icon("sliders")
+      icon = icon("sliders-h")
     ),
     valueBox(
       value = "53%",
@@ -711,13 +712,13 @@ gallery_1_tab <- tabItem(
         id = "mycarousel",
         width = 12,
         carouselItem(
-          tags$img(src = "https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap")
+          tags$img(src = "https://via.placeholder.com/500")
         ),
         carouselItem(
-          tags$img(src = "https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap")
+          tags$img(src = "https://via.placeholder.com/500")
         ),
         carouselItem(
-          tags$img(src = "https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap")
+          tags$img(src = "https://via.placeholder.com/500")
         )
       )
     )
@@ -795,7 +796,7 @@ gallery_1_tab <- tabItem(
         timelineLabel("10 Feb. 2014", color = "info"),
         timelineItem(
           title = "Item 1",
-          icon = icon("gears"),
+          icon = icon("cogs"),
           color = "success",
           time = "now",
           footer = "Here is the footer",
@@ -822,7 +823,7 @@ gallery_1_tab <- tabItem(
       timelineLabel("10 Feb. 2014", color = "info"),
       timelineItem(
         title = "Item 1",
-        icon = icon("gears"),
+        icon = icon("cogs"),
         color = "success",
         time = "now",
         footer = "Here is the footer",
@@ -857,7 +858,7 @@ gallery_1_tab <- tabItem(
       attachmentBlock(
         image = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
         title = "Test",
-        href = "http://google.com",
+        href = "https://google.com",
         "This is the content"
       )
     )
@@ -931,19 +932,19 @@ gallery_2_tab <- tabItem(
         "Cras justo odio",
         active = TRUE, 
         disabled = FALSE, 
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       ),
       listGroupItem(
         active = FALSE, 
         disabled = FALSE, 
         "Dapibus ac facilisis in",
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       ),
       listGroupItem(
         "Morbi leo risus",
         active = FALSE, 
         disabled = TRUE, 
-        href = "http://www.google.fr"
+        href = "https://www.google.com"
       )
     ),
     listGroup(
@@ -999,7 +1000,7 @@ shinyApp(
         title = "bs4Dash",
         color = "primary",
         href = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
+        image = "https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg",
         opacity = 0.8
       ),
       fixed = TRUE,
@@ -1069,7 +1070,7 @@ shinyApp(
         )
       ),
       sidebarUserPanel(
-        image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
+        image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png",
         name = "Welcome Onboard!"
       ),
       sidebarMenu(
@@ -1081,7 +1082,7 @@ shinyApp(
         menuItem(
           "Basic cards",
           tabName = "cards",
-          icon = icon("sliders")
+          icon = icon("sliders-h")
         ),
         menuItem(
           "Cards API",
@@ -1098,7 +1099,7 @@ shinyApp(
         menuItem(
           "Tab cards",
           tabName = "tabcards",
-          icon = icon("picture-o")
+          icon = icon("layer-group")
         ),
         menuItem(
           "Sortable cards",
@@ -1108,7 +1109,7 @@ shinyApp(
         menuItem(
           "Stats elements",
           tabName = "statsboxes",
-          icon = icon("bank")
+          icon = icon("chart-area")
         ),
         sidebarHeader("Other boxes"),
         menuItem(
@@ -1142,7 +1143,7 @@ shinyApp(
               )
             ),
             tabName = "gallery1",
-            icon = icon("circle-thin")
+            icon = icon("circle")
           ),
           menuSubItem(
             text = HTML(

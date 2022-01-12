@@ -105,7 +105,7 @@
 #'             status = "danger"
 #'           ),
 #'           dropdownMenu = boxDropdown(
-#'             boxDropdownItem("Link to google", href = "http://www.google.com"),
+#'             boxDropdownItem("Link to google", href = "https://www.google.com"),
 #'             boxDropdownItem("item 2", href = "#"),
 #'             dropdownDivider(),
 #'             boxDropdownItem("item 3", href = "#", icon = icon("th"))
@@ -1032,11 +1032,11 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
             shiny::HTML(
               paste0(
                 "$(function() {
-                $('#icon-", tabName, "').on('click', function() {
-                  $('#tab-", tabName, ").click();
+                    $('#icon-", tabName, "').on('click', function() {
+                    $('#tab-", tabName, "').click();
+                  });
                 });
-              });
-              "
+                "
               )
             )
           )
@@ -1126,8 +1126,7 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
     ...,
     id = id,
     selected = selected,
-    type = type,
-    position = NULL
+    type = type
   )
 
   # Re-use box function

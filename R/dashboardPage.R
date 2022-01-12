@@ -12,7 +12,7 @@
 #' @param freshTheme A skin powered by the fresh package. Not compatible with skin.
 #' See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.
 #' @param preloader bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
-#' Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiter_show_on_load} (refer to
+#' Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiterShowOnLoad} (refer to
 #' the package help for all styles).
 #' @param options Extra option to overwrite the vanilla AdminLTE configuration. See
 #' \url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
@@ -177,8 +177,8 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
         class = if (sidebarDisabled) "layout-top-nav",
         if (!is.null(preloader)) {
           shiny::tagList(
-            waiter::use_waiter(), # dependencies
-            do.call(waiter_show_on_load, preloader)
+            waiter::useWaiter(), # dependencies
+            do.call(waiterShowOnLoad, preloader)
           )
         },
         onload = if (!is.null(preloader)) {

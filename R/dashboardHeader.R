@@ -486,7 +486,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @rdname dropdownMenu
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("warning"),
+notificationItem <- function(text, icon = shiny::icon("exclamation-triangle"),
                              status = "success", href = NULL, inputId = NULL) {
   tagAssert(icon, type = "i")
   if (is.null(href)) href <- "#"
@@ -779,6 +779,12 @@ userOutput <- function(id, tag = shiny::tags$li) {
 #' @family user outputs
 #' @rdname dashboardUser
 #' @export
-renderUser <- shiny::renderUI
+renderUser <- function(expr, env = parent.frame(), quoted = FALSE, outputArgs = list()) {
+  if (!quoted) {
+    expr <- substitute(expr)
+    quoted <- TRUE
+  }
+  shiny::renderUI(expr, env = env, quoted = quoted, outputArgs = outputArgs)
+}
 
 globalVariables("func")

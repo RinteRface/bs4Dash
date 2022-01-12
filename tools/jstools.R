@@ -3,10 +3,22 @@
 library(jstools)
 bs4Dash_version <- as.character(utils::packageVersion("bs4Dash"))
 
+# Rename srcjs folder in case pkg version changes
+tmp_old_version <- list.dirs("srcjs", full.names = FALSE, recursive = FALSE)
+old_version <- strsplit(tmp_old_version, "-")[[1]][2]
+new_srcjs_folder_name <- sprintf("srcjs/bs4Dash-%s", pkg_version)
+
+if (old_version != pkg_version) {
+  file.rename(
+    file.path("srcjs", tmp_old_version), 
+    new_srcjs_folder_name
+  )
+}
+
 # Validate ----------------------------------------------------------------
 
 bs4DashJS <- list.files(
-  path = sprintf("srcjs/bs4Dash-%s", bs4Dash_version),
+  path = new_srcjs_folder_name,
   recursive = TRUE,
   full.names = TRUE
 )

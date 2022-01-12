@@ -84,34 +84,6 @@ dropNulls <- function(x) {
 }
 
 
-createWebDependency <- function (dependency, scrubFile = TRUE) {
-  if (is.null(dependency)) 
-    return(NULL)
-  if (!inherits(dependency, "html_dependency")) 
-    stop("Unexpected non-html_dependency type")
-  if (is.null(dependency$src$href)) {
-    prefix <- paste(dependency$name, "-", dependency$version, 
-                    sep = "")
-    shiny::addResourcePath(prefix, dependency$src$file)
-    dependency$src$href <- prefix
-  }
-  if (scrubFile) 
-    dependency$src$file <- NULL
-  return(dependency)
-}
-
-# Given a Shiny tag object, process singletons and dependencies. Returns a list
-# with rendered HTML and dependency objects.
-processDeps <- function (tags, session) {
-  ui <- htmltools::takeSingletons(tags, session$singletons, desingleton = FALSE)$ui
-  ui <- htmltools::surroundSingletons(ui)
-  dependencies <- lapply(htmltools::resolveDependencies(htmltools::findDependencies(ui)), 
-                         createWebDependency)
-  names(dependencies) <- NULL
-  list(html = htmltools::doRenderTags(ui), deps = dependencies)
-}
-
-
 
 # Returns TRUE if a status is valid; throws error otherwise.
 validateStatus <- function(status) {
@@ -390,7 +362,7 @@ setBoxStyle <- function(height, sidebar) {
 
 setBoxClass <- function(status, solidHeader, collapsible, collapsed,
 elevation, gradient, background, sidebar) {
-  cardCl <- "card"
+  cardCl <- "card bs4Dash"
 
   if (!is.null(status)) {
     cardCl <- paste0(cardCl, " card-", status)
@@ -672,13 +644,9 @@ shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call
 
 
 
-bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, type = c("tabs", "pills", 
-                                                    "hidden"), position = NULL) 
+bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, 
+                             type = c("tabs", "pills", "hidden")) 
 {
-  if (!is.null(position)) {
-    shinyDeprecated(msg = paste("tabsetPanel: argument 'position' is deprecated;", 
-                                "it has been discontinued in Bootstrap 3."), version = "0.10.2.2")
-  }
   if (!is.null(id)) 
     selected <- shiny::restoreInput(id = id, default = selected)
   type <- match.arg(type)
@@ -707,7 +675,7 @@ validateIcon <- function (icon)
 
 
 
-waiter_show_on_load <- function(
+waiterShowOnLoad <- function(
   html = waiter::spin_1(), color = "#333e48"
 ){
   
@@ -715,11 +683,11 @@ waiter_show_on_load <- function(
   html <- gsub("\n", "", html)
   
   show <- sprintf(
-    "show_waiter(
-      null,
-      html = '%s', 
-      color = '%s'
-    );",
+    "waiter.show({
+      id: null,
+      html: '%s', 
+      color: '%s'
+    });",
     html, color
   )
   
@@ -728,6 +696,10 @@ waiter_show_on_load <- function(
 }
 
 
+#' Create container for bs4Dash demo app
+#' 
+#' Container based on device.css
+#'
 #' @param url app URL. httr GET test is run before. If failed,
 #' function returns NULL.
 #' @param deps Whether to include marvel device assets. Default to FALSE.

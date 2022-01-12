@@ -107,20 +107,20 @@ test_that("card tools", {
 test_that("default", {
   cardTag <- bs4Card()
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card")
+  expect_match(cardCl, "card bs4Dash")
 })
 
 test_that("status", {
   cardTag <- bs4Card(status = "success")
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-success")
+  expect_match(cardCl, "card bs4Dash card-success")
 })
 
 test_that("gradient", {
   expect_error(bs4Card(gradient = TRUE, background = NULL))
   cardTag <- bs4Card(gradient = TRUE, background = "danger", solidHeader = TRUE, status = "danger")
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-danger bg-gradient-danger")
+  expect_match(cardCl, "card bs4Dash card-danger bg-gradient-danger")
 })
 
 test_that("solidheader", {
@@ -129,15 +129,15 @@ test_that("solidheader", {
   
   cardTag <- bs4Card(solidHeader = FALSE, status = "warning")
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card card-warning card-outline")
+  expect_match(cardCl, "card bs4Dash card-warning card-outline")
 })
 
-test_that("card sidebar class", {
+test_that("card bs4Dash sidebar class", {
   cardTag <- bs4Card(
     sidebar = bs4CardSidebar(startOpen = TRUE)
   )
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card direct-chat direct-chat-contacts-open")
+  expect_match(cardCl, "card bs4Dash direct-chat direct-chat-contacts-open")
 })
 
 test_that("collapsible and collapsed", {
@@ -145,13 +145,13 @@ test_that("collapsible and collapsed", {
   
   cardTag <- bs4Card(collapsible = TRUE, collapsed = TRUE)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card collapsed-card")
+  expect_match(cardCl, "card bs4Dash collapsed-card")
 })
 
 test_that("elevation", {
   cardTag <- bs4Card(elevation = 4)
   cardCl <- getCardCl(cardTag)
-  expect_match(cardCl, "card elevation-")
+  expect_match(cardCl, "card bs4Dash elevation-")
   expect_error(bs4Card(elevation = 6))
   expect_error(bs4Card(elevation = -1))
   expect_error(bs4Card(elevation = "2"))

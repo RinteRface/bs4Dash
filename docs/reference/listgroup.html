@@ -83,7 +83,7 @@ Create a list group item" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.4.9000</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ Create a list group item" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -134,7 +134,7 @@ Create a list group item" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -242,75 +242,75 @@ Only if type is "action" or "heading".</p></td>
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span>
- 
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span>
-     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
-     sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
-     controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,
-     footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,
-     title <span class='op'>=</span> <span class='st'>"test"</span>,
-     body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
-       <span class='fu'>listGroup</span><span class='op'>(</span>
-        type <span class='op'>=</span> <span class='st'>"basic"</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Cras justo odio"</span><span class='op'>)</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Dapibus ac facilisis in"</span><span class='op'>)</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Morbi leo risus"</span><span class='op'>)</span>
-       <span class='op'>)</span>,
-       <span class='fu'>listGroup</span><span class='op'>(</span>
-        type <span class='op'>=</span> <span class='st'>"action"</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span>
-         <span class='st'>"Cras justo odio"</span>,
-         active <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         href <span class='op'>=</span> <span class='st'>"http://www.google.fr"</span>
-        <span class='op'>)</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span>
-         active <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         <span class='st'>"Dapibus ac facilisis in"</span>,
-         href <span class='op'>=</span> <span class='st'>"http://www.google.fr"</span>
-        <span class='op'>)</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span>
-         <span class='st'>"Morbi leo risus"</span>,
-         active <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         disabled <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-         href <span class='op'>=</span> <span class='st'>"http://www.google.fr"</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>,
-       <span class='fu'>listGroup</span><span class='op'>(</span>
-        type <span class='op'>=</span> <span class='st'>"heading"</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span>
-         <span class='st'>"Donec id elit non mi porta gravida at eget metus. 
-         Maecenas sed diam eget risus varius blandit."</span>,
-         active <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         title <span class='op'>=</span> <span class='st'>"List group item heading"</span>, 
-         subtitle <span class='op'>=</span> <span class='st'>"3 days ago"</span>, 
-         footer <span class='op'>=</span> <span class='st'>"Donec id elit non mi porta."</span>
-        <span class='op'>)</span>,
-        <span class='fu'>listGroupItem</span><span class='op'>(</span>
-         <span class='st'>"Donec id elit non mi porta gravida at eget metus. 
-         Maecenas sed diam eget risus varius blandit."</span>,
-         active <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, 
-         title <span class='op'>=</span> <span class='st'>"List group item heading"</span>, 
-         subtitle <span class='op'>=</span> <span class='st'>"3 days ago"</span>, 
-         footer <span class='op'>=</span> <span class='st'>"Donec id elit non mi porta."</span>
-        <span class='op'>)</span>
-       <span class='op'>)</span>
-     <span class='op'>)</span>
-    <span class='op'>)</span>
-   <span class='op'>)</span>,
-   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
- <span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span class='r-in'> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span></span>
+<span class='r-in'> <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rinterface.github.io/bs4Dash/index.html'>bs4Dash</a></span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span></span>
+<span class='r-in'>   ui <span class='op'>=</span> <span class='fu'><a href='bs4DashPage.html'>dashboardPage</a></span><span class='op'>(</span></span>
+<span class='r-in'>     header <span class='op'>=</span> <span class='fu'><a href='bs4DashNavbar.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>     sidebar <span class='op'>=</span> <span class='fu'><a href='bs4DashSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>     controlbar <span class='op'>=</span> <span class='fu'><a href='bs4DashControlbar.html'>dashboardControlbar</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>     footer <span class='op'>=</span> <span class='fu'><a href='bs4DashFooter.html'>dashboardFooter</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>     title <span class='op'>=</span> <span class='st'>"test"</span>,</span>
+<span class='r-in'>     body <span class='op'>=</span> <span class='fu'><a href='bs4DashBody.html'>dashboardBody</a></span><span class='op'>(</span></span>
+<span class='r-in'>      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span></span>
+<span class='r-in'>       <span class='fu'>listGroup</span><span class='op'>(</span></span>
+<span class='r-in'>        type <span class='op'>=</span> <span class='st'>"basic"</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Cras justo odio"</span><span class='op'>)</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Dapibus ac facilisis in"</span><span class='op'>)</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span><span class='st'>"Morbi leo risus"</span><span class='op'>)</span></span>
+<span class='r-in'>       <span class='op'>)</span>,</span>
+<span class='r-in'>       <span class='fu'>listGroup</span><span class='op'>(</span></span>
+<span class='r-in'>        type <span class='op'>=</span> <span class='st'>"action"</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span></span>
+<span class='r-in'>         <span class='st'>"Cras justo odio"</span>,</span>
+<span class='r-in'>         active <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span></span>
+<span class='r-in'>        <span class='op'>)</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span></span>
+<span class='r-in'>         active <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         <span class='st'>"Dapibus ac facilisis in"</span>,</span>
+<span class='r-in'>         href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span></span>
+<span class='r-in'>        <span class='op'>)</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span></span>
+<span class='r-in'>         <span class='st'>"Morbi leo risus"</span>,</span>
+<span class='r-in'>         active <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         disabled <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>         href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span></span>
+<span class='r-in'>        <span class='op'>)</span></span>
+<span class='r-in'>       <span class='op'>)</span>,</span>
+<span class='r-in'>       <span class='fu'>listGroup</span><span class='op'>(</span></span>
+<span class='r-in'>        type <span class='op'>=</span> <span class='st'>"heading"</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span></span>
+<span class='r-in'>         <span class='st'>"Donec id elit non mi porta gravida at eget metus. </span>
+<span class='r-in'>         Maecenas sed diam eget risus varius blandit."</span>,</span>
+<span class='r-in'>         active <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         title <span class='op'>=</span> <span class='st'>"List group item heading"</span>, </span>
+<span class='r-in'>         subtitle <span class='op'>=</span> <span class='st'>"3 days ago"</span>, </span>
+<span class='r-in'>         footer <span class='op'>=</span> <span class='st'>"Donec id elit non mi porta."</span></span>
+<span class='r-in'>        <span class='op'>)</span>,</span>
+<span class='r-in'>        <span class='fu'>listGroupItem</span><span class='op'>(</span></span>
+<span class='r-in'>         <span class='st'>"Donec id elit non mi porta gravida at eget metus. </span>
+<span class='r-in'>         Maecenas sed diam eget risus varius blandit."</span>,</span>
+<span class='r-in'>         active <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         disabled <span class='op'>=</span> <span class='cn'>FALSE</span>, </span>
+<span class='r-in'>         title <span class='op'>=</span> <span class='st'>"List group item heading"</span>, </span>
+<span class='r-in'>         subtitle <span class='op'>=</span> <span class='st'>"3 days ago"</span>, </span>
+<span class='r-in'>         footer <span class='op'>=</span> <span class='st'>"Donec id elit non mi porta."</span></span>
+<span class='r-in'>        <span class='op'>)</span></span>
+<span class='r-in'>       <span class='op'>)</span></span>
+<span class='r-in'>     <span class='op'>)</span></span>
+<span class='r-in'>    <span class='op'>)</span></span>
+<span class='r-in'>   <span class='op'>)</span>,</span>
+<span class='r-in'>   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span></span>
+<span class='r-in'> <span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

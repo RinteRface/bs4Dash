@@ -6,9 +6,7 @@
 \alias{bs4Dash-package}
 \title{bs4Dash}
 \description{
-Make 'Bootstrap 4' Shiny dashboards. Use the full power
-    of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
-    <https://github.com/ColorlibHQ/AdminLTE>.
+Make 'Bootstrap 4' Shiny dashboards. Use the full power of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' <https://github.com/ColorlibHQ/AdminLTE>.
 }
 \seealso{
 Useful links:

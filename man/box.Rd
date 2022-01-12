@@ -395,7 +395,7 @@ if (interactive()) {
             status = "danger"
           ),
           dropdownMenu = boxDropdown(
-            boxDropdownItem("Link to google", href = "http://www.google.com"),
+            boxDropdownItem("Link to google", href = "https://www.google.com"),
             boxDropdownItem("item 2", href = "#"),
             dropdownDivider(),
             boxDropdownItem("item 3", href = "#", icon = icon("th"))

@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.4.9000</span>
       </span>
     </div>
 
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -90,7 +90,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RinteRface/bs4Dash">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -104,13 +104,13 @@
 
       
 
-      </header><script src="extra-elements_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="extra-elements_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extra Elements</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-07-22</h4>
+            <h4 class="date">2021-11-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/extra-elements.Rmd"><code>vignettes/extra-elements.Rmd</code></a></small>
       <div class="hidden name"><code>extra-elements.Rmd</code></div>
@@ -179,7 +179,7 @@
     <span class="op">}</span><span class="op">)</span>
   <span class="op">}</span>
  <span class="op">)</span></code></pre></div>
-<link rel="stylesheet" href="/private/var/folders/lr/cb85_7yn3fv4q92hyc0yzmxc0000gn/T/RtmphRec0K/temp_libpath16cd47359f7a6/bs4Dash/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
+<link rel="stylesheet" href="/tmp/RtmpLXU3mq/temp_libpath1e0e917b5310f/bs4Dash/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
 <div class="marvel-device ipad black">
 <div class="camera"></div>
 <div class="screen">
@@ -198,21 +198,21 @@
 <li>Edit an existing message.</li>
 </ul>
 <p>Importantly, we assume that a message structure is composed as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">list</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">author =</span> <span class="st">"David"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">date =</span> <span class="st">"Now"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">image =</span> <span class="st">"https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">type =</span> <span class="st">"received"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">text =</span> <span class="kw">tagList</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">sliderInput</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>      <span class="st">"obs"</span>, </span>
-<span id="cb2-9"><a href="#cb2-9"></a>      <span class="st">"Number of observations:"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="dt">min =</span> <span class="dv">0</span>, </span>
-<span id="cb2-11"><a href="#cb2-11"></a>      <span class="dt">max =</span> <span class="dv">1000</span>, </span>
-<span id="cb2-12"><a href="#cb2-12"></a>      <span class="dt">value =</span> <span class="dv">500</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>    ),</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="kw">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">author =</span> <span class="st">"David"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="st">"Now"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">image =</span> <span class="st">"https://i.pinimg.com/originals/f1/15/df/f115dfc9cab063597b1221d015996b39.jpg"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"received"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">tagList</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sliderInput</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"obs"</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Number of observations:"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">min =</span> <span class="dv">0</span>, </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">max =</span> <span class="dv">1000</span>, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="dv">500</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>The <strong>type</strong> parameter controls the message background color. For a sent message, the color is inherited from the <code><a href="../reference/userMessages.html">userMessages()</a></code> status, while for a received message, the color is gray by default. The <strong>text</strong> argument refers to the message content. It may be simple text, shiny tags or event any combinations of shiny inputs/ouput, as shown in the below example.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>
