@@ -409,7 +409,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           icon,
-          shiny::tags$p(text, badgeTag)
+          shiny::tags$span(text, badgeTag)
         )
       )
     )
@@ -728,4 +728,3 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 updatebs4TabItems <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }
-
