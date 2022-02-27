@@ -1,7 +1,7 @@
 # Packages ----------------------------------------------------------------
 
 library(jstools)
-bs4Dash_version <- as.character(utils::packageVersion("bs4Dash"))
+pkg_version <- as.character(utils::packageVersion("bs4Dash"))
 
 # Rename srcjs folder in case pkg version changes
 tmp_old_version <- list.dirs("srcjs", full.names = FALSE, recursive = FALSE)
@@ -25,7 +25,7 @@ bs4DashJS <- list.files(
 
 # jshint_file(input = bs4DashJS, options = jshint_options(jquery = TRUE, globals = list("Shiny", "app")))
 
-outputDir <- sprintf("inst/bs4Dash-%s", bs4Dash_version)
+outputDir <- sprintf("inst/bs4Dash-%s", pkg_version)
 
 # Concat -----------------------------------------------------------------
 
