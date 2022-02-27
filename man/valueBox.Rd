@@ -119,7 +119,7 @@ if (interactive()) {
 
   shiny::shinyApp(
     ui = bs4DashPage(
-      navbar = bs4DashNavbar(),
+      header = bs4DashNavbar(),
       sidebar = bs4DashSidebar(),
       controlbar = bs4DashControlbar(),
       footer = bs4DashFooter(),
