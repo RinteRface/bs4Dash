@@ -573,12 +573,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     `aria-valuenow` = value, 
     `aria-valuemin` = min, 
     `aria-valuemax` = max, 
-    style = if (vertical) {
-      paste0("height: ", ((value - min) / (max - min) * 100), "%"))
-    }
-    else {
-      paste0("width: ", ((value - min) / (max - min) * 100), "%"))
-    }, 
+    style = paste0(ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
     if(!is.null(label)) label
   )
   
@@ -625,12 +620,7 @@ bs4MultiProgressBar <-
         `aria-valuenow` = value, 
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
-        style = if (vertical) {
-          paste0("height: ", paste0(((value - min) / (max - min) * 100), "%"))
-        }
-        else {
-          paste0("width: ", paste0(((value - min) / (max - min) * 100), "%"))
-        }, 
+        style = paste0(ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
         if(!is.null(label)) label
       )
     }
