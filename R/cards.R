@@ -1638,7 +1638,7 @@ cardProfileItem <- function(title, description) {
 #'           ),
 #'           "Some text here!",
 #'           attachmentBlock(
-#'             image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+#'             image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
 #'             title = "Test",
 #'             href = "https://google.com",
 #'             "This is the content"

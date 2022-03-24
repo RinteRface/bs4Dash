@@ -225,7 +225,7 @@ social_cards_tab <- tabItem(
       ),
       "Some text here!",
       attachmentBlock(
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+        image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
         title = "Test",
         href = "https://google.com",
         "This is the content"
@@ -856,7 +856,7 @@ gallery_1_tab <- tabItem(
     box(
       title = "Attachment example",
       attachmentBlock(
-        image = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
+        image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
         title = "Test",
         href = "https://google.com",
         "This is the content"
