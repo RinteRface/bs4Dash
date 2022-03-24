@@ -29,7 +29,8 @@ bs4TabCard(
   headerBorder = TRUE,
   label = NULL,
   dropdownMenu = NULL,
-  sidebar = NULL
+  sidebar = NULL,
+  .list = NULL
 )
 
 tabBox(
@@ -56,7 +57,8 @@ tabBox(
   headerBorder = TRUE,
   label = NULL,
   dropdownMenu = NULL,
-  sidebar = NULL
+  sidebar = NULL,
+  .list = NULL
 )
 }
 \arguments{
@@ -167,6 +169,8 @@ TRUE by default}
 \item{dropdownMenu}{List of items in the boxtool dropdown menu. Use \link{boxDropdown}.}
 
 \item{sidebar}{Slot for \link{boxSidebar}.}
+
+\item{.list}{In case of programmatically generated items. See example.}
 }
 \description{
 Build an adminLTE3 card with tabs
@@ -179,6 +183,13 @@ to get the state of the box and update it on the server with \link{updateBox}.
 if (interactive()) {
   library(shiny)
   library(bs4Dash)
+
+  menu_tab <- lapply(1:3, function(i) {
+    tabPanel(
+      sprintf("Menu \%s", i),
+      "Hello"
+    )
+  })
 
   shinyApp(
     ui = dashboardPage(
@@ -207,7 +218,12 @@ if (interactive()) {
             title = "Tab 3",
             "Content 3"
           )
-        )
+        ),
+        tabBox(
+        id = "mybox2",
+        title = "",
+        .list = menu_tab
+       )
       )
     ),
     server = function(input, output) {}
