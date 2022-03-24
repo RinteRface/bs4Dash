@@ -331,7 +331,7 @@ to get the state of the box and update it on the server with <a href="box.html">
 <span class="r-in">  <span class="va">menu_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
 <span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Menu %s"</span>, <span class="va">i</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="st">"Hello"</span></span>
+<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Hello tab %s"</span>, <span class="va">i</span><span class="op">)</span></span>
 <span class="r-in">    <span class="op">)</span></span>
 <span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -364,13 +364,23 @@ to get the state of the box and update it on the server with <a href="box.html">
 <span class="r-in">          <span class="op">)</span></span>
 <span class="r-in">        <span class="op">)</span>,</span>
 <span class="r-in">        <span class="fu">tabBox</span><span class="op">(</span></span>
-<span class="r-in">        id <span class="op">=</span> <span class="st">"mybox2"</span>,</span>
-<span class="r-in">        title <span class="op">=</span> <span class="st">""</span>,</span>
-<span class="r-in">        .list <span class="op">=</span> <span class="va">menu_tab</span></span>
+<span class="r-in">         id <span class="op">=</span> <span class="st">"mybox2"</span>,</span>
+<span class="r-in">         title <span class="op">=</span> <span class="st">""</span>,</span>
+<span class="r-in">         .list <span class="op">=</span> <span class="va">menu_tab</span></span>
+<span class="r-in">        <span class="op">)</span>,</span>
+<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span></span>
+<span class="r-in">        <span class="st">"tab"</span>,</span>
+<span class="r-in">        <span class="st">"Selected a tab"</span>,</span>
+<span class="r-in">        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Menu"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span class="r-in">        <span class="st">"Menu 2"</span></span>
 <span class="r-in">       <span class="op">)</span></span>
 <span class="r-in">      <span class="op">)</span></span>
 <span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
+<span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">tab</span>, <span class="op">{</span></span>
+<span class="r-in">       <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html" class="external-link">updateTabsetPanel</a></span><span class="op">(</span><span class="va">session</span>, inputId <span class="op">=</span> <span class="st">"mybox2"</span>, <span class="va">input</span><span class="op">$</span><span class="va">tab</span><span class="op">)</span></span>
+<span class="r-in">      <span class="op">}</span><span class="op">)</span></span>
+<span class="r-in">    <span class="op">}</span></span>
 <span class="r-in">  <span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
