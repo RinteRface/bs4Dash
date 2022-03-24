@@ -60,7 +60,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -119,7 +119,7 @@
       <h1 data-toc-skip>Improved Skins</h1>
                         <h4 data-toc-skip class="author">David Granjon</h4>
             
-            <h4 data-toc-skip class="date">2022-02-27</h4>
+            <h4 data-toc-skip class="date">2022-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/HEAD/vignettes/more-skins.Rmd" class="external-link"><code>vignettes/more-skins.Rmd</code></a></small>
       <div class="hidden name"><code>more-skins.Rmd</code></div>
@@ -170,7 +170,7 @@
 <div class="section level2">
 <h2 id="fresh">Fresh<a class="anchor" aria-label="anchor" href="#fresh"></a>
 </h2>
-<p><a href="https://dreamrs.github.io/fresh/index.html" class="external-link"><code>{fresh}</code></a> is developed by the <a href="https://www.dreamrs.fr/" class="external-link">dreamRs</a> team. It is built on top of <a href="https://github.com/rstudio/sass" class="external-link">sass</a>, which provides a solid R <a href="https://github.com/rstudio/sass" class="external-link">API</a> to write SASS variables and compile into CSS. <a href="https://github.com/dreamRs/fresh" class="external-link">fresh</a> captures most of the AdminLTE2 (as well as AdminLTE3 for Bootstrap 4) SASS variables to allow deep customization, hiding all the compilation burden under the hood.</p>
+<p><a href="https://dreamrs.github.io/fresh/index.html" class="external-link"><code>{fresh}</code></a> is developed by the <a href="https://www.dreamrs.fr/" class="external-link">dreamRs</a> team. It is built on top of <a href="https://rstudio.github.io/sass/" class="external-link">sass</a>, which provides a solid R <a href="https://github.com/rstudio/sass" class="external-link">API</a> to write SASS variables and compile into CSS. <a href="https://github.com/dreamRs/fresh" class="external-link">fresh</a> captures most of the AdminLTE2 (as well as AdminLTE3 for Bootstrap 4) SASS variables to allow deep customization, hiding all the compilation burden under the hood.</p>
 <p><code><a href="https://rdrr.io/pkg/fresh/man/bs4dash_color.html" class="external-link">bs4dash_color()</a></code> and <code>bs4Dash_status()</code> provide an interface to all available AdminLTE colors and allow to overwrite the default. I strongly suggest to avoid setting the default green to blue, as it might become confusing. Instead, it is better to play with color palettes. <code><a href="https://rdrr.io/pkg/fresh/man/bs4Dash-sidebar.html" class="external-link">bs4dash_sidebar_light()</a></code> allows to re-style the sidebar component, <code><a href="https://rdrr.io/pkg/fresh/man/bs4dash_layout.html" class="external-link">bs4dash_layout()</a></code> controls the main background color, <code><a href="https://rdrr.io/pkg/fresh/man/bs4dash_yiq.html" class="external-link">bs4dash_yiq()</a></code> fine tune the global contrast and <code><a href="https://rdrr.io/pkg/fresh/man/bs4dash_vars.html" class="external-link">bs4dash_vars()</a></code> offers deeper customization (navbar, …). The fresh theme below is based on some dark theme color palettes.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/fresh" class="external-link">fresh</a></span><span class="op">)</span>

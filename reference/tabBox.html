@@ -35,7 +35,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -116,7 +116,8 @@
   headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,
   label <span class="op">=</span> <span class="cn">NULL</span>,
   dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,
-  sidebar <span class="op">=</span> <span class="cn">NULL</span>
+  sidebar <span class="op">=</span> <span class="cn">NULL</span>,
+  .list <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span>
 
 <span class="fu">tabBox</span><span class="op">(</span>
@@ -143,7 +144,8 @@
   headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,
   label <span class="op">=</span> <span class="cn">NULL</span>,
   dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,
-  sidebar <span class="op">=</span> <span class="cn">NULL</span>
+  sidebar <span class="op">=</span> <span class="cn">NULL</span>,
+  .list <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -297,6 +299,8 @@ TRUE by default</p></dd>
 <dd><p>List of items in the boxtool dropdown menu. Use <a href="boxDropdown.html">boxDropdown</a>.</p></dd>
 <dt>sidebar</dt>
 <dd><p>Slot for <a href="boxSidebar.html">boxSidebar</a>.</p></dd>
+<dt>.list</dt>
+<dd><p>In case of programmatically generated items. See example.</p></dd>
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -323,6 +327,13 @@ to get the state of the box and update it on the server with <a href="box.html">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in">  <span class="va">menu_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
+<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Menu %s"</span>, <span class="va">i</span><span class="op">)</span>,</span>
+<span class="r-in">      <span class="st">"Hello"</span></span>
+<span class="r-in">    <span class="op">)</span></span>
+<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
 <span class="r-in">    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
@@ -351,7 +362,12 @@ to get the state of the box and update it on the server with <a href="box.html">
 <span class="r-in">            title <span class="op">=</span> <span class="st">"Tab 3"</span>,</span>
 <span class="r-in">            <span class="st">"Content 3"</span></span>
 <span class="r-in">          <span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span></span>
+<span class="r-in">        <span class="op">)</span>,</span>
+<span class="r-in">        <span class="fu">tabBox</span><span class="op">(</span></span>
+<span class="r-in">        id <span class="op">=</span> <span class="st">"mybox2"</span>,</span>
+<span class="r-in">        title <span class="op">=</span> <span class="st">""</span>,</span>
+<span class="r-in">        .list <span class="op">=</span> <span class="va">menu_tab</span></span>
+<span class="r-in">       <span class="op">)</span></span>
 <span class="r-in">      <span class="op">)</span></span>
 <span class="r-in">    <span class="op">)</span>,</span>
 <span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
