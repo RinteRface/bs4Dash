@@ -187,7 +187,7 @@ if (interactive()) {
   menu_tab <- lapply(1:3, function(i) {
     tabPanel(
       sprintf("Menu \%s", i),
-      "Hello"
+      sprintf("Hello tab \%s", i)
     )
   })
 
@@ -220,13 +220,23 @@ if (interactive()) {
           )
         ),
         tabBox(
-        id = "mybox2",
-        title = "",
-        .list = menu_tab
+         id = "mybox2",
+         title = "",
+         .list = menu_tab
+        ),
+        selectInput(
+        "tab",
+        "Selected a tab",
+        choices = paste("Menu", 1:3),
+        "Menu 2"
        )
       )
     ),
-    server = function(input, output) {}
+    server = function(input, output, session) {
+      observeEvent(input$tab, {
+       updateTabsetPanel(session, inputId = "mybox2", input$tab)
+      })
+    }
   )
 }
 }
