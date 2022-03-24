@@ -811,8 +811,8 @@ gallery_1_tab <- tabItem(
           title = "Item 3",
           icon = icon("paint-brush"),
           color = "warning",
-          timelineItemMedia(image = "https://placehold.it/150x100"),
-          timelineItemMedia(image = "https://placehold.it/150x100")
+          timelineItemMedia(image = "https://via.placehold.it/150x100"),
+          timelineItemMedia(image = "https://via.placehold.it/150x100")
         ),
         timelineStart(color = "danger")
       )
@@ -838,8 +838,8 @@ gallery_1_tab <- tabItem(
         title = "Item 3",
         icon = icon("paint-brush"),
         color = "warning",
-        timelineItemMedia(image = "https://placehold.it/150x100"),
-        timelineItemMedia(image = "https://placehold.it/150x100")
+        timelineItemMedia(image = "https://via.placehold.it/150x100"),
+        timelineItemMedia(image = "https://via.placehold.it/150x100")
       ),
       timelineStart(color = "danger")
     )
