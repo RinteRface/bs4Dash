@@ -1093,6 +1093,13 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #'   library(shiny)
 #'   library(bs4Dash)
 #'
+#'   menu_tab <- lapply(1:3, function(i) {
+#'     tabPanel(
+#'       sprintf("Menu %s", i),
+#'       sprintf("Hello tab %s", i)
+#'     )
+#'   })
+#'
 #'   shinyApp(
 #'     ui = dashboardPage(
 #'       header = dashboardHeader(),
@@ -1120,10 +1127,25 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #'             title = "Tab 3",
 #'             "Content 3"
 #'           )
-#'         )
+#'         ),
+#'         tabBox(
+#'          id = "mybox2",
+#'          title = "",
+#'          .list = menu_tab
+#'         ),
+#'         selectInput(
+#'         "tab",
+#'         "Selected a tab",
+#'         choices = paste("Menu", 1:3),
+#'         "Menu 2"
+#'        )
 #'       )
 #'     ),
-#'     server = function(input, output) {}
+#'     server = function(input, output, session) {
+#'       observeEvent(input$tab, {
+#'        updateTabsetPanel(session, inputId = "mybox2", input$tab)
+#'       })
+#'     }
 #'   )
 #' }
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1135,7 +1157,7 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
                        icon = NULL, gradient = FALSE, boxToolSize = "sm", elevation = NULL,
                        headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                       sidebar = NULL) {
+                       sidebar = NULL, .list = NULL) {
   side <- match.arg(side)
   if (is.null(type)) type <- "pills"
 
@@ -1144,7 +1166,8 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
     ...,
     id = id,
     selected = selected,
-    type = type
+    type = type,
+    .list = .list
   )
 
   # Re-use box function
@@ -1633,7 +1656,7 @@ cardProfileItem <- function(title, description) {
 #'           ),
 #'           "Some text here!",
 #'           attachmentBlock(
-#'             image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+#'             image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
 #'             title = "Test",
 #'             href = "https://google.com",
 #'             "This is the content"
