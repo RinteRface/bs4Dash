@@ -225,7 +225,7 @@ social_cards_tab <- tabItem(
       ),
       "Some text here!",
       attachmentBlock(
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/photo1.png",
+        image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
         title = "Test",
         href = "https://google.com",
         "This is the content"
@@ -811,8 +811,8 @@ gallery_1_tab <- tabItem(
           title = "Item 3",
           icon = icon("paint-brush"),
           color = "warning",
-          timelineItemMedia(image = "https://placehold.it/150x100"),
-          timelineItemMedia(image = "https://placehold.it/150x100")
+          timelineItemMedia(image = "https://via.placehold.it/150x100"),
+          timelineItemMedia(image = "https://via.placehold.it/150x100")
         ),
         timelineStart(color = "danger")
       )
@@ -838,8 +838,8 @@ gallery_1_tab <- tabItem(
         title = "Item 3",
         icon = icon("paint-brush"),
         color = "warning",
-        timelineItemMedia(image = "https://placehold.it/150x100"),
-        timelineItemMedia(image = "https://placehold.it/150x100")
+        timelineItemMedia(image = "https://via.placehold.it/150x100"),
+        timelineItemMedia(image = "https://via.placehold.it/150x100")
       ),
       timelineStart(color = "danger")
     )
@@ -856,7 +856,7 @@ gallery_1_tab <- tabItem(
     box(
       title = "Attachment example",
       attachmentBlock(
-        image = "https://adminlte.io/themes/dev/AdminLTE/dist/img/photo1.png",
+        image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
         title = "Test",
         href = "https://google.com",
         "This is the content"

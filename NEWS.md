@@ -10,7 +10,10 @@ time deprecated.
 - Add bs4Dash class for card [binding](https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d). Thanks @galachad.
 - Use <span> instead of <p> on bs4SidebarMenuItem. Thanks @yogat3ch.
 - Typo in vignette. Thanks @Duque-de-Sealand.
-- Wrong parameter in doc. Thanks @zoezhang106 
+- Wrong parameter in doc. Thanks @zoezhang106.
+- Add new `.list` param to `tabBox()` to allow programmatically generated items, like
+in `tabsetPanel()`. Thanks @mtopart
+
 
 
 # bs4Dash 2.0.3
