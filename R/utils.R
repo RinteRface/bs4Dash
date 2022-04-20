@@ -20,7 +20,7 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
     return()
   }
   
-  if (!is.null(type) && tag$name %in% type) {
+  if (!is.null(type) && !tag$name %in% type) {
     stop("Expected tag to be of type(s) ", paste0(type, collapse = ", "))
   }
   
