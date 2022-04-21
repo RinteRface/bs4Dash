@@ -9,3 +9,4 @@ inst/doc
 inst/examples/**/rsconnect
 .vscode
 *.icloud
+docs

@@ -447,7 +447,7 @@ tab_cards_tab <- tabItem(
     # manually inserted panels
     column(
       width = 6,
-      tabsetPanel(
+      bs4Dash::tabsetPanel(
         id = "tabsetpanel1",
         selected = "Tab 2",
         tabPanel(
@@ -468,7 +468,7 @@ tab_cards_tab <- tabItem(
     # programmatically inserted panels
     column(
       width = 6,
-      tabsetPanel(
+      bs4Dash::tabsetPanel(
         id = "tabsetpanel2",
         type = "pills",
         .list = lapply(1:3, function(i) {
@@ -811,8 +811,8 @@ gallery_1_tab <- tabItem(
           title = "Item 3",
           icon = icon("paint-brush"),
           color = "warning",
-          timelineItemMedia(image = "https://via.placehold.it/150x100"),
-          timelineItemMedia(image = "https://via.placehold.it/150x100")
+          timelineItemMedia(image = "https://via.placehold.com/150x100"),
+          timelineItemMedia(image = "https://via.placehold.com/150x100")
         ),
         timelineStart(color = "danger")
       )
@@ -838,8 +838,8 @@ gallery_1_tab <- tabItem(
         title = "Item 3",
         icon = icon("paint-brush"),
         color = "warning",
-        timelineItemMedia(image = "https://via.placehold.it/150x100"),
-        timelineItemMedia(image = "https://via.placehold.it/150x100")
+        timelineItemMedia(image = "https://via.placehold.com/150x100"),
+        timelineItemMedia(image = "https://via.placehold.com/150x100")
       ),
       timelineStart(color = "danger")
     )
