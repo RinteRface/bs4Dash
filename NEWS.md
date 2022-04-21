@@ -5,6 +5,7 @@
 time deprecated. 
 
 ## Minor changes
+- Allow `type = "hidden"` for `tabsetPanel`. Fixes #248.
 - Fix regression introduced in 2.0.3: `renderMenu()` not working. See #234
 - Update Github actions.
 - Add bs4Dash class for card [binding](https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d). Thanks @galachad.
