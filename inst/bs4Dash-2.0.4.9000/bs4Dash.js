@@ -1471,7 +1471,7 @@ $(function () {
     }).on('click', function () {
 
       // get any selected navbar skin in the navbar themer
-      var newNavbarColor;
+      var newNavbarColor = getNavbarColor();
       $('.navbar-themer-chip').filter(function () {
         if ($(this).css('border-style') === 'solid') {
           newNavbarColor = 'navbar-' +
