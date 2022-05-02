@@ -90,17 +90,14 @@
 <h2 class="page-header" data-toc-text="2.0.4.9000" id="bs4dash-2049000">bs4Dash 2.0.4.9000<a class="anchor" aria-label="anchor" href="#bs4dash-2049000"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-2-0-4-9000">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-2-0-4-9000"></a></h3>
-<ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li>
-</ul></div>
+<ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li></ul></div>
 <div class="section level3">
 <h3 id="minor-changes-2-0-4-9000">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-4-9000"></a></h3>
 <ul><li>Allow <code>type = "hidden"</code> for <code>tabsetPanel</code>. Fixes <a href="https://github.com/RinteRface/bs4Dash/issues/248" class="external-link">#248</a>.</li>
 <li>Fix regression introduced in 2.0.3: <code><a href="../reference/renderMenu.html">renderMenu()</a></code> not working. See <a href="https://github.com/RinteRface/bs4Dash/issues/234" class="external-link">#234</a></li>
 <li>Update Github actions.</li>
 <li>Add bs4Dash class for card <a href="https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d" class="external-link">binding</a>. Thanks <a href="https://github.com/galachad" class="external-link">@galachad</a>.</li>
-<li>Use <span> instead of
-<p>
-on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="external-link">@yogat3ch</a>.</p></span>
+<li>Use <span> instead of<p>on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="external-link">@yogat3ch</a>.</p></span>
 </li>
 <li>Typo in vignette. Thanks <a href="https://github.com/Duque-de-Sealand" class="external-link">@Duque-de-Sealand</a>.</li>
 <li>Wrong parameter in doc. Thanks <a href="https://github.com/zoezhang106" class="external-link">@zoezhang106</a>.</li>
@@ -112,16 +109,14 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <p>This release is a patch to fix an issue preventing the release of Shiny 1.7.0.</p>
 <div class="section level3">
 <h3 id="minor-changes-2-0-3">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-3"></a></h3>
-<ul><li>Internal change regarding the <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> package but no user impact. Thanks <a href="https://github.com/JohnCoene" class="external-link">@JohnCoene</a>.</li>
-</ul></div>
+<ul><li>Internal change regarding the <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> package but no user impact. Thanks <a href="https://github.com/JohnCoene" class="external-link">@JohnCoene</a>.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.2" id="bs4dash-202">bs4Dash 2.0.2<small>2021-07-23</small><a class="anchor" aria-label="anchor" href="#bs4dash-202"></a></h2>
 <p>Patch to fix CRAN warning on Mac M1.</p>
 <div class="section level3">
 <h3 id="minor-changes-2-0-2">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-2"></a></h3>
-<ul><li>Move away from <code>shiny:::processDeps</code> in favor of <code><a href="https://rdrr.io/pkg/htmltools/man/renderTags.html" class="external-link">htmltools::renderTags</a></code>. Does not impact end user.</li>
-</ul></div>
+<ul><li>Move away from <code>shiny:::processDeps</code> in favor of <code><a href="https://rdrr.io/pkg/htmltools/man/renderTags.html" class="external-link">htmltools::renderTags</a></code>. Does not impact end user.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.1" id="bs4dash-201">bs4Dash 2.0.1<small>2021-07-16</small><a class="anchor" aria-label="anchor" href="#bs4dash-201"></a></h2>
@@ -162,8 +157,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <div class="section level4">
 <h4 id="bs4usermenu-2-0-0">bs4UserMenu<a class="anchor" aria-label="anchor" href="#bs4usermenu-2-0-0"></a></h4>
 <ul><li>
-<code>src</code> becomes <code>image</code>.</li>
-</ul></div>
+<code>src</code> becomes <code>image</code>.</li></ul></div>
 <div class="section level4">
 <h4 id="bs4dashcontrolbardashboardcontrolbar-2-0-0">bs4DashControlbar/dashboardControlbar<a class="anchor" aria-label="anchor" href="#bs4dashcontrolbardashboardcontrolbar-2-0-0"></a></h4>
 <ul><li>Add <code>collapsed</code> and <code>overlay</code>.</li>
@@ -203,8 +197,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <div class="section level4">
 <h4 id="bs4sidebaruserpanel-2-0-0">bs4SidebarUserPanel<a class="anchor" aria-label="anchor" href="#bs4sidebaruserpanel-2-0-0"></a></h4>
 <ul><li>
-<code>img</code> and <code>text</code> become <code>image</code> and <code>name</code>, respectively.</li>
-</ul></div>
+<code>img</code> and <code>text</code> become <code>image</code> and <code>name</code>, respectively.</li></ul></div>
 <div class="section level4">
 <h4 id="bs4card-2-0-0">bs4Card<a class="anchor" aria-label="anchor" href="#bs4card-2-0-0"></a></h4>
 <ul><li>Change <code>solidHeader</code> behavior.</li>
@@ -226,8 +219,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 </ul></div>
 <div class="section level4">
 <h4 id="bs4tabcard-2-0-0">bs4TabCard<a class="anchor" aria-label="anchor" href="#bs4tabcard-2-0-0"></a></h4>
-<ul><li>Change <code>solidHeader</code> behavior.</li>
-</ul></div>
+<ul><li>Change <code>solidHeader</code> behavior.</li></ul></div>
 <div class="section level4">
 <h4 id="bs4valuebox-2-0-0">bs4ValueBox<a class="anchor" aria-label="anchor" href="#bs4valuebox-2-0-0"></a></h4>
 <ul><li>
@@ -267,17 +259,14 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <div class="section level4">
 <h4 id="descriptionblock-2-0-0">descriptionBlock<a class="anchor" aria-label="anchor" href="#descriptionblock-2-0-0"></a></h4>
 <ul><li>
-<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
-</ul></div>
+<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li></ul></div>
 <div class="section level4">
 <h4 id="bs4box-2-0-0">bs4Box<a class="anchor" aria-label="anchor" href="#bs4box-2-0-0"></a></h4>
-<ul><li>This component has been removed</li>
-</ul></div>
+<ul><li>This component has been removed</li></ul></div>
 <div class="section level4">
 <h4 id="bs4tabcard-2-0-0-1">bs4TabCard<a class="anchor" aria-label="anchor" href="#bs4tabcard-2-0-0-1"></a></h4>
 <ul><li>rework component. Like <code><a href="../reference/tabBox.html">tabBox()</a></code> from <a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>
-</li>
-</ul></div>
+</li></ul></div>
 <div class="section level4">
 <h4 id="bs4dropdownmenu-2-0-0">bs4DropdownMenu<a class="anchor" aria-label="anchor" href="#bs4dropdownmenu-2-0-0"></a></h4>
 <ul><li>
@@ -292,8 +281,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <div class="section level4">
 <h4 id="bs4dropdownmenuitem-2-0-0">bs4DropdownMenuItem<a class="anchor" aria-label="anchor" href="#bs4dropdownmenuitem-2-0-0"></a></h4>
 <ul><li>This has been replaced by <code><a href="../reference/dropdownMenu.html">notificationItem()</a></code> and <code><a href="../reference/dropdownMenu.html">messageItem()</a></code>
-</li>
-</ul></div>
+</li></ul></div>
 <div class="section level4">
 <h4 id="others-2-0-0">Others<a class="anchor" aria-label="anchor" href="#others-2-0-0"></a></h4>
 <ul><li>Reworked <code><a href="../reference/table.html">bs4Table()</a></code> API.</li>
@@ -528,8 +516,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 <h2 class="page-header" data-toc-text="0.3.0" id="bs4dash-030">bs4Dash 0.3.0<small>2019-04-06</small><a class="anchor" aria-label="anchor" href="#bs4dash-030"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-0-3-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-0-3-0"></a></h3>
-<ul><li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>.</li>
-</ul></div>
+<ul><li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>.</li></ul></div>
 <div class="section level3">
 <h3 id="major-changes-0-3-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-3-0"></a></h3>
 <ul><li>update adminLTE3 to the latest release</li>
@@ -611,8 +598,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="bs4dash-010">bs4Dash 0.1.0<small>2018-07-05</small><a class="anchor" aria-label="anchor" href="#bs4dash-010"></a></h2>
-<ul><li>initial release</li>
-</ul></div>
+<ul><li>initial release</li></ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -627,7 +613,7 @@ on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="exter
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
