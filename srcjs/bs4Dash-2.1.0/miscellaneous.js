@@ -192,9 +192,41 @@ $(function () {
   ];
 
   var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins);
-  // find navbar color
-  var navbarColor;
+  
+  /**
+  * Update color theme to navbar tag
+  *
+  * @param String color Color to apply.
+  * @returns void
+  */
+  updateNavbarTheme = function (color) {
+    var $main_header = $('.main-header');
+    $main_header.removeClass('navbar-dark').removeClass('navbar-light');
+    navbar_all_colors.forEach(function (color) {
+      $main_header.removeClass(color);
+    });
 
+    if (navbar_dark_skins.indexOf(color) > -1) {
+      $main_header.addClass('navbar-dark');
+    } else {
+      $main_header.addClass('navbar-light');
+    }
+
+    $main_header.addClass(color);
+  };
+  
+  /**
+  * Update icon color style based on navbar color.
+  *
+  * @param String color Current navbar color.
+  * @returns void
+  */
+  updateNavbarIconColor = function(color) {
+    var iconThemeColor = navbar_dark_skins.indexOf(color) > -1 ? "white" : "rgba(0,0,0,.5)";
+    $(".dark-theme-icon").css("color", iconThemeColor);
+    $('[for="help_switch"] i').css("color", iconThemeColor);
+  };
+  
   // automatic global theme switcher
   if ($('body').attr('data-dark') == 2 || 
   $('body').attr('data-dark') == 1) {
@@ -205,17 +237,23 @@ $(function () {
     }).on('click', function () {
 
       // get any selected navbar skin in the navbar themer
-      var newNavbarColor = getNavbarColor();
-      $('.navbar-themer-chip').filter(function () {
-        if ($(this).css('border-style') === 'solid') {
-          newNavbarColor = 'navbar-' +
-            $(this)
-              .attr('class')
-              .split('elevation-2')[0]
-              .trim()
-              .replace('bg-', '');
-        }
-      });
+      var newNavbarColor;
+      // If there is not themer, we keep the navbar current color.
+      // Otherwise, we replace it by the new color.
+      if ($('.navbar-themer-chip').length > 0) {
+        $('.navbar-themer-chip').filter(function () {
+          if ($(this).css('border-style') === 'solid') {
+            newNavbarColor = 'navbar-' +
+              $(this)
+                .attr('class')
+                .split('elevation-2')[0]
+                .trim()
+                .replace('bg-', '');
+          }
+        });
+      } else {
+        newNavbarColor = getNavbarColor();
+      }
 
       if ($(this).is(':checked')) {
         $('body').addClass('dark-mode');
@@ -300,6 +338,9 @@ $(function () {
         // refresh shiny input value  
         Shiny.setInputValue('dark_mode', false, { priority: 'event' });
       }
+      
+      // update navbar icon colors
+      updateNavbarIconColor(newNavbarColor);
     });
 
     var $dark_mode_icon = $('body').hasClass('dark-mode') ? '<i class="dark-theme-icon fa fa-moon"></i>' : '<i class="dark-theme-icon fa fa-sun"></i>';
@@ -319,6 +360,12 @@ $(function () {
         $('#customSwitch1').click();
       }); 
     }
+  }
+  
+  // apply correct navbar class depending on selected color
+  if (getNavbarColor() !== undefined) {
+    updateNavbarTheme(getNavbarColor());
+    updateNavbarIconColor(getNavbarColor());
   }
   
 
@@ -346,29 +393,6 @@ $(function () {
     $(this).css({ 'border-color': 'yellow', 'border-style': 'solid' });
     $('.sidebar-themer-chip').not(this).css({ 'border-color': '', 'border-style': '' });
   });
-
-
-  /**
-  * Update color theme to navbar tag
-  *
-  * @param String color Color to apply.
-  * @returns void
-  */
-  updateNavbarTheme = function (color) {
-    var $main_header = $('.main-header');
-    $main_header.removeClass('navbar-dark').removeClass('navbar-light');
-    navbar_all_colors.forEach(function (color) {
-      $main_header.removeClass(color);
-    });
-
-    if (navbar_dark_skins.indexOf(color) > -1) {
-      $main_header.addClass('navbar-dark');
-    } else {
-      $main_header.addClass('navbar-light');
-    }
-
-    $main_header.addClass(color);
-  };
 
 
   // Sidebar themer

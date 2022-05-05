@@ -1,7 +1,7 @@
 Package: bs4Dash
 Type: Package
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 2.0.4.9000
+Version: 2.1.0
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person(family = "RinteRface", role = "cph"),
@@ -32,8 +32,7 @@ Suggests:
     covr,
     golem,
     DT, 
-    thematic (>= 0.1.2),
-    echarts4r
+    thematic (>= 0.1.2)
 Encoding: UTF-8
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr

@@ -409,7 +409,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           icon,
-          shiny::tags$span(text, badgeTag)
+          shiny::tags$p(text, badgeTag)
         )
       )
     )

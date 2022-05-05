@@ -1,7 +1,6 @@
 # Load packages
 library(shiny)
 library(bs4Dash)
-library(echarts4r)
 library(thematic)
 library(waiter)
 library(magrittr)
@@ -14,18 +13,6 @@ toastOpts <- list(
   icon = "fas fa-home",
   close = FALSE,
   position = "bottomRight"
-)
-
-# echarts4r theme #3d444c
-echarts_dark_theme <- list(
-  options = '{
-    "color":["#6610f2", "#ffc107", "#e83e8c", "#ff851b", "#17a2b8", "#3d9970"], 
-    "backgroundColor": "#343a40", 
-    "textStyle": {
-        color: "#fff"
-    }
-  }',
-  name = "dark_theme"
 )
 
 # color statuses
@@ -50,16 +37,6 @@ statusColors <- c(
   "maroon",
   "pink",
   "white"
-)
-
-# river charts 
-dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
-
-river <- data.frame(
-  dates = dates,
-  apples = runif(length(dates)),
-  bananas = runif(length(dates)),
-  pears = runif(length(dates))
 )
 
 #' basic_cards_tab ----
@@ -110,7 +87,7 @@ basic_cards_tab <- tabItem(
       status = "teal", 
       solidHeader = TRUE, 
       collapsible = FALSE,
-      echarts4rOutput("riverPlot")
+      "Empty card"
     )
   ),
   fluidRow(
@@ -122,7 +99,7 @@ basic_cards_tab <- tabItem(
       solidHeader = TRUE, 
       status = "primary",
       collapsible = TRUE,
-      echarts4rOutput("rosetype")
+      "Empty card"
     ),
     box(
       id = "card4",
@@ -1162,7 +1139,6 @@ shinyApp(
       )
     ),
     body = dashboardBody(
-      e_theme_register(echarts_dark_theme$options, name = echarts_dark_theme$name),
       tabItems(
         basic_cards_tab,
         cards_api_tab,

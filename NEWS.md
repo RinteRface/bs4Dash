@@ -1,20 +1,21 @@
-# bs4Dash 2.0.4.9000
+# bs4Dash 2.1.0
 
 ## Breaking change
 - Align with `{shiny}` and remove `position` from `tabsetPanel()`. This was long
 time deprecated. 
 
-## Minor changes
+## Minor changes/fixes
+- Remove echarts4r suggest causing #240.
+- Fix issue in `bs4DashGallery()` and `tabsetPanel()`. We now use `bs4Dash::tabsetPanel()`.
+- Fix issue with navbar theme. #268. Thanks @etiennebacher.
 - Allow `type = "hidden"` for `tabsetPanel`. Fixes #248.
 - Fix regression introduced in 2.0.3: `renderMenu()` not working. See #234
 - Update Github actions.
 - Add bs4Dash class for card [binding](https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d). Thanks @galachad.
-- Use <span> instead of <p> on bs4SidebarMenuItem. Thanks @yogat3ch.
 - Typo in vignette. Thanks @Duque-de-Sealand.
 - Wrong parameter in doc. Thanks @zoezhang106.
 - Add new `.list` param to `tabBox()` to allow programmatically generated items, like
 in `tabsetPanel()`. Thanks @mtopart
-
 
 
 # bs4Dash 2.0.3
