@@ -1,5 +1,6 @@
 ## Test environments
-* local OS X install, R 3.6.1
+* local OS X install, R 4.1.3
+* RStudio Server on linux Ubuntu 20.04.3 LTS R 4.1.2
 * `rhub::check_for_cran`
 * Github actions
 * Windows (via devtools::check_win_devel())
@@ -8,5 +9,3 @@
 There were no ERRORs or WARNINGs or NOTEs
 
 ## Note
-
-This release is a patch to fix an issue preventing the release of Shiny 1.7.0. 

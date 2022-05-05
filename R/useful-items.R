@@ -2434,7 +2434,7 @@ userPost <- function(..., id = NULL, image, author,
   items <- list(...)
   items <- lapply(seq_along(items), function(i) {
     # do not apply to other things than tags
-    if (class(items[[i]]) == "shiny.tag") {
+    if (inherits(items[[i]], "shiny.tag")) {
       if (items[[i]]$name == "img") {
         # wrap the image item in a div to align its content
         shiny::tags$div(
