@@ -12,8 +12,6 @@
 #'
 #' }
 bs4DashGallery <- function() { # nocov start
-  if (!requireNamespace(package = "echarts4r"))
-    message("Package 'echarts4r' is required to run this function")
   if (!requireNamespace(package = "thematic"))
     message("Package 'thematic' is required to run this function")
   if (!requireNamespace(package = "waiter"))

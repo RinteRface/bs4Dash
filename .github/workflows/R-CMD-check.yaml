@@ -43,7 +43,6 @@ jobs:
         with:
           extra-packages: |
             rcmdcheck
-            echarts4r
 
       - uses: r-lib/actions/check-r-package@v1
 

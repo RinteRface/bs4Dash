@@ -3,7 +3,6 @@ library(shiny)
 library(bs4Dash)
 library(thematic)
 library(waiter)
-library(magrittr)
 
 thematic_shiny()
 
@@ -1263,29 +1262,6 @@ shinyApp(
     output$plot <- renderPlot({
       hist(rnorm(input$obs))
     })
-
-    # this is not reactive but just for fixing the plot size on the client side.
-    output$riverPlot <- renderEcharts4r({
-      river %>%
-        e_charts(dates) %>%
-        e_river(apples) %>%
-        e_river(bananas) %>%
-        e_river(pears) %>%
-        e_tooltip(trigger = "axis") %>%
-        e_title("River charts", "(Streamgraphs)") %>%
-        e_theme("shine")
-    })
-
-    output$rosetype <- renderEcharts4r({
-      plot <- mtcars %>%
-        head() %>%
-        dplyr::mutate(model = row.names(.)) %>%
-        e_charts(model) %>%
-        e_pie(hp, roseType = "radius")
-      if (input$dark_mode) plot <- plot %>% e_theme(echarts_dark_theme$name)
-      plot
-    })
-
 
     observeEvent(input$current_tab, {
       if (input$current_tab == "cards") {
