@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
       </span>
     </div>
 
@@ -87,18 +87,19 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="2.0.4.9000" id="bs4dash-2049000">bs4Dash 2.0.4.9000<a class="anchor" aria-label="anchor" href="#bs4dash-2049000"></a></h2>
+<h2 class="page-header" data-toc-text="2.1.0" id="bs4dash-210">bs4Dash 2.1.0<a class="anchor" aria-label="anchor" href="#bs4dash-210"></a></h2>
 <div class="section level3">
-<h3 id="breaking-change-2-0-4-9000">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-2-0-4-9000"></a></h3>
+<h3 id="breaking-change-2-1-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-2-1-0"></a></h3>
 <ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li></ul></div>
 <div class="section level3">
-<h3 id="minor-changes-2-0-4-9000">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-4-9000"></a></h3>
-<ul><li>Allow <code>type = "hidden"</code> for <code>tabsetPanel</code>. Fixes <a href="https://github.com/RinteRface/bs4Dash/issues/248" class="external-link">#248</a>.</li>
+<h3 id="minor-changesfixes-2-1-0">Minor changes/fixes<a class="anchor" aria-label="anchor" href="#minor-changesfixes-2-1-0"></a></h3>
+<ul><li>Remove echarts4r suggest causing <a href="https://github.com/RinteRface/bs4Dash/issues/240" class="external-link">#240</a>.</li>
+<li>Fix issue in <code><a href="../reference/bs4DashGallery.html">bs4DashGallery()</a></code> and <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. We now use <code><a href="../reference/tabsetPanel.html">bs4Dash::tabsetPanel()</a></code>.</li>
+<li>Fix issue with navbar theme. <a href="https://github.com/RinteRface/bs4Dash/issues/268" class="external-link">#268</a>. Thanks <a href="https://github.com/etiennebacher" class="external-link">@etiennebacher</a>.</li>
+<li>Allow <code>type = "hidden"</code> for <code>tabsetPanel</code>. Fixes <a href="https://github.com/RinteRface/bs4Dash/issues/248" class="external-link">#248</a>.</li>
 <li>Fix regression introduced in 2.0.3: <code><a href="../reference/renderMenu.html">renderMenu()</a></code> not working. See <a href="https://github.com/RinteRface/bs4Dash/issues/234" class="external-link">#234</a></li>
 <li>Update Github actions.</li>
 <li>Add bs4Dash class for card <a href="https://github.com/RinteRface/bs4Dash/commit/685d180a4e51f973f59ae35d47a8325018abf79d" class="external-link">binding</a>. Thanks <a href="https://github.com/galachad" class="external-link">@galachad</a>.</li>
-<li>Use <span> instead of<p>on bs4SidebarMenuItem. Thanks <a href="https://github.com/yogat3ch" class="external-link">@yogat3ch</a>.</p></span>
-</li>
 <li>Typo in vignette. Thanks <a href="https://github.com/Duque-de-Sealand" class="external-link">@Duque-de-Sealand</a>.</li>
 <li>Wrong parameter in doc. Thanks <a href="https://github.com/zoezhang106" class="external-link">@zoezhang106</a>.</li>
 <li>Add new <code>.list</code> param to <code><a href="../reference/tabBox.html">tabBox()</a></code> to allow programmatically generated items, like in <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. Thanks <a href="https://github.com/mtopart" class="external-link">@mtopart</a></li>
