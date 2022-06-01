@@ -212,6 +212,22 @@ validateStatusPlus <- function(status) {
 #' @keywords internal
 validStatusesPlus <- c(validStatuses, validNuances, validColors)
 
+validColorsPlus <- c(grDevices::colours(), validStatusesPlus)
+
+is_hex_color <- function(color) {
+  grepl("^\\#[a-fA-F0-9]{3,6}", color)
+}
+is_rgba_color <- function(color) {
+  grepl("^rgba\\(", color)
+}
+validateColors <- function(color) {
+  if (color %in% validColorsPlus || is_hex_color(color) || is_rgb_color(color))
+    TRUE
+  else
+    stop("Invalid color: ", color, ". Valid colors are hex or rgba formatted or one of the following: ",
+         paste(validColorsPlus, collapse = ", "), ".")
+}
+# Create a CSS rgba declaration for a color name
 
 
 
