@@ -227,6 +227,13 @@ validateColors <- function(color) {
     stop("Invalid color: ", color, ". Valid colors are hex or rgba formatted or one of the following: ",
          paste(validColorsPlus, collapse = ", "), ".")
 }
+# Create a CSS rgba declaration for a color name
+col2css <- function(color, alpha = NULL) {
+  if (!is_hex_color(color) && !is_rgba_color(color))
+    paste0("rgba(", paste0(c(col2rgb(color), alpha), collapse = ", "), ")")
+  else
+    color
+}
 
 
 
