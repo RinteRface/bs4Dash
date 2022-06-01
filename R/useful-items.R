@@ -476,7 +476,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' 
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
-#' 
+#' @param id HTML ID. NULL by default
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
@@ -560,7 +560,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
                             animated = FALSE, status = "primary", size = NULL, 
                             label = NULL, id = NULL) {
   
-  if (!is.null(status)) validateStatusPlus(status)
+  if (!is.null(status)) validateColors(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
   
@@ -570,7 +570,10 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   
   # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+  style <- NULL
+  if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+  else if (status %in% validColorsPlus || is_hex_color(status))
+    style <- paste0(style, "background-color: ", col2css(status), ";")
   if (striped) barCl <- paste0(barCl, " progress-bar-striped")
   if (animated) barCl <- paste0(barCl, " progress-bar-animated")
   
@@ -611,7 +614,7 @@ bs4MultiProgressBar <-
     animated <- verify_compatible_lengths(value, animated)
     if (!is.null(label)) label <- verify_compatible_lengths(value, label)
     
-    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
+    if (!is.null(status)) lapply(status, function(x) validateColors(x))
     stopifnot(all(value >= min))
     stopifnot(all(value <= max))
     stopifnot(sum(value) <= max)
@@ -619,7 +622,12 @@ bs4MultiProgressBar <-
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+      style <- NULL
+      if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+      else if (status %in% validColorsPlus || is_hex_color(status))
+        style <- paste0(style, "background-color: ", col2css(status), ";")
+      
+      
       if (striped) barCl <- paste0(barCl, " progress-bar-striped")
       if (animated) barCl <- paste0(barCl, " progress-bar-animated")
       
