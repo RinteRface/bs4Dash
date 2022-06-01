@@ -221,7 +221,7 @@ is_rgba_color <- function(color) {
   grepl("^rgba\\(", color)
 }
 validateColors <- function(color) {
-  if (color %in% validColorsPlus || is_hex_color(color) || is_rgb_color(color))
+  if (color %in% validColorsPlus || is_hex_color(color) || is_rgba_color(color))
     TRUE
   else
     stop("Invalid color: ", color, ". Valid colors are hex or rgba formatted or one of the following: ",
