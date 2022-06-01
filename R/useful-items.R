@@ -467,7 +467,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' 
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
-#' 
+#' @param id HTML ID. NULL by default
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
