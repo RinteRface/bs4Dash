@@ -614,7 +614,7 @@ bs4MultiProgressBar <-
     animated <- verify_compatible_lengths(value, animated)
     if (!is.null(label)) label <- verify_compatible_lengths(value, label)
     
-    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
+    if (!is.null(status)) lapply(status, function(x) validateColors(x))
     stopifnot(all(value >= min))
     stopifnot(all(value <= max))
     stopifnot(sum(value) <= max)
@@ -622,7 +622,12 @@ bs4MultiProgressBar <-
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+      style <- NULL
+      if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+      else if (status %in% validColorsPlus || is_hex_color(status))
+        style <- paste0(style, "background-color: ", col2css(status), ";")
+      
+        
       if (striped) barCl <- paste0(barCl, " progress-bar-striped")
       if (animated) barCl <- paste0(barCl, " progress-bar-animated")
       
@@ -632,7 +637,7 @@ bs4MultiProgressBar <-
         `aria-valuenow` = value, 
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
-        style = paste0(ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
+        style = paste0(style, ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
         if(!is.null(label)) label
       )
     }
