@@ -560,7 +560,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
                             animated = FALSE, status = "primary", size = NULL, 
                             label = NULL, id = NULL) {
   
-  if (!is.null(status)) validateStatusPlus(status)
+  if (!is.null(status)) validateColors(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
   
@@ -570,7 +570,10 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   
   # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+  style <- NULL
+  if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+  else if (status %in% validColorsPlus || is_hex_color(status))
+    style <- paste0(style, "background-color: ", col2css(status), ";")
   if (striped) barCl <- paste0(barCl, " progress-bar-striped")
   if (animated) barCl <- paste0(barCl, " progress-bar-animated")
   
@@ -582,7 +585,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     `aria-valuenow` = value, 
     `aria-valuemin` = min, 
     `aria-valuemax` = max, 
-    style = paste0(ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
+    style = paste0(style, ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
     if(!is.null(label)) label
   )
   
