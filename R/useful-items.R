@@ -549,7 +549,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @export
 bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
                             animated = FALSE, status = "primary", size = NULL, 
-                            label = NULL) {
+                            label = NULL, id = NULL) {
   
   if (!is.null(status)) validateStatusPlus(status)
   stopifnot(value >= min)
@@ -567,6 +567,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   
   # wrapper
   barTag <- shiny::tags$div(
+    id = id,
     class = barCl, 
     role = "progressbar", 
     `aria-valuenow` = value, 
@@ -598,7 +599,8 @@ bs4MultiProgressBar <-
     animated = FALSE,
     status = "primary",
     size = NULL,
-    label = NULL
+    label = NULL,
+    id = NULL
   ) {
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
@@ -649,7 +651,7 @@ bs4MultiProgressBar <-
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-    progressTag <- shiny::tags$div(class = progressCl)
+    progressTag <- shiny::tags$div(class = progressCl, id = id)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
