@@ -16,7 +16,8 @@ bs4ProgressBar(
   animated = FALSE,
   status = "primary",
   size = NULL,
-  label = NULL
+  label = NULL,
+  id = NULL
 )
 
 bs4MultiProgressBar(
@@ -28,7 +29,8 @@ bs4MultiProgressBar(
   animated = FALSE,
   status = "primary",
   size = NULL,
-  label = NULL
+  label = NULL,
+  id = NULL
 )
 
 progressBar(
@@ -40,7 +42,8 @@ progressBar(
   animated = FALSE,
   status = "primary",
   size = NULL,
-  label = NULL
+  label = NULL,
+  id = NULL
 )
 
 multiProgressBar(
@@ -52,7 +55,8 @@ multiProgressBar(
   animated = FALSE,
   status = "primary",
   size = NULL,
-  label = NULL
+  label = NULL,
+  id = NULL
 )
 }
 \arguments{
@@ -95,6 +99,8 @@ multiProgressBar(
 \item{size}{Progress bar size. NULL, "sm", "xs" or "xxs".}
 
 \item{label}{Progress label. NULL by default.}
+
+\item{id}{HTML ID. NULL by default}
 }
 \description{
 Create a Bootstrap 4 progress bar.
