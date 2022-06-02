@@ -7,7 +7,7 @@
 col2css(color, alpha = NULL)
 }
 \arguments{
-\item{color}{\code{chr} Color name, see \link[grDevices]{color}}
+\item{color}{\code{chr} Color name, see \link[grDevices]{colors}}
 
 \item{alpha}{\code{num} alpha value}
 }

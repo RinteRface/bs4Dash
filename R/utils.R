@@ -246,7 +246,7 @@ validateColors <- function(color) {
 
 #' Create a CSS rgba declaration for a color name
 #'
-#' @param color \code{chr} Color name, see \link[grDevices]{color}
+#' @param color \code{chr} Color name, see \link[grDevices]{colors}
 #' @param alpha \code{num} alpha value
 #'
 #' @return \code{chr} css `rgba()` formatted color
