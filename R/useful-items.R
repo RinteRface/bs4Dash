@@ -60,7 +60,7 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #' @title Bootstrap 4 Alert box
 #' 
 #' @param style \code{(character)} Inline style parameters to add
-#' @inherit bs4Dash::bs4Card params return
+#' @inherit bs4Card params
 #' @export
 
 bs4Alert <- function(..., status = "primary", style = NULL, id = NULL, width = 6) {
