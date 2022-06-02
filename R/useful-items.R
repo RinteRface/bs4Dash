@@ -468,13 +468,17 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
 #' @param id HTML ID. NULL by default
+#' @param values_cumulative \code{multiProgressBar} only. Whether \code{value} is comprised of cumulative  \code{TRUE} values or actual \code{FALSE} values. See details for examples.
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
 #'   If supplied, `striped`, `animated`, `status`, and `label` must be the
 #'   same length as `value` or length 1, in which case vector recycling is
-#'   used.
-#' 
+#'   used. The `values_cumulative` argument is described below:
+#'   \itemize{
+#'   \item{cumulative}{ values = c(10, 20, 30) is interpreted as a 10% width bar, a 20% width bar, and a 30% width bar for a total of 60%}
+#'   \item{actual}{ values = c(10, 20, 30) is interpreted as a 10% width bar, a 10% width bar, and a 10% width bar for a total of 30%. These values are scaled by \code{min} & \code{max} arguments.} 
+#' }
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -584,6 +588,18 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
 }
+# Scale values to a percentage/decimal by min & max
+val2pct <- function(val, min = 0, max = 100, include_min = TRUE, include_max = FALSE, as_percent = TRUE) {
+  .val <- sort(val)
+  if (include_min)
+    .val <- c(min, .val)
+  if (include_max)
+    .val <- c(.val, max)
+  out <- diff((.val - min) / (max - min))
+  if (as_percent)
+    out <- out * 100
+  out
+}
 
 #' @rdname progress
 #' @export
@@ -598,7 +614,8 @@ bs4MultiProgressBar <-
     status = "primary",
     size = NULL,
     label = NULL,
-    id = NULL
+    id = NULL,
+    values_cumulative = TRUE
   ) {
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
@@ -608,7 +625,14 @@ bs4MultiProgressBar <-
     if (!is.null(status)) lapply(status, function(x) validateColors(x))
     stopifnot(all(value >= min))
     stopifnot(all(value <= max))
-    stopifnot(sum(value) <= max)
+    if (!values_cumulative) {
+      .value <- val2pct(value, min = min, max = max)
+      stopifnot(sum(.value) <= 100)
+    } else {
+      .value <- value
+      stopifnot(sum(value) <= max)
+    }
+      
     
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
@@ -628,7 +652,7 @@ bs4MultiProgressBar <-
         `aria-valuenow` = value, 
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
-        style = paste0(style, ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
+        style = paste0(style, ifelse(vertical, "height: ", "width: "), value, "%"), 
         if(!is.null(label)) label
       )
     }
@@ -638,7 +662,7 @@ bs4MultiProgressBar <-
     for (i in seq_along(value)) {
       barSegs[[i]] <- 
         bar_segment(
-          value[[i]],
+          .value[[i]],
           striped[[i]],
           animated[[i]],
           status[[i]],
