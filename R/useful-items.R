@@ -661,7 +661,7 @@ bs4MultiProgressBar <-
         `aria-valuenow` = value, 
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
-        style = paste0(style, ifelse(vertical, "height: ", "width: "), value, "%;", ifelse(values_cumulative && vertical, "position: relative;", "")), 
+        style = paste0(style, ifelse(vertical, "height: ", "width: "), value, "%;", ifelse(vertical && values_cumulative, "position:relative;", "")), 
         if(!is.null(label)) label
       )
     }
