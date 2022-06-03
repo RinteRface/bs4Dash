@@ -666,6 +666,14 @@ bs4MultiProgressBar <-
       )
     }
     
+    if (vertical && values_cumulative) {
+      # the vertical bar has the divs rendered in order so it appears top down. This reverses the order so it appears bottom up as is more intuitive.
+      .value <- rev(.value)
+      status <- rev(status)
+      striped <- rev(striped)
+      animated <- rev(animated)
+      label <- rev(label)
+    }
     barSegs <- list()
     # progress bar segments
     for (i in seq_along(value)) {
