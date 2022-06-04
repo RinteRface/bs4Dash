@@ -2652,6 +2652,11 @@ bs4Sortable <- function(..., width = 12) {
 #' @param bordered Whether to display border between elements. FALSE by default.
 #' @param striped Whether to displayed striped in elements. FALSE by default.
 #' @param width Table width. 12 by default.
+#' @param header_attributes a named list of attributes for each
+#' header, which need to be the length of the number of columns
+#' in the data. For example, 
+#' `list(list(class = "col-3"), list(class = "col-5"))` 
+#' changes with width fo the column, or you can use `list(width="25%)`.
 #' 
 #' @examples
 #' if (interactive()) {
@@ -2717,7 +2722,8 @@ bs4Sortable <- function(..., width = 12) {
 #'
 #' @export
 bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE, 
-                     striped = FALSE, width = 12) {
+                     striped = FALSE, width = 12,
+                     header_attributes = NULL) {
   
   # handle theme
   tableCl <- "table"
@@ -2728,18 +2734,26 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
       !inherits(data, "data.frame")) {
     stop("data must be a dataframe, tibble or list")
   }
+  make_table_header = function(x, header_attributes = NULL) {
+    if (!is.null(header_attributes)) {
+      stopifnot(length(header_attributes) == length(x))
+    }
+    shiny::tags$thead(
+      shiny::tags$tr(
+        lapply(
+          seq_along(x), 
+          function(i) shiny::tags$th(x[[i]],
+                                     header_attributes[[i]])
+        ) 
+      )
+    )
+  }
   
   if (inherits(data, "data.frame")) {
     
     # column headers
-    tableHead <- shiny::tags$thead(
-      shiny::tags$tr(
-        lapply(
-          seq_along(colnames(data)), 
-          function(i) shiny::tags$th(colnames(data)[[i]])
-        ) 
-      )
-    )
+    tableHead <- make_table_header(colnames(data),
+                                   header_attributes = header_attributes)
     
     table <- lapply(seq_len(nrow(data)), function(i) {
       bs4TableItems(
@@ -2754,14 +2768,8 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
   } else if (inherits(data, "list")) {
     
     # column headers
-    tableHead <- shiny::tags$thead(
-      shiny::tags$tr(
-        lapply(
-          seq_along(names(data[[1]])), 
-          function(i) shiny::tags$th(names(data[[1]])[[i]])
-        ) 
-      )
-    )
+    tableHead <- make_table_header(names(data[[1]]),
+                                   header_attributes = header_attributes)
     
     table <- lapply(seq_along(data), function(i) {
       bs4TableItems(
