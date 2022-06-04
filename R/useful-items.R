@@ -317,7 +317,7 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
     navs <- lapply(seq_along(items), FUN = function(i) {
       # if we found an active item, all other active items are ignored.
       active <- if (found_active) {
-         FALSE
+        FALSE
       } else {
         sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
       }
@@ -363,7 +363,7 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
       # previous
       shiny::tags$a(
         class = "carousel-control-prev",
-       `data-target` = paste0("#", id),
+        `data-target` = paste0("#", id),
         href = "#",
         role = "button",
         `data-slide` = "prev",
@@ -1484,7 +1484,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
   if (active && disabled) {
     stop("active and disabled cannot be TRUE at the same time!")
   }
-
+  
   list(
     body = ...,
     title = title,
@@ -2681,6 +2681,12 @@ bs4Sortable <- function(..., width = 12) {
 #'   server = function(input, output) { }
 #'  )
 #'  
+#'  
+#'  header_attributes = rep(list(list(width = "20%")), 5)
+#'  header_attributes[2] = list(
+#'  c(header_attributes[[2]],
+#'  list(style="background-color:#FF0000")
+#'  ))
 #'  # with shiny tags as input
 #'  shinyApp(
 #'   ui = dashboardPage(
@@ -2708,7 +2714,8 @@ bs4Sortable <- function(..., width = 12) {
 #'             )
 #'           ),
 #'           list("$2,500 USD", "NA", "NA", "test", "NA")
-#'         )
+#'         ),
+#'         header_attributes = header_attributes
 #'       )
 #'     ), 
 #'     footer = dashboardFooter()
@@ -2737,13 +2744,17 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
   make_table_header = function(x, header_attributes = NULL) {
     if (!is.null(header_attributes)) {
       stopifnot(length(header_attributes) == length(x))
+    } else {
+      header_attributes = list()
     }
     shiny::tags$thead(
       shiny::tags$tr(
         lapply(
           seq_along(x), 
-          function(i) shiny::tags$th(x[[i]],
-                                     header_attributes[[i]])
+          function(i) {
+            args = append(x[[i]], header_attributes[[i]])
+            do.call(shiny::tags$th, args = args)
+          }
         ) 
       )
     )
