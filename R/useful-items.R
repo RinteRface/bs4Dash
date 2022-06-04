@@ -2656,7 +2656,7 @@ bs4Sortable <- function(..., width = 12) {
 #' header, which need to be the length of the number of columns
 #' in the data. For example, 
 #' `list(list(class = "col-3"), list(class = "col-5"))` 
-#' changes with width fo the column, or you can use `list(width="25%)`.
+#' changes with width fo the column, or you can use `list(width="25\%)`.
 #' 
 #' @examples
 #' if (interactive()) {
