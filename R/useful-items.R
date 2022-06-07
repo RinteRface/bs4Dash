@@ -2744,9 +2744,7 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
   make_table_header = function(x, header_attributes = NULL) {
     if (!is.null(header_attributes)) {
       stopifnot(length(header_attributes) == length(x))
-    } else {
-      header_attributes = list()
-    }
+    } 
     shiny::tags$thead(
       shiny::tags$tr(
         lapply(
