@@ -802,7 +802,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
         shiny::icon("arrow-circle-right")
       )
     } else {
-      shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
+      NULL
+      # shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
     }
   }
 
