@@ -2742,17 +2742,19 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
     stop("data must be a dataframe, tibble or list")
   }
   make_table_header = function(x, header_attributes = NULL) {
+    if (is.null(header_attributes)) {
+      header_attributes = lapply(1:length(x), function(r) NULL)
+    }
     if (!is.null(header_attributes)) {
       stopifnot(length(header_attributes) == length(x))
-    } else {
-      header_attributes = list()
-    }
+    } 
     shiny::tags$thead(
       shiny::tags$tr(
         lapply(
           seq_along(x), 
           function(i) {
             args = append(x[[i]], header_attributes[[i]])
+            args = as.list(args)
             do.call(shiny::tags$th, args = args)
           }
         ) 
