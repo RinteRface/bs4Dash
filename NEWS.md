@@ -3,6 +3,7 @@
 Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting. 
 - Fix #296: Documentation issue for valueBox and infoBox in the render function section.
 Thanks @corderoortiz for reporting.
+- Fix #293: Navbar stays keeps white background, even when dark mode is selected/toggled. Related to a previous PR. Thanks to @JJohnson-DA for reporting.
 
 # bs4Dash 2.1.0
 
