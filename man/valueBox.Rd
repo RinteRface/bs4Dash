@@ -118,36 +118,38 @@ if (interactive()) {
   library(bs4Dash)
 
   shiny::shinyApp(
-    ui = bs4DashPage(
-      header = bs4DashNavbar(),
-      sidebar = bs4DashSidebar(),
-      controlbar = bs4DashControlbar(),
-      footer = bs4DashFooter(),
+    ui = dashboardPage(
+      header = dashboardHeader(),
+      sidebar = dashboardSidebar(),
+      controlbar = dashboardControlbar(),
+      footer = dashboardFooter(),
       title = "test",
-      body = bs4DashBody(
+      body = dashboardBody(
         fluidRow(
-          bs4ValueBoxOutput("vbox"),
-          bs4InfoBoxOutput("ibox")
+          valueBoxOutput("vbox"),
+          infoBoxOutput("ibox")
         )
       )
     ),
     server = function(input, output) {
-      output$vbox <- renderbs4ValueBox({
-        bs4ValueBox(
+      output$vbox <- renderValueBox({
+        valueBox(
           value = 150,
           subtitle = "New orders",
-          status = "primary",
-          icon = "shopping-cart",
+          color = "primary",
+          icon = icon("shopping-cart"),
           href = "#"
         )
       })
 
-      output$ibox <- renderbs4InfoBox({
-        bs4InfoBox(
+      output$ibox <- renderInfoBox({
+        infoBox(
           title = "Comments",
-          gradientColor = "success",
+          fill = TRUE,
+          gradient = TRUE,
+          color = "success",
           value = 41410,
-          icon = "comments"
+          icon = icon("comments")
         )
       })
     }
