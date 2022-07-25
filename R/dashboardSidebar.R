@@ -404,7 +404,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           target = if (!is.null(href)) {
             if (newTab) "_blank"
           },
-          `data-toggle` = "tab",
+          `data-toggle` = if (is.null(href)) "tab",
           `data-value` = if (!is.null(tabName)) tabName,
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
@@ -507,7 +507,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       target = if (!is.null(href)) {
         if (newTab) "_blank"
       },
-      `data-toggle` = "tab",
+      `data-toggle` = if (is.null(href)) "tab",
       `data-value` = tabName,
       # below this is needed by leftSidebar.js
       `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
