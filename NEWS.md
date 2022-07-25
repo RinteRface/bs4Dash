@@ -1,3 +1,7 @@
+# bs4Dash 2.2.0.9000 (development version)
+- Fix #297: tabsetPanel renders below the list of tabPanels when vertical = TRUE. 
+Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting. 
+
 # bs4Dash 2.1.0
 
 ## Breaking change

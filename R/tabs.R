@@ -243,12 +243,12 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     tabsetContent <- temp_tabset$children[[2]]
     
     if (side == "left") {
-      shiny::tagList(
+      shiny::fluidRow(
         shiny::column(width = 2, tabsetMenu),
         shiny::column(width = 10, tabsetContent)
       )
     } else {
-      shiny::tagList(
+      shiny::fluidRow(
         shiny::column(width = 10, tabsetContent),
         shiny::column(width = 2, tabsetMenu)
       )

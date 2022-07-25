@@ -458,23 +458,21 @@ tab_cards_tab <- tabItem(
   ),
   br(), br(),
   # Vertical panels: TO DO
-  fluidRow(
-    tabsetPanel(
-      id = "tabsetpanel3",
-      selected = "Tab 2",
-      vertical = TRUE,
-      tabPanel(
-        "Tab 1",
-        "Content 1"
-      ),
-      tabPanel(
-        "Tab 2",
-        "Content 2"
-      ),
-      tabPanel(
-        "Tab 3",
-        "Content 3"
-      )
+  tabsetPanel(
+    id = "tabsetpanel3",
+    selected = "Tab 2",
+    vertical = TRUE,
+    tabPanel(
+      "Tab 1",
+      "Content 1"
+    ),
+    tabPanel(
+      "Tab 2",
+      "Content 2"
+    ),
+    tabPanel(
+      "Tab 3",
+      "Content 3"
     )
   )
 )
