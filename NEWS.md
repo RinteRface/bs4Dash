@@ -5,6 +5,8 @@ Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting.
 Thanks @corderoortiz for reporting.
 - Fix #293: Navbar stays keeps white background, even when dark mode is selected/toggled. Related to a previous PR. Thanks to @JJohnson-DA for reporting.
 - Fix #290: don't set `data-toggle="tab"` when href is not NULL. Thanks @veer0318 for reporting.
+- Fix #243: TabsetPanel id's not properly generated when inserting tabs to non-empty tabset.
+Thanks @DarkSideOfTheMat for reporting and giving hints.
 
 # bs4Dash 2.1.0
 

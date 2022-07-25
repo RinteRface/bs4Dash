@@ -216,12 +216,10 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     if (item$attribs$class == "nav-item dropdown") {
       item$children[[2]]$children[[1]] <- lapply(item$children[[2]]$children[[1]], function(subitem) {
         subitem$attribs$`data-target` <- subitem$attribs$href
-        subitem$attribs$href <- "#"
         subitem
       })
     } else {
       item$children[[1]]$attribs$`data-target` <- item$children[[1]]$attribs$href
-      item$children[[1]]$attribs$href <- "#"
     }
     item
   })
