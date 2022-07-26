@@ -3131,3 +3131,287 @@ bs4Quote <- function(..., color) {
 getAdminLTEColors <- function() {
   c(validStatuses, validNuances, validColors)
 }
+
+#' Bootstrap 4 pagination widget
+#'
+#' See \url{https://getbootstrap.com/docs/4.0/components/pagination/}.
+#'
+#' @param ... Slot for \link{paginationItem}.
+#' @param id Unique widget id. For programmatic update.
+#' See \link{updatePagination}.
+#' @param selected Which element to select at start.
+#' @param align Alignment.
+#' @param size Buttons size.
+#' @param previousBtn Previous button text.
+#' @param nextBtn Next button text.
+#' @param .list Programmatically generated \link{paginationItem}.
+#' 
+#' @rdname pagination
+#'
+#' @return An HTML pagination container
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#' 
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
+#'      pagination(
+#'        paginationItem("page1", box(title = "This is a box!")),
+#'        paginationItem("page2", "This is page 2", disabled = TRUE),
+#'        paginationItem("page3", "This is page 3", disabled = TRUE),
+#'        paginationItem(
+#'          "page4",
+#'          sliderInput(
+#'            "obs",
+#'            "Number of observations:",
+#'            min = 0,
+#'            max = 1000,
+#'            value = 500
+#'          ),
+#'          plotOutput("distPlot"),
+#'          icon = icon("cog")
+#'        )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output, session) {
+#'      output$distPlot <- renderPlot({
+#'        hist(rnorm(input$obs))
+#'      })
+#'    }
+#'  )
+#' }
+pagination <- function(..., id = NULL, selected = NULL,
+                       align = c("center", "left", "right"),
+                       size = c("md", "sm", "lg"),
+                       previousBtn = "\u00ab", nextBtn = "\u00bb",
+                       .list = NULL) {
+  align <- match.arg(align)
+  size <- match.arg(size)
+  # Build temporary tag structure
+  temp_tag <- bs4Dash::tabsetPanel(
+    ...,
+    id = id,
+    selected = selected,
+    type = "tabs",
+    vertical = FALSE,
+    side = "left",
+    .list = .list
+  )
+  
+  # handle style
+  pagination_cl <- "pagination"
+  if (align %in% c("center", "right")) {
+    if (align == "right") align <- "end"
+    pagination_cl <- paste(
+      pagination_cl,
+      sprintf("justify-content-%s", align)
+    )
+  }
+  if (size %in% c("sm", "lg")) {
+    pagination_cl <- paste(
+      pagination_cl,
+      sprintf("pagination-%s", size)
+    )
+  }
+  
+  # Start and end navigation tags
+  pagination_start <- tags$li(
+    class = "page-item",
+    tags$a(
+      class = "page-link pagination-previous",
+      href = "#",
+      tabindex = "-1",
+      tags$span(`aria-hidden`="true", previousBtn),
+      tags$span(class = "sr-only", "Previous")
+    )
+  )
+  
+  pagination_end <- tags$li(
+    class = "page-item",
+    tags$a(
+      class = "page-link pagination-next",
+      href = "#",
+      tags$span(`aria-hidden`="true", nextBtn),
+      tags$span(class = "sr-only", "Next")
+    )
+  )
+  
+  # Modify tag on the fly to correspond to Bootstrap 4 pagination
+  temp_tag <- htmltools::tagQuery(temp_tag)$
+    find("ul")$ # remove old tabs class and add pagination class
+    addAttrs("style" = "margin-bottom: 16px")$
+    removeClass("nav-tabs")$ # we still need nav to behave like tabs
+    addClass(pagination_cl)$
+    resetSelected()$
+    find("li")$ # replace li class
+    removeClass("nav-item")$
+    addClass("page-item")$
+    resetSelected()$
+    find("a")$ # replace a class
+    removeClass("nav-link")$
+    addClass("page-link")$
+    resetSelected()$
+    find("a.active")$ # move active class to parent li
+    removeClass("active")$
+    parent()$
+    addClass("active")$
+    resetSelected()$
+    find("ul.pagination")$ # insert navigation
+    prepend(pagination_start)$
+    append(pagination_end)$
+    allTags()
+  
+  # Handle disabled tags
+  disabled_items_idx <- numeric(0)
+  
+  htmltools::tagQuery(temp_tag)$
+    find(".tab-pane")$
+    each(function(x, i) {
+      if (x$attribs$`data-disabled` == "true") {
+        disabled_items_idx <<- c(disabled_items_idx, i)
+      }
+    })
+  
+  temp_tag <- htmltools::tagQuery(temp_tag)$
+    find("li")$
+    each(function(x, i) {
+      if (i %in% (disabled_items_idx + 1)) {
+        x$attribs$class <- paste(x$attribs$class, "disabled")
+        # recommended by Bootstrap 4 doc
+        x$attribs$tabindex <- "-1"
+      }
+    })$
+    allTags()
+  
+  # Wrap ul by tags$nav
+  temp_tag$children[[1]] <- tags$nav(
+    `aria-label` = "Navigation stepper",
+    temp_tag$children[[1]]
+  )
+  
+  temp_tag
+}
+
+#' Bootstrap 4 pagination item
+#'
+#' Insert inside \link{pagination}.
+#'
+#' @inheritParams shiny::tabPanel
+#' @param disabled Whether to disable the item. Default to FALSE.
+#' 
+#' @rdname pagination
+#'
+#' @return An HTML tag.
+#' @export
+paginationItem <- function (title, ..., value = title,
+                            icon = NULL, disabled = FALSE) {
+  shiny::tabPanel(
+    title = title,
+    ...,
+    value = value,
+    icon = icon,
+    `data-disabled` = tolower(disabled)
+  )
+}
+
+#' Update pagination widget from the server
+#'
+#' @inheritParams pagination
+#' @param session Shiny session object.
+#' 
+#' @rdname pagination
+#'
+#' @return Send a message from R to JS so as to update
+#' the pagination widget on the client.
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#' 
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'     header = dashboardHeader(), 
+#'     sidebar = dashboardSidebar(),
+#'     body = dashboardBody(
+#'      fluidRow(
+#'        actionButton("update", "Select page 4", class = "mx-2"),
+#'        actionButton("disable", "Disable page 1", class = "mx-2"),
+#'        actionButton("enable", "Enable page 1", class = "mx-2"),
+#'        textOutput("selected_page")
+#'      ),
+#'      br(),
+#'      pagination(
+#'        id = "mypagination",
+#'        paginationItem("page1", box(title = "This is a box!")),
+#'        paginationItem("page2", "This is page 2", disabled = TRUE),
+#'        paginationItem("page3", "This is page 3"),
+#'        paginationItem(
+#'          "page4",
+#'          sliderInput(
+#'            "obs",
+#'            "Number of observations:",
+#'            min = 0,
+#'            max = 1000,
+#'            value = 500
+#'          ),
+#'          plotOutput("distPlot"),
+#'          icon = icon("cog")
+#'        )
+#'      )
+#'     )
+#'    ),
+#'    server = function(input, output, session) {
+#'     
+#'      observeEvent(input$update,{
+#'        updatePagination("mypagination", selected = "page4")
+#'      })
+#'     
+#'      observeEvent(input$disable,{
+#'        updatePagination("mypagination", disabled = "page1")
+#'      })
+#'     
+#'      observeEvent(input$enable,{
+#'        updatePagination("mypagination", selected = "page1")
+#'      })
+#'     
+#'      output$selected_page <- renderText({
+#'        sprintf("Currently selected page: %s", input$mypagination)
+#'      })
+#'     
+#'      output$distPlot <- renderPlot({
+#'        hist(rnorm(input$obs))
+#'      })
+#'    }
+#'  )
+#' }
+updatePagination <- function(id, selected = NULL,
+                             disabled = NULL,
+                             session = shiny::getDefaultReactiveDomain()) {
+  
+  if (length(selected) > 1) {
+    stop("Can't select more than one element ...")
+  }
+  # make sure we don't have selected and disabled item
+  # with the same value ...
+  common_elements <- intersect(selected, disabled)
+  if (length(common_elements) > 0) {
+    stop("A selected item cannot be disabled ...")
+  }
+  
+  session$sendInputMessage(
+    id,
+    message = dropNulls(
+      list(
+        selected = selected,
+        disabled = disabled
+      )
+    )
+  )
+}

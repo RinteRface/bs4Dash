@@ -1,12 +1,17 @@
 # bs4Dash 2.2.0.9000 (development version)
-- Fix #297: tabsetPanel renders below the list of tabPanels when vertical = TRUE. 
+
+## New features
+- New `pagination()` and `updatePagination()`. Bootstrap 4 implementation of
+[pagination](https://getbootstrap.com/docs/4.0/components/pagination/).
+
+## Bug fixes
+- Fix #297: `tabsetPanel()` renders below the list of `tabPanels` when vertical = TRUE. 
 Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting. 
-- Fix #296: Documentation issue for valueBox and infoBox in the render function section.
+- Fix #296: Documentation issue for `valueBox()` and `infoBox()` in the render function section.
 Thanks @corderoortiz for reporting.
 - Fix #293: Navbar stays keeps white background, even when dark mode is selected/toggled. Related to a previous PR. Thanks to @JJohnson-DA for reporting.
-- Fix #290: don't set `data-toggle="tab"` when href is not NULL. Thanks @veer0318 for reporting.
-- Fix #243: TabsetPanel id's not properly generated when inserting tabs to non-empty tabset.
-Thanks @DarkSideOfTheMat for reporting and giving hints.
+- Fix #290: don't set `data-toggle="tab"` when href is not NULL in `tabsetPanel()`. Thanks @veer0318 for reporting.
+- Fix #243: `tabsetPanel()` id's not properly generated when inserting tabs to non-empty tabset. Thanks @DarkSideOfTheMat for reporting and giving hints.
 
 # bs4Dash 2.1.0
 
