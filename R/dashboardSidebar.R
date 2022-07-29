@@ -649,12 +649,12 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'             menuSubItem(
 #'               text = "Item 3",
 #'               tabName = "tab3",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             ),
 #'             menuSubItem(
 #'               text = "Item 4",
 #'               tabName = "tab4",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             )
 #'           ),
 #'           menuItem(
@@ -664,12 +664,12 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'             menuSubItem(
 #'               text = "Item 5",
 #'               tabName = "tab5",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             ),
 #'             menuSubItem(
 #'               text = "Item 6",
 #'               tabName = "tab6",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             )
 #'           ),
 #'           menuItem(

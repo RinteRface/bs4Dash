@@ -931,7 +931,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #'   )
 #' }
 #' @export
-bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("bar-chart"),
+bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("chart-bar"),
                        color = NULL, width = 4, href = NULL, fill = FALSE, gradient = FALSE,
                        elevation = NULL, iconElevation = NULL, tabName = NULL) {
 

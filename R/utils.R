@@ -327,7 +327,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
         type = "button",
         class = btnClass,
         `data-card-widget` = "maximize",
-        shiny::icon("expand")
+        shiny::icon("up-right-and-down-left-from-center")
       )
     }
 
