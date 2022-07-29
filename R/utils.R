@@ -317,7 +317,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
         class = btnClass, 
         `data-card-widget` = "remove", 
         type = "button",
-        shiny::icon("times")
+        shiny::icon("xmark")
       )
     } 
 
