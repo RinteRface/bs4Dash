@@ -92,7 +92,7 @@ test_that("icon elevation", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox",
     value = 4,
-    icon = shiny::icon("cogs"),
+    icon = shiny::icon("gears"),
     iconElevation = 3
   )
   infoBoxIconCl <- getCardChildren(infoBoxTag)[[1]]$attribs$class
@@ -104,7 +104,7 @@ test_that("tabName", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = shiny::icon("cogs")
+    icon = shiny::icon("gears")
   )
   infoBoxId <- getCardChildren(infoBoxTag)[[1]]$attribs$id
   expect_true(is.null(infoBoxId))
@@ -112,7 +112,7 @@ test_that("tabName", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox",
     value = 4,
-    icon = shiny::icon("cogs"),
+    icon = shiny::icon("gears"),
     tabName = "pouic"
   )
   infoBoxId <- getCardChildren(infoBoxTag)[[1]]$attribs$id
@@ -124,7 +124,7 @@ test_that("body structure", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = shiny::icon("cogs")
+    icon = shiny::icon("gears")
   )
   infoBoxBodyChildren <- getCardBodyChildren(infoBoxTag)
   expect_length(infoBoxBodyChildren, 2)
@@ -132,7 +132,7 @@ test_that("body structure", {
   infoBoxTag <- bs4InfoBox(
     title = "Infobox", 
     value = 4,
-    icon = shiny::icon("cogs"),
+    icon = shiny::icon("gears"),
     subtitle = shiny::p("Extra element")
   )
   infoBoxBodyChildren <- getCardBodyChildren(infoBoxTag)

@@ -17,7 +17,7 @@ bs4InfoBox(
   title,
   value = NULL,
   subtitle = NULL,
-  icon = shiny::icon("bar-chart"),
+  icon = shiny::icon("chart-bar"),
   color = NULL,
   width = 4,
   href = NULL,
@@ -32,7 +32,7 @@ infoBox(
   title,
   value = NULL,
   subtitle = NULL,
-  icon = shiny::icon("bar-chart"),
+  icon = shiny::icon("chart-bar"),
   color = NULL,
   width = 4,
   href = NULL,
@@ -48,7 +48,7 @@ infoBoxOutput(outputId, width = 4)
 renderInfoBox(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
-\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:reexports]{HTML()}},
+\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:HTML]{HTML()}},
 or a list of such objects.}
 
 \item{env}{The parent environment for the reactive expression. By default,
