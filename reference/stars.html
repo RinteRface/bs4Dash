@@ -92,17 +92,21 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bs4Stars</span><span class="op">(</span><span class="va">value</span>, max <span class="op">=</span> <span class="fl">5</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span>
-
-<span class="fu">starBlock</span><span class="op">(</span><span class="va">value</span>, max <span class="op">=</span> <span class="fl">5</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bs4Stars</span><span class="op">(</span><span class="va">value</span>, max <span class="op">=</span> <span class="fl">5</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">starBlock</span><span class="op">(</span><span class="va">value</span>, max <span class="op">=</span> <span class="fl">5</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>value</dt>
 <dd><p>Current value. Should be positive and lower or equal to max.</p></dd>
+
+
 <dt>max</dt>
 <dd><p>Maximum number of stars by block.</p></dd>
+
+
 <dt>color</dt>
 <dd><p>Star color. Valid colors are listed below:</p><ul><li><p><code>primary</code>: <span style="width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;"></span>#007bff
 .</p></li>
@@ -145,6 +149,7 @@
 <li><p><code>olive</code>: <span style="width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;"></span>#3d9970
 .</p></li>
 </ul></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -153,29 +158,29 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
-<span class="r-in">     <span class="fu"><a href="box.html">box</a></span><span class="op">(</span></span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"Star example"</span>,</span>
-<span class="r-in">      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">5</span>, color <span class="op">=</span> <span class="st">"fuchsia"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">1</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span></span>
-<span class="r-in">     <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    title <span class="op">=</span> <span class="st">"starBlock"</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="box.html">box</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"Star example"</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">5</span>, color <span class="op">=</span> <span class="st">"fuchsia"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">1</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">starBlock</span><span class="op">(</span><span class="fl">3</span>, color <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>     <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"starBlock"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -190,7 +195,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

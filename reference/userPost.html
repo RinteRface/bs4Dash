@@ -96,37 +96,50 @@ userPostTagItem creates a user post tool item"><meta property="og:image" content
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">userPost</span><span class="op">(</span>
-  <span class="va">...</span>,
-  id <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">image</span>,
-  <span class="va">author</span>,
-  description <span class="op">=</span> <span class="cn">NULL</span>,
-  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,
-  collapsed <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-
-<span class="fu">userPostTagItems</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
-
-<span class="fu">userPostTagItem</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">userPost</span><span class="op">(</span></span>
+<span>  <span class="va">...</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">image</span>,</span>
+<span>  <span class="va">author</span>,</span>
+<span>  description <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  collapsed <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">userPostTagItems</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">userPostTagItem</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>Tool content such as label, button, ...</p></dd>
+
+
 <dt>id</dt>
 <dd><p>Unique id of the post.</p></dd>
+
+
 <dt>image</dt>
 <dd><p>Profile image, if any.</p></dd>
+
+
 <dt>author</dt>
 <dd><p>Post author.</p></dd>
+
+
 <dt>description</dt>
 <dd><p>Post description.</p></dd>
+
+
 <dt>collapsible</dt>
 <dd><p>If TRUE, display a button in the upper right that allows the user to collapse the comment.</p></dd>
+
+
 <dt>collapsed</dt>
 <dd><p>Whether the comment is collapsed when the application starts, FALSE by default.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -148,52 +161,52 @@ userPostTagItem creates a user post tool item"><meta property="og:image" content
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
-<span class="r-in">     <span class="fu"><a href="box.html">box</a></span><span class="op">(</span></span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"Box with user comment"</span>,</span>
-<span class="r-in">      status <span class="op">=</span> <span class="st">"primary"</span>,</span>
-<span class="r-in">      <span class="fu">userPost</span><span class="op">(</span></span>
-<span class="r-in">       id <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">       image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span>
-<span class="r-in">       author <span class="op">=</span> <span class="st">"Jonathan Burke Jr."</span>,</span>
-<span class="r-in">       description <span class="op">=</span> <span class="st">"Shared publicly - 7:30 PM today"</span>,</span>
-<span class="r-in">       <span class="st">"Lorem ipsum represents a long-held tradition for designers, </span>
-<span class="r-in">       typographers and the like. Some people hate it and argue for </span>
-<span class="r-in">       its demise, but others ignore the hate as they create awesome </span>
-<span class="r-in">       tools to help create filler text for everyone from bacon </span>
-<span class="r-in">       lovers to Charlie Sheen fans."</span>,</span>
-<span class="r-in">       collapsible <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">       <span class="fu">userPostTagItems</span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 1"</span>, color <span class="op">=</span> <span class="st">"info"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 2"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span class="r-in">       <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">userPost</span><span class="op">(</span></span>
-<span class="r-in">       id <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">       image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg"</span>,</span>
-<span class="r-in">       author <span class="op">=</span> <span class="st">"Adam Jones"</span>,</span>
-<span class="r-in">       <span class="fu"><a href="userPostMedia.html">userPostMedia</a></span><span class="op">(</span>image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"</span><span class="op">)</span>,</span>
-<span class="r-in">       <span class="fu">userPostTagItems</span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 1"</span>, color <span class="op">=</span> <span class="st">"success"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 2"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span class="r-in">       <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">     <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    title <span class="op">=</span> <span class="st">"userPost"</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="box.html">box</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"Box with user comment"</span>,</span></span>
+<span class="r-in"><span>      status <span class="op">=</span> <span class="st">"primary"</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">userPost</span><span class="op">(</span></span></span>
+<span class="r-in"><span>       id <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>       image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg"</span>,</span></span>
+<span class="r-in"><span>       author <span class="op">=</span> <span class="st">"Jonathan Burke Jr."</span>,</span></span>
+<span class="r-in"><span>       description <span class="op">=</span> <span class="st">"Shared publicly - 7:30 PM today"</span>,</span></span>
+<span class="r-in"><span>       <span class="st">"Lorem ipsum represents a long-held tradition for designers, </span></span></span>
+<span class="r-in"><span><span class="st">       typographers and the like. Some people hate it and argue for </span></span></span>
+<span class="r-in"><span><span class="st">       its demise, but others ignore the hate as they create awesome </span></span></span>
+<span class="r-in"><span><span class="st">       tools to help create filler text for everyone from bacon </span></span></span>
+<span class="r-in"><span><span class="st">       lovers to Charlie Sheen fans."</span>,</span></span>
+<span class="r-in"><span>       collapsible <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>       <span class="fu">userPostTagItems</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 1"</span>, color <span class="op">=</span> <span class="st">"info"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 2"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>       <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">userPost</span><span class="op">(</span></span></span>
+<span class="r-in"><span>       id <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>       image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg"</span>,</span></span>
+<span class="r-in"><span>       author <span class="op">=</span> <span class="st">"Adam Jones"</span>,</span></span>
+<span class="r-in"><span>       <span class="fu"><a href="userPostMedia.html">userPostMedia</a></span><span class="op">(</span>image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       <span class="fu">userPostTagItems</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 1"</span>, color <span class="op">=</span> <span class="st">"success"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">userPostTagItem</span><span class="op">(</span><span class="fu"><a href="badge.html">dashboardBadge</a></span><span class="op">(</span><span class="st">"item 2"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>, side <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>       <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>     <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"userPost"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -208,7 +221,7 @@ userPostTagItem creates a user post tool item"><meta property="og:image" content
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

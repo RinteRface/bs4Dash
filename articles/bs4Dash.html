@@ -119,7 +119,7 @@
       <h1 data-toc-skip>bs4Dash</h1>
                         <h4 data-toc-skip class="author">David Granjon</h4>
             
-            <h4 data-toc-skip class="date">09 May, 2022</h4>
+            <h4 data-toc-skip class="date">19 August, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/HEAD/vignettes/bs4Dash.Rmd" class="external-link"><code>vignettes/bs4Dash.Rmd</code></a></small>
       <div class="hidden name"><code>bs4Dash.Rmd</code></div>
@@ -276,30 +276,30 @@
 </h2>
 <p>Below is a simple app you may build with <a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a>. Interestingly, you’ll be able to notice the scroll to top button feature if you scroll to the bottom (bottom-right corner), as well as the live theme switcher in the navigation bar that goes from light to dark. This new feature is exclusive to <a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>
-    ui <span class="op">=</span> <span class="fu"><a href="../reference/dashboardPage.html">dashboardPage</a></span><span class="op">(</span>
-        header <span class="op">=</span> <span class="fu"><a href="../reference/dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span>
-            title <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBrand.html">dashboardBrand</a></span><span class="op">(</span>
-                title <span class="op">=</span> <span class="st">"My dashboard"</span>,
-                color <span class="op">=</span> <span class="st">"primary"</span>,
-                href <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3"</span>,
-                image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"</span>
-            <span class="op">)</span>
-        <span class="op">)</span>,
-        sidebar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,
-        body <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBody.html">dashboardBody</a></span><span class="op">(</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="../reference/getAdminLTEColors.html">getAdminLTEColors</a></span><span class="op">(</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">color</span><span class="op">)</span> <span class="op">{</span>
-                <span class="fu"><a href="../reference/box.html">box</a></span><span class="op">(</span>status <span class="op">=</span> <span class="va">color</span><span class="op">)</span>
-            <span class="op">}</span><span class="op">)</span>
-        <span class="op">)</span>,
-        controlbar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,
-        title <span class="op">=</span> <span class="st">"DashboardPage"</span>
-    <span class="op">)</span>,
-    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
+<span>    ui <span class="op">=</span> <span class="fu"><a href="../reference/dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
+<span>        header <span class="op">=</span> <span class="fu"><a href="../reference/dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span></span>
+<span>            title <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBrand.html">dashboardBrand</a></span><span class="op">(</span></span>
+<span>                title <span class="op">=</span> <span class="st">"My dashboard"</span>,</span>
+<span>                color <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>                href <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3"</span>,</span>
+<span>                image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"</span></span>
+<span>            <span class="op">)</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        sidebar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        body <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="../reference/getAdminLTEColors.html">getAdminLTEColors</a></span><span class="op">(</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">color</span><span class="op">)</span> <span class="op">{</span></span>
+<span>                <span class="fu"><a href="../reference/box.html">box</a></span><span class="op">(</span>status <span class="op">=</span> <span class="va">color</span><span class="op">)</span></span>
+<span>            <span class="op">}</span><span class="op">)</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        controlbar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        title <span class="op">=</span> <span class="st">"DashboardPage"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <link rel="stylesheet" href="/Users/runner/work/_temp/Library/bs4Dash/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
 <div class="marvel-device ipad black">
 <div class="camera"></div>
@@ -328,7 +328,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

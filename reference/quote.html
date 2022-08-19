@@ -92,15 +92,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bs4Quote</span><span class="op">(</span><span class="va">...</span>, <span class="va">color</span><span class="op">)</span>
-
-<span class="fu">blockQuote</span><span class="op">(</span><span class="va">...</span>, <span class="va">color</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bs4Quote</span><span class="op">(</span><span class="va">...</span>, <span class="va">color</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">blockQuote</span><span class="op">(</span><span class="va">...</span>, <span class="va">color</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>Content.</p></dd>
+
+
 <dt>color</dt>
 <dd><p>Block color.  Valid colors are defined as follows:</p><ul><li><p><code>primary</code>: <span style="width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;"></span>#007bff
 .</p></li>
@@ -143,6 +145,7 @@
 <li><p><code>olive</code>: <span style="width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;"></span>#3d9970
 .</p></li>
 </ul></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -151,31 +154,31 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
-<span class="r-in">    header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span class="r-in">    sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
-<span class="r-in">     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"indigo"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"teal"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"fuchsia"</span><span class="op">)</span></span>
-<span class="r-in">     <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>, </span>
-<span class="r-in">    footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>     <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"indigo"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"teal"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">blockQuote</span><span class="op">(</span><span class="st">"Blablabla"</span>, color <span class="op">=</span> <span class="st">"fuchsia"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>     <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>, </span></span>
+<span class="r-in"><span>    footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -190,7 +193,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

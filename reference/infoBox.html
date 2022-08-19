@@ -92,43 +92,43 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">renderbs4InfoBox</span><span class="op">(</span><span class="va">expr</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, quoted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">bs4InfoBoxOutput</span><span class="op">(</span><span class="va">outputId</span>, width <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="fu">bs4InfoBox</span><span class="op">(</span>
-  <span class="va">title</span>,
-  value <span class="op">=</span> <span class="cn">NULL</span>,
-  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bar-chart"</span><span class="op">)</span>,
-  color <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="fl">4</span>,
-  href <span class="op">=</span> <span class="cn">NULL</span>,
-  fill <span class="op">=</span> <span class="cn">FALSE</span>,
-  gradient <span class="op">=</span> <span class="cn">FALSE</span>,
-  elevation <span class="op">=</span> <span class="cn">NULL</span>,
-  iconElevation <span class="op">=</span> <span class="cn">NULL</span>,
-  tabName <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">infoBox</span><span class="op">(</span>
-  <span class="va">title</span>,
-  value <span class="op">=</span> <span class="cn">NULL</span>,
-  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
-  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bar-chart"</span><span class="op">)</span>,
-  color <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="fl">4</span>,
-  href <span class="op">=</span> <span class="cn">NULL</span>,
-  fill <span class="op">=</span> <span class="cn">FALSE</span>,
-  gradient <span class="op">=</span> <span class="cn">FALSE</span>,
-  elevation <span class="op">=</span> <span class="cn">NULL</span>,
-  iconElevation <span class="op">=</span> <span class="cn">NULL</span>,
-  tabName <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">infoBoxOutput</span><span class="op">(</span><span class="va">outputId</span>, width <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="fu">renderInfoBox</span><span class="op">(</span><span class="va">expr</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, quoted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">renderbs4InfoBox</span><span class="op">(</span><span class="va">expr</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, quoted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">bs4InfoBoxOutput</span><span class="op">(</span><span class="va">outputId</span>, width <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">bs4InfoBox</span><span class="op">(</span></span>
+<span>  <span class="va">title</span>,</span>
+<span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"chart-bar"</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  href <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fill <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  gradient <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  elevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  iconElevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tabName <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">infoBox</span><span class="op">(</span></span>
+<span>  <span class="va">title</span>,</span>
+<span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"chart-bar"</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  href <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fill <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  gradient <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  elevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  iconElevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tabName <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">infoBoxOutput</span><span class="op">(</span><span class="va">outputId</span>, width <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">renderInfoBox</span><span class="op">(</span><span class="va">expr</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span>, quoted <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -136,32 +136,50 @@
     <dl><dt>expr</dt>
 <dd><p>An expression that returns a Shiny tag object, <code><a href="https://rdrr.io/pkg/htmltools/man/HTML.html" class="external-link">HTML()</a></code>,
 or a list of such objects.</p></dd>
+
+
 <dt>env</dt>
 <dd><p>The parent environment for the reactive expression. By default,
 this is the calling environment, the same as when defining an ordinary
 non-reactive expression. If <code>expr</code> is a quosure and <code>quoted</code> is <code>TRUE</code>,
 then <code>env</code> is ignored.</p></dd>
+
+
 <dt>quoted</dt>
 <dd><p>If it is <code>TRUE</code>, then the <code><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote()</a></code>ed value of <code>expr</code>
 will be used when <code>expr</code> is evaluated. If <code>expr</code> is a quosure and you
 would like to use its expression as a value for <code>expr</code>, then you must set
 <code>quoted</code> to <code>TRUE</code>.</p></dd>
+
+
 <dt>outputId</dt>
 <dd><p>Output variable name.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
 default width of 4 occupies 1/3 of that width. For column-based
 layouts, use <code>NULL</code> for the width; the width is set by the column that
 contains the box.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Info box title.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>The value to display in the box. Usually a number or short text.</p></dd>
+
+
 <dt>subtitle</dt>
 <dd><p>Any extra UI element.</p></dd>
+
+
 <dt>icon</dt>
 <dd><p>An icon tag, created by <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></code>.</p></dd>
+
+
 <dt>color</dt>
 <dd><p>A color for the box. Valid colors are defined as follows:</p><ul><li><p><code>primary</code>: <span style="width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;"></span>#007bff
 .</p></li>
@@ -204,22 +222,35 @@ contains the box.</p></dd>
 <li><p><code>olive</code>: <span style="width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;"></span>#3d9970
 .</p></li>
 </ul></dd>
+
+
 <dt>href</dt>
 <dd><p>An optional URL to link to.</p></dd>
+
+
 <dt>fill</dt>
 <dd><p>If FALSE (the default), use a white background for the content, and
 the color argument for the background of the icon. If TRUE, use the color argument
 for the background of the content; the icon will use the same color with a slightly
 darkened background.</p></dd>
+
+
 <dt>gradient</dt>
 <dd><p>Whether to use gradient style for background color. Default to FALSE.</p></dd>
+
+
 <dt>elevation</dt>
 <dd><p>Box elevation.</p></dd>
+
+
 <dt>iconElevation</dt>
 <dd><p>Icon elevation compared to the main content (relief). 3 by default.</p></dd>
+
+
 <dt>tabName</dt>
 <dd><p>Optional: infoBox behaves like <a href="dashboardSidebar.html">menuItem</a> and
 may be used to navigate between multiple <a href="dashboardBody.html">tabItem</a>.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -238,67 +269,67 @@ may be used to navigate between multiple <a href="dashboardBody.html">tabItem</a
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
-<span class="r-in">      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu"><a href="dashboardSidebar.html">sidebarMenu</a></span><span class="op">(</span></span>
-<span class="r-in">          <span class="fu"><a href="dashboardSidebar.html">menuItem</a></span><span class="op">(</span></span>
-<span class="r-in">            text <span class="op">=</span> <span class="st">"Item 1"</span>,</span>
-<span class="r-in">            tabName <span class="op">=</span> <span class="st">"tab1"</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="dashboardSidebar.html">menuItem</a></span><span class="op">(</span></span>
-<span class="r-in">            text <span class="op">=</span> <span class="st">"Item 2"</span>,</span>
-<span class="r-in">            tabName <span class="op">=</span> <span class="st">"tab2"</span></span>
-<span class="r-in">          <span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      controlbar <span class="op">=</span> <span class="fu"><a href="dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"test"</span>,</span>
-<span class="r-in">      body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu"><a href="dashboardBody.html">tabItems</a></span><span class="op">(</span></span>
-<span class="r-in">          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span>
-<span class="r-in">            tabName <span class="op">=</span> <span class="st">"tab1"</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span class="r-in">              <span class="fu">infoBox</span><span class="op">(</span></span>
-<span class="r-in">                title <span class="op">=</span> <span class="st">"Messages"</span>,</span>
-<span class="r-in">                value <span class="op">=</span> <span class="fl">1410</span>,</span>
-<span class="r-in">                icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"envelope"</span><span class="op">)</span>,</span>
-<span class="r-in">                color <span class="op">=</span> <span class="st">"orange"</span>,</span>
-<span class="r-in">                fill <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">              <span class="op">)</span>,</span>
-<span class="r-in">              <span class="fu">infoBox</span><span class="op">(</span></span>
-<span class="r-in">                title <span class="op">=</span> <span class="st">"Bookmarks"</span>,</span>
-<span class="r-in">                color <span class="op">=</span> <span class="st">"info"</span>,</span>
-<span class="r-in">                value <span class="op">=</span> <span class="fl">240</span>,</span>
-<span class="r-in">                icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bookmark"</span><span class="op">)</span>,</span>
-<span class="r-in">                tabName <span class="op">=</span> <span class="st">"tab2"</span></span>
-<span class="r-in">              <span class="op">)</span></span>
-<span class="r-in">            <span class="op">)</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span>
-<span class="r-in">            tabName <span class="op">=</span> <span class="st">"tab2"</span>,</span>
-<span class="r-in">            <span class="fu">infoBox</span><span class="op">(</span></span>
-<span class="r-in">              title <span class="op">=</span> <span class="st">"Comments"</span>,</span>
-<span class="r-in">              color <span class="op">=</span> <span class="st">"indigo"</span>,</span>
-<span class="r-in">              gradient <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">              value <span class="op">=</span> <span class="fl">41410</span>,</span>
-<span class="r-in">              subtitle <span class="op">=</span> <span class="st">"A subtitle"</span>,</span>
-<span class="r-in">              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"comments"</span><span class="op">)</span>,</span>
-<span class="r-in">              tabName <span class="op">=</span> <span class="st">"tab1"</span></span>
-<span class="r-in">            <span class="op">)</span></span>
-<span class="r-in">          <span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="dashboardSidebar.html">sidebarMenu</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="dashboardSidebar.html">menuItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Item 1"</span>,</span></span>
+<span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab1"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="dashboardSidebar.html">menuItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Item 2"</span>,</span></span>
+<span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab2"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      controlbar <span class="op">=</span> <span class="fu"><a href="dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"test"</span>,</span></span>
+<span class="r-in"><span>      body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="dashboardBody.html">tabItems</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab1"</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              <span class="fu">infoBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>                title <span class="op">=</span> <span class="st">"Messages"</span>,</span></span>
+<span class="r-in"><span>                value <span class="op">=</span> <span class="fl">1410</span>,</span></span>
+<span class="r-in"><span>                icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"envelope"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                color <span class="op">=</span> <span class="st">"orange"</span>,</span></span>
+<span class="r-in"><span>                fill <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>              <span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu">infoBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>                title <span class="op">=</span> <span class="st">"Bookmarks"</span>,</span></span>
+<span class="r-in"><span>                color <span class="op">=</span> <span class="st">"info"</span>,</span></span>
+<span class="r-in"><span>                value <span class="op">=</span> <span class="fl">240</span>,</span></span>
+<span class="r-in"><span>                icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bookmark"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                tabName <span class="op">=</span> <span class="st">"tab2"</span></span></span>
+<span class="r-in"><span>              <span class="op">)</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab2"</span>,</span></span>
+<span class="r-in"><span>            <span class="fu">infoBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>              title <span class="op">=</span> <span class="st">"Comments"</span>,</span></span>
+<span class="r-in"><span>              color <span class="op">=</span> <span class="st">"indigo"</span>,</span></span>
+<span class="r-in"><span>              gradient <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>              value <span class="op">=</span> <span class="fl">41410</span>,</span></span>
+<span class="r-in"><span>              subtitle <span class="op">=</span> <span class="st">"A subtitle"</span>,</span></span>
+<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"comments"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              tabName <span class="op">=</span> <span class="st">"tab1"</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -313,7 +344,7 @@ may be used to navigate between multiple <a href="dashboardBody.html">tabItem</a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -92,86 +92,100 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bs4TabCard</span><span class="op">(</span>
-  <span class="va">...</span>,
-  id <span class="op">=</span> <span class="cn">NULL</span>,
-  selected <span class="op">=</span> <span class="cn">NULL</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="fl">6</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,
-  type <span class="op">=</span> <span class="cn">NULL</span>,
-  footer <span class="op">=</span> <span class="cn">NULL</span>,
-  status <span class="op">=</span> <span class="cn">NULL</span>,
-  solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,
-  background <span class="op">=</span> <span class="cn">NULL</span>,
-  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,
-  collapsed <span class="op">=</span> <span class="cn">FALSE</span>,
-  closable <span class="op">=</span> <span class="cn">FALSE</span>,
-  maximizable <span class="op">=</span> <span class="cn">FALSE</span>,
-  icon <span class="op">=</span> <span class="cn">NULL</span>,
-  gradient <span class="op">=</span> <span class="cn">FALSE</span>,
-  boxToolSize <span class="op">=</span> <span class="st">"sm"</span>,
-  elevation <span class="op">=</span> <span class="cn">NULL</span>,
-  headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,
-  label <span class="op">=</span> <span class="cn">NULL</span>,
-  dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,
-  sidebar <span class="op">=</span> <span class="cn">NULL</span>,
-  .list <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">tabBox</span><span class="op">(</span>
-  <span class="va">...</span>,
-  id <span class="op">=</span> <span class="cn">NULL</span>,
-  selected <span class="op">=</span> <span class="cn">NULL</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="fl">6</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,
-  type <span class="op">=</span> <span class="cn">NULL</span>,
-  footer <span class="op">=</span> <span class="cn">NULL</span>,
-  status <span class="op">=</span> <span class="cn">NULL</span>,
-  solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,
-  background <span class="op">=</span> <span class="cn">NULL</span>,
-  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,
-  collapsed <span class="op">=</span> <span class="cn">FALSE</span>,
-  closable <span class="op">=</span> <span class="cn">FALSE</span>,
-  maximizable <span class="op">=</span> <span class="cn">FALSE</span>,
-  icon <span class="op">=</span> <span class="cn">NULL</span>,
-  gradient <span class="op">=</span> <span class="cn">FALSE</span>,
-  boxToolSize <span class="op">=</span> <span class="st">"sm"</span>,
-  elevation <span class="op">=</span> <span class="cn">NULL</span>,
-  headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,
-  label <span class="op">=</span> <span class="cn">NULL</span>,
-  dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,
-  sidebar <span class="op">=</span> <span class="cn">NULL</span>,
-  .list <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bs4TabCard</span><span class="op">(</span></span>
+<span>  <span class="va">...</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  footer <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  status <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  background <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  collapsed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  closable <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  maximizable <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  icon <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gradient <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  boxToolSize <span class="op">=</span> <span class="st">"sm"</span>,</span>
+<span>  elevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sidebar <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .list <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">tabBox</span><span class="op">(</span></span>
+<span>  <span class="va">...</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  footer <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  status <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  background <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  collapsible <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  collapsed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  closable <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  maximizable <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  icon <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gradient <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  boxToolSize <span class="op">=</span> <span class="st">"sm"</span>,</span>
+<span>  elevation <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  headerBorder <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dropdownMenu <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sidebar <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .list <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>Contents of the box.</p></dd>
+
+
 <dt>id</dt>
 <dd><p>Card id.</p></dd>
+
+
 <dt>selected</dt>
 <dd><p>The <code>value</code> (or, if none was supplied, the <code>title</code>)
 of the tab that should be selected by default. If <code>NULL</code>, the first
 tab will be selected.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Optional title.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the box, using the Bootstrap grid system. This is
 used for row-based layouts. The overall width of a region is 12, so the
 default card width of 6 occupies 1/2 of that width. For column-based
 layouts, use <code>NULL</code> for the width; the width is set by the column that
 contains the box.</p></dd>
+
+
 <dt>height</dt>
 <dd><p>The height of a box, in pixels or other CSS unit. By default
 the height scales automatically with the content.</p></dd>
+
+
 <dt>side</dt>
 <dd><p><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a> side. Either left or right.</p></dd>
+
+
 <dt>type</dt>
 <dd><dl><dt>`"tabs"`</dt>
 <dd><p>Standard tab look</p></dd>
@@ -181,8 +195,12 @@ the height scales automatically with the content.</p></dd>
 
 
 </dl></dd>
+
+
 <dt>footer</dt>
 <dd><p>Optional footer text.</p></dd>
+
+
 <dt>status</dt>
 <dd><p>The status of the item. This determines the item's background
   color.  Valid statuses are defined as follows:</p><ul><li><p><code>primary</code>: <span style="width:12px;height:12px;background:#007bff;border-radius:2px;display:inline-block;margin-right:5px;"></span>#007bff
@@ -226,8 +244,12 @@ the height scales automatically with the content.</p></dd>
 <li><p><code>olive</code>: <span style="width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;"></span>#3d9970
 .</p></li>
 </ul></dd>
+
+
 <dt>solidHeader</dt>
 <dd><p>Should the header be shown with a solid color background?</p></dd>
+
+
 <dt>background</dt>
 <dd><p>If NULL (the default), the background of the box will be
   white. Otherwise, a color string. Valid colors are listed in
@@ -272,35 +294,62 @@ the height scales automatically with the content.</p></dd>
 <li><p><code>olive</code>: <span style="width:12px;height:12px;background:#3d9970;border-radius:2px;display:inline-block;margin-right:5px;"></span>#3d9970
 .</p></li>
 </ul></dd>
+
+
 <dt>collapsible</dt>
 <dd><p>If TRUE, display a button in the upper right that allows
 the user to collapse the box.</p></dd>
+
+
 <dt>collapsed</dt>
 <dd><p>If TRUE, start collapsed. This must be used with
 <code>collapsible=TRUE</code>.</p></dd>
+
+
 <dt>closable</dt>
 <dd><p>If TRUE, display a button in the upper right that allows the user to close the box.</p></dd>
+
+
 <dt>maximizable</dt>
 <dd><p>If TRUE, the card can be displayed in full screen mode.</p></dd>
+
+
 <dt>icon</dt>
 <dd><p>Header icon. Displayed before title. Expect <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></code>.</p></dd>
+
+
 <dt>gradient</dt>
 <dd><p>Whether to allow gradient effect for the background color. Default to FALSE.</p></dd>
+
+
 <dt>boxToolSize</dt>
 <dd><p>Size of the toolbox: choose among "xs", "sm", "md", "lg".</p></dd>
+
+
 <dt>elevation</dt>
 <dd><p>Card elevation.</p></dd>
+
+
 <dt>headerBorder</dt>
 <dd><p>Whether to display a border between the header and body.
 TRUE by default</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Slot for <a href="boxLabel.html">boxLabel</a>.</p></dd>
+
+
 <dt>dropdownMenu</dt>
 <dd><p>List of items in the boxtool dropdown menu. Use <a href="boxDropdown.html">boxDropdown</a>.</p></dd>
+
+
 <dt>sidebar</dt>
 <dd><p>Slot for <a href="boxSidebar.html">boxSidebar</a>.</p></dd>
+
+
 <dt>.list</dt>
 <dd><p>In case of programmatically generated items. See example.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -324,65 +373,65 @@ to get the state of the box and update it on the server with <a href="box.html">
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">menu_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Menu %s"</span>, <span class="va">i</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Hello tab %s"</span>, <span class="va">i</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
-<span class="r-in">      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      controlbar <span class="op">=</span> <span class="fu"><a href="dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"tabBox"</span>,</span>
-<span class="r-in">      body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu">tabBox</span><span class="op">(</span></span>
-<span class="r-in">          id <span class="op">=</span> <span class="st">"tabcard"</span>,</span>
-<span class="r-in">          title <span class="op">=</span> <span class="st">"A card with tabs"</span>,</span>
-<span class="r-in">          selected <span class="op">=</span> <span class="st">"Tab 2"</span>,</span>
-<span class="r-in">          status <span class="op">=</span> <span class="st">"primary"</span>,</span>
-<span class="r-in">          solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">          type <span class="op">=</span> <span class="st">"tabs"</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
-<span class="r-in">            title <span class="op">=</span> <span class="st">"Tab 1"</span>,</span>
-<span class="r-in">            <span class="st">"Content 1"</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
-<span class="r-in">            title <span class="op">=</span> <span class="st">"Tab 2"</span>,</span>
-<span class="r-in">            <span class="st">"Content 2"</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
-<span class="r-in">            title <span class="op">=</span> <span class="st">"Tab 3"</span>,</span>
-<span class="r-in">            <span class="st">"Content 3"</span></span>
-<span class="r-in">          <span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu">tabBox</span><span class="op">(</span></span>
-<span class="r-in">         id <span class="op">=</span> <span class="st">"mybox2"</span>,</span>
-<span class="r-in">         title <span class="op">=</span> <span class="st">""</span>,</span>
-<span class="r-in">         .list <span class="op">=</span> <span class="va">menu_tab</span></span>
-<span class="r-in">        <span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"tab"</span>,</span>
-<span class="r-in">        <span class="st">"Selected a tab"</span>,</span>
-<span class="r-in">        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Menu"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
-<span class="r-in">        <span class="st">"Menu 2"</span></span>
-<span class="r-in">       <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">tab</span>, <span class="op">{</span></span>
-<span class="r-in">       <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html" class="external-link">updateTabsetPanel</a></span><span class="op">(</span><span class="va">session</span>, inputId <span class="op">=</span> <span class="st">"mybox2"</span>, <span class="va">input</span><span class="op">$</span><span class="va">tab</span><span class="op">)</span></span>
-<span class="r-in">      <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">}</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">menu_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Menu %s"</span>, <span class="va">i</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Hello tab %s"</span>, <span class="va">i</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      sidebar <span class="op">=</span> <span class="fu"><a href="dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      controlbar <span class="op">=</span> <span class="fu"><a href="dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">dashboardFooter</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"tabBox"</span>,</span></span>
+<span class="r-in"><span>      body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu">tabBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>          id <span class="op">=</span> <span class="st">"tabcard"</span>,</span></span>
+<span class="r-in"><span>          title <span class="op">=</span> <span class="st">"A card with tabs"</span>,</span></span>
+<span class="r-in"><span>          selected <span class="op">=</span> <span class="st">"Tab 2"</span>,</span></span>
+<span class="r-in"><span>          status <span class="op">=</span> <span class="st">"primary"</span>,</span></span>
+<span class="r-in"><span>          solidHeader <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>          type <span class="op">=</span> <span class="st">"tabs"</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            title <span class="op">=</span> <span class="st">"Tab 1"</span>,</span></span>
+<span class="r-in"><span>            <span class="st">"Content 1"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            title <span class="op">=</span> <span class="st">"Tab 2"</span>,</span></span>
+<span class="r-in"><span>            <span class="st">"Content 2"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            title <span class="op">=</span> <span class="st">"Tab 3"</span>,</span></span>
+<span class="r-in"><span>            <span class="st">"Content 3"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">tabBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>         id <span class="op">=</span> <span class="st">"mybox2"</span>,</span></span>
+<span class="r-in"><span>         title <span class="op">=</span> <span class="st">""</span>,</span></span>
+<span class="r-in"><span>         .list <span class="op">=</span> <span class="va">menu_tab</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"tab"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"Selected a tab"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Menu"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"Menu 2"</span></span></span>
+<span class="r-in"><span>       <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">tab</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>       <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html" class="external-link">updateTabsetPanel</a></span><span class="op">(</span><span class="va">session</span>, inputId <span class="op">=</span> <span class="st">"mybox2"</span>, <span class="va">input</span><span class="op">$</span><span class="va">tab</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -397,7 +446,7 @@ to get the state of the box and update it on the server with <a href="box.html">
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
