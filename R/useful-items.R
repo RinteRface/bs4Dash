@@ -120,10 +120,10 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #' }
 #'
 #' @export
-bs4Accordion <- function(..., id, width = 12) {
+bs4Accordion <- function(..., id, width = 12, collapse_all = TRUE) {
   
   items <- list(...)
-  
+  if (collapse_all) {
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
@@ -132,6 +132,12 @@ bs4Accordion <- function(..., id, width = 12) {
     items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
+  } else {
+    lapply(seq_along(items), FUN = function(i) {
+      items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
+      items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
+    })
+  }
   
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
