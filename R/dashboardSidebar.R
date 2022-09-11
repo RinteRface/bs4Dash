@@ -361,7 +361,9 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
                                newTab = TRUE, selected = NULL,
                                expandedName = as.character(gsub("[[:space:]]", "", text)),
                                startExpanded = FALSE, condition = NULL) {
-  subItems <- list(...)
+  if (!inherits(subItems, "list")) {
+    subItems <- list(...)
+  }
 
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
