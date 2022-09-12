@@ -483,6 +483,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
 #' @param id HTML ID. NULL by default
+#' @param style \code{chr} CSS Styles applied to each bar
 #' @param values_cumulative \code{multiProgressBar} only. Whether \code{value} is comprised of cumulative  \code{TRUE} values or actual \code{FALSE} values. See details for examples.
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
@@ -632,7 +633,7 @@ bs4MultiProgressBar <-
     size = NULL,
     label = NULL,
     id = NULL,
-    values_cumulative = TRUE
+    values_cumulative = TRUE,
     style = NULL
   ) {
     status <- verify_compatible_lengths(value, status)
@@ -655,7 +656,6 @@ bs4MultiProgressBar <-
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      style <- NULL
       if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
       else if (status %in% validColorsPlus || is_hex_color(status))
         style <- paste0(style, "background-color: ", col2css(status), ";")
