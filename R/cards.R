@@ -108,7 +108,7 @@
 #'             boxDropdownItem("Link to google", href = "https://www.google.com"),
 #'             boxDropdownItem("item 2", href = "#"),
 #'             dropdownDivider(),
-#'             boxDropdownItem("item 3", href = "#", icon = icon("th"))
+#'             boxDropdownItem("item 3", href = "#", icon = icon("table-cells"))
 #'           ),
 #'           sidebar = boxSidebar(
 #'             startOpen = TRUE,
@@ -345,7 +345,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @family boxWidgets
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
-                           startOpen = FALSE, icon = shiny::icon("cogs"), 
+                           startOpen = FALSE, icon = shiny::icon("gears"), 
                            easyClose = TRUE) {
 
   stopifnot(width >= 25 && width <= 100)
@@ -727,13 +727,13 @@ dropdownDivider <- function() {
 #'             value = 150,
 #'             subtitle = "New orders",
 #'             color = "primary",
-#'             icon = icon("shopping-cart")
+#'             icon = icon("cart-shopping")
 #'           ),
 #'           valueBox(
 #'             value = "53%",
 #'             subtitle = "New orders",
 #'             color = "indigo",
-#'             icon = icon("cogs"),
+#'             icon = icon("gears"),
 #'             footer = div("Hello World")
 #'           ),
 #'           valueBox(
@@ -817,7 +817,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
         target = "_blank",
         class = "small-box-footer",
         "More info",
-        shiny::icon("arrow-circle-right")
+        shiny::icon("circle-arrow-right")
       )
     } else {
       shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
@@ -949,7 +949,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #'   )
 #' }
 #' @export
-bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("bar-chart"),
+bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("chart-bar"),
                        color = NULL, width = 4, href = NULL, fill = FALSE, gradient = FALSE,
                        elevation = NULL, iconElevation = NULL, tabName = NULL) {
 

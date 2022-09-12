@@ -42,7 +42,7 @@ valueBoxOutput(outputId, width = 4)
 renderValueBox(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
-\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:reexports]{HTML()}},
+\item{expr}{An expression that returns a Shiny tag object, \code{\link[shiny:HTML]{HTML()}},
 or a list of such objects.}
 
 \item{env}{The parent environment for the reactive expression. By default,
@@ -170,13 +170,13 @@ if (interactive()) {
             value = 150,
             subtitle = "New orders",
             color = "primary",
-            icon = icon("shopping-cart")
+            icon = icon("cart-shopping")
           ),
           valueBox(
             value = "53\%",
             subtitle = "New orders",
             color = "indigo",
-            icon = icon("cogs"),
+            icon = icon("gears"),
             footer = div("Hello World")
           ),
           valueBox(

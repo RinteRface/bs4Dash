@@ -31,7 +31,7 @@ messageItem(
 
 notificationItem(
   text,
-  icon = shiny::icon("exclamation-triangle"),
+  icon = shiny::icon("triangle-exclamation"),
   status = "success",
   href = NULL,
   inputId = NULL

@@ -34,7 +34,7 @@ Suggests:
     DT, 
     thematic (>= 0.1.2)
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Collate: 
     'feedbacks.R'

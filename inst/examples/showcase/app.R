@@ -57,7 +57,7 @@ basic_cards_tab <- tabItem(
         boxDropdownItem("Link to google", href = "https://www.google.com"),
         boxDropdownItem("Item with inputId", id = "dropdown_item2"),
         dropdownDivider(),
-        boxDropdownItem("item 3", href = "#", icon = icon("th"))
+        boxDropdownItem("item 3", href = "#", icon = icon("table-cells"))
       ),
       sidebar = boxSidebar(
         startOpen = FALSE,
@@ -583,7 +583,7 @@ value_boxes_tab <- tabItem(
       value = 150,
       subtitle = "New orders",
       color = "primary",
-      icon = icon("shopping-cart"),
+      icon = icon("cart-shopping"),
       href = "#"
     ),
     valueBox(
@@ -591,13 +591,13 @@ value_boxes_tab <- tabItem(
       value = "53%",
       subtitle = "New orders",
       color = "danger",
-      icon = icon("cogs")
+      icon = icon("gears")
     ),
     valueBox(
       value = "44",
       subtitle = "User Registrations",
       color = "warning",
-      icon = icon("sliders-h")
+      icon = icon("sliders")
     ),
     valueBox(
       value = "53%",
@@ -620,7 +620,7 @@ value_boxes_tab <- tabItem(
       title = "Navigate to colors section",
       color = "info",
       value = 240,
-      icon = icon("tint"),
+      icon = icon("droplet"),
       elevation = 4
     ),
     infoBox(
@@ -772,7 +772,7 @@ gallery_1_tab <- tabItem(
         timelineLabel("10 Feb. 2014", color = "info"),
         timelineItem(
           title = "Item 1",
-          icon = icon("cogs"),
+          icon = icon("gears"),
           color = "success",
           time = "now",
           footer = "Here is the footer",
@@ -799,7 +799,7 @@ gallery_1_tab <- tabItem(
       timelineLabel("10 Feb. 2014", color = "info"),
       timelineItem(
         title = "Item 1",
-        icon = icon("cogs"),
+        icon = icon("gears"),
         color = "success",
         time = "now",
         footer = "Here is the footer",
@@ -1058,7 +1058,7 @@ shinyApp(
         menuItem(
           "Basic cards",
           tabName = "cards",
-          icon = icon("sliders-h")
+          icon = icon("sliders")
         ),
         menuItem(
           "Cards API",
@@ -1099,7 +1099,7 @@ shinyApp(
         menuItem(
           "Colors",
           tabName = "colors",
-          icon = icon("tint")
+          icon = icon("droplet")
         ),
 
         sidebarHeader("BS4 gallery"),
@@ -1422,7 +1422,7 @@ shinyApp(
             appButton(
               inputId = "reload",
               label = "Click me!",
-              icon = icon("sync"),
+              icon = icon("arrows-rotate"),
               dashboardBadge(1, color = "primary")
             )
           )

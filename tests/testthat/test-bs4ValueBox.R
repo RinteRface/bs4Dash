@@ -27,7 +27,7 @@ test_that("structure", {
   expect_match(valueBoxChildren[[2]]$attribs$class, "small-box-footer")
   
   # inner + icon
-  valueBoxTag <- bs4ValueBox(2, "Value", icon = shiny::icon("cogs"))
+  valueBoxTag <- bs4ValueBox(2, "Value", icon = shiny::icon("gears"))
   valueBoxChildren <- getCardChildren(valueBoxTag)
   expect_length(valueBoxChildren, 3)
   expect_match(valueBoxChildren[[1]]$attribs$class, "inner")
@@ -40,7 +40,7 @@ test_that("structure", {
   )
   
   # inner + icon + footer
-  valueBoxTag <- bs4ValueBox(2, "Value", footer = "test", icon = shiny::icon("cogs"))
+  valueBoxTag <- bs4ValueBox(2, "Value", footer = "test", icon = shiny::icon("gears"))
   valueBoxChildren <- getCardChildren(valueBoxTag)
   expect_length(valueBoxChildren, 3)
   expect_match(valueBoxChildren[[1]]$attribs$class, "inner")

@@ -400,7 +400,7 @@ if (interactive()) {
             boxDropdownItem("Link to google", href = "https://www.google.com"),
             boxDropdownItem("item 2", href = "#"),
             dropdownDivider(),
-            boxDropdownItem("item 3", href = "#", icon = icon("th"))
+            boxDropdownItem("item 3", href = "#", icon = icon("table-cells"))
           ),
           sidebar = boxSidebar(
             startOpen = TRUE,
@@ -554,8 +554,6 @@ Other cards:
 \code{\link{renderbs4ValueBox}()}
 }
 \author{
-David Granjon, \email{dgranjon@ymail.com}
-
 David Granjon, \email{dgranjon@ymail.com}
 }
 \concept{boxWidgets}
