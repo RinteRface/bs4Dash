@@ -17,6 +17,7 @@ bs4ProgressBar(
   status = "primary",
   size = NULL,
   label = NULL,
+  style = NULL,
   id = NULL
 )
 
@@ -31,7 +32,8 @@ bs4MultiProgressBar(
   size = NULL,
   label = NULL,
   id = NULL,
-  values_cumulative = TRUE
+  values_cumulative = TRUE,
+  style = NULL
 )
 
 progressBar(
@@ -44,6 +46,7 @@ progressBar(
   status = "primary",
   size = NULL,
   label = NULL,
+  style = NULL,
   id = NULL
 )
 
@@ -58,7 +61,8 @@ multiProgressBar(
   size = NULL,
   label = NULL,
   id = NULL,
-  values_cumulative = TRUE
+  values_cumulative = TRUE,
+  style = NULL
 )
 }
 \arguments{
@@ -101,6 +105,8 @@ multiProgressBar(
 \item{size}{Progress bar size. NULL, "sm", "xs" or "xxs".}
 
 \item{label}{Progress label. NULL by default.}
+
+\item{style}{\code{chr} CSS Styles applied to each bar}
 
 \item{id}{HTML ID. NULL by default}
 

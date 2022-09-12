@@ -241,6 +241,8 @@ the user to collapse the box.}
 
 \item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
 
+\item{tip_icon}{Tip icon. Tooltip Icon displayed after title. Expect \code{\link[tippy]{tippy}}.}
+
 \item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 
 \item{boxToolSize}{Size of the toolbox: choose among "xs", "sm", "md", "lg".}

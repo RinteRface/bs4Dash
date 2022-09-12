@@ -8,7 +8,7 @@
 \alias{accordionItem}
 \title{Bootstrap 4 accordion container}
 \usage{
-bs4Accordion(..., id, width = 12)
+bs4Accordion(..., id, width = 12, collapse_all = TRUE)
 
 bs4AccordionItem(
   ...,
@@ -20,7 +20,7 @@ bs4AccordionItem(
 
 updateAccordion(id, selected, session = shiny::getDefaultReactiveDomain())
 
-accordion(..., id, width = 12)
+accordion(..., id, width = 12, collapse_all = TRUE)
 
 accordionItem(..., title, status = NULL, collapsed = TRUE, solidHeader = TRUE)
 }
