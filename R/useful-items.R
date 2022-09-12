@@ -129,10 +129,10 @@ bs4Alert <- function(..., status = "primary", style = NULL, id = NULL, width = 6
 #' }
 #'
 #' @export
-bs4Accordion <- function(..., id, width = 12) {
+bs4Accordion <- function(..., id, width = 12, collapse_all = TRUE) {
   
   items <- list(...)
-  
+  if (collapse_all) {
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
@@ -141,6 +141,12 @@ bs4Accordion <- function(..., id, width = 12) {
     items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
+  } else {
+    lapply(seq_along(items), FUN = function(i) {
+      items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
+      items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
+    })
+  }
   
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
@@ -562,7 +568,9 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @export
 bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
                             animated = FALSE, status = "primary", size = NULL, 
-                            label = NULL, id = NULL) {
+                            label = NULL,
+                            style = NULL,
+                            id = NULL) {
   
   if (!is.null(status)) validateColors(status)
   stopifnot(value >= min)
@@ -593,7 +601,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     if(!is.null(label)) label
   )
   
-  progressTag <- shiny::tags$div(class = progressCl)
+  progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
 }
@@ -625,6 +633,7 @@ bs4MultiProgressBar <-
     label = NULL,
     id = NULL,
     values_cumulative = TRUE
+    style = NULL
   ) {
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
@@ -690,7 +699,7 @@ bs4MultiProgressBar <-
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-    progressTag <- shiny::tags$div(class = progressCl, id = id)
+    progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
