@@ -933,11 +933,13 @@ $(function () {
       default: console.warn(`${config.status} does not belong to allowed statuses!`)
     }
 
+    closeButton = '';
+
     if (config.closable) {
       closeButton = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>'
     }
 
-    titleTag = `<h5><i class="icon fa fa-${iconType}"></i></h5>`
+    titleTag = `<h5><i class="icon fa fa-${iconType}"></i>${config.title}</h5>`
     contentTag = config.content;
 
     alertTag = `<div 
