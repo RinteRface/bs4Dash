@@ -58,7 +58,8 @@ bs4SidebarMenuItem(
   selected = NULL,
   expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
-  condition = NULL
+  condition = NULL,
+  .list = NULL
 )
 
 bs4SidebarMenuSubItem(
@@ -123,7 +124,8 @@ menuItem(
   selected = NULL,
   expandedName = as.character(gsub("[[:space:]]", "", text)),
   startExpanded = FALSE,
-  condition = NULL
+  condition = NULL,
+  .list = NULL
 )
 
 menuSubItem(

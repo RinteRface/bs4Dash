@@ -5,6 +5,8 @@
 [pagination](https://getbootstrap.com/docs/4.0/components/pagination/).
 
 ## Bug fixes
+- Fix #306: Dynamic menuSubItems with apply() adds some extra text. Added __.list__
+param to `menuItem()` to programatically pass `menuSubItem()` as list. 
 - Fix #297: `tabsetPanel()` renders below the list of `tabPanels` when vertical = TRUE. 
 Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting. 
 - Fix #296: Documentation issue for `valueBox()` and `infoBox()` in the render function section.

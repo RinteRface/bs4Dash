@@ -311,6 +311,9 @@ findSidebarItem <- function(items, regex) {
 #' @param startExpanded Whether to expand the \link{menuItem} at start.
 #' @param condition When using \link{menuItem} with \link[shiny]{conditionalPanel},
 #' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
+#' @param .list An optional list containing items to put in the menu Same as the
+#' \code{...} arguments, but in list format. This can be useful when working
+#' with programmatically generated items.
 #'
 #' @rdname dashboardSidebar
 #'
@@ -360,8 +363,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
                                tabName = NULL, href = NULL,
                                newTab = TRUE, selected = NULL,
                                expandedName = as.character(gsub("[[:space:]]", "", text)),
-                               startExpanded = FALSE, condition = NULL) {
-  subItems <- list(...)
+                               startExpanded = FALSE, condition = NULL, .list = NULL) {
+  subItems <- c(list(...), .list)
 
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
