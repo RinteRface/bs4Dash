@@ -59,23 +59,24 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
   # by the end user.
   if (skin == "dark" && is.null(status)) status <- "gray-dark"
 
+  .types <- c("li", "a", "button", "div", "shiny.tag")
   if (!is.null(leftUi)) {
     if (inherits(leftUi, "shiny.tag.list")) {
       lapply(leftUi, function(item) {
-        tagAssert(item, type = "li", class = "dropdown")
+        tagAssert(item, type = .types)
       })
     } else {
-      tagAssert(leftUi, type = "li", class = "dropdown")
+      tagAssert(leftUi, type = .types)
     }
   }
 
   if (!is.null(rightUi)) {
     if (inherits(rightUi, "shiny.tag.list")) {
       lapply(rightUi, function(item) {
-        tagAssert(item, type = "li", class = "dropdown")
+        tagAssert(item, type = .types)
       })
     } else {
-      tagAssert(rightUi, type = "li", class = "dropdown")
+      tagAssert(rightUi, type = .types)
     }
   }
 
