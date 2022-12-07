@@ -578,7 +578,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
   stopifnot(value <= max)
   
   # wrapper class
-  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress"
   if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
   
   # bar class
@@ -697,7 +697,7 @@ bs4MultiProgressBar <-
     }
     
     # wrapper class
-    progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+    progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
     progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
