@@ -4,6 +4,10 @@
 - New `pagination()` and `updatePagination()`. Bootstrap 4 implementation of
 [pagination](https://getbootstrap.com/docs/4.0/components/pagination/).
 
+# Minor change
+- Fix #323: remove sidebar collapse animation on app startup. JS code moved
+back to R. Thanks @lucas-alcantara for reporting.
+
 ## Bug fixes
 - Fix #322: `notificationItem()` href does not work. 
 - Fix #306: Dynamic `menuSubItems()` with apply() adds some extra text. Added __.list__

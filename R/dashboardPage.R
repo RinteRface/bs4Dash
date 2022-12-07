@@ -97,6 +97,8 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
   titleTag <- header[[2]]
   
   sidebarDisabled <- sidebar$attribs$`data-disable`
+  sidebarCollapsed <- sidebar$attribs$`data-collapsed`
+  sidebarMini <- sidebar$attribs$`data-minified`
 
   # layout changes if main sidebar is disabled
   if (!sidebarDisabled) {
@@ -121,7 +123,14 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     # remove navbar padding to better fit the brand logo
     header[[1]]$attribs$style <- "padding: 0rem 0rem;"
   }
-
+  
+  bodyCl <- if (sidebarDisabled) "layout-top-nav"
+  if (sidebarCollapsed) {
+    bodyCl <- paste(bodyCl, "sidebar-collapse")
+  }
+  if (sidebarMini) {
+    bodyCl <- paste(bodyCl, "sidebar-mini")
+  }
 
   # some checks
   tagAssert(header[[1]], type = "nav", class = "main-header")
@@ -174,7 +183,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
           0
         },
         `data-scrollToTop` = if (scrollToTop) 1 else 0,
-        class = if (sidebarDisabled) "layout-top-nav",
+        class = bodyCl,
         if (!is.null(preloader)) {
           shiny::tagList(
             waiter::useWaiter(), # dependencies

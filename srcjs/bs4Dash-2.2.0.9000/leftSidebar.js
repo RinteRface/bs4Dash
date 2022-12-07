@@ -265,17 +265,5 @@ $(function() {
     $("body").addClass("layout-fixed");
     //$('body').Layout('fixLayoutHeight');
   }
-
-  // toggle sidebar at start depending on the body class
-  var sidebarCollapsed = $(".main-sidebar").attr("data-collapsed");
-  if (sidebarCollapsed === "true") {
-    // This triggers binding geValue
-    $("[data-widget='pushmenu']").PushMenu("toggle");
-  }
-
-  var sidebarMinified = $(".main-sidebar").attr("data-minified");
-  if (sidebarMinified === "true") {
-    $("body").addClass("sidebar-mini");
-  }
 });
 
