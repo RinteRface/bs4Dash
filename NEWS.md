@@ -9,6 +9,8 @@
 back to R. Thanks @lucas-alcantara for reporting.
 
 ## Bug fixes
+- Fix #325: `menuItem()` applied wrong class to any nested element that is not
+a `menuSubItem()`. Thanks @echoplaza for reporting. 
 - Fix #322: `notificationItem()` href does not work. 
 - Fix #306: Dynamic `menuSubItems()` with apply() adds some extra text. Added __.list__
 param to `menuItem()` to programmatically pass `menuSubItem()` as list. 

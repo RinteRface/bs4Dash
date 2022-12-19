@@ -418,13 +418,15 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     )
     # in case we have multiple subitems
   } else {
-
     # add special class for leftSidebar.js
     for (i in seq_along(subItems)) {
-      subItems[[i]]$children[[1]]$attribs$class <- paste(
-        subItems[[i]]$children[[1]]$attribs$class,
-        "treeview-link"
-      )
+      # Only apply if element is menuSubItem.
+      if (subItems[[i]]$attribs$class == "nav-item") {
+        subItems[[i]]$children[[1]]$attribs$class <- paste(
+          subItems[[i]]$children[[1]]$attribs$class,
+          "treeview-link"
+        )
+      }
     }
 
     # If we're restoring a bookmarked app, this holds the value of what menuItem (if any)
