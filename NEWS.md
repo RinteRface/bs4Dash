@@ -1,4 +1,4 @@
-# bs4Dash 2.2.0.9000 (development version)
+# bs4Dash 2.2.0
 
 ## New features
 - New `pagination()` and `updatePagination()`. Bootstrap 4 implementation of
