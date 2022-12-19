@@ -971,7 +971,7 @@ shinyApp(
     scrollToTop = TRUE,
     header = dashboardHeader(
       title = dashboardBrand(
-        title = "bs4Dash",
+        title = sprintf("bs4Dash v%s", as.character(utils::packageVersion("bs4Dash"))),
         color = "primary",
         href = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
         image = "https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg",
@@ -1186,7 +1186,7 @@ shinyApp(
         href = "https://twitter.com/divadnojnarg",
         target = "_blank", "@DivadNojnarg"
       ),
-      right = "2020"
+      right = "2022"
     ),
     title = "bs4Dash Showcase"
   ),
