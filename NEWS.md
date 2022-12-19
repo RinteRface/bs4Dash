@@ -4,7 +4,7 @@
 - New `pagination()` and `updatePagination()`. Bootstrap 4 implementation of
 [pagination](https://getbootstrap.com/docs/4.0/components/pagination/).
 
-# Minor change
+## Minor change
 - Fix #323: remove sidebar collapse animation on app startup. JS code moved
 back to R. Thanks @lucas-alcantara for reporting.
 
