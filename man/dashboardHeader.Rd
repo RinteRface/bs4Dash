@@ -18,7 +18,7 @@ bs4DashNavbar(
   border = TRUE,
   compact = FALSE,
   sidebarIcon = shiny::icon("bars"),
-  controlbarIcon = shiny::icon("th"),
+  controlbarIcon = shiny::icon("table-cells"),
   fixed = FALSE
 )
 
@@ -35,7 +35,7 @@ dashboardHeader(
   border = TRUE,
   compact = FALSE,
   sidebarIcon = shiny::icon("bars"),
-  controlbarIcon = shiny::icon("th"),
+  controlbarIcon = shiny::icon("table-cells"),
   fixed = FALSE
 )
 }

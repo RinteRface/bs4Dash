@@ -172,13 +172,13 @@ if (interactive()) {
             value = 150,
             subtitle = "New orders",
             color = "primary",
-            icon = icon("shopping-cart")
+            icon = icon("cart-shopping")
           ),
           valueBox(
             value = "53\%",
             subtitle = "New orders",
             color = "indigo",
-            icon = icon("cogs"),
+            icon = icon("gears"),
             footer = div("Hello World")
           ),
           valueBox(

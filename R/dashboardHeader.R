@@ -52,7 +52,7 @@
 bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
                           .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = "white",
                           border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
-                          controlbarIcon = shiny::icon("th"), fixed = FALSE) {
+                          controlbarIcon = shiny::icon("table-cells"), fixed = FALSE) {
   items <- c(list(...), .list)
 
   # make sure default status for dark skin is gray-dark if status is not specified
@@ -302,7 +302,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
       type,
       messages = shiny::icon("comments"),
       notifications = shiny::icon("bell"),
-      tasks = shiny::icon("tasks")
+      tasks = shiny::icon("list-check")
     )
   }
 
@@ -486,7 +486,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @rdname dropdownMenu
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("exclamation-triangle"),
+notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
                              status = "success", href = NULL, inputId = NULL) {
   tagAssert(icon, type = "i")
   if (is.null(href)) href <- "#"

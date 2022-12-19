@@ -9,3 +9,4 @@
 There were no ERRORs or WARNINGs or NOTEs
 
 ## Note
+Re-submit due to a wrong folder name not captured in R CMD check. 

@@ -490,7 +490,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 #'
 #' @export
 bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
-                                  newTab = NULL, icon = shiny::icon("angle-double-right"), selected = NULL) {
+                                  newTab = NULL, icon = shiny::icon("angles-right"), selected = NULL) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
@@ -639,12 +639,12 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'           menuItem(
 #'             text = "Tab 1",
 #'             tabName = "tab1",
-#'             icon = icon("shuttle-van")
+#'             icon = icon("van-shuttle")
 #'           ),
 #'           menuItem(
 #'             text = "Tab 2",
 #'             tabName = "tab2",
-#'             icon = icon("space-shuttle"),
+#'             icon = icon("shuttle-space"),
 #'             selected = TRUE
 #'           ),
 #'           menuItem(
@@ -654,12 +654,12 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'             menuSubItem(
 #'               text = "Item 3",
 #'               tabName = "tab3",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             ),
 #'             menuSubItem(
 #'               text = "Item 4",
 #'               tabName = "tab4",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             )
 #'           ),
 #'           menuItem(
@@ -669,18 +669,18 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'             menuSubItem(
 #'               text = "Item 5",
 #'               tabName = "tab5",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             ),
 #'             menuSubItem(
 #'               text = "Item 6",
 #'               tabName = "tab6",
-#'               icon = icon("circle-thin")
+#'               icon = icon("circle")
 #'             )
 #'           ),
 #'           menuItem(
 #'             text = "Tab 7",
 #'             tabName = "tab7",
-#'             icon = icon("home")
+#'             icon = icon("house")
 #'           )
 #'         )
 #'       ),

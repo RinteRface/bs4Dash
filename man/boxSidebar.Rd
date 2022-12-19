@@ -15,7 +15,7 @@ bs4CardSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs"),
+  icon = shiny::icon("gears"),
   easyClose = TRUE
 )
 
@@ -27,7 +27,7 @@ cardSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs"),
+  icon = shiny::icon("gears"),
   easyClose = TRUE
 )
 
@@ -37,7 +37,7 @@ boxSidebar(
   width = 50,
   background = "#333a40",
   startOpen = FALSE,
-  icon = shiny::icon("cogs"),
+  icon = shiny::icon("gears"),
   easyClose = TRUE
 )
 

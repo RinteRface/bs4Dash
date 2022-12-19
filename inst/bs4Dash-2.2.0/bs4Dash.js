@@ -8,7 +8,7 @@ $.extend(accordionBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     // active is given by the setValue method
-    var activeItem = $(el).find(".active").index() + 1;
+    var activeItem = $(el).children(".card.active").index() + 1;
     if (activeItem === 0) return;
     // returns the index of the active item from the R point of view. It is possible
     // that no item is shown at start. In this case,  NULL is returned
@@ -17,7 +17,7 @@ $.extend(accordionBinding, {
   
   setValue: function(el, value) {
     // remove active class from all other panels
-    $(el).find(".active").removeClass("active");
+    $(el).children(".card.active").removeClass("active");
     
     // add active class to current panel
     $(el).children()
@@ -49,7 +49,7 @@ $.extend(accordionBinding, {
     // manual click will update
     $(el).find('[data-toggle="collapse"]').on("click", function(e) {
       if (!$(this).closest(".card").hasClass("active")) {
-        $(el).find(".active").removeClass("active");
+        $(el).children(".card.active").removeClass("active");
       } 
       $(this).closest(".card").addClass("active");
       callback();
@@ -933,11 +933,13 @@ $(function () {
       default: console.warn(`${config.status} does not belong to allowed statuses!`)
     }
 
+    closeButton = '';
+
     if (config.closable) {
       closeButton = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>'
     }
 
-    titleTag = `<h5><i class="icon fa fa-${iconType}"></i></h5>`
+    titleTag = `<h5><i class="icon fa fa-${iconType}"></i>${config.title}</h5>`
     contentTag = config.content;
 
     alertTag = `<div 

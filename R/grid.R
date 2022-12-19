@@ -34,7 +34,7 @@
 #'              width = 1,
 #'              offset = 11,
 #'              actionButton(
-#'                "mybutton",label = "",icon = icon("question-circle")
+#'                "mybutton",label = "",icon = icon("circle-question")
 #'              )
 #'            )
 #'            
