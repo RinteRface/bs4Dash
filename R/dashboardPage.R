@@ -124,12 +124,20 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     header[[1]]$attribs$style <- "padding: 0rem 0rem;"
   }
   
-  bodyCl <- if (sidebarDisabled) "layout-top-nav"
+  bodyCl <- if (sidebarDisabled) "layout-top-nav" else NULL
   if (sidebarCollapsed) {
-    bodyCl <- paste(bodyCl, "sidebar-collapse")
+    bodyCl <- if (is.null(bodyCl)) {
+      "sidebar-collapse"
+    } else {
+      paste(bodyCl, "sidebar-collapse")
+    }
   }
   if (sidebarMini) {
-    bodyCl <- paste(bodyCl, "sidebar-mini")
+    bodyCl <- if (is.null(bodyCl)) {
+      "sidebar-mini"
+    } else {
+      paste(bodyCl, "sidebar-mini")
+    }
   }
 
   # some checks
