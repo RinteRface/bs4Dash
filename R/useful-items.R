@@ -3221,24 +3221,24 @@ pagination <- function(..., id = NULL, selected = NULL,
   }
   
   # Start and end navigation tags
-  pagination_start <- tags$li(
+  pagination_start <- shiny::tags$li(
     class = "page-item",
-    tags$a(
+    shiny::tags$a(
       class = "page-link pagination-previous",
       href = "#",
       tabindex = "-1",
-      tags$span(`aria-hidden`="true", previousBtn),
-      tags$span(class = "sr-only", "Previous")
+      shiny::tags$span(`aria-hidden`="true", previousBtn),
+      shiny::tags$span(class = "sr-only", "Previous")
     )
   )
   
-  pagination_end <- tags$li(
+  pagination_end <- shiny::tags$li(
     class = "page-item",
-    tags$a(
+    shiny::tags$a(
       class = "page-link pagination-next",
       href = "#",
-      tags$span(`aria-hidden`="true", nextBtn),
-      tags$span(class = "sr-only", "Next")
+      shiny::tags$span(`aria-hidden`="true", nextBtn),
+      shiny::tags$span(class = "sr-only", "Next")
     )
   )
   
@@ -3290,7 +3290,7 @@ pagination <- function(..., id = NULL, selected = NULL,
     allTags()
   
   # Wrap ul by tags$nav
-  temp_tag$children[[1]] <- tags$nav(
+  temp_tag$children[[1]] <- shiny::tags$nav(
     `aria-label` = "Navigation stepper",
     temp_tag$children[[1]]
   )

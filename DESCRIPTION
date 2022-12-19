@@ -28,7 +28,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
-    covr,
     golem,
     DT, 
     thematic (>= 0.1.2)
