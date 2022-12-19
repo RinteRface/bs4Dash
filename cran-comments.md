@@ -9,4 +9,4 @@
 There were no ERRORs or WARNINGs or NOTEs
 
 ## Note
-Re-submit due to a wrong folder name not captured in R CMD check. 
+Re-submit due to a wrong folder name not captured in R CMD check and bump version to 2.2.1
