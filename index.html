@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.1</span>
       </span>
     </div>
 
@@ -120,18 +120,31 @@
 <div class="section level1">
 <div class="page-header"><h1 id="bs4dash">bs4Dash<a class="anchor" aria-label="anchor" href="#bs4dash"></a>
 </h1></div>
-
+<p><a href="https://github.com/RinteRface/bs4Dash/actions" class="external-link"><img src="https://github.com/RinteRface/bs4Dash/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://CRAN.R-project.org/package=bs4Dash" class="external-link"><img src="https://www.r-pkg.org/badges/version/bs4Dash" alt="version"></a> <a href="https://CRAN.R-project.org/package=bs4Dash" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/bs4Dash" alt="cranlogs"></a> <a href="https://www.rpackages.io/package/bs4Dash" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/bs4Dash" alt="total"></a> <a href="https://codecov.io/gh/RinteRface/bs4Dash?branch=master" class="external-link"><img src="https://codecov.io/gh/RinteRface/bs4Dash/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></p>
 <p><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css" type="text/css"></p>
-<blockquote><p>Bootstrap 4 shinydashboard using <a href="https://github.com/ColorlibHQ/AdminLTE" class="external-link">AdminLTE3</a></p></blockquote>
+<blockquote>
+<p>Bootstrap 4 shinydashboard using <a href="https://github.com/ColorlibHQ/AdminLTE" class="external-link">AdminLTE3</a></p>
+</blockquote>
 <p><br></p>
-<div class="card"><p><a href="https://dgranjon.shinyapps.io/virtual_patient_v2/" target="_blank" class="external-link"><img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif"></a></p></div>
+<div class="card">
+<p><a href="https://dgranjon.shinyapps.io/virtual_patient_v2/" target="_blank" class="external-link"><img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif"></a></p>
+</div>
 <p><br></p>
-<div class="card"><p><a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank" class="external-link"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif"></a></p></div>
+<div class="card">
+<p><a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank" class="external-link"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif"></a></p>
+</div>
 <p><br></p>
 <div class="marvel-device iphone8 black">
-<div class="camera"></div>
-<div class="screen"><iframe width="100%" src="https://dgranjon.shinyapps.io/virtual_patient_v2/" allowfullscreen frameborder="0" scrolling="yes" height="770px"></iframe></div>
-<div class="home"></div>
+<div class="camera">
+
+</div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/virtual_patient_v2/" allowfullscreen frameborder="0" scrolling="yes" height="770px">
+</iframe>
+</div>
+<div class="home">
+
+</div>
 </div>
 <div class="section level2">
 <h2 id="new-users-moving-to-bs4dash-v200">New users moving to bs4Dash v2.0.0<a class="anchor" aria-label="anchor" href="#new-users-moving-to-bs4dash-v200"></a>
@@ -146,12 +159,12 @@
 <span>  <span class="fu"><a href="reference/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="reference/dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
 <span>    <span class="co"># Boxes need to be put in a row (or column)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,</span>
 <span></span>
 <span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span></span>
 <span>        title <span class="op">=</span> <span class="st">"Controls"</span>,</span>
-<span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
@@ -161,13 +174,13 @@
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">122</span><span class="op">)</span></span>
 <span>  <span class="va">histdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">histdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">slider</span><span class="op">)</span><span class="op">]</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p>Starting from v2.0.0, moving to <a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a> is rather simple:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
@@ -176,12 +189,12 @@
 <span>  <span class="fu"><a href="reference/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="reference/dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
 <span>    <span class="co"># Boxes need to be put in a row (or column)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot1"</span>, height <span class="op">=</span> <span class="fl">250</span><span class="op">)</span><span class="op">)</span>,</span>
 <span></span>
 <span>      <span class="fu"><a href="reference/box.html">box</a></span><span class="op">(</span></span>
 <span>        title <span class="op">=</span> <span class="st">"Controls"</span>,</span>
-<span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Number of observations:"</span>, <span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">50</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
@@ -191,13 +204,13 @@
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">122</span><span class="op">)</span></span>
 <span>  <span class="va">histdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">histdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">slider</span><span class="op">)</span><span class="op">]</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="upgrading-bs4dash-to-200">Upgrading bs4Dash to 2.0.0<a class="anchor" aria-label="anchor" href="#upgrading-bs4dash-to-200"></a>
@@ -283,17 +296,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/RinteRface/bs4Dash/actions" class="external-link"><img src="https://github.com/RinteRface/bs4Dash/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=bs4Dash" class="external-link"><img src="https://www.r-pkg.org/badges/version/bs4Dash" alt="version"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg" alt="lifecycle"></a></li>
-<li><a href="https://CRAN.R-project.org/package=bs4Dash" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/bs4Dash" alt="cranlogs"></a></li>
-<li><a href="https://www.rpackages.io/package/bs4Dash" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/bs4Dash" alt="total"></a></li>
-<li><a href="https://codecov.io/gh/RinteRface/bs4Dash?branch=master" class="external-link"><img src="https://codecov.io/gh/RinteRface/bs4Dash/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -306,7 +309,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

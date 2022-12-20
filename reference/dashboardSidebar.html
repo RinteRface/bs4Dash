@@ -26,7 +26,7 @@ server. It behaves just like updateTabsetPanel."><meta property="og:image" conte
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.1</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@ insert in the sidebar slot of <a href="dashboardPage.html">dashboardPage</a>.</p
 <p>sidebarHeader creates a header to put in dashboardSidebar.</p>
 <p>sidebarUserPanel creates a user Panel to put in dashboardSidebar.</p>
 <p>updateTabItems controls the active tab of <code><a href="dashboardBody.html">tabItems</a></code> from the
-server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html" class="external-link">updateTabsetPanel</a></code>.</p>
+server. It behaves just like <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html" class="external-link">updateTabsetPanel</a></code>.</p>
     </div>
 
     <div id="ref-usage">
@@ -125,7 +125,7 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  customArea <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">updatebs4Sidebar</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">updatebs4Sidebar</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">bs4SidebarMenu</span><span class="op">(</span></span>
 <span>  <span class="va">...</span>,</span>
@@ -149,7 +149,8 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  expandedName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"[[:space:]]"</span>, <span class="st">""</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  startExpanded <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  condition <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  condition <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .list <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">bs4SidebarMenuSubItem</span><span class="op">(</span></span>
@@ -157,7 +158,7 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  tabName <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  href <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  newTab <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"angles-right"</span><span class="op">)</span>,</span>
+<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"angles-right"</span><span class="op">)</span>,</span>
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -166,7 +167,7 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span><span class="fu">bs4SidebarUserPanel</span><span class="op">(</span><span class="va">name</span>, image <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">updatebs4TabItems</span><span class="op">(</span></span>
-<span>  session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">inputId</span>,</span>
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
@@ -186,7 +187,7 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  customArea <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">updateSidebar</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">updateSidebar</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">sidebarHeader</span><span class="op">(</span><span class="va">title</span><span class="op">)</span></span>
 <span></span>
@@ -214,7 +215,8 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  expandedName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"[[:space:]]"</span>, <span class="st">""</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  startExpanded <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  condition <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  condition <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .list <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">menuSubItem</span><span class="op">(</span></span>
@@ -222,12 +224,12 @@ server. It behaves just like <code><a href="https://rdrr.io/pkg/shiny/man/update
 <span>  tabName <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  href <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  newTab <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"angles-right"</span><span class="op">)</span>,</span>
+<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"angles-right"</span><span class="op">)</span>,</span>
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">updateTabItems</span><span class="op">(</span></span>
-<span>  session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">inputId</span>,</span>
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -361,7 +363,7 @@ to FALSE.</p></dd>
 
 
 <dt>icon</dt>
-<dd><p>An icon tag, created by <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></code>. If
+<dd><p>An icon tag, created by <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></code>. If
 <code>NULL</code>, don't display an icon.</p></dd>
 
 
@@ -416,7 +418,7 @@ bookmarking state.)</p></dd>
 
 
 <dt>condition</dt>
-<dd><p>When using menuItem with <a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html" class="external-link">conditionalPanel</a>,
+<dd><p>When using menuItem with <a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html" class="external-link">conditionalPanel</a>,
 write the condition here (see <a href="https://github.com/RinteRface/bs4Dash/issues/35" class="external-link">https://github.com/RinteRface/bs4Dash/issues/35</a>).</p></dd>
 
 
@@ -458,7 +460,7 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      sidebar <span class="op">=</span> <span class="fu">dashboardSidebar</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"sidebar"</span><span class="op">)</span>,</span></span>
@@ -467,9 +469,9 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>        <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/showModal.html" class="external-link">showModal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/modalDialog.html" class="external-link">modalDialog</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/showModal.html" class="external-link">showModal</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/modalDialog.html" class="external-link">modalDialog</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            title <span class="op">=</span> <span class="st">"Alert"</span>,</span></span>
 <span class="r-in"><span>            <span class="st">"The sidebar is opened."</span>,</span></span>
 <span class="r-in"><span>            easyClose <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
@@ -478,11 +480,11 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>        <span class="op">}</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebarToggle</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebarToggle</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>        <span class="fu">updateSidebar</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"sidebar"</span>, session <span class="op">=</span> <span class="va">session</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span></span></span>
@@ -513,39 +515,39 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>      <span class="fu"><a href="dashboardBody.html">tabItems</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>          tabName <span class="op">=</span> <span class="st">"tab1"</span>,</span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Welcome!"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show Tab 2"</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Welcome!"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show Tab 2"</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>          tabName <span class="op">=</span> <span class="st">"tab2"</span>,</span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Hey! You found me!"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Hey! You found me!"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="co">## Only run this example in interactive R sessions</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      header <span class="op">=</span> <span class="fu"><a href="dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span>skin <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      body <span class="op">=</span> <span class="fu"><a href="dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="dashboardBody.html">tabItems</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab1"</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"obs"</span>, <span class="st">"Number of observations:"</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span><span class="st">"obs"</span>, <span class="st">"Number of observations:"</span>,</span></span>
 <span class="r-in"><span>              min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1000</span>, value <span class="op">=</span> <span class="fl">500</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab2"</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>              <span class="st">"variable"</span>, <span class="st">"Variables to show:"</span>,</span></span>
 <span class="r-in"><span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>                <span class="st">"Cylinders"</span> <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
@@ -553,12 +555,12 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>                <span class="st">"Gears"</span> <span class="op">=</span> <span class="st">"gear"</span></span></span>
 <span class="r-in"><span>              <span class="op">)</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">tableOutput</a></span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderTable.html" class="external-link">tableOutput</a></span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab3"</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"val"</span>, <span class="st">"Some value"</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">textOutput</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"val"</span>, <span class="st">"Some value"</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">textOutput</a></span><span class="op">(</span><span class="st">"value"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu"><a href="dashboardBody.html">tabItem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab4"</span>,</span></span>
@@ -586,54 +588,54 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>          <span class="fu">menuItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Tab 1"</span>,</span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab1"</span>,</span></span>
-<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"van-shuttle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"van-shuttle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu">menuItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Tab 2"</span>,</span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab2"</span>,</span></span>
-<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"shuttle-space"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"shuttle-space"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>            selected <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu">menuItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Item List 1"</span>,</span></span>
-<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>            startExpanded <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>            <span class="fu">menuSubItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>              text <span class="op">=</span> <span class="st">"Item 3"</span>,</span></span>
 <span class="r-in"><span>              tabName <span class="op">=</span> <span class="st">"tab3"</span>,</span></span>
-<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span>,</span></span>
 <span class="r-in"><span>            <span class="fu">menuSubItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>              text <span class="op">=</span> <span class="st">"Item 4"</span>,</span></span>
 <span class="r-in"><span>              tabName <span class="op">=</span> <span class="st">"tab4"</span>,</span></span>
-<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu">menuItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Item List 2"</span>,</span></span>
-<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"bars"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>            startExpanded <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>            <span class="fu">menuSubItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>              text <span class="op">=</span> <span class="st">"Item 5"</span>,</span></span>
 <span class="r-in"><span>              tabName <span class="op">=</span> <span class="st">"tab5"</span>,</span></span>
-<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span>,</span></span>
 <span class="r-in"><span>            <span class="fu">menuSubItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>              text <span class="op">=</span> <span class="st">"Item 6"</span>,</span></span>
 <span class="r-in"><span>              tabName <span class="op">=</span> <span class="st">"tab6"</span>,</span></span>
-<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>              icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"circle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>            <span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="fu">menuItem</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            text <span class="op">=</span> <span class="st">"Tab 7"</span>,</span></span>
 <span class="r-in"><span>            tabName <span class="op">=</span> <span class="st">"tab7"</span>,</span></span>
-<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      controlbar <span class="op">=</span> <span class="fu"><a href="dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        skin <span class="op">=</span> <span class="st">"light"</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>          inputId <span class="op">=</span> <span class="st">"controller"</span>,</span></span>
 <span class="r-in"><span>          label <span class="op">=</span> <span class="st">"Update the first tabset"</span>,</span></span>
 <span class="r-in"><span>          min <span class="op">=</span> <span class="fl">1</span>,</span></span>
@@ -644,11 +646,11 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>      footer <span class="op">=</span> <span class="fu"><a href="dashboardFooter.html">bs4DashFooter</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebarItemExpanded</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebarItemExpanded</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sidebar</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>      <span class="co"># update tabset1</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">controller</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">controller</span>,</span></span>
 <span class="r-in"><span>        <span class="op">{</span></span></span>
 <span class="r-in"><span>          <span class="fu">updateTabItems</span><span class="op">(</span></span></span>
 <span class="r-in"><span>            <span class="va">session</span>,</span></span>
@@ -659,18 +661,18 @@ or <code>navbarPage</code> object.</p></dd>
 <span class="r-in"><span>        ignoreInit <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">renderTable</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderTable.html" class="external-link">renderTable</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="op">{</span></span></span>
 <span class="r-in"><span>          <span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="va">input</span><span class="op">$</span><span class="va">variable</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></span>
 <span class="r-in"><span>        <span class="op">}</span>,</span></span>
 <span class="r-in"><span>        rownames <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderText</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderText</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>        <span class="va">input</span><span class="op">$</span><span class="va">val</span></span></span>
 <span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span></span></span>
@@ -690,7 +692,7 @@ or <code>navbarPage</code> object.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

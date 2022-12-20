@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.1</span>
       </span>
     </div>
 
@@ -87,10 +87,33 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="2.2.1" id="bs4dash-221">bs4Dash 2.2.1<a class="anchor" aria-label="anchor" href="#bs4dash-221"></a></h2>
+<div class="section level3">
+<h3 id="new-features-2-2-1">New features<a class="anchor" aria-label="anchor" href="#new-features-2-2-1"></a></h3>
+<ul><li>New <code><a href="../reference/pagination.html">pagination()</a></code> and <code><a href="../reference/pagination.html">updatePagination()</a></code>. Bootstrap 4 implementation of <a href="https://getbootstrap.com/docs/4.0/components/pagination/" class="external-link">pagination</a>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-change-2-2-1">Minor change<a class="anchor" aria-label="anchor" href="#minor-change-2-2-1"></a></h3>
+<ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/323" class="external-link">#323</a>: remove sidebar collapse animation on app startup. JS code moved back to R. Thanks <a href="https://github.com/lucas-alcantara" class="external-link">@lucas-alcantara</a> for reporting.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-2-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-2-1"></a></h3>
+<ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/325" class="external-link">#325</a>: <code><a href="../reference/dashboardSidebar.html">menuItem()</a></code> applied wrong class to any nested element that is not a <code><a href="../reference/dashboardSidebar.html">menuSubItem()</a></code>. Thanks <a href="https://github.com/echoplaza" class="external-link">@echoplaza</a> for reporting.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/322" class="external-link">#322</a>: <code><a href="../reference/dropdownMenu.html">notificationItem()</a></code> href does not work.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/306" class="external-link">#306</a>: Dynamic <code>menuSubItems()</code> with apply() adds some extra text. Added <strong>.list</strong> param to <code><a href="../reference/dashboardSidebar.html">menuItem()</a></code> to programmatically pass <code><a href="../reference/dashboardSidebar.html">menuSubItem()</a></code> as list.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/297" class="external-link">#297</a>: <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code> renders below the list of <code>tabPanels</code> when vertical = TRUE. Changed layout to <code>fluidRow</code>. Thanks <a href="https://github.com/lucas-alcantara" class="external-link">@lucas-alcantara</a> for reporting.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/296" class="external-link">#296</a>: Documentation issue for <code><a href="../reference/valueBox.html">valueBox()</a></code> and <code><a href="../reference/infoBox.html">infoBox()</a></code> in the render function section. Thanks <a href="https://github.com/corderoortiz" class="external-link">@corderoortiz</a> for reporting.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/293" class="external-link">#293</a>: Navbar stays keeps white background, even when dark mode is selected/toggled. Related to a previous PR. Thanks to <a href="https://github.com/JJohnson-DA" class="external-link">@JJohnson-DA</a> for reporting.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/290" class="external-link">#290</a>: don’t set <code>data-toggle="tab"</code> when <code>href</code> is not NULL in <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. Thanks <a href="https://github.com/veer0318" class="external-link">@veer0318</a> for reporting.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/243" class="external-link">#243</a>: <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code> id’s not properly generated when inserting tabs to non-empty tabset. Thanks <a href="https://github.com/DarkSideOfTheMat" class="external-link">@DarkSideOfTheMat</a> for reporting and giving hints.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="2.1.0" id="bs4dash-210">bs4Dash 2.1.0<small>2022-05-05</small><a class="anchor" aria-label="anchor" href="#bs4dash-210"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-2-1-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-2-1-0"></a></h3>
-<ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li></ul></div>
+<ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li>
+</ul></div>
 <div class="section level3">
 <h3 id="minor-changesfixes-2-1-0">Minor changes/fixes<a class="anchor" aria-label="anchor" href="#minor-changesfixes-2-1-0"></a></h3>
 <ul><li>Remove echarts4r suggest causing <a href="https://github.com/RinteRface/bs4Dash/issues/240" class="external-link">#240</a>.</li>
@@ -110,14 +133,16 @@
 <p>This release is a patch to fix an issue preventing the release of Shiny 1.7.0.</p>
 <div class="section level3">
 <h3 id="minor-changes-2-0-3">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-3"></a></h3>
-<ul><li>Internal change regarding the <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> package but no user impact. Thanks <a href="https://github.com/JohnCoene" class="external-link">@JohnCoene</a>.</li></ul></div>
+<ul><li>Internal change regarding the <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> package but no user impact. Thanks <a href="https://github.com/JohnCoene" class="external-link">@JohnCoene</a>.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.2" id="bs4dash-202">bs4Dash 2.0.2<small>2021-07-23</small><a class="anchor" aria-label="anchor" href="#bs4dash-202"></a></h2>
 <p>Patch to fix CRAN warning on Mac M1.</p>
 <div class="section level3">
 <h3 id="minor-changes-2-0-2">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-2"></a></h3>
-<ul><li>Move away from <code>shiny:::processDeps</code> in favor of <code><a href="https://rdrr.io/pkg/htmltools/man/renderTags.html" class="external-link">htmltools::renderTags</a></code>. Does not impact end user.</li></ul></div>
+<ul><li>Move away from <code>shiny:::processDeps</code> in favor of <code><a href="https://rstudio.github.io/htmltools/reference/renderTags.html" class="external-link">htmltools::renderTags</a></code>. Does not impact end user.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.1" id="bs4dash-201">bs4Dash 2.0.1<small>2021-07-16</small><a class="anchor" aria-label="anchor" href="#bs4dash-201"></a></h2>
@@ -149,16 +174,17 @@
 <div class="section level4">
 <h4 id="bs4dashnavbardashboardheader-2-0-0">bs4DashNavbar/dashboardHeader<a class="anchor" aria-label="anchor" href="#bs4dashnavbardashboardheader-2-0-0"></a></h4>
 <ul><li>
-<code>controlbarIcon</code> accepts <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code> instead of the icon name.</li>
+<code>controlbarIcon</code> accepts <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code> instead of the icon name.</li>
 <li>
-<code>sidebarIcon</code> accepts <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code> instead of the icon name.</li>
+<code>sidebarIcon</code> accepts <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code> instead of the icon name.</li>
 <li>add <code>title</code>, <code>titleWidth</code> and <code>disable</code>
 </li>
 </ul></div>
 <div class="section level4">
 <h4 id="bs4usermenu-2-0-0">bs4UserMenu<a class="anchor" aria-label="anchor" href="#bs4usermenu-2-0-0"></a></h4>
 <ul><li>
-<code>src</code> becomes <code>image</code>.</li></ul></div>
+<code>src</code> becomes <code>image</code>.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4dashcontrolbardashboardcontrolbar-2-0-0">bs4DashControlbar/dashboardControlbar<a class="anchor" aria-label="anchor" href="#bs4dashcontrolbardashboardcontrolbar-2-0-0"></a></h4>
 <ul><li>Add <code>collapsed</code> and <code>overlay</code>.</li>
@@ -193,12 +219,13 @@
 <h4 id="bs4sidebarmenuitem-2-0-0">bs4SidebarMenuItem<a class="anchor" aria-label="anchor" href="#bs4sidebarmenuitem-2-0-0"></a></h4>
 <ul><li>Add <code>href</code> and <code>newTab</code>.</li>
 <li>
-<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bs4sidebaruserpanel-2-0-0">bs4SidebarUserPanel<a class="anchor" aria-label="anchor" href="#bs4sidebaruserpanel-2-0-0"></a></h4>
 <ul><li>
-<code>img</code> and <code>text</code> become <code>image</code> and <code>name</code>, respectively.</li></ul></div>
+<code>img</code> and <code>text</code> become <code>image</code> and <code>name</code>, respectively.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4card-2-0-0">bs4Card<a class="anchor" aria-label="anchor" href="#bs4card-2-0-0"></a></h4>
 <ul><li>Change <code>solidHeader</code> behavior.</li>
@@ -216,17 +243,18 @@
 <ul><li>
 <code>inputId</code> becomes <code>id</code>.</li>
 <li>
-<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bs4tabcard-2-0-0">bs4TabCard<a class="anchor" aria-label="anchor" href="#bs4tabcard-2-0-0"></a></h4>
-<ul><li>Change <code>solidHeader</code> behavior.</li></ul></div>
+<ul><li>Change <code>solidHeader</code> behavior.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4valuebox-2-0-0">bs4ValueBox<a class="anchor" aria-label="anchor" href="#bs4valuebox-2-0-0"></a></h4>
 <ul><li>
 <code>status</code> becomes <code>color</code>.</li>
 <li>
-<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bs4infobox-2-0-0">bs4InfoBox<a class="anchor" aria-label="anchor" href="#bs4infobox-2-0-0"></a></h4>
@@ -260,21 +288,24 @@
 <div class="section level4">
 <h4 id="descriptionblock-2-0-0">descriptionBlock<a class="anchor" aria-label="anchor" href="#descriptionblock-2-0-0"></a></h4>
 <ul><li>
-<code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li></ul></div>
+<code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4box-2-0-0">bs4Box<a class="anchor" aria-label="anchor" href="#bs4box-2-0-0"></a></h4>
-<ul><li>This component has been removed</li></ul></div>
+<ul><li>This component has been removed</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4tabcard-2-0-0-1">bs4TabCard<a class="anchor" aria-label="anchor" href="#bs4tabcard-2-0-0-1"></a></h4>
 <ul><li>rework component. Like <code><a href="../reference/tabBox.html">tabBox()</a></code> from <a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>
-</li></ul></div>
+</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4dropdownmenu-2-0-0">bs4DropdownMenu<a class="anchor" aria-label="anchor" href="#bs4dropdownmenu-2-0-0"></a></h4>
 <ul><li>
 <code>badge</code> becomes <code>badgeStatus</code>
 </li>
 <li>Add <code>type</code>.</li>
-<li>icon expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
+<li>icon expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
 <li>Replace <code>labelText</code> by <code>headerText</code>.</li>
 <li>Add <code>.list</code> and <code>href</code>.</li>
 <li>Remove <code>align</code>.</li>
@@ -282,7 +313,8 @@
 <div class="section level4">
 <h4 id="bs4dropdownmenuitem-2-0-0">bs4DropdownMenuItem<a class="anchor" aria-label="anchor" href="#bs4dropdownmenuitem-2-0-0"></a></h4>
 <ul><li>This has been replaced by <code><a href="../reference/dropdownMenu.html">notificationItem()</a></code> and <code><a href="../reference/dropdownMenu.html">messageItem()</a></code>
-</li></ul></div>
+</li>
+</ul></div>
 <div class="section level4">
 <h4 id="others-2-0-0">Others<a class="anchor" aria-label="anchor" href="#others-2-0-0"></a></h4>
 <ul><li>Reworked <code><a href="../reference/table.html">bs4Table()</a></code> API.</li>
@@ -296,7 +328,7 @@
 <li>In <code><a href="../reference/badge.html">bs4Badge()</a></code>, <code>status</code> becomes <code>color</code>.</li>
 <li>In <code><a href="../reference/userMessage.html">userMessage()</a></code>, <code>src</code> becomes <code>image</code> and <code>side</code> becomes <code>type</code>.</li>
 <li>In <code><a href="../reference/timeline.html">timelineItemMedia()</a></code>, <code>src</code> becomes <code>image</code>.</li>
-<li>In <code><a href="../reference/timeline.html">timelineItem()</a></code>, <code><a href="../reference/timeline.html">timelineStart()</a></code> and <code><a href="../reference/timeline.html">timelineEnd()</a></code>, <code>icon</code> expects <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">shiny::icon</a></code>.</li>
+<li>In <code><a href="../reference/timeline.html">timelineItem()</a></code>, <code><a href="../reference/timeline.html">timelineStart()</a></code> and <code><a href="../reference/timeline.html">timelineEnd()</a></code>, <code>icon</code> expects <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">shiny::icon</a></code>.</li>
 <li>
 <code>status</code> becomes <code>color</code> in <code><a href="../reference/timeline.html">timelineItem()</a></code>, <code><a href="../reference/timeline.html">timelineLabel()</a></code>, <code><a href="../reference/timeline.html">timelineStart()</a></code> and <code><a href="../reference/timeline.html">timelineEnd()</a></code>.</li>
 <li>In <code><a href="../reference/userPost.html">userPost()</a></code> and <code><a href="../reference/userPostMedia.html">userPostMedia()</a></code>, <code>src</code> becomes <code>image</code>. Removed <code>collapseStatus</code>.</li>
@@ -304,7 +336,7 @@
 <li>Remove <code>bs4ShowTab()</code>, <code>bs4HideTab()</code> and <code>bs4RemoveTab()</code>. shiny vanilla function should work well now.</li>
 <li>Remove <code>bs4TabPanel()</code>.</li>
 <li>
-<code>bs4TabSetPanel()</code> becomes <code>bs4TabsetPanel()</code> and is built on top of <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html" class="external-link">shiny::tabsetPanel</a></code>.</li>
+<code>bs4TabSetPanel()</code> becomes <code>bs4TabsetPanel()</code> and is built on top of <code><a href="https://shiny.rstudio.com/reference/shiny/latest/tabsetPanel.html" class="external-link">shiny::tabsetPanel</a></code>.</li>
 <li>In <code><a href="../reference/boxProfile.html">cardProfile()</a></code>, add <code>bordered</code>. <code>src</code> becomes <code>image</code>.</li>
 <li>Remove <code>cardProfileItemList()</code>.</li>
 <li>
@@ -389,7 +421,7 @@
 <div class="section level3">
 <h3 id="bug-fix-2-0-0">Bug Fix<a class="anchor" aria-label="anchor" href="#bug-fix-2-0-0"></a></h3>
 <ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/200" class="external-link">#200</a>: simplified <code><a href="../reference/table.html">bs4Table()</a></code> API.</li>
-<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/189" class="external-link">#189</a>: <code>hidden</code> type is not available for <code><a href="../reference/tabsetPanel.html">bs4Dash::tabsetPanel</a></code> that uses an old version of the <code><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html" class="external-link">shiny::tabsetPanel</a></code>. Thanks <a href="https://github.com/zilch42" class="external-link">@zilch42</a>.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/189" class="external-link">#189</a>: <code>hidden</code> type is not available for <code><a href="../reference/tabsetPanel.html">bs4Dash::tabsetPanel</a></code> that uses an old version of the <code><a href="https://shiny.rstudio.com/reference/shiny/latest/tabsetPanel.html" class="external-link">shiny::tabsetPanel</a></code>. Thanks <a href="https://github.com/zilch42" class="external-link">@zilch42</a>.</li>
 <li>Upgrade AdminLTE to 3.1.0. This fixes many sidebar issues!!!</li>
 <li>Fix issue <a href="https://github.com/RinteRface/bs4Dash/issues/110" class="external-link">#110</a>: due to the fact that the <code>bs4Controlbar()</code> now collapse when clicked outside, clicking on an input triggering the <code>updatebs4Controlbar()</code> would toggle it twice. Thanks <a href="https://github.com/dwhdai" class="external-link">@dwhdai</a></li>
 <li>Fix issue <a href="https://github.com/RinteRface/bs4Dash/issues/112" class="external-link">#112</a> with <code>sliderInput</code> z-index and <code><a href="../reference/dashboardPage.html">bs4DashPage()</a></code> preloader. Thanks <a href="https://github.com/analytichealth" class="external-link">@analytichealth</a> for the report</li>
@@ -470,7 +502,7 @@
 <ul><li>add <code>bs4DashControlbarMenu()</code>, <code>bs4DashControlbarItem()</code> and <code>updatebs4ControlbarMenu()</code>
 </li>
 <li>add <code><a href="../reference/dashboardSidebar.html">updatebs4TabItems()</a></code> and <code><a href="../reference/dashboardSidebar.html">updateTabItems()</a></code> to programatically update the selected sidebar tab and the corresponding body tab</li>
-<li>add <code>updatebs4TabSetPanel()</code> and <code><a href="https://rdrr.io/pkg/shiny/man/updateTabsetPanel.html" class="external-link">updateTabsetPanel()</a></code> (aliases) to dynamically update <code>bs4TabSetPanel()</code> from the server side</li>
+<li>add <code>updatebs4TabSetPanel()</code> and <code><a href="https://shiny.rstudio.com/reference/shiny/latest/updateTabsetPanel.html" class="external-link">updateTabsetPanel()</a></code> (aliases) to dynamically update <code>bs4TabSetPanel()</code> from the server side</li>
 <li>add maximizable option for <code><a href="../reference/box.html">bs4Card()</a></code> and <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. In other words, allow full screen option</li>
 <li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/8" class="external-link">#8</a>: add input binding to the <code><a href="../reference/dashboardSidebar.html">bs4SidebarMenu()</a></code>. Now by adding an id to the menu, the user can recover the currently selected tab. Thanks <a href="https://github.com/rpodcast" class="external-link">@rpodcast</a></li>
 <li>add aliases to make bs4Dash closer to shinydashboard (the conversion is easier). For instance <code><a href="../reference/dashboardPage.html">bs4DashPage()</a></code> can also be <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code>
@@ -517,7 +549,8 @@
 <h2 class="page-header" data-toc-text="0.3.0" id="bs4dash-030">bs4Dash 0.3.0<small>2019-04-06</small><a class="anchor" aria-label="anchor" href="#bs4dash-030"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-0-3-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-0-3-0"></a></h3>
-<ul><li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>.</li></ul></div>
+<ul><li>rework <code>bs4TabSetPanel()</code> and <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. <code>bs4TabSetPanel()</code> can now be used independently of <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>. Need to provide id argument to <code><a href="../reference/tabBox.html">bs4TabCard()</a></code>.</li>
+</ul></div>
 <div class="section level3">
 <h3 id="major-changes-0-3-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-3-0"></a></h3>
 <ul><li>update adminLTE3 to the latest release</li>
@@ -599,7 +632,8 @@
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="bs4dash-010">bs4Dash 0.1.0<small>2018-07-05</small><a class="anchor" aria-label="anchor" href="#bs4dash-010"></a></h2>
-<ul><li>initial release</li></ul></div>
+<ul><li>initial release</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -614,7 +648,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

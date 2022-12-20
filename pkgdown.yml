@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   bs4Dash: bs4Dash.html
@@ -8,5 +8,5 @@ articles:
   improved-boxes: improved-boxes.html
   more-skins: more-skins.html
   step-by-step: step-by-step.html
-last_built: 2022-09-28T10:46Z
+last_built: 2022-12-20T10:37Z
 
