@@ -113,6 +113,9 @@ reference:
   contents:
   - '`insertTab`'
   - '`tabsetPanel`'
+  - '`pagination`'
+  - '`paginationItem`'
+  - '`updatePagination`'
 
 
 - title: Inputs
