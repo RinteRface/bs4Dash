@@ -1,6 +1,7 @@
 # Packages ----------------------------------------------------------------
 
 library(jstools)
+# install bs4Dash first to get latest version
 pkg_version <- as.character(utils::packageVersion("bs4Dash"))
 
 # Rename srcjs folder in case pkg version changes

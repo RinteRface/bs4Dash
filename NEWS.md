@@ -1,3 +1,27 @@
+# bs4Dash 2.2.1
+
+## New features
+- New `pagination()` and `updatePagination()`. Bootstrap 4 implementation of
+[pagination](https://getbootstrap.com/docs/4.0/components/pagination/).
+
+## Minor change
+- Fix #323: remove sidebar collapse animation on app startup. JS code moved
+back to R. Thanks @lucas-alcantara for reporting.
+
+## Bug fixes
+- Fix #325: `menuItem()` applied wrong class to any nested element that is not
+a `menuSubItem()`. Thanks @echoplaza for reporting. 
+- Fix #322: `notificationItem()` href does not work. 
+- Fix #306: Dynamic `menuSubItems()` with apply() adds some extra text. Added __.list__
+param to `menuItem()` to programmatically pass `menuSubItem()` as list. 
+- Fix #297: `tabsetPanel()` renders below the list of `tabPanels` when vertical = TRUE. 
+Changed layout to `fluidRow`. Thanks @lucas-alcantara for reporting. 
+- Fix #296: Documentation issue for `valueBox()` and `infoBox()` in the render function section.
+Thanks @corderoortiz for reporting.
+- Fix #293: Navbar stays keeps white background, even when dark mode is selected/toggled. Related to a previous PR. Thanks to @JJohnson-DA for reporting.
+- Fix #290: don't set `data-toggle="tab"` when `href` is not NULL in `tabsetPanel()`. Thanks @veer0318 for reporting.
+- Fix #243: `tabsetPanel()` id's not properly generated when inserting tabs to non-empty tabset. Thanks @DarkSideOfTheMat for reporting and giving hints.
+
 # bs4Dash 2.1.0
 
 ## Breaking change

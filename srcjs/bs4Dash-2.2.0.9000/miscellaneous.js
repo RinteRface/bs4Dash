@@ -260,7 +260,7 @@ $(function () {
 
         // use updateNavbarTheme to correctly setup the skin as depending
         // on the required color. If no color is chosen, we use gray-dark for dark mode
-        if (newNavbarColor === undefined) {
+        if (newNavbarColor === undefined || newNavbarColor === 'navbar-white') {
           newNavbarColor = "navbar-gray-dark";
         }
         updateNavbarTheme(newNavbarColor);
@@ -302,7 +302,7 @@ $(function () {
 
         // use updateNavbarTheme to correctly setup the skin as depending
         // on the required color. If no color is chosen, we use white for light mode
-        if (newNavbarColor === undefined) {
+        if (newNavbarColor === undefined || newNavbarColor === 'navbar-gray-dark') {
           newNavbarColor = "navbar-white";
         }
         updateNavbarTheme(newNavbarColor);

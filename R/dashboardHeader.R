@@ -480,7 +480,7 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' @param href An optional URL to link to.
+#' @param href An optional URL to link to. When inputId is set, href will be ignored.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
 #'
 #' @rdname dropdownMenu
@@ -504,9 +504,9 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
       class = itemCl,
       `disabled` = if (is.null(inputId)) NA else NULL,
       href = if (is.null(inputId)) {
-        "#"
+        if (!is.null(href)) href else "#"
       } else {
-        href
+        "#"
       },
       target = if (is.null(inputId)) {
         if (!is.null(href)) "_blank"
