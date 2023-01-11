@@ -69,6 +69,7 @@
 #' @param closable If TRUE, display a button in the upper right that allows the user to close the box.
 #' @param maximizable If TRUE, the card can be displayed in full screen mode.
 #' @param icon Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.
+#' @param tip_icon Tip icon. Tooltip Icon displayed after title. Expect \code{\link[tippy]{tippy}}.
 #' @param gradient Whether to allow gradient effect for the background color. Default to FALSE.
 #' @param boxToolSize Size of the toolbox: choose among "xs", "sm", "md", "lg".
 #' @param elevation Card elevation.
@@ -135,11 +136,29 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
-                    solidHeader = FALSE, background = NULL, width = 6, height = NULL,
-                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL,
-                    gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                    sidebar = NULL, id = NULL) {
+bs4Card <- function(...,
+                    title = NULL,
+                    footer = NULL,
+                    status = NULL,
+                    solidHeader = FALSE,
+                    background = NULL,
+                    width = 6,
+                    height = NULL,
+                    collapsible = TRUE,
+                    collapsed = FALSE,
+                    closable = FALSE,
+                    maximizable = FALSE,
+                    icon = NULL,
+                    tip_icon = NULL,
+                    gradient = FALSE,
+                    boxToolSize = "sm",
+                    elevation = NULL,
+                    headerBorder = TRUE,
+                    label = NULL,
+                    dropdownMenu = NULL,
+                    sidebar = NULL,
+                    id = NULL) {
+  
 
   if (is.null(status)) solidHeader <- TRUE
   
@@ -242,7 +261,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
-    shiny::tags$h3(class = "card-title", icon, title)
+    shiny::tags$h3(class = "card-title", tip_icon, icon, title)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
 
@@ -250,7 +269,6 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   # body
   bodyTag <- shiny::tags$div(
     class = "card-body",
-    style = style,
     ...,
     sidebar[[2]]
   )
@@ -263,7 +281,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     )
   }
 
-  cardTag <- shiny::tags$div(class = cardCl, id = id)
+  cardTag <- shiny::tags$div(class = cardCl, id = id, style = style)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
   
   # wrapper
@@ -280,6 +298,54 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
         json_verbatim = TRUE
       )
     )
+    # , if (maximizable)
+      # shiny::tags$script(
+      #   type = "text/javascript",
+      #   paste0("
+      #   $(document).ready(function() {
+      #   var ids = $('div",ifelse(is.null(id), "", paste0("#",id))," div.card-body div').map(function(){
+      # return $(this).attr('id');
+      # }).get();
+      # function resizeBoxContent(trigger, target) {
+      #         var target = '#' + target
+      #         $(trigger).on('click', function() {
+      #           setTimeout(function() {
+      #             var isMaximized = $('html').hasClass('maximized-card');
+      #               if (isMaximized) {
+      #                 $(target).css('height', '100%');
+      #                 $(target).css('width', 'auto');
+      #               } else {
+      #                 $(target).css('height', '400px');
+      #                 $(target).css('width', 'auto');
+      #               }
+      #             console.log('resizing '+ target)
+      #           }, 300);
+      #           $(target).trigger('resize');
+      #         });
+      #       };
+      # setTimeout(function() {
+      #         ids.map(function(x){
+      #           resizeBoxContent('div.card button[data-card-widget=\"maximize\"]', x);
+      #         })
+      # 
+      #       }, 500);
+      # console.log(ids);
+      # });"),
+        # paste0("
+        #        $(document).ready(function() {
+        #        $('[data-card-widget=\"maximize\"]').on('click', function() {
+        #         setTimeout(function() {
+        #           var isMaximized = $('html').hasClass('maximized-card');
+        #           if (isMaximized) {
+        #            window.location.reload()
+        #           }
+        #         }, 300);
+        #         $('",ifelse(is.null(id), "", paste0(id)),"').resize();
+        #       });
+        #        }
+        #        ")
+      # )
+      
   )
 }
 
@@ -936,7 +1002,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
                        elevation = NULL, iconElevation = NULL, tabName = NULL) {
 
   # check conditions
-  tagAssert(icon, "i")
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
@@ -987,12 +1052,16 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   }
   if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
 
-  iconTag <- shiny::tags$span(
-    class = infoBoxIconCl,
-    id = if (!is.null(tabName)) paste0("icon-", tabName),
-    # icon
-    icon
-  )
+  if (!is.null(icon)) {
+    tagAssert(icon, "i")
+    iconTag <- shiny::tags$span(
+      class = infoBoxIconCl,
+      id = if (!is.null(tabName)) paste0("icon-", tabName),
+      # icon
+      icon
+    )
+  } else
+    iconTag <- icon
 
 
   contentTag <- shiny::tags$div(

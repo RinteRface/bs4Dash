@@ -37,6 +37,7 @@ bs4Card(
   closable = FALSE,
   maximizable = FALSE,
   icon = NULL,
+  tip_icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
@@ -68,6 +69,7 @@ box(
   closable = FALSE,
   maximizable = FALSE,
   icon = NULL,
+  tip_icon = NULL,
   gradient = FALSE,
   boxToolSize = "sm",
   elevation = NULL,
@@ -238,6 +240,8 @@ the user to collapse the box.}
 \item{maximizable}{If TRUE, the card can be displayed in full screen mode.}
 
 \item{icon}{Header icon. Displayed before title. Expect \code{\link[shiny]{icon}}.}
+
+\item{tip_icon}{Tip icon. Tooltip Icon displayed after title. Expect \code{\link[tippy]{tippy}}.}
 
 \item{gradient}{Whether to allow gradient effect for the background color. Default to FALSE.}
 

@@ -8,11 +8,6 @@
 #'   contents.
 #' @keywords internal
 tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
-  if (!inherits(tag, "shiny.tag")) {
-    print(tag)
-    stop("Expected an object with class 'shiny.tag'.")
-  }
-  
   # Skip dynamic output elements
   if (allowUI &&
       (hasCssClass(tag, "shiny-html-output") ||
@@ -20,8 +15,8 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
     return()
   }
   
-  if (!is.null(type) && tag$name != type) {
-    stop("Expected tag to be of type ", type)
+  if (!is.null(type) && !(tag$name %||% "" %in% type || inherits(tag, type))) {
+    stop("Expected tag to be of type(s) ", paste0(type, collapse = ", "))
   }
   
   if (!is.null(class)) {
@@ -212,6 +207,52 @@ validateStatusPlus <- function(status) {
 #' @keywords internal
 validStatusesPlus <- c(validStatuses, validNuances, validColors)
 
+#' All valid colors
+#' @usage NULL
+#' @format NULL
+#'
+#' @keywords internal
+validColorsPlus <- c(grDevices::colours(), validStatusesPlus)
+
+# is string a hex formatted color
+is_hex_color <- function(color) {
+  grepl("^\\#[a-fA-F0-9]{3,6}", color)
+}
+# is string an rgba formatted color
+is_rgba_color <- function(color) {
+  grepl("^rgba\\(", color)
+}
+
+#' Validate all colors & Bootstrap statuses
+#'
+#' @param color \code{chr} string with status name or color name
+#'
+#' @return \code{lgl}
+#' @export
+#' @seealso grDevices::color
+validateColors <- function(color) {
+  if (color %in% validColorsPlus || is_hex_color(color) || is_rgba_color(color))
+    TRUE
+  else
+    stop("Invalid color: ", color, ". Valid colors are hex or rgba formatted or one of the following: ",
+         paste(validColorsPlus, collapse = ", "), ".")
+}
+
+
+#' Create a CSS rgba declaration for a color name
+#'
+#' @param color \code{chr} Color name, see \link[grDevices]{colors}
+#' @param alpha \code{num} alpha value
+#'
+#' @return \code{chr} css `rgba()` formatted color
+#' @export
+
+col2css <- function(color, alpha = NULL) {
+  if (!is_hex_color(color) && !is_rgba_color(color))
+    paste0("rgba(", paste0(c(grDevices::col2rgb(color), alpha), collapse = ", "), ")")
+  else
+    color
+}
 
 
 

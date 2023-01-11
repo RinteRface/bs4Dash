@@ -12,6 +12,10 @@ getCardId <- function(card) {
   card$children[[1]]$attribs$id
 }
 
+getCardStyle <- function(card) {
+  card$children[[1]]$attribs$style
+}
+
 getCardChildren <- function(card) {
   bs4Dash:::dropNulls(card$children[[1]]$children)
 }
@@ -172,7 +176,7 @@ test_that("height", {
   expect_error(bs4Card(height = "prout"))
   
   cardTag <- bs4Card(height = "400px")
-  bodyStyle <- getCardBodyStyle(cardTag)
+  bodyStyle <- getCardStyle(cardTag)
   expect_match(bodyStyle, "height: 400px")
   
   # cardTag <- bs4Card(overflow = TRUE)

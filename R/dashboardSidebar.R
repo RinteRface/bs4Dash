@@ -367,7 +367,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
   subItems <- c(list(...), .list)
 
   if (!is.null(icon)) {
-    tagAssert(icon, type = "i")
+    tagAssert(icon, type = c("i", "img"))
     icon$attribs$class <- paste0(icon$attribs$class, " nav-icon")
   }
 
@@ -412,7 +412,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
           icon,
-          shiny::tags$p(text, badgeTag)
+          shiny::tags$span(text, badgeTag)
         )
       )
     )
@@ -454,7 +454,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         class = "nav-link",
         `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
         icon,
-        shiny::tags$p(
+        shiny::tags$span(
           text,
           shiny::tags$i(class = "right fas fa-angle-left")
         )
@@ -517,7 +517,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       # below this is needed by leftSidebar.js
       `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
       icon,
-      shiny::tags$p(text)
+      shiny::tags$span(text)
     )
   )
 }

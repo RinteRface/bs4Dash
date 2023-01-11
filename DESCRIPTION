@@ -19,11 +19,13 @@ Imports:
     htmltools (>= 0.5.1.1),
     jsonlite (>= 0.9.16),
     fresh,
+    grDevices,
     waiter (>= 0.2.3),
     httpuv (>= 1.5.2),
     lifecycle,
     bslib (>= 0.2.4),
-    httr
+    httr,
+    UU (>= 1.5.1)
 Suggests: 
     knitr,
     rmarkdown,
@@ -35,6 +37,7 @@ Encoding: UTF-8
 RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Collate: 
+    'aaa_reimports.R'
     'feedbacks.R'
     'useful-items.R'
     'tabs.R'
@@ -56,3 +59,5 @@ Collate:
     'skinSelector.R'
     'utils.R'
 RdMacros: lifecycle
+Remotes: 
+    yogat3ch/UU

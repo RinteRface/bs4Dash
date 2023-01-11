@@ -57,7 +57,16 @@ bs4Badge <- function(..., color, position = c("left", "right"),
   )
 }
 
+#' @title Bootstrap 4 Alert box
+#' 
+#' @param style \code{(character)} Inline style parameters to add
+#' @inherit bs4Card params
+#' @export
 
+bs4Alert <- function(..., status = "primary", style = NULL, id = NULL, width = 6) {
+  bs4Dash:::validateStatus(status)
+  shiny::tags$div(class = paste0("alert alert-",status), role = "alert", ..., style = paste0("margin: 6px 5px 6px 15px;", sapply(\(x) {ifelse(grepl(";$", x), x, paste0(x, ";"))}), id = id))
+}
 
 
 #' Bootstrap 4 accordion container
@@ -120,10 +129,10 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #' }
 #'
 #' @export
-bs4Accordion <- function(..., id, width = 12) {
+bs4Accordion <- function(..., id, width = 12, collapse_all = TRUE) {
   
   items <- list(...)
-  
+  if (collapse_all) {
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
@@ -132,6 +141,12 @@ bs4Accordion <- function(..., id, width = 12) {
     items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
+  } else {
+    lapply(seq_along(items), FUN = function(i) {
+      items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
+      items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
+    })
+  }
   
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
@@ -467,14 +482,19 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' 
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
-#' 
+#' @param id HTML ID. NULL by default
+#' @param style \code{chr} CSS Styles applied to each bar
+#' @param values_cumulative \code{multiProgressBar} only. Whether \code{value} is comprised of cumulative  \code{TRUE} values or actual \code{FALSE} values. See details for examples.
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
 #'   If supplied, `striped`, `animated`, `status`, and `label` must be the
 #'   same length as `value` or length 1, in which case vector recycling is
-#'   used.
-#' 
+#'   used. The `values_cumulative` argument is described below:
+#'   \itemize{
+#'   \item{cumulative}{ values = c(10, 20, 30) is interpreted as a 10% width bar, a 20% width bar, and a 30% width bar for a total of 60%}
+#'   \item{actual}{ values = c(10, 20, 30) is interpreted as a 10% width bar, a 10% width bar, and a 10% width bar for a total of 30%. These values are scaled by \code{min} & \code{max} arguments.} 
+#' }
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -549,41 +569,54 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @export
 bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
                             animated = FALSE, status = "primary", size = NULL, 
-                            label = NULL) {
+                            label = NULL,
+                            style = NULL,
+                            id = NULL) {
   
-  if (!is.null(status)) validateStatusPlus(status)
+  if (!is.null(status)) validateColors(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
   
   # wrapper class
-  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+  progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress"
   if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
   
   # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+  style <- NULL
+  if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+  else if (status %in% validColorsPlus || is_hex_color(status))
+    style <- paste0(style, "background-color: ", col2css(status), ";")
   if (striped) barCl <- paste0(barCl, " progress-bar-striped")
   if (animated) barCl <- paste0(barCl, " progress-bar-animated")
   
   # wrapper
   barTag <- shiny::tags$div(
+    id = id,
     class = barCl, 
     role = "progressbar", 
     `aria-valuenow` = value, 
     `aria-valuemin` = min, 
     `aria-valuemax` = max, 
-    style = if (vertical) {
-      paste0("height: ", paste0(value, "%"))
-    }
-    else {
-      paste0("width: ", paste0(value, "%"))
-    }, 
+    style = paste0(style, ifelse(vertical, "height: ", "width: "), ((value - min) / (max - min) * 100), "%"), 
     if(!is.null(label)) label
   )
   
-  progressTag <- shiny::tags$div(class = progressCl)
+  progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
+}
+# Scale values to a percentage/decimal by min & max
+val2pct <- function(val, min = 0, max = 100, include_min = TRUE, include_max = FALSE, as_percent = TRUE) {
+  .val <- sort(val)
+  if (include_min)
+    .val <- c(min, .val)
+  if (include_max)
+    .val <- c(.val, max)
+  out <- diff((.val - min) / (max - min))
+  if (as_percent)
+    out <- out * 100
+  out
 }
 
 #' @rdname progress
@@ -598,22 +631,36 @@ bs4MultiProgressBar <-
     animated = FALSE,
     status = "primary",
     size = NULL,
-    label = NULL
+    label = NULL,
+    id = NULL,
+    values_cumulative = TRUE,
+    style = NULL
   ) {
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
     animated <- verify_compatible_lengths(value, animated)
     if (!is.null(label)) label <- verify_compatible_lengths(value, label)
     
-    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
+    if (!is.null(status)) lapply(status, function(x) validateColors(x))
     stopifnot(all(value >= min))
     stopifnot(all(value <= max))
-    stopifnot(sum(value) <= max)
+    if (!values_cumulative) {
+      .value <- val2pct(value, min = min, max = max)
+      stopifnot(sum(.value) <= 100)
+    } else {
+      .value <- value
+      stopifnot(sum(value) <= max)
+    }
+      
     
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
+      if (!is.null(status) && status %in% validStatusesPlus) barCl <- paste0(barCl, " bg-", status)
+      else if (status %in% validColorsPlus || is_hex_color(status))
+        style <- paste0(style, "background-color: ", col2css(status), ";")
+      
+      
       if (striped) barCl <- paste0(barCl, " progress-bar-striped")
       if (animated) barCl <- paste0(barCl, " progress-bar-animated")
       
@@ -623,22 +670,25 @@ bs4MultiProgressBar <-
         `aria-valuenow` = value, 
         `aria-valuemin` = min, 
         `aria-valuemax` = max, 
-        style = if (vertical) {
-          paste0("height: ", paste0(value, "%"))
-        }
-        else {
-          paste0("width: ", paste0(value, "%"))
-        }, 
+        style = paste0(style, ifelse(vertical, "height: ", "width: "), value, "%;", ifelse(vertical && values_cumulative, "position:relative;", "")), 
         if(!is.null(label)) label
       )
     }
     
+    if (vertical && values_cumulative) {
+      # the vertical bar has the divs rendered in order so it appears top down. This reverses the order so it appears bottom up as is more intuitive.
+      .value <- rev(.value)
+      status <- rev(status)
+      striped <- rev(striped)
+      animated <- rev(animated)
+      label <- rev(label)
+    }
     barSegs <- list()
     # progress bar segments
     for (i in seq_along(value)) {
       barSegs[[i]] <- 
         bar_segment(
-          value[[i]],
+          .value[[i]],
           striped[[i]],
           animated[[i]],
           status[[i]],
@@ -647,9 +697,9 @@ bs4MultiProgressBar <-
     }
     
     # wrapper class
-    progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
+    progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-    progressTag <- shiny::tags$div(class = progressCl)
+    progressTag <- shiny::tags$div(id = id, style = style, class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
