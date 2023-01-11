@@ -1002,7 +1002,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
                        elevation = NULL, iconElevation = NULL, tabName = NULL) {
 
   # check conditions
-  tagAssert(icon, "i")
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
@@ -1053,12 +1052,16 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   }
   if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
 
-  iconTag <- shiny::tags$span(
-    class = infoBoxIconCl,
-    id = if (!is.null(tabName)) paste0("icon-", tabName),
-    # icon
-    icon
-  )
+  if (!is.null(icon)) {
+    tagAssert(icon, "i")
+    iconTag <- shiny::tags$span(
+      class = infoBoxIconCl,
+      id = if (!is.null(tabName)) paste0("icon-", tabName),
+      # icon
+      icon
+    )
+  } else
+    iconTag <- icon
 
 
   contentTag <- shiny::tags$div(
