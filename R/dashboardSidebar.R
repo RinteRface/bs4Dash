@@ -365,6 +365,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
                                expandedName = as.character(gsub("[[:space:]]", "", text)),
                                startExpanded = FALSE, condition = NULL, .list = NULL) {
   subItems <- c(list(...), .list)
+  otherItems <- list()
 
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
@@ -426,6 +427,16 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           subItems[[i]]$children[[1]]$attribs$class,
           "treeview-link"
         )
+      } else {
+        # In case people pass input in the menuItem, we can't
+        # treat them as a menu element.
+        if (length(otherItems) == 0) {
+          otherItems[[1]] <- subItems[[i]]
+        } else {
+          otherItems[[length(otherItems)]] <- subItems[[i]]
+        }
+        
+        subItems[[i]] <- NULL
       }
     }
 
@@ -437,8 +448,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     default <- if (startExpanded) expandedName else ""
     dataExpanded <- shiny::restoreInput(id = "sidebarItemExpanded", default) %OR% ""
 
-    # If `dataExpanded` is not the empty string, we need to check that it is eqaul to the
-    # this menuItem's `expandedName``
+    # If `dataExpanded` is not the empty string, we need to check that it is equal to the
+    # this menuItem's `expandedName`
     isExpanded <- nzchar(dataExpanded) && (dataExpanded == expandedName)
 
     # handle case of multiple selected subitems and raise an error if so...
@@ -447,22 +458,50 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     }))
     if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
 
+    item_link <- shiny::tags$a(
+      href = "#",
+      class = "nav-link",
+      `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
+      icon,
+      shiny::tags$p(
+        text,
+        shiny::tags$i(class = "right fas fa-angle-left")
+      )
+    )
+    
+    # Handle specific case when subItems are not real subItems. 
+    # The parent items needs to behave like a normal menuItem, with
+    # the collapsible style.
+    if (length(subItems) == 0) {
+      item_link$attribs$id <- if (!is.null(tabName)) {
+        paste0("tab-", tabName)
+      }
+      item_link$attribs$href <- if (!is.null(href)) href else "#"
+      `data-target` = if (is.null(href)) {
+        if (!is.null(tabName)) {
+          paste0("#shiny-tab-", tabName)
+        } 
+      }
+      item_link$attribs$`data-target` <- if (is.null(href)) {
+        if (!is.null(tabName)) {
+          paste0("#shiny-tab-", tabName)
+        } 
+      }
+      item_link$attribs$target <- if (!is.null(href)) {
+        if (newTab) "_blank"
+      }
+      item_link$attribs$`data-toggle` <- if (is.null(href)) "tab"
+      item_link$attribs$`data-value` <- if (!is.null(tabName)) tabName
+    }
+    
     shiny::tags$li(
       class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
-      shiny::tags$a(
-        href = "#",
-        class = "nav-link",
-        `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
-        icon,
-        shiny::tags$p(
-          text,
-          shiny::tags$i(class = "right fas fa-angle-left")
-        )
-      ),
+      item_link,
       shiny::tags$ul(
         class = "nav nav-treeview",
         `data-expanded` = expandedName,
-        subItems
+        subItems,
+        otherItems
       )
     )
   }

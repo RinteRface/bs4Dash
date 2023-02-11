@@ -1,3 +1,8 @@
+# bs4Dash 2.2.2.9000
+
+## Bug fixes
+- #330: allow to use input elements (or any not menuItem element) in the sidebar.
+
 # bs4Dash 2.2.1
 
 ## New features
