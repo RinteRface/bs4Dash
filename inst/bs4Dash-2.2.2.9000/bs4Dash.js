@@ -1398,11 +1398,15 @@ $(function () {
     }
 
     // trigger first click, if necessary
-    if ($('body').attr('data-help') == 2) {
       $(document).on('shiny:connected', function() {
-        $help_switch_checkbox.click();
+        if ($('body').attr('data-help') == 2 || $('body').attr('data-help') == 1) {
+          $help_switch_checkbox.click(); 
+          // Click again if option is set to FALSE
+          if ($('body').attr('data-help') == 1) {
+            $help_switch_checkbox.click(); 
+          }
+        }
       }); 
-    }
   }
 
   // dark mode input
