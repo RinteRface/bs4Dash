@@ -966,7 +966,7 @@ shinyApp(
   ui = dashboardPage(
     preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
     dark = TRUE,
-    help = FALSE,
+    help = TRUE,
     fullscreen = TRUE,
     scrollToTop = TRUE,
     header = dashboardHeader(
