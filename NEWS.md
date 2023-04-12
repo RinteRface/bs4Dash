@@ -1,7 +1,11 @@
 # bs4Dash 2.2.2.9000
 
 ## Bug fixes
-- #330: allow to use input elements (or any not menuItem element) in the sidebar.
+- Fix #330: allow to use input elements (or any not `menuItem` element) in the sidebar.
+- Fix #343: Refine `help` parameter behavior in `dashboardPage()`. If NULL, no icon is shown. If FALSE, icon and toggle are shown but not checked. If TRUE the toggle is checked.
+
+## Internal
+- Change dark/light switch CSS class for consistency.
 
 # bs4Dash 2.2.1
 

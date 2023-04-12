@@ -19,8 +19,9 @@
 #' Expect a list.
 #' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
 #' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use
-#' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
-#' if TRUE, a help icon is display in the navigation bar.
+#' \link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE,
+#' the toggle is shown but not enabled. If TRUE, all tooltips and popovers are enabled.
+#' Set to NULL if you want to hide the help icon.
 #' @param dark Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
 #' Default to FALSE, app starts in light mode, with possibility to switch to dark. 
 #' If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
@@ -179,7 +180,11 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     # Body
     add_bs4Dash_deps(
       shiny::tags$body(
-        `data-help` = if (help) 1 else 0,
+        `data-help` = if (!is.null(help)) {
+          if (help) 2 else 1
+        } else {
+          0
+        },
         `data-fullscreen` = if (fullscreen) 1 else 0,
         `data-dark` = if (!is.null(dark)) {
           if (dark) {

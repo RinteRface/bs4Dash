@@ -68,8 +68,9 @@ Expect a list.}
 \item{fullscreen}{Whether to allow fullscreen feature in the navbar. Default to FALSE.}
 
 \item{help}{Whether to enable/disable popovers and tooltips. This allows to seamlessly use
-\link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE.
-if TRUE, a help icon is display in the navigation bar.}
+\link{tooltip} and \link{popover} without having to individually toggle them. Default to FALSE,
+the toggle is shown but not enabled. If TRUE, all tooltips and popovers are enabled.
+Set to NULL if you want to hide the help icon.}
 
 \item{dark}{Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
 Default to FALSE, app starts in light mode, with possibility to switch to dark. 

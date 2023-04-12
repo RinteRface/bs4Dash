@@ -1056,7 +1056,8 @@ shinyApp(
         menuItem(
           "Basic cards",
           tabName = "cards",
-          icon = icon("sliders")
+          icon = icon("sliders"),
+          checkboxInput("myCheck", "Checkbox")
         ),
         menuItem(
           "Cards API",
