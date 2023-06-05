@@ -1,5 +1,9 @@
 # bs4Dash 2.2.2.9000
 
+## Minor change
+- Fix #342: better title alignment in `tabBox()`. Increase padding for card with pills. Thanks @HugoGit39
+for reporting. 
+
 ## Bug fixes
 - Fix #349: allow to pass list of `accordionItem()` with `.list` parameter in `accordion()`. Thanks @vladimirstroganov for reporting.
 - Fix #330: allow to use input elements (or any not `menuItem` element) in the sidebar.
