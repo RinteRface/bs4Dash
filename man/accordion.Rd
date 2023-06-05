@@ -8,7 +8,7 @@
 \alias{accordionItem}
 \title{Bootstrap 4 accordion container}
 \usage{
-bs4Accordion(..., id, width = 12)
+bs4Accordion(..., id, width = 12, .list = NULL)
 
 bs4AccordionItem(
   ...,
@@ -20,7 +20,7 @@ bs4AccordionItem(
 
 updateAccordion(id, selected, session = shiny::getDefaultReactiveDomain())
 
-accordion(..., id, width = 12)
+accordion(..., id, width = 12, .list = NULL)
 
 accordionItem(..., title, status = NULL, collapsed = TRUE, solidHeader = TRUE)
 }
@@ -30,6 +30,8 @@ accordionItem(..., title, status = NULL, collapsed = TRUE, solidHeader = TRUE)
 \item{id}{Accordion to target.}
 
 \item{width}{The width of the accordion.}
+
+\item{.list}{To pass \link{accordionItem} within a list.}
 
 \item{title}{Optional title.}
 
@@ -114,11 +116,30 @@ if (interactive()) {
           collapsed = FALSE,
           "This is some text!"
         )
-      )
+      ),
+      accordion(
+        id = "accordion_dynamic",
+        .list = lapply(
+          1:2,
+          function(i)
+            accordionItem(
+              title = paste('Accordion 1 Item', i),
+              status = "danger",
+              collapsed = ifelse (i == 1, TRUE, FALSE),
+              "This is some text!"
+            )
+         )
+       )
     ),
     title = "Accordion"
   ),
-  server = function(input, output) { }
+  server = function(input, output) {
+   observe({
+     print(input$accordion1)
+     print(input$accordion2)
+     print(input$accordion_dynamic)
+   })
+  }
  )
 }
 

@@ -1,6 +1,7 @@
 # bs4Dash 2.2.2.9000
 
 ## Bug fixes
+- Fix #349: allow to pass list of `accordionItem()` with `.list` parameter in `accordion()`. Thanks @vladimirstroganov for reporting.
 - Fix #330: allow to use input elements (or any not `menuItem` element) in the sidebar.
 - Fix #343: Refine `help` parameter behavior in `dashboardPage()`. If NULL, no icon is shown. If FALSE, icon and toggle are shown but not checked. If TRUE the toggle is checked.
 
