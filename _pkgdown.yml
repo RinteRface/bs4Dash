@@ -38,6 +38,7 @@ reference:
   - '`updateBoxSidebar`'
   - '`updateControlbar`'
   - '`updateControlbarMenu`'
+  - '`updateNavbarTabs`'
   - '`updateSidebar`'
   - '`updateTabItems`'
   - '`updateUserMessages`'
@@ -67,6 +68,8 @@ reference:
 - title: Header content functions
   desc: Functions that are to be used in the dashboardHeader
   contents:
+  - '`navbarMenu`'
+  - '`navbarTab`'
   - '`dashboardBrand`'
   - '`dashboardUser`'
   - '`dashboardUserItem`'
@@ -106,6 +109,7 @@ reference:
   - '`boxLabel`'
   - '`boxSidebar`'
   - '`dropdownDivider`'
+  - '`dropdownHeader`'
 
   
 - title: Tabs elements
