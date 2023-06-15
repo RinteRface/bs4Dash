@@ -178,6 +178,9 @@ Build an adminLTE3 card with tabs
 \note{
 User will access the \link{tabBox} input with input$<id>_box. This allows
 to get the state of the box and update it on the server with \link{updateBox}.
+Don't forget that the title should not be too long, especially
+if you have more than 3 tabs and want the box to be collapsible,
+closable and maximizable, as these elements take extra horizontal space.
 }
 \examples{
 if (interactive()) {
