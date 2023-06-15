@@ -118,6 +118,9 @@
     <loc>/reference/dropdownDivider.html</loc>
   </url>
   <url>
+    <loc>/reference/dropdownHeader.html</loc>
+  </url>
+  <url>
     <loc>/reference/dropdownMenu.html</loc>
   </url>
   <url>
@@ -155,6 +158,12 @@
   </url>
   <url>
     <loc>/reference/menuOutput.html</loc>
+  </url>
+  <url>
+    <loc>/reference/navbar-menu.html</loc>
+  </url>
+  <url>
+    <loc>/reference/navbarDropdown.html</loc>
   </url>
   <url>
     <loc>/reference/pagination.html</loc>
