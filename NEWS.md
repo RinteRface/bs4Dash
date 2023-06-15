@@ -1,4 +1,4 @@
-# bs4Dash 2.2.2.9000
+# bs4Dash 2.3.0
 
 ## New feature
 New navbar navigation menu.
