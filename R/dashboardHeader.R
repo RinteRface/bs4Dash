@@ -5,7 +5,8 @@
 #'
 #' @rdname dashboardHeader
 #'
-#' @param ... Any UI element between left and right Ui.
+#' @param ... Any UI element between left and right Ui. Can include \link{navbarMenu} to host
+#' the navigation in the navbar.
 #' @param title Dashboard title (displayed top-left side). Alternatively, use \link{dashboardBrand}
 #' for more evolved title.
 #' @param titleWidth This argument is deprecated; bs4Dash (AdminLTE3) title width
@@ -129,9 +130,184 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
   list(headerTag, title)
 }
 
+#' Navbar tab item
+#' 
+#' Similar to \link{menuItem} but for the
+#' \link{dashboardHeader}.
+#' 
+#' @param text Tab text.
+#' @param ... Slot for nested \link{navbarTab}. You can nest as many elements
+#' as you want.
+#' @param tabName Should correspond exactly to the tabName given in \link{tabItem}.
+#' @param icon An icon tag, created by shiny::icon. If NULL, don't display an icon.
+#' @param .list Use this slot if you had to programmatically pass \link{navbarTab}
+#' like with \link{lapply}.
+#' 
+#' @note You can nest \link{navbarTab} so it does like
+#' \link{menuSubItem}. This is to avoid to create too many functions.
+#' @export
+#' @rdname navbar-menu
+navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
+  items <- c(list(...), .list)
+  if (length(items) > 0) {
+    do.call(navbarDropdown, list(text, items))
+  } else {
+    shiny::tags$li(
+      class = "nav-item",
+      shiny::tags$a(
+        class = "nav-link",
+        id = paste0("tab-", tabName),
+        href = paste0("#shiny-tab-", tabName),
+        `data-toggle` = "tab",
+        `data-value` = tabName,
+        icon,
+        shiny::tags$p(text)
+      )
+    ) 
+  }
+}
 
+#' Build navbar dropdown for navigation
+#'
+#' This is different from \link{dropdownMenu}.
+#'
+#' @param text Dropdown menu title.
+#' @param ... Slot for nested items such as \link{navbarTab}.
+#'
+#' @keywords internal
+navbarDropdown <- function(text, ...) {
+  shiny::tags$li(
+    class = "nav-item dropdown",
+    shiny::tags$a(
+      href = "#",
+      `data-toggle` = "dropdown",
+      `aria-haspopup` = "true",
+      `aria-expanded` = "false",
+      class = "nav-link dropdown-toggle",
+      text
+    ),
+    shiny::tags$ul(
+      class = "dropdown-menu border-0 shadow",
+      style = "left: 0px; right: inherit;",
+      ...
+    )
+  )
+}
 
+#' Dropdown header helper
+#' 
+#' Display header text within dropdown menu
+#'
+#' @param text Text to display.
+#'
+#' @return A shiny tag.
+#' @export
+dropdownHeader <- function(text) {
+  shiny::tags$h6(class = "dropdown-header", text)
+}
 
+#' Navbar menu
+#'
+#' Like \link{sidebarMenu} but inside \link{dashboardHeader}.
+#'
+#' @param ... Slot for \link{navbarTab}.
+#' @param id Menu id. Useful to leverage \link{updateNavbarTabs} on the
+#' server.
+#' @rdname navbar-menu
+#' @export
+#' @examples 
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  
+#'  tabs <- tabItems(.list = lapply(1:7, function(i) {
+#'   tabItem(tabName = sprintf("Tab%s", i), sprintf("Tab %s", i))
+#'  }))
+#'  
+#'  shinyApp(
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(
+#'        navbarMenu(
+#'          id = "navmenu",
+#'          navbarTab(tabName = "Tab1", text = "Tab 1"),
+#'          navbarTab(tabName = "Tab2", text = "Tab 2"),
+#'          navbarTab(
+#'            text = "Menu",
+#'            dropdownHeader("Dropdown header"),
+#'            navbarTab(tabName = "Tab3", text = "Tab 3"),
+#'            dropdownDivider(),
+#'            navbarTab(
+#'              text = "Sub menu",
+#'              dropdownHeader("Another header"),
+#'              navbarTab(tabName = "Tab4", text = "Tab 4"),
+#'              dropdownHeader("Yet another header"),
+#'              navbarTab(tabName = "Tab5", text = "Tab 5"),
+#'              navbarTab(
+#'                text = "Sub sub menu",
+#'                navbarTab(tabName = "Tab6", text = "Tab 6"),
+#'                navbarTab(tabName = "Tab7", text = "Tab 7")
+#'              )
+#'            )
+#'          )
+#'        )
+#'      ),
+#'      body = dashboardBody(tabs),
+#'      controlbar = dashboardControlbar(
+#'        sliderInput(
+#'          inputId = "controller",
+#'          label = "Update the first tabset",
+#'          min = 1,
+#'          max = 4,
+#'          value = 1
+#'        )
+#'      ),
+#'      sidebar = dashboardSidebar(disable = TRUE)
+#'    ),
+#'    server = function(input, output, session) {
+#'      observeEvent(input$controller, {
+#'        updateNavbarTabs(
+#'          session,
+#'          inputId = "navmenu",
+#'          selected = paste0("Tab", input$controller)
+#'        )
+#'      },
+#'      ignoreInit = TRUE
+#'      )
+#'    }
+#'  )
+#' }
+navbarMenu <- function(..., id = NULL) {
+  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  
+  items <- list(...) 
+  items <- htmltools::tagQuery(items)$
+    find(".nav-item.dropdown")$
+    removeClass("nav-item dropdown")$
+    addClass("dropdown-submenu dropdown-hover")$
+    find("ul")$
+    removeAttrs("style")$
+    reset()$
+    selectedTags()
+  
+  shiny::tags$ul(
+    class = "navbar-nav sidebar-menu", 
+    role = "menu",
+    items,
+    shiny::div(
+      id = id,
+      class = "sidebarMenuSelectedTabItem",
+      `data-value` = "null",
+      
+    )
+  )
+}
+
+#' Update navbar menu from the server.
+#'
+#' @inheritParams updatebs4TabItems
+#' @rdname navbar-menu
+#' @export
+updateNavbarTabs <- updatebs4TabItems
 
 #' Alternative to simple text title
 #'

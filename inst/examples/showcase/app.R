@@ -966,7 +966,7 @@ shinyApp(
   ui = dashboardPage(
     preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
     dark = TRUE,
-    help = TRUE,
+    help = FALSE,
     fullscreen = TRUE,
     scrollToTop = TRUE,
     header = dashboardHeader(
@@ -1056,7 +1056,8 @@ shinyApp(
         menuItem(
           "Basic cards",
           tabName = "cards",
-          icon = icon("sliders")
+          icon = icon("sliders"),
+          checkboxInput("myCheck", "Checkbox")
         ),
         menuItem(
           "Cards API",

@@ -636,7 +636,7 @@ cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
 #'
 #' @export
 dropdownDivider <- function() {
-  shiny::tags$a(class = "divider")
+  shiny::div(class = "dropdown-divider")
 }
 
 
@@ -1180,7 +1180,7 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
   # add card-tabs class
   boxTag$children[[1]]$attribs$class <- paste0(
     boxTag$children[[1]]$attribs$class,
-    if (solidHeader) {
+    if (solidHeader || type == "pills") {
       " card-tabs"
     } else {
       " card-outline-tabs"
@@ -1190,19 +1190,27 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
   # change header class
   boxTag$children[[1]]$children[[1]]$attribs$class <- paste0(
     boxTag$children[[1]]$children[[1]]$attribs$class,
-    if (solidHeader) {
-      " p-0 pt-1"
-    } else {
-      " p-0 border-bottom-0"
+    if (type != "pills") {
+      if (solidHeader) {
+        " p-0 pt-1"
+      } else {
+        " p-0 border-bottom-0"
+      } 
     }
   )
 
 
   # Remove title and add it to tab list
   titleTag <- boxTag$children[[1]]$children[[1]]$children[[1]]
+  if (type == "tabs") {
+    titleTag$attribs$class <- paste(
+      titleTag$attribs$class,
+      "pt-1"
+    )
+  }
   boxTag$children[[1]]$children[[1]]$children[[1]] <- NULL
   titleNavTag <- shiny::tags$li(
-    class = "pt-2 px-3",
+    class = if (side == "left") "pt-2 px-3 ml-auto" else "pt-2 px-3",
     titleTag
   )
   
@@ -1224,11 +1232,16 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
   }
   
   # Insert box tools at the end of the list
-  content$children[[1]] <- tagInsertChild(
-    content$children[[1]],
-    shiny::tags$li(class = "ml-auto", boxToolTag),
-    length(content$children[[1]])
-  )
+  if (
+      length(boxToolTag$children[[1]]) > 0 || 
+      length(boxToolTag$children[[2]]) > 0
+  ) {
+    content$children[[1]] <- tagInsertChild(
+      content$children[[1]],
+      shiny::tags$li(class = if (side == "left") "ml-0" else "ml-auto", boxToolTag),
+      length(content$children[[1]])
+    ) 
+  }
 
   # Insert tabs at different position in the header tag
   if (side == "right") {

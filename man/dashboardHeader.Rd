@@ -40,7 +40,8 @@ dashboardHeader(
 )
 }
 \arguments{
-\item{...}{Any UI element between left and right Ui.}
+\item{...}{Any UI element between left and right Ui. Can include \link{navbarMenu} to host
+the navigation in the navbar.}
 
 \item{title}{Dashboard title (displayed top-left side). Alternatively, use \link{dashboardBrand}
 for more evolved title.}

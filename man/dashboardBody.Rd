@@ -11,18 +11,20 @@
 \usage{
 bs4DashBody(...)
 
-bs4TabItems(...)
+bs4TabItems(..., .list = NULL)
 
 bs4TabItem(tabName = NULL, ...)
 
 dashboardBody(...)
 
-tabItems(...)
+tabItems(..., .list = NULL)
 
 tabItem(tabName = NULL, ...)
 }
 \arguments{
 \item{...}{Contents of the tab.}
+
+\item{.list}{Pass items as list with \link{lapply} family functions.}
 
 \item{tabName}{The name of a tab. This must correspond to the \code{tabName}
 of a sidebar \code{\link{menuItem}}.}

@@ -30,14 +30,16 @@ bs4DashBody <- function(...) {
 #'
 #' @param ... Items to put in the container. Each item should be a
 #'   \code{\link{tabItem}}.
+#' @param .list Pass items as list with \link{lapply} family functions.
 #'
 #' @rdname dashboardBody
 #'
 #' @export
-bs4TabItems <- function(...) {
-  lapply(list(...), tagAssert, class = "tab-pane")
+bs4TabItems <- function(..., .list = NULL) {
+  items <- c(list(...), .list)
+  lapply(items, tagAssert, class = "tab-pane")
 
-  shiny::tags$div(class = "tab-content", ...)
+  shiny::tags$div(class = "tab-content", items)
 }
 
 #' Boostrap 4 body item

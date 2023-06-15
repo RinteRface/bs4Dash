@@ -1,3 +1,25 @@
+# bs4Dash 2.3.0
+
+## New feature
+New navbar navigation menu.
+- `navbarTab()`, `navbarMenu()` and `updateNavbarTabs()` to create navbar navigation. 
+This will close #108. 
+
+## Minor change
+- New `dropdownHeader()` function to display Bootstrap 4 dropdown headers. 
+- Adjust `dropdownDivider()` as it was invisible.
+- `tabItems()` has __.list__ parameter to pass `tabItem()` elements as list.
+- Fix #342: better title alignment in `tabBox()`. Increase padding for card with pills. Thanks @HugoGit39
+for reporting. 
+
+## Bug fixes
+- Fix #349: allow to pass list of `accordionItem()` with `.list` parameter in `accordion()`. Thanks @vladimirstroganov for reporting.
+- Fix #330: allow to use input elements (or any not `menuItem` element) in the sidebar.
+- Fix #343: Refine `help` parameter behavior in `dashboardPage()`. If NULL, no icon is shown. If FALSE, icon and toggle are shown but not checked. If TRUE the toggle is checked.
+
+## Internal
+- Change dark/light switch CSS class for consistency.
+
 # bs4Dash 2.2.1
 
 ## New features
