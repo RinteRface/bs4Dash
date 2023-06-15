@@ -636,7 +636,7 @@ cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
 #'
 #' @export
 dropdownDivider <- function() {
-  shiny::tags$a(class = "divider")
+  shiny::div(class = "dropdown-divider")
 }
 
 

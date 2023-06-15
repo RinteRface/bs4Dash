@@ -1,6 +1,14 @@
 # bs4Dash 2.2.2.9000
 
+## New feature
+New navbar navigation menu.
+- `navbarTab()`, `navbarMenu()` and `updateNavbarTabs()` to create navbar navigation. 
+This will close #108. 
+
 ## Minor change
+- New `dropdownHeader()` function to display Bootstrap 4 dropdown headers. 
+- Adjust `dropdownDivider()` as it was invisible.
+- `tabItems()` has __.list__ parameter to pass `tabItem()` elements as list.
 - Fix #342: better title alignment in `tabBox()`. Increase padding for card with pills. Thanks @HugoGit39
 for reporting. 
 
