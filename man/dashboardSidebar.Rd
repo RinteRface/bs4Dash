@@ -23,7 +23,7 @@ bs4DashSidebar(
   ...,
   disable = FALSE,
   width = NULL,
-  skin = "dark",
+  skin = NULL,
   status = "primary",
   elevation = 4,
   collapsed = FALSE,
@@ -85,7 +85,7 @@ dashboardSidebar(
   ...,
   disable = FALSE,
   width = NULL,
-  skin = "dark",
+  skin = NULL,
   status = "primary",
   elevation = 4,
   collapsed = FALSE,
@@ -152,7 +152,8 @@ updateTabItems(
 specifies the width in pixels, or a string that specifies the width in CSS
 units.}
 
-\item{skin}{Sidebar skin. "dark" or "light".}
+\item{skin}{Sidebar skin. "dark" or "light". Matches the \link{dashboardPage} dark parameter
+value.}
 
 \item{status}{Sidebar status. Valid statuses are defined as follows:
 \itemize{

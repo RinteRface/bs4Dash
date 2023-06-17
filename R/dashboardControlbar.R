@@ -10,7 +10,8 @@
 #' in pixels, or a string that specifies the width in CSS units. 250 px by default.
 #' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.
 #' @param overlay Whether the sidebar covers the content when expanded. Default to TRUE.
-#' @param skin Controlbar skin. "dark" or "light".
+#' @param skin Controlbar skin. "dark" or "light". Matches the \link{dashboardPage} dark parameter
+#' value.
 #' @param pinned Whether to block the controlbar state (TRUE or FALSE). Default to NULL.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -19,9 +20,11 @@
 #'
 #' @export
 bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
-                              collapsed = TRUE, overlay = TRUE, skin = "dark",
+                              collapsed = TRUE, overlay = TRUE, skin = NULL,
                               pinned = NULL) {
   if (is.null(id)) id <- "controlbarId"
+  
+  skin <- set_sidebar_skin(skin)
 
   controlbarTag <- shiny::tags$aside(
     class = paste0("control-sidebar control-sidebar-", skin),

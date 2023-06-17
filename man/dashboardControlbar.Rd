@@ -16,7 +16,7 @@ bs4DashControlbar(
   width = 250,
   collapsed = TRUE,
   overlay = TRUE,
-  skin = "dark",
+  skin = NULL,
   pinned = NULL
 )
 
@@ -47,7 +47,7 @@ dashboardControlbar(
   width = 250,
   collapsed = TRUE,
   overlay = TRUE,
-  skin = "dark",
+  skin = NULL,
   pinned = NULL
 )
 }
@@ -65,7 +65,8 @@ in pixels, or a string that specifies the width in CSS units. 250 px by default.
 
 \item{overlay}{Whether the sidebar covers the content when expanded. Default to TRUE.}
 
-\item{skin}{Controlbar skin. "dark" or "light".}
+\item{skin}{Controlbar skin. "dark" or "light". Matches the \link{dashboardPage} dark parameter
+value.}
 
 \item{pinned}{Whether to block the controlbar state (TRUE or FALSE). Default to NULL.}
 

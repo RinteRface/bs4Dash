@@ -1,6 +1,11 @@
 # bs4Dash 2.4.0.9000
 
-TBD
+## Breaking change (potential)
+
+- Fix #302: both `dashboardSidebar()` and `dashboardControlbar()` default __skin__ value is NULL.
+This allows them to inherit from the parent `dashboardPage()` __dark__ parameter and have either
+a full light or full dark skin. If not NULL, the corresponding skin is applied, regardless of the
+parent `dashboardPage()`.
 
 # bs4Dash 2.3.0
 
