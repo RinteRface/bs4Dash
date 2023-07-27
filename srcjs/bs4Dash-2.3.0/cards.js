@@ -59,11 +59,11 @@ $.extend(cardBinding, {
     // toggle collapse button when maximized
     if (isMaximized) {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-card-widget = 'collapse']")[0]
         .hide();
     } else {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-card-widget = 'collapse']")[0]
         .show();
     }
 
