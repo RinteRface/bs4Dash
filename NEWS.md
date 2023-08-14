@@ -7,6 +7,9 @@ This allows them to inherit from the parent `dashboardPage()` __dark__ parameter
 a full light or full dark skin. If not NULL, the corresponding skin is applied, regardless of the
 parent `dashboardPage()`.
 
+## Bug fixes
+- Fix #315: alert title is not added to alert body and if Alert is not closable the header contains "undefined" key word. Thanks @MohammedFCIS.
+
 # bs4Dash 2.3.0
 
 ## New feature
