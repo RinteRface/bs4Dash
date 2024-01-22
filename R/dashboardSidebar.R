@@ -8,7 +8,8 @@
 #' @param width The width of the sidebar. This must either be a number which
 #'   specifies the width in pixels, or a string that specifies the width in CSS
 #'   units.
-#' @param skin Sidebar skin. "dark" or "light".
+#' @param skin Sidebar skin. "dark" or "light". Matches the \link{dashboardPage} dark parameter
+#' value.
 #' @param status Sidebar status. Valid statuses are defined as follows:
 #' \itemize{
 #'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
@@ -47,10 +48,14 @@
 #'
 #' @export
 bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
-                           skin = "dark", status = "primary",
+                           skin = NULL, status = "primary",
                            elevation = 4, collapsed = FALSE,
                            minified = TRUE, expandOnHover = TRUE,
                            fixed = TRUE, id = NULL, customArea = NULL) {
+  # When no skin is specified, sidebar color must match the dashboard skin color 
+  # by default which is set in the dashboardPage function. 
+  skin <- set_sidebar_skin(skin)
+  
   if (is.null(id)) id <- "sidebarId"
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
@@ -151,6 +156,14 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 }
 
 
+#' @keywords internal
+set_sidebar_skin <- function(skin) {
+  is_dark_skin <- get_parent_args()$dark
+  if (is.null(skin)) {
+    skin <- if (!is_dark_skin)  "light" else "dark"
+  }
+  skin
+}
 
 
 #' Toggle sidebar state
