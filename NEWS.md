@@ -1,4 +1,4 @@
-# bs4Dash 2.4.0.9000
+# bs4Dash 2.3.3
 
 ## Breaking change (potential)
 
