@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bs4Dash</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.3</span>
       </span>
     </div>
 
@@ -87,6 +87,18 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="2.3.3" id="bs4dash-233">bs4Dash 2.3.3<a class="anchor" aria-label="anchor" href="#bs4dash-233"></a></h2>
+<div class="section level3">
+<h3 id="breaking-change-potential-2-3-3">Breaking change (potential)<a class="anchor" aria-label="anchor" href="#breaking-change-potential-2-3-3"></a></h3>
+<ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/302" class="external-link">#302</a>: both <code><a href="../reference/dashboardSidebar.html">dashboardSidebar()</a></code> and <code><a href="../reference/dashboardControlbar.html">dashboardControlbar()</a></code> default <strong>skin</strong> value is NULL. This allows them to inherit from the parent <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code> <strong>dark</strong> parameter and have either a full light or full dark skin. If not NULL, the corresponding skin is applied, regardless of the parent <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-3-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-3-3"></a></h3>
+<ul><li>Remove unused <code>headTitles</code> parameter from <code><a href="../reference/table.html">bs4Table()</a></code>.</li>
+<li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/315" class="external-link">#315</a>: alert title is not added to alert body and if Alert is not closable the header contains “undefined” key word. Thanks <a href="https://github.com/MohammedFCIS" class="external-link">@MohammedFCIS</a>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="2.3.0" id="bs4dash-230">bs4Dash 2.3.0<small>2023-06-15</small><a class="anchor" aria-label="anchor" href="#bs4dash-230"></a></h2>
 <div class="section level3">
 <h3 id="new-feature-2-3-0">New feature<a class="anchor" aria-label="anchor" href="#new-feature-2-3-0"></a></h3>
@@ -137,7 +149,7 @@
 <h2 class="page-header" data-toc-text="2.1.0" id="bs4dash-210">bs4Dash 2.1.0<small>2022-05-05</small><a class="anchor" aria-label="anchor" href="#bs4dash-210"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-2-1-0">Breaking change<a class="anchor" aria-label="anchor" href="#breaking-change-2-1-0"></a></h3>
-<ul><li>Align with <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li>
+<ul><li>Align with <a href="https://shiny.posit.co/" class="external-link">shiny</a> and remove <code>position</code> from <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>. This was long time deprecated.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="minor-changesfixes-2-1-0">Minor changes/fixes<a class="anchor" aria-label="anchor" href="#minor-changesfixes-2-1-0"></a></h3>
