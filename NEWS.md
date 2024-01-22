@@ -7,6 +7,9 @@ This allows them to inherit from the parent `dashboardPage()` __dark__ parameter
 a full light or full dark skin. If not NULL, the corresponding skin is applied, regardless of the
 parent `dashboardPage()`.
 
+## Bug fixes
+- Remove unused `headTitles` parameter from `bs4Table()`.
+
 # bs4Dash 2.3.0
 
 ## New feature

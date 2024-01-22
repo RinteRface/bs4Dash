@@ -2667,8 +2667,6 @@ bs4Sortable <- function(..., width = 12) {
 #'
 #' @param data Expect dataframe, tibble or list of shiny tags... See examples. 
 #' @param cardWrap Whether to wrap the table in a card. FALSE by default.
-#' @param headTitles Table header names. Must have the same length as the number of 
-#' \link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.
 #' @param bordered Whether to display border between elements. FALSE by default.
 #' @param striped Whether to displayed striped in elements. FALSE by default.
 #' @param width Table width. 12 by default.

@@ -26,9 +26,6 @@ bs4TableItem(..., dataCell = FALSE)
 \item{...}{Any HTML element.}
 
 \item{dataCell}{Whether the cell should be contain data or text. <td> by default.}
-
-\item{headTitles}{Table header names. Must have the same length as the number of 
-\link{bs4TableItem} in \link{bs4TableItems}. Set "" to have an empty title field.}
 }
 \description{
 Build an Bootstrap 4 table container
