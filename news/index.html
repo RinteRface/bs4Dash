@@ -90,8 +90,35 @@
 <h2 class="page-header" data-toc-text="2.3.3" id="bs4dash-233">bs4Dash 2.3.3<a class="anchor" aria-label="anchor" href="#bs4dash-233"></a></h2>
 <div class="section level3">
 <h3 id="breaking-change-potential-2-3-3">Breaking change (potential)<a class="anchor" aria-label="anchor" href="#breaking-change-potential-2-3-3"></a></h3>
-<ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/302" class="external-link">#302</a>: both <code><a href="../reference/dashboardSidebar.html">dashboardSidebar()</a></code> and <code><a href="../reference/dashboardControlbar.html">dashboardControlbar()</a></code> default <strong>skin</strong> value is NULL. This allows them to inherit from the parent <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code> <strong>dark</strong> parameter and have either a full light or full dark skin. If not NULL, the corresponding skin is applied, regardless of the parent <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code>.</li>
-</ul></div>
+<ul><li>Fix <a href="https://github.com/RinteRface/bs4Dash/issues/302" class="external-link">#302</a>: both <code><a href="../reference/dashboardSidebar.html">dashboardSidebar()</a></code> and <code><a href="../reference/dashboardControlbar.html">dashboardControlbar()</a></code> default <strong>skin</strong> value is NULL. This allows them to inherit from the parent <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code> <strong>dark</strong> parameter and have either a full light or full dark skin. Therefore, it won’t be possible anymore to apply a light sidebar background with the <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code> when the main theme is dark and inversely. If you want to do so, you have to set <code>dark = NULL</code>, for instance:</li>
+</ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/bs4Dash/index.html" class="external-link">bs4Dash</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
+<span>  ui <span class="op">=</span> <span class="fu"><a href="../reference/dashboardPage.html">dashboardPage</a></span><span class="op">(</span></span>
+<span>    dark <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    header <span class="op">=</span> <span class="fu"><a href="../reference/dashboardHeader.html">dashboardHeader</a></span><span class="op">(</span></span>
+<span>      title <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBrand.html">dashboardBrand</a></span><span class="op">(</span></span>
+<span>        title <span class="op">=</span> <span class="st">"My dashboard"</span>,</span>
+<span>        color <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>        href <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3"</span>,</span>
+<span>        image <span class="op">=</span> <span class="st">"https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    sidebar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardSidebar.html">dashboardSidebar</a></span><span class="op">(</span>skin <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>,</span>
+<span>    body <span class="op">=</span> <span class="fu"><a href="../reference/dashboardBody.html">dashboardBody</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="../reference/box.html">box</a></span><span class="op">(</span>status <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="../reference/box.html">box</a></span><span class="op">(</span>status <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="../reference/box.html">box</a></span><span class="op">(</span>status <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    controlbar <span class="op">=</span> <span class="fu"><a href="../reference/dashboardControlbar.html">dashboardControlbar</a></span><span class="op">(</span>skin <span class="op">=</span> <span class="st">"dark"</span><span class="op">)</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"DashboardPage"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level3">
 <h3 id="bug-fixes-2-3-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-3-3"></a></h3>
 <ul><li>Remove unused <code>headTitles</code> parameter from <code><a href="../reference/table.html">bs4Table()</a></code>.</li>
