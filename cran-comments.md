@@ -10,3 +10,4 @@ There were no ERRORs or WARNINGs or NOTEs.
 
 ## Note
 This release will fixe the NOTES on https://cran.r-project.org/web/checks/check_results_bs4Dash.html.
+Update: re-submissiom fixing issue with `omicsTools` reverse dependency.
