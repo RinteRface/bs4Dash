@@ -160,7 +160,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 set_sidebar_skin <- function(skin) {
   is_dark_skin <- get_parent_args()$dark
   if (is.null(skin)) {
-    skin <- if (!is_dark_skin)  "light" else "dark"
+    skin <- if (is.null(is_dark_skin) || !is_dark_skin)  "light" else "dark"
   }
   skin
 }
