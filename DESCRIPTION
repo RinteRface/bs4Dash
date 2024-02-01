@@ -19,6 +19,7 @@ Imports:
     htmltools (>= 0.5.1.1),
     jsonlite (>= 0.9.16),
     fresh,
+    grDevices,
     waiter (>= 0.2.3),
     httpuv (>= 1.5.2),
     lifecycle,
