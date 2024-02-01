@@ -15,7 +15,7 @@ bs4ValueBoxOutput(outputId, width = 4)
 
 bs4ValueBox(
   value,
-  subtitle,
+  subtitle = NULL,
   icon = NULL,
   color = NULL,
   width = 3,
@@ -27,7 +27,7 @@ bs4ValueBox(
 
 valueBox(
   value,
-  subtitle,
+  subtitle = NULL,
   icon = NULL,
   color = NULL,
   width = 3,

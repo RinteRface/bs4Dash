@@ -731,7 +731,7 @@ dropdownDivider <- function() {
 #'   )
 #' }
 #' @export
-bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
+bs4ValueBox <- function(value, subtitle = NULL, icon = NULL, color = NULL, width = 3,
                         href = NULL, footer = NULL, gradient = FALSE, elevation = NULL) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
@@ -775,7 +775,9 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(class = "small-box-subtitle", subtitle)
+    if (!is.null(subtitle)) {
+      shiny::tags$p(class = "small-box-subtitle", subtitle)
+    }
   )
 
   iconTag <- if (!is.null(icon)) {
@@ -802,7 +804,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
         shiny::icon("circle-arrow-right")
       )
     } else {
-      shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
+      NULL
+      # shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
     }
   }
 

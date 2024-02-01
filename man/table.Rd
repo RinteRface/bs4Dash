@@ -6,7 +6,14 @@
 \alias{bs4TableItem}
 \title{Boostrap 4 table container}
 \usage{
-bs4Table(data, cardWrap = FALSE, bordered = FALSE, striped = FALSE, width = 12)
+bs4Table(
+  data,
+  cardWrap = FALSE,
+  bordered = FALSE,
+  striped = FALSE,
+  width = 12,
+  header_attributes = NULL
+)
 
 bs4TableItems(...)
 
@@ -22,6 +29,12 @@ bs4TableItem(..., dataCell = FALSE)
 \item{striped}{Whether to displayed striped in elements. FALSE by default.}
 
 \item{width}{Table width. 12 by default.}
+
+\item{header_attributes}{a named list of attributes for each
+header, which need to be the length of the number of columns
+in the data. For example, 
+`list(list(class = "col-3"), list(class = "col-5"))` 
+changes with width fo the column, or you can use `list(width="25\%)`.}
 
 \item{...}{Any HTML element.}
 
@@ -57,6 +70,12 @@ if (interactive()) {
   server = function(input, output) { }
  )
  
+ 
+ header_attributes = rep(list(list(width = "20\%")), 5)
+ header_attributes[2] = list(
+ c(header_attributes[[2]],
+ list(style="background-color:#FF0000")
+ ))
  # with shiny tags as input
  shinyApp(
   ui = dashboardPage(
@@ -84,7 +103,8 @@ if (interactive()) {
             )
           ),
           list("$2,500 USD", "NA", "NA", "test", "NA")
-        )
+        ),
+        header_attributes = header_attributes
       )
     ), 
     footer = dashboardFooter()
