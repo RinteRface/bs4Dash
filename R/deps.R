@@ -19,8 +19,8 @@ add_bs4Dash_deps <- function(tag, options) {
     # jquery UI deps for sortable elements
     htmltools::htmlDependency(
       name = "jquery-ui", 
-      version = "1.12.1",
-      src = c(file = system.file("jquery-ui-1.12.1", package = "bs4Dash")),
+      version = "1.13.2",
+      src = c(file = system.file("jquery-ui-1.13.2", package = "bs4Dash")),
       script = jquery_ui_js
     ),
     # bootstrap deps
