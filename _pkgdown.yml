@@ -1,3 +1,7 @@
+template:
+  bootstrap: 5
+
+url: https://bs4dash.rinterface.com/
 reference:
 - title: Basic dashboard functions
   desc: Dashboard skeleton functions
