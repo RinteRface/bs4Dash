@@ -23,37 +23,12 @@ knitr::opts_chunk$set(
 allowing the end user to change the app skin. There are 20 unique colors with 2 versions, light or dark. 
 Note that the `dashboardControlbar()` is the perfect place to host the `skinSelector()`.
 
-```{r skinSelector-code, eval=FALSE}
-library(shiny)
-library(bs4Dash)
-shinyApp(
-  ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(
-      sidebarMenu(
-        menuItem(
-          text = "Item 1"
-        ),
-        menuItem(
-          text = "Item 2"
-        )
-      )
-    ),
-    body = dashboardBody(),
-    controlbar = dashboardControlbar(
-      collapsed = FALSE,
-      div(class = "p-3", skinSelector()),
-      pinned = TRUE
-    ),
-    title = "Skin Selector"
-  ),
-  server = function(input, output) { }
+```{r skinSelector-code, eval=TRUE, echo=FALSE}
+card(
+  bs4Dash:::create_link_iframe(bs4Dash:::shinylive_links["inst/examples/vignettes-demos/skinSelector"]),
+  full_screen = TRUE,
+  style = "margin: 0 auto; float: none;"
 )
-```
-
-```{r, echo=FALSE}
-# App output
-bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-skinSelector/", TRUE)
 ```
 
 ## Fresh
@@ -71,92 +46,10 @@ the sidebar component, `bs4dash_layout()` controls the main background color, `b
 contrast and `bs4dash_vars()` offers deeper customization (navbar, ...). 
 The fresh theme below is based on some dark theme color palettes. 
 
-```{r fresh-code, eval=FALSE}
-library(fresh)
-# create the theme with a cyberpunk color palette
-theme <- create_theme(
-  bs4dash_vars(
-    navbar_light_color = "#bec5cb",
-    navbar_light_active_color = "#FFF",
-    navbar_light_hover_color = "#FFF"
-  ),
-  bs4dash_yiq(
-    contrasted_threshold = 10,
-    text_dark = "#FFF",
-    text_light = "#272c30"
-  ),
-  bs4dash_layout(
-    main_bg = "#353c42"
-  ),
-  bs4dash_sidebar_light(
-    bg = "#272c30",
-    color = "#bec5cb",
-    hover_color = "#FFF",
-    submenu_bg = "#272c30",
-    submenu_color = "#FFF",
-    submenu_hover_color = "#FFF"
-  ),
-  bs4dash_status(
-    primary = "#5E81AC", danger = "#BF616A", light = "#272c30"
-  ),
-  bs4dash_color(
-    gray_900 = "#FFF", white = "#272c30"
-  )
+```{r fresh-code, eval=TRUE, echo=FALSE}
+card(
+  bs4Dash:::create_link_iframe(bs4Dash:::shinylive_links["inst/examples/vignettes-demos/fresh-theming"]),
+  full_screen = TRUE,
+  style = "margin: 0 auto; float: none;"
 )
-
-# create tribble for box global config
-box_config <- tibble::tribble(
-  ~background, ~labelStatus,
-  "danger", "warning",
-  "purple", "success",
-  "success", "primary",
-  "warning", "danger",
-  "fuchsia", "info"
-)
-
-# box factory function
-box_factory <- function(background, labelStatus) {
-  box(
-    title = "Cyberpunk Box",
-    collapsible = TRUE,
-    background = background,
-    height = "200px",
-    label = boxLabel(1, labelStatus)
-  )
-}
-
-# pmap magic
-boxes <- purrr::pmap(box_config, box_factory)
-
-shinyApp(
-  ui = dashboardPage(
-    freshTheme = theme,
-    header = dashboardHeader(
-      leftUi = dropdownMenu(
-        type = "messages",
-        badgeStatus = "success",
-        messageItem(
-          from = "Support Team",
-          message = "This is the content of a message.",
-          time = "5 mins"
-        ),
-        messageItem(
-          from = "Support Team",
-          message = "This is the content of another message.",
-          time = "2 hours"
-        )
-      )
-    ),
-    sidebar = dashboardSidebar(),
-    body = dashboardBody(boxes),
-    controlbar = dashboardControlbar(),
-    title = "Fresh theming"
-  ),
-  server = function(input, output) { }
-)
-```
-
-```{r, echo=FALSE}
-# App output
-bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-fresh-theming/")
 ```
