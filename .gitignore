@@ -10,3 +10,5 @@ inst/examples/**/rsconnect
 .vscode
 *.icloud
 docs
+
+/.quarto/
