@@ -932,7 +932,7 @@ $(function () {
         break;
       default: console.warn(`${config.status} does not belong to allowed statuses!`)
     }
-    
+
     closeButton = '';
 
     if (config.closable) {
