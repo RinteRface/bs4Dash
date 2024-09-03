@@ -22,7 +22,7 @@
 
 <br>
 
-## New users moving to bs4Dash v2.0.0
+## From {shinydashboard} to {bs4Dash}
 
 Taking the simple `{shinydashboard}` example:
 

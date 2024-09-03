@@ -36,7 +36,7 @@ card(
 </div>
 
 
-## From shinydashboard to bs4Dash
+## From {shinydashboard} to {bs4Dash}
 
 Taking the simple `{shinydashboard}` example:
 
