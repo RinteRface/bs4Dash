@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+library(bslib)
 knitr::opts_chunk$set(
     collapse = TRUE,
     comment = "#>"
@@ -83,33 +84,10 @@ Below is a simple app you may build with `{bs4Dash}`. Interestingly, you'll be a
 the scroll to top button feature if you scroll to the bottom (bottom-right corner), as well as the live theme
 switcher in the navigation bar that goes from light to dark. This new feature is exclusive to `{bs4Dash}`.
 
-```{r basic-demo-code, eval=FALSE}
-library(shiny)
-library(bs4Dash)
-
-shinyApp(
-    ui = dashboardPage(
-        header = dashboardHeader(
-            title = dashboardBrand(
-                title = "My dashboard",
-                color = "primary",
-                href = "https://adminlte.io/themes/v3",
-                image = "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
-            )
-        ),
-        sidebar = dashboardSidebar(),
-        body = dashboardBody(
-            lapply(getAdminLTEColors(), function(color) {
-                box(status = color)
-            })
-        ),
-        controlbar = dashboardControlbar(),
-        title = "DashboardPage"
-    ),
-    server = function(input, output) { }
+```{r basic-demo-code, eval=TRUE, echo=FALSE}
+card(
+  bs4Dash:::create_link_iframe(bs4Dash:::shinylive_links["inst/examples/vignettes-demos/scrollToTop"]),
+  full_screen = TRUE,
+  style = "margin: 0 auto; float: none;"
 )
-```
-
-```{r, echo=FALSE}
-bs4Dash:::app_container("https://dgranjon.shinyapps.io/bs4Dash-scrollToTop/", TRUE)
 ```

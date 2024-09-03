@@ -748,3 +748,17 @@ get_parent_args <- function() {
   cl <- sys.call(-3)
   as.list(cl)[-1]
 }
+
+# For shinylive examples
+create_link_iframe <- function(link) {
+  shiny::tags$iframe(
+    class = "html-fill-item",
+    src = link,
+    height = "800", 
+    width = "100%", 
+    style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;", 
+    allowfullscreen = "", 
+    allow = "autoplay", 
+    `data-external` = "1"
+  )
+}

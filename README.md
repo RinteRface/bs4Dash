@@ -11,7 +11,7 @@
 <br>
 
 <div class="card">
-<a href="https://dgranjon.shinyapps.io/virtual_patient_v2/" target="_blank"><img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif"></a>
+<img src="https://community.rstudio.com/uploads/default/original/2X/e/eb1013fd09ccf10cbe13da3f0168eebfcb0eba75.gif">
 </div>
 
 <br>
@@ -59,7 +59,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-Starting from v2.0.0, moving to `{bs4Dash}` is rather simple:
+Moving to `{bs4Dash}` is rather simple, as we just replace `library(shinydashboard)`:
 
 ```r
 library(bs4Dash)
@@ -92,14 +92,6 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-
-## Upgrading bs4Dash to 2.0.0
-- `{bs4Dash}` is undergoing major rework to make it easier to come from `{shinydashboard}`. The current development version 2.0.0 provides a 1:1 supports, in other word moving from `{shinydashboard}` to `{bs4Dash}` is accomplished by changing `library(shinydashboard)` to `library(bs4Dash)`. 
-
-- `{bs4Dash}` v2.0.0 also provides 1:1 with `{shinydashboardPlus}` to ease compatibility.
-
-- Apps built with `{bs4Dash}` version <= 0.5.0 are definitely not compatible with v2.0.0 due to substantial breaking changes in the API. We advise users to keep the old version for old apps and move to to the new version for newer apps.
-
 ## Installation
 
 ```r
@@ -110,8 +102,6 @@ install.packages("bs4Dash")
 ```
 
 ## Demo
-
-See a working example on shinyapps.io [here](https://dgranjon.shinyapps.io/bs4DashDemo/).
 You may also run:
 
 ```r

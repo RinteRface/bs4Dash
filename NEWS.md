@@ -1,3 +1,11 @@
+# bs4Dash 2.3.4
+
+- Added shinylive to support documentation examples.
+
+## Minor change
+- Update jquery-ui to 1.13.2. Thanks @biognosys-so.
+- Fix CRAN NOTES.
+
 # bs4Dash 2.3.3
 
 ## Breaking change (potential)

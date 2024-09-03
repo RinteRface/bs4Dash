@@ -8,12 +8,14 @@ pkg_version <- as.character(utils::packageVersion("bs4Dash"))
 tmp_old_version <- list.dirs("srcjs", full.names = FALSE, recursive = FALSE)
 old_version <- strsplit(tmp_old_version, "-")[[1]][2]
 new_srcjs_folder_name <- sprintf("srcjs/bs4Dash-%s", pkg_version)
+outputDir <- sprintf("inst/bs4Dash-%s", pkg_version)
 
 if (old_version != pkg_version) {
   file.rename(
     file.path("srcjs", tmp_old_version), 
     new_srcjs_folder_name
   )
+  dir.create(outputDir)
 }
 
 # Validate ----------------------------------------------------------------
@@ -25,8 +27,6 @@ bs4DashJS <- list.files(
 )
 
 # jshint_file(input = bs4DashJS, options = jshint_options(jquery = TRUE, globals = list("Shiny", "app")))
-
-outputDir <- sprintf("inst/bs4Dash-%s", pkg_version)
 
 # Concat -----------------------------------------------------------------
 

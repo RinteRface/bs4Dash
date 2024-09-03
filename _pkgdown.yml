@@ -1,3 +1,7 @@
+template:
+  bootstrap: 5
+
+url: https://bs4dash.rinterface.com/
 reference:
 - title: Basic dashboard functions
   desc: Dashboard skeleton functions
@@ -240,8 +244,7 @@ navbar:
 
 articles:
 - title: User guide
-  desc: ~
-  navbar: User Guide
+  navbar: ~
   contents:
   - '`step-by-step`'
   - '`improved-boxes`'
@@ -252,7 +255,9 @@ articles:
   
 news:
  releases:
- - text: "bs4Dash 2.4.0.9000"
+ - text: "bs4Dash 2.3.4"
+ - text: "bs4Dash 2.3.3"
+ - text: "bs4Dash 2.3.0"
  - text: "bs4Dash 2.2.1"
  - text: "bs4Dash 2.1.0"
  - text: "bs4Dash 2.0.3"

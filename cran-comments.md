@@ -9,5 +9,13 @@
 There were no ERRORs or WARNINGs or NOTEs.
 
 ## Note
-This release will fixe the NOTES on https://cran.r-project.org/web/checks/check_results_bs4Dash.html.
-Update: re-submissiom fixing issue with `omicsTools` reverse dependency.
+Fix a 3 NOTES:
+
+> Version: 2.3.3
+Check: Rd cross-references
+Result: NOTE 
+  Found the following Rd file(s) with Rd \link{} targets missing package
+  anchors:
+    insertTab.Rd: tabPanel
+  Please provide package anchors for all Rd \link{} targets not in the
+  package itself and the base packages.
