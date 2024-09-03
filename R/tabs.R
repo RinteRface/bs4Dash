@@ -261,11 +261,11 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
 
 
 
-#' Insert a \link{tabPanel} in a \link{tabsetPanel}
+#' Insert a \link[shiny]{tabPanel} in a \link{tabsetPanel}
 #'
 #' @param inputId  \link{tabsetPanel} id.
-#' @param tab \link{tabPanel} to insert.
-#' @param target \link{tabPanel} after of before which the new tab will be inserted.
+#' @param tab \link[shiny]{tabPanel} to insert.
+#' @param target \link[shiny]{tabPanel} after of before which the new tab will be inserted.
 #' @param position Insert before or after: \code{c("before", "after")}.
 #' @param select Whether to select the newly inserted tab. FALSE by default.
 #' @param session Shiny session object.
