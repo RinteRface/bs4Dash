@@ -14,16 +14,14 @@ knitr::opts_chunk$set(echo = TRUE)
 [![R build status](https://github.com/RinteRface/bs4Dash/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/bs4Dash/actions)
 [![version](https://www.r-pkg.org/badges/version/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
 [![cranlogs](https://cranlogs.r-pkg.org/badges/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
-[![total](https://cranlogs.r-pkg.org/badges/grand-total/bs4Dash)](https://www.rpackages.io/package/bs4Dash)
+[![total](https://cranlogs.r-pkg.org/badges/grand-total/bs4Dash)](https://CRAN.R-project.org/package=bs4Dash)
 [![Codecov test coverage](https://codecov.io/gh/RinteRface/bs4Dash/branch/master/graph/badge.svg)](https://codecov.io/gh/RinteRface/bs4Dash?branch=master)
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/marvel-devices.css@1.0.0/assets/devices.min.css" type="text/css" />
 
 > Bootstrap 4 shinydashboard using [AdminLTE3](https://github.com/ColorlibHQ/AdminLTE)
 
 <br>
 
-```{r socialBox-code, eval=TRUE, echo=FALSE}
+```{r showcase-code, eval=TRUE, echo=FALSE}
 card(
   bs4Dash:::create_link_iframe(bs4Dash:::shinylive_links["inst/examples/showcase"]),
   full_screen = TRUE,
@@ -34,7 +32,7 @@ card(
 <br>
 
 <div class="card">
-<a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif"></a>
+<a href="https://analytichealth.co.uk/pharmly-portal/" target="_blank"><img src="https://analytichealth.co.uk/wp-content/uploads/2021/10/PA-bs4Dash.gif" alt="bs4Dash usage medical dashboard"></a>
 </div>
 
 
