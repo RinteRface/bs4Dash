@@ -22,7 +22,8 @@ bs4ValueBox(
   href = NULL,
   footer = NULL,
   gradient = FALSE,
-  elevation = NULL
+  elevation = deprecated(),
+  shadow = c("shadow-none", "shadow-sm", "shadow", "shadow-lg")
 )
 
 valueBox(
@@ -34,7 +35,8 @@ valueBox(
   href = NULL,
   footer = NULL,
   gradient = FALSE,
-  elevation = NULL
+  elevation = deprecated(),
+  shadow = c("shadow-none", "shadow-sm", "shadow", "shadow-lg")
 )
 
 valueBoxOutput(outputId, width = 4)
@@ -102,7 +104,11 @@ and this parameter be set, `footer` will take precedence.}
 
 \item{gradient}{Whether to use gradient style for background color. Default to FALSE.}
 
-\item{elevation}{Value box elevation.}
+\item{elevation}{`r lifecycle::badge("deprecated")`:
+removed from AdminLTE4. Use shadow instead.}
+
+\item{shadow}{Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+Default to "shadow-none".}
 }
 \description{
 This is the server-side function for creating a dynamic

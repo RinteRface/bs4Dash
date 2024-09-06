@@ -96,18 +96,32 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
                         skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
                         fullscreen = FALSE, help = FALSE, dark = FALSE, scrollToTop = FALSE) {
   titleTag <- header[[2]]
+
+  # FIXME: disabled controlbar for now
+  controlbar <- NULL
   
+  tagAssert(sidebar, type = "aside", class = "app-sidebar")
   sidebarDisabled <- sidebar$attribs$`data-disable`
   sidebarCollapsed <- sidebar$attribs$`data-collapsed`
   sidebarMini <- sidebar$attribs$`data-minified`
+  sidebarExpand <- sidebar$attribs$`data-expand`
+  sidebarFixed <- sidebar$attribs$`data-fixed`
+
+  bodyCl <- "bg-body-tertiary"
+  if (sidebarDisabled) bodyCl <- paste(bodyCl, "layout-top-nav")
+  if (sidebarFixed) bodyCl <- paste(bodyCl, "layout-fixed")
+
+  if (sidebarCollapsed) {
+    bodyCl <- paste(bodyCl, "sidebar-collapsed")
+  } else {
+    bodyCl <- paste(bodyCl, "sidebar-open")
+  }
+  if (sidebarMini) bodyCl <- paste(bodyCl, "sidebar-mini sidebar-collapse")
+  if (sidebarExpand) bodyCl <- paste(bodyCl, "sidebar-expand-lg")
+  
 
   # layout changes if main sidebar is disabled
   if (!sidebarDisabled) {
-    tagAssert(sidebar, type = "aside", class = "main-sidebar")
-    # look for custom area and move it to third slot
-    if (length(sidebar$children) > 2) {
-      sidebar$children[[4]] <- sidebar$children[[3]]
-    }
     # sidebar stuff are moved to second child
     sidebar$children[[3]] <- sidebar$children[[2]]
 
@@ -125,35 +139,21 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     header[[1]]$attribs$style <- "padding: 0rem 0rem;"
   }
   
-  bodyCl <- if (sidebarDisabled) "layout-top-nav" else NULL
-  if (sidebarCollapsed) {
-    bodyCl <- if (is.null(bodyCl)) {
-      "sidebar-collapse"
-    } else {
-      paste(bodyCl, "sidebar-collapse")
-    }
-  }
-  if (sidebarMini) {
-    bodyCl <- if (is.null(bodyCl)) {
-      "sidebar-mini"
-    } else {
-      paste(bodyCl, "sidebar-mini")
-    }
-  }
+
 
   # some checks
-  tagAssert(header[[1]], type = "nav", class = "main-header")
-  tagAssert(body, type = "div", class = "content-wrapper")
+  tagAssert(header[[1]], type = "nav", class = "app-header")
+  tagAssert(body, type = "main", class = "app-main")
   if (!is.null(controlbar)) {
     tagAssert(controlbar[[2]], type = "aside", class = "control-sidebar")
   }
   if (!is.null(footer)) {
-    tagAssert(footer, type = "footer", class = "main-footer")
+    tagAssert(footer, type = "footer", class = "app-footer")
   }
 
   # create the body content
   bodyContent <- shiny::tags$div(
-    class = "wrapper",
+    class = "app-wrapper",
     header[[1]],
     if (!sidebarDisabled) sidebar,
     # page content

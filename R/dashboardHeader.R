@@ -84,12 +84,14 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
-      "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
+      "app-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
       " navbar-", skin, if (!border) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
 
-    # left sidebar elements
+    shiny::tags$div(
+      class = "container-fluid",
+      # left sidebar elements
     shiny::tags$ul(
       class = "navbar-nav",
 
@@ -98,7 +100,8 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
         class = "nav-item",
         shiny::tags$a(
           class = "nav-link",
-          `data-widget` = "pushmenu",
+          role = "button",
+          `data-lte-toggle` = "sidebar",
           href = "#",
           sidebarIcon
         )
@@ -111,19 +114,22 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 
     # right sidebar elements
     shiny::tags$ul(
-      class = "navbar-nav ml-auto navbar-right",
+      class = "navbar-nav ms-auto",
       rightUi,
       # controlbar toggle
       shiny::tags$li(
         class = "nav-item",
-        shiny::tags$a(
+        shiny::tags$button(
           id = "controlbar-toggle",
           class = "nav-link",
-          `data-widget` = "control-sidebar",
-          href = "#",
+          `data-bs-toggle` = "offcanvas",
+          `data-bs-target` = "#offcanvasExample",
+          `aria-controls` = "offcanvasExample",
+          type = "button",
           controlbarIcon
         )
       )
+    )
     )
   )
 
@@ -158,7 +164,7 @@ navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
         class = "nav-link",
         id = paste0("tab-", tabName),
         href = paste0("#shiny-tab-", tabName),
-        `data-toggle` = "tab",
+        `data-bs-toggle` = "tab",
         `data-value` = tabName,
         icon,
         shiny::tags$p(text)
@@ -180,7 +186,7 @@ navbarDropdown <- function(text, ...) {
     class = "nav-item dropdown",
     shiny::tags$a(
       href = "#",
-      `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown",
       `aria-haspopup` = "true",
       `aria-expanded` = "false",
       class = "nav-link dropdown-toggle",
@@ -346,18 +352,20 @@ updateNavbarTabs <- updatebs4TabItems
 bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity = .8) {
   if (!is.null(color)) validateStatusPlus(color)
   
-  shiny::tags$a(
-    class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
-    href = if (!is.null(href)) href else "#",
-    target = if (!is.null(href)) "_blank",
-    if (!is.null(image)) {
-      shiny::tags$img(
-        src = image,
-        class = "brand-image img-circle elevation-3",
-        style = paste0("opacity: ", opacity)
-      )
-    },
-    shiny::tags$span(class = "brand-text font-weight-light", title)
+  shiny::tags$div(
+    class = "sidebar-brand",
+    shiny::tags$a(
+      class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
+      href = if (!is.null(href)) href else "#",
+      target = if (!is.null(href)) "_blank",
+      if (!is.null(image)) {
+        shiny::tags$img(
+          src = image,
+          class = sprintf("brand-image opacity-%s shadow", opacity * 10)
+        )
+      },
+      shiny::tags$span(class = "brand-text fw-light", title)
+    )
   )
 }
 
@@ -498,7 +506,7 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
     class = "nav-item dropdown",
     shiny::tags$a(
       class = "nav-link",
-      `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown",
       href = "#",
       `aria-expanded` = "false",
       icon,
@@ -881,7 +889,7 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     shiny::tags$a(
       href = "#",
       class = "nav-link dropdown-toggle",
-      `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown",
       `aria-expanded` = "false",
       shiny::tags$img(
         src = image,

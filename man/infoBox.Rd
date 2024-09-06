@@ -23,9 +23,11 @@ bs4InfoBox(
   href = NULL,
   fill = FALSE,
   gradient = FALSE,
-  elevation = NULL,
-  iconElevation = NULL,
-  tabName = NULL
+  elevation = deprecated(),
+  iconElevation = deprecated(),
+  tabName = NULL,
+  shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"),
+  iconShadow = shadow
 )
 
 infoBox(
@@ -38,9 +40,11 @@ infoBox(
   href = NULL,
   fill = FALSE,
   gradient = FALSE,
-  elevation = NULL,
-  iconElevation = NULL,
-  tabName = NULL
+  elevation = deprecated(),
+  iconElevation = deprecated(),
+  tabName = NULL,
+  shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"),
+  iconShadow = shadow
 )
 
 infoBoxOutput(outputId, width = 4)
@@ -85,20 +89,14 @@ contains the box.}
   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6f42c1")}.
+  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d63384")}.
+  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fd7e14")}.
+  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#20c997")}.
+  \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
 }}
 
 \item{href}{An optional URL to link to.}
@@ -110,12 +108,20 @@ darkened background.}
 
 \item{gradient}{Whether to use gradient style for background color. Default to FALSE.}
 
-\item{elevation}{Box elevation.}
+\item{elevation}{`r lifecycle::badge("deprecated")`:
+removed from AdminLTE4. Use shadow instead.}
 
-\item{iconElevation}{Icon elevation compared to the main content (relief). 3 by default.}
+\item{iconElevation}{`r lifecycle::badge("deprecated")`:
+removed from AdminLTE4. Use iconShadow instead.}
 
 \item{tabName}{Optional: \link{infoBox} behaves like \link{menuItem} and
 may be used to navigate between multiple \link{tabItem}.}
+
+\item{shadow}{Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+Default to "shadow".}
+
+\item{iconShadow}{Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+Default to "shadow".}
 }
 \description{
 A beautiful AdminLTE3 info box.

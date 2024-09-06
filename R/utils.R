@@ -83,151 +83,6 @@ dropNulls <- function(x) {
   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
 }
 
-
-
-# Returns TRUE if a status is valid; throws error otherwise.
-validateStatus <- function(status) {
-  
-  if (status %in% validStatuses) {
-    return(TRUE)
-  }
-  
-  stop("Invalid status: ", status, ". Valid statuses are: ",
-       paste(validStatuses, collapse = ", "), ".")
-}
-
-
-#' Valid statuses
-#'
-#' These status strings correspond to colors as defined in Bootstrap's CSS.
-#' Although the colors can vary depending on the particular CSS selector, they
-#' generally appear as follows:
-#'
-#' \itemize{
-#'   \item \code{primary} Blue (sometimes dark blue)
-#'   \item \code{secondary} Light gray
-#'   \item \code{info} Blue
-#'   \item \code{success} Green
-#'   \item \code{warning} Orange
-#'   \item \code{danger} Red
-#' }
-#'
-#' @usage NULL
-#' @format NULL
-#'
-#' @keywords internal
-validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger")
-
-
-
-
-# Returns TRUE if a nuance is valid; throws error otherwise.
-validateNuance <- function(nuance) {
-  
-  if (nuance %in% validNuances) {
-    return(TRUE)
-  }
-  
-  stop("Invalid nuance: ", nuance, ". Valid nuances are: ",
-       paste(validNuances, collapse = ", "), ".")
-}
-
-
-#' Valid nuances
-#'
-#' These nuances strings correspond to colors as defined in AdminLTE's CSS.
-#' Although the colors can vary depending on the particular CSS selector, they
-#' generally appear as follows:
-#'
-#' \itemize{
-#'   \item \code{gray-dark} Gray dark
-#'   \item \code{gray} Gray
-#'   \item \code{white} White
-#' }
-#'
-#' @usage NULL
-#' @format NULL
-#'
-#' @keywords internal
-validNuances <- c("gray-dark", "gray", "white")
-
-
-
-
-# Returns TRUE if a color is a valid color defined in AdminLTE, throws error
-# otherwise.
-validateColor <- function(color) {
-  if (color %in% validColors) {
-    return(TRUE)
-  }
-  
-  stop("Invalid color: ", color, ". Valid colors are: ",
-       paste(validColors, collapse = ", "), ".")
-}
-
-#' Valid colors
-#'
-#' These are valid colors for various dashboard components. Valid colors are
-#' listed below:
-#'
-#' \itemize{
-#'   \item \code{indigo} Indigo
-#'   \item \code{lightblue} Light blue
-#'   \item \code{navy} Dark Grey/Blue
-#'   \item \code{purple} Purple
-#'   \item \code{fuchsia} Fuchsia
-#'   \item \code{pink} Pink
-#'   \item \code{maroon} Pink
-#'   \item \code{orange} Orange
-#'   \item \code{lime} Light green
-#'   \item \code{teal} Blue/Green
-#'   \item \code{olive} Pastel green
-#' }
-#'
-#' @usage NULL
-#' @format NULL
-#'
-#' @keywords internal
-validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink", 
-                 "maroon", "orange", "lime", "teal", "olive")
-
-
-
-# Returns TRUE if a status is valid; throws error otherwise.
-validateStatusPlus <- function(status) {
-  
-  if (status %in% validStatusesPlus) {
-    return(TRUE)
-  }
-  
-  stop("Invalid status: ", status, ". Valid statuses are: ",
-       paste(validStatusesPlus, collapse = ", "), ".")
-}
-
-
-#' Valid statuses extra
-#' @usage NULL
-#' @format NULL
-#'
-#' @keywords internal
-validStatusesPlus <- c(validStatuses, validNuances, validColors)
-
-
-
-
-# used to generate color tags in the documentation
-rd_color_tag <- function(color, label = color) {
-  style <- sprintf(
-    "width:12px;height:12px;background:%s;border-radius:2px;display:inline-block;margin-right:5px;",
-    color
-  )
-  sprintf(
-    "\\ifelse{html}{\\out{<span style='%s'></span>%s}}{%s}",
-    style, label, label
-  )
-}
-
-
 # Insert HTML tag at any position
 tagInsertChild <- function(tag, child, position) {
   tag$children <- append(tag$children, list(child), position - 1)
@@ -306,8 +161,11 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
       collapseTag <- shiny::tags$button(
         class = btnClass, 
         type = "button",
-        `data-card-widget` = "collapse", 
-        shiny::icon(collapseIcon)
+        `data-lte-toggle` = "card-collapse", 
+        shiny::icon(
+          collapseIcon,
+          `data-lte-icon` = if (collapsed) "expand" else "collapse"
+        )
       )
     }
 
@@ -315,7 +173,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
     if (closable) {
       closableTag <- shiny::tags$button(
         class = btnClass, 
-        `data-card-widget` = "remove", 
+        `data-lte-toggle` = "card-remove", 
         type = "button",
         shiny::icon("xmark")
       )
@@ -326,7 +184,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
       maximizableTag <- shiny::tags$button(
         type = "button",
         class = btnClass,
-        `data-card-widget` = "maximize",
+        `data-lte-toggle` = "card-maximize",
         shiny::icon("up-right-and-down-left-from-center")
       )
     }

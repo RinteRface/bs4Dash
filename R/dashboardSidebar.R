@@ -11,50 +11,109 @@
 #' @param skin Sidebar skin. "dark" or "light". Matches the \link{dashboardPage} dark parameter
 #' value.
 #' @param status Sidebar status. Valid statuses are defined as follows:
+#' Dark skins
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#0d6efd")}.
+#'   \item \code{primary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#031633")}. 
 #'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{secondary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#161719")}.
+#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#198754")}.
+#'   \item \code{success-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#051b11")}.
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item \code{danger-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#2c0b0e")}.
+#'   \item \code{warning-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#332701")}.
+#'   \item \code{info-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#032830")}.
+#'   \item \code{light-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item \code{dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#212529")}.
+#'   \item \code{dark-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1a1d20")}.
+#'   \item \code{body-secondary}.
+#'   \item \code{body-tertiary}.
+#'   \item \code{body}.
+#'   \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#000")}.
 #' }
-#' @param elevation Sidebar elevation. 4 by default (until 5).
+#' Light skins
+#' \itemize{
+#'   \item \code{primary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#cfe2ff")}.
+#'   \item \code{secondary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e2e3e5")}.
+#'   \item \code{success-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d1e7dd")}.
+#'   \item \code{danger-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f8d7da")}.
+#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item \code{warning-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff3cd")}.  
+#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#0dcaf0")}.
+#'   \item \code{info-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#cff4fc")}.
+#'   \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f8f9fa")}.
+#'   \item \code{light-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fcfcfd")}.
+#'   \item \code{dark-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ced4da")}.
+#'   \item \code{body-secondary}.
+#'   \item \code{body-tertiary}.
+#'   \item \code{body}.  
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#' }
+#' The code checks whether the chosen status is compatible with the app skin.
+#' @param elevation `r lifecycle::badge("deprecated")`:
+#' removed from AdminLTE4.
 #' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
 #' @param minified Whether to slightly close the sidebar but still show item icons. Default
 #' to TRUE.
 #' @param expandOnHover Whether to expand the sidebar om hover. TRUE by default.
 #' @param fixed Whether to fix the sidebar. Default to TRUE.
 #' @param id Recover the state of the sidebar.
-#' @param customArea Sidebar bottom space area. Only works if sidebar is fixed.
+#' @param customArea `r lifecycle::badge("deprecated")`:
+#' removed from AdminLTE4
+#' @param shadow Sidebar shadow effect. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+#' Default to "shadow".
+#' @param gradient Whether to add gradient effect to background color.
+#' Default to FALSE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname dashboardSidebar
 #' @seealso \link{dashboardBody}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
-                           skin = NULL, status = "primary",
-                           elevation = 4, collapsed = FALSE,
-                           minified = TRUE, expandOnHover = TRUE,
-                           fixed = TRUE, id = NULL, customArea = NULL) {
+bs4DashSidebar <- function(
+  ...,
+  disable = FALSE,
+  width = NULL,
+  skin = NULL,
+  status = NULL,
+  elevation = deprecated(),
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = NULL,
+  customArea = deprecated(),
+  subtle = FALSE,
+  shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"),
+  gradient = FALSE
+) {
+
+  shadow <- match.arg(shadow)
+  
+  if (lifecycle::is_present(elevation)) {
+    lifecycle::deprecate_warn(
+      when = "3.0.0",
+      what = "dashboardSidebar(elevation)",
+      details = "elevation has been
+      removed from AdminLTE4 and will be removed from bs4Dash
+      in the next release."
+    )
+  }
+
+  if (lifecycle::is_present(customArea)) {
+    lifecycle::deprecate_warn(
+      when = "3.0.0",
+      what = "dashboardSidebar(customArea)",
+      details = "customArea has been
+      removed from AdminLTE4 and will be removed from bs4Dash
+      in the next release."
+    )
+  }
+  
   # When no skin is specified, sidebar color must match the dashboard skin color 
   # by default which is set in the dashboardPage function. 
   skin <- set_sidebar_skin(skin)
+  validateSidebarStatus(status, skin)
   
   if (is.null(id)) id <- "sidebarId"
   # If we're restoring a bookmarked app, this holds the value of whether or not the
@@ -67,7 +126,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 
   # sidebar content
   contentTag <- shiny::tags$div(
-    class = "sidebar",
+    class = "sidebar-wrapper",
     id = "sidebarItemExpanded",
     shiny::tags$nav(
       class = "mt-2",
@@ -126,33 +185,32 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     )
   }
 
+  sidebarCl <- sprintf("app-sidebar %s", shadow)
+  if (is.null(status)) {
+    sidebarCl <- paste(sidebarCl, "bg-body-secondary")
+  } else {
+    sidebarCl <- if (subtle) {
+      sprintf("%s bg-%s-subtle", sidebarCl, status)
+    } else {
+      sprintf("%s bg-%s", sidebarCl, status)
+    }
+  }
+  if (gradient) sidebarCl <- paste(sidebarCl, "bg-gradient")
+  
   sidebarTag <- shiny::tags$aside(
     customCSS,
     id = id,
-    `data-fixed` = tolower(fixed),
+    `data-fixed` = fixed,
     `data-minified` = minified,
     `data-collapsed` = collapsed,
     `data-disable` = disable,
-    class = paste0(
-      "main-sidebar sidebar-", skin, "-",
-      status, " elevation-", elevation,
-      if (expandOnHover) NULL else " sidebar-no-expand",
-      if (!is.null(customArea)) " main-sidebar-custom"
-    ),
+    `data-bs-theme` = skin,
+    `data-expand` = expandOnHover,
+    class = sidebarCl,
     style = if (disable) "display: none;"
   )
 
-  sidebarTag <- shiny::tagAppendChildren(sidebarTag, contentTag)
-
-  # bottom sidebar
-  if (!is.null(customArea)) {
-    sidebarTag <- shiny::tagAppendChild(
-      sidebarTag,
-      shiny::tags$div(class = "sidebar-custom", customArea)
-    )
-  }
-
-  sidebarTag
+  shiny::tagAppendChildren(sidebarTag, contentTag)
 }
 
 
@@ -250,7 +308,7 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
   }))
   if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
 
-  menuCl <- "nav nav-pills nav-sidebar flex-column sidebar-menu"
+  menuCl <- "nav sidebar-menu flex-column"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
   if (compact) menuCl <- paste0(menuCl, " nav-compact")
   if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
@@ -259,9 +317,9 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
   # menu Tag
   shiny::tags$ul(
     class = menuCl,
-    `data-widget` = "treeview",
+    `data-lte-toggle` = "treeview",
     role = "menu",
-    `data-accordion` = "true",
+    `data-accordion` = "false",
     items,
     # This is a 0 height div, whose only purpose is to hold the tabName of the currently
     # selected menuItem in its `data-value` attribute. This is the DOM element that is
@@ -413,7 +471,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
             paste0("tab-", tabName)
           },
           href = if (!is.null(href)) href else "#",
-          `data-target` = if (is.null(href)) {
+          `data-bs-target` = if (is.null(href)) {
             if (!is.null(tabName)) {
               paste0("#shiny-tab-", tabName)
             } 
@@ -421,7 +479,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           target = if (!is.null(href)) {
             if (newTab) "_blank"
           },
-          `data-toggle` = if (is.null(href)) "tab",
+          `data-bs-toggle` = if (is.null(href)) "tab",
           `data-value` = if (!is.null(tabName)) tabName,
           # needed by leftSidebar.js
           `data-start-selected` = if (isTRUE(selected)) 1 else NULL,
@@ -490,12 +548,12 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         paste0("tab-", tabName)
       }
       item_link$attribs$href <- if (!is.null(href)) href else "#"
-      `data-target` = if (is.null(href)) {
+      `data-bs-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
         } 
       }
-      item_link$attribs$`data-target` <- if (is.null(href)) {
+      item_link$attribs$`data-bs-target` <- if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
         } 
@@ -503,7 +561,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
       item_link$attribs$target <- if (!is.null(href)) {
         if (newTab) "_blank"
       }
-      item_link$attribs$`data-toggle` <- if (is.null(href)) "tab"
+      item_link$attribs$`data-bs-toggle` <- if (is.null(href)) "tab"
       item_link$attribs$`data-value` <- if (!is.null(tabName)) tabName
     }
     
@@ -556,7 +614,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
         paste0("tab-", tabName)
       },
       href = if (!is.null(href)) href else "#",
-      `data-target` = if (is.null(href)) {
+      `data-bs-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
         } 
@@ -564,7 +622,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       target = if (!is.null(href)) {
         if (newTab) "_blank"
       },
-      `data-toggle` = if (is.null(href)) "tab",
+      `data-bs-toggle` = if (is.null(href)) "tab",
       `data-value` = tabName,
       # below this is needed by leftSidebar.js
       `data-start-selected` = if (isTRUE(selected)) 1 else NULL,

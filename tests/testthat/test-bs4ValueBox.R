@@ -1,5 +1,3 @@
-context("bs4ValueBox")
-
 getCardWrapperCl <- function(card) {
   card$attribs$class
 }
@@ -31,7 +29,7 @@ test_that("structure", {
   valueBoxChildren <- getCardChildren(valueBoxTag)
   expect_length(valueBoxChildren, 3)
   expect_match(valueBoxChildren[[1]]$attribs$class, "inner")
-  expect_match(valueBoxChildren[[2]]$attribs$class, "icon")
+  expect_match(valueBoxChildren[[2]]$attribs$class, "small-box-ico")
   expect_match(valueBoxChildren[[3]]$attribs$class, "small-box-footer")
   
   # wrong icon
@@ -44,7 +42,7 @@ test_that("structure", {
   valueBoxChildren <- getCardChildren(valueBoxTag)
   expect_length(valueBoxChildren, 3)
   expect_match(valueBoxChildren[[1]]$attribs$class, "inner")
-  expect_match(valueBoxChildren[[2]]$attribs$class, "icon")
+  expect_match(valueBoxChildren[[2]]$attribs$class, "small-box-icon")
   expect_match(valueBoxChildren[[3]]$attribs$class, "small-box-footer")
   
   # inner + href
@@ -69,7 +67,7 @@ test_that("status css class", {
   
   valueBoxTag <- bs4ValueBox(2, "Value", color = "primary")
   valueBoxCl <- getCardCl(valueBoxTag)
-  expect_match(valueBoxCl, "small-box bg-primary")
+  expect_match(valueBoxCl, "small-box text-bg-primary")
   
   expect_error(
     bs4ValueBox(2, "Value", color = NULL, gradient = TRUE)
@@ -79,15 +77,15 @@ test_that("status css class", {
   
   valueBoxTag <- bs4ValueBox(2, "Value", color = "primary", gradient = TRUE)
   valueBoxCl <- getCardCl(valueBoxTag)
-  expect_match(valueBoxCl, "small-box bg-gradient-primary")
+  expect_match(valueBoxCl, "small-box text-bg-primary bg-gradient")
 })
 
-test_that("box elevation", {
-  valueBoxTag <- bs4ValueBox(2, "Value", elevation = 4)
+test_that("box shadow", {
+  valueBoxTag <- bs4ValueBox(2, "Value", shadow = "shadow-none")
   valueBoxCl <- getCardCl(valueBoxTag)
-  expect_match(valueBoxCl, "elevation-4")
-  
-  expect_error(bs4ValueBox(2, "Value", elevation = 6))
-  expect_error(bs4ValueBox(2, "Value", elevation = -1))
-  expect_error(bs4ValueBox(2, "Value", elevation = "2"))
+  expect_match(valueBoxCl, "shadow-none")
+})
+
+test_that("deprecated message works", {
+  expect_snapshot(bs4ValueBox(2, "Value", elevation = 6))
 })

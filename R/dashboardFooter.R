@@ -13,11 +13,11 @@
 bs4DashFooter <- function(left = NULL, right = NULL, fixed = FALSE) {
 
   shiny::tags$footer(
-    class = "main-footer",
+    class = "app-footer",
     `data-fixed` = tolower(fixed),
     # right element
     shiny::tags$div(
-      class = "float-right d-none d-sm-inline",
+      class = "float-end d-none d-sm-inline",
       right
     ),
     left

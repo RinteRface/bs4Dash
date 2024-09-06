@@ -24,14 +24,17 @@ bs4DashSidebar(
   disable = FALSE,
   width = NULL,
   skin = NULL,
-  status = "primary",
-  elevation = 4,
+  status = NULL,
+  elevation = deprecated(),
   collapsed = FALSE,
   minified = TRUE,
   expandOnHover = TRUE,
   fixed = TRUE,
   id = NULL,
-  customArea = NULL
+  customArea = deprecated(),
+  subtle = FALSE,
+  shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"),
+  gradient = FALSE
 )
 
 updatebs4Sidebar(id, session = shiny::getDefaultReactiveDomain())
@@ -86,14 +89,17 @@ dashboardSidebar(
   disable = FALSE,
   width = NULL,
   skin = NULL,
-  status = "primary",
-  elevation = 4,
+  status = NULL,
+  elevation = deprecated(),
   collapsed = FALSE,
   minified = TRUE,
   expandOnHover = TRUE,
   fixed = TRUE,
   id = NULL,
-  customArea = NULL
+  customArea = deprecated(),
+  subtle = FALSE,
+  shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"),
+  gradient = FALSE
 )
 
 updateSidebar(id, session = shiny::getDefaultReactiveDomain())
@@ -156,30 +162,48 @@ units.}
 value.}
 
 \item{status}{Sidebar status. Valid statuses are defined as follows:
+Dark skins
 \itemize{
-  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#0d6efd")}.
+  \item \code{primary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#031633")}. 
   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{secondary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#161719")}.
+  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#198754")}.
+  \item \code{success-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#051b11")}.
   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-  \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-  \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+  \item \code{danger-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#2c0b0e")}.
+  \item \code{warning-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#332701")}.
+  \item \code{info-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#032830")}.
+  \item \code{light-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+  \item \code{dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#212529")}.
+  \item \code{dark-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#1a1d20")}.
+  \item \code{body-secondary}.
+  \item \code{body-tertiary}.
+  \item \code{body}.
+  \item \code{black}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#000")}.
+}
+Light skins
+\itemize{
+  \item \code{primary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#cfe2ff")}.
+  \item \code{secondary-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e2e3e5")}.
+  \item \code{success-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d1e7dd")}.
+  \item \code{danger-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f8d7da")}.
+  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+  \item \code{warning-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff3cd")}.  
+  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#0dcaf0")}.
+  \item \code{info-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#cff4fc")}.
+  \item \code{light}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f8f9fa")}.
+  \item \code{light-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fcfcfd")}.
+  \item \code{dark-subtle}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ced4da")}.
+  \item \code{body-secondary}.
+  \item \code{body-tertiary}.
+  \item \code{body}.  
   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-  \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-  \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-  \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-  \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-  \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-  \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-  \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-  \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-  \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-  \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-  \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
-}}
+}
+The code checks whether the chosen status is compatible with the app skin.}
 
-\item{elevation}{Sidebar elevation. 4 by default (until 5).}
+\item{elevation}{`r lifecycle::badge("deprecated")`:
+removed from AdminLTE4.}
 
 \item{collapsed}{If \code{TRUE}, the sidebar will be collapsed on app startup.}
 
@@ -195,7 +219,14 @@ used for a Shiny input value, and it will report which tab is selected. For
 example, if \code{id="tabs"}, then \code{input$tabs} will be the
 \code{tabName} of the currently-selected \link{menuItem}.}
 
-\item{customArea}{Sidebar bottom space area. Only works if sidebar is fixed.}
+\item{customArea}{`r lifecycle::badge("deprecated")`:
+removed from AdminLTE4}
+
+\item{shadow}{Sidebar shadow effect. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+Default to "shadow".}
+
+\item{gradient}{Whether to add gradient effect to background color.
+Default to FALSE.}
 
 \item{session}{Shiny session object.}
 

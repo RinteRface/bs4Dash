@@ -3142,14 +3142,6 @@ bs4Quote <- function(..., color) {
   )
 }
 
-
-
-#' Get all AdminLTE colors.
-#' @export
-getAdminLTEColors <- function() {
-  c(validStatuses, validNuances, validColors)
-}
-
 #' Bootstrap 4 pagination widget
 #'
 #' See \url{https://getbootstrap.com/docs/4.0/components/pagination/}.

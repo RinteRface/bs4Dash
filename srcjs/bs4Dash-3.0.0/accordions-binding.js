@@ -28,7 +28,7 @@ $.extend(accordionBinding, {
     $(el)
      .children()
      .eq(value - 1)
-     .find('[data-toggle="collapse"]')
+     .find('[data-bs-toggle="collapse"]')
      .click();
      
      // trigger change to tell Shiny to update the value
@@ -47,7 +47,7 @@ $.extend(accordionBinding, {
     });
     
     // manual click will update
-    $(el).find('[data-toggle="collapse"]').on("click", function(e) {
+    $(el).find('[data-bs-toggle="collapse"]').on("click", function(e) {
       if (!$(this).closest(".card").hasClass("active")) {
         $(el).children(".card.active").removeClass("active");
       } 

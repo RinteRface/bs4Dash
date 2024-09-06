@@ -1,3 +1,14 @@
+# bs4Dash 3.0.0
+
+## Major change
+- Bootstrap 5.3.3 is here!
+
+## Breaking changes
+- `valueBox()`: `elevation` has been replaced by [`shadow`](https://getbootstrap.com/docs/5.3/utilities/shadows/).
+- `infoBox()`: `elevation` and `iconElevation` have been replaced by [`shadow`](https://getbootstrap.com/docs/5.3/utilities/shadows/) and `iconShadow`, respectively.
+- `dashboardSidebar()`: `customArea` is deprecated, `elevation` replaced by `shadow`. New `subtle` parameter to complement the `status` colors. `status` now defaults to `NULL`: many adminLTE colors have been removed
+such as `lightblue`, `navy`, `fuchsia`, `maroon`, `olive`. New `light` and `dark`.
+
 # bs4Dash 2.3.4
 
 - Added shinylive to support documentation examples.

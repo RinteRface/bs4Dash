@@ -12,10 +12,13 @@
 #'
 #' @export
 bs4DashBody <- function(...) {
-  shiny::tags$div(
-    class = "content-wrapper",
-    shiny::tags$section(
-      class = "content",
+  shiny::tags$main(
+    class = "app-main",
+    shiny::tags$div(
+      class = "app-content-header",
+    ),
+    shiny::tags$div(
+      class = "app-content",
       ...
     )
   )

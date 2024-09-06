@@ -59,11 +59,11 @@ $.extend(cardBinding, {
     // toggle collapse button when maximized
     if (isMaximized) {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-lte-toggle = 'card-collapse']")
         .hide();
     } else {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-lte-toggle = 'card-collapse']")
         .show();
     }
 
@@ -174,17 +174,17 @@ $.extend(cardBinding, {
         if (value.options.collapsible !== config.collapsible) {
           if (!value.options.collapsible) {
             $(el)
-              .find('[data-card-widget = "collapse"]')
+              .find('[data-lte-toggle = "collapse"]')
               .remove();
             config.collapsible = false;
           } else {
             // only add if no collapsible
-            if ($(el).find('[data-card-widget = "collapse"]').length === 0) {
+            if ($(el).find('[data-lte-toggle = "card-collapse"]').length === 0) {
               $(el)
                 .find(".card-tools.float-right")
                 .prepend(
                   $(
-                    '<button class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fa fa-minus"></i></button>'
+                    '<button class="btn btn-tool btn-sm" data-lte-toggle="card-collapse"><i class="fa fa-minus"></i></button>'
                   )
                 );
               config.collapsible = true;
@@ -574,7 +574,7 @@ $.extend(cardSidebarBinding, {
             container.has(e.target).length === 0 && 
             $(e.target).parents('.card-tools').length !== 1) {
             openContainer
-              .find("[data-widget='chat-pane-toggle']")
+              .find("[data-lte-toggle='chat-pane']")
               .click();
         }
       }); 
@@ -582,7 +582,7 @@ $.extend(cardSidebarBinding, {
   },
 
   find: function(scope) {
-    return $(scope).find('[data-widget="chat-pane-toggle"]');
+    return $(scope).find('[data-lte-toggle="chat-pane"]');
   },
 
   // Given the DOM element for the input, return the value

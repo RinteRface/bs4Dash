@@ -211,7 +211,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   # create card tools whenever necessary
   if (collapsible || closable || maximizable || 
       !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)) {
-    cardToolTag <- shiny::tags$div(class = "card-tools float-right")
+    cardToolTag <- shiny::tags$div(class = "card-tools")
   }
 
   # update boxToolTag
@@ -300,7 +300,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
   shiny::tags$span(
     class = paste0("badge bg-", status),
     title = if (!is.null(tooltip)) tooltip,
-    `data-toggle` = if (!is.null(tooltip)) "tooltip",
+    `data-bs-toggle` = if (!is.null(tooltip)) "tooltip",
     text
   )
 }
@@ -337,8 +337,8 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
     id = id,
     `data-background`= background, 
     `data-width` = width,
-    `data-widget` = "chat-pane-toggle",
-    `data-toggle` = "tooltip",
+    `data-lte-toggle` = "chat-pane",
+    `data-bs-toggle` = "tooltip",
     `data-original-title` = "More",
     `data-start-open` = tolower(startOpen),
     `data-easy-close` = tolower(easyClose),
@@ -589,7 +589,7 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
     class = "btn-group",
     shiny::tags$button(
       type = "button",
-      `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown",
       icon
     ),
     contentTag
@@ -684,7 +684,10 @@ dropdownDivider <- function() {
 #'   and this parameter be set, `footer` will take precedence.
 #' @param footer Optional html content for the footer of the box.
 #' @param gradient Whether to use gradient style for background color. Default to FALSE.
-#' @param elevation Value box elevation.
+#' @param elevation `r lifecycle::badge("deprecated")`:
+#' removed from AdminLTE4. Use shadow instead.
+#' @param shadow Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+#' Default to "shadow-none".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -732,14 +735,28 @@ dropdownDivider <- function() {
 #' }
 #' @export
 bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
-                        href = NULL, footer = NULL, gradient = FALSE, elevation = NULL) {
+                        href = NULL, footer = NULL, gradient = FALSE, elevation = deprecated(),
+                        shadow = c("shadow-none", "shadow-sm", "shadow", "shadow-lg")) {
+  
+  if (lifecycle::is_present(elevation)) {
+    lifecycle::deprecate_warn(
+      when = "3.0.0",
+      what = "valueBox(elevation)",
+      details = "elevation has been
+      removed from AdminLTE4 and will be removed from bs4Dash
+      in the next release."
+    )
+  }
+  
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
   }
 
   if (is.null(color) && gradient) {
-    stop("color cannot be NULL when gradient is TRUE. 
-         fill cannot be TRUE when color is NULL.")
+    stop(
+      "color cannot be NULL when gradient is TRUE. 
+      fill cannot be TRUE when color is NULL."
+    )
   }
 
   # check conditions
@@ -750,11 +767,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
     stopifnot(width >= 0)
   }
 
-  if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
-  }
+  shadow <- match.arg(shadow)
 
   if (!is.null(footer) & !is.null(href)) {
     stop("Choose either href or footer.")
@@ -762,25 +775,28 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 
 
   valueBoxCl <- "small-box"
+  footerCl <- paste(
+    "small-box-footer",
+    "link-light",
+    "link-underline-opacity-0",
+    "link-underline-opacity-50-hover"
+  )
   if (!is.null(color)) {
     validateStatusPlus(color)
-    if (gradient) {
-      valueBoxCl <- paste0(valueBoxCl, " bg-gradient-", color)
-    } else {
-      valueBoxCl <- paste0(valueBoxCl, " bg-", color)
-    }
+    valueBoxCl <- paste0(valueBoxCl, " text-bg-", color)
+    if (gradient) valueBoxCl <- paste(valueBoxCl, "bg-gradient")
   }
-  if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
+  if (!is.null(shadow)) valueBoxCl <- paste(valueBoxCl, shadow)
 
   innerTag <- shiny::tags$div(
     class = "inner",
     value,
-    shiny::tags$p(class = "small-box-subtitle", subtitle)
+    shiny::tags$p(subtitle)
   )
 
   iconTag <- if (!is.null(icon)) {
     shiny::tags$div(
-      class = "icon",
+      class = "small-box-icon",
       icon
     )
   } else {
@@ -789,7 +805,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 
   footerTag <- if (!is.null(footer)) {
     shiny::tags$div(
-      class = "small-box-footer",
+      class = footerCl,
       footer
     )
   } else {
@@ -797,12 +813,12 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
       shiny::tags$a(
         href = href,
         target = "_blank",
-        class = "small-box-footer",
+        class = footerCl,
         "More info",
         shiny::icon("circle-arrow-right")
       )
     } else {
-      shiny::tags$div(class = "small-box-footer", style = "height: 30px;")
+      shiny::tags$div(class = footerCl, style = "height: 30px;")
     }
   }
 
@@ -833,20 +849,14 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
 #'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
 #'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
 #'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
 #'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6f42c1")}.
+#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d63384")}.
+#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fd7e14")}.
+#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#20c997")}.
+#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
 #' }
 #' @param width The width of the box, using the Bootstrap grid system. This is
 #'   used for row-based layouts. The overall width of a region is 12, so the
@@ -859,10 +869,16 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #' for the background of the content; the icon will use the same color with a slightly
 #' darkened background.
 #' @param gradient Whether to use gradient style for background color. Default to FALSE.
-#' @param elevation Box elevation.
-#' @param iconElevation Icon elevation compared to the main content (relief). 3 by default.
+#' @param elevation `r lifecycle::badge("deprecated")`:
+#' removed from AdminLTE4. Use shadow instead.
+#' @param iconElevation `r lifecycle::badge("deprecated")`:
+#' removed from AdminLTE4. Use iconShadow instead.
 #' @param tabName Optional: \link{infoBox} behaves like \link{menuItem} and
 #' may be used to navigate between multiple \link{tabItem}.
+#' @param shadow Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+#' Default to "shadow".
+#' @param iconShadow Card shadow. Either \code{c("shadow-none", "shadow-sm", "shadow", "shadow-lg")}.
+#' Default to "shadow".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname infoBox
@@ -933,9 +949,30 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #' @export
 bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("chart-bar"),
                        color = NULL, width = 4, href = NULL, fill = FALSE, gradient = FALSE,
-                       elevation = NULL, iconElevation = NULL, tabName = NULL) {
+                       elevation = deprecated(), iconElevation = deprecated(), tabName = NULL,
+                      shadow = c("shadow", "shadow-sm", "shadow-lg", "shadow-none"), iconShadow = shadow) {
 
   # check conditions
+  if (lifecycle::is_present(elevation)) {
+    lifecycle::deprecate_warn(
+      when = "3.0.0",
+      what = "infoBox(elevation)",
+      details = "elevation has been
+      removed from AdminLTE4 and will be removed from bs4Dash
+      in the next release."
+    )
+  }
+
+  if (lifecycle::is_present(iconElevation)) {
+    lifecycle::deprecate_warn(
+      when = "3.0.0",
+      what = "infoBox(iconElevation)",
+      details = "elevation has been
+      removed from AdminLTE4 and will be removed from bs4Dash
+      in the next release."
+    )
+  }
+
   tagAssert(icon, "i")
   if (!is.null(color)) validateStatusPlus(color)
 
@@ -955,37 +992,27 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     stopifnot(width >= 0)
   }
 
-  if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
-  }
-
-  if (!is.null(iconElevation)) {
-    stopifnot(is.numeric(iconElevation))
-    stopifnot(iconElevation < 6)
-    stopifnot(iconElevation >= 0)
-  }
+  shadow <- match.arg(shadow)
+  iconShadow <- match.arg(iconShadow)
 
   infoBoxCl <- "info-box"
   if (!is.null(color)) {
     if (fill) {
+      infoBoxCl <- paste0(infoBoxCl, " text-bg-", color)
       if (gradient) {
-        infoBoxCl <- paste0(infoBoxCl, " bg-gradient-", color)
-      } else {
-        infoBoxCl <- paste0(infoBoxCl, " bg-", color)
+        infoBoxCl <- paste(infoBoxCl, "bg-gradient")
       }
     }
   }
 
-  if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
+  if (!is.null(shadow)) infoBoxCl <- paste(infoBoxCl, shadow)
 
   # icon is mandatory
   infoBoxIconCl <- "info-box-icon"
   if (!is.null(color)) {
-    if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
+    if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " text-bg-", color)
   }
-  if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
+  if (!is.null(iconShadow)) infoBoxIconCl <- paste(infoBoxIconCl, iconShadow)
 
   iconTag <- shiny::tags$span(
     class = infoBoxIconCl,

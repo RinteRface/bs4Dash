@@ -28,7 +28,7 @@ $.extend(accordionBinding, {
     $(el)
      .children()
      .eq(value - 1)
-     .find('[data-toggle="collapse"]')
+     .find('[data-bs-toggle="collapse"]')
      .click();
      
      // trigger change to tell Shiny to update the value
@@ -47,7 +47,7 @@ $.extend(accordionBinding, {
     });
     
     // manual click will update
-    $(el).find('[data-toggle="collapse"]').on("click", function(e) {
+    $(el).find('[data-bs-toggle="collapse"]').on("click", function(e) {
       if (!$(this).closest(".card").hasClass("active")) {
         $(el).children(".card.active").removeClass("active");
       } 
@@ -123,11 +123,11 @@ $.extend(cardBinding, {
     // toggle collapse button when maximized
     if (isMaximized) {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-lte-toggle = 'card-collapse']")
         .hide();
     } else {
       $(el)
-        .find("[data-card-widget = 'collapse']")
+        .find("[data-lte-toggle = 'card-collapse']")
         .show();
     }
 
@@ -238,17 +238,17 @@ $.extend(cardBinding, {
         if (value.options.collapsible !== config.collapsible) {
           if (!value.options.collapsible) {
             $(el)
-              .find('[data-card-widget = "collapse"]')
+              .find('[data-lte-toggle = "collapse"]')
               .remove();
             config.collapsible = false;
           } else {
             // only add if no collapsible
-            if ($(el).find('[data-card-widget = "collapse"]').length === 0) {
+            if ($(el).find('[data-lte-toggle = "card-collapse"]').length === 0) {
               $(el)
                 .find(".card-tools.float-right")
                 .prepend(
                   $(
-                    '<button class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fa fa-minus"></i></button>'
+                    '<button class="btn btn-tool btn-sm" data-lte-toggle="card-collapse"><i class="fa fa-minus"></i></button>'
                   )
                 );
               config.collapsible = true;
@@ -638,7 +638,7 @@ $.extend(cardSidebarBinding, {
             container.has(e.target).length === 0 && 
             $(e.target).parents('.card-tools').length !== 1) {
             openContainer
-              .find("[data-widget='chat-pane-toggle']")
+              .find("[data-lte-toggle='chat-pane']")
               .click();
         }
       }); 
@@ -646,7 +646,7 @@ $.extend(cardSidebarBinding, {
   },
 
   find: function(scope) {
-    return $(scope).find('[data-widget="chat-pane-toggle"]');
+    return $(scope).find('[data-lte-toggle="chat-pane"]');
   },
 
   // Given the DOM element for the input, return the value
@@ -990,7 +990,7 @@ $(function () {
 // present, the first one.
 var ensureActivatedTab = function() {
   // get the selected tabs
-  var $tablinks = $(".sidebar-menu a[data-toggle='tab']");
+  var $tablinks = $(".sidebar-menu a[data-bs-toggle='tab']");
 
   // If there are no tabs, $startTab.length will be 0.
   var $startTab = $tablinks.filter("[data-start-selected='1']");
@@ -1009,7 +1009,7 @@ var ensureActivatedTab = function() {
       setTimeout(function() {
         // we need to initialize any treeview elements that were not inserted
         // in the DOM when adminlte was first initialized!
-        adminlte.Treeview._jQueryInterface.call($('[data-widget="treeview"]'), 'init');
+        adminlte.Treeview._jQueryInterface.call($('[data-lte-toggle="treeview"]'), 'init');
 
         $startTab.tab("show");
       }, 10);
@@ -1040,7 +1040,7 @@ var deactivateOtherTabs = function() {
   // Find all tab links under sidebar-menu even if they don't have a
   // tabName (which is why the second selector is necessary)
   var $tablinks = $(
-    ".sidebar-menu a[data-toggle='tab']," + ".sidebar-menu li.has-treeview > a"
+    ".sidebar-menu a[data-bs-toggle='tab']," + ".sidebar-menu li.has-treeview > a"
   );
 
   // If any other items are active, deactivate them
@@ -1078,7 +1078,7 @@ $(function() {
 
   $(document).on(
     "shown.bs.tab",
-    '.sidebar-menu a[data-toggle="tab"]',
+    '.sidebar-menu a[data-bs-toggle="tab"]',
     deactivateOtherTabs
   );
 
@@ -1190,11 +1190,11 @@ $(function() {
 
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
-      $("[data-widget='pushmenu']").PushMenu("toggle");
+      $("[data-lte-toggle='sidebar']").PushMenu("toggle");
     },
 
     subscribe: function(el, callback) {
-      $("[data-widget='pushmenu']").on(
+      $("[data-lte-toggle='sidebar']").on(
         "collapsed.lte.pushmenu.sidebarBinding shown.lte.pushmenu.sidebarBinding",
         function(e) {
           callback();
@@ -1246,12 +1246,6 @@ $(function() {
     sidebarmenuExpandedInputBinding,
     "bs4Dash.sidebarmenuExpandedInputBinding"
   );
-
-  // handle fixed sidebar
-  if ($(".main-sidebar").attr("data-fixed") === "true") {
-    $("body").addClass("layout-fixed");
-    //$('body').Layout('fixLayoutHeight');
-  }
 });
 
 $(function () {

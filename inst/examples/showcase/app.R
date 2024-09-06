@@ -16,24 +16,20 @@ toastOpts <- list(
 
 # color statuses
 statusColors <- c(
+  "black",
+  "dark",
   "gray-dark",
   "gray",
   "secondary",
-  "navy",
   "indigo",
   "purple",
   "primary",
-  "lightblue",
   "info",
   "success",
-  "olive",
   "teal",
-  "lime",
   "warning",
   "orange",
   "danger",
-  "fuchsia",
-  "maroon",
   "pink",
   "white"
 )
@@ -162,7 +158,7 @@ social_cards_tab <- tabItem(
       collapsible = FALSE,
       ribbon(
         text = "New user",
-        color = "fuchsia"
+        color = "pink"
       ),
       status = "purple",
       elevation = 4,
@@ -706,7 +702,7 @@ gallery_1_tab <- tabItem(
         blockQuote("Blablabla", color = "teal"),
         blockQuote("Blablabla", color = "orange"),
         blockQuote("Blablabla", color = "warning"),
-        blockQuote("Blablabla", color = "fuchsia")
+        blockQuote("Blablabla", color = "pink")
       )
     )
   ),
@@ -722,7 +718,7 @@ gallery_1_tab <- tabItem(
         progressBar(
           value = 10,
           striped = TRUE,
-          status = "maroon"
+          status = "orange"
         )
       ),
       progressBar(
@@ -1000,7 +996,7 @@ shinyApp(
             from = "Divad Nojnarg",
             image = "https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg",
             time = "today",
-            color = "lime"
+            color = "orange"
           )
         ),
         userOutput("user")
@@ -1029,7 +1025,7 @@ shinyApp(
     ),
     sidebar = dashboardSidebar(
       fixed = TRUE,
-      skin = "light",
+      skin = "dark",
       status = "primary",
       id = "sidebar",
       customArea = fluidRow(
@@ -1227,7 +1223,7 @@ shinyApp(
     # alert callback event
     observeEvent(input$alert_anchor, {
       alertStatus <- if (input$alert_anchor) "opened" else "closed"
-      toastColor <- if (input$alert_anchor) "bg-lime" else "bg-fuchsia"
+      toastColor <- if (input$alert_anchor) "bg-teal" else "bg-pink"
       toast(
         title = sprintf("Alert succesfully %s!", alertStatus),
         options = list(

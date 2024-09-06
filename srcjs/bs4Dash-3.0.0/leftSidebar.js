@@ -3,7 +3,7 @@
 // present, the first one.
 var ensureActivatedTab = function() {
   // get the selected tabs
-  var $tablinks = $(".sidebar-menu a[data-toggle='tab']");
+  var $tablinks = $(".sidebar-menu a[data-bs-toggle='tab']");
 
   // If there are no tabs, $startTab.length will be 0.
   var $startTab = $tablinks.filter("[data-start-selected='1']");
@@ -22,7 +22,7 @@ var ensureActivatedTab = function() {
       setTimeout(function() {
         // we need to initialize any treeview elements that were not inserted
         // in the DOM when adminlte was first initialized!
-        adminlte.Treeview._jQueryInterface.call($('[data-widget="treeview"]'), 'init');
+        adminlte.Treeview._jQueryInterface.call($('[data-lte-toggle="treeview"]'), 'init');
 
         $startTab.tab("show");
       }, 10);
@@ -53,7 +53,7 @@ var deactivateOtherTabs = function() {
   // Find all tab links under sidebar-menu even if they don't have a
   // tabName (which is why the second selector is necessary)
   var $tablinks = $(
-    ".sidebar-menu a[data-toggle='tab']," + ".sidebar-menu li.has-treeview > a"
+    ".sidebar-menu a[data-bs-toggle='tab']," + ".sidebar-menu li.has-treeview > a"
   );
 
   // If any other items are active, deactivate them
@@ -91,7 +91,7 @@ $(function() {
 
   $(document).on(
     "shown.bs.tab",
-    '.sidebar-menu a[data-toggle="tab"]',
+    '.sidebar-menu a[data-bs-toggle="tab"]',
     deactivateOtherTabs
   );
 
@@ -203,11 +203,11 @@ $(function() {
 
     // see updatebs4Controlbar
     receiveMessage: function(el, data) {
-      $("[data-widget='pushmenu']").PushMenu("toggle");
+      $("[data-lte-toggle='sidebar']").PushMenu("toggle");
     },
 
     subscribe: function(el, callback) {
-      $("[data-widget='pushmenu']").on(
+      $("[data-lte-toggle='sidebar']").on(
         "collapsed.lte.pushmenu.sidebarBinding shown.lte.pushmenu.sidebarBinding",
         function(e) {
           callback();
@@ -259,11 +259,5 @@ $(function() {
     sidebarmenuExpandedInputBinding,
     "bs4Dash.sidebarmenuExpandedInputBinding"
   );
-
-  // handle fixed sidebar
-  if ($(".main-sidebar").attr("data-fixed") === "true") {
-    $("body").addClass("layout-fixed");
-    //$('body').Layout('fixLayoutHeight');
-  }
 });
 
