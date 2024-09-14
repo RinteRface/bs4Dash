@@ -57,7 +57,16 @@ bs4Badge <- function(..., color, position = c("left", "right"),
   )
 }
 
+#' @title Bootstrap 4 Alert box
+#' 
+#' @param style \code{(character)} Inline style parameters to add
+#' @inherit bs4Dash::bs4Card params return
+#' @export
 
+bs4Alert <- function(..., status = "primary", style = NULL, id = NULL, width = 6) {
+  bs4Dash:::validateStatus(status)
+  shiny::tags$div(class = paste0("alert alert-",status), role = "alert", ..., style = paste0("margin: 6px 5px 6px 15px;", sapply(\(x) {ifelse(grepl(";$", x), x, paste0(x, ";"))}), id = id))
+}
 
 
 #' Bootstrap 4 accordion container
