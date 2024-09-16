@@ -381,7 +381,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
   otherItems <- list()
 
   if (!is.null(icon)) {
-    tagAssert(icon, type = "i")
+    tagAssert(icon, type = c("i", "img"))
     icon$attribs$class <- paste0(icon$attribs$class, " nav-icon")
   }
 
