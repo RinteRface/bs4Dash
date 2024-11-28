@@ -135,11 +135,29 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
-                    solidHeader = FALSE, background = NULL, width = 6, height = NULL,
-                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL,
-                    gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                    sidebar = NULL, id = NULL) {
+bs4Card <- function(...,
+                    title = NULL,
+                    footer = NULL,
+                    status = NULL,
+                    solidHeader = FALSE,
+                    background = NULL,
+                    width = 6,
+                    height = NULL,
+                    collapsible = TRUE,
+                    collapsed = FALSE,
+                    closable = FALSE,
+                    maximizable = FALSE,
+                    icon = NULL,
+                    tip_icon = NULL,
+                    gradient = FALSE,
+                    boxToolSize = "sm",
+                    elevation = NULL,
+                    headerBorder = TRUE,
+                    label = NULL,
+                    dropdownMenu = NULL,
+                    sidebar = NULL,
+                    id = NULL) {
+  
 
   if (is.null(status)) solidHeader <- TRUE
   
@@ -242,7 +260,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
-    shiny::tags$h3(class = "card-title", icon, title)
+    shiny::tags$h3(class = "card-title", tip_icon, icon, title)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
 
