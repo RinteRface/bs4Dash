@@ -482,18 +482,21 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
   action <- match.arg(action)
   # for update, we take a list of options
   if (action == "update") {
-    # handle case whare options are shiny tag or a list of tags ...
-    options <- lapply(options, function(o) {
-      if (inherits(o, "shiny.tag") || inherits(o, "shiny.tag.list")) {
-        o <- as.character(o)
-        return(o)
+    # handle case where options are shiny tag or a list of tags ...
+    options <- setNames(lapply(seq_along(options), function(o,option_list = options) {
+      option_value <- option_list[[o]]
+      if (inherits(option_value, "shiny.tag") || inherits(option_value, "shiny.tag.list")) {
+        option_value <- as.character(option_value)
+        return(option_value)
+      } else if (names(option_list)[[o]] == "title") {
+        option_value <- shiny::tags$h3(option_value)
       }
-      if (inherits(o, "list")) {
-        o <- unlist(
+      if (inherits(option_value, "list")) {
+        option_value <- unlist(
           dropNulls(
-            lapply(o, function(e) {
+            lapply(option_value, function(e) {
               if (inherits(e, "shiny.tag.list") ||
-                inherits(e, "shiny.tag")) {
+                  inherits(e, "shiny.tag")) {
                 as.character(e)
               } else {
                 e
@@ -502,8 +505,8 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
           )
         )
       }
-      o
-    })
+      option_value
+    }),names(options))
     message <- dropNulls(c(action = action, options = list(options)))
     session$sendInputMessage(id, message)
   } else {
