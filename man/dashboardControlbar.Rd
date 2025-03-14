@@ -27,6 +27,7 @@ controlbarMenu(
   type = c("tabs", "pills", "hidden"),
   vertical = FALSE,
   side = "left",
+  width = 2,
   .list = NULL
 )
 

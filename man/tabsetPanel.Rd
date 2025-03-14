@@ -11,6 +11,7 @@ tabsetPanel(
   type = c("tabs", "pills", "hidden"),
   vertical = FALSE,
   side = "left",
+  width = 2,
   .list = NULL
 )
 }
@@ -34,6 +35,8 @@ tab will be selected.}
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}
 
 \item{side}{Tabs side: \code{"left" or "right"}.}
+
+\item{width}{Tab width (when vertical is \code{TRUE}). Default to 2.}
 
 \item{.list}{In case of programmatically generated items. See example.}
 }
