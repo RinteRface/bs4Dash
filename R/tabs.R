@@ -11,6 +11,7 @@
 #' }
 #' @param vertical Whether to displays tabs vertically. Default to FALSE.
 #' @param side Tabs side: \code{"left" or "right"}.
+#' @param width Tab width (when vertical is \code{TRUE}). Default to 2.
 #' @param .list In case of programmatically generated items. See example.
 #' 
 #' @examples
@@ -174,7 +175,7 @@
 #' @export
 tabsetPanel <- function(..., id = NULL, selected = NULL, 
                         type = c("tabs", "pills", "hidden"), 
-                        vertical = FALSE, side = "left", .list = NULL) {
+                        vertical = FALSE, side = "left", width = 2, .list = NULL) {
   
   items <- c(list(...), .list)
   type <- match.arg(type)
@@ -242,13 +243,13 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     
     if (side == "left") {
       shiny::fluidRow(
-        shiny::column(width = 2, tabsetMenu),
-        shiny::column(width = 10, tabsetContent)
+        shiny::column(width = width, tabsetMenu),
+        shiny::column(width = 12-width, tabsetContent)
       )
     } else {
       shiny::fluidRow(
-        shiny::column(width = 10, tabsetContent),
-        shiny::column(width = 2, tabsetMenu)
+        shiny::column(width = 12-width, tabsetContent),
+        shiny::column(width = width, tabsetMenu)
       )
     }
   } else {
