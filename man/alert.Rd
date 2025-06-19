@@ -21,12 +21,12 @@ closeAlert(id, session = shiny::getDefaultReactiveDomain())
 
 \item{options}{List of options to pass to the alert. See below:
 \itemize{
- \item content: Alert content.
- \item title: Alert title.
- \item closable: Whether to allow the user to close the alert. FALSE by default.
- \item width: Alert width. Between 1 and 12.
- \item elevation: Alert elevation.
- \item status: Alert status. "primary", "success", "warning", "danger" or "info".
+\item content: Alert content.
+\item title: Alert title.
+\item closable: Whether to allow the user to close the alert. FALSE by default.
+\item width: Alert width. Between 1 and 12.
+\item elevation: Alert elevation.
+\item status: Alert status. "primary", "success", "warning", "danger" or "info".
 }}
 
 \item{session}{Shiny session object.}
@@ -39,7 +39,7 @@ closeAlert(id, session = shiny::getDefaultReactiveDomain())
 \note{
 Unlike shinyBS, there is no need to specify an anchorId and an alertId. id refers to the anchorId,
 and the alertId is simply "anchorId-alert". On the server side, one can access the alert status by
-input$<id>. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
+input$\if{html}{\out{<id>}}. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
 }
 \examples{
 if (interactive()) {

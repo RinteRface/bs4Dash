@@ -58,7 +58,7 @@ dashboardControlbar(
 
 \item{disable}{If \code{TRUE}, the sidebar will be disabled.}
 
-\item{width}{Controlbar width. This must either be a number which specifies the width 
+\item{width}{Controlbar width. This must either be a number which specifies the width
 in pixels, or a string that specifies the width in CSS units. 250 px by default.}
 
 \item{collapsed}{Whether the control bar on the right side is collapsed or not at start. TRUE by default.}
@@ -75,8 +75,8 @@ of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
 \item{type}{\describe{
-  \item{`"tabs"`}{Standard tab look}
-  \item{`"pills"`}{Selected tabs use the background fill color}
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
 }}
 
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}

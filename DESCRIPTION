@@ -32,7 +32,7 @@ Suggests:
     DT, 
     thematic (>= 0.1.2)
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 VignetteBuilder: knitr
 Collate: 
     'feedbacks.R'
@@ -58,3 +58,4 @@ Collate:
 RdMacros: lifecycle
 Depends: 
     R (>= 2.10)
+Roxygen: list(markdown = TRUE)

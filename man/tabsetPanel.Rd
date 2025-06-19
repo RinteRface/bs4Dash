@@ -27,8 +27,8 @@ of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
 \item{type}{\describe{
-  \item{`"tabs"`}{Standard tab look}
-  \item{`"pills"`}{Selected tabs use the background fill color}
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
 }}
 
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}
@@ -39,7 +39,7 @@ tab will be selected.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
-to handle bootstrap 4. This function will be upgraded 
+to handle bootstrap 4. This function will be upgraded
 starting from shiny 1.7.0 (support Bootstrap 4 tabs).
 }
 \examples{

@@ -14,8 +14,8 @@ This is the UI-side function for creating a dynamic dropdown menu.
 }
 \seealso{
 \code{\link{renderMenu}} for the corresponding server-side function
-  and examples, and \code{\link{dropdownMenu}} for the corresponding function
-  for generating static menus.
+and examples, and \code{\link{dropdownMenu}} for the corresponding function
+for generating static menus.
 
 Other menu outputs: 
 \code{\link{menuItemOutput}()},

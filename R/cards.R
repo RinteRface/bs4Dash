@@ -315,7 +315,7 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #'
 #' @param ... Sidebar content.
 #' @param id Unique sidebar id. Useful if you want to use \link{updateBoxSidebar}.
-#' @param width Sidebar opening width in percentage. 50\% by default, 
+#' @param width Sidebar opening width in percentage. 50% by default, 
 #' means the card sidebar will take 50% of the card width, when opened. 
 #' A numeric value between 25 and 100.
 #' @param background Sidebar background color. Dark by default.
@@ -1067,7 +1067,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @family cards
 #' @rdname tabBox
 #'
-#' @note User will access the \link{tabBox} input with input$<id>_box. This allows
+#' @note User will access the \link{tabBox} input with `input$<id>_box`. This allows
 #' to get the state of the box and update it on the server with \link{updateBox}.
 #' Don't forget that the title should not be too long, especially
 #' if you have more than 3 tabs and want the box to be collapsible,

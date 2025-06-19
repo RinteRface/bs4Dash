@@ -51,10 +51,10 @@ listGroupItem(
 
 \item{footer}{Item footer content (only if type is "heading").}
 
-\item{active}{Whether the item is active or not. FALSE by default. 
+\item{active}{Whether the item is active or not. FALSE by default.
 Only if type is "action" or "heading".}
 
-\item{disabled}{Whether the item is disabled or not. FALSE by default. 
+\item{disabled}{Whether the item is disabled or not. FALSE by default.
 Only if type is "action" or "heading".}
 
 \item{href}{Item external link.}

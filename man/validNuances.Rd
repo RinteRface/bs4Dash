@@ -11,9 +11,9 @@ generally appear as follows:
 }
 \details{
 \itemize{
-  \item \code{gray-dark} Gray dark
-  \item \code{gray} Gray
-  \item \code{white} White
+\item \code{gray-dark} Gray dark
+\item \code{gray} Gray
+\item \code{white} White
 }
 }
 \keyword{internal}

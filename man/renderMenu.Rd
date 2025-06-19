@@ -101,7 +101,7 @@ if (interactive()) {
 }
 \seealso{
 \code{\link{menuOutput}} for the corresponding client side function
-  and examples.
+and examples.
 
 Other menu outputs: 
 \code{\link{dropdownMenuOutput}()},
