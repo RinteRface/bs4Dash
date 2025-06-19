@@ -248,7 +248,7 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
   selectedItems <- dropNulls(lapply(seq_along(nav_items), function(i) {
     if (length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
   }))
-  if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
+  if (length(selectedItems) > 1) cli::cli_abort("Only 1 item may be selected at start!")
 
   menuCl <- "nav nav-pills nav-sidebar flex-column sidebar-menu"
   if (flat) menuCl <- paste0(menuCl, " nav-flat")
@@ -386,11 +386,11 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
   }
 
   if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
-    stop("Must have either href, tabName, or sub-items (contained in ...).")
+    cli::cli_abort("Must have either href, tabName, or sub-items (contained in ...).")
   }
 
   if (!is.null(badgeLabel) && length(subItems) != 0) {
-    stop("Can't have both badge and subItems")
+    cli::cli_abort("Can't have both badge and subItems")
   }
 
   # Generate badge if needed
@@ -469,7 +469,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     selectedItems <- dropNulls(lapply(seq_along(subItems), function(i) {
       if (length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
     }))
-    if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
+    if (length(selectedItems) > 1) cli::cli_abort("Only 1 subitem may be selected!")
 
     item_link <- shiny::tags$a(
       href = "#",

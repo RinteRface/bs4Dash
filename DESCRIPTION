@@ -22,6 +22,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     bslib (>= 0.2.4),
+    cli,
     fresh,
     htmltools (>= 0.5.1.1),
     httpuv (>= 1.5.2),

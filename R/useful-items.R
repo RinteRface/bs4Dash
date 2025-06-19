@@ -683,7 +683,7 @@ verify_compatible_lengths <- function(x, y) {
     error_msg <-
       paste0("`", name_x, "` and `", name_y, "` must have compatible sizes. `",
              name_y, "` must be size ", length(x), " or 1.")
-    stop(error_msg)
+    cli::cli_abort(error_msg)
   }
 }
 
@@ -1502,7 +1502,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
                              href = NULL) {
 
   if (active && disabled) {
-    stop("active and disabled cannot be TRUE at the same time!")
+    cli::cli_abort("active and disabled cannot be TRUE at the same time!")
   }
 
   list(
@@ -1552,7 +1552,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'
 #' @export
 ionicon <- function(name) {
-  if (is.null(name)) stop("Missing icon name")
+  if (is.null(name)) cli::cli_abort("Missing icon name")
   cl <- paste0("icon ion-md-", name)
   shiny::tags$i(class = cl)
 }
@@ -2744,7 +2744,7 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 
   if (!inherits(data, "list") &&
       !inherits(data, "data.frame")) {
-    stop("data must be a dataframe, tibble or list")
+    cli::cli_abort("data must be a dataframe, tibble or list")
   }
 
   if (inherits(data, "data.frame")) {
@@ -3414,13 +3414,13 @@ updatePagination <- function(id, selected = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
 
   if (length(selected) > 1) {
-    stop("Can't select more than one element ...")
+    cli::cli_abort("Can't select more than one element ...")
   }
   # make sure we don't have selected and disabled item
   # with the same value ...
   common_elements <- intersect(selected, disabled)
   if (length(common_elements) > 0) {
-    stop("A selected item cannot be disabled ...")
+    cli::cli_abort("A selected item cannot be disabled ...")
   }
 
   session$sendInputMessage(

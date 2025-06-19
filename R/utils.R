@@ -10,7 +10,7 @@
 tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
   if (!inherits(tag, "shiny.tag")) {
     print(tag)
-    stop("Expected an object with class 'shiny.tag'.")
+    cli::cli_abort("Expected an object with class {.val shiny.tag}.")
   }
 
   # Skip dynamic output elements
@@ -21,17 +21,17 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
   }
 
   if (!is.null(type) && tag$name != type) {
-    stop("Expected tag to be of type ", type)
+    cli::cli_abort("Expected tag to be of type {.val {type}}")
   }
 
   if (!is.null(class)) {
     if (is.null(tag$attribs$class)) {
-      stop("Expected tag to have class '", class, "'")
+      cli::cli_abort("Expected tag to have class {.val {class}}")
 
     } else {
       tagClasses <- strsplit(tag$attribs$class, " ")[[1]]
       if (!(class %in% tagClasses)) {
-        stop("Expected tag to have class '", class, "'")
+        cli::cli_abort("Expected tag to have class {.val {class}}")
       }
     }
   }
@@ -50,7 +50,7 @@ hasCssClass <- function(tag, class) {
 # Make sure a tab name is valid (there's no "." in it).
 validateTabName <- function(name) {
   if (grepl(".", name, fixed = TRUE)) {
-    stop("tabName must not have a '.' in it.")
+    cli::cli_abort("tabName must not have a {.val .} in it.")
   }
 }
 
@@ -92,8 +92,7 @@ validateStatus <- function(status) {
     return(TRUE)
   }
 
-  stop("Invalid status: ", status, ". Valid statuses are: ",
-       paste(validStatuses, collapse = ", "), ".")
+  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {validStatuses}}")
 }
 
 
@@ -128,8 +127,7 @@ validateNuance <- function(nuance) {
     return(TRUE)
   }
 
-  stop("Invalid nuance: ", nuance, ". Valid nuances are: ",
-       paste(validNuances, collapse = ", "), ".")
+  cli::cli_abort("Invalid nuance: {.val {nuance}}. Valid nuances are: {.val {validNuances}}")
 }
 
 
@@ -161,8 +159,7 @@ validateColor <- function(color) {
     return(TRUE)
   }
 
-  stop("Invalid color: ", color, ". Valid colors are: ",
-       paste(validColors, collapse = ", "), ".")
+  cli::cli_abort("Invalid color: {.val {color}}. Valid colors are: {.val {paste(validColors, collapse = ', ')}}")
 }
 
 #' Valid colors
@@ -200,8 +197,7 @@ validateStatusPlus <- function(status) {
     return(TRUE)
   }
 
-  stop("Invalid status: ", status, ". Valid statuses are: ",
-       paste(validStatusesPlus, collapse = ", "), ".")
+  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {paste(validStatusesPlus, collapse = ', ')}}")
 }
 
 
@@ -243,14 +239,14 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
   if (!is.null(background)) validateStatusPlus(background)
 
 
-  if (!collapsible & collapsed) {
-    stop("Cannot collapse a card that is not collapsible.")
+  if (!collapsible && collapsed) {
+    cli::cli_abort("Cannot collapse a card that is not collapsible.")
   }
 
   if (!is.null(status) && !is.null(background) && !solidHeader) {
-    stop("solidHeader must be TRUE whenever background and status are not NULL at the same time.")
+    cli::cli_abort("solidHeader must be TRUE whenever background and status are not NULL at the same time.")
   }
-  if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
+  if (gradient && is.null(background)) cli::cli_abort("gradient cannot be used when background is NULL.")
 
 
   if (!is.null(elevation)) {
@@ -431,7 +427,7 @@ randomInt <- function (min, max) {
     min <- 0
   }
   if (min < 0 || max <= min)
-    stop("Invalid min/max values")
+    cli::cli_abort("Invalid min/max values")
   min + sample(max - min, 1) - 1
 }
 
@@ -540,8 +536,7 @@ buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected =
   if (anyNamed(tabs)) {
     nms <- names(tabs)
     nms <- nms[nzchar(nms)]
-    stop("Tabs should all be unnamed arguments, but some are named: ",
-         paste(nms, collapse = ", "))
+    cli::cli_abort("Tabs should all be unnamed arguments, but some are named: {paste(nms, collapse = ', ')}")
   }
   tabsetId <- p_randomInt(1000, 10000)
   tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
@@ -668,7 +663,7 @@ validateIcon <- function (icon)
     return(icon)
   }
   else {
-    stop("Invalid icon. Use Shiny's 'icon()' function to generate a valid icon")
+    cli::cli_abort("Invalid icon. Use Shiny's {.fn icon} function to generate a valid icon")
   }
 }
 

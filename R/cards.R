@@ -738,7 +738,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   if (is.null(color) && gradient) {
-    stop("color cannot be NULL when gradient is TRUE.
+    cli::cli_abort("color cannot be NULL when gradient is TRUE.
          fill cannot be TRUE when color is NULL.")
   }
 
@@ -756,8 +756,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
     stopifnot(elevation >= 0)
   }
 
-  if (!is.null(footer) & !is.null(href)) {
-    stop("Choose either href or footer.")
+  if (!is.null(footer) && !is.null(href)) {
+    cli::cli_abort("Choose either href or footer.")
   }
 
 
@@ -940,12 +940,12 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
-    stop("color cannot be NULL when gradient is TRUE.
+    cli::cli_abort("color cannot be NULL when gradient is TRUE.
          fill cannot be TRUE when color is NULL.")
   }
 
   if (gradient && !fill) {
-    stop("gradient cannot be TRUE when fill is FALSE.")
+    cli::cli_abort("gradient cannot be TRUE when fill is FALSE.")
   }
 
   if (!is.null(width)) {
@@ -1792,7 +1792,7 @@ userBlock <- function(image, title, subtitle = NULL) {
 #' @export
 cardComment <- function(..., image, title = NULL, date = NULL) {
   comment <- list(...)
-  if (length(comment) == 0) stop("You must enter a comment.")
+  if (length(comment) == 0) cli::cli_abort("You must enter a comment.")
 
   cardCommentTag <- shiny::tags$div(
     class = "card-comment",
@@ -1916,7 +1916,7 @@ bs4CardLayout <- function(..., type = c("group", "deck", "columns")) {
   # stop if width is accidentally passed
   cards <- lapply(seq_along(cards), function(i) {
     if (length(grep("col-sm", cards[[i]]$attribs$class)) > 0) {
-      stop("The card width parameter must be NULL")
+      cli::cli_abort("The card width parameter must be NULL")
     } else {
       cards[[i]]
     }

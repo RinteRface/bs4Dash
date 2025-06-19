@@ -128,9 +128,9 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 #' }
 addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
-  if (is.null(options$title)) stop("Please provide a tooltip title!")
+  if (is.null(options$title)) cli::cli_abort("Please provide a tooltip title!")
 
   message <- dropNulls(
     list(
@@ -297,9 +297,9 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 #' }
 addPopover <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
-  if (is.null(options$content)) stop("Please provide a popover content!")
+  if (is.null(options$content)) cli::cli_abort("Please provide a popover content!")
 
   message <- dropNulls(
     list(
@@ -483,7 +483,7 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #' @rdname alert
 createAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
 
   message <- dropNulls(

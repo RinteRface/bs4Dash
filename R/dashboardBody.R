@@ -54,7 +54,7 @@ bs4TabItems <- function(..., .list = NULL) {
 #' @export
 bs4TabItem <- function(tabName = NULL, ...) {
   if (is.null(tabName)) {
-    stop("Need tabName")
+    cli::cli_abort("Need tabName")
   }
 
   validateTabName(tabName)
