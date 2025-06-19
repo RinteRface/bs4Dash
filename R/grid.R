@@ -52,7 +52,8 @@
 #' }
 column <- function(width, ..., offset = 0) {
   if (!is.numeric(width) || (width < 1) || (width > 12))
-    stop("column width must be between 1 and 12")
+    cli::cli_abort(c("Invalid column width.",
+                   "i" = "The {.arg width} must be between {.val 1} and {.val 12}."))
   colClass <- paste0("col-sm-", width)
   if (offset > 0)
     colClass <- paste0(colClass, " offset-sm-", offset)

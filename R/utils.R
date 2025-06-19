@@ -10,7 +10,8 @@
 tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
   if (!inherits(tag, "shiny.tag")) {
     print(tag)
-    cli::cli_abort("Expected an object with class {.val shiny.tag}.")
+    cli::cli_abort(c("Invalid object type.",
+                     "i" = "Expected an object with class {.cls shiny.tag}."))
   }
 
   # Skip dynamic output elements
@@ -21,17 +22,20 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
   }
 
   if (!is.null(type) && tag$name != type) {
-    cli::cli_abort("Expected tag to be of type {.val {type}}")
+    cli::cli_abort(c("Invalid tag type.",
+                     "i" = "Expected tag to be of type {.val {type}}."))
   }
 
   if (!is.null(class)) {
     if (is.null(tag$attribs$class)) {
-      cli::cli_abort("Expected tag to have class {.val {class}}")
+      cli::cli_abort(c("Missing required class.",
+                     "i" = "Expected tag to have class {.val {class}}."))
 
     } else {
       tagClasses <- strsplit(tag$attribs$class, " ")[[1]]
       if (!(class %in% tagClasses)) {
-        cli::cli_abort("Expected tag to have class {.val {class}}")
+        cli::cli_abort(c("Missing required class.",
+                       "i" = "Expected tag to have class {.val {class}}."))
       }
     }
   }
@@ -50,7 +54,8 @@ hasCssClass <- function(tag, class) {
 # Make sure a tab name is valid (there's no "." in it).
 validateTabName <- function(name) {
   if (grepl(".", name, fixed = TRUE)) {
-    cli::cli_abort("tabName must not have a {.val .} in it.")
+    cli::cli_abort(c("Invalid character in tabName.",
+                   "i" = "The {.arg tabName} must not have a {.val .} character in it."))
   }
 }
 

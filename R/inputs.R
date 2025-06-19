@@ -90,8 +90,10 @@
 actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
                          status = NULL, gradient = FALSE, outline = FALSE, size = NULL,
                          flat = FALSE) {
-  if (is.null(status) & outline) stop("outline cannot be used when color is NULL.")
-  if (gradient && outline) stop("outline is not compatible with gradient.")
+  if (is.null(status) & outline) cli::cli_abort(c("Invalid argument combination.",
+                                             "i" = "{.arg outline} cannot be used when {.arg status} is NULL."))
+  if (gradient && outline) cli::cli_abort(c("Invalid argument combination.",
+                                         "i" = "{.arg outline} is not compatible with {.arg gradient}."))
 
   if (!is.null(status)) validateStatus(status)
   value <- shiny::restoreInput(id = inputId, default = NULL)

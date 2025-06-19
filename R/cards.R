@@ -738,8 +738,9 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   if (is.null(color) && gradient) {
-    cli::cli_abort("color cannot be NULL when gradient is TRUE.
-         fill cannot be TRUE when color is NULL.")
+    cli::cli_abort(c("Cannot use gradient with NULL color.",
+                     "i" = "{.arg color} cannot be NULL when {.arg gradient} is TRUE.",
+                     "i" = "{.arg fill} cannot be TRUE when {.arg color} is NULL."))
   }
 
   # check conditions
@@ -757,7 +758,8 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   if (!is.null(footer) && !is.null(href)) {
-    cli::cli_abort("Choose either href or footer.")
+    cli::cli_abort(c("Incompatible arguments provided.",
+                     "i" = "You must choose either {.arg href} or {.arg footer}, not both."))
   }
 
 
@@ -940,12 +942,14 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
-    cli::cli_abort("color cannot be NULL when gradient is TRUE.
-         fill cannot be TRUE when color is NULL.")
+    cli::cli_abort(c("Cannot use gradient or fill with NULL color.",
+                     "i" = "{.arg color} cannot be NULL when {.arg gradient} is TRUE.",
+                     "i" = "{.arg fill} cannot be TRUE when {.arg color} is NULL."))
   }
 
   if (gradient && !fill) {
-    cli::cli_abort("gradient cannot be TRUE when fill is FALSE.")
+    cli::cli_abort(c("Invalid combination of arguments.",
+                     "i" = "{.arg gradient} cannot be TRUE when {.arg fill} is FALSE."))
   }
 
   if (!is.null(width)) {
@@ -1792,7 +1796,7 @@ userBlock <- function(image, title, subtitle = NULL) {
 #' @export
 cardComment <- function(..., image, title = NULL, date = NULL) {
   comment <- list(...)
-  if (length(comment) == 0) cli::cli_abort("You must enter a comment.")
+  if (length(comment) == 0) cli::cli_abort(c("{.arg ...} cannot be empty."))
 
   cardCommentTag <- shiny::tags$div(
     class = "card-comment",

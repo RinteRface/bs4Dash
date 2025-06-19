@@ -680,10 +680,9 @@ verify_compatible_lengths <- function(x, y) {
   else {
     name_x <- deparse(substitute(x))
     name_y <- deparse(substitute(y))
-    error_msg <-
-      paste0("`", name_x, "` and `", name_y, "` must have compatible sizes. `",
-             name_y, "` must be size ", length(x), " or 1.")
-    cli::cli_abort(error_msg)
+    cli::cli_abort(c("Size mismatch in arguments.",
+                   "i" = "{.var {name_x}} and {.var {name_y}} must have compatible sizes.",
+                   "i" = "{.var {name_y}} must be size {.val {length(x)}} or {.val 1}."))
   }
 }
 
@@ -1502,7 +1501,8 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
                              href = NULL) {
 
   if (active && disabled) {
-    cli::cli_abort("active and disabled cannot be TRUE at the same time!")
+    cli::cli_abort(c("Incompatible arguments.",
+                   "i" = "{.arg active} and {.arg disabled} cannot be TRUE at the same time."))
   }
 
   list(
@@ -1552,7 +1552,8 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'
 #' @export
 ionicon <- function(name) {
-  if (is.null(name)) cli::cli_abort("Missing icon name")
+  if (is.null(name)) cli::cli_abort(c("Missing required argument.",
+                                     "i" = "The {.arg name} parameter is required for icon creation."))
   cl <- paste0("icon ion-md-", name)
   shiny::tags$i(class = cl)
 }
@@ -2744,7 +2745,8 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 
   if (!inherits(data, "list") &&
       !inherits(data, "data.frame")) {
-    cli::cli_abort("data must be a dataframe, tibble or list")
+    cli::cli_abort(c("Invalid data type.",
+                   "i" = "The {.arg data} must be a dataframe, tibble or list."))
   }
 
   if (inherits(data, "data.frame")) {
@@ -3414,13 +3416,16 @@ updatePagination <- function(id, selected = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
 
   if (length(selected) > 1) {
-    cli::cli_abort("Can't select more than one element ...")
+    cli::cli_abort(c("Multiple selection not allowed.",
+                   "i" = "Can't select more than one element in {.arg selected}."))
   }
   # make sure we don't have selected and disabled item
   # with the same value ...
   common_elements <- intersect(selected, disabled)
   if (length(common_elements) > 0) {
-    cli::cli_abort("A selected item cannot be disabled ...")
+    cli::cli_abort(c("Incompatible argument values.",
+                   "i" = "An item cannot be both selected and disabled.",
+                   "i" = "Check for overlapping values in {.arg selected} and {.arg disabled}."))
   }
 
   session$sendInputMessage(
