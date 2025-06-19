@@ -43,10 +43,10 @@ ribbon(text, color)
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
      fluidRow(
@@ -75,7 +75,7 @@ if (interactive()) {
        )
       )
      )
-    ), 
+    ),
     footer = dashboardFooter()
   ),
   server = function(input, output) { }

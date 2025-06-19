@@ -143,7 +143,7 @@ if(interactive()){
        timelineEnd(color = "danger"),
        timelineLabel("10 Feb. 2014", color = "pink"),
        timelineItem(
-        elevation = 4, 
+        elevation = 4,
         title = "Item 1",
         icon = icon("gears"),
         color = "olive",

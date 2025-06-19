@@ -40,7 +40,7 @@ Insert in a \link{box}.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -51,16 +51,16 @@ if (interactive()) {
       status = "primary",
       productList(
         productListItem(
-          image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png", 
-          title = "Samsung TV", 
-          subtitle = "$1800", 
+          image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png",
+          title = "Samsung TV",
+          subtitle = "$1800",
           color = "warning",
           "This is an amazing TV, but I don't like TV!"
         ),
         productListItem(
-          image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg", 
-          title = "Imac 27", 
-          subtitle = "$4999", 
+          image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg",
+          title = "Imac 27",
+          subtitle = "$4999",
           color = "danger",
           "This is were I spend most of my time!"
         )

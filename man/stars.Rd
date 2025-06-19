@@ -45,7 +45,7 @@ Create a block of stars (ideal for rating)
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),

@@ -13,7 +13,7 @@ This creates a skin selector element.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),

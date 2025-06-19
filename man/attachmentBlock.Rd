@@ -23,7 +23,7 @@ and insert in a \link{box}.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),

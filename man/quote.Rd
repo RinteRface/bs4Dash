@@ -43,10 +43,10 @@ Build a bootstrap 4 block quote
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
      fluidRow(
@@ -57,7 +57,7 @@ if (interactive()) {
       blockQuote("Blablabla", color = "warning"),
       blockQuote("Blablabla", color = "fuchsia")
      )
-    ), 
+    ),
     footer = dashboardFooter()
   ),
   server = function(input, output) { }

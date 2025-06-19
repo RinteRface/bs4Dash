@@ -40,7 +40,7 @@ put these item here instead of passing them in ...}
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),

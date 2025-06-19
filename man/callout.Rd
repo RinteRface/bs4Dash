@@ -45,7 +45,7 @@ AdminLTE3 callout
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),
@@ -59,9 +59,9 @@ if(interactive()){
         title = "I am a danger callout!",
         elevation = 4,
         status = "danger",
-        "There is a problem that we need to fix. 
-        A wonderful serenity has taken possession of 
-        my entire soul, like these sweet mornings of 
+        "There is a problem that we need to fix.
+        A wonderful serenity has taken possession of
+        my entire soul, like these sweet mornings of
         spring which I enjoy with my whole heart."
        ),
        callout(

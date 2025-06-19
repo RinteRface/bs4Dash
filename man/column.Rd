@@ -21,7 +21,7 @@ are differences between the Bootstrap 3 and Bootstrap 4 grid systems
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  ui <- bs4DashPage(
    navbar = bs4DashNavbar(),
    sidebar = dashboardSidebar(
@@ -33,7 +33,7 @@ if (interactive()) {
        )
      )
    ),
-   
+
    body = bs4DashBody(
      bs4TabItems(
        bs4TabItem(
@@ -46,7 +46,7 @@ if (interactive()) {
                "mybutton",label = "",icon = icon("circle-question")
              )
            )
-           
+
          ),
          fluidRow(
            h2("Placeholder")
@@ -55,7 +55,7 @@ if (interactive()) {
      )
    )
  )
- 
+
  server <- function(input, output, session) {}
  shinyApp(ui = ui, server = server)
 }

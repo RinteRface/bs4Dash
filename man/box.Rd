@@ -279,7 +279,7 @@ To update \link{box} on the server side.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -295,11 +295,11 @@ if (interactive()) {
         column(
           width = 6,
           descriptionBlock(
-            number = "17\%", 
-            numberColor = "pink", 
+            number = "17\%",
+            numberColor = "pink",
             numberIcon = icon("caret-up"),
-            header = "$35,210.43", 
-            text = "TOTAL REVENUE", 
+            header = "$35,210.43",
+            text = "TOTAL REVENUE",
             rightBorder = TRUE,
             marginBottom = FALSE
           )
@@ -307,11 +307,11 @@ if (interactive()) {
         column(
           width = 6,
           descriptionBlock(
-            number = "18\%", 
-            numberColor = "secondary", 
+            number = "18\%",
+            numberColor = "secondary",
             numberIcon = icon("caret-down"),
-            header = "1200", 
-            text = "GOAL COMPLETION", 
+            header = "1200",
+            text = "GOAL COMPLETION",
             rightBorder = FALSE,
             marginBottom = FALSE
           )
@@ -328,7 +328,7 @@ if (interactive()) {
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -344,20 +344,20 @@ if (interactive()) {
           boxPad(
             color = "purple",
             descriptionBlock(
-              header = "8390", 
-              text = "VISITS", 
+              header = "8390",
+              text = "VISITS",
               rightBorder = FALSE,
               marginBottom = TRUE
             ),
             descriptionBlock(
-              header = "30\%", 
-              text = "REFERRALS", 
+              header = "30\%",
+              text = "REFERRALS",
               rightBorder = FALSE,
               marginBottom = TRUE
             ),
             descriptionBlock(
-              header = "70\%", 
-              text = "ORGANIC", 
+              header = "70\%",
+              text = "ORGANIC",
               rightBorder = FALSE,
               marginBottom = FALSE
             )

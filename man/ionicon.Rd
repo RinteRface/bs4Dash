@@ -19,7 +19,7 @@ Similar to the icon function from shiny.
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),

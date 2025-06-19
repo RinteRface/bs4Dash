@@ -51,7 +51,7 @@ to the classic Shiny action button.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -62,8 +62,8 @@ if (interactive()) {
       status = NULL,
       appButton(
         inputId = "myAppButton",
-        label = "Users", 
-        icon = icon("users"), 
+        label = "Users",
+        icon = icon("users"),
         color = "orange",
         dashboardBadge(textOutput("btnVal"), color = "primary")
       )

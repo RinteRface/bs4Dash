@@ -85,7 +85,7 @@ such as sending, removing or editing messages.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -142,7 +142,7 @@ if (interactive()) {
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -184,8 +184,8 @@ if (interactive()) {
     })
     observeEvent(input$add, {
       updateUserMessages(
-        "message", 
-        action = "add", 
+        "message",
+        action = "add",
         content = list(
           author = "David",
           date = "Now",
@@ -193,10 +193,10 @@ if (interactive()) {
           type = "received",
           text = tagList(
            sliderInput(
-            "obs", 
+            "obs",
             "Number of observations:",
-            min = 0, 
-            max = 1000, 
+            min = 0,
+            max = 1000,
             value = 500
            ),
            plotOutput("distPlot")
@@ -204,29 +204,29 @@ if (interactive()) {
         )
       )
     })
-    
+
     output$distPlot <- renderPlot({
      hist(rnorm(input$obs))
     })
-    
+
     observeEvent(input$update, {
       updateUserMessages(
-        "message", 
-        action = "update", 
+        "message",
+        action = "update",
         index = input$index,
         content = list(
          text = tagList(
           appButton(
            inputId = "reload",
-           label = "Click me!", 
-           icon = icon("arrows-rotate"), 
+           label = "Click me!",
+           icon = icon("arrows-rotate"),
            dashboardBadge(1, color = "primary")
           )
          )
         )
       )
     })
-    
+
     observeEvent(input$reload, {
      showNotification("Yeah!", duration = 1, type = "default")
     })

@@ -43,7 +43,7 @@ Create a jumbotron
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),
@@ -54,10 +54,10 @@ if(interactive()){
      body = dashboardBody(
       jumbotron(
       title = "Hello, world!",
-      lead = "This is a simple hero unit, a simple jumbotron-style 
-      component for calling extra attention to featured 
+      lead = "This is a simple hero unit, a simple jumbotron-style
+      component for calling extra attention to featured
       content or information.",
-      "It uses utility classes for typography and spacing 
+      "It uses utility classes for typography and spacing
       to space content out within the larger container.",
       status = "primary",
       href = "https://www.google.com"

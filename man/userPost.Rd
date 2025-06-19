@@ -46,7 +46,7 @@ Creates a user post. This content may be inserted in a \link{box}.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -60,10 +60,10 @@ if (interactive()) {
        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
        author = "Jonathan Burke Jr.",
        description = "Shared publicly - 7:30 PM today",
-       "Lorem ipsum represents a long-held tradition for designers, 
-       typographers and the like. Some people hate it and argue for 
-       its demise, but others ignore the hate as they create awesome 
-       tools to help create filler text for everyone from bacon 
+       "Lorem ipsum represents a long-held tradition for designers,
+       typographers and the like. Some people hate it and argue for
+       its demise, but others ignore the hate as they create awesome
+       tools to help create filler text for everyone from bacon
        lovers to Charlie Sheen fans.",
        collapsible = FALSE,
        userPostTagItems(

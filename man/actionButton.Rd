@@ -88,10 +88,10 @@ if (interactive()) {
     body = dashboardBody(
       sliderInput("obs", "Number of observations", 0, 1000, 500),
       actionButton(
-       "goButton", "Go!", 
-       status = "danger", 
-       outline = TRUE, 
-       flat = TRUE, 
+       "goButton", "Go!",
+       status = "danger",
+       outline = TRUE,
+       flat = TRUE,
        size = "lg"
       ),
      plotOutput("distPlot")

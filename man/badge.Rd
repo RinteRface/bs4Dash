@@ -34,7 +34,7 @@ a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -42,10 +42,10 @@ if(interactive()){
     dashboardBody(
      dashboardBadge("Badge 1", color = "danger"),
      actionButton(
-      inputId = "badge", 
-      label = "Hello", 
-      icon = NULL, 
-      width = NULL, 
+      inputId = "badge",
+      label = "Hello",
+      icon = NULL,
+      width = NULL,
       dashboardBadge(1, color = "primary")
      )
     )
