@@ -96,7 +96,7 @@ shinyApp(ui, server)
 
 ```r
 # latest devel version
-devtools::install_github("RinteRface/bs4Dash")
+pak::pak("RinteRface/bs4Dash")
 # from CRAN
 install.packages("bs4Dash")
 ```
