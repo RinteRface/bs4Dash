@@ -11,12 +11,10 @@
 #'  bs4DashGallery()
 #'
 #' }
-bs4DashGallery <- function() { # nocov start
-  if (!requireNamespace(package = "thematic"))
-    message("Package 'thematic' is required to run this function")
-  if (!requireNamespace(package = "waiter"))
-    message("Package 'waiter' is required to run this function")
-  
+bs4DashGallery <- function() {
+  # nocov start
+  rlang::check_installed(c("thematic", "waiterr"), "to run `bs4DashGallery()`.")
+
   shiny::shinyAppDir(
     system.file(
       "examples/showcase", 
@@ -24,4 +22,5 @@ bs4DashGallery <- function() { # nocov start
       mustWork = TRUE
     )
   )
+  # nocov end
 }
