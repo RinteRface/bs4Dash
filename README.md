@@ -97,6 +97,8 @@ shinyApp(ui, server)
 ```r
 # latest devel version
 pak::pak("RinteRface/bs4Dash")
+# latest devel version from r-universe
+install.packages("bs4Dash", repos = c("cynkra.r-universe.dev", "cloud.r-project.org"))
 # from CRAN
 install.packages("bs4Dash")
 ```
