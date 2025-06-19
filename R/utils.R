@@ -164,7 +164,7 @@ validateColor <- function(color) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid color: {.val {color}}. Valid colors are: {.val {paste(validColors, collapse = ', ')}}")
+  cli::cli_abort("Invalid color: {.val {color}}. Valid colors are: {.val {validColors}}")
 }
 
 #' Valid colors
@@ -202,7 +202,7 @@ validateStatusPlus <- function(status) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {paste(validStatusesPlus, collapse = ', ')}}")
+  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {validStatusesPlus}}")
 }
 
 
@@ -547,7 +547,7 @@ buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected =
   if (anyNamed(tabs)) {
     nms <- names(tabs)
     nms <- nms[nzchar(nms)]
-    cli::cli_abort("Tabs should all be unnamed arguments, but some are named: {paste(nms, collapse = ', ')}")
+    cli::cli_abort("Tabs should all be unnamed arguments, but some are named: {.val {nms}}")
   }
   tabsetId <- p_randomInt(1000, 10000)
   tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
