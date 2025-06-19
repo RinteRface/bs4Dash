@@ -342,7 +342,7 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
         sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
       }
       # if the item has active class and no item was found before, we found the active item
-      if (active && !found_active) found_active <- TRUE
+      if (active && !found_active) found_active <<- TRUE
 
       shiny::tags$li(
         `data-target` = paste0("#", id),
@@ -572,8 +572,7 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
                             label = NULL) {
 
   if (!is.null(status)) validateStatusPlus(status)
-  stopifnot(value >= min)
-  stopifnot(value <= max)
+  check_number_whole(value, min = min, max = max)
 
   # wrapper class
   progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
@@ -626,9 +625,8 @@ bs4MultiProgressBar <-
     if (!is.null(label)) label <- verify_compatible_lengths(value, label)
 
     if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
-    stopifnot(all(value >= min))
-    stopifnot(all(value <= max))
-    stopifnot(sum(value) <= max)
+    check_number_whole(value, min = min, max = max)
+    check_number_whole(sum(value), max = max)
 
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
@@ -1223,9 +1221,7 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 
   stopifnot(!is.null(color))
   validateStatusPlus(color)
-  stopifnot(!is.null(value))
-  stopifnot(value >= 0)
-  stopifnot(value <= max)
+  check_number_whole(value, min = 0, max = max)
 
   shiny::tags$td(
     class = "mailbox-star",
@@ -1472,7 +1468,6 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
     class = if (!is.null(width)) paste0("col-sm-", width),
     listGroupTag
   )
-
 }
 
 
@@ -1858,8 +1853,6 @@ cardPad <- function(..., color = NULL, style = NULL) {
 
 
 
-
-
 #' AdminLTE3 product list container
 #'
 #' \link{productList} creates a container to display commercial items in an elegant container.
@@ -2175,7 +2168,6 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
     class = if (!is.null(width)) paste0("col-sm-", width),
     msgtag
   )
-
 }
 
 
@@ -2660,8 +2652,6 @@ bs4Sortable <- function(..., width = 12) {
 
 
 
-
-
 #' Boostrap 4 table container
 #'
 #' Build an Bootstrap 4 table container
@@ -2859,69 +2849,69 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 
 
 
-# #' @title AdminLTE3 todo list container
-# #'
-# #' @description Create a todo list container
-# #'
-# #' @param ... slot for todoListItem.
-# #' @param sortable Whether the list elements are sortable or not.
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @examples
-# #' if (interactive()) {
-# #'  library(shiny)
-# #'  library(bs4Dash)
-# #'  shinyApp(
-# #'   ui = dashboardPage(
-# #'     dashboardHeader(),
-# #'     dashboardSidebar(),
-# #'     dashboardBody(
-# #'      box(
-# #'       "Sortable todo list demo",
-# #'       status = "warning",
-# #'       todoList(
-# #'         todoListItem(
-# #'           label = "Design a nice theme",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           label = "Make the theme responsive",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           checked = TRUE,
-# #'           label = "Let theme shine like a star"
-# #'         )
-# #'        )
-# #'       ),
-# #'       box(
-# #'       "Simple todo list demo",
-# #'       status = "warning",
-# #'       todoList(
-# #'       sortable = FALSE,
-# #'         todoListItem(
-# #'           label = "Design a nice theme",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           label = "Make the theme responsive",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           checked = TRUE,
-# #'           label = "Let theme shine like a star"
-# #'         )
-# #'        )
-# #'       )
-# #'     ),
-# #'     title = "Todo Lists"
-# #'   ),
-# #'   server = function(input, output) { }
-# #'  )
-# #' }
-# #'
-# #' @export
+#' @title AdminLTE3 todo list container
+#'
+#' @description Create a todo list container
+#'
+#' @param ... slot for todoListItem.
+#' @param sortable Whether the list elements are sortable or not.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       "Sortable todo list demo",
+#'       status = "warning",
+#'       todoList(
+#'         todoListItem(
+#'           label = "Design a nice theme",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           label = "Make the theme responsive",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           checked = TRUE,
+#'           label = "Let theme shine like a star"
+#'         )
+#'        )
+#'       ),
+#'       box(
+#'       "Simple todo list demo",
+#'       status = "warning",
+#'       todoList(
+#'       sortable = FALSE,
+#'         todoListItem(
+#'           label = "Design a nice theme",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           label = "Make the theme responsive",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           checked = TRUE,
+#'           label = "Let theme shine like a star"
+#'         )
+#'        )
+#'       )
+#'     ),
+#'     title = "Todo Lists"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
 # todoList <- function(..., sortable = TRUE) {
 #
 #   items <- list(...)
@@ -2982,7 +2972,7 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #     )
 #   )
 #
-# }#
+# }
 
 
 
@@ -3023,8 +3013,8 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #'
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(),
-#'     sidebar = dashboardSidebar(),
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
 #'       box(
@@ -3206,6 +3196,10 @@ getAdminLTEColors <- function() {
 #'    }
 #'  )
 #' }
+#' 
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname pagination
+#' @export
 pagination <- function(..., id = NULL, selected = NULL,
                        align = c("center", "left", "right"),
                        size = c("md", "sm", "lg"),
@@ -3366,6 +3360,7 @@ paginationItem <- function (title, ..., value = title,
 #'        actionButton("enable", "Enable page 1", class = "mx-2"),
 #'        textOutput("selected_page")
 #'      ),
+#'      br(),
 #'      br(),
 #'      pagination(
 #'        id = "mypagination",
