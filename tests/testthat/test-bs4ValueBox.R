@@ -1,5 +1,3 @@
-context("bs4ValueBox")
-
 getCardWrapperCl <- function(card) {
   card$attribs$class
 }
@@ -36,7 +34,7 @@ test_that("structure", {
   
   # wrong icon
   expect_error(
-    bs4ValueBox(2, "Value", icon = "popoiiuu")
+    expect_output(bs4ValueBox(2, "Value", icon = "popoiiuu"))
   )
   
   # inner + icon + footer

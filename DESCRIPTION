@@ -35,7 +35,7 @@ Suggests:
     golem,
     knitr,
     rmarkdown,
-    testthat (>= 2.1.0),
+    testthat (>= 3.0.0),
     thematic (>= 0.1.2)
 VignetteBuilder: 
     knitr
@@ -65,3 +65,4 @@ Collate:
     'inputs.R'
     'skinSelector.R'
     'utils.R'
+Config/testthat/edition: 3

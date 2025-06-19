@@ -1,5 +1,3 @@
-context("bs4InfoBox")
-
 getCardCl <- function(card) {
   card$children[[1]][[2]]$attribs$class
 }
@@ -26,7 +24,9 @@ test_that("overall structure", {
   infoBoxChildren <- getCardChildren(infoBoxTag)
   expect_length(infoBoxChildren, 2)
   
-  expect_error(bs4InfoBox(title = "Infobox", value = 4, icon = NULL))
+  expect_error(
+    expect_output(bs4InfoBox(title = "Infobox", value = 4, icon = NULL))
+  )
 })
 
 test_that("css class", {

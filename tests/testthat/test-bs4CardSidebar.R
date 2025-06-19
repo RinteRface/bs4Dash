@@ -1,5 +1,3 @@
-context("bs4CardSidebar")
-
 getButtonAttr <- function(sidebarCard){
   sidebarCard[[1]]$attribs
 }

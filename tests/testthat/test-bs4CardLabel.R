@@ -1,5 +1,3 @@
-context("bs4CardLabel")
-
 test_that("is shiny tag?", {
   golem::expect_shinytag(bs4CardLabel(text = 1, status = "warning"))
 })

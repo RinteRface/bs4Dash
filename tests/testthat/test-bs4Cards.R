@@ -1,5 +1,3 @@
-context("bs4Card")
-
 getCardWrapperCl <- function(card) {
   card$attribs$class
 }
@@ -44,7 +42,7 @@ getCardTools <- function(card) {
 }
 
 test_that("is shiny tag?", {
-  expect_is(bs4Card(), "shiny.tag")
+  expect_s3_class(bs4Card(), "shiny.tag")
 })
 
 test_that("card structure", {
