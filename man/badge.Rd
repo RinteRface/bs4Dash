@@ -22,7 +22,7 @@ dashboardBadge(..., color, position = c("left", "right"), rounded = FALSE)
 \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 }}
 
-\item{position}{Badge position: "left" or "right".}
+\item{position}{Badge position: \code{"left"} or \code{"right"}.}
 
 \item{rounded}{Whether the badge is rounded instead of square. FALSE by default.}
 }

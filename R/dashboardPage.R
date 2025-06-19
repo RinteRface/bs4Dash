@@ -10,12 +10,12 @@
 #' @param title App title.
 #' @param skin Deprecated skin parameters. See \link{skinSelector} for live theming.
 #' @param freshTheme A skin powered by the fresh package. Not compatible with skin.
-#' See \url{https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html}.
-#' @param preloader bs4Dash uses waiter (see \url{https://waiter.john-coene.com/#/}).
-#' Pass a list like \code{list(html = spin_1(), color = "#333e48")} to configure \link[waiter]{waiterShowOnLoad} (refer to
+#' See <https://dreamrs.github.io/fresh/articles/vars-shinydashboard.html>.
+#' @param preloader bs4Dash uses waiter (see <https://waiter.john-coene.com/#/>).
+#' Pass a list like `list(html = spin_1(), color = "#333e48")` to configure \link[waiter]{waiterShowOnLoad} (refer to
 #' the package help for all styles).
 #' @param options Extra option to overwrite the vanilla AdminLTE configuration. See
-#' \url{https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options}.
+#' <https://adminlte.io/themes/AdminLTE/documentation/index.html#adminlte-options>.
 #' Expect a list.
 #' @param fullscreen Whether to allow fullscreen feature in the navbar. Default to FALSE.
 #' @param help Whether to enable/disable popovers and tooltips. This allows to seamlessly use

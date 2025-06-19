@@ -259,8 +259,7 @@ TRUE by default}
 \item{action}{Action to trigger: \code{c("remove", "toggle", "toggleMaximize", "restore", "update")}.}
 
 \item{options}{If action is update, a list of new options to configure the box, such as
-\code{list(title = "new title", status = NULL, solidHeader = FALSE,
-background = "red", width = 6, height = "200px", collapsible = FALSE, closable = FALSE)}.}
+\code{list(title = "new title", status = NULL, solidHeader = FALSE, background = "red", width = 6, height = "200px", collapsible = FALSE, closable = FALSE)}.}
 
 \item{session}{Shiny session.}
 }

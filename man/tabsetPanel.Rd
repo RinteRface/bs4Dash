@@ -33,7 +33,7 @@ tab will be selected.}
 
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}
 
-\item{side}{Tabs side: \code{"left" or "right"}.}
+\item{side}{Tabs side: \code{"left"} or \code{"right"}.}
 
 \item{.list}{In case of programmatically generated items. See example.}
 }

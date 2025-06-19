@@ -5,7 +5,7 @@
 #' @param ... Any UI element.
 #' @param id To access the current state of the controlbar. Open is TRUE, closed
 #' is FALSE. NULL by default.
-#' @param disable If \code{TRUE}, the sidebar will be disabled.
+#' @param disable If `TRUE`, the sidebar will be disabled.
 #' @param width Controlbar width. This must either be a number which specifies the width 
 #' in pixels, or a string that specifies the width in CSS units. 250 px by default.
 #' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.

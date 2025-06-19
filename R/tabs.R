@@ -10,7 +10,7 @@
 #'   \item{`"pills"`}{Selected tabs use the background fill color}
 #' }
 #' @param vertical Whether to displays tabs vertically. Default to FALSE.
-#' @param side Tabs side: \code{"left" or "right"}.
+#' @param side Tabs side: `"left"` or `"right"`.
 #' @param .list In case of programmatically generated items. See example.
 #' 
 #' @examples
@@ -266,7 +266,7 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
 #' @param inputId  \link{tabsetPanel} id.
 #' @param tab \link[shiny]{tabPanel} to insert.
 #' @param target \link[shiny]{tabPanel} after of before which the new tab will be inserted.
-#' @param position Insert before or after: \code{c("before", "after")}.
+#' @param position Insert before or after: `c("before", "after")`.
 #' @param select Whether to select the newly inserted tab. FALSE by default.
 #' @param session Shiny session object.
 #' 

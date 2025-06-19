@@ -46,7 +46,7 @@ bs4TabItems <- function(..., .list = NULL) {
 #'
 #' \link{tabItem} creates a body tab content.
 #'
-#' @param tabName The name of a tab. This must correspond to the \code{tabName}
+#' @param tabName The name of a tab. This must correspond to the `tabName`
 #'   of a sidebar \code{\link{menuItem}}.
 #' @param ... Contents of the tab.
 #'

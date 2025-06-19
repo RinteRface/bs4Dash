@@ -80,7 +80,7 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 #'
 #' @param id Tooltip target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param options List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}.
+#' @param options List of options to pass to the tooltip. See <https://getbootstrap.com/docs/4.0/components/tooltips/>.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -248,7 +248,7 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 #'
 #' @param id Popover target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param options List of options to pass to the popover. See \url{https://getbootstrap.com/docs/4.0/components/popovers/}.
+#' @param options List of options to pass to the popover. See <https://getbootstrap.com/docs/4.0/components/popovers/>.
 #' @param session Shiny session object.
 #' @export
 #' @rdname popover
@@ -336,7 +336,7 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param title Toast title.
 #' @param body Body content.
 #' @param subtitle Toast subtitle.
-#' @param options Toasts options: a list. See \url{https://adminlte.io/docs/3.0/javascript/toasts.html}.
+#' @param options Toasts options: a list. See <https://adminlte.io/docs/3.0/javascript/toasts.html>.
 #' @param session Shiny session object.
 #'
 #' @export

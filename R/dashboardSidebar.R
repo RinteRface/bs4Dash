@@ -4,7 +4,7 @@
 #' insert in the sidebar slot of \link{dashboardPage}.
 #'
 #' @param ... Slot for \link{sidebarMenu}.
-#' @param disable If \code{TRUE}, the sidebar will be disabled.
+#' @param disable If `TRUE`, the sidebar will be disabled.
 #' @param width The width of the sidebar. This must either be a number which
 #'   specifies the width in pixels, or a string that specifies the width in CSS
 #'   units.
@@ -12,29 +12,29 @@
 #' value.
 #' @param status Sidebar status. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param elevation Sidebar elevation. 4 by default (until 5).
-#' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
+#' @param collapsed If `TRUE`, the sidebar will be collapsed on app startup.
 #' @param minified Whether to slightly close the sidebar but still show item icons. Default
 #' to TRUE.
 #' @param expandOnHover Whether to expand the sidebar om hover. TRUE by default.
@@ -223,12 +223,12 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' \link{sidebarMenu} creates a menu for \link{dashboardSidebar}.
 #'
 #' @param ... Slot for \link{menuItem} or \link{sidebarHeader}.
-#' @param id For \link{sidebarMenu}, if \code{id} is present, this id will be
+#' @param id For \link{sidebarMenu}, if `id` is present, this id will be
 #'   used for a Shiny input value, and it will report which tab is selected. For
-#'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
-#'   \code{tabName} of the currently-selected \link{menuItem}.
+#'   example, if `id="tabs"`, then `input$tabs` will be the
+#'   `tabName` of the currently-selected \link{menuItem}.
 #' @param .list An optional list containing items to put in the menu Same as the
-#' \code{...} arguments, but in list format. This can be useful when working
+#' `...` arguments, but in list format. This can be useful when working
 #' with programmatically generated items.
 #' @param flat Whether sidebar items should have a flat design. FALSE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
@@ -298,34 +298,34 @@ findSidebarItem <- function(items, regex) {
 #' @param text Item name.
 #' @param ... \link{menuSubItem}.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
-#'   \code{NULL}, don't display an icon.
+#'   `NULL`, don't display an icon.
 #' @param badgeLabel A label for an optional badge. Usually a number or a short
 #'   word like "new".
 #' @param badgeColor A color for the badge. Valid colors:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
-#' @param href An link address. Not compatible with \code{tabName}.
-#' @param newTab If \code{href} is supplied, should the link open in a new
+#' @param href An link address. Not compatible with `tabName`.
+#' @param newTab If `href` is supplied, should the link open in a new
 #'   browser tab?
-#' @param selected If \code{TRUE}, this \code{menuItem}
-#'  will start selected. If no item have \code{selected=TRUE}, then the first
-#'  \code{menuItem} will start selected.
-#' @param expandedName A unique name given to each \code{menuItem} that serves
+#' @param selected If `TRUE`, this `menuItem`
+#'  will start selected. If no item have `selected=TRUE`, then the first
+#'  `menuItem` will start selected.
+#' @param expandedName A unique name given to each `menuItem` that serves
 #'   to indicate which one (if any) is currently expanded. (This is only applicable
-#'   to \code{menuItem}s that have children and it is mostly only useful for
+#'   to `menuItem`s that have children and it is mostly only useful for
 #'   bookmarking state.)
 #' @param startExpanded Whether to expand the \link{menuItem} at start.
 #' @param condition When using \link{menuItem} with \link[shiny]{conditionalPanel},
-#' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
+#' write the condition here (see <https://github.com/RinteRface/bs4Dash/issues/35>).
 #' @param .list An optional list containing items to put in the menu Same as the
-#' \code{...} arguments, but in list format. This can be useful when working
+#' `...` arguments, but in list format. This can be useful when working
 #' with programmatically generated items.
 #'
 #' @rdname dashboardSidebar
@@ -530,13 +530,13 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 #'
 #' @param text Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
-#' @param href An link address. Not compatible with \code{tabName}.
-#' @param newTab If \code{href} is supplied, should the link open in a new
+#' @param href An link address. Not compatible with `tabName`.
+#' @param newTab If `href` is supplied, should the link open in a new
 #'   browser tab?
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
-#'   \code{NULL}, don't display an icon.
-#' @param selected If \code{TRUE}, this \code{menuSubItem}
-#'   will start selected. If no item have \code{selected=TRUE}.
+#'   `NULL`, don't display an icon.
+#' @param selected If `TRUE`, this `menuSubItem`
+#'   will start selected. If no item have `selected=TRUE`.
 #'
 #' @rdname dashboardSidebar
 #'

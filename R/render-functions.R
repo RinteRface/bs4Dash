@@ -112,7 +112,7 @@ bs4InfoBoxOutput <- bs4ValueBoxOutput
 #' \code{\link{sidebarMenuOutput}}.
 #'
 #' @param outputId Output variable name.
-#' @param tag A tag function, like \code{tags$li} or \code{tags$ul}.
+#' @param tag A tag function, like `tags$li` or `tags$ul`.
 #'
 #' @family menu outputs
 #' @seealso \code{\link{renderMenu}} for the corresponding server side function
