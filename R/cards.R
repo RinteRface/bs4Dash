@@ -738,23 +738,33 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   if (is.null(color) && gradient) {
-    cli::cli_abort(c("Cannot use gradient with NULL color.",
-                     "i" = "{.arg color} cannot be NULL when {.arg gradient} is TRUE.",
-                     "i" = "{.arg fill} cannot be TRUE when {.arg color} is NULL."))
+    cli::cli_abort(c("Cannot use gradient with {.val NULL} color.",
+                     "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
+                     "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."))
   }
 
   # check conditions
   if (!is.null(width)) {
-    stopifnot(is.numeric(width))
+    if (!is.numeric(width)) {
+      cli::cli_abort(c("Invalid {.arg width} value.",
+                     "i" = "{.arg width} must be numeric."))
+    }
     # respect the bootstrap grid
-    stopifnot(width <= 12)
-    stopifnot(width >= 0)
+    if (width > 12 || width < 0) {
+      cli::cli_abort(c("Invalid {.arg width} value.",
+                     "i" = "{.arg width} must be between {.val 0} and {.val 12}."))
+    }
   }
 
   if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
+    if (!is.numeric(elevation)) {
+      cli::cli_abort(c("Invalid {.arg elevation} value.",
+                     "i" = "{.arg elevation} must be numeric."))
+    }
+    if (elevation >= 6 || elevation < 0) {
+      cli::cli_abort(c("Invalid {.arg elevation} value.",
+                     "i" = "{.arg elevation} must be between {.val 0} and {.val 5}."))
+    }
   }
 
   if (!is.null(footer) && !is.null(href)) {
@@ -942,14 +952,14 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
-    cli::cli_abort(c("Cannot use gradient or fill with NULL color.",
-                     "i" = "{.arg color} cannot be NULL when {.arg gradient} is TRUE.",
-                     "i" = "{.arg fill} cannot be TRUE when {.arg color} is NULL."))
+    cli::cli_abort(c("Cannot use gradient or fill with {.val NULL} color.",
+                     "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
+                     "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."))
   }
 
   if (gradient && !fill) {
     cli::cli_abort(c("Invalid combination of arguments.",
-                     "i" = "{.arg gradient} cannot be TRUE when {.arg fill} is FALSE."))
+                     "i" = "{.arg gradient} cannot be {.val TRUE} when {.arg fill} is {.val FALSE}."))
   }
 
   if (!is.null(width)) {
@@ -1920,7 +1930,8 @@ bs4CardLayout <- function(..., type = c("group", "deck", "columns")) {
   # stop if width is accidentally passed
   cards <- lapply(seq_along(cards), function(i) {
     if (length(grep("col-sm", cards[[i]]$attribs$class)) > 0) {
-      cli::cli_abort("The card width parameter must be NULL")
+      cli::cli_abort(c("Invalid parameter in card layout.",
+                        "i" = "The {.arg width} parameter must be {.val NULL} in card layouts."))
     } else {
       cards[[i]]
     }

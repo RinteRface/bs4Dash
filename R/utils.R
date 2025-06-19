@@ -245,13 +245,19 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 
 
   if (!collapsible && collapsed) {
-    cli::cli_abort("Cannot collapse a card that is not collapsible.")
+    cli::cli_abort(c("Invalid card configuration.",
+                   "i" = "Cannot collapse a card that is not collapsible.",
+                   "i" = "Set {.arg collapsible} to {.val TRUE} when using {.arg collapsed}."))
   }
 
   if (!is.null(status) && !is.null(background) && !solidHeader) {
-    cli::cli_abort("solidHeader must be TRUE whenever background and status are not NULL at the same time.")
+    cli::cli_abort(c("Invalid card configuration.",
+                   "i" = "{.arg solidHeader} must be {.val TRUE} whenever {.arg background} and {.arg status} are not {.val NULL} at the same time."))
   }
-  if (gradient && is.null(background)) cli::cli_abort("gradient cannot be used when background is NULL.")
+  if (gradient && is.null(background)) {
+    cli::cli_abort(c("Invalid card configuration.",
+                   "i" = "{.arg gradient} cannot be used when {.arg background} is {.val NULL}."))
+  }
 
 
   if (!is.null(elevation)) {
