@@ -29,7 +29,7 @@ Imports:
     httr,
     jsonlite (>= 0.9.16),
     lifecycle,
-    rlang,
+    rlang (>= 1.1.0),
     shiny (>= 1.6.0),
     waiter (>= 0.2.3)
 Suggests: 
