@@ -330,7 +330,7 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
                            startOpen = FALSE, icon = shiny::icon("gears"),
                            easyClose = TRUE) {
 
-  stopifnot(width >= 25 && width <= 100)
+  check_number_whole(width, min = 25, max = 100)
 
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
@@ -963,22 +963,15 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   }
 
   if (!is.null(width)) {
-    stopifnot(is.numeric(width))
-    # respect the bootstrap grid
-    stopifnot(width <= 12)
-    stopifnot(width >= 0)
+    check_number_whole(width, min = 0, max = 12)
   }
 
   if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
+    check_number_whole(elevation, min = 0, max = 5)
   }
 
   if (!is.null(iconElevation)) {
-    stopifnot(is.numeric(iconElevation))
-    stopifnot(iconElevation < 6)
-    stopifnot(iconElevation >= 0)
+    check_number_whole(iconElevation, min = 0, max = 5)
   }
 
   infoBoxCl <- "info-box"

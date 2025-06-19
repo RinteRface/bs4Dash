@@ -261,16 +261,11 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 
 
   if (!is.null(elevation)) {
-    stopifnot(is.numeric(elevation))
-    stopifnot(elevation < 6)
-    stopifnot(elevation >= 0)
+    check_number_whole(elevation, min = 0, max = 5)
   }
 
   if (!is.null(width)) {
-    stopifnot(is.numeric(width))
-    # respect the bootstrap grid
-    stopifnot(width <= 12)
-    stopifnot(width >= 0)
+    check_number_whole(width, min = 0, max = 12)
   }
 }
 
