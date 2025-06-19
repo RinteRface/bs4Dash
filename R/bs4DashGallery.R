@@ -1,7 +1,7 @@
 #' @title Launch the bs4Dash Gallery
 #'
 #' @description A gallery of all components available in bs4Dash.
-#' 
+#'
 #' @export
 #'
 #' @examples
@@ -17,8 +17,8 @@ bs4DashGallery <- function() {
 
   shiny::shinyAppDir(
     system.file(
-      "examples/showcase", 
-      package = 'bs4Dash', 
+      "examples/showcase",
+      package = 'bs4Dash',
       mustWork = TRUE
     )
   )

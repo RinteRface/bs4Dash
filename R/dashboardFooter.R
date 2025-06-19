@@ -5,7 +5,7 @@
 #' @param left Left text.
 #' @param right Right text.
 #' @param fixed Whether to fix the footer. Default to FALSE.
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname dashboardFooter
 #'

@@ -142,7 +142,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
                     sidebar = NULL, id = NULL) {
 
   if (is.null(status)) solidHeader <- TRUE
-  
+
   # multiple validation
   validateBoxProps(
     title = title,
@@ -193,13 +193,13 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   # set card class
   cardCl <- setBoxClass(
-    status, 
-    solidHeader, 
-    collapsible, 
+    status,
+    solidHeader,
+    collapsible,
     collapsed,
-    elevation, 
-    gradient, 
-    background, 
+    elevation,
+    gradient,
+    background,
     sidebar
   )
 
@@ -209,7 +209,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   cardToolTag <- NULL
   # create card tools whenever necessary
-  if (collapsible || closable || maximizable || 
+  if (collapsible || closable || maximizable ||
       !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)) {
     cardToolTag <- shiny::tags$div(class = "card-tools float-right")
   }
@@ -219,11 +219,11 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     cardToolTag,
     label,
     createBoxTools(
-      collapsible, 
-      collapsed, 
-      closable, 
-      maximizable, 
-      sidebar, 
+      collapsible,
+      collapsed,
+      closable,
+      maximizable,
+      sidebar,
       dropdownMenu,
       boxToolSize,
       status,
@@ -235,8 +235,8 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
 
   # header
-  if (is.null(title) && 
-    (maximizable || closable || collapsible || 
+  if (is.null(title) &&
+    (maximizable || closable || collapsible ||
     !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)
   )) title <- "\u200C"
 
@@ -265,7 +265,7 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 
   cardTag <- shiny::tags$div(class = cardCl, id = id)
   cardTag <- shiny::tagAppendChildren(cardTag, headerTag, bodyTag, footerTag)
-  
+
   # wrapper
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
@@ -315,27 +315,27 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #'
 #' @param ... Sidebar content.
 #' @param id Unique sidebar id. Useful if you want to use \link{updateBoxSidebar}.
-#' @param width Sidebar opening width in percentage. 50% by default, 
-#' means the card sidebar will take 50% of the card width, when opened. 
+#' @param width Sidebar opening width in percentage. 50% by default,
+#' means the card sidebar will take 50% of the card width, when opened.
 #' A numeric value between 25 and 100.
 #' @param background Sidebar background color. Dark by default.
 #' @param startOpen Whether the sidebar is open at start. FALSE by default.
 #' @param icon Sidebar icon. Expect \code{\link[shiny]{icon}}.
-#' @param easyClose Whether to close sidebar on click outside. Default to TRUE. 
+#' @param easyClose Whether to close sidebar on click outside. Default to TRUE.
 #'
 #' @rdname boxSidebar
 #' @family boxWidgets
 #' @export
 bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
-                           startOpen = FALSE, icon = shiny::icon("gears"), 
+                           startOpen = FALSE, icon = shiny::icon("gears"),
                            easyClose = TRUE) {
 
   stopifnot(width >= 25 && width <= 100)
-  
+
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
     id = id,
-    `data-background`= background, 
+    `data-background`= background,
     `data-width` = width,
     `data-widget` = "chat-pane-toggle",
     `data-toggle` = "tooltip",
@@ -738,7 +738,7 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   if (is.null(color) && gradient) {
-    stop("color cannot be NULL when gradient is TRUE. 
+    stop("color cannot be NULL when gradient is TRUE.
          fill cannot be TRUE when color is NULL.")
   }
 
@@ -940,7 +940,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   if (!is.null(color)) validateStatusPlus(color)
 
   if (is.null(color) && (fill || gradient)) {
-    stop("color cannot be NULL when gradient is TRUE. 
+    stop("color cannot be NULL when gradient is TRUE.
          fill cannot be TRUE when color is NULL.")
   }
 
@@ -1023,7 +1023,7 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
   infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
 
-  # handle tabName 
+  # handle tabName
   infoBoxTag <- shiny::tagList(
     if (!is.null(tabName)) {
       shiny::singleton(
@@ -1145,14 +1145,14 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
                        sidebar = NULL, .list = NULL) {
   side <- match.arg(side)
   if (is.null(type)) type <- "pills"
-  
+
   # If the card has ribbon, we must apply more margin to the
   # title when the tabs position is left (title right side).
   body_items <- list(...)
   has_ribbon <- unlist(lapply(body_items, function(item) {
     if (item$attribs$class == "ribbon-wrapper") TRUE
   }))
-  if (is.null(has_ribbon)) has_ribbon <- FALSE 
+  if (is.null(has_ribbon)) has_ribbon <- FALSE
 
   # Build tabs
   content <- tabsetPanel(
@@ -1206,7 +1206,7 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
         " p-0 pt-1"
       } else {
         " p-0 border-bottom-0"
-      } 
+      }
     }
   )
 
@@ -1228,10 +1228,10 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
     },
     titleTag
   )
-  
+
   boxToolTag <- boxTag$children[[1]]$children[[1]]$children[[1]]
   boxTag$children[[1]]$children[[1]]$children[[1]] <- NULL
-  
+
   if (side == "right") {
     content$children[[1]] <- tagInsertChild(
       content$children[[1]],
@@ -1245,17 +1245,17 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
       length(content$children[[1]])
     )
   }
-  
+
   # Insert box tools at the end of the list
   if (
-      length(boxToolTag$children[[1]]) > 0 || 
+      length(boxToolTag$children[[1]]) > 0 ||
       length(boxToolTag$children[[2]]) > 0
   ) {
     content$children[[1]] <- tagInsertChild(
       content$children[[1]],
       shiny::tags$li(class = if (side == "left") "ml-0" else "ml-auto", boxToolTag),
       length(content$children[[1]])
-    ) 
+    )
   }
 
   # Insert tabs at different position in the header tag
@@ -1382,11 +1382,11 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
     sidebar = sidebar,
     id = id
   )
-  
+
   # remove status class from box that is not necessary for userBox
   if (!is.null(status)) {
     temp_pattern <- paste0("card-", status)
-    boxTag$children[[1]]$attribs$class <- gsub(temp_pattern, "", boxTag$children[[1]]$attribs$class) 
+    boxTag$children[[1]]$attribs$class <- gsub(temp_pattern, "", boxTag$children[[1]]$attribs$class)
   }
 
   # find the selected type

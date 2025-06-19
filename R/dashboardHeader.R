@@ -131,10 +131,10 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 }
 
 #' Navbar tab item
-#' 
+#'
 #' Similar to \link{menuItem} but for the
 #' \link{dashboardHeader}.
-#' 
+#'
 #' @param text Tab text.
 #' @param ... Slot for nested \link{navbarTab}. You can nest as many elements
 #' as you want.
@@ -142,7 +142,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #' @param icon An icon tag, created by shiny::icon. If NULL, don't display an icon.
 #' @param .list Use this slot if you had to programmatically pass \link{navbarTab}
 #' like with \link{lapply}.
-#' 
+#'
 #' @note You can nest \link{navbarTab} so it does like
 #' \link{menuSubItem}. This is to avoid to create too many functions.
 #' @export
@@ -163,7 +163,7 @@ navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
         icon,
         shiny::tags$p(text)
       )
-    ) 
+    )
   }
 }
 
@@ -195,7 +195,7 @@ navbarDropdown <- function(text, ...) {
 }
 
 #' Dropdown header helper
-#' 
+#'
 #' Display header text within dropdown menu
 #'
 #' @param text Text to display.
@@ -215,15 +215,15 @@ dropdownHeader <- function(text) {
 #' server.
 #' @rdname navbar-menu
 #' @export
-#' @examples 
+#' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  tabs <- tabItems(.list = lapply(1:7, function(i) {
 #'   tabItem(tabName = sprintf("Tab%s", i), sprintf("Tab %s", i))
 #'  }))
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(
@@ -278,8 +278,8 @@ dropdownHeader <- function(text) {
 #' }
 navbarMenu <- function(..., id = NULL) {
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
-  
-  items <- list(...) 
+
+  items <- list(...)
   items <- htmltools::tagQuery(items)$
     find(".nav-item.dropdown")$
     removeClass("nav-item dropdown")$
@@ -288,16 +288,16 @@ navbarMenu <- function(..., id = NULL) {
     removeAttrs("style")$
     reset()$
     selectedTags()
-  
+
   shiny::tags$ul(
-    class = "navbar-nav sidebar-menu", 
+    class = "navbar-nav sidebar-menu",
     role = "menu",
     items,
     shiny::div(
       id = id,
       class = "sidebarMenuSelectedTabItem",
       `data-value` = "null",
-      
+
     )
   )
 }
@@ -345,7 +345,7 @@ updateNavbarTabs <- updatebs4TabItems
 #' @export
 bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity = .8) {
   if (!is.null(color)) validateStatusPlus(color)
-  
+
   shiny::tags$a(
     class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
     href = if (!is.null(href)) href else "#",

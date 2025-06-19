@@ -52,10 +52,10 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                            elevation = 4, collapsed = FALSE,
                            minified = TRUE, expandOnHover = TRUE,
                            fixed = TRUE, id = NULL, customArea = NULL) {
-  # When no skin is specified, sidebar color must match the dashboard skin color 
-  # by default which is set in the dashboardPage function. 
+  # When no skin is specified, sidebar color must match the dashboard skin color
+  # by default which is set in the dashboardPage function.
   skin <- set_sidebar_skin(skin)
-  
+
   if (is.null(id)) id <- "sidebarId"
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
@@ -86,16 +86,16 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
             width,
             fixed = TRUE,
             "@media (min-width: 768px) {
-              body:not(.sidebar-mini-md) .content-wrapper, 
-              body:not(.sidebar-mini-md) .main-footer, 
+              body:not(.sidebar-mini-md) .content-wrapper,
+              body:not(.sidebar-mini-md) .main-footer,
               body:not(.sidebar-mini-md) .main-header {
                 transition: margin-left .3s ease-in-out;
                 margin-left: _WIDTH_;
               }
             }
-            
+
             @media (min-width: 992px) {
-              .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused, 
+              .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused,
               .sidebar-mini.sidebar-collapse .main-sidebar:hover {
                 width: _WIDTH_;
               }
@@ -106,7 +106,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                 width: _WIDTH_;
               }
             }
-    
+
             .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
               margin-left: -_WIDTH_;
             }
@@ -416,7 +416,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           `data-target` = if (is.null(href)) {
             if (!is.null(tabName)) {
               paste0("#shiny-tab-", tabName)
-            } 
+            }
           },
           target = if (!is.null(href)) {
             if (newTab) "_blank"
@@ -448,7 +448,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         } else {
           otherItems[[length(otherItems)]] <- subItems[[i]]
         }
-        
+
         subItems[[i]] <- NULL
       }
     }
@@ -481,8 +481,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         shiny::tags$i(class = "right fas fa-angle-left")
       )
     )
-    
-    # Handle specific case when subItems are not real subItems. 
+
+    # Handle specific case when subItems are not real subItems.
     # The parent items needs to behave like a normal menuItem, with
     # the collapsible style.
     if (length(subItems) == 0) {
@@ -493,12 +493,12 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
       `data-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       }
       item_link$attribs$`data-target` <- if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       }
       item_link$attribs$target <- if (!is.null(href)) {
         if (newTab) "_blank"
@@ -506,7 +506,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
       item_link$attribs$`data-toggle` <- if (is.null(href)) "tab"
       item_link$attribs$`data-value` <- if (!is.null(tabName)) tabName
     }
-    
+
     shiny::tags$li(
       class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
       item_link,
@@ -559,7 +559,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       `data-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       },
       target = if (!is.null(href)) {
         if (newTab) "_blank"

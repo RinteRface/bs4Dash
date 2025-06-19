@@ -1,5 +1,5 @@
 #' AdminLTE3 skin selector
-#' 
+#'
 #' This creates a skin selector element.
 #'
 #' @export
@@ -7,7 +7,7 @@
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -36,23 +36,23 @@ themer_list <- c("Navbar", "Sidebar", "Accents", "Controlbar")
 
 
 createThemer <- function(name, skins) {
-  
+
   titleTag <- shiny::h6(sprintf("%s themer", name))
-  
+
   shiny::tagList(
     if (name %in% c("Sidebar", "Controlbar")) {
       shiny::fluidRow(
         titleTag,
         shiny::div(
-          class = "mx-2 custom-control custom-switch", 
+          class = "mx-2 custom-control custom-switch",
           shiny::tags$input(
             id = sprintf("%s-skin", tolower(name)),
-            type = "checkbox", 
+            type = "checkbox",
             class = "custom-control-input"
           ),
           shiny::tags$label(
-            shiny::icon("sun", class = sprintf("%s-themer-icon", tolower(name))), 
-            `for` = sprintf("%s-skin", tolower(name)), 
+            shiny::icon("sun", class = sprintf("%s-themer-icon", tolower(name))),
+            `for` = sprintf("%s-skin", tolower(name)),
             class = "custom-control-label"
           )
         )

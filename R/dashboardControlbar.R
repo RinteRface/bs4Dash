@@ -6,7 +6,7 @@
 #' @param id To access the current state of the controlbar. Open is TRUE, closed
 #' is FALSE. NULL by default.
 #' @param disable If `TRUE`, the sidebar will be disabled.
-#' @param width Controlbar width. This must either be a number which specifies the width 
+#' @param width Controlbar width. This must either be a number which specifies the width
 #' in pixels, or a string that specifies the width in CSS units. 250 px by default.
 #' @param collapsed Whether the control bar on the right side is collapsed or not at start. TRUE by default.
 #' @param overlay Whether the sidebar covers the content when expanded. Default to TRUE.
@@ -23,7 +23,7 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
                               collapsed = TRUE, overlay = TRUE, skin = NULL,
                               pinned = NULL) {
   if (is.null(id)) id <- "controlbarId"
-  
+
   skin <- set_sidebar_skin(skin)
 
   controlbarTag <- shiny::tags$aside(
@@ -62,16 +62,16 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
                 bottom: 0;
                 transition: right 0.3s ease-in-out;
               }
-              .control-sidebar-slide-open.control-sidebar-push .content-wrapper, 
-              .control-sidebar-slide-open.control-sidebar-push .main-footer, 
-              .control-sidebar-slide-open.control-sidebar-push-slide .content-wrapper, 
+              .control-sidebar-slide-open.control-sidebar-push .content-wrapper,
+              .control-sidebar-slide-open.control-sidebar-push .main-footer,
+              .control-sidebar-slide-open.control-sidebar-push-slide .content-wrapper,
               .control-sidebar-slide-open.control-sidebar-push-slide .main-footer {
                 margin-right: ", shiny::validateCssUnit(width), ";
               }
 
               @media (min-width: 768px)
-                body:not(.sidebar-mini-md) .content-wrapper, 
-                body:not(.sidebar-mini-md) .main-footer, 
+                body:not(.sidebar-mini-md) .content-wrapper,
+                body:not(.sidebar-mini-md) .main-footer,
                 body:not(.sidebar-mini-md) .main-header {
                   transition: margin-left .3s ease-in-out;
                   margin-left: ", shiny::validateCssUnit(width), ";
@@ -113,7 +113,7 @@ controlbarItem <- function(title, ..., value = title, icon = NULL) {
 updateControlbarMenu <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }
-  
+
 
 
 

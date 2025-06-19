@@ -12,22 +12,22 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
     print(tag)
     stop("Expected an object with class 'shiny.tag'.")
   }
-  
+
   # Skip dynamic output elements
   if (allowUI &&
       (hasCssClass(tag, "shiny-html-output") ||
        hasCssClass(tag, "shinydashboard-menu-output"))) {
     return()
   }
-  
+
   if (!is.null(type) && tag$name != type) {
     stop("Expected tag to be of type ", type)
   }
-  
+
   if (!is.null(class)) {
     if (is.null(tag$attribs$class)) {
       stop("Expected tag to have class '", class, "'")
-      
+
     } else {
       tagClasses <- strsplit(tag$attribs$class, " ")[[1]]
       if (!(class %in% tagClasses)) {
@@ -41,7 +41,7 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
 hasCssClass <- function(tag, class) {
   if (is.null(tag$attribs) || is.null(tag$attribs$class))
     return(FALSE)
-  
+
   classes <- strsplit(tag$attribs$class, " +")[[1]]
   return(class %in% classes)
 }
@@ -64,16 +64,16 @@ validateTabName <- function(name) {
 # returns FALSE
 findAttribute <- function(x, attr, val) {
   if (is.atomic(x)) return(FALSE) # exhausted this branch of the tree
-  
+
   if (!is.null(x$attribs[[attr]])) { # found attribute called `attr`
     if (identical(x$attribs[[attr]], val)) return(TRUE)
     else return(FALSE)
   }
-  
+
   if (length(x$children) > 0) { # recursion
     return(any(unlist(lapply(x$children, findAttribute, attr, val))))
   }
-  
+
   return(FALSE) # found no attribute called `attr`
 }
 
@@ -87,11 +87,11 @@ dropNulls <- function(x) {
 
 # Returns TRUE if a status is valid; throws error otherwise.
 validateStatus <- function(status) {
-  
+
   if (status %in% validStatuses) {
     return(TRUE)
   }
-  
+
   stop("Invalid status: ", status, ". Valid statuses are: ",
        paste(validStatuses, collapse = ", "), ".")
 }
@@ -123,11 +123,11 @@ validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger
 
 # Returns TRUE if a nuance is valid; throws error otherwise.
 validateNuance <- function(nuance) {
-  
+
   if (nuance %in% validNuances) {
     return(TRUE)
   }
-  
+
   stop("Invalid nuance: ", nuance, ". Valid nuances are: ",
        paste(validNuances, collapse = ", "), ".")
 }
@@ -160,7 +160,7 @@ validateColor <- function(color) {
   if (color %in% validColors) {
     return(TRUE)
   }
-  
+
   stop("Invalid color: ", color, ". Valid colors are: ",
        paste(validColors, collapse = ", "), ".")
 }
@@ -188,18 +188,18 @@ validateColor <- function(color) {
 #' @format NULL
 #'
 #' @keywords internal
-validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink", 
+validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink",
                  "maroon", "orange", "lime", "teal", "olive")
 
 
 
 # Returns TRUE if a status is valid; throws error otherwise.
 validateStatusPlus <- function(status) {
-  
+
   if (status %in% validStatusesPlus) {
     return(TRUE)
   }
-  
+
   stop("Invalid status: ", status, ". Valid statuses are: ",
        paste(validStatusesPlus, collapse = ", "), ".")
 }
@@ -236,29 +236,29 @@ tagInsertChild <- function(tag, child, position) {
 
 
 # Tool to validate the card props
-validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradient, collapsible, 
+validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradient, collapsible,
                              collapsed, solidHeader, background, elevation, width) {
-  
+
   if (!is.null(status)) validateStatusPlus(status)
   if (!is.null(background)) validateStatusPlus(background)
-  
-  
+
+
   if (!collapsible & collapsed) {
     stop("Cannot collapse a card that is not collapsible.")
   }
-  
+
   if (!is.null(status) && !is.null(background) && !solidHeader) {
     stop("solidHeader must be TRUE whenever background and status are not NULL at the same time.")
   }
   if (gradient && is.null(background)) stop("gradient cannot be used when background is NULL.")
-  
-  
+
+
   if (!is.null(elevation)) {
     stopifnot(is.numeric(elevation))
     stopifnot(elevation < 6)
     stopifnot(elevation >= 0)
   }
-  
+
   if (!is.null(width)) {
     stopifnot(is.numeric(width))
     # respect the bootstrap grid
@@ -270,12 +270,12 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 
 
 # create box icons and return a list of icons
-createBoxTools <- function(collapsible, collapsed, closable, maximizable, 
-                           sidebar, dropdownMenu, boxToolSize, status, 
+createBoxTools <- function(collapsible, collapsed, closable, maximizable,
+                           sidebar, dropdownMenu, boxToolSize, status,
                            background, solidHeader) {
 
     btnClass <- paste0(
-      "btn btn-tool", 
+      "btn btn-tool",
       if (!is.null(boxToolSize)) paste0(" btn-", boxToolSize)
     )
 
@@ -287,7 +287,7 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
         }
       )
     }
-    
+
     # status has always priority compared to background
     if (!is.null(status) &&  solidHeader) {
       btnClass <- paste0(
@@ -300,13 +300,13 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
 
     collapseTag <- NULL
     if (collapsible) {
-      collapseIcon <- if (collapsed) 
+      collapseIcon <- if (collapsed)
         "plus"
       else "minus"
       collapseTag <- shiny::tags$button(
-        class = btnClass, 
+        class = btnClass,
         type = "button",
-        `data-card-widget` = "collapse", 
+        `data-card-widget` = "collapse",
         shiny::icon(collapseIcon)
       )
     }
@@ -314,12 +314,12 @@ createBoxTools <- function(collapsible, collapsed, closable, maximizable,
     closableTag <- NULL
     if (closable) {
       closableTag <- shiny::tags$button(
-        class = btnClass, 
-        `data-card-widget` = "remove", 
+        class = btnClass,
+        `data-card-widget` = "remove",
         type = "button",
         shiny::icon("xmark")
       )
-    } 
+    }
 
     maximizableTag <- NULL
     if (maximizable) {
@@ -622,21 +622,21 @@ buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = 
 
 
 
-shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call(sys.parent()))[1L], 
-          version = NULL) 
+shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call(sys.parent()))[1L],
+          version = NULL)
 {
-  if (getOption("shiny.deprecation.messages") %OR% TRUE == 
-      FALSE) 
+  if (getOption("shiny.deprecation.messages") %OR% TRUE ==
+      FALSE)
     return(invisible())
   if (is.null(msg)) {
     msg <- paste(old, "is deprecated.")
     if (!is.null(new)) {
-      msg <- paste(msg, "Please use", new, "instead.", 
+      msg <- paste(msg, "Please use", new, "instead.",
                    "To disable this message, run options(shiny.deprecation.messages=FALSE)")
     }
   }
   if (!is.null(version)) {
-    msg <- paste0(msg, " (Last used in version ", version, 
+    msg <- paste0(msg, " (Last used in version ", version,
                   ")")
   }
   message(msg)
@@ -644,10 +644,10 @@ shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call
 
 
 
-bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL, 
-                             type = c("tabs", "pills", "hidden")) 
+bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL,
+                             type = c("tabs", "pills", "hidden"))
 {
-  if (!is.null(id)) 
+  if (!is.null(id))
     selected <- shiny::restoreInput(id = id, default = selected)
   type <- match.arg(type)
   tabset <- buildTabset(tabs, paste0("nav nav-", type), NULL, id, selected)
@@ -659,7 +659,7 @@ bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL,
 
 
 
-validateIcon <- function (icon) 
+validateIcon <- function (icon)
 {
   if (is.null(icon) || identical(icon, character(0))) {
     return(icon)
@@ -678,26 +678,26 @@ validateIcon <- function (icon)
 waiterShowOnLoad <- function(
   html = waiter::spin_1(), color = "#333e48"
 ){
-  
+
   html <- as.character(html)
   html <- gsub("\n", "", html)
-  
+
   show <- sprintf(
     "waiter.show({
       id: null,
-      html: '%s', 
+      html: '%s',
       color: '%s'
     });",
     html, color
   )
-  
+
   shiny::HTML(sprintf("<script>%s</script>", show))
-  
+
 }
 
 
 #' Create container for bs4Dash demo app
-#' 
+#'
 #' Container based on device.css
 #'
 #' @param url app URL. httr GET test is run before. If failed,
@@ -706,11 +706,11 @@ waiterShowOnLoad <- function(
 #' The first occurence must set deps to TRUE so that CSS is loaded in the page.
 #' @keywords internal
 app_container <- function(url, deps = FALSE) {
-  
+
   # test app availability
   req <- httr::GET(url)
   show_app <- req$status_code == 200
-  
+
   if (show_app) {
     device_tag <- shiny::div(
       class="marvel-device ipad black",
@@ -740,7 +740,7 @@ app_container <- function(url, deps = FALSE) {
     } else {
       device_tag
     }
-  } 
+  }
 }
 
 # Get parent function arguments
@@ -754,11 +754,11 @@ create_link_iframe <- function(link) {
   shiny::tags$iframe(
     class = "html-fill-item",
     src = link,
-    height = "800", 
-    width = "100%", 
-    style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;", 
-    allowfullscreen = "", 
-    allow = "autoplay", 
+    height = "800",
+    width = "100%",
+    style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;",
+    allowfullscreen = "",
+    allow = "autoplay",
     `data-external` = "1"
   )
 }

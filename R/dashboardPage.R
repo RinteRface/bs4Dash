@@ -23,9 +23,9 @@
 #' the toggle is shown but not enabled. If TRUE, all tooltips and popovers are enabled.
 #' Set to NULL if you want to hide the help icon.
 #' @param dark Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
-#' Default to FALSE, app starts in light mode, with possibility to switch to dark. 
+#' Default to FALSE, app starts in light mode, with possibility to switch to dark.
 #' If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
-#' not toggle is shown and the app starts in light, as it has always been. 
+#' not toggle is shown and the app starts in light, as it has always been.
 #' @param scrollToTop Whether to display a scroll to top button whenever the page height is too large.
 #' Default to FALSE.
 #'
@@ -96,7 +96,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
                         skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
                         fullscreen = FALSE, help = FALSE, dark = FALSE, scrollToTop = FALSE) {
   titleTag <- header[[2]]
-  
+
   sidebarDisabled <- sidebar$attribs$`data-disable`
   sidebarCollapsed <- sidebar$attribs$`data-collapsed`
   sidebarMini <- sidebar$attribs$`data-minified`
@@ -124,7 +124,7 @@ bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL,
     # remove navbar padding to better fit the brand logo
     header[[1]]$attribs$style <- "padding: 0rem 0rem;"
   }
-  
+
   bodyCl <- if (sidebarDisabled) "layout-top-nav" else NULL
   if (sidebarCollapsed) {
     bodyCl <- if (is.null(bodyCl)) {

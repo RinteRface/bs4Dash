@@ -24,7 +24,7 @@
 #' FALSE.
 #' @param size Button size. Default to NULL. Possible choices: `c("lg", "sm", "xs")`.
 #' @param flat Whether to apply a flat style. Default to FALSE.
-#' 
+#'
 #' @note One may also pass the status directly via the ... parameter using `class = "btn-primary"`,
 #' for the primary status for instance. Same thing for other styles like the size.
 #'
@@ -49,10 +49,10 @@
 #'     body = dashboardBody(
 #'       sliderInput("obs", "Number of observations", 0, 1000, 500),
 #'       actionButton(
-#'        "goButton", "Go!", 
-#'        status = "danger", 
-#'        outline = TRUE, 
-#'        flat = TRUE, 
+#'        "goButton", "Go!",
+#'        status = "danger",
+#'        outline = TRUE,
+#'        flat = TRUE,
 #'        size = "lg"
 #'       ),
 #'      plotOutput("distPlot")
@@ -92,10 +92,10 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
                          flat = FALSE) {
   if (is.null(status) & outline) stop("outline cannot be used when color is NULL.")
   if (gradient && outline) stop("outline is not compatible with gradient.")
-  
+
   if (!is.null(status)) validateStatus(status)
   value <- shiny::restoreInput(id = inputId, default = NULL)
-  
+
   btnCl <- if (is.null(status)) {
     "btn btn-default action-button"
   } else {
@@ -112,10 +112,10 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
       }
     }
   }
-  
+
   if (flat) btnCl <- paste0(btnCl, " btn-flat")
   if (!is.null(size)) btnCl <- paste0(btnCl, " btn-", size)
-  
+
   shiny::tags$button(
     id = inputId,
     style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
@@ -167,7 +167,7 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -178,8 +178,8 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #'       status = NULL,
 #'       appButton(
 #'         inputId = "myAppButton",
-#'         label = "Users", 
-#'         icon = icon("users"), 
+#'         label = "Users",
+#'         icon = icon("users"),
 #'         color = "orange",
 #'         dashboardBadge(textOutput("btnVal"), color = "primary")
 #'       )
@@ -195,10 +195,10 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #'
 #' @export
 appButton <- function(..., inputId, label, icon = NULL, width = NULL, color = NULL) {
-  
+
   if (!is.null(icon)) tagAssert(icon, type = "i")
   if (!is.null(color)) validateStatusPlus(color)
-  
+
   shiny::tagAppendAttributes(
     shiny::actionButton(inputId, label, icon = icon, width = width, ...),
     class = "btn-app",

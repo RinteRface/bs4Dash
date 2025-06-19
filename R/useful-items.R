@@ -1,6 +1,6 @@
 #' Create a Bootstrap 4 dashboard badge item
-#' 
-#' \link{dashboardBadge} creates a badge. It may be inserted in any element like inside 
+#'
+#' \link{dashboardBadge} creates a badge. It may be inserted in any element like inside
 #' a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 #'
 #' @param ... Badge content.
@@ -15,14 +15,14 @@
 #' }
 #' @param position Badge position: `"left"` or `"right"`.
 #' @param rounded Whether the badge is rounded instead of square. FALSE by default.
-#' 
+#'
 #' @rdname badge
-#'  
-#' @examples 
+#'
+#' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -30,10 +30,10 @@
 #'     dashboardBody(
 #'      dashboardBadge("Badge 1", color = "danger"),
 #'      actionButton(
-#'       inputId = "badge", 
-#'       label = "Hello", 
-#'       icon = NULL, 
-#'       width = NULL, 
+#'       inputId = "badge",
+#'       label = "Hello",
+#'       icon = NULL,
+#'       width = NULL,
 #'       dashboardBadge(1, color = "primary")
 #'      )
 #'     )
@@ -41,16 +41,16 @@
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4Badge <- function(..., color, position = c("left", "right"),
                      rounded = FALSE) {
-  
+
   validateStatus(color)
   position <- match.arg(position)
-  
+
   shiny::tags$span(
     class = paste0(position, " badge", " badge-", color, if (rounded) " badge-pill"),
     ...
@@ -62,7 +62,7 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 
 #' Bootstrap 4 accordion container
 #'
-#' \link{accordion} creates an accordion container. 
+#' \link{accordion} creates an accordion container.
 #' Accordions are part of collapsible elements.
 #'
 #' @param ... slot for \link{accordionItem}.
@@ -77,7 +77,7 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -141,18 +141,18 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #'
 #' @export
 bs4Accordion <- function(..., id, width = 12, .list = NULL) {
-  
+
   items <- c(list(...), .list)
-  
+
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
   lapply(seq_along(items), FUN = function(i) {
-    items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id) 
+    items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id)
     items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     shiny::tags$div(
@@ -165,28 +165,28 @@ bs4Accordion <- function(..., id, width = 12, .list = NULL) {
 
 
 #' Bootstrap 4 accordion item
-#' 
+#'
 #' \link{accordionItem} is to be inserted in a \link{accordion}.
 #'
 #' @inheritParams bs4Card
-#' 
+#'
 #' @rdname accordion
 #'
 #' @export
-bs4AccordionItem <- function(..., title, status = NULL, 
+bs4AccordionItem <- function(..., title, status = NULL,
                              collapsed = TRUE, solidHeader = TRUE) {
-  
+
   cl <- "card"
   if (!is.null(status)) {
     validateStatusPlus(status)
     cl <- paste0(cl, " card-", status)
   }
-  
+
   if (!solidHeader) cl <- paste0(cl, " card-outline")
-  
+
   shiny::tags$div(
     class = cl,
-    
+
     # box header
     shiny::tags$div(
       class = "card-header",
@@ -202,9 +202,9 @@ bs4AccordionItem <- function(..., title, status = NULL,
         )
       )
     ),
-    
+
     shiny::tags$div(
-      id = NULL,  
+      id = NULL,
       `data-parent` = NULL,
       class = if (collapsed) {
         "collapse"
@@ -223,7 +223,7 @@ bs4AccordionItem <- function(..., title, status = NULL,
 
 
 #' Update an accordion on the client
-#' 
+#'
 #' \link{updateAccordion} toggles an \link{accordion} on the client.
 #'
 #' @param id Accordion to target.
@@ -233,12 +233,12 @@ bs4AccordionItem <- function(..., title, status = NULL,
 #' @export
 #' @rdname accordion
 #' @examples
-#' 
+#'
 #' # Update accordion
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -284,7 +284,7 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 
 
 #' Bootstrap 4 carousel
-#' 
+#'
 #' \link{carousel} creates a carousel container to display media content.
 #'
 #' @param ... Slot for \link{carouselItem}.
@@ -293,12 +293,12 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #' @param width Carousel width. Between 1 and 12.
 #' @param .list Should you need to pass \link{carouselItem} via \link{lapply} or similar,
 #' put these item here instead of passing them in ...
-#' 
-#' @examples 
+#'
+#' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -321,17 +321,17 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #'    server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname carousel
 #' @family boxWidgets
 #'
 #' @export
 bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
-  
+
   items <- c(list(...), .list)
-  
+
   generateCarouselNav <- function(items) {
     found_active <- FALSE
     navs <- lapply(seq_along(items), FUN = function(i) {
@@ -343,18 +343,18 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
       }
       # if the item has active class and no item was found before, we found the active item
       if (active && !found_active) found_active <- TRUE
-      
+
       shiny::tags$li(
         `data-target` = paste0("#", id),
         `data-slide-to` = i - 1,
         class = if (active) "active"
       )
     })
-    
+
     actives <- dropNulls(lapply(navs, function(nav) {
       nav$attribs$class
     }))
-    
+
     # Make sure at least the first item is active
     if (length(actives) == 0) {
       navs[[1]]$attribs$class <- "active"
@@ -363,21 +363,21 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
         " active"
       )
     }
-    
+
     navs
-    
+
   }
-  
+
   indicatorsTag <- shiny::tags$ol(
     class = "carousel-indicators",
     generateCarouselNav(items)
   )
-  
+
   bodyTag <- shiny::tags$div(
     class = "carousel-inner",
     items
   )
-  
+
   controlButtons <- if (indicators) {
     shiny::tagList(
       # previous
@@ -409,39 +409,39 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
   } else {
     NULL
   }
-  
+
   carouselTag <- shiny::tags$div(
     class = "carousel slide",
     `data-ride` = "carousel",
     id = id
   )
-  
+
   carouselTag <- shiny::tagAppendChildren(carouselTag, indicatorsTag, bodyTag, controlButtons)
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     carouselTag
   )
-  
+
 }
 
 
 
 #' Bootstrap 4 carousel item
-#' 
+#'
 #' \link{carouselItem} creates a carousel item to insert in a \link{carousel}
-#' 
+#'
 #' @param ... Element such as images, iframe, ...
 #' @param caption Item caption.
 #' @param active Whether the item is active or not at start.
-#' 
+#'
 #' @rdname carousel
 #'
 #' @export
 bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
   shiny::tags$div(
     class = if (active) "carousel-item active" else "carousel-item",
-    ..., 
+    ...,
     if (!is.null(caption)) {
       shiny::tags$div(class = "carousel-caption", caption)
     }
@@ -452,7 +452,7 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 
 
 #' AdminLTE3 progress bar
-#' 
+#'
 #' Create a Bootstrap 4 progress bar.
 #'
 #' @param value Progress bar value.
@@ -484,22 +484,22 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
-#' 
+#'
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
 #'   If supplied, `striped`, `animated`, `status`, and `label` must be the
 #'   same length as `value` or length 1, in which case vector recycling is
 #'   used.
-#' 
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -562,45 +562,45 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #'  )
 #' }
 
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname progress
 #'
 #' @export
-bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
-                            animated = FALSE, status = "primary", size = NULL, 
+bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE,
+                            animated = FALSE, status = "primary", size = NULL,
                             label = NULL) {
-  
+
   if (!is.null(status)) validateStatusPlus(status)
   stopifnot(value >= min)
   stopifnot(value <= max)
-  
+
   # wrapper class
   progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
   if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-  
+
   # bar class
   barCl <- "progress-bar"
   if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
   if (striped) barCl <- paste0(barCl, " progress-bar-striped")
   if (animated) barCl <- paste0(barCl, " progress-bar-animated")
-  
+
   # wrapper
   barTag <- shiny::tags$div(
-    class = barCl, 
-    role = "progressbar", 
-    `aria-valuenow` = value, 
-    `aria-valuemin` = min, 
-    `aria-valuemax` = max, 
+    class = barCl,
+    role = "progressbar",
+    `aria-valuenow` = value,
+    `aria-valuemin` = min,
+    `aria-valuemax` = max,
     style = if (vertical) {
       paste0("height: ", paste0(value, "%"))
     }
     else {
       paste0("width: ", paste0(value, "%"))
-    }, 
+    },
     if(!is.null(label)) label
   )
-  
+
   progressTag <- shiny::tags$div(class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
@@ -608,13 +608,13 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 
 #' @rdname progress
 #' @export
-bs4MultiProgressBar <- 
+bs4MultiProgressBar <-
   function(
-    value, 
-    min = 0, 
-    max = 100, 
-    vertical = FALSE, 
-    striped = FALSE, 
+    value,
+    min = 0,
+    max = 100,
+    vertical = FALSE,
+    striped = FALSE,
     animated = FALSE,
     status = "primary",
     size = NULL,
@@ -624,39 +624,39 @@ bs4MultiProgressBar <-
     striped <- verify_compatible_lengths(value, striped)
     animated <- verify_compatible_lengths(value, animated)
     if (!is.null(label)) label <- verify_compatible_lengths(value, label)
-    
+
     if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
     stopifnot(all(value >= min))
     stopifnot(all(value <= max))
     stopifnot(sum(value) <= max)
-    
+
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
       if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
       if (striped) barCl <- paste0(barCl, " progress-bar-striped")
       if (animated) barCl <- paste0(barCl, " progress-bar-animated")
-      
+
       shiny::tags$div(
-        class = barCl, 
-        role = "progressbar", 
-        `aria-valuenow` = value, 
-        `aria-valuemin` = min, 
-        `aria-valuemax` = max, 
+        class = barCl,
+        role = "progressbar",
+        `aria-valuenow` = value,
+        `aria-valuemin` = min,
+        `aria-valuemax` = max,
         style = if (vertical) {
           paste0("height: ", paste0(value, "%"))
         }
         else {
           paste0("width: ", paste0(value, "%"))
-        }, 
+        },
         if(!is.null(label)) label
       )
     }
-    
+
     barSegs <- list()
     # progress bar segments
     for (i in seq_along(value)) {
-      barSegs[[i]] <- 
+      barSegs[[i]] <-
         bar_segment(
           value[[i]],
           striped[[i]],
@@ -665,7 +665,7 @@ bs4MultiProgressBar <-
           label[[i]]
         )
     }
-    
+
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
     if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
@@ -691,7 +691,7 @@ verify_compatible_lengths <- function(x, y) {
 
 
 #' Create a Bootstrap 4 callout
-#' 
+#'
 #' AdminLTE3 callout
 #'
 #' @param ... Callout content.
@@ -705,14 +705,14 @@ verify_compatible_lengths <- function(x, y) {
 #' }
 #' @param width Callout width. Between 1 and 12.
 #' @param elevation Callout elevation.
-#' 
+#'
 #' @rdname callout
-#' 
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -726,9 +726,9 @@ verify_compatible_lengths <- function(x, y) {
 #'         title = "I am a danger callout!",
 #'         elevation = 4,
 #'         status = "danger",
-#'         "There is a problem that we need to fix. 
-#'         A wonderful serenity has taken possession of 
-#'         my entire soul, like these sweet mornings of 
+#'         "There is a problem that we need to fix.
+#'         A wonderful serenity has taken possession of
+#'         my entire soul, like these sweet mornings of
 #'         spring which I enjoy with my whole heart."
 #'        ),
 #'        callout(
@@ -742,26 +742,26 @@ verify_compatible_lengths <- function(x, y) {
 #'  )
 #' }
 
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 bs4Callout <- function(..., title, status = c("warning", "danger", "info", "success"),
                        width = 6, elevation = NULL) {
-  
+
   validateStatus(status)
   status <- match.arg(status)
-  
+
   calloutCl <- "callout"
   if (!is.null(status)) calloutCl <- paste0(calloutCl, " callout-", status)
   if (!is.null(elevation)) calloutCl <- paste0(calloutCl, " elevation-", elevation)
-  
+
   calloutTag <- shiny::tags$div(
     class = calloutCl,
     shiny::tags$h5(title),
     ...
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     calloutTag
@@ -773,18 +773,18 @@ bs4Callout <- function(..., title, status = c("warning", "danger", "info", "succ
 #' @title AdminLTE3 loading state element
 #'
 #' @description When a section is still work in progress or a computation is running
-#' 
+#'
 #' @note Loading state can be programmatically used when a conputation is running for instance.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname loading
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -819,7 +819,7 @@ bs4Loading <- function() {
 #' @param ... slot for \link{bs4TimelineLabel} or \link{bs4TimelineItem}.
 #' @param reversed Whether the timeline is reversed or not.
 #' @param width Timeline width. Between 1 and 12.
-#' 
+#'
 #' @note reversed is useful when the user wants to use the timeline
 #' inside a box.
 #'
@@ -848,7 +848,7 @@ bs4Loading <- function() {
 #'        timelineEnd(color = "danger"),
 #'        timelineLabel("10 Feb. 2014", color = "pink"),
 #'        timelineItem(
-#'         elevation = 4, 
+#'         elevation = 4,
 #'         title = "Item 1",
 #'         icon = icon("gears"),
 #'         color = "olive",
@@ -880,20 +880,20 @@ bs4Loading <- function() {
 #'
 #' @export
 bs4Timeline <- function(..., reversed = TRUE, width = 6) {
-  
+
   cl <- "timeline"
   if (isTRUE(reversed)) cl <- paste0(cl, " timeline-inverse")
-  
+
   timelineTag <- shiny::tags$div(
     class = cl,
     ...
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     timelineTag
   )
-  
+
 }
 
 
@@ -927,16 +927,16 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 #' }
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineLabel <- function(..., color = NULL) {
-  
+
   cl <- NULL
   if (!is.null(color)) {
     validateStatusPlus(color)
     cl <- paste0("bg-", color)
   }
-  
+
   shiny::tags$div(
     class = "time-label",
     shiny::tags$span(
@@ -949,7 +949,7 @@ bs4TimelineLabel <- function(..., color = NULL) {
 
 #' AdminLTE3 timeline item
 #'
-#' \link{timelineItem} creates a timeline item that contains information for a 
+#' \link{timelineItem} creates a timeline item that contains information for a
 #' given event like the title, description, date, ...
 #'
 #' @param ... Any element such as \link{timelineItemMedia} ...
@@ -984,40 +984,40 @@ bs4TimelineLabel <- function(..., color = NULL) {
 #' @param elevation Timeline elevation (numeric). NULL by default.
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
-bs4TimelineItem <- function(..., icon = NULL, 
-                            color = NULL, time = NULL, title = NULL, 
+bs4TimelineItem <- function(..., icon = NULL,
+                            color = NULL, time = NULL, title = NULL,
                             border = TRUE, footer = NULL, elevation = NULL) {
-  
+
   if (!is.null(color)) {
     validateStatusPlus(color)
     icon$attribs$class <- paste0(icon$attribs$class, " bg-", color)
   }
-  
+
   if (!is.null(elevation)) {
     icon$attribs$class <- paste0(icon$attribs$class, " elevation-", elevation)
   }
-  
+
   itemCl <- "timeline-header no-border"
   if (isTRUE(border)) itemCl <- "timeline-header"
-  
+
   shiny::tags$div(
-    
+
     # timelineItem icon and status
     icon,
-    
+
     # timelineItem container
     shiny::tags$div(
       class = "timeline-item",
-      
+
       #timelineItem time/date
       shiny::tags$span(
         class = "time",
         shiny::icon("clock"),
         time
       ),
-      
+
       # timelineItem title
       shiny::tags$h3(
         class = if (!is.null(elevation)) {
@@ -1027,13 +1027,13 @@ bs4TimelineItem <- function(..., icon = NULL,
         },
         title
       ),
-      
+
       # timelineItem body
       shiny::tags$div(
         class = "timeline-body",
         ...
       ),
-      
+
       # timelineItem footer
       shiny::tags$div(
         class = "timeline-footer",
@@ -1051,14 +1051,14 @@ bs4TimelineItem <- function(..., icon = NULL,
 #' @param image Media url or path.
 #' @param height Media height in pixels.
 #' @param width Media width in pixels.
-#' 
+#'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
   shiny::img(
-    class = "margin", 
-    src = image, 
+    class = "margin",
+    src = image,
     height = height,
     width = width
   )
@@ -1095,18 +1095,18 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 #'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
-  
+
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
     iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
   }
-  
+
   shiny::tags$div(iconTag)
 }
 
@@ -1141,19 +1141,19 @@ bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
 #' }
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
-  
+
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
     iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
   }
-  
+
   shiny::tagList(
     shiny::tags$div(iconTag),
-    shiny::br(), 
+    shiny::br(),
     shiny::br()
   )
 }
@@ -1192,14 +1192,14 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname stars
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1221,13 +1221,13 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #'
 #' @export
 bs4Stars <- function(value, max = 5, color = "warning") {
-  
+
   stopifnot(!is.null(color))
   validateStatusPlus(color)
   stopifnot(!is.null(value))
   stopifnot(value >= 0)
   stopifnot(value <= max)
-  
+
   shiny::tags$td(
     class = "mailbox-star",
     shiny::tags$a(
@@ -1268,7 +1268,7 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1279,10 +1279,10 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #'      body = dashboardBody(
 #'       jumbotron(
 #'       title = "Hello, world!",
-#'       lead = "This is a simple hero unit, a simple jumbotron-style 
-#'       component for calling extra attention to featured 
+#'       lead = "This is a simple hero unit, a simple jumbotron-style
+#'       component for calling extra attention to featured
 #'       content or information.",
-#'       "It uses utility classes for typography and spacing 
+#'       "It uses utility classes for typography and spacing
 #'       to space content out within the larger container.",
 #'       status = "primary",
 #'       href = "https://www.google.com"
@@ -1296,16 +1296,16 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #' @export
 bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = "More",
                          status = c("primary", "warning", "danger", "info", "success")) {
-  
+
   status <- match.arg(status)
-  
+
   # uncomment below if more status are enabled
   #if (status == "dark") btnStatus <- "gray" else btnStatus <- "dark"
   btnStatus <- "secondary"
-  
+
   jumboCl <- "jumbotron"
   if (!is.null(status)) jumboCl <- paste0(jumboCl, " bg-", status)
-  
+
   # no need to wrap this tag in an external div to set a custom width
   # since the jumbotron will take the whole page width
   shiny::tags$div(
@@ -1333,10 +1333,10 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' @description Create a list group
 #'
 #' @param ... Slot for \link{listGroupItem}.
-#' @param type List group type. 
+#' @param type List group type.
 #' @param width List group width. 4 by default. Between 1 and 12.
 #' @param .list Slot for programmatically generated items.
-#' 
+#'
 #' @rdname listgroup
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1345,7 +1345,7 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1365,41 +1365,41 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #'         type = "action",
 #'         listGroupItem(
 #'          "Cras justo odio",
-#'          active = TRUE, 
-#'          disabled = FALSE, 
+#'          active = TRUE,
+#'          disabled = FALSE,
 #'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
-#'          active = FALSE, 
-#'          disabled = FALSE, 
+#'          active = FALSE,
+#'          disabled = FALSE,
 #'          "Dapibus ac facilisis in",
 #'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
 #'          "Morbi leo risus",
-#'          active = FALSE, 
-#'          disabled = TRUE, 
+#'          active = FALSE,
+#'          disabled = TRUE,
 #'          href = "https://www.google.com"
 #'         )
 #'        ),
 #'        listGroup(
 #'         type = "heading",
 #'         listGroupItem(
-#'          "Donec id elit non mi porta gravida at eget metus. 
+#'          "Donec id elit non mi porta gravida at eget metus.
 #'          Maecenas sed diam eget risus varius blandit.",
-#'          active = TRUE, 
-#'          disabled = FALSE, 
-#'          title = "List group item heading", 
-#'          subtitle = "3 days ago", 
+#'          active = TRUE,
+#'          disabled = FALSE,
+#'          title = "List group item heading",
+#'          subtitle = "3 days ago",
 #'          footer = "Donec id elit non mi porta."
 #'         ),
 #'         listGroupItem(
-#'          "Donec id elit non mi porta gravida at eget metus. 
+#'          "Donec id elit non mi porta gravida at eget metus.
 #'          Maecenas sed diam eget risus varius blandit.",
-#'          active = FALSE, 
-#'          disabled = FALSE, 
-#'          title = "List group item heading", 
-#'          subtitle = "3 days ago", 
+#'          active = FALSE,
+#'          disabled = FALSE,
+#'          title = "List group item heading",
+#'          subtitle = "3 days ago",
 #'          footer = "Donec id elit non mi porta."
 #'         )
 #'        )
@@ -1411,12 +1411,12 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' }
 #'
 #' @export
-bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4, 
+bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
                          .list = NULL) {
-  
+
   items <- c(list(...), .list)
   type <- match.arg(type)
-  
+
   # item class depends on selected type
   itemCl <- switch(
     type,
@@ -1424,7 +1424,7 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
     "action" = "list-group-item list-group-item-action",
     "heading" = "list-group-item list-group-item-action flex-column align-items-start"
   )
-  
+
   # build items based on type and options passed
   itemsTag <- lapply(items, function(item) {
     names(item)[1] <- "body"
@@ -1462,18 +1462,18 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
       )
     }
   })
-  
-  
+
+
   listGroupTag <- shiny::tags$ul(
     class = "list-group",
     itemsTag
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     listGroupTag
   )
-  
+
 }
 
 
@@ -1487,20 +1487,20 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
 #' @param title Item title (only if type is "heading").
 #' @param subtitle Item subtitle (only if type is "heading").
 #' @param footer Item footer content (only if type is "heading").
-#' @param active Whether the item is active or not. FALSE by default. 
+#' @param active Whether the item is active or not. FALSE by default.
 #' Only if type is "action" or "heading".
-#' @param disabled Whether the item is disabled or not. FALSE by default. 
+#' @param disabled Whether the item is disabled or not. FALSE by default.
 #' Only if type is "action" or "heading".
 #' @param href Item external link.
-#' 
+#'
 #'
 #' @rdname listgroup
 #'
 #' @export
-bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL, 
+bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
                              footer = NULL, active = FALSE, disabled = FALSE,
                              href = NULL) {
-  
+
   if (active && disabled) {
     stop("active and disabled cannot be TRUE at the same time!")
   }
@@ -1521,10 +1521,10 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 
 #' @title BS4 ionicons
 #'
-#' @description Create a ionicon. 
+#' @description Create a ionicon.
 #'
 #' @param name Name of icon. See <https://ionic.io/ionicons/>.
-#' 
+#'
 #' @note Similar to the icon function from shiny.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1533,7 +1533,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1568,7 +1568,7 @@ ionicon <- function(name) {
 #' @param image url or path to the image.
 #' @param title Attachment title.
 #' @param href External link.
-#' 
+#'
 #' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1577,7 +1577,7 @@ ionicon <- function(name) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1623,7 +1623,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
             },
             title
           )
-        ) 
+        )
       },
       shiny::tags$div(
         class = "attachment-text",
@@ -1637,7 +1637,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 
 #' AdminLTE3 description block
 #'
-#' \link{descriptionBlock} creates a description block, perfect for writing statistics 
+#' \link{descriptionBlock} creates a description block, perfect for writing statistics
 #' to insert in a \link{box}.
 #'
 #' @param number Any number.
@@ -1671,7 +1671,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'   separate two blocks. The last block on the right should not have a right border.
 #' @param marginBottom FALSE by default. Set it to TRUE when the
 #'   descriptionBlock is used in a \link{boxPad} context.
-#'   
+#'
 #' @rdname box
 #' @family boxWidgets
 #'
@@ -1680,7 +1680,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1696,11 +1696,11 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'         column(
 #'           width = 6,
 #'           descriptionBlock(
-#'             number = "17%", 
-#'             numberColor = "pink", 
+#'             number = "17%",
+#'             numberColor = "pink",
 #'             numberIcon = icon("caret-up"),
-#'             header = "$35,210.43", 
-#'             text = "TOTAL REVENUE", 
+#'             header = "$35,210.43",
+#'             text = "TOTAL REVENUE",
 #'             rightBorder = TRUE,
 #'             marginBottom = FALSE
 #'           )
@@ -1708,11 +1708,11 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'         column(
 #'           width = 6,
 #'           descriptionBlock(
-#'             number = "18%", 
-#'             numberColor = "secondary", 
+#'             number = "18%",
+#'             numberColor = "secondary",
 #'             numberIcon = icon("caret-down"),
-#'             header = "1200", 
-#'             text = "GOAL COMPLETION", 
+#'             header = "1200",
+#'             text = "GOAL COMPLETION",
 #'             rightBorder = FALSE,
 #'             marginBottom = FALSE
 #'           )
@@ -1730,21 +1730,21 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NULL,
                              header = NULL, text = NULL, rightBorder = TRUE,
                              marginBottom = FALSE) {
-  
+
   cl <- "description-block"
   if (rightBorder) cl <- paste0(cl, " border-right")
   if (marginBottom) cl <- paste0(cl, " mb-4")
-  
+
   numcl <- "description-percentage"
   if (!is.null(numberColor)) {
     validateStatusPlus(numberColor)
     numcl <- paste0(numcl, " text-", numberColor)
   }
-  
+
   shiny::tags$div(
     class = cl,
     shiny::tags$span(
-      class = numcl, 
+      class = numcl,
       number,
       if (!is.null(numberIcon)) numberIcon
     ),
@@ -1785,7 +1785,7 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param style Custom CSS, if any.
-#' 
+#'
 #' @rdname box
 #' @family boxWidgets
 #'
@@ -1795,7 +1795,7 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1811,20 +1811,20 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #'           boxPad(
 #'             color = "purple",
 #'             descriptionBlock(
-#'               header = "8390", 
-#'               text = "VISITS", 
+#'               header = "8390",
+#'               text = "VISITS",
 #'               rightBorder = FALSE,
 #'               marginBottom = TRUE
 #'             ),
 #'             descriptionBlock(
-#'               header = "30%", 
-#'               text = "REFERRALS", 
+#'               header = "30%",
+#'               text = "REFERRALS",
 #'               rightBorder = FALSE,
 #'               marginBottom = TRUE
 #'             ),
 #'             descriptionBlock(
-#'               header = "70%", 
-#'               text = "ORGANIC", 
+#'               header = "70%",
+#'               text = "ORGANIC",
 #'               rightBorder = FALSE,
 #'               marginBottom = FALSE
 #'             )
@@ -1846,7 +1846,7 @@ cardPad <- function(..., color = NULL, style = NULL) {
     validateStatusPlus(color)
     cl <- paste0(cl, " bg-", color)
   }
-  
+
   shiny::tags$div(
     class = cl,
     style = style,
@@ -1870,12 +1870,12 @@ cardPad <- function(..., color = NULL, style = NULL) {
 #' @rdname productList
 #'
 #' @examples
-#' 
+#'
 #' # Box with productList
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1886,16 +1886,16 @@ cardPad <- function(..., color = NULL, style = NULL) {
 #'       status = "primary",
 #'       productList(
 #'         productListItem(
-#'           image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png", 
-#'           title = "Samsung TV", 
-#'           subtitle = "$1800", 
+#'           image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png",
+#'           title = "Samsung TV",
+#'           subtitle = "$1800",
 #'           color = "warning",
 #'           "This is an amazing TV, but I don't like TV!"
 #'         ),
 #'         productListItem(
-#'           image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg", 
-#'           title = "Imac 27", 
-#'           subtitle = "$4999", 
+#'           image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg",
+#'           title = "Imac 27",
+#'           subtitle = "$4999",
 #'           color = "danger",
 #'           "This is were I spend most of my time!"
 #'         )
@@ -1939,14 +1939,14 @@ productList <- function(...) {
 #' @rdname productList
 #'
 #' @export
-productListItem <- function(..., image = NULL, title = NULL, 
+productListItem <- function(..., image = NULL, title = NULL,
                             subtitle = NULL, color = NULL) {
   cl <- "badge float-right"
   if (!is.null(color)) {
     validateStatus(color)
     cl <- paste0(cl, " badge-", color)
   }
-  
+
   shiny::tags$li(
     class = "item",
     shiny::tags$div(
@@ -1956,7 +1956,7 @@ productListItem <- function(..., image = NULL, title = NULL,
     shiny::tags$div(
       class = "product-info",
       shiny::tags$a(
-        href = "javascript:void(0)", 
+        href = "javascript:void(0)",
         class = "product-title",
         title,
         if (!is.null(subtitle)) shiny::tags$span(class = cl, subtitle)
@@ -1986,7 +1986,7 @@ productListItem <- function(..., image = NULL, title = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1997,18 +1997,18 @@ productListItem <- function(..., image = NULL, title = NULL,
 #'       status = "success",
 #'       userList(
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg", 
-#'           title = "Shiny", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
+#'           title = "Shiny",
 #'           subtitle = "Package 1"
 #'         ),
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg", 
-#'           title = "Tidyverse", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg",
+#'           title = "Tidyverse",
 #'           subtitle = "Package 2"
 #'         ),
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg", 
-#'           title = "tidyr", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg",
+#'           title = "tidyr",
 #'           subtitle = "Package 3"
 #'         )
 #'       )
@@ -2043,7 +2043,7 @@ userList <- function(...) {
 userListItem <- function(image, title, subtitle = NULL) {
   shiny::tags$li(
     shiny::tags$img(
-      src = image, 
+      src = image,
       alt = "User Image",
       shiny::tags$a(class = "users-list-name", title),
       if (!is.null(subtitle)) {
@@ -2088,7 +2088,7 @@ userListItem <- function(image, title, subtitle = NULL) {
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param width Container width: between 1 and 12.
-#' @param height Container height. 
+#' @param height Container height.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userMessage
@@ -2097,7 +2097,7 @@ userListItem <- function(image, title, subtitle = NULL) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2160,28 +2160,28 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
     cl <- paste0(cl, " direct-chat-", status)
   }
   msgtag <- shiny::tags$div(
-    class = cl, 
-    ..., 
+    class = cl,
+    ...,
     style = if (!is.null(height)) {
       sprintf("height: %s; overflow-y: auto;", height)
     } else {
       "height: 100%;"
     }
   )
-  
+
   shiny::tags$div(
     id = id,
     class = if (!is.null(width)) paste0("col-sm-", width),
     msgtag
   )
-  
+
 }
 
 
 
 
 
-#' AdminLTE3 user message 
+#' AdminLTE3 user message
 #'
 #' \link{userMessage} creates a user message html element.
 #'
@@ -2194,13 +2194,13 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
 #' @rdname userMessage
 #'
 #' @export
-userMessage <- function(..., author = NULL, date = NULL, 
+userMessage <- function(..., author = NULL, date = NULL,
                         image = NULL, type = c("sent", "received")) {
-  
+
   type <- match.arg(type)
   messageCl <- "direct-chat-msg"
   if (type == "sent") messageCl <- paste0(messageCl, " right")
-  
+
   # message info
   messageInfo <- shiny::tags$div(
     class = "direct-chat-info clearfix",
@@ -2209,7 +2209,7 @@ userMessage <- function(..., author = NULL, date = NULL,
         "direct-chat-name float-right"
       } else {
         "direct-chat-name"
-      }, 
+      },
       author
     ),
     if (!is.null(date)) {
@@ -2218,22 +2218,22 @@ userMessage <- function(..., author = NULL, date = NULL,
           "direct-chat-timestamp float-right"
         } else {
           "direct-chat-timestamp"
-        }, 
+        },
         date
       )
     }
   )
-  
+
   # message Text
   messageTxt <- shiny::tags$div(class = "direct-chat-text", ...)
-  
+
   # message author image
   messageImg <- shiny::tags$img(class = "direct-chat-img", src = image)
-  
+
   shiny::tags$div(
     class = messageCl,
     messageInfo,
-    messageImg, 
+    messageImg,
     messageTxt
   )
 }
@@ -2242,7 +2242,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 
 
 #' Update a messages container in the server side
-#' 
+#'
 #' \link{updateUserMessages} allows to interact with a \link{userMessages} container,
 #' such as sending, removing or editing messages.
 #'
@@ -2258,7 +2258,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2300,8 +2300,8 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'     })
 #'     observeEvent(input$add, {
 #'       updateUserMessages(
-#'         "message", 
-#'         action = "add", 
+#'         "message",
+#'         action = "add",
 #'         content = list(
 #'           author = "David",
 #'           date = "Now",
@@ -2309,10 +2309,10 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'           type = "received",
 #'           text = tagList(
 #'            sliderInput(
-#'             "obs", 
+#'             "obs",
 #'             "Number of observations:",
-#'             min = 0, 
-#'             max = 1000, 
+#'             min = 0,
+#'             max = 1000,
 #'             value = 500
 #'            ),
 #'            plotOutput("distPlot")
@@ -2320,40 +2320,40 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'         )
 #'       )
 #'     })
-#'     
+#'
 #'     output$distPlot <- renderPlot({
 #'      hist(rnorm(input$obs))
 #'     })
-#'     
+#'
 #'     observeEvent(input$update, {
 #'       updateUserMessages(
-#'         "message", 
-#'         action = "update", 
+#'         "message",
+#'         action = "update",
 #'         index = input$index,
 #'         content = list(
 #'          text = tagList(
 #'           appButton(
 #'            inputId = "reload",
-#'            label = "Click me!", 
-#'            icon = icon("arrows-rotate"), 
+#'            label = "Click me!",
+#'            icon = icon("arrows-rotate"),
 #'            dashboardBadge(1, color = "primary")
 #'           )
 #'          )
 #'         )
 #'       )
 #'     })
-#'     
+#'
 #'     observeEvent(input$reload, {
 #'      showNotification("Yeah!", duration = 1, type = "default")
 #'     })
 #'   }
 #'  )
 #' }
-updateUserMessages <- function(id, action = c("add", "remove", "update"), 
-                               index = NULL, content = NULL, 
+updateUserMessages <- function(id, action = c("add", "remove", "update"),
+                               index = NULL, content = NULL,
                                session = shiny::getDefaultReactiveDomain()) {
   action <- match.arg(action)
-  
+
   content <- lapply(content, function(c) {
     if (inherits(c, "shiny.tag") || inherits(c, "shiny.tag.list")) {
       # necessary if the user pass input/output with deps
@@ -2362,12 +2362,12 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
     }
     c
   })
-  
+
   session$sendCustomMessage(
-    "user-messages", 
+    "user-messages",
     list(
-      id = id, 
-      action = action, 
+      id = id,
+      action = action,
       index = index,
       body = content
     )
@@ -2386,18 +2386,18 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #' @param image Profile image, if any.
 #' @param author Post author.
 #' @param description Post description.
-#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
+#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment.
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userPost
 #' @family boxWidgets
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2411,10 +2411,10 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
 #'        author = "Jonathan Burke Jr.",
 #'        description = "Shared publicly - 7:30 PM today",
-#'        "Lorem ipsum represents a long-held tradition for designers, 
-#'        typographers and the like. Some people hate it and argue for 
-#'        its demise, but others ignore the hate as they create awesome 
-#'        tools to help create filler text for everyone from bacon 
+#'        "Lorem ipsum represents a long-held tradition for designers,
+#'        typographers and the like. Some people hate it and argue for
+#'        its demise, but others ignore the hate as they create awesome
+#'        tools to help create filler text for everyone from bacon
 #'        lovers to Charlie Sheen fans.",
 #'        collapsible = FALSE,
 #'        userPostTagItems(
@@ -2439,17 +2439,17 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @export
-userPost <- function(..., id = NULL, image, author, 
-                     description = NULL, collapsible = TRUE, 
+userPost <- function(..., id = NULL, image, author,
+                     description = NULL, collapsible = TRUE,
                      collapsed = FALSE) {
-  
+
   id <- paste0("post-", id)
-  
+
   btnCl <- "btn-tool float-right"
-  
-  
+
+
   # if the input tag is an image, it is better to center it...
   items <- list(...)
   items <- lapply(seq_along(items), function(i) {
@@ -2468,16 +2468,16 @@ userPost <- function(..., id = NULL, image, author,
       items[[i]]
     }
   })
-  
-  
+
+
   shiny::tags$div(
     class = "post",
-    
+
     shiny::tags$div(
       class = "user-block",
       shiny::img(class = "img-circle img-bordered-sm", src = image),
       shiny::tags$span(
-        class = "username", 
+        class = "username",
         author,
         # box tool
         if (collapsible) {
@@ -2494,7 +2494,7 @@ userPost <- function(..., id = NULL, image, author,
             }
           )
         }
-        
+
       ),
       if (!is.null(description)) {
         shiny::tags$span(class = "description", description)
@@ -2509,10 +2509,10 @@ userPost <- function(..., id = NULL, image, author,
         }
       },
       id = id,
-      items 
+      items
     )
   )
-  
+
 }
 
 
@@ -2525,10 +2525,10 @@ userPost <- function(..., id = NULL, image, author,
 #' @param ... Slot for \link{userPostTagItem}.
 #'
 #' @rdname userPost
-#' 
+#'
 #' @export
 userPostTagItems<- function(...) {
-  
+
   shiny::tags$ul(
     class = "list-inline d-flex",
     ...
@@ -2545,10 +2545,10 @@ userPostTagItems<- function(...) {
 #' @param ... Tool content such as label, button, ...
 #'
 #' @rdname userPost
-#' 
+#'
 #' @export
 userPostTagItem <- function(...) {
-  
+
   shiny::tags$li(
     class = "mx-2",
     ...
@@ -2566,12 +2566,12 @@ userPostTagItem <- function(...) {
 #' @param width Media width in pixels.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @export
 userPostMedia <- function(image, height = NULL, width = NULL) {
   shiny::img(
     style = "margin: auto;",
-    class = "img-fluid", 
+    class = "img-fluid",
     src = image,
     height = height,
     width = width
@@ -2589,12 +2589,12 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname sortable
-#' 
-#' @examples 
+#'
+#' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     header = dashboardHeader(),
@@ -2610,7 +2610,7 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'            p(class = "text-center", paste("Column", i)),
 #'            lapply(1:2, FUN = function(j) {
 #'              box(
-#'                title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+#'                title = paste0("I am the ", j,"-th card of the ", i, "-th column"),
 #'                width = 12,
 #'                "Click on my header"
 #'              )
@@ -2622,14 +2622,14 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'   ),
 #'   server = function(input, output) {}
 #'  )
-#' }  
-#' 
+#' }
+#'
 #' @export
 bs4Sortable <- function(..., width = 12) {
-  
+
   sectionCl <- "connectedSortable ui-sortable"
   if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
-  
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
@@ -2652,7 +2652,7 @@ bs4Sortable <- function(..., width = 12) {
     shiny::tags$section(
       class = sectionCl,
       ...
-    ) 
+    )
   )
 }
 
@@ -2665,21 +2665,21 @@ bs4Sortable <- function(..., width = 12) {
 #'
 #' Build an Bootstrap 4 table container
 #'
-#' @param data Expect dataframe, tibble or list of shiny tags... See examples. 
+#' @param data Expect dataframe, tibble or list of shiny tags... See examples.
 #' @param cardWrap Whether to wrap the table in a card. FALSE by default.
 #' @param bordered Whether to display border between elements. FALSE by default.
 #' @param striped Whether to displayed striped in elements. FALSE by default.
 #' @param width Table width. 12 by default.
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  # width dataframe as input
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      bs4Table(
@@ -2688,16 +2688,16 @@ bs4Sortable <- function(..., width = 12) {
 #'       striped = TRUE,
 #'       iris
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
-#'  
+#'
 #'  # with shiny tags as input
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'       bs4Table(
@@ -2706,15 +2706,15 @@ bs4Sortable <- function(..., width = 12) {
 #'         striped = TRUE,
 #'         list(
 #'           list(
-#'             income = "$2,500 USD", 
+#'             income = "$2,500 USD",
 #'             status = dashboardBadge(
 #'               "Pending",
 #'               position = "right",
 #'               color = "danger",
 #'               rounded = TRUE
-#'             ), 
-#'             progress = progressBar(value = 50, status = "pink", size = "xxs"), 
-#'             text = "test", 
+#'             ),
+#'             progress = progressBar(value = 50, status = "pink", size = "xxs"),
+#'             text = "test",
 #'             confirm = actionButton(
 #'               "go",
 #'               "Go"
@@ -2723,42 +2723,42 @@ bs4Sortable <- function(..., width = 12) {
 #'           list("$2,500 USD", "NA", "NA", "test", "NA")
 #'         )
 #'       )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) {}
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname table
 #'
 #' @export
-bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE, 
+bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
                      striped = FALSE, width = 12) {
-  
+
   # handle theme
   tableCl <- "table"
   if (bordered) tableCl <- paste0(tableCl, " table-bordered")
   if (striped) tableCl <- paste0(tableCl, " table-striped")
-  
-  if (!inherits(data, "list") && 
+
+  if (!inherits(data, "list") &&
       !inherits(data, "data.frame")) {
     stop("data must be a dataframe, tibble or list")
   }
-  
+
   if (inherits(data, "data.frame")) {
-    
+
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
         lapply(
-          seq_along(colnames(data)), 
+          seq_along(colnames(data)),
           function(i) shiny::tags$th(colnames(data)[[i]])
-        ) 
+        )
       )
     )
-    
+
     table <- lapply(seq_len(nrow(data)), function(i) {
       bs4TableItems(
         lapply(seq_len(ncol(data)), function(j) {
@@ -2768,19 +2768,19 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
           )
         })
       )
-    }) 
+    })
   } else if (inherits(data, "list")) {
-    
+
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
         lapply(
-          seq_along(names(data[[1]])), 
+          seq_along(names(data[[1]])),
           function(i) shiny::tags$th(names(data[[1]])[[i]])
-        ) 
+        )
       )
     )
-    
+
     table <- lapply(seq_along(data), function(i) {
       bs4TableItems(
         lapply(seq_along(data[[i]]), function(j) {
@@ -2790,19 +2790,19 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
           )
         })
       )
-    }) 
+    })
   }
-  
+
   # body rows
   tableBody <- shiny::tags$tbody(table)
-  
+
   # table tag
   tableTag <- shiny::tags$table(
     class = tableCl,
     tableHead,
     tableBody
   )
-  
+
   # card wrapper or not
   if (cardWrap) {
     shiny::column(
@@ -2921,27 +2921,27 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 # #'
 # #' @export
 # todoList <- function(..., sortable = TRUE) {
-#   
+#
 #   items <- list(...)
-#   
+#
 #   if (sortable) {
 #     for (i in seq_along(items)) {
 #       items[[i]]$children[[1]]$attribs$class <- paste(items[[i]]$children[[1]]$attribs$class, "ui-sortable-handle")
 #     }
 #   }
-#   
+#
 #   todoListTag <- shiny::tags$ul(
 #     class = if (sortable) "todo-list ui-sortable" else "todo-list",
 #     `data-widget` = "todo-list",
 #     items
 #   )
-#   
+#
 #   todoListTag
-#   
+#
 # }
-# 
-# 
-# 
+#
+#
+#
 # #' @title AdminLTE2 todo list item
 # #'
 # #' @description Create a todo list item
@@ -2956,30 +2956,30 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 # todoListItem <- function(..., checked = FALSE, label = NULL) {
 #   cl <- NULL
 #   if (checked) cl <- "done"
-#   
+#
 #   shiny::tags$li(
 #     class = cl,
-#     
+#
 #     # sortable icon
 #     shiny::tags$span(
 #       class = "handle",
 #       shiny::tags$i(class = "fa fa-ellipsis-v"),
 #       shiny::tags$i(class = "fa fa-ellipsis-v")
 #     ),
-#     
+#
 #     # checkbox trigger
 #     # need to be implemented (custom binding js)
 #     #shiny::tags$input(type = "checkbox"),
-#     
+#
 #     # label
 #     shiny::tags$span(class = "text", label),
-#     
+#
 #     # any element
 #     shiny::tags$small(
 #       ...
 #     )
 #   )
-#   
+#
 # }#
 
 
@@ -3013,15 +3013,15 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
@@ -3050,13 +3050,13 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #'        )
 #'       )
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname ribbon
@@ -3064,7 +3064,7 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #' @export
 bs4Ribbon <- function(text, color) {
   validateStatusPlus(color)
-  ribbonCl <- paste0("ribbon bg-", color) 
+  ribbonCl <- paste0("ribbon bg-", color)
   ribbonWrapperCl <- "ribbon-wrapper"
   shiny::tags$div(
     class = ribbonWrapperCl,
@@ -3104,15 +3104,15 @@ bs4Ribbon <- function(text, color) {
 #'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @rdname quote
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
@@ -3123,13 +3123,13 @@ bs4Ribbon <- function(text, color) {
 #'       blockQuote("Blablabla", color = "warning"),
 #'       blockQuote("Blablabla", color = "fuchsia")
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -3163,7 +3163,7 @@ getAdminLTEColors <- function() {
 #' @param previousBtn Previous button text.
 #' @param nextBtn Next button text.
 #' @param .list Programmatically generated \link{paginationItem}.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return An HTML pagination container
@@ -3172,10 +3172,10 @@ getAdminLTEColors <- function() {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#' 
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      pagination(
@@ -3221,7 +3221,7 @@ pagination <- function(..., id = NULL, selected = NULL,
     side = "left",
     .list = .list
   )
-  
+
   # handle style
   pagination_cl <- "pagination"
   if (align %in% c("center", "right")) {
@@ -3237,7 +3237,7 @@ pagination <- function(..., id = NULL, selected = NULL,
       sprintf("pagination-%s", size)
     )
   }
-  
+
   # Start and end navigation tags
   pagination_start <- shiny::tags$li(
     class = "page-item",
@@ -3249,7 +3249,7 @@ pagination <- function(..., id = NULL, selected = NULL,
       shiny::tags$span(class = "sr-only", "Previous")
     )
   )
-  
+
   pagination_end <- shiny::tags$li(
     class = "page-item",
     shiny::tags$a(
@@ -3259,7 +3259,7 @@ pagination <- function(..., id = NULL, selected = NULL,
       shiny::tags$span(class = "sr-only", "Next")
     )
   )
-  
+
   # Modify tag on the fly to correspond to Bootstrap 4 pagination
   temp_tag <- htmltools::tagQuery(temp_tag)$
     find("ul")$ # remove old tabs class and add pagination class
@@ -3284,10 +3284,10 @@ pagination <- function(..., id = NULL, selected = NULL,
     prepend(pagination_start)$
     append(pagination_end)$
     allTags()
-  
+
   # Handle disabled tags
   disabled_items_idx <- numeric(0)
-  
+
   htmltools::tagQuery(temp_tag)$
     find(".tab-pane")$
     each(function(x, i) {
@@ -3295,7 +3295,7 @@ pagination <- function(..., id = NULL, selected = NULL,
         disabled_items_idx <<- c(disabled_items_idx, i)
       }
     })
-  
+
   temp_tag <- htmltools::tagQuery(temp_tag)$
     find("li")$
     each(function(x, i) {
@@ -3306,13 +3306,13 @@ pagination <- function(..., id = NULL, selected = NULL,
       }
     })$
     allTags()
-  
+
   # Wrap ul by tags$nav
   temp_tag$children[[1]] <- shiny::tags$nav(
     `aria-label` = "Navigation stepper",
     temp_tag$children[[1]]
   )
-  
+
   temp_tag
 }
 
@@ -3322,7 +3322,7 @@ pagination <- function(..., id = NULL, selected = NULL,
 #'
 #' @inheritParams shiny::tabPanel
 #' @param disabled Whether to disable the item. Default to FALSE.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return An HTML tag.
@@ -3342,7 +3342,7 @@ paginationItem <- function (title, ..., value = title,
 #'
 #' @inheritParams pagination
 #' @param session Shiny session object.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return Send a message from R to JS so as to update
@@ -3352,10 +3352,10 @@ paginationItem <- function (title, ..., value = title,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#' 
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
@@ -3386,23 +3386,23 @@ paginationItem <- function (title, ..., value = title,
 #'     )
 #'    ),
 #'    server = function(input, output, session) {
-#'     
+#'
 #'      observeEvent(input$update,{
 #'        updatePagination("mypagination", selected = "page4")
 #'      })
-#'     
+#'
 #'      observeEvent(input$disable,{
 #'        updatePagination("mypagination", disabled = "page1")
 #'      })
-#'     
+#'
 #'      observeEvent(input$enable,{
 #'        updatePagination("mypagination", selected = "page1")
 #'      })
-#'     
+#'
 #'      output$selected_page <- renderText({
 #'        sprintf("Currently selected page: %s", input$mypagination)
 #'      })
-#'     
+#'
 #'      output$distPlot <- renderPlot({
 #'        hist(rnorm(input$obs))
 #'      })
@@ -3412,7 +3412,7 @@ paginationItem <- function (title, ..., value = title,
 updatePagination <- function(id, selected = NULL,
                              disabled = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
-  
+
   if (length(selected) > 1) {
     stop("Can't select more than one element ...")
   }
@@ -3422,7 +3422,7 @@ updatePagination <- function(id, selected = NULL,
   if (length(common_elements) > 0) {
     stop("A selected item cannot be disabled ...")
   }
-  
+
   session$sendInputMessage(
     id,
     message = dropNulls(
