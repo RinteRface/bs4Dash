@@ -64,6 +64,8 @@ Collate:
     'bs4DashGallery.R'
     'deps.R'
     'grid.R'
+    'import-standalone-obj-type.R'
+    'import-standalone-types-check.R'
     'inputs.R'
     'skinSelector.R'
     'utils.R'
