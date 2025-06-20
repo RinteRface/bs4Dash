@@ -92,9 +92,22 @@
 #' @rdname dashboardPage
 #'
 #' @export
-bs4DashPage <- function(header, sidebar, body, controlbar = NULL, footer = NULL, title = NULL,
-                        skin = NULL, freshTheme = NULL, preloader = NULL, options = NULL,
-                        fullscreen = FALSE, help = FALSE, dark = FALSE, scrollToTop = FALSE) {
+bs4DashPage <- function(
+  header,
+  sidebar,
+  body,
+  controlbar = NULL,
+  footer = NULL,
+  title = NULL,
+  skin = NULL,
+  freshTheme = NULL,
+  preloader = NULL,
+  options = NULL,
+  fullscreen = FALSE,
+  help = FALSE,
+  dark = FALSE,
+  scrollToTop = FALSE
+) {
   titleTag <- header[[2]]
 
   sidebarDisabled <- sidebar$attribs$`data-disable`

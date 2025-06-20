@@ -47,23 +47,35 @@
 #' @seealso \link{dashboardBody}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
-                           skin = NULL, status = "primary",
-                           elevation = 4, collapsed = FALSE,
-                           minified = TRUE, expandOnHover = TRUE,
-                           fixed = TRUE, id = NULL, customArea = NULL) {
+bs4DashSidebar <- function(
+  ...,
+  disable = FALSE,
+  width = NULL,
+  skin = NULL,
+  status = "primary",
+  elevation = 4,
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = NULL,
+  customArea = NULL
+) {
   # When no skin is specified, sidebar color must match the dashboard skin color
   # by default which is set in the dashboardPage function.
   skin <- set_sidebar_skin(skin)
 
-  if (is.null(id)) id <- "sidebarId"
+  if (is.null(id)) {
+    id <- "sidebarId"
+  }
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
   # specified in the `collapsed` argument.
   dataValue <- shiny::restoreInput(id = id, default = collapsed)
-  if (disable) dataValue <- TRUE # this is a workaround to fix #209
+  if (disable) {
+    dataValue <- TRUE
+  } # this is a workaround to fix #209
   dataValueString <- if (dataValue) "true" else "false"
-
 
   # sidebar content
   contentTag <- shiny::tags$div(
@@ -134,8 +146,12 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     `data-collapsed` = collapsed,
     `data-disable` = disable,
     class = paste0(
-      "main-sidebar sidebar-", skin, "-",
-      status, " elevation-", elevation,
+      "main-sidebar sidebar-",
+      skin,
+      "-",
+      status,
+      " elevation-",
+      elevation,
       if (expandOnHover) NULL else " sidebar-no-expand",
       if (!is.null(customArea)) " main-sidebar-custom"
     ),
@@ -160,7 +176,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 set_sidebar_skin <- function(skin) {
   is_dark_skin <- get_parent_args()$dark
   if (is.null(skin)) {
-    skin <- if (is.null(is_dark_skin) || !is_dark_skin)  "light" else "dark"
+    skin <- if (is.null(is_dark_skin) || !is_dark_skin) "light" else "dark"
   }
   skin
 }
@@ -216,8 +232,6 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 }
 
 
-
-
 #' Dashboard main sidebar menu
 #'
 #' \link{sidebarMenu} creates a menu for \link{dashboardSidebar}.
@@ -238,24 +252,51 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname dashboardSidebar
 #' @export
-bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
-                           compact = FALSE, childIndent = TRUE, legacy = FALSE) {
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+bs4SidebarMenu <- function(
+  ...,
+  id = NULL,
+  .list = NULL,
+  flat = FALSE,
+  compact = FALSE,
+  childIndent = TRUE,
+  legacy = FALSE
+) {
+  if (is.null(id)) {
+    id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  }
 
   # make sure only 1 item is selected at start
   items <- c(list(...), .list)
   nav_items <- findSidebarItem(items, "nav-item")
   selectedItems <- dropNulls(lapply(seq_along(nav_items), function(i) {
-    if (length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+    if (
+      length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0
+    ) {
+      TRUE
+    } else {
+      NULL
+    }
   }))
-  if (length(selectedItems) > 1) cli::cli_abort(c("Too many selected items.",
-                                             "i" = "Only 1 item may be selected at start."))
+  if (length(selectedItems) > 1) {
+    cli::cli_abort(c(
+      "Too many selected items.",
+      "i" = "Only 1 item may be selected at start."
+    ))
+  }
 
   menuCl <- "nav nav-pills nav-sidebar flex-column sidebar-menu"
-  if (flat) menuCl <- paste0(menuCl, " nav-flat")
-  if (compact) menuCl <- paste0(menuCl, " nav-compact")
-  if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
-  if (legacy) menuCl <- paste0(menuCl, " nav-legacy")
+  if (flat) {
+    menuCl <- paste0(menuCl, " nav-flat")
+  }
+  if (compact) {
+    menuCl <- paste0(menuCl, " nav-compact")
+  }
+  if (childIndent) {
+    menuCl <- paste0(menuCl, " nav-child-indent")
+  }
+  if (legacy) {
+    menuCl <- paste0(menuCl, " nav-legacy")
+  }
 
   # menu Tag
   shiny::tags$ul(
@@ -276,7 +317,6 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
 }
 
 
-
 #' Internally used by \link{sidebarMenu} to find treeview items
 #' and normal items.
 #' @param items List to search in.
@@ -288,8 +328,6 @@ findSidebarItem <- function(items, regex) {
     if (isNavItem) items[[i]]
   }))
 }
-
-
 
 
 #' Dashboard sidebar menu item
@@ -373,11 +411,21 @@ findSidebarItem <- function(items, regex) {
 #'   server <- function(input, output) {}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeColor = "success",
-                               tabName = NULL, href = NULL,
-                               newTab = TRUE, selected = NULL,
-                               expandedName = as.character(gsub("[[:space:]]", "", text)),
-                               startExpanded = FALSE, condition = NULL, .list = NULL) {
+bs4SidebarMenuItem <- function(
+  text,
+  ...,
+  icon = NULL,
+  badgeLabel = NULL,
+  badgeColor = "success",
+  tabName = NULL,
+  href = NULL,
+  newTab = TRUE,
+  selected = NULL,
+  expandedName = as.character(gsub("[[:space:]]", "", text)),
+  startExpanded = FALSE,
+  condition = NULL,
+  .list = NULL
+) {
   subItems <- c(list(...), .list)
   otherItems <- list()
 
@@ -387,19 +435,27 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
   }
 
   if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
-    cli::cli_abort(c("Invalid argument combination.",
-                     "i" = "Must have exactly one of: {.arg href}, {.arg tabName}, or sub-items (contained in {.arg ...} or {.arg .list})."))
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "Must have exactly one of: {.arg href}, {.arg tabName}, or sub-items (contained in {.arg ...} or {.arg .list})."
+    ))
   }
 
   if (!is.null(badgeLabel) && length(subItems) != 0) {
-    cli::cli_abort(c("Invalid argument combination.",
-                     "i" = "Cannot use both {.arg badgeLabel} and sub-items (contained in {.arg ...} or {.arg .list}) at the same time."))
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "Cannot use both {.arg badgeLabel} and sub-items (contained in {.arg ...} or {.arg .list}) at the same time."
+    ))
   }
 
   # Generate badge if needed
   if (!is.null(badgeLabel)) {
     validateStatus(badgeColor)
-    badgeTag <- dashboardBadge(badgeLabel, color = badgeColor, position = "right")
+    badgeTag <- dashboardBadge(
+      badgeLabel,
+      color = badgeColor,
+      position = "right"
+    )
   } else {
     badgeTag <- NULL
   }
@@ -462,7 +518,11 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     # is NULL. However, we want to this input to get passed on (and not dropped), so we
     # do `%OR% ""` to assure this.
     default <- if (startExpanded) expandedName else ""
-    dataExpanded <- shiny::restoreInput(id = "sidebarItemExpanded", default) %OR% ""
+    dataExpanded <- shiny::restoreInput(
+      id = "sidebarItemExpanded",
+      default
+    ) %OR%
+      ""
 
     # If `dataExpanded` is not the empty string, we need to check that it is equal to the
     # this menuItem's `expandedName`
@@ -470,10 +530,20 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 
     # handle case of multiple selected subitems and raise an error if so...
     selectedItems <- dropNulls(lapply(seq_along(subItems), function(i) {
-      if (length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+      if (
+        length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0
+      ) {
+        TRUE
+      } else {
+        NULL
+      }
     }))
-    if (length(selectedItems) > 1) cli::cli_abort(c("Too many selected items.",
-                                             "i" = "Only 1 subitem may be selected."))
+    if (length(selectedItems) > 1) {
+      cli::cli_abort(c(
+        "Too many selected items.",
+        "i" = "Only 1 subitem may be selected."
+      ))
+    }
 
     item_link <- shiny::tags$a(
       href = "#",
@@ -512,7 +582,10 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     }
 
     shiny::tags$li(
-      class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
+      class = paste0(
+        "nav-item has-treeview",
+        if (isExpanded) " menu-open" else ""
+      ),
       item_link,
       shiny::tags$ul(
         class = "nav nav-treeview",
@@ -523,9 +596,6 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     )
   }
 }
-
-
-
 
 
 #' Dashboard sidebar menu sub-item
@@ -545,8 +615,14 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 #' @rdname dashboardSidebar
 #'
 #' @export
-bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
-                                  newTab = NULL, icon = shiny::icon("angles-right"), selected = NULL) {
+bs4SidebarMenuSubItem <- function(
+  text,
+  tabName = NULL,
+  href = NULL,
+  newTab = NULL,
+  icon = shiny::icon("angles-right"),
+  selected = NULL
+) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
@@ -593,7 +669,6 @@ bs4SidebarHeader <- function(title) {
 }
 
 
-
 #' Dashboard sidebar user panel
 #'
 #' \link{sidebarUserPanel} creates a user Panel to put in \link{dashboardSidebar}.
@@ -621,9 +696,6 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
     )
   )
 }
-
-
-
 
 
 #' Change the selected sidebar tab on the client
@@ -786,6 +858,10 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'   )
 #' }
 #' @export
-updatebs4TabItems <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
+updatebs4TabItems <- function(
+  session = shiny::getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }

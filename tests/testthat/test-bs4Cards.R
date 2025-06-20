@@ -49,39 +49,47 @@ test_that("card structure", {
   cardChildren <- getCardChildren(bs4Card(footer = "footer"))
   expect_equal(class(cardChildren), "list")
   expect_length(cardChildren, 3)
-  
+
   cardChildren <- getCardChildren(bs4Card())
   expect_length(cardChildren, 2)
-  
+
   # if collapsible is FALSE, there is still header with title "\u200C"
   cardChildren <- getCardChildren(bs4Card(collapsible = FALSE))
   expect_length(cardChildren, 2)
-  expect_equal(getCardChildren(bs4Card(collapsible = FALSE))[[1]]$children[[1]]$attribs$class, "card-title")
-  
+  expect_equal(
+    getCardChildren(bs4Card(collapsible = FALSE))[[1]]$children[[
+      1
+    ]]$attribs$class,
+    "card-title"
+  )
+
   # if collapsible is FALSE but title is not NULL, the header is included
-  cardChildren <- getCardChildren(bs4Card(collapsible = FALSE, title = "card title"))
+  cardChildren <- getCardChildren(bs4Card(
+    collapsible = FALSE,
+    title = "card title"
+  ))
   expect_length(cardChildren, 2)
 })
 
 test_that("card tools", {
   parms <- list()
-  
+
   # collapsible/closable and maximizable are contained in a sublist
   parms$collapsible <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 1)
-  
+
   parms$closable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 2)
-  
+
   parms$maximizable <- TRUE
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 3)
-  
+
   parms$dropdownMenu <- boxDropdown(
     boxDropdownItem("plop"),
     boxDropdownItem("plop2")
@@ -89,12 +97,12 @@ test_that("card tools", {
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 4)
-  
+
   parms$sidebar <- boxSidebar()
   cardTag <- do.call(bs4Card, parms)
   toolsTag <- getCardTools(cardTag)
   expect_length(toolsTag, 5)
-  
+
   # label does not belong to the toolsTag list
   parms$label <- boxLabel(text = "label", status = "danger")
   cardTag <- do.call(bs4Card, parms)
@@ -116,15 +124,23 @@ test_that("status", {
 
 test_that("gradient", {
   expect_error(bs4Card(gradient = TRUE, background = NULL))
-  cardTag <- bs4Card(gradient = TRUE, background = "danger", solidHeader = TRUE, status = "danger")
+  cardTag <- bs4Card(
+    gradient = TRUE,
+    background = "danger",
+    solidHeader = TRUE,
+    status = "danger"
+  )
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card bs4Dash card-danger bg-gradient-danger")
 })
 
 test_that("solidheader", {
-  
-  expect_error(bs4Card(solidHeader = FALSE, status = "primary", background = "purple"))
-  
+  expect_error(bs4Card(
+    solidHeader = FALSE,
+    status = "primary",
+    background = "purple"
+  ))
+
   cardTag <- bs4Card(solidHeader = FALSE, status = "warning")
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card bs4Dash card-warning card-outline")
@@ -140,7 +156,7 @@ test_that("card bs4Dash sidebar class", {
 
 test_that("collapsible and collapsed", {
   expect_error(bs4Card(collapsible = FALSE, collapsed = TRUE))
-  
+
   cardTag <- bs4Card(collapsible = TRUE, collapsed = TRUE)
   cardCl <- getCardCl(cardTag)
   expect_match(cardCl, "card bs4Dash collapsed-card")
@@ -168,11 +184,11 @@ test_that("headerBorder", {
 test_that("height", {
   # check if shiny::validateCssUnit does its job
   expect_error(bs4Card(height = "prout"))
-  
+
   cardTag <- bs4Card(height = "400px")
   bodyStyle <- getCardBodyStyle(cardTag)
   expect_match(bodyStyle, "height: 400px")
-  
+
   # cardTag <- bs4Card(overflow = TRUE)
   # bodyStyle <- getCardBodyStyle(cardTag)
   # expect_match(bodyStyle, "overflow-y: auto; max-height: 500px;")
@@ -182,7 +198,7 @@ test_that("body content", {
   cardTag <- bs4Card()
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 0)
-  
+
   cardTag <- bs4Card("prout")
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 1)
@@ -192,7 +208,7 @@ test_that("card sidebar in card body", {
   cardTag <- bs4Card(sidebar = bs4CardSidebar())
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 1)
-  
+
   cardTag <- bs4Card("prout", sidebar = bs4CardSidebar())
   bodyTag <- getCardBody(cardTag)
   expect_length(bodyTag, 2)
@@ -217,7 +233,7 @@ test_that("footer", {
   # even appear in the card tag
   cardTag <- bs4Card()
   expect_error(getCardFooter(cardTag))
-  
+
   cardTag <- bs4Card(footer = "prout")
   cardFooterTag <- getCardFooter(cardTag)
   expect_match(cardFooterTag$attribs$class, "card-footer")

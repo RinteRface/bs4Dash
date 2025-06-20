@@ -11,7 +11,6 @@
 #'
 #' @export
 bs4DashFooter <- function(left = NULL, right = NULL, fixed = FALSE) {
-
   shiny::tags$footer(
     class = "main-footer",
     `data-fixed` = tolower(fixed),

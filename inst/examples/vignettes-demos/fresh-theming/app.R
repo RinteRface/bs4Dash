@@ -39,8 +39,8 @@ box_config <- tibble::tribble(
 # box factory function
 box_factory <- function(background, labelStatus) {
   box(
-    title = "Cyberpunk Box", 
-    collapsible = TRUE, 
+    title = "Cyberpunk Box",
+    collapsible = TRUE,
     background = background,
     height = "200px",
     label = boxLabel(1, labelStatus)
@@ -55,7 +55,7 @@ shinyApp(
     freshTheme = theme,
     header = dashboardHeader(
       leftUi = dropdownMenu(
-        type = "messages", 
+        type = "messages",
         badgeStatus = "success",
         messageItem(
           from = "Support Team",
@@ -79,5 +79,5 @@ shinyApp(
     controlbar = dashboardControlbar(),
     title = "Fresh theming"
   ),
-  server = function(input, output) { }
+  server = function(input, output) {}
 )

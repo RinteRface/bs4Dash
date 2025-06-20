@@ -22,8 +22,6 @@ bs4DashBody <- function(...) {
 }
 
 
-
-
 #' Boostrap 4 body items
 #'
 #' \link{tabItems} creates a wrapper for multiple \link{tabItem}.

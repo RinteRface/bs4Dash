@@ -45,19 +45,26 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Badge <- function(..., color, position = c("left", "right"),
-                     rounded = FALSE) {
-
+bs4Badge <- function(
+  ...,
+  color,
+  position = c("left", "right"),
+  rounded = FALSE
+) {
   validateStatus(color)
   position <- match.arg(position)
 
   shiny::tags$span(
-    class = paste0(position, " badge", " badge-", color, if (rounded) " badge-pill"),
+    class = paste0(
+      position,
+      " badge",
+      " badge-",
+      color,
+      if (rounded) " badge-pill"
+    ),
     ...
   )
 }
-
-
 
 
 #' Bootstrap 4 accordion container
@@ -141,7 +148,6 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #'
 #' @export
 bs4Accordion <- function(..., id, width = 12, .list = NULL) {
-
   items <- c(list(...), .list)
 
   # patch that enables a proper accordion behavior
@@ -149,7 +155,9 @@ bs4Accordion <- function(..., id, width = 12, .list = NULL) {
   # item. Each accordion must have a unique id.
   lapply(seq_along(items), FUN = function(i) {
     items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id)
-    items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
+    items[[i]]$children[[1]]$children[[1]]$children[[
+      1
+    ]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
 
@@ -173,16 +181,22 @@ bs4Accordion <- function(..., id, width = 12, .list = NULL) {
 #' @rdname accordion
 #'
 #' @export
-bs4AccordionItem <- function(..., title, status = NULL,
-                             collapsed = TRUE, solidHeader = TRUE) {
-
+bs4AccordionItem <- function(
+  ...,
+  title,
+  status = NULL,
+  collapsed = TRUE,
+  solidHeader = TRUE
+) {
   cl <- "card"
   if (!is.null(status)) {
     validateStatusPlus(status)
     cl <- paste0(cl, " card-", status)
   }
 
-  if (!solidHeader) cl <- paste0(cl, " card-outline")
+  if (!solidHeader) {
+    cl <- paste0(cl, " card-outline")
+  }
 
   shiny::tags$div(
     class = cl,
@@ -217,9 +231,6 @@ bs4AccordionItem <- function(..., title, status = NULL,
     )
   )
 }
-
-
-
 
 
 #' Update an accordion on the client
@@ -275,12 +286,13 @@ bs4AccordionItem <- function(..., title, status = NULL,
 #'   }
 #'  )
 #' }
-updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDomain()) {
+updateAccordion <- function(
+  id,
+  selected,
+  session = shiny::getDefaultReactiveDomain()
+) {
   session$sendInputMessage(id, selected)
 }
-
-
-
 
 
 #' Bootstrap 4 carousel
@@ -329,7 +341,6 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #'
 #' @export
 bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
-
   items <- c(list(...), .list)
 
   generateCarouselNav <- function(items) {
@@ -337,12 +348,14 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
     navs <- lapply(seq_along(items), FUN = function(i) {
       # if we found an active item, all other active items are ignored.
       active <- if (found_active) {
-         FALSE
+        FALSE
       } else {
         sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
       }
       # if the item has active class and no item was found before, we found the active item
-      if (active && !found_active) found_active <<- TRUE
+      if (active && !found_active) {
+        found_active <<- TRUE
+      }
 
       shiny::tags$li(
         `data-target` = paste0("#", id),
@@ -365,7 +378,6 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
     }
 
     navs
-
   }
 
   indicatorsTag <- shiny::tags$ol(
@@ -383,7 +395,7 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
       # previous
       shiny::tags$a(
         class = "carousel-control-prev",
-       `data-target` = paste0("#", id),
+        `data-target` = paste0("#", id),
         href = "#",
         role = "button",
         `data-slide` = "prev",
@@ -416,15 +428,18 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
     id = id
   )
 
-  carouselTag <- shiny::tagAppendChildren(carouselTag, indicatorsTag, bodyTag, controlButtons)
+  carouselTag <- shiny::tagAppendChildren(
+    carouselTag,
+    indicatorsTag,
+    bodyTag,
+    controlButtons
+  )
 
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     carouselTag
   )
-
 }
-
 
 
 #' Bootstrap 4 carousel item
@@ -447,8 +462,6 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
     }
   )
 }
-
-
 
 
 #' AdminLTE3 progress bar
@@ -567,22 +580,39 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @rdname progress
 #'
 #' @export
-bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE,
-                            animated = FALSE, status = "primary", size = NULL,
-                            label = NULL) {
-
-  if (!is.null(status)) validateStatusPlus(status)
+bs4ProgressBar <- function(
+  value,
+  min = 0,
+  max = 100,
+  vertical = FALSE,
+  striped = FALSE,
+  animated = FALSE,
+  status = "primary",
+  size = NULL,
+  label = NULL
+) {
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
   check_number_whole(value, min = min, max = max)
 
   # wrapper class
   progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
-  if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
+  if (!is.null(size)) {
+    progressCl <- paste0(progressCl, " progress-", size)
+  }
 
   # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
-  if (striped) barCl <- paste0(barCl, " progress-bar-striped")
-  if (animated) barCl <- paste0(barCl, " progress-bar-animated")
+  if (!is.null(status)) {
+    barCl <- paste0(barCl, " bg-", status)
+  }
+  if (striped) {
+    barCl <- paste0(barCl, " progress-bar-striped")
+  }
+  if (animated) {
+    barCl <- paste0(barCl, " progress-bar-animated")
+  }
 
   # wrapper
   barTag <- shiny::tags$div(
@@ -593,11 +623,10 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
     `aria-valuemax` = max,
     style = if (vertical) {
       paste0("height: ", paste0(value, "%"))
-    }
-    else {
+    } else {
       paste0("width: ", paste0(value, "%"))
     },
-    if(!is.null(label)) label
+    if (!is.null(label)) label
   )
 
   progressTag <- shiny::tags$div(class = progressCl)
@@ -622,18 +651,28 @@ bs4MultiProgressBar <-
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
     animated <- verify_compatible_lengths(value, animated)
-    if (!is.null(label)) label <- verify_compatible_lengths(value, label)
+    if (!is.null(label)) {
+      label <- verify_compatible_lengths(value, label)
+    }
 
-    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
+    if (!is.null(status)) {
+      lapply(status, function(x) validateStatusPlus(x))
+    }
     check_number_whole(value, min = min, max = max)
     check_number_whole(sum(value), max = max)
 
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
-      if (striped) barCl <- paste0(barCl, " progress-bar-striped")
-      if (animated) barCl <- paste0(barCl, " progress-bar-animated")
+      if (!is.null(status)) {
+        barCl <- paste0(barCl, " bg-", status)
+      }
+      if (striped) {
+        barCl <- paste0(barCl, " progress-bar-striped")
+      }
+      if (animated) {
+        barCl <- paste0(barCl, " progress-bar-animated")
+      }
 
       shiny::tags$div(
         class = barCl,
@@ -643,11 +682,10 @@ bs4MultiProgressBar <-
         `aria-valuemax` = max,
         style = if (vertical) {
           paste0("height: ", paste0(value, "%"))
-        }
-        else {
+        } else {
           paste0("width: ", paste0(value, "%"))
         },
-        if(!is.null(label)) label
+        if (!is.null(label)) label
       )
     }
 
@@ -666,25 +704,29 @@ bs4MultiProgressBar <-
 
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
-    if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
+    if (!is.null(size)) {
+      progressCl <- paste0(progressCl, " progress-", size)
+    }
     progressTag <- shiny::tags$div(class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
 
 verify_compatible_lengths <- function(x, y) {
-  if (length(x) == length(y)) return(y)
-  else if (length(y) == 1) return(rep(y, length(x)))
-  else {
+  if (length(x) == length(y)) {
+    return(y)
+  } else if (length(y) == 1) {
+    return(rep(y, length(x)))
+  } else {
     name_x <- deparse(substitute(x))
     name_y <- deparse(substitute(y))
-    cli::cli_abort(c("Size mismatch in arguments.",
-                   "i" = "{.var {name_x}} and {.var {name_y}} must have compatible sizes.",
-                   "i" = "{.var {name_y}} must be size {.val {length(x)}} or {.val 1}."))
+    cli::cli_abort(c(
+      "Size mismatch in arguments.",
+      "i" = "{.var {name_x}} and {.var {name_y}} must have compatible sizes.",
+      "i" = "{.var {name_y}} must be size {.val {length(x)}} or {.val 1}."
+    ))
   }
 }
-
-
 
 
 #' Create a Bootstrap 4 callout
@@ -743,15 +785,23 @@ verify_compatible_lengths <- function(x, y) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Callout <- function(..., title, status = c("warning", "danger", "info", "success"),
-                       width = 6, elevation = NULL) {
-
+bs4Callout <- function(
+  ...,
+  title,
+  status = c("warning", "danger", "info", "success"),
+  width = 6,
+  elevation = NULL
+) {
   validateStatus(status)
   status <- match.arg(status)
 
   calloutCl <- "callout"
-  if (!is.null(status)) calloutCl <- paste0(calloutCl, " callout-", status)
-  if (!is.null(elevation)) calloutCl <- paste0(calloutCl, " elevation-", elevation)
+  if (!is.null(status)) {
+    calloutCl <- paste0(calloutCl, " callout-", status)
+  }
+  if (!is.null(elevation)) {
+    calloutCl <- paste0(calloutCl, " elevation-", elevation)
+  }
 
   calloutTag <- shiny::tags$div(
     class = calloutCl,
@@ -764,7 +814,6 @@ bs4Callout <- function(..., title, status = c("warning", "danger", "info", "succ
     calloutTag
   )
 }
-
 
 
 #' @title AdminLTE3 loading state element
@@ -805,8 +854,6 @@ bs4Loading <- function() {
     shiny::tags$i(class = "fa fa-refresh fa-spin")
   )
 }
-
-
 
 
 #' AdminLTE3 timeline block
@@ -877,9 +924,10 @@ bs4Loading <- function() {
 #'
 #' @export
 bs4Timeline <- function(..., reversed = TRUE, width = 6) {
-
   cl <- "timeline"
-  if (isTRUE(reversed)) cl <- paste0(cl, " timeline-inverse")
+  if (isTRUE(reversed)) {
+    cl <- paste0(cl, " timeline-inverse")
+  }
 
   timelineTag <- shiny::tags$div(
     class = cl,
@@ -890,7 +938,6 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
     class = if (!is.null(width)) paste0("col-sm-", width),
     timelineTag
   )
-
 }
 
 
@@ -927,7 +974,6 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 #'
 #' @export
 bs4TimelineLabel <- function(..., color = NULL) {
-
   cl <- NULL
   if (!is.null(color)) {
     validateStatusPlus(color)
@@ -983,10 +1029,16 @@ bs4TimelineLabel <- function(..., color = NULL) {
 #' @rdname timeline
 #'
 #' @export
-bs4TimelineItem <- function(..., icon = NULL,
-                            color = NULL, time = NULL, title = NULL,
-                            border = TRUE, footer = NULL, elevation = NULL) {
-
+bs4TimelineItem <- function(
+  ...,
+  icon = NULL,
+  color = NULL,
+  time = NULL,
+  title = NULL,
+  border = TRUE,
+  footer = NULL,
+  elevation = NULL
+) {
   if (!is.null(color)) {
     validateStatusPlus(color)
     icon$attribs$class <- paste0(icon$attribs$class, " bg-", color)
@@ -997,10 +1049,11 @@ bs4TimelineItem <- function(..., icon = NULL,
   }
 
   itemCl <- "timeline-header no-border"
-  if (isTRUE(border)) itemCl <- "timeline-header"
+  if (isTRUE(border)) {
+    itemCl <- "timeline-header"
+  }
 
   shiny::tags$div(
-
     # timelineItem icon and status
     icon,
 
@@ -1062,8 +1115,6 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 }
 
 
-
-
 #' AdminLTE3 timeline starting point
 #'
 #' \link{timelineStart} indicates a starting point.
@@ -1097,7 +1148,6 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 #'
 #' @export
 bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
-
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
@@ -1141,7 +1191,6 @@ bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
 #'
 #' @export
 bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
-
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
@@ -1154,8 +1203,6 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
     shiny::br()
   )
 }
-
-
 
 
 #' @title AdminLTE3 stars
@@ -1218,7 +1265,6 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #'
 #' @export
 bs4Stars <- function(value, max = 5, color = "warning") {
-
   stopifnot(!is.null(color))
   validateStatusPlus(color)
   check_number_whole(value, min = 0, max = max)
@@ -1241,8 +1287,6 @@ bs4Stars <- function(value, max = 5, color = "warning") {
     shiny::tags$br()
   )
 }
-
-
 
 
 #' @title BS4 jumbotron for AdminLTE3
@@ -1289,9 +1333,14 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #' }
 #'
 #' @export
-bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = "More",
-                         status = c("primary", "warning", "danger", "info", "success")) {
-
+bs4Jumbotron <- function(
+  ...,
+  title = NULL,
+  lead = NULL,
+  href = NULL,
+  btnName = "More",
+  status = c("primary", "warning", "danger", "info", "success")
+) {
   status <- match.arg(status)
 
   # uncomment below if more status are enabled
@@ -1299,7 +1348,9 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
   btnStatus <- "secondary"
 
   jumboCl <- "jumbotron"
-  if (!is.null(status)) jumboCl <- paste0(jumboCl, " bg-", status)
+  if (!is.null(status)) {
+    jumboCl <- paste0(jumboCl, " bg-", status)
+  }
 
   # no need to wrap this tag in an external div to set a custom width
   # since the jumbotron will take the whole page width
@@ -1320,7 +1371,6 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
     }
   )
 }
-
 
 
 #' @title BS4 list group for AdminLTE3
@@ -1406,9 +1456,12 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' }
 #'
 #' @export
-bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
-                         .list = NULL) {
-
+bs4ListGroup <- function(
+  ...,
+  type = c("basic", "action", "heading"),
+  width = 4,
+  .list = NULL
+) {
   items <- c(list(...), .list)
   type <- match.arg(type)
 
@@ -1423,8 +1476,12 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
   # build items based on type and options passed
   itemsTag <- lapply(items, function(item) {
     names(item)[1] <- "body"
-    if (item$active) itemCl <- paste0(itemCl, " active")
-    if (item$disabled) itemCl <- paste0(itemCl, " disabled")
+    if (item$active) {
+      itemCl <- paste0(itemCl, " active")
+    }
+    if (item$disabled) {
+      itemCl <- paste0(itemCl, " disabled")
+    }
     # item tag
     if (type == "basic") {
       shiny::tags$li(
@@ -1452,12 +1509,14 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
         ),
         shiny::tags$p(class = "mb-1", item$body),
         if (!is.null(item$footer)) {
-          shiny::tags$small(class = if (item$active) NULL else "text-muted", item$footer)
+          shiny::tags$small(
+            class = if (item$active) NULL else "text-muted",
+            item$footer
+          )
         }
       )
     }
   })
-
 
   listGroupTag <- shiny::tags$ul(
     class = "list-group",
@@ -1469,8 +1528,6 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
     listGroupTag
   )
 }
-
-
 
 
 #' @title BS4 list group item for AdminLTE3
@@ -1491,13 +1548,20 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
 #' @rdname listgroup
 #'
 #' @export
-bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
-                             footer = NULL, active = FALSE, disabled = FALSE,
-                             href = NULL) {
-
+bs4ListGroupItem <- function(
+  ...,
+  title = NULL,
+  subtitle = NULL,
+  footer = NULL,
+  active = FALSE,
+  disabled = FALSE,
+  href = NULL
+) {
   if (active && disabled) {
-    cli::cli_abort(c("Incompatible arguments.",
-                   "i" = "{.arg active} and {.arg disabled} cannot be TRUE at the same time."))
+    cli::cli_abort(c(
+      "Incompatible arguments.",
+      "i" = "{.arg active} and {.arg disabled} cannot be TRUE at the same time."
+    ))
   }
 
   list(
@@ -1510,8 +1574,6 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
     href = href
   )
 }
-
-
 
 
 #' @title BS4 ionicons
@@ -1547,12 +1609,15 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'
 #' @export
 ionicon <- function(name) {
-  if (is.null(name)) cli::cli_abort(c("Missing required argument.",
-                                     "i" = "The {.arg name} parameter is required for icon creation."))
+  if (is.null(name)) {
+    cli::cli_abort(c(
+      "Missing required argument.",
+      "i" = "The {.arg name} parameter is required for icon creation."
+    ))
+  }
   cl <- paste0("icon ion-md-", name)
   shiny::tags$i(class = cl)
 }
-
 
 
 #' AdminLTE3 attachment container
@@ -1628,7 +1693,6 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
     )
   )
 }
-
 
 
 #' AdminLTE3 description block
@@ -1723,13 +1787,22 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #' }
 #'
 #' @export
-descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NULL,
-                             header = NULL, text = NULL, rightBorder = TRUE,
-                             marginBottom = FALSE) {
-
+descriptionBlock <- function(
+  number = NULL,
+  numberColor = NULL,
+  numberIcon = NULL,
+  header = NULL,
+  text = NULL,
+  rightBorder = TRUE,
+  marginBottom = FALSE
+) {
   cl <- "description-block"
-  if (rightBorder) cl <- paste0(cl, " border-right")
-  if (marginBottom) cl <- paste0(cl, " mb-4")
+  if (rightBorder) {
+    cl <- paste0(cl, " border-right")
+  }
+  if (marginBottom) {
+    cl <- paste0(cl, " mb-4")
+  }
 
   numcl <- "description-percentage"
   if (!is.null(numberColor)) {
@@ -1748,7 +1821,6 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
     shiny::tags$span(class = "description-text", text)
   )
 }
-
 
 
 #' AdminLTE3 vertical block container
@@ -1851,8 +1923,6 @@ cardPad <- function(..., color = NULL, style = NULL) {
 }
 
 
-
-
 #' AdminLTE3 product list container
 #'
 #' \link{productList} creates a container to display commercial items in an elegant container.
@@ -1911,8 +1981,6 @@ productList <- function(...) {
 }
 
 
-
-
 #' AdminLTE3 product item
 #'
 #' \link{productListItem} creates a product item to insert in \link{productList}.
@@ -1933,8 +2001,13 @@ productList <- function(...) {
 #' @rdname productList
 #'
 #' @export
-productListItem <- function(..., image = NULL, title = NULL,
-                            subtitle = NULL, color = NULL) {
+productListItem <- function(
+  ...,
+  image = NULL,
+  title = NULL,
+  subtitle = NULL,
+  color = NULL
+) {
   cl <- "badge float-right"
   if (!is.null(color)) {
     validateStatus(color)
@@ -1962,9 +2035,6 @@ productListItem <- function(..., image = NULL, title = NULL,
     )
   )
 }
-
-
-
 
 
 #' AdminLTE3 user list container
@@ -2046,10 +2116,6 @@ userListItem <- function(image, title, subtitle = NULL) {
     )
   )
 }
-
-
-
-
 
 
 #' AdminLTE3 user message container
@@ -2148,7 +2214,9 @@ userListItem <- function(image, title, subtitle = NULL) {
 #' @export
 userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
   cl <- "direct-chat-messages direct-chat"
-  if (!is.null(height)) shiny::validateCssUnit(height)
+  if (!is.null(height)) {
+    shiny::validateCssUnit(height)
+  }
   if (!is.null(status)) {
     validateStatusPlus(status)
     cl <- paste0(cl, " direct-chat-", status)
@@ -2171,9 +2239,6 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
 }
 
 
-
-
-
 #' AdminLTE3 user message
 #'
 #' \link{userMessage} creates a user message html element.
@@ -2187,12 +2252,18 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
 #' @rdname userMessage
 #'
 #' @export
-userMessage <- function(..., author = NULL, date = NULL,
-                        image = NULL, type = c("sent", "received")) {
-
+userMessage <- function(
+  ...,
+  author = NULL,
+  date = NULL,
+  image = NULL,
+  type = c("sent", "received")
+) {
   type <- match.arg(type)
   messageCl <- "direct-chat-msg"
-  if (type == "sent") messageCl <- paste0(messageCl, " right")
+  if (type == "sent") {
+    messageCl <- paste0(messageCl, " right")
+  }
 
   # message info
   messageInfo <- shiny::tags$div(
@@ -2230,8 +2301,6 @@ userMessage <- function(..., author = NULL, date = NULL,
     messageTxt
   )
 }
-
-
 
 
 #' Update a messages container in the server side
@@ -2342,9 +2411,13 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'   }
 #'  )
 #' }
-updateUserMessages <- function(id, action = c("add", "remove", "update"),
-                               index = NULL, content = NULL,
-                               session = shiny::getDefaultReactiveDomain()) {
+updateUserMessages <- function(
+  id,
+  action = c("add", "remove", "update"),
+  index = NULL,
+  content = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   action <- match.arg(action)
 
   content <- lapply(content, function(c) {
@@ -2366,8 +2439,6 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
     )
   )
 }
-
-
 
 
 #' AdminLTE3 user post
@@ -2434,14 +2505,18 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #' }
 #'
 #' @export
-userPost <- function(..., id = NULL, image, author,
-                     description = NULL, collapsible = TRUE,
-                     collapsed = FALSE) {
-
+userPost <- function(
+  ...,
+  id = NULL,
+  image,
+  author,
+  description = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE
+) {
   id <- paste0("post-", id)
 
   btnCl <- "btn-tool float-right"
-
 
   # if the input tag is an image, it is better to center it...
   items <- list(...)
@@ -2461,7 +2536,6 @@ userPost <- function(..., id = NULL, image, author,
       items[[i]]
     }
   })
-
 
   shiny::tags$div(
     class = "post",
@@ -2487,7 +2561,6 @@ userPost <- function(..., id = NULL, image, author,
             }
           )
         }
-
       ),
       if (!is.null(description)) {
         shiny::tags$span(class = "description", description)
@@ -2505,10 +2578,7 @@ userPost <- function(..., id = NULL, image, author,
       items
     )
   )
-
 }
-
-
 
 
 #' AdminLTE3 user post tool item container
@@ -2520,15 +2590,12 @@ userPost <- function(..., id = NULL, image, author,
 #' @rdname userPost
 #'
 #' @export
-userPostTagItems<- function(...) {
-
+userPostTagItems <- function(...) {
   shiny::tags$ul(
     class = "list-inline d-flex",
     ...
   )
 }
-
-
 
 
 #' AdminLTE3 user post tool item
@@ -2541,13 +2608,11 @@ userPostTagItems<- function(...) {
 #'
 #' @export
 userPostTagItem <- function(...) {
-
   shiny::tags$li(
     class = "mx-2",
     ...
   )
 }
-
 
 
 #' AdminLTE3 user post media
@@ -2570,7 +2635,6 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
     width = width
   )
 }
-
 
 
 #' @title BS4 sortable section
@@ -2619,9 +2683,10 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'
 #' @export
 bs4Sortable <- function(..., width = 12) {
-
   sectionCl <- "connectedSortable ui-sortable"
-  if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
+  if (!is.null(width)) {
+    sectionCl <- paste0(sectionCl, " col-lg-", width)
+  }
 
   shiny::tagList(
     shiny::singleton(
@@ -2648,8 +2713,6 @@ bs4Sortable <- function(..., width = 12) {
     )
   )
 }
-
-
 
 
 #' Boostrap 4 table container
@@ -2725,22 +2788,33 @@ bs4Sortable <- function(..., width = 12) {
 #' @rdname table
 #'
 #' @export
-bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
-                     striped = FALSE, width = 12) {
-
+bs4Table <- function(
+  data,
+  cardWrap = FALSE,
+  bordered = FALSE,
+  striped = FALSE,
+  width = 12
+) {
   # handle theme
   tableCl <- "table"
-  if (bordered) tableCl <- paste0(tableCl, " table-bordered")
-  if (striped) tableCl <- paste0(tableCl, " table-striped")
+  if (bordered) {
+    tableCl <- paste0(tableCl, " table-bordered")
+  }
+  if (striped) {
+    tableCl <- paste0(tableCl, " table-striped")
+  }
 
-  if (!inherits(data, "list") &&
-      !inherits(data, "data.frame")) {
-    cli::cli_abort(c("Invalid data type.",
-                   "i" = "The {.arg data} must be a dataframe, tibble or list."))
+  if (
+    !inherits(data, "list") &&
+      !inherits(data, "data.frame")
+  ) {
+    cli::cli_abort(c(
+      "Invalid data type.",
+      "i" = "The {.arg data} must be a dataframe, tibble or list."
+    ))
   }
 
   if (inherits(data, "data.frame")) {
-
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
@@ -2762,7 +2836,6 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
       )
     })
   } else if (inherits(data, "list")) {
-
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
@@ -2813,8 +2886,6 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 }
 
 
-
-
 #' Boostrap 4 table item row
 #'
 #' Build an bs4 table item row
@@ -2826,7 +2897,6 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 bs4TableItems <- function(...) {
   shiny::tags$tr(...)
 }
-
 
 
 #' Bootstrap 4 table item
@@ -2845,8 +2915,6 @@ bs4TableItem <- function(..., dataCell = FALSE) {
     shiny::tags$th(...)
   }
 }
-
-
 
 
 #' @title AdminLTE3 todo list container
@@ -2974,9 +3042,6 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #
 # }
 
-
-
-
 #' Boostrap 4 ribbon
 #'
 #' \link{bs4Ribbon} build a bootstrap 4 ribbon
@@ -3065,8 +3130,6 @@ bs4Ribbon <- function(text, color) {
 }
 
 
-
-
 #' Boostrap 4 block quote
 #'
 #' Build a bootstrap 4 block quote
@@ -3135,7 +3198,6 @@ bs4Quote <- function(..., color) {
 }
 
 
-
 #' Get all AdminLTE colors.
 #' @export
 getAdminLTEColors <- function() {
@@ -3196,15 +3258,20 @@ getAdminLTEColors <- function() {
 #'    }
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname pagination
 #' @export
-pagination <- function(..., id = NULL, selected = NULL,
-                       align = c("center", "left", "right"),
-                       size = c("md", "sm", "lg"),
-                       previousBtn = "\u00ab", nextBtn = "\u00bb",
-                       .list = NULL) {
+pagination <- function(
+  ...,
+  id = NULL,
+  selected = NULL,
+  align = c("center", "left", "right"),
+  size = c("md", "sm", "lg"),
+  previousBtn = "\u00ab",
+  nextBtn = "\u00bb",
+  .list = NULL
+) {
   align <- match.arg(align)
   size <- match.arg(size)
   # Build temporary tag structure
@@ -3221,7 +3288,9 @@ pagination <- function(..., id = NULL, selected = NULL,
   # handle style
   pagination_cl <- "pagination"
   if (align %in% c("center", "right")) {
-    if (align == "right") align <- "end"
+    if (align == "right") {
+      align <- "end"
+    }
     pagination_cl <- paste(
       pagination_cl,
       sprintf("justify-content-%s", align)
@@ -3241,7 +3310,7 @@ pagination <- function(..., id = NULL, selected = NULL,
       class = "page-link pagination-previous",
       href = "#",
       tabindex = "-1",
-      shiny::tags$span(`aria-hidden`="true", previousBtn),
+      shiny::tags$span(`aria-hidden` = "true", previousBtn),
       shiny::tags$span(class = "sr-only", "Previous")
     )
   )
@@ -3251,57 +3320,40 @@ pagination <- function(..., id = NULL, selected = NULL,
     shiny::tags$a(
       class = "page-link pagination-next",
       href = "#",
-      shiny::tags$span(`aria-hidden`="true", nextBtn),
+      shiny::tags$span(`aria-hidden` = "true", nextBtn),
       shiny::tags$span(class = "sr-only", "Next")
     )
   )
 
   # Modify tag on the fly to correspond to Bootstrap 4 pagination
-  temp_tag <- htmltools::tagQuery(temp_tag)$
-    find("ul")$ # remove old tabs class and add pagination class
-    addAttrs("style" = "margin-bottom: 16px")$
-    removeClass("nav-tabs")$ # we still need nav to behave like tabs
-    addClass(pagination_cl)$
-    resetSelected()$
-    find("li")$ # replace li class
-    removeClass("nav-item")$
-    addClass("page-item")$
-    resetSelected()$
-    find("a")$ # replace a class
-    removeClass("nav-link")$
-    addClass("page-link")$
-    resetSelected()$
-    find("a.active")$ # move active class to parent li
-    removeClass("active")$
-    parent()$
-    addClass("active")$
-    resetSelected()$
-    find("ul.pagination")$ # insert navigation
-    prepend(pagination_start)$
-    append(pagination_end)$
-    allTags()
+  temp_tag <- htmltools::tagQuery(temp_tag)$find("ul")$addAttrs( # remove old tabs class and add pagination class
+    "style" = "margin-bottom: 16px"
+  )$removeClass("nav-tabs")$addClass(pagination_cl)$resetSelected()$find( # we still need nav to behave like tabs
+    "li"
+  )$removeClass("nav-item")$addClass("page-item")$resetSelected()$find( # replace li class
+    "a"
+  )$removeClass("nav-link")$addClass("page-link")$resetSelected()$find( # replace a class
+    "a.active"
+  )$removeClass("active")$parent()$addClass("active")$resetSelected()$find( # move active class to parent li
+    "ul.pagination"
+  )$prepend(pagination_start)$append(pagination_end)$allTags() # insert navigation
 
   # Handle disabled tags
   disabled_items_idx <- numeric(0)
 
-  htmltools::tagQuery(temp_tag)$
-    find(".tab-pane")$
-    each(function(x, i) {
-      if (x$attribs$`data-disabled` == "true") {
-        disabled_items_idx <<- c(disabled_items_idx, i)
-      }
-    })
+  htmltools::tagQuery(temp_tag)$find(".tab-pane")$each(function(x, i) {
+    if (x$attribs$`data-disabled` == "true") {
+      disabled_items_idx <<- c(disabled_items_idx, i)
+    }
+  })
 
-  temp_tag <- htmltools::tagQuery(temp_tag)$
-    find("li")$
-    each(function(x, i) {
-      if (i %in% (disabled_items_idx + 1)) {
-        x$attribs$class <- paste(x$attribs$class, "disabled")
-        # recommended by Bootstrap 4 doc
-        x$attribs$tabindex <- "-1"
-      }
-    })$
-    allTags()
+  temp_tag <- htmltools::tagQuery(temp_tag)$find("li")$each(function(x, i) {
+    if (i %in% (disabled_items_idx + 1)) {
+      x$attribs$class <- paste(x$attribs$class, "disabled")
+      # recommended by Bootstrap 4 doc
+      x$attribs$tabindex <- "-1"
+    }
+  })$allTags()
 
   # Wrap ul by tags$nav
   temp_tag$children[[1]] <- shiny::tags$nav(
@@ -3323,8 +3375,13 @@ pagination <- function(..., id = NULL, selected = NULL,
 #'
 #' @return An HTML tag.
 #' @export
-paginationItem <- function (title, ..., value = title,
-                            icon = NULL, disabled = FALSE) {
+paginationItem <- function(
+  title,
+  ...,
+  value = title,
+  icon = NULL,
+  disabled = FALSE
+) {
   shiny::tabPanel(
     title = title,
     ...,
@@ -3406,21 +3463,27 @@ paginationItem <- function (title, ..., value = title,
 #'    }
 #'  )
 #' }
-updatePagination <- function(id, selected = NULL,
-                             disabled = NULL,
-                             session = shiny::getDefaultReactiveDomain()) {
-
+updatePagination <- function(
+  id,
+  selected = NULL,
+  disabled = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   if (length(selected) > 1) {
-    cli::cli_abort(c("Multiple selection not allowed.",
-                   "i" = "Can't select more than one element in {.arg selected}."))
+    cli::cli_abort(c(
+      "Multiple selection not allowed.",
+      "i" = "Can't select more than one element in {.arg selected}."
+    ))
   }
   # make sure we don't have selected and disabled item
   # with the same value ...
   common_elements <- intersect(selected, disabled)
   if (length(common_elements) > 0) {
-    cli::cli_abort(c("Incompatible argument values.",
-                   "i" = "An item cannot be both selected and disabled.",
-                   "i" = "Check for overlapping values in {.arg selected} and {.arg disabled}."))
+    cli::cli_abort(c(
+      "Incompatible argument values.",
+      "i" = "An item cannot be both selected and disabled.",
+      "i" = "Check for overlapping values in {.arg selected} and {.arg disabled}."
+    ))
   }
 
   session$sendInputMessage(

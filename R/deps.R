@@ -1,6 +1,5 @@
 # Add dashboard dependencies to a tag object
 add_bs4Dash_deps <- function(tag, options) {
-
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
   adminLTE3_css <- "adminlte.min.css"
@@ -73,7 +72,11 @@ add_bs4Dash_deps <- function(tag, options) {
       name = "bs4Dash",
       version = bs4Dash_version,
       src = c(file = sprintf("bs4Dash-%s", bs4Dash_version)),
-      script = if (getOption("shiny.minified", TRUE)) "bs4Dash.min.js" else "bs4Dash.js" ,
+      script = if (getOption("shiny.minified", TRUE)) {
+        "bs4Dash.min.js"
+      } else {
+        "bs4Dash.js"
+      },
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
     ),

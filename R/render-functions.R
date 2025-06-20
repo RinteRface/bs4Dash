@@ -68,12 +68,10 @@ renderbs4ValueBox <- function(expr, env = parent.frame(), quoted = FALSE) {
 }
 
 
-
 #' @rdname infoBox
 #' @inheritParams renderbs4ValueBox
 #' @export
 renderbs4InfoBox <- renderbs4ValueBox
-
 
 
 #' Create a value box output (client side)
@@ -91,14 +89,10 @@ bs4ValueBoxOutput <- function(outputId, width = 4) {
 }
 
 
-
 #' @rdname infoBox
 #' @inheritParams bs4ValueBoxOutput
 #' @export
 bs4InfoBoxOutput <- bs4ValueBoxOutput
-
-
-
 
 
 #' Create a dynamic menu output for bs4Dash (client side)
@@ -122,8 +116,6 @@ menuOutput <- function(outputId, tag = shiny::tags$li) {
 }
 
 
-
-
 #' Create a dropdown menu output (client side)
 #'
 #' This is the UI-side function for creating a dynamic dropdown menu.
@@ -137,8 +129,6 @@ menuOutput <- function(outputId, tag = shiny::tags$li) {
 dropdownMenuOutput <- function(outputId) {
   menuOutput(outputId = outputId, tag = shiny::tags$li)
 }
-
-
 
 
 #' Create a sidebar menu output (client side)
@@ -156,9 +146,6 @@ sidebarMenuOutput <- function(outputId) {
 }
 
 
-
-
-
 #' Create a sidebar menu item output (client side)
 #'
 #' This is the UI-side function for creating a dynamic sidebar menu item.
@@ -172,8 +159,6 @@ sidebarMenuOutput <- function(outputId) {
 menuItemOutput <- function(outputId) {
   menuOutput(outputId = outputId, tag = shiny::tags$li)
 }
-
-
 
 
 #' Create dynamic menu output (server side)
@@ -255,15 +240,15 @@ menuItemOutput <- function(outputId) {
 #'
 #'   shinyApp(ui, server)
 #' }
-renderMenu <- function(expr, env = parent.frame(), quoted = FALSE, outputArgs = list()) {
+renderMenu <- function(
+  expr,
+  env = parent.frame(),
+  quoted = FALSE,
+  outputArgs = list()
+) {
   if (!quoted) {
     expr <- substitute(expr)
     quoted <- TRUE
   }
   shiny::renderUI(expr, env = env, quoted = quoted, outputArgs = outputArgs)
 }
-
-
-
-
-

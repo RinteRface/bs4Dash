@@ -45,12 +45,12 @@ shinyApp(
     observeEvent(input$controller, {
       updateAccordion(id = "accordion1", selected = input$controller)
     })
-    
+
     observe(print(input$accordion1))
-    
+
     observeEvent(input$accordion1, {
       showNotification(
-        sprintf("You selected accordion N° %s", input$accordion1), 
+        sprintf("You selected accordion N° %s", input$accordion1),
         type = "message",
         duration = 1
       )

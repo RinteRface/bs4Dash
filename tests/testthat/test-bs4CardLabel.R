@@ -26,6 +26,10 @@ test_that("no tooltip", {
 })
 
 test_that("tooltip", {
-  labelTagProps <- bs4CardLabel(text = 1, tooltip = "prout", status = "primary")$attribs
+  labelTagProps <- bs4CardLabel(
+    text = 1,
+    tooltip = "prout",
+    status = "primary"
+  )$attribs
   expect_length(labelTagProps, 3)
 })

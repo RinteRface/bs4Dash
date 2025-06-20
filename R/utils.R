@@ -10,32 +10,41 @@
 tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
   if (!inherits(tag, "shiny.tag")) {
     print(tag)
-    cli::cli_abort(c("Invalid object type.",
-                     "i" = "Expected an object with class {.cls shiny.tag}."))
+    cli::cli_abort(c(
+      "Invalid object type.",
+      "i" = "Expected an object with class {.cls shiny.tag}."
+    ))
   }
 
   # Skip dynamic output elements
-  if (allowUI &&
+  if (
+    allowUI &&
       (hasCssClass(tag, "shiny-html-output") ||
-       hasCssClass(tag, "shinydashboard-menu-output"))) {
+        hasCssClass(tag, "shinydashboard-menu-output"))
+  ) {
     return()
   }
 
   if (!is.null(type) && tag$name != type) {
-    cli::cli_abort(c("Invalid tag type.",
-                     "i" = "Expected tag to be of type {.val {type}}."))
+    cli::cli_abort(c(
+      "Invalid tag type.",
+      "i" = "Expected tag to be of type {.val {type}}."
+    ))
   }
 
   if (!is.null(class)) {
     if (is.null(tag$attribs$class)) {
-      cli::cli_abort(c("Missing required class.",
-                     "i" = "Expected tag to have class {.val {class}}."))
-
+      cli::cli_abort(c(
+        "Missing required class.",
+        "i" = "Expected tag to have class {.val {class}}."
+      ))
     } else {
       tagClasses <- strsplit(tag$attribs$class, " ")[[1]]
       if (!(class %in% tagClasses)) {
-        cli::cli_abort(c("Missing required class.",
-                       "i" = "Expected tag to have class {.val {class}}."))
+        cli::cli_abort(c(
+          "Missing required class.",
+          "i" = "Expected tag to have class {.val {class}}."
+        ))
       }
     }
   }
@@ -43,8 +52,9 @@ tagAssert <- function(tag, type = NULL, class = NULL, allowUI = TRUE) {
 
 
 hasCssClass <- function(tag, class) {
-  if (is.null(tag$attribs) || is.null(tag$attribs$class))
+  if (is.null(tag$attribs) || is.null(tag$attribs$class)) {
     return(FALSE)
+  }
 
   classes <- strsplit(tag$attribs$class, " +")[[1]]
   return(class %in% classes)
@@ -54,11 +64,12 @@ hasCssClass <- function(tag, class) {
 # Make sure a tab name is valid (there's no "." in it).
 validateTabName <- function(name) {
   if (grepl(".", name, fixed = TRUE)) {
-    cli::cli_abort(c("Invalid character in tabName.",
-                   "i" = "The {.arg tabName} must not have a {.val .} character in it."))
+    cli::cli_abort(c(
+      "Invalid character in tabName.",
+      "i" = "The {.arg tabName} must not have a {.val .} character in it."
+    ))
   }
 }
-
 
 
 # This function takes a DOM element/tag object and reccurs within it until
@@ -68,14 +79,21 @@ validateTabName <- function(name) {
 # and it doesn't find an element with an attribute called `attr`, it also
 # returns FALSE
 findAttribute <- function(x, attr, val) {
-  if (is.atomic(x)) return(FALSE) # exhausted this branch of the tree
+  if (is.atomic(x)) {
+    return(FALSE)
+  } # exhausted this branch of the tree
 
-  if (!is.null(x$attribs[[attr]])) { # found attribute called `attr`
-    if (identical(x$attribs[[attr]], val)) return(TRUE)
-    else return(FALSE)
+  if (!is.null(x$attribs[[attr]])) {
+    # found attribute called `attr`
+    if (identical(x$attribs[[attr]], val)) {
+      return(TRUE)
+    } else {
+      return(FALSE)
+    }
   }
 
-  if (length(x$children) > 0) { # recursion
+  if (length(x$children) > 0) {
+    # recursion
     return(any(unlist(lapply(x$children, findAttribute, attr, val))))
   }
 
@@ -89,15 +107,15 @@ dropNulls <- function(x) {
 }
 
 
-
 # Returns TRUE if a status is valid; throws error otherwise.
 validateStatus <- function(status) {
-
   if (status %in% validStatuses) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {validStatuses}}")
+  cli::cli_abort(
+    "Invalid status: {.val {status}}. Valid statuses are: {.val {validStatuses}}"
+  )
 }
 
 
@@ -120,19 +138,25 @@ validateStatus <- function(status) {
 #' @format NULL
 #'
 #' @keywords internal
-validStatuses <- c("primary", "secondary", "info", "success", "warning", "danger")
-
-
+validStatuses <- c(
+  "primary",
+  "secondary",
+  "info",
+  "success",
+  "warning",
+  "danger"
+)
 
 
 # Returns TRUE if a nuance is valid; throws error otherwise.
 validateNuance <- function(nuance) {
-
   if (nuance %in% validNuances) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid nuance: {.val {nuance}}. Valid nuances are: {.val {validNuances}}")
+  cli::cli_abort(
+    "Invalid nuance: {.val {nuance}}. Valid nuances are: {.val {validNuances}}"
+  )
 }
 
 
@@ -155,8 +179,6 @@ validateNuance <- function(nuance) {
 validNuances <- c("gray-dark", "gray", "white")
 
 
-
-
 # Returns TRUE if a color is a valid color defined in AdminLTE, throws error
 # otherwise.
 validateColor <- function(color) {
@@ -164,7 +186,9 @@ validateColor <- function(color) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid color: {.val {color}}. Valid colors are: {.val {validColors}}")
+  cli::cli_abort(
+    "Invalid color: {.val {color}}. Valid colors are: {.val {validColors}}"
+  )
 }
 
 #' Valid colors
@@ -190,19 +214,30 @@ validateColor <- function(color) {
 #' @format NULL
 #'
 #' @keywords internal
-validColors <- c("indigo", "lightblue", "navy", "purple", "fuchsia", "pink",
-                 "maroon", "orange", "lime", "teal", "olive")
-
+validColors <- c(
+  "indigo",
+  "lightblue",
+  "navy",
+  "purple",
+  "fuchsia",
+  "pink",
+  "maroon",
+  "orange",
+  "lime",
+  "teal",
+  "olive"
+)
 
 
 # Returns TRUE if a status is valid; throws error otherwise.
 validateStatusPlus <- function(status) {
-
   if (status %in% validStatusesPlus) {
     return(TRUE)
   }
 
-  cli::cli_abort("Invalid status: {.val {status}}. Valid statuses are: {.val {validStatusesPlus}}")
+  cli::cli_abort(
+    "Invalid status: {.val {status}}. Valid statuses are: {.val {validStatusesPlus}}"
+  )
 }
 
 
@@ -214,8 +249,6 @@ validateStatusPlus <- function(status) {
 validStatusesPlus <- c(validStatuses, validNuances, validColors)
 
 
-
-
 # used to generate color tags in the documentation
 rd_color_tag <- function(color, label = color) {
   style <- sprintf(
@@ -224,7 +257,9 @@ rd_color_tag <- function(color, label = color) {
   )
   sprintf(
     "\\ifelse{html}{\\out{<span style='%s'></span>%s}}{%s}",
-    style, label, label
+    style,
+    label,
+    label
   )
 }
 
@@ -237,28 +272,47 @@ tagInsertChild <- function(tag, child, position) {
 
 
 # Tool to validate the card props
-validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradient, collapsible,
-                             collapsed, solidHeader, background, elevation, width) {
-
-  if (!is.null(status)) validateStatusPlus(status)
-  if (!is.null(background)) validateStatusPlus(background)
-
+validateBoxProps <- function(
+  title,
+  label,
+  sidebar,
+  dropdownMenu,
+  status,
+  gradient,
+  collapsible,
+  collapsed,
+  solidHeader,
+  background,
+  elevation,
+  width
+) {
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
+  if (!is.null(background)) {
+    validateStatusPlus(background)
+  }
 
   if (!collapsible && collapsed) {
-    cli::cli_abort(c("Invalid card configuration.",
-                   "i" = "Cannot collapse a card that is not collapsible.",
-                   "i" = "Set {.arg collapsible} to {.val TRUE} when using {.arg collapsed}."))
+    cli::cli_abort(c(
+      "Invalid card configuration.",
+      "i" = "Cannot collapse a card that is not collapsible.",
+      "i" = "Set {.arg collapsible} to {.val TRUE} when using {.arg collapsed}."
+    ))
   }
 
   if (!is.null(status) && !is.null(background) && !solidHeader) {
-    cli::cli_abort(c("Invalid card configuration.",
-                   "i" = "{.arg solidHeader} must be {.val TRUE} whenever {.arg background} and {.arg status} are not {.val NULL} at the same time."))
+    cli::cli_abort(c(
+      "Invalid card configuration.",
+      "i" = "{.arg solidHeader} must be {.val TRUE} whenever {.arg background} and {.arg status} are not {.val NULL} at the same time."
+    ))
   }
   if (gradient && is.null(background)) {
-    cli::cli_abort(c("Invalid card configuration.",
-                   "i" = "{.arg gradient} cannot be used when {.arg background} is {.val NULL}."))
+    cli::cli_abort(c(
+      "Invalid card configuration.",
+      "i" = "{.arg gradient} cannot be used when {.arg background} is {.val NULL}."
+    ))
   }
-
 
   if (!is.null(elevation)) {
     check_number_whole(elevation, min = 0, max = 5)
@@ -270,83 +324,101 @@ validateBoxProps <- function(title, label, sidebar, dropdownMenu, status, gradie
 }
 
 
-
 # create box icons and return a list of icons
-createBoxTools <- function(collapsible, collapsed, closable, maximizable,
-                           sidebar, dropdownMenu, boxToolSize, status,
-                           background, solidHeader) {
+createBoxTools <- function(
+  collapsible,
+  collapsed,
+  closable,
+  maximizable,
+  sidebar,
+  dropdownMenu,
+  boxToolSize,
+  status,
+  background,
+  solidHeader
+) {
+  btnClass <- paste0(
+    "btn btn-tool",
+    if (!is.null(boxToolSize)) paste0(" btn-", boxToolSize)
+  )
 
+  if (is.null(status) && !is.null(background)) {
     btnClass <- paste0(
-      "btn btn-tool",
-      if (!is.null(boxToolSize)) paste0(" btn-", boxToolSize)
+      btnClass,
+      if (background %in% validStatusesPlus) {
+        paste0(" bg-", background)
+      }
     )
-
-    if (is.null(status) && !is.null(background)) {
-      btnClass <- paste0(
-        btnClass,
-        if (background %in% validStatusesPlus) {
-          paste0(" bg-", background)
-        }
-      )
-    }
-
-    # status has always priority compared to background
-    if (!is.null(status) &&  solidHeader) {
-      btnClass <- paste0(
-        btnClass,
-        if (status %in% validStatuses) {
-          paste0(" btn-", status)
-        }
-      )
-    }
-
-    collapseTag <- NULL
-    if (collapsible) {
-      collapseIcon <- if (collapsed)
-        "plus"
-      else "minus"
-      collapseTag <- shiny::tags$button(
-        class = btnClass,
-        type = "button",
-        `data-card-widget` = "collapse",
-        shiny::icon(collapseIcon)
-      )
-    }
-
-    closableTag <- NULL
-    if (closable) {
-      closableTag <- shiny::tags$button(
-        class = btnClass,
-        `data-card-widget` = "remove",
-        type = "button",
-        shiny::icon("xmark")
-      )
-    }
-
-    maximizableTag <- NULL
-    if (maximizable) {
-      maximizableTag <- shiny::tags$button(
-        type = "button",
-        class = btnClass,
-        `data-card-widget` = "maximize",
-        shiny::icon("up-right-and-down-left-from-center")
-      )
-    }
-
-    sidebarToolTag <- NULL
-    if (!is.null(sidebar)) {
-      sidebar[[1]]$attribs$class <- btnClass
-      sidebarToolTag <- sidebar[[1]]
-    }
-
-    dropdownMenuToolTag <- NULL
-    if (!is.null(dropdownMenu)) {
-      dropdownMenu$children[[1]]$attribs$class <- paste0(btnClass, " dropdown-toggle")
-      dropdownMenuToolTag <- dropdownMenu
-    }
-
-    dropNulls(list(dropdownMenuToolTag, collapseTag, closableTag, maximizableTag, sidebarToolTag))
   }
+
+  # status has always priority compared to background
+  if (!is.null(status) && solidHeader) {
+    btnClass <- paste0(
+      btnClass,
+      if (status %in% validStatuses) {
+        paste0(" btn-", status)
+      }
+    )
+  }
+
+  collapseTag <- NULL
+  if (collapsible) {
+    collapseIcon <- if (collapsed) {
+      "plus"
+    } else {
+      "minus"
+    }
+    collapseTag <- shiny::tags$button(
+      class = btnClass,
+      type = "button",
+      `data-card-widget` = "collapse",
+      shiny::icon(collapseIcon)
+    )
+  }
+
+  closableTag <- NULL
+  if (closable) {
+    closableTag <- shiny::tags$button(
+      class = btnClass,
+      `data-card-widget` = "remove",
+      type = "button",
+      shiny::icon("xmark")
+    )
+  }
+
+  maximizableTag <- NULL
+  if (maximizable) {
+    maximizableTag <- shiny::tags$button(
+      type = "button",
+      class = btnClass,
+      `data-card-widget` = "maximize",
+      shiny::icon("up-right-and-down-left-from-center")
+    )
+  }
+
+  sidebarToolTag <- NULL
+  if (!is.null(sidebar)) {
+    sidebar[[1]]$attribs$class <- btnClass
+    sidebarToolTag <- sidebar[[1]]
+  }
+
+  dropdownMenuToolTag <- NULL
+  if (!is.null(dropdownMenu)) {
+    dropdownMenu$children[[1]]$attribs$class <- paste0(
+      btnClass,
+      " dropdown-toggle"
+    )
+    dropdownMenuToolTag <- dropdownMenu
+  }
+
+  dropNulls(list(
+    dropdownMenuToolTag,
+    collapseTag,
+    closableTag,
+    maximizableTag,
+    sidebarToolTag
+  ))
+}
 
 
 setBoxStyle <- function(height, sidebar) {
@@ -362,23 +434,36 @@ setBoxStyle <- function(height, sidebar) {
 }
 
 
-setBoxClass <- function(status, solidHeader, collapsible, collapsed,
-elevation, gradient, background, sidebar) {
+setBoxClass <- function(
+  status,
+  solidHeader,
+  collapsible,
+  collapsed,
+  elevation,
+  gradient,
+  background,
+  sidebar
+) {
   cardCl <- "card bs4Dash"
 
   if (!is.null(status)) {
     cardCl <- paste0(cardCl, " card-", status)
   }
 
-  if (!solidHeader) cardCl <- paste0(cardCl, " card-outline")
+  if (!solidHeader) {
+    cardCl <- paste0(cardCl, " card-outline")
+  }
 
-  if (collapsible && collapsed) cardCl <- paste0(cardCl, " collapsed-card")
-  if (!is.null(elevation)) cardCl <- paste0(cardCl, " elevation-", elevation)
+  if (collapsible && collapsed) {
+    cardCl <- paste0(cardCl, " collapsed-card")
+  }
+  if (!is.null(elevation)) {
+    cardCl <- paste0(cardCl, " elevation-", elevation)
+  }
 
   if (!is.null(background)) {
     cardCl <- paste0(cardCl, " bg-", if (gradient) "gradient-", background)
   }
-
 
   if (!is.null(sidebar)) {
     sidebarToggle <- sidebar[[1]]
@@ -396,7 +481,6 @@ elevation, gradient, background, sidebar) {
 
 # extract social item in socialBox
 extractSocialItem <- function(items, isComment = TRUE) {
-
   if (length(items) > 0) {
     dropNulls(lapply(items, function(item) {
       if (inherits(item, "list")) {
@@ -423,17 +507,14 @@ extractSocialItem <- function(items, isComment = TRUE) {
 }
 
 
-
-
-
-
-randomInt <- function (min, max) {
+randomInt <- function(min, max) {
   if (missing(max)) {
     max <- min
     min <- 0
   }
-  if (min < 0 || max <= min)
+  if (min < 0 || max <= min) {
     cli::cli_abort("Invalid min/max values")
+  }
   min + sample(max - min, 1) - 1
 }
 
@@ -442,20 +523,18 @@ randomInt <- function (min, max) {
 .globals <- new.env(parent = emptyenv())
 .globals$ownSeed <- NULL
 
-withPrivateSeed <-function (expr) {
+withPrivateSeed <- function(expr) {
   if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
     hasOrigSeed <- TRUE
     origSeed <- .GlobalEnv$.Random.seed
-  }
-  else {
+  } else {
     hasOrigSeed <- FALSE
   }
   if (is.null(.globals$ownSeed)) {
     if (hasOrigSeed) {
       rm(.Random.seed, envir = .GlobalEnv, inherits = FALSE)
     }
-  }
-  else {
+  } else {
     .GlobalEnv$.Random.seed <- .globals$ownSeed
   }
   on.exit({
@@ -471,41 +550,39 @@ withPrivateSeed <-function (expr) {
 }
 
 
-p_randomInt <- function (...) {
+p_randomInt <- function(...) {
   withPrivateSeed(randomInt(...))
 }
 
 
-markTabAsSelected <- function (x) {
+markTabAsSelected <- function(x) {
   attr(x, "selected") <- TRUE
   x
 }
 
 
-`%OR%` <- function (x, y)
-{
-  if (is.null(x) || isTRUE(is.na(x)))
+`%OR%` <- function(x, y) {
+  if (is.null(x) || isTRUE(is.na(x))) {
     y
-  else x
+  } else {
+    x
+  }
 }
 
 
-findAndMarkSelectedTab <- function (tabs, selected, foundSelected) {
+findAndMarkSelectedTab <- function(tabs, selected, foundSelected) {
   tabs <- lapply(tabs, function(div) {
-    if (foundSelected || is.character(div)) {
-    }
-    else if (inherits(div, "shiny.navbarmenu")) {
-      res <- findAndMarkSelectedTab(div$tabs, selected,
-                                    foundSelected)
+    if (foundSelected || is.character(div)) {} else if (
+      inherits(div, "shiny.navbarmenu")
+    ) {
+      res <- findAndMarkSelectedTab(div$tabs, selected, foundSelected)
       div$tabs <- res$tabs
       foundSelected <<- res$foundSelected
-    }
-    else {
+    } else {
       if (is.null(selected)) {
         foundSelected <<- TRUE
         div <- markTabAsSelected(div)
-      }
-      else {
+      } else {
         tabValue <- div$attribs$`data-value` %OR% div$attribs$title
         if (identical(selected, tabValue)) {
           foundSelected <<- TRUE
@@ -519,98 +596,149 @@ findAndMarkSelectedTab <- function (tabs, selected, foundSelected) {
 }
 
 
-
-anyNamed <- function (x)
-{
-  if (length(x) == 0)
+anyNamed <- function(x) {
+  if (length(x) == 0) {
     return(FALSE)
+  }
   nms <- names(x)
-  if (is.null(nms))
+  if (is.null(nms)) {
     return(FALSE)
+  }
   any(nzchar(nms))
 }
 
 
-
-buildTabset <- function (tabs, ulClass, textFilter = NULL, id = NULL, selected = NULL,
-                         foundSelected = FALSE) {
+buildTabset <- function(
+  tabs,
+  ulClass,
+  textFilter = NULL,
+  id = NULL,
+  selected = NULL,
+  foundSelected = FALSE
+) {
   res <- findAndMarkSelectedTab(tabs, selected, foundSelected)
   tabs <- res$tabs
   foundSelected <- res$foundSelected
-  if (!is.null(id))
+  if (!is.null(id)) {
     ulClass <- paste(ulClass, "shiny-tab-input")
+  }
   if (anyNamed(tabs)) {
     nms <- names(tabs)
     nms <- nms[nzchar(nms)]
-    cli::cli_abort("Tabs should all be unnamed arguments, but some are named: {.val {nms}}")
+    cli::cli_abort(
+      "Tabs should all be unnamed arguments, but some are named: {.val {nms}}"
+    )
   }
   tabsetId <- p_randomInt(1000, 10000)
-  tabs <- lapply(seq_len(length(tabs)), buildTabItem, tabsetId = tabsetId,
-                 foundSelected = foundSelected, tabs = tabs, textFilter = textFilter)
-  tabNavList <- shiny::tags$ul(class = ulClass, id = id, `data-tabsetid` = tabsetId,
-                        lapply(tabs, "[[", 1))
-  tabContent <- shiny::tags$div(class = "tab-content", `data-tabsetid` = tabsetId,
-                         lapply(tabs, "[[", 2))
+  tabs <- lapply(
+    seq_len(length(tabs)),
+    buildTabItem,
+    tabsetId = tabsetId,
+    foundSelected = foundSelected,
+    tabs = tabs,
+    textFilter = textFilter
+  )
+  tabNavList <- shiny::tags$ul(
+    class = ulClass,
+    id = id,
+    `data-tabsetid` = tabsetId,
+    lapply(tabs, "[[", 1)
+  )
+  tabContent <- shiny::tags$div(
+    class = "tab-content",
+    `data-tabsetid` = tabsetId,
+    lapply(tabs, "[[", 2)
+  )
   list(navList = tabNavList, content = tabContent)
 }
 
 
-isTabSelected <- function (x) {
+isTabSelected <- function(x) {
   isTRUE(attr(x, "selected", exact = TRUE))
 }
 
 
-containsSelectedTab <- function (tabs) {
+containsSelectedTab <- function(tabs) {
   any(vapply(tabs, isTabSelected, logical(1)))
 }
 
 
-getIcon <- function (tab = NULL, iconClass = NULL) {
-  if (!is.null(tab))
+getIcon <- function(tab = NULL, iconClass = NULL) {
+  if (!is.null(tab)) {
     iconClass <- tab$attribs$`data-icon-class`
+  }
   if (!is.null(iconClass)) {
     if (grepl("fa-", iconClass, fixed = TRUE)) {
       iconClass <- paste(iconClass, "fa-fw")
     }
     shiny::icon(name = NULL, class = iconClass)
+  } else {
+    NULL
   }
-  else NULL
 }
 
 
-navbarMenuTextFilter <- function (text) {
-  if (grepl("^\\-+$", text))
+navbarMenuTextFilter <- function(text) {
+  if (grepl("^\\-+$", text)) {
     shiny::tags$li(class = "divider")
-  else shiny::tags$li(class = "dropdown-header", text)
+  } else {
+    shiny::tags$li(class = "dropdown-header", text)
+  }
 }
 
 
-buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = NULL,
-                          textFilter = NULL) {
-  divTag <- if (!is.null(divTag))
+buildTabItem <- function(
+  index,
+  tabsetId,
+  foundSelected,
+  tabs = NULL,
+  divTag = NULL,
+  textFilter = NULL
+) {
+  divTag <- if (!is.null(divTag)) {
     divTag
-  else tabs[[index]]
+  } else {
+    tabs[[index]]
+  }
   if (is.character(divTag) && !is.null(textFilter)) {
     liTag <- textFilter(divTag)
     divTag <- NULL
-  }
-  else if (inherits(divTag, "shiny.navbarmenu")) {
-    tabset <- buildTabset(divTag$tabs, "dropdown-menu", navbarMenuTextFilter,
-                          foundSelected = foundSelected)
+  } else if (inherits(divTag, "shiny.navbarmenu")) {
+    tabset <- buildTabset(
+      divTag$tabs,
+      "dropdown-menu",
+      navbarMenuTextFilter,
+      foundSelected = foundSelected
+    )
     containsSelected <- containsSelectedTab(divTag$tabs)
-    liTag <- shiny::tags$li(class = paste0("dropdown", if (containsSelected)
-      " active"), shiny::tags$a(href = "#", class = "dropdown-toggle",
-                         `data-toggle` = "dropdown", `data-value` = divTag$menuName,
-                         getIcon(iconClass = divTag$iconClass), divTag$title,
-                         shiny::tags$b(class = "caret")), tabset$navList)
+    liTag <- shiny::tags$li(
+      class = paste0(
+        "dropdown",
+        if (containsSelected) {
+          " active"
+        }
+      ),
+      shiny::tags$a(
+        href = "#",
+        class = "dropdown-toggle",
+        `data-toggle` = "dropdown",
+        `data-value` = divTag$menuName,
+        getIcon(iconClass = divTag$iconClass),
+        divTag$title,
+        shiny::tags$b(class = "caret")
+      ),
+      tabset$navList
+    )
     divTag <- tabset$content$children
-  }
-  else {
+  } else {
     tabId <- paste("tab", tabsetId, index, sep = "-")
-    liTag <- shiny::tags$li(shiny::tags$a(href = paste("#", tabId, sep = ""),
-                            `data-toggle` = "tab", `data-value` = divTag$attribs$`data-value`,
-                            getIcon(iconClass = divTag$attribs$`data-icon-class`),
-                            divTag$attribs$title))
+    liTag <- shiny::tags$li(shiny::tags$a(
+      href = paste("#", tabId, sep = ""),
+      `data-toggle` = "tab",
+      `data-value` = divTag$attribs$`data-value`,
+      getIcon(iconClass = divTag$attribs$`data-icon-class`),
+      divTag$attribs$title
+    ))
     if (isTabSelected(divTag)) {
       liTag$attribs$class <- "active"
       divTag$attribs$class <- "tab-pane active"
@@ -622,34 +750,43 @@ buildTabItem <- function (index, tabsetId, foundSelected, tabs = NULL, divTag = 
 }
 
 
-
-shinyDeprecated <- function (new = NULL, msg = NULL, old = as.character(sys.call(sys.parent()))[1L],
-          version = NULL)
-{
-  if (getOption("shiny.deprecation.messages") %OR% TRUE ==
-      FALSE)
+shinyDeprecated <- function(
+  new = NULL,
+  msg = NULL,
+  old = as.character(sys.call(sys.parent()))[1L],
+  version = NULL
+) {
+  if (getOption("shiny.deprecation.messages") %OR% TRUE == FALSE) {
     return(invisible())
+  }
   if (is.null(msg)) {
     msg <- paste(old, "is deprecated.")
     if (!is.null(new)) {
-      msg <- paste(msg, "Please use", new, "instead.",
-                   "To disable this message, run options(shiny.deprecation.messages=FALSE)")
+      msg <- paste(
+        msg,
+        "Please use",
+        new,
+        "instead.",
+        "To disable this message, run options(shiny.deprecation.messages=FALSE)"
+      )
     }
   }
   if (!is.null(version)) {
-    msg <- paste0(msg, " (Last used in version ", version,
-                  ")")
+    msg <- paste0(msg, " (Last used in version ", version, ")")
   }
   message(msg)
 }
 
 
-
-bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL,
-                             type = c("tabs", "pills", "hidden"))
-{
-  if (!is.null(id))
+bs3_tabsetPanel <- function(
+  tabs,
+  id = NULL,
+  selected = NULL,
+  type = c("tabs", "pills", "hidden")
+) {
+  if (!is.null(id)) {
     selected <- shiny::restoreInput(id = id, default = selected)
+  }
   type <- match.arg(type)
   tabset <- buildTabset(tabs, paste0("nav nav-", type), NULL, id, selected)
   first <- tabset$navList
@@ -658,28 +795,23 @@ bs3_tabsetPanel <- function (tabs, id = NULL, selected = NULL,
 }
 
 
-
-
-validateIcon <- function (icon)
-{
+validateIcon <- function(icon) {
   if (is.null(icon) || identical(icon, character(0))) {
     return(icon)
-  }
-  else if (inherits(icon, "shiny.tag") && icon$name == "i") {
+  } else if (inherits(icon, "shiny.tag") && icon$name == "i") {
     return(icon)
-  }
-  else {
-    cli::cli_abort("Invalid icon. Use Shiny's {.fn icon} function to generate a valid icon")
+  } else {
+    cli::cli_abort(
+      "Invalid icon. Use Shiny's {.fn icon} function to generate a valid icon"
+    )
   }
 }
 
 
-
-
 waiterShowOnLoad <- function(
-  html = waiter::spin_1(), color = "#333e48"
-){
-
+  html = waiter::spin_1(),
+  color = "#333e48"
+) {
   html <- as.character(html)
   html <- gsub("\n", "", html)
 
@@ -689,11 +821,11 @@ waiterShowOnLoad <- function(
       html: '%s',
       color: '%s'
     });",
-    html, color
+    html,
+    color
   )
 
   shiny::HTML(sprintf("<script>%s</script>", show))
-
 }
 
 
@@ -707,14 +839,13 @@ waiterShowOnLoad <- function(
 #' The first occurence must set deps to TRUE so that CSS is loaded in the page.
 #' @keywords internal
 app_container <- function(url, deps = FALSE) {
-
   # test app availability
   req <- httr::GET(url)
   show_app <- req$status_code == 200
 
   if (show_app) {
     device_tag <- shiny::div(
-      class="marvel-device ipad black",
+      class = "marvel-device ipad black",
       shiny::div(class = "camera"),
       shiny::div(
         class = "screen",
@@ -729,11 +860,14 @@ app_container <- function(url, deps = FALSE) {
       ),
       shiny::div(class = "home")
     )
-    if (deps){
+    if (deps) {
       shiny::tagList(
         shiny::tags$link(
           rel = "stylesheet",
-          href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "bs4Dash"),
+          href = system.file(
+            "marvel-devices-css-1.0.0/devices.min.css",
+            package = "bs4Dash"
+          ),
           type = "text/css"
         ),
         device_tag

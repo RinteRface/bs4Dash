@@ -36,7 +36,6 @@ themer_list <- c("Navbar", "Sidebar", "Accents", "Controlbar")
 
 
 createThemer <- function(name, skins) {
-
   titleTag <- shiny::h6(sprintf("%s themer", name))
 
   shiny::tagList(
@@ -51,7 +50,10 @@ createThemer <- function(name, skins) {
             class = "custom-control-input"
           ),
           shiny::tags$label(
-            shiny::icon("sun", class = sprintf("%s-themer-icon", tolower(name))),
+            shiny::icon(
+              "sun",
+              class = sprintf("%s-themer-icon", tolower(name))
+            ),
             `for` = sprintf("%s-skin", tolower(name)),
             class = "custom-control-label"
           )
@@ -67,7 +69,11 @@ createThemer <- function(name, skins) {
           class = "d-flex flex-wrap mb-3",
           lapply(skins, function(theme) {
             shiny::div(
-              class = sprintf("bg-%s elevation-2 %s-themer-chip", theme, tolower(name)),
+              class = sprintf(
+                "bg-%s elevation-2 %s-themer-chip",
+                theme,
+                tolower(name)
+              ),
               style = "width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;",
               onclick = if (name == "Navbar") {
                 sprintf("update%sTheme('navbar-%s');", name, theme)

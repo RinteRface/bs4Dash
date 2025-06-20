@@ -7,20 +7,20 @@ shinyApp(
     header = dashboardHeader(),
     body = dashboardBody(
       box(
-        title = "Update box sidebar", 
-        closable = TRUE, 
+        title = "Update box sidebar",
+        closable = TRUE,
         width = 12,
-        solidHeader = FALSE, 
+        solidHeader = FALSE,
         collapsible = TRUE,
         actionButton("update", "Toggle card sidebar"),
         sidebar = boxSidebar(
           id = "mycardsidebar",
           width = 25,
           sliderInput(
-            "obs", 
+            "obs",
             "Number of observations:",
-            min = 0, 
-            max = 1000, 
+            min = 0,
+            max = 1000,
             value = 500
           )
         ),
@@ -31,14 +31,13 @@ shinyApp(
   ),
   server = function(input, output, session) {
     observe(print(input$mycardsidebar))
-    
+
     output$distPlot <- renderPlot({
       hist(rnorm(input$obs))
     })
-    
+
     observeEvent(input$update, {
       updateBoxSidebar("mycardsidebar")
     })
-    
   }
 )

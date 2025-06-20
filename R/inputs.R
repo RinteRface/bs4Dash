@@ -87,15 +87,34 @@
 #'   * Event handlers (e.g., [observeEvent()], [eventReactive()]) won't execute on initial load.
 #'   * Input validation (e.g., [req()], [need()]) will fail on initial load.
 #' @export
-actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
-                         status = NULL, gradient = FALSE, outline = FALSE, size = NULL,
-                         flat = FALSE) {
-  if (is.null(status) & outline) cli::cli_abort(c("Invalid argument combination.",
-                                             "i" = "{.arg outline} cannot be used when {.arg status} is NULL."))
-  if (gradient && outline) cli::cli_abort(c("Invalid argument combination.",
-                                         "i" = "{.arg outline} is not compatible with {.arg gradient}."))
+actionButton <- function(
+  inputId,
+  label,
+  icon = NULL,
+  width = NULL,
+  ...,
+  status = NULL,
+  gradient = FALSE,
+  outline = FALSE,
+  size = NULL,
+  flat = FALSE
+) {
+  if (is.null(status) & outline) {
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "{.arg outline} cannot be used when {.arg status} is NULL."
+    ))
+  }
+  if (gradient && outline) {
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "{.arg outline} is not compatible with {.arg gradient}."
+    ))
+  }
 
-  if (!is.null(status)) validateStatus(status)
+  if (!is.null(status)) {
+    validateStatus(status)
+  }
   value <- shiny::restoreInput(id = inputId, default = NULL)
 
   btnCl <- if (is.null(status)) {
@@ -115,12 +134,18 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
     }
   }
 
-  if (flat) btnCl <- paste0(btnCl, " btn-flat")
-  if (!is.null(size)) btnCl <- paste0(btnCl, " btn-", size)
+  if (flat) {
+    btnCl <- paste0(btnCl, " btn-flat")
+  }
+  if (!is.null(size)) {
+    btnCl <- paste0(btnCl, " btn-", size)
+  }
 
   shiny::tags$button(
     id = inputId,
-    style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", shiny::validateCssUnit(width), ";")
+    },
     type = "button",
     class = btnCl,
     `data-val` = value,
@@ -128,9 +153,6 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
     ...
   )
 }
-
-
-
 
 
 #' @title AdminLTE2 special large button
@@ -196,10 +218,20 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #' }
 #'
 #' @export
-appButton <- function(..., inputId, label, icon = NULL, width = NULL, color = NULL) {
-
-  if (!is.null(icon)) tagAssert(icon, type = "i")
-  if (!is.null(color)) validateStatusPlus(color)
+appButton <- function(
+  ...,
+  inputId,
+  label,
+  icon = NULL,
+  width = NULL,
+  color = NULL
+) {
+  if (!is.null(icon)) {
+    tagAssert(icon, type = "i")
+  }
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
 
   shiny::tagAppendAttributes(
     shiny::actionButton(inputId, label, icon = icon, width = width, ...),

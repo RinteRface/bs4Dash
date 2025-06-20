@@ -11,10 +11,10 @@ shinyApp(
   server = function(input, output) {
     output$user <- renderUser({
       dashboardUser(
-        name = "Divad Nojnarg", 
-        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg", 
+        name = "Divad Nojnarg",
+        image = "https://adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg",
         title = "bs4Dash",
-        subtitle = "Author", 
+        subtitle = "Author",
         footer = p("The footer", class = "text-center"),
         fluidRow(
           dashboardUserItem(

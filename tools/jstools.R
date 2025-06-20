@@ -12,7 +12,7 @@ outputDir <- sprintf("inst/bs4Dash-%s", pkg_version)
 
 if (old_version != pkg_version) {
   file.rename(
-    file.path("srcjs", tmp_old_version), 
+    file.path("srcjs", tmp_old_version),
     new_srcjs_folder_name
   )
   dir.create(outputDir)
@@ -31,7 +31,11 @@ bs4DashJS <- list.files(
 # Concat -----------------------------------------------------------------
 
 # This just aggregates all srcjs files into one big .js file. There is no minifications, ... See next step for terser
-system(sprintf("cat %s > %s/bs4Dash.js", paste(bs4DashJS, collapse = " "), outputDir))
+system(sprintf(
+  "cat %s > %s/bs4Dash.js",
+  paste(bs4DashJS, collapse = " "),
+  outputDir
+))
 
 # Concat + Compress + source maps ----------------------------------------------------------------
 

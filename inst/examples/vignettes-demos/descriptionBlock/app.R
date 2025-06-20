@@ -16,11 +16,11 @@ shinyApp(
           column(
             width = 6,
             descriptionBlock(
-              number = "17%", 
-              numberColor = "success", 
+              number = "17%",
+              numberColor = "success",
               numberIcon = icon("caret-up"),
-              header = "$35,210.43", 
-              text = "TOTAL REVENUE", 
+              header = "$35,210.43",
+              text = "TOTAL REVENUE",
               rightBorder = TRUE,
               marginBottom = FALSE
             )
@@ -28,11 +28,11 @@ shinyApp(
           column(
             width = 6,
             descriptionBlock(
-              number = "18%", 
-              numberColor = "danger", 
+              number = "18%",
+              numberColor = "danger",
               numberIcon = icon("caret-down"),
-              header = "1200", 
-              text = "GOAL COMPLETION", 
+              header = "1200",
+              text = "GOAL COMPLETION",
               rightBorder = FALSE,
               marginBottom = FALSE
             )
@@ -42,5 +42,5 @@ shinyApp(
     ),
     title = "Description Block"
   ),
-  server = function(input, output) { }
+  server = function(input, output) {}
 )

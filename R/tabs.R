@@ -172,10 +172,15 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-tabsetPanel <- function(..., id = NULL, selected = NULL,
-                        type = c("tabs", "pills", "hidden"),
-                        vertical = FALSE, side = "left", .list = NULL) {
-
+tabsetPanel <- function(
+  ...,
+  id = NULL,
+  selected = NULL,
+  type = c("tabs", "pills", "hidden"),
+  vertical = FALSE,
+  side = "left",
+  .list = NULL
+) {
   items <- c(list(...), .list)
   type <- match.arg(type)
 
@@ -200,7 +205,7 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
     x$attribs$class <- if (is.null(x$attribs$class)) {
       "nav-item"
     } else {
-      paste("nav-item",  x$attribs$class)
+      paste("nav-item", x$attribs$class)
     }
     x$children[[1]]$attribs$class <- if (found_active) {
       "nav-link active"
@@ -214,12 +219,17 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
   # (unable to switch between tabs)
   bs4_nav_items <- lapply(bs4_nav_items, function(item) {
     if (item$attribs$class == "nav-item dropdown") {
-      item$children[[2]]$children[[1]] <- lapply(item$children[[2]]$children[[1]], function(subitem) {
-        subitem$attribs$`data-target` <- subitem$attribs$href
-        subitem
-      })
+      item$children[[2]]$children[[1]] <- lapply(
+        item$children[[2]]$children[[1]],
+        function(subitem) {
+          subitem$attribs$`data-target` <- subitem$attribs$href
+          subitem
+        }
+      )
     } else {
-      item$children[[1]]$attribs$`data-target` <- item$children[[1]]$attribs$href
+      item$children[[1]]$attribs$`data-target` <- item$children[[
+        1
+      ]]$attribs$href
     }
     item
   })
@@ -236,7 +246,6 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
   temp_tabset$children[[1]]$children[[1]] <- bs4_nav_items
 
   if (vertical) {
-
     tabsetMenu <- temp_tabset$children[[1]]
     tabsetContent <- temp_tabset$children[[2]]
 
@@ -254,11 +263,7 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
   } else {
     temp_tabset
   }
-
 }
-
-
-
 
 
 #' Insert a \link[shiny]{tabPanel} in a \link{tabsetPanel}
@@ -327,9 +332,14 @@ tabsetPanel <- function(..., id = NULL, selected = NULL,
 #'   }
 #'  )
 #' }
-insertTab <- function(inputId, tab, target, position = c("before", "after"),
-                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
-
+insertTab <- function(
+  inputId,
+  tab,
+  target,
+  position = c("before", "after"),
+  select = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+) {
   force(target)
   force(select)
   position <- match.arg(position)
@@ -358,5 +368,4 @@ insertTab <- function(inputId, tab, target, position = c("before", "after"),
   }
 
   session$onFlush(callback, once = TRUE)
-
 }

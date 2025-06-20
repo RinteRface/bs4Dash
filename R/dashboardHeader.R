@@ -50,15 +50,29 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
-                          .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = "white",
-                          border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
-                          controlbarIcon = shiny::icon("table-cells"), fixed = FALSE) {
+bs4DashNavbar <- function(
+  ...,
+  title = NULL,
+  titleWidth = NULL,
+  disable = FALSE,
+  .list = NULL,
+  leftUi = NULL,
+  rightUi = NULL,
+  skin = "light",
+  status = "white",
+  border = TRUE,
+  compact = FALSE,
+  sidebarIcon = shiny::icon("bars"),
+  controlbarIcon = shiny::icon("table-cells"),
+  fixed = FALSE
+) {
   items <- c(list(...), .list)
 
   # make sure default status for dark skin is gray-dark if status is not specified
   # by the end user.
-  if (skin == "dark" && is.null(status)) status <- "gray-dark"
+  if (skin == "dark" && is.null(status)) {
+    status <- "gray-dark"
+  }
 
   if (!is.null(leftUi)) {
     if (inherits(leftUi, "shiny.tag.list")) {
@@ -84,8 +98,11 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
-      "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
-      " navbar-", skin, if (!border) " border-bottom-0" else NULL,
+      "main-header navbar navbar-expand",
+      if (!is.null(status)) paste0(" navbar-", status),
+      " navbar-",
+      skin,
+      if (!border) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
 
@@ -147,7 +164,7 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #' \link{menuSubItem}. This is to avoid to create too many functions.
 #' @export
 #' @rdname navbar-menu
-navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
+navbarTab <- function(text, ..., tabName = NULL, icon = NULL, .list = NULL) {
   items <- c(list(...), .list)
   if (length(items) > 0) {
     do.call(navbarDropdown, list(text, items))
@@ -277,17 +294,16 @@ dropdownHeader <- function(text) {
 #'  )
 #' }
 navbarMenu <- function(..., id = NULL) {
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  if (is.null(id)) {
+    id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  }
 
   items <- list(...)
-  items <- htmltools::tagQuery(items)$
-    find(".nav-item.dropdown")$
-    removeClass("nav-item dropdown")$
-    addClass("dropdown-submenu dropdown-hover")$
-    find("ul")$
-    removeAttrs("style")$
-    reset()$
-    selectedTags()
+  items <- htmltools::tagQuery(items)$find(".nav-item.dropdown")$removeClass(
+    "nav-item dropdown"
+  )$addClass("dropdown-submenu dropdown-hover")$find("ul")$removeAttrs(
+    "style"
+  )$reset()$selectedTags()
 
   shiny::tags$ul(
     class = "navbar-nav sidebar-menu",
@@ -297,7 +313,6 @@ navbarMenu <- function(..., id = NULL) {
       id = id,
       class = "sidebarMenuSelectedTabItem",
       `data-value` = "null",
-
     )
   )
 }
@@ -343,11 +358,23 @@ updateNavbarTabs <- updatebs4TabItems
 #'
 #' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
 #' @export
-bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity = .8) {
-  if (!is.null(color)) validateStatusPlus(color)
+bs4DashBrand <- function(
+  title,
+  color = NULL,
+  href = NULL,
+  image = NULL,
+  opacity = .8
+) {
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
 
   shiny::tags$a(
-    class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
+    class = if (!is.null(color)) {
+      paste0("brand-link bg-", color)
+    } else {
+      "brand-link"
+    },
     href = if (!is.null(href)) href else "#",
     target = if (!is.null(href)) "_blank",
     if (!is.null(image)) {
@@ -360,8 +387,6 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
     shiny::tags$span(class = "brand-text font-weight-light", title)
   )
 }
-
-
 
 
 #' Boostrap 4 dashboard dropdown menu
@@ -463,11 +488,19 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #' @rdname dropdownMenu
 #'
 #' @export
-bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
-                            badgeStatus = "primary", icon = NULL, headerText = NULL,
-                            .list = NULL, href = NULL) {
+bs4DropdownMenu <- function(
+  ...,
+  type = c("messages", "notifications", "tasks"),
+  badgeStatus = "primary",
+  icon = NULL,
+  headerText = NULL,
+  .list = NULL,
+  href = NULL
+) {
   type <- match.arg(type)
-  if (!is.null(badgeStatus)) validateStatus(badgeStatus)
+  if (!is.null(badgeStatus)) {
+    validateStatus(badgeStatus)
+  }
   items <- c(list(...), .list)
 
   # Make sure the items are a tags
@@ -487,7 +520,10 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
   if (is.null(badgeStatus)) {
     badge <- NULL
   } else {
-    badge <- shiny::span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
+    badge <- shiny::span(
+      class = paste0("badge badge-", badgeStatus, " navbar-badge"),
+      numItems
+    )
   }
 
   if (is.null(headerText)) {
@@ -523,8 +559,6 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
     )
   )
 }
-
-
 
 
 #' Bootstrap 4 message item
@@ -569,14 +603,28 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #' @rdname dropdownMenu
 #'
 #' @export
-messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
-                        href = NULL, image = NULL, color = "secondary", inputId = NULL) {
+messageItem <- function(
+  from,
+  message,
+  icon = shiny::icon("user"),
+  time = NULL,
+  href = NULL,
+  image = NULL,
+  color = "secondary",
+  inputId = NULL
+) {
   tagAssert(icon, type = "i")
-  if (is.null(href)) href <- "#"
-  if (!is.null(color)) validateStatusPlus(color)
+  if (is.null(href)) {
+    href <- "#"
+  }
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   shiny::tagList(
     shiny::a(
@@ -662,14 +710,25 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @rdname dropdownMenu
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
-                             status = "success", href = NULL, inputId = NULL) {
+notificationItem <- function(
+  text,
+  icon = shiny::icon("triangle-exclamation"),
+  status = "success",
+  href = NULL,
+  inputId = NULL
+) {
   tagAssert(icon, type = "i")
-  if (is.null(href)) href <- "#"
-  if (!is.null(status)) validateStatusPlus(status)
+  if (is.null(href)) {
+    href <- "#"
+  }
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   if (!is.null(status)) {
     icon <- shiny::tagAppendAttributes(icon, class = paste0("text-", status))
@@ -694,7 +753,6 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
     shiny::tags$div(class = "dropdown-divider")
   )
 }
-
 
 
 #' Bootstrap 4 task item
@@ -735,12 +793,22 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
 #' @rdname dropdownMenu
 #'
 #' @export
-taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
+taskItem <- function(
+  text,
+  value = 0,
+  color = "info",
+  href = NULL,
+  inputId = NULL
+) {
   validateStatusPlus(color)
-  if (is.null(href)) href <- "#"
+  if (is.null(href)) {
+    href <- "#"
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   shiny::tagList(
     shiny::tags$a(
@@ -769,8 +837,6 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
     shiny::tags$div(class = "dropdown-divider")
   )
 }
-
-
 
 
 #' Bootstrap 4 user profile.
@@ -846,9 +912,18 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #'   )
 #' }
 #' @export
-bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
-                        subtitle = NULL, footer = NULL, status = NULL) {
-  if (!is.null(status)) validateStatusPlus(status)
+bs4UserMenu <- function(
+  ...,
+  name = NULL,
+  image = NULL,
+  title = NULL,
+  subtitle = NULL,
+  footer = NULL,
+  status = NULL
+) {
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
 
   # Create line 1 for menu
   if (!is.null(title)) {
@@ -864,7 +939,9 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     user_header_height <- NULL
   } else {
     user_text <- shiny::tags$p(line_1)
-    user_header_height <- shiny::tags$script(shiny::HTML('$(".user-header").css("height", "145px")'))
+    user_header_height <- shiny::tags$script(shiny::HTML(
+      '$(".user-header").css("height", "145px")'
+    ))
   }
 
   shiny::tagList(
@@ -893,7 +970,10 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     shiny::tags$ul(
       class = "dropdown-menu dropdown-menu-lg dropdown-menu-right dashboard-user",
       shiny::tags$li(
-        class = paste0("user-header", if (!is.null(status)) paste0(" bg-", status)),
+        class = paste0(
+          "user-header",
+          if (!is.null(status)) paste0(" bg-", status)
+        ),
         shiny::tags$img(
           src = image,
           class = "img-circle elevation-2",
@@ -901,13 +981,13 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
         ),
         shiny::tags$p(title, shiny::tags$small(subtitle))
       ),
-      if (length(list(...)) > 0) shiny::tags$li(class = "user-body", shiny::fluidRow(...)),
+      if (length(list(...)) > 0) {
+        shiny::tags$li(class = "user-body", shiny::fluidRow(...))
+      },
       if (!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
     )
   )
 }
-
-
 
 
 #' Create a dashboard user profile item
@@ -928,8 +1008,6 @@ dashboardUserItem <- function(item, width) {
 }
 
 
-
-
 #' Create a dynamic user output (client side)
 #'
 #' This can be used as a placeholder for dynamically-generated \code{\link{dashboardUser}}.
@@ -943,7 +1021,11 @@ dashboardUserItem <- function(item, width) {
 #' @rdname dashboardUser
 #' @export
 userOutput <- function(id, tag = shiny::tags$li) {
-  shiny::uiOutput(outputId = id, container = tag, class = "nav-item dropdown user-menu")
+  shiny::uiOutput(
+    outputId = id,
+    container = tag,
+    class = "nav-item dropdown user-menu"
+  )
 }
 
 #' Create dynamic user output (server side)
@@ -955,7 +1037,12 @@ userOutput <- function(id, tag = shiny::tags$li) {
 #' @family user outputs
 #' @rdname dashboardUser
 #' @export
-renderUser <- function(expr, env = parent.frame(), quoted = FALSE, outputArgs = list()) {
+renderUser <- function(
+  expr,
+  env = parent.frame(),
+  quoted = FALSE,
+  outputArgs = list()
+) {
   if (!quoted) {
     expr <- substitute(expr)
     quoted <- TRUE

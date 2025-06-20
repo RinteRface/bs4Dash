@@ -1,4 +1,4 @@
-getButtonAttr <- function(sidebarCard){
+getButtonAttr <- function(sidebarCard) {
   sidebarCard[[1]]$attribs
 }
 

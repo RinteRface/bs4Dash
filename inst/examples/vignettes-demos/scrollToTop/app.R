@@ -12,5 +12,5 @@ shinyApp(
     controlbar = dashboardControlbar(),
     title = "Scroll to top"
   ),
-  server = function(input, output) { }
+  server = function(input, output) {}
 )

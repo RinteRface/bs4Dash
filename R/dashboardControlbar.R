@@ -19,10 +19,19 @@
 #' @rdname dashboardControlbar
 #'
 #' @export
-bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
-                              collapsed = TRUE, overlay = TRUE, skin = NULL,
-                              pinned = NULL) {
-  if (is.null(id)) id <- "controlbarId"
+bs4DashControlbar <- function(
+  ...,
+  id = NULL,
+  disable = FALSE,
+  width = 250,
+  collapsed = TRUE,
+  overlay = TRUE,
+  skin = NULL,
+  pinned = NULL
+) {
+  if (is.null(id)) {
+    id <- "controlbarId"
+  }
 
   skin <- set_sidebar_skin(skin)
 
@@ -57,8 +66,12 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
           shiny::HTML(
             paste0(
               ".control-sidebar, .control-sidebar:before {
-                width: ", shiny::validateCssUnit(width), ";
-                right: -", shiny::validateCssUnit(width), ";
+                width: ",
+              shiny::validateCssUnit(width),
+              ";
+                right: -",
+              shiny::validateCssUnit(width),
+              ";
                 bottom: 0;
                 transition: right 0.3s ease-in-out;
               }
@@ -66,7 +79,9 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
               .control-sidebar-slide-open.control-sidebar-push .main-footer,
               .control-sidebar-slide-open.control-sidebar-push-slide .content-wrapper,
               .control-sidebar-slide-open.control-sidebar-push-slide .main-footer {
-                margin-right: ", shiny::validateCssUnit(width), ";
+                margin-right: ",
+              shiny::validateCssUnit(width),
+              ";
               }
 
               @media (min-width: 768px)
@@ -74,7 +89,9 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
                 body:not(.sidebar-mini-md) .main-footer,
                 body:not(.sidebar-mini-md) .main-header {
                   transition: margin-left .3s ease-in-out;
-                  margin-left: ", shiny::validateCssUnit(width), ";
+                  margin-left: ",
+              shiny::validateCssUnit(width),
+              ";
                 }
               "
             )
@@ -87,14 +104,10 @@ bs4DashControlbar <- function(..., id = NULL, disable = FALSE, width = 250,
 }
 
 
-
-
 #' @inheritParams tabsetPanel
 #' @rdname dashboardControlbar
 #' @export
 controlbarMenu <- tabsetPanel
-
-
 
 
 #' @inheritParams shiny::tabPanel
@@ -105,17 +118,16 @@ controlbarItem <- function(title, ..., value = title, icon = NULL) {
 }
 
 
-
-
 #' @inheritParams shiny::updateTabsetPanel
 #' @rdname dashboardControlbar
 #' @export
-updateControlbarMenu <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
+updateControlbarMenu <- function(
+  session = shiny::getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }
-
-
-
 
 
 #' Function to programmatically toggle the state of the controlbar

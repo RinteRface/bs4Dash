@@ -135,13 +135,32 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
-                    solidHeader = FALSE, background = NULL, width = 6, height = NULL,
-                    collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE, icon = NULL,
-                    gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                    sidebar = NULL, id = NULL) {
-
-  if (is.null(status)) solidHeader <- TRUE
+bs4Card <- function(
+  ...,
+  title = NULL,
+  footer = NULL,
+  status = NULL,
+  solidHeader = FALSE,
+  background = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = FALSE,
+  maximizable = FALSE,
+  icon = NULL,
+  gradient = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  id = NULL
+) {
+  if (is.null(status)) {
+    solidHeader <- TRUE
+  }
 
   # multiple validation
   validateBoxProps(
@@ -166,8 +185,10 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
           unlist(
             dropNulls(
               lapply(title, function(e) {
-                if (inherits(e, "shiny.tag.list") ||
-                  inherits(e, "shiny.tag")) {
+                if (
+                  inherits(e, "shiny.tag.list") ||
+                    inherits(e, "shiny.tag")
+                ) {
                   as.character(e)
                 }
               })
@@ -206,11 +227,16 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
   # set style
   style <- setBoxStyle(height, sidebar)
 
-
   cardToolTag <- NULL
   # create card tools whenever necessary
-  if (collapsible || closable || maximizable ||
-      !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)) {
+  if (
+    collapsible ||
+      closable ||
+      maximizable ||
+      !is.null(dropdownMenu) ||
+      !is.null(sidebar) ||
+      !is.null(label)
+  ) {
     cardToolTag <- shiny::tags$div(class = "card-tools float-right")
   }
 
@@ -232,20 +258,24 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
     )
   )
 
-
-
   # header
-  if (is.null(title) &&
-    (maximizable || closable || collapsible ||
-    !is.null(dropdownMenu) || !is.null(sidebar) || !is.null(label)
-  )) title <- "\u200C"
+  if (
+    is.null(title) &&
+      (maximizable ||
+        closable ||
+        collapsible ||
+        !is.null(dropdownMenu) ||
+        !is.null(sidebar) ||
+        !is.null(label))
+  ) {
+    title <- "\u200C"
+  }
 
   headerTag <- shiny::tags$div(
     class = if (headerBorder) "card-header" else "card-header border-0",
     shiny::tags$h3(class = "card-title", icon, title)
   )
   headerTag <- shiny::tagAppendChild(headerTag, cardToolTag)
-
 
   # body
   bodyTag <- shiny::tags$div(
@@ -284,8 +314,6 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 }
 
 
-
-
 #' Create a label for Boostrap 4 card
 #'
 #' @param text Label text. In practice only few letters or a number.
@@ -295,7 +323,9 @@ bs4Card <- function(..., title = NULL, footer = NULL, status = NULL,
 #' @rdname boxLabel
 #' @export
 bs4CardLabel <- function(text, status, tooltip = NULL) {
-  if (nchar(text) > 10) warning("Avoid long texts in avaCardLabel.")
+  if (nchar(text) > 10) {
+    warning("Avoid long texts in avaCardLabel.")
+  }
 
   shiny::tags$span(
     class = paste0("badge bg-", status),
@@ -304,9 +334,6 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
     text
   )
 }
-
-
-
 
 
 #' Create a sidebar for Boostrap 4 card
@@ -326,16 +353,21 @@ bs4CardLabel <- function(text, status, tooltip = NULL) {
 #' @rdname boxSidebar
 #' @family boxWidgets
 #' @export
-bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
-                           startOpen = FALSE, icon = shiny::icon("gears"),
-                           easyClose = TRUE) {
-
+bs4CardSidebar <- function(
+  ...,
+  id = NULL,
+  width = 50,
+  background = "#333a40",
+  startOpen = FALSE,
+  icon = shiny::icon("gears"),
+  easyClose = TRUE
+) {
   check_number_whole(width, min = 25, max = 100)
 
   # Toggle to insert in bs4Card
   toolbarTag <- shiny::tags$button(
     id = id,
-    `data-background`= background,
+    `data-background` = background,
     `data-width` = width,
     `data-widget` = "chat-pane-toggle",
     `data-toggle` = "tooltip",
@@ -360,8 +392,6 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
 
   shiny::tagList(toolbarTag, contentTag)
 }
-
-
 
 
 #' Update an AdminLTE3 card from the server side
@@ -477,8 +507,12 @@ bs4CardSidebar <- function(..., id = NULL, width = 50, background = "#333a40",
 #'
 #'   shinyApp(ui, server)
 #' }
-updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "restore", "update"),
-                          options = NULL, session = shiny::getDefaultReactiveDomain()) {
+updatebs4Card <- function(
+  id,
+  action = c("remove", "toggle", "toggleMaximize", "restore", "update"),
+  options = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   action <- match.arg(action)
   # for update, we take a list of options
   if (action == "update") {
@@ -492,8 +526,10 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
         o <- unlist(
           dropNulls(
             lapply(o, function(e) {
-              if (inherits(e, "shiny.tag.list") ||
-                inherits(e, "shiny.tag")) {
+              if (
+                inherits(e, "shiny.tag.list") ||
+                  inherits(e, "shiny.tag")
+              ) {
                 as.character(e)
               } else {
                 e
@@ -511,8 +547,6 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
   }
   session$sendInputMessage(id, action)
 }
-
-
 
 
 #' Programmatically toggle a bs4Card sidebar
@@ -558,11 +592,12 @@ updatebs4Card <- function(id, action = c("remove", "toggle", "toggleMaximize", "
 #'     }
 #'   )
 #' }
-updatebs4CardSidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
+updatebs4CardSidebar <- function(
+  id,
+  session = shiny::getDefaultReactiveDomain()
+) {
   session$sendInputMessage(id, NULL)
 }
-
-
 
 
 #' Create a box dropdown item list
@@ -599,8 +634,6 @@ cardDropdown <- function(..., icon = shiny::icon("wrench")) {
 }
 
 
-
-
 #' Create a box dropdown item
 #'
 #' To insert in \link{boxDropdown}.
@@ -627,7 +660,6 @@ cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
 }
 
 
-
 #' Create a box dropdown divider
 #'
 #' @note Useful to separate 2 sections of dropdown items.
@@ -638,9 +670,6 @@ cardDropdownItem <- function(..., id = NULL, href = NULL, icon = NULL) {
 dropdownDivider <- function() {
   shiny::div(class = "dropdown-divider")
 }
-
-
-
 
 
 #' Boostrap 4 value box
@@ -731,47 +760,67 @@ dropdownDivider <- function() {
 #'   )
 #' }
 #' @export
-bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
-                        href = NULL, footer = NULL, gradient = FALSE, elevation = NULL) {
+bs4ValueBox <- function(
+  value,
+  subtitle,
+  icon = NULL,
+  color = NULL,
+  width = 3,
+  href = NULL,
+  footer = NULL,
+  gradient = FALSE,
+  elevation = NULL
+) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
   }
 
   if (is.null(color) && gradient) {
-    cli::cli_abort(c("Cannot use gradient with {.val NULL} color.",
-                     "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
-                     "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."))
+    cli::cli_abort(c(
+      "Cannot use gradient with {.val NULL} color.",
+      "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
+      "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."
+    ))
   }
 
   # check conditions
   if (!is.null(width)) {
     if (!is.numeric(width)) {
-      cli::cli_abort(c("Invalid {.arg width} value.",
-                     "i" = "{.arg width} must be numeric."))
+      cli::cli_abort(c(
+        "Invalid {.arg width} value.",
+        "i" = "{.arg width} must be numeric."
+      ))
     }
     # respect the bootstrap grid
     if (width > 12 || width < 0) {
-      cli::cli_abort(c("Invalid {.arg width} value.",
-                     "i" = "{.arg width} must be between {.val 0} and {.val 12}."))
+      cli::cli_abort(c(
+        "Invalid {.arg width} value.",
+        "i" = "{.arg width} must be between {.val 0} and {.val 12}."
+      ))
     }
   }
 
   if (!is.null(elevation)) {
     if (!is.numeric(elevation)) {
-      cli::cli_abort(c("Invalid {.arg elevation} value.",
-                     "i" = "{.arg elevation} must be numeric."))
+      cli::cli_abort(c(
+        "Invalid {.arg elevation} value.",
+        "i" = "{.arg elevation} must be numeric."
+      ))
     }
     if (elevation >= 6 || elevation < 0) {
-      cli::cli_abort(c("Invalid {.arg elevation} value.",
-                     "i" = "{.arg elevation} must be between {.val 0} and {.val 5}."))
+      cli::cli_abort(c(
+        "Invalid {.arg elevation} value.",
+        "i" = "{.arg elevation} must be between {.val 0} and {.val 5}."
+      ))
     }
   }
 
   if (!is.null(footer) && !is.null(href)) {
-    cli::cli_abort(c("Incompatible arguments provided.",
-                     "i" = "You must choose either {.arg href} or {.arg footer}, not both."))
+    cli::cli_abort(c(
+      "Incompatible arguments provided.",
+      "i" = "You must choose either {.arg href} or {.arg footer}, not both."
+    ))
   }
-
 
   valueBoxCl <- "small-box"
   if (!is.null(color)) {
@@ -782,7 +831,9 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
       valueBoxCl <- paste0(valueBoxCl, " bg-", color)
     }
   }
-  if (!is.null(elevation)) valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
+  if (!is.null(elevation)) {
+    valueBoxCl <- paste0(valueBoxCl, " elevation-", elevation)
+  }
 
   innerTag <- shiny::tags$div(
     class = "inner",
@@ -819,14 +870,18 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
   }
 
   valueBoxTag <- shiny::tags$div(class = valueBoxCl)
-  valueBoxTag <- shiny::tagAppendChildren(valueBoxTag, innerTag, iconTag, footerTag)
+  valueBoxTag <- shiny::tagAppendChildren(
+    valueBoxTag,
+    innerTag,
+    iconTag,
+    footerTag
+  )
 
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     valueBoxTag
   )
 }
-
 
 
 #' Boostrap 4 info box
@@ -943,23 +998,39 @@ bs4ValueBox <- function(value, subtitle, icon = NULL, color = NULL, width = 3,
 #'   )
 #' }
 #' @export
-bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon("chart-bar"),
-                       color = NULL, width = 4, href = NULL, fill = FALSE, gradient = FALSE,
-                       elevation = NULL, iconElevation = NULL, tabName = NULL) {
-
+bs4InfoBox <- function(
+  title,
+  value = NULL,
+  subtitle = NULL,
+  icon = shiny::icon("chart-bar"),
+  color = NULL,
+  width = 4,
+  href = NULL,
+  fill = FALSE,
+  gradient = FALSE,
+  elevation = NULL,
+  iconElevation = NULL,
+  tabName = NULL
+) {
   # check conditions
   tagAssert(icon, "i")
-  if (!is.null(color)) validateStatusPlus(color)
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
 
   if (is.null(color) && (fill || gradient)) {
-    cli::cli_abort(c("Cannot use gradient or fill with {.val NULL} color.",
-                     "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
-                     "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."))
+    cli::cli_abort(c(
+      "Cannot use gradient or fill with {.val NULL} color.",
+      "i" = "{.arg color} cannot be {.val NULL} when {.arg gradient} is {.val TRUE}.",
+      "i" = "{.arg fill} cannot be {.val TRUE} when {.arg color} is {.val NULL}."
+    ))
   }
 
   if (gradient && !fill) {
-    cli::cli_abort(c("Invalid combination of arguments.",
-                     "i" = "{.arg gradient} cannot be {.val TRUE} when {.arg fill} is {.val FALSE}."))
+    cli::cli_abort(c(
+      "Invalid combination of arguments.",
+      "i" = "{.arg gradient} cannot be {.val TRUE} when {.arg fill} is {.val FALSE}."
+    ))
   }
 
   if (!is.null(width)) {
@@ -985,14 +1056,18 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     }
   }
 
-  if (!is.null(elevation)) infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
+  if (!is.null(elevation)) {
+    infoBoxCl <- paste0(infoBoxCl, " elevation-", elevation)
+  }
 
   # icon is mandatory
   infoBoxIconCl <- "info-box-icon"
   if (!is.null(color)) {
     if (!fill) infoBoxIconCl <- paste0(infoBoxIconCl, " bg-", color)
   }
-  if (!is.null(iconElevation)) infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
+  if (!is.null(iconElevation)) {
+    infoBoxIconCl <- paste0(infoBoxIconCl, " elevation-", iconElevation)
+  }
 
   iconTag <- shiny::tags$span(
     class = infoBoxIconCl,
@@ -1000,7 +1075,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     # icon
     icon
   )
-
 
   contentTag <- shiny::tags$div(
     class = "info-box-content",
@@ -1026,7 +1100,6 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     )
   }
 
-
   infoBoxTag <- shiny::tags$div(class = infoBoxCl)
   infoBoxTag <- shiny::tagAppendChildren(infoBoxTag, iconTag, contentTag)
 
@@ -1039,8 +1112,12 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
             shiny::HTML(
               paste0(
                 "$(function() {
-                    $('#icon-", tabName, "').on('click', function() {
-                    $('#tab-", tabName, "').click();
+                    $('#icon-",
+                tabName,
+                "').on('click', function() {
+                    $('#tab-",
+                tabName,
+                "').click();
                   });
                 });
                 "
@@ -1053,14 +1130,11 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
     infoBoxTag
   )
 
-
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     infoBoxTag
   )
 }
-
-
 
 
 #' Create a Boostrap 4 tabCard
@@ -1143,15 +1217,37 @@ bs4InfoBox <- function(title, value = NULL, subtitle = NULL, icon = shiny::icon(
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
-                       height = NULL, side = c("left", "right"), type = NULL,
-                       footer = NULL, status = NULL, solidHeader = FALSE, background = NULL,
-                       collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
-                       icon = NULL, gradient = FALSE, boxToolSize = "sm", elevation = NULL,
-                       headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                       sidebar = NULL, .list = NULL) {
+bs4TabCard <- function(
+  ...,
+  id = NULL,
+  selected = NULL,
+  title = NULL,
+  width = 6,
+  height = NULL,
+  side = c("left", "right"),
+  type = NULL,
+  footer = NULL,
+  status = NULL,
+  solidHeader = FALSE,
+  background = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = FALSE,
+  maximizable = FALSE,
+  icon = NULL,
+  gradient = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  .list = NULL
+) {
   side <- match.arg(side)
-  if (is.null(type)) type <- "pills"
+  if (is.null(type)) {
+    type <- "pills"
+  }
 
   # If the card has ribbon, we must apply more margin to the
   # title when the tabs position is left (title right side).
@@ -1159,7 +1255,9 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
   has_ribbon <- unlist(lapply(body_items, function(item) {
     if (item$attribs$class == "ribbon-wrapper") TRUE
   }))
-  if (is.null(has_ribbon)) has_ribbon <- FALSE
+  if (is.null(has_ribbon)) {
+    has_ribbon <- FALSE
+  }
 
   # Build tabs
   content <- tabsetPanel(
@@ -1217,7 +1315,6 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
     }
   )
 
-
   # Remove title and add it to tab list
   titleTag <- boxTag$children[[1]]$children[[1]]$children[[1]]
   if (type == "tabs") {
@@ -1255,12 +1352,15 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
 
   # Insert box tools at the end of the list
   if (
-      length(boxToolTag$children[[1]]) > 0 ||
+    length(boxToolTag$children[[1]]) > 0 ||
       length(boxToolTag$children[[2]]) > 0
   ) {
     content$children[[1]] <- tagInsertChild(
       content$children[[1]],
-      shiny::tags$li(class = if (side == "left") "ml-0" else "ml-auto", boxToolTag),
+      shiny::tags$li(
+        class = if (side == "left") "ml-0" else "ml-auto",
+        boxToolTag
+      ),
       length(content$children[[1]])
     )
   }
@@ -1282,11 +1382,11 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
 
   # add custom input id. User will access the tabBox input with input$<tabset_id>_box
   boxTag$children[[1]]$attribs$id <- if (!is.null(id)) paste0(id, "_box")
-  boxTag$children[[2]]$attribs$`data-for` <- if (!is.null(id)) paste0(id, "_box")
+  boxTag$children[[2]]$attribs$`data-for` <- if (!is.null(id)) {
+    paste0(id, "_box")
+  }
   boxTag
 }
-
-
 
 
 #' @title AdminLTE3 widget user card
@@ -1358,12 +1458,27 @@ bs4TabCard <- function(..., id = NULL, selected = NULL, title = NULL, width = 6,
 #'   )
 #' }
 #' @export
-bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
-                        background = NULL, width = 6, height = NULL,
-                        collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
-                        gradient = FALSE, boxToolSize = "sm", elevation = NULL, headerBorder = TRUE,
-                        label = NULL, dropdownMenu = NULL, sidebar = NULL, id = NULL) {
-
+bs4UserCard <- function(
+  ...,
+  title = NULL,
+  footer = NULL,
+  status = NULL,
+  background = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = FALSE,
+  maximizable = FALSE,
+  gradient = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  id = NULL
+) {
   # userBox is built on top of the box function. The difference is the title tag
   # that is replaced by userDescription ...
   boxTag <- box(
@@ -1393,38 +1508,66 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
   # remove status class from box that is not necessary for userBox
   if (!is.null(status)) {
     temp_pattern <- paste0("card-", status)
-    boxTag$children[[1]]$attribs$class <- gsub(temp_pattern, "", boxTag$children[[1]]$attribs$class)
+    boxTag$children[[1]]$attribs$class <- gsub(
+      temp_pattern,
+      "",
+      boxTag$children[[1]]$attribs$class
+    )
   }
 
   # find the selected type
   type <- title[[2]]
 
   # specific class for userDescription
-  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget user-card")
+  boxTag$children[[1]]$attribs$class <- paste0(
+    boxTag$children[[1]]$attribs$class,
+    " card-widget user-card"
+  )
   if (!is.null(type)) {
-    boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user-", type)
+    boxTag$children[[1]]$attribs$class <- paste0(
+      boxTag$children[[1]]$attribs$class,
+      " widget-user-",
+      type
+    )
   } else {
-    boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " widget-user")
+    boxTag$children[[1]]$attribs$class <- paste0(
+      boxTag$children[[1]]$attribs$class,
+      " widget-user"
+    )
   }
-
 
   # Change color
   if (!is.null(status)) {
     if (gradient) {
       if (inherits(title[[1]], "shiny.tag.list")) {
-        title[[1]][[1]]$attribs$class <- paste0(title[[1]][[1]]$attribs$class, " bg-gradient-", status)
+        title[[1]][[1]]$attribs$class <- paste0(
+          title[[1]][[1]]$attribs$class,
+          " bg-gradient-",
+          status
+        )
       } else {
-        title[[1]]$attribs$class <- paste0(title[[1]]$attribs$class, " bg-gradient-", status)
+        title[[1]]$attribs$class <- paste0(
+          title[[1]]$attribs$class,
+          " bg-gradient-",
+          status
+        )
       }
     } else {
       if (inherits(title[[1]], "shiny.tag.list")) {
-        title[[1]][[1]]$attribs$class <- paste0(title[[1]][[1]]$attribs$class, " bg-", status)
+        title[[1]][[1]]$attribs$class <- paste0(
+          title[[1]][[1]]$attribs$class,
+          " bg-",
+          status
+        )
       } else {
-        title[[1]]$attribs$class <- paste0(title[[1]]$attribs$class, " bg-", status)
+        title[[1]]$attribs$class <- paste0(
+          title[[1]]$attribs$class,
+          " bg-",
+          status
+        )
       }
     }
   }
-
 
   # recover box tools
   boxTools <- boxTag$children[[1]]$children[[1]]$children[[2]]
@@ -1464,8 +1607,14 @@ bs4UserCard <- function(..., title = NULL, footer = NULL, status = NULL,
 #'
 #' @rdname userBox
 #' @export
-bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = NULL,
-                               type = c(1, 2), imageElevation = NULL) {
+bs4UserDescription <- function(
+  title,
+  subtitle = NULL,
+  image,
+  backgroundImage = NULL,
+  type = c(1, 2),
+  imageElevation = NULL
+) {
   headerCl <- "widget-user-header"
 
   # if type is not explicitly provided, it will use the default value, c(1, 2).
@@ -1497,7 +1646,9 @@ bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = 
     )
   )
 
-  if (!is.null(backgroundImage)) headerCl <- paste0(headerCl, " bg-black")
+  if (!is.null(backgroundImage)) {
+    headerCl <- paste0(headerCl, " bg-black")
+  }
 
   userDescriptionTag <- if (is.null(type)) {
     shiny::tagList(
@@ -1508,7 +1659,9 @@ bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = 
         },
         # title and subtitle
         shiny::tags$h3(class = "widget-user-username", title),
-        if (!is.null(subtitle)) shiny::tags$h5(class = "widget-user-desc", subtitle)
+        if (!is.null(subtitle)) {
+          shiny::tags$h5(class = "widget-user-desc", subtitle)
+        }
       ),
       headerImageTag
     )
@@ -1521,15 +1674,14 @@ bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = 
       headerImageTag,
       # title and subtitle
       shiny::tags$h3(class = "widget-user-username", title),
-      if (!is.null(subtitle)) shiny::tags$h5(class = "widget-user-desc", subtitle)
+      if (!is.null(subtitle)) {
+        shiny::tags$h5(class = "widget-user-desc", subtitle)
+      }
     )
   }
 
   list(userDescriptionTag, type)
 }
-
-
-
 
 
 #' AdminLTE3 card profile
@@ -1602,7 +1754,13 @@ bs4UserDescription <- function(title, subtitle = NULL, image, backgroundImage = 
 #' @rdname boxProfile
 #' @family boxWidgets
 #' @export
-cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FALSE) {
+cardProfile <- function(
+  ...,
+  image = NULL,
+  title,
+  subtitle = NULL,
+  bordered = FALSE
+) {
   cl <- if (bordered) "list-group" else "list-group list-group-unbordered"
 
   shiny::tags$div(
@@ -1614,7 +1772,9 @@ cardProfile <- function(..., image = NULL, title, subtitle = NULL, bordered = FA
       )
     },
     shiny::h3(class = "profile-username text-center", title),
-    if (!is.null(subtitle)) shiny::p(class = "text-muted text-center", subtitle),
+    if (!is.null(subtitle)) {
+      shiny::p(class = "text-muted text-center", subtitle)
+    },
     shiny::tags$ul(
       class = cl,
       ...
@@ -1640,8 +1800,6 @@ cardProfileItem <- function(title, description) {
     shiny::a(class = "float-right", description)
   )
 }
-
-
 
 
 #' @title AdminLTE3 social card
@@ -1696,10 +1854,24 @@ cardProfileItem <- function(title, description) {
 #'   )
 #' }
 #' @export
-bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = NULL,
-                          collapsible = TRUE, collapsed = FALSE, closable = FALSE, maximizable = FALSE,
-                          boxToolSize = "sm", elevation = NULL, headerBorder = TRUE, label = NULL, dropdownMenu = NULL,
-                          sidebar = NULL, id = NULL) {
+bs4SocialCard <- function(
+  ...,
+  title = NULL,
+  footer = NULL,
+  width = 6,
+  height = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE,
+  closable = FALSE,
+  maximizable = FALSE,
+  boxToolSize = "sm",
+  elevation = NULL,
+  headerBorder = TRUE,
+  label = NULL,
+  dropdownMenu = NULL,
+  sidebar = NULL,
+  id = NULL
+) {
   items <- list(...)
   # recover comments
 
@@ -1730,11 +1902,13 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
   )
 
   # specific class
-  boxTag$children[[1]]$attribs$class <- paste0(boxTag$children[[1]]$attribs$class, " card-widget social-card")
+  boxTag$children[[1]]$attribs$class <- paste0(
+    boxTag$children[[1]]$attribs$class,
+    " card-widget social-card"
+  )
 
   # replace title tag by the user widget
   boxTag$children[[1]]$children[[1]]$children[[1]] <- title
-
 
   # inject any comments
   if (length(comments) > 0) {
@@ -1755,7 +1929,6 @@ bs4SocialCard <- function(..., title = NULL, footer = NULL, width = 6, height = 
 
   boxTag
 }
-
 
 
 #' User block
@@ -1783,7 +1956,6 @@ userBlock <- function(image, title, subtitle = NULL) {
 }
 
 
-
 #' @title BS4 card comment container
 #'
 #' @description Create a card comment to insert in \link{socialBox}
@@ -1799,7 +1971,9 @@ userBlock <- function(image, title, subtitle = NULL) {
 #' @export
 cardComment <- function(..., image, title = NULL, date = NULL) {
   comment <- list(...)
-  if (length(comment) == 0) cli::cli_abort(c("{.arg ...} cannot be empty."))
+  if (length(comment) == 0) {
+    cli::cli_abort(c("{.arg ...} cannot be empty."))
+  }
 
   cardCommentTag <- shiny::tags$div(
     class = "card-comment",
@@ -1809,7 +1983,9 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
       shiny::tags$span(
         class = "username",
         title,
-        if (!is.null(date)) shiny::tags$span(class = "text-muted float-right", date)
+        if (!is.null(date)) {
+          shiny::tags$span(class = "text-muted float-right", date)
+        }
       ),
       ...
     )
@@ -1818,8 +1994,6 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
   class(cardCommentTag) <- c(class(cardCommentTag), "card-comment")
   cardCommentTag
 }
-
-
 
 
 #' Bootstrap 4 container for cards
@@ -1919,12 +2093,16 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #' }
 bs4CardLayout <- function(..., type = c("group", "deck", "columns")) {
   cards <- list(...)
-  if (inherits(cards[[1]], "list")) cards <- cards[[1]]
+  if (inherits(cards[[1]], "list")) {
+    cards <- cards[[1]]
+  }
   # stop if width is accidentally passed
   cards <- lapply(seq_along(cards), function(i) {
     if (length(grep("col-sm", cards[[i]]$attribs$class)) > 0) {
-      cli::cli_abort(c("Invalid parameter in card layout.",
-                        "i" = "The {.arg width} parameter must be {.val NULL} in card layouts."))
+      cli::cli_abort(c(
+        "Invalid parameter in card layout.",
+        "i" = "The {.arg width} parameter must be {.val NULL} in card layouts."
+      ))
     } else {
       cards[[i]]
     }
