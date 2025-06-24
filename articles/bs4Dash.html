@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>bs4Dash • bs4Dash</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <script src="../extra.js"></script><meta property="og:title" content="bs4Dash">
 </head>
@@ -64,16 +63,16 @@
 
 
 <link href="bs4Dash_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="bs4Dash_files/bslib-component-js-0.8.0/components.min.js"></script><script src="bs4Dash_files/bslib-component-js-0.8.0/web-components.min.js" type="module"></script><link href="bs4Dash_files/bslib-component-css-0.8.0/components.css" rel="stylesheet">
-<script src="bs4Dash_files/bslib-tag-require-0.8.0/tag-require.js"></script><div class="row">
+<script src="bs4Dash_files/bslib-component-js-0.9.0/components.min.js"></script><script src="bs4Dash_files/bslib-component-js-0.9.0/web-components.min.js" type="module"></script><link href="bs4Dash_files/bslib-component-css-0.9.0/components.css" rel="stylesheet">
+<script src="bs4Dash_files/bslib-tag-require-0.9.0/tag-require.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>bs4Dash</h1>
                         <h4 data-toc-skip class="author">David
 Granjon</h4>
             
-            <h4 data-toc-skip class="date">03 September, 2024</h4>
+            <h4 data-toc-skip class="date">24 June, 2025</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/v2.3.4/vignettes/bs4Dash.Rmd" class="external-link"><code>vignettes/bs4Dash.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/bs4Dash.Rmd" class="external-link"><code>vignettes/bs4Dash.Rmd</code></a></small>
       <div class="d-none name"><code>bs4Dash.Rmd</code></div>
     </div>
 
@@ -83,7 +82,7 @@ Granjon</h4>
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p><a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a> relies on the same basis as
-<a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>, that is the AdminLTE HTML <a href="https://adminlte.io/themes/v3/" class="external-link">template</a>, except the version
+<a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>, that is the AdminLTE HTML <a href="https://adminlte.io/themes/v3/" class="external-link">template</a>, except the version
 is higher (3.1.0 vs 2.4). The biggest difference is the dependence on
 Bootstrap 4, which is not natively supported by <code>{Shiny}</code>.
 That’s why elements like <code><a href="../reference/tabsetPanel.html">tabsetPanel()</a></code>,
@@ -216,7 +215,7 @@ professional look and feel. Below is a summary of the main features:</p>
 </tbody>
 </table>
 <p>Since the 2.0.0 release, <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a> overwrites most of
-the <a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a> functions such as
+the <a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a> functions such as
 <code><a href="../reference/dashboardPage.html">dashboardPage()</a></code> and <code><a href="../reference/box.html">box()</a></code> to facilitate the
 transition from one package to another.</p>
 </div>
@@ -231,7 +230,7 @@ transition from one package to another.</p>
 version to date), you will have to rewrite part of the code. It was not
 an easy decision to take but necessary to improve the package quality
 (naming consistency, …). Now the transition from
-<a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a> to <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a> will be easier
+<a href="https://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a> to <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a> will be easier
 since function parameters have been harmonized. The reverse is not
 always guaranteed because of the number of extra parameters in
 <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a>.</p>
@@ -278,7 +277,7 @@ Interestingly, you’ll be able to notice the scroll to top button feature
 if you scroll to the bottom (bottom-right corner), as well as the live
 theme switcher in the navigation bar that goes from light to dark. This
 new feature is exclusive to <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a>.</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-6538" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-7582" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiefVgEF07EQAIdAV1o6AvDoAmC7vSIszABSgBzONoh69nAoyLVqAFSIA1BMdPywAVQBRXF13bjgoMzhGEIsea1sACQSkxnYBGLd3Tlok+hZUywzGMwBlUrhyvJg+WgAzWjgzELCo3B1iXzROLp6IyILYvWszVkr0mxqAISJZ13d3ajRUag4ARkQAJgAGfusAD36Ad1LSbhC9w-7SWlJqOBChMAuvpQ3Jop6YhkbzUJrzKyLMwAYRIpFBTXyhQ2LzeH1MX1qXh81B0pCIeKIqC+sQBHmSADdkiE2voIAQXiR2HxUPpSP0iGzWaQBDoQDoAL4iJRgAUAXSAA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -297,7 +296,7 @@ new feature is exclusive to <a href="https://github.com/RinteRface/bs4Dash" clas
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

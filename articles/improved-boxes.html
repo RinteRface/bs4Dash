@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Improved boxes • bs4Dash</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <script src="../extra.js"></script><meta property="og:title" content="Improved boxes">
 </head>
@@ -64,16 +63,16 @@
 
 
 <link href="improved-boxes_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="improved-boxes_files/bslib-component-js-0.8.0/components.min.js"></script><script src="improved-boxes_files/bslib-component-js-0.8.0/web-components.min.js" type="module"></script><link href="improved-boxes_files/bslib-component-css-0.8.0/components.css" rel="stylesheet">
-<script src="improved-boxes_files/bslib-tag-require-0.8.0/tag-require.js"></script><div class="row">
+<script src="improved-boxes_files/bslib-component-js-0.9.0/components.min.js"></script><script src="improved-boxes_files/bslib-component-js-0.9.0/web-components.min.js" type="module"></script><link href="improved-boxes_files/bslib-component-css-0.9.0/components.css" rel="stylesheet">
+<script src="improved-boxes_files/bslib-tag-require-0.9.0/tag-require.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Improved boxes</h1>
                         <h4 data-toc-skip class="author">David
 Granjon</h4>
             
-            <h4 data-toc-skip class="date">2024-09-03</h4>
+            <h4 data-toc-skip class="date">2025-06-24</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/v2.3.4/vignettes/improved-boxes.Rmd" class="external-link"><code>vignettes/improved-boxes.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/vignettes/improved-boxes.Rmd" class="external-link"><code>vignettes/improved-boxes.Rmd</code></a></small>
       <div class="d-none name"><code>improved-boxes.Rmd</code></div>
     </div>
 
@@ -100,7 +99,7 @@ width, height, collapsible, closable and maximizable.</li>
 <p>To benefit from that feature, one must pass the <em>id</em> parameter
 and access it on the server side with <code>input$&lt;id&gt;</code>.
 Let’s consider an example:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-8012" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5176" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiArrQAEAHgC06gCYLu9Iiz0AFKAHM47EevWlapanHUBedULAAhIgA91AEEzAEkvXDt9Q2NTAAk4KD04RnYBCIh7Ax4Yxj0AZVok+hZU9Mzok1zfPQ5I+1IrTgASTlJWF1swYxr1EHViggBrS0YiFQg9bWJqIkZEdUtuIlaAd15yAF8vNLr1ADNqNT0sIhXbDPtLqAJHEm8VUlISTqfLSxcAfWM-cM8wABUiG8XOpfD8wDsLpd1NdbhB7o9nl5GHAYEQAG5wL7+X5eLCojGuMG-AjUBScdx-eiWbQGCDWRjbMrQmE3Wh3B5PCCdFGtWZY764sD4vko0E4vDqUnkyleanaTgqAgEOCcThM3b2WHs+GcpFgFSoAzkbHg3B-ACqRqg5HFZqlZLVsq6NNQjFoMAk212kOhTFKu2+5xZDicII85D8pAA8g9UA9Ot8Pq0bXANVDLl4wf0iDVwpr1IVnTBWIK8AXpmTUJwGOH1P8sBaAKLM6Gk5ZQeh1hvN1uXVAzGNxhNeAdEUjejNKexKJQiTjJTGMLS6PbjNnPPjx0jmsakbfmhdqnUCXqRPfbppj0gr9QoibJMyD9ggXYogCO7AAhFuHk0S98TSVmgC56NO-bPowECzDA7AAEwAAwIQI4EbOB57DqQTRJimto6HeFBJIw-xwFGL67Lhrj4bQezqOwv5YQB-hAUQ1BVqBp5eMB1ZwHoXjqHA1ALn866sexvFeLsqAKOQnQALKsDmAS0OqkqUah6EXEQUiLnATaYmQ9EQJerzvAK-jmq+GaGsacBgp0TH2tqJDOqZLiTvYaGROeOmMJi+kUKQRmXiiaKYqalm7DZqb2V4jm-M5GQeMiBKYh56heRcPkLn5ekGUFDFNLyTwohFZ7Wda5CxWA8WSolzrFfy6WZfY2W6QFhmFdFJrfJFFW2bFGatTVpYSuaBb1clBqVWmkoFkQqBwhSHh0K0wYhqGziuB43BwZ0ABycArJt7mSlkRiVHo3iJNY7AAIzmtMszOm6HpehCvobbhKjLX8dIMriQ2XJwrGFPEiTJJSPYtgW9grIUpDcJS0gFuBM6RC1nhab5-n5cFf6OU06IqbWcB9W2Ykgbxt40XRhWE9xHF-IzElgAJQmuF4olsVTfFgLsxM1l2VG6LT+OMaNfhEyTwucWAguk-xgnCV4vB6Ekyj8xm8BqlYIvqNJrQ2F4ClKYWqmPZTPF6ONKATL8CuyxRSwrPt440bQBA2jq7A65wevmm0qDbX8KwsBAfCWL8egqMwcKUndGkiFsygQDwfCsIE6DsGoh66YwShgBsAC6QA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -151,7 +150,7 @@ background color, the width and the icon trigger, the latter displayed
 on the very right side of the box header, as depicted in Figure
 @ref(fig:boxTools). Below is an example showing how to set up the
 sidebar and toggle it.</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1707" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-7744" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiefVgEF07EQAIdAV1o6AvDoAmC7vSIszABSgBzONoh69pWqWpwTOoWAAQkQAHjoAyrRmcPQsAbi67txwUNGMfhY81rYAEilp7AIJbu7WZqwZltmMZsHlru6loQ2N7p7evqYBAKqoFuQ61mGcUTFxeP4lrToE1EScUPQ+fgAqWN0AoriT03oA7lGk3H4AjABMxbs6nER0ZnmpcOmmAGLqADLhWzu7xNTUaBGS06OjWm0uuygBE8JEC+lIpBI2jA+j6UHI8X8YBWREcjmWBFs11GsUYASKiWmI2ipL8Q0iNJYLSuUT8ARgrEJNWpYzJeEpuwOZiOfjOAFYIVdOHcngBJCCoeHMq5YohSTECq4BABy+hg9CeOiIADMjVIngA3dG0EicRDxTW7GB8PwABm2jumMCgYVMJ1dAY9UxVVuo+hBYoDnvcSiuFODjVQc1IAHl4YrSMizLROKQ7MnyY7YzHJcTGc9zFUbDUGbzCol43pOJbDaZjfoINCbRB2HwM9siOn4dtm5wRiQBDoQAK1c3GBaXKhGHxM334QASDlcsw80kCYt6GdD0jr7O5-NEUg6AA8AFodIwKGkL5npwmdLxc+xGBAiIwYL2CobrO+4CgAvgePx6LOLYbAuZCARm66ov0cDbG+0woeicDBCEtaksiW62Lu4yQRBAqJGBIhKGAYEALpAA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -170,7 +169,7 @@ dropdown items may behave like action buttons. This feature allows to
 seamlessly add interactivity to the box component and gather features in
 one place. In the example below, clicking on the first item triggers a
 <code><a href="../reference/toast.html">toast()</a></code>.</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3587" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5328" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiefVgEF07EQAIdAV1o6AvDoAmC7vSIszABSgBzONoh69pWqWpwTOoWAAQkQAHjqyjESoZkQA7sp4uu4WPNa2ABJwUGZwjOwCuEl6KVY2jGYAyrQ59Cz5hW7JlmnlwWYcRe7WIa7ufTqe3r6mAQDC1EScUPQ+OsFhsV7c5pHRcQm4-o39OotmpMumAIwATA07epykUKT6nH4BsSwQfI4Bm519nER0ZpnZuT8ADF1AAZCoAUQ+236xGo1DQnAYs1MABUsABVKGfZKrGLxACyFH0fm6ESi+IgvQueloxDcpjpJG0YFijAoBG47x0BARnHuIzAADMoABaE4hAIFHF9Ml49YASXIMBZ4zpAGsdPBudUHmAzPL4kq4DAdfS-EyqQFuFlGKQpdKYTs5RTFcqWV4TToTtzuOyhXruKRSKhOIgAPTh2LRjCOIhERw+DDEGDhqXnGkrV3xWS0ABu1Vy9RlXVC5LWRvdAU9MB0AGYzSQLfSWdcZnBRQQ4PDOA6S46aQECawdN0AjilH1JzoBzpOLk84DTEL9BACJ5mXxUPpSJsiDvt6QBDoQJ0iFIF3AIYuyOwtzuACQG7MQY0wTanp1z7hxAByRE8IU6RuWhmQCTJ4SIbkzH0ZgNwZHQjk2UhWFQYZ-DAXJIkYKVOgAX2nPCRCUMA8IAXSAA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -210,7 +209,7 @@ left-aligned image.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="../reference/userBox.html">userBox()</a></code> is also entirely updatable from the server
 side, as it is built on top the <code><a href="../reference/box.html">box()</a></code> function:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1768" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-4911" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiefVgEF07EQAIdAV1o6AvDoAmC7vSIszABSgBzONoh69FntdsAJOFDM4RnYBXF13TysbRjMAZVpA+hYQsLcIy28YgCEiMw5w9x0oAlJaEiz9UlISbTB9VAtyAH1rAA8hPB0OgFUGqHIO0IL3fU4gnNbXQsKEky66scY2jtTp91LSajg50aDZOE4CRlpUUprhtY2tuY6AOQDaKB0AYRYYWgJuKDhqFYvpzj6ehXbamDpbAI6fYANx+RFQQT+aTWelIrARcwATKsUXpaDAnKD5twqqhOIgAPQUgLvUTkDBlCmkbhweCcCnqMy0gAyABUAKIUsy0TikCn4xwU3aMADsAFoAIyYgAcrSVyowACtUI4kbihsiAaR+qMbmBUMcCWw9SjHMxhRRSHNeVhuvycWskgQANZ2oj6CBmM0W-ESG2eoitXlEIjUeIALyJHVavzw-z0HViRHgOnIrSdLMYcAAhOHpgAzGPkRhm3ksnSVojVnSFksdf5KQoGwogs3SibttLdnSLWE10zlgMlMoQdh8VCVXA6f2kBekAQ6EDDIhSIKw-mwshziBrgAk9UacBakaXW8Negv-TgEymKI60uWafv7mKZzcYLqPoBi-XF4T-Tg5joUVX1xXtTGlfZDmOU4Zxg3Fc1oTYkzAAApfw3AHED0L0QFgUw64AJhOEEUYMtYPRIkFQ9dDQ2cM0SVXckqRpPhqHpRlmVZA4OS5Pg+UFYVRXFGBJWlABmRUVTVFUtR1OjpmHXFRRNCCAIsCBnFoojcS9X1GH9QM5lubpuW5Zi1k4WMEj8AIgjmAAxdRuVid103cAB3BJmTmaQ-M7DThgAX3CyKRCUMBIoAXSAA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -238,7 +237,7 @@ consisting in user comments. Right now, there is no programmatic way
 them but a future release of <a href="https://github.com/RinteRface/bs4Dash" class="external-link">bs4Dash</a> will obviously fill
 this gap. The app below shows a combination of multiple elements in a
 <code><a href="../reference/socialBox.html">socialBox()</a></code>:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5154" style="margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-4923" style="margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OAFgAiUHsIgiefVgEF07EQAIdAV1o6AvDoAmC7vSIszABSgBzONoh69FntdsAJOFDM4RnYBXF13TysbRjMAZVpA+hYQsLcIy28YgCEiMw5w9x1OIgJaKGocgA9XQsKEkx0hMGLS8utKptTa91JaUmo4Bv1OIKzqEoBrGu73WhgnQdMm7lJSVE5EAHpNgJg+anIMWiJN0m44eE5N9TM9iAAZABUAUU2zWk5STbnHTeGg6QAWgAjAAmAAclTB4IwACtUI5OgUZr1+otGmBYiUytQdFUkWkZkV9PRUQMGk04JVYKgBoCAAzAjD0gCsGFBjPBTWRhVCPPcUAIvRIWX0qxI2jA+lQFnIAH12p0MVg4AAzRhwHhNPmE2pNLHwHTkSqkHTnDUAQgJRKYKR0tp1RNIUCkcFIDggcGo0ydLo9Xp9RIxADk4AB3TjWoN6KCrQXceBkMaTQPRuYLClgFZrDbbMP5jCcWAwIj0WgDDDEGCbMOoQHEMgUL7S8YBK4c4EAdk2wOBmwAwrAvRhUBBEXh+U6+uSlmBHprSFHo3puBrVZns+stptHEQiI4K1Wl8umo9eJwdB8jecdA3yGRubqiUpo46g876P7vZO9WAALKakWziRhOT4zP8jAAZwQGaqmQZhgkZwNGCXTLnonyxsMmYWGOQTHtGEFQTBcHRlAYrcEQjCZuoAzUhAgRUXYtBBAQcD4cusrok0HI6AAUlAbigog9L0joqAwOxabzM4G6rFu2y7PshzHKc5yXNctx8E8rzvJ83wwL8EHAiCEJQhCcIIpJ76sKgXFgBqrG0AAbnAZhWUSTQAJIXmcV7kDAtKxoMGrlNQrA6KqlERRqcAAPw6GesYAOQXvoED0F6zFOS6AxWmAP7dG+aGEYBCwkUGZFnFFs6xCwUDcHi+jUOMBATO5MycZmoIAMx8QJOhCayYkSaBaF1NJdmbrmOyaaIyknGcFyahpdzaW8HxfD8fwjIw3UmZC0IWeOqFjUaNl2SMD6jadGIAJpEPo9puuQVEZXQcAuZepB5QVtQvsu-3Pj+RW1NQaC0hwAAayGIMC9K4DoABiACqwYNKqaVCscEDsLQAg6CAv3tP2RAwImpDleNGazlN26KXNcBHAtanLTcq0vOtelbRBe3QmZMLwsdv16GS6KoAo5CSiTZNNkqeMnUGnWzoyzJsh2XLXdG4ufHA9KSmegxywjTSAkhVbk9qv2A7UAC+IOFJFRAvZmBsRXuzvmnAP1gdbIOi5mWKtLi+L5Wkb47S5VGmBjEBYxKfCoGKCMPWsYr44TuqlhHcDPC5ZC4xAiekAAJNKnEKkQlQIxn3Rl0FVTlU0LQ4oqmu1IKwpuLOdfkFZRCoJ3F6mHQnyU0a07ohByatWPejpjJNNydN9MHIzKmLepbNaRzumbQZ21BLzpmHYL7UixPAfYuUeKVwYMpBW5bdEpwJL+7OpC5FArCPq+wP8tbdtwg2xEEoMANsAC6QA" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -259,7 +258,7 @@ this gap. The app below shows a combination of multiple elements in a
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
