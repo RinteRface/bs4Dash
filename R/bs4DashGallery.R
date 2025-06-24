@@ -13,7 +13,7 @@
 #' }
 bs4DashGallery <- function() {
   # nocov start
-  rlang::check_installed(c("thematic", "waiterr"), "to run `bs4DashGallery()`.")
+  rlang::check_installed(c("thematic", "waiter"), "to run `bs4DashGallery()`.")
 
   shiny::shinyAppDir(
     system.file(
