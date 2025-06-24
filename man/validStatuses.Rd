@@ -11,12 +11,12 @@ generally appear as follows:
 }
 \details{
 \itemize{
-  \item \code{primary} Blue (sometimes dark blue)
-  \item \code{secondary} Light gray
-  \item \code{info} Blue
-  \item \code{success} Green
-  \item \code{warning} Orange
-  \item \code{danger} Red
+\item \code{primary} Blue (sometimes dark blue)
+\item \code{secondary} Light gray
+\item \code{info} Blue
+\item \code{success} Green
+\item \code{warning} Orange
+\item \code{danger} Red
 }
 }
 \keyword{internal}

@@ -28,10 +28,10 @@ callout(
 
 \item{status}{Callout status. Valid statuses:
 \itemize{
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+\item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+\item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+\item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+\item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 }}
 
 \item{width}{Callout width. Between 1 and 12.}
@@ -45,7 +45,7 @@ AdminLTE3 callout
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),
@@ -59,9 +59,9 @@ if(interactive()){
         title = "I am a danger callout!",
         elevation = 4,
         status = "danger",
-        "There is a problem that we need to fix. 
-        A wonderful serenity has taken possession of 
-        my entire soul, like these sweet mornings of 
+        "There is a problem that we need to fix.
+        A wonderful serenity has taken possession of
+        my entire soul, like these sweet mornings of
         spring which I enjoy with my whole heart."
        ),
        callout(

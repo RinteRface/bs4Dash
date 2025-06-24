@@ -4,7 +4,10 @@ library(waiter)
 
 shinyApp(
   ui = dashboardPage(
-    preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
+    preloader = list(
+      html = tagList(spin_1(), "Loading ..."),
+      color = "#343a40"
+    ),
     header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(

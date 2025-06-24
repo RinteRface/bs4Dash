@@ -30,37 +30,37 @@ server <- function(input, output, session) {
     req(!input$mybox$collapsed)
     plot(rnorm(200))
   })
-  
+
   output$box_state <- renderText({
     state <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
     paste("My box is", state)
   })
-  
+
   observeEvent(input$toggle_box, {
     updateBox("mybox", action = "toggle")
   })
-  
+
   observeEvent(input$remove_box, {
     updateBox("mybox", action = "remove")
   })
-  
+
   observeEvent(input$restore_box, {
     updateBox("mybox", action = "restore")
   })
-  
+
   observeEvent(input$update_box, {
     updateBox(
-      "mybox", 
-      action = "update", 
+      "mybox",
+      action = "update",
       options = list(
         title = h2("New title", dashboardBadge(1, color = "primary")),
-        status = "danger", 
+        status = "danger",
         solidHeader = TRUE,
         width = 4
       )
     )
   })
-  
+
   observeEvent(input$mybox$visible, {
     collapsed <- if (input$mybox$collapsed) "collapsed" else "uncollapsed"
     visible <- if (input$mybox$visible) "visible" else "hidden"

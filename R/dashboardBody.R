@@ -22,8 +22,6 @@ bs4DashBody <- function(...) {
 }
 
 
-
-
 #' Boostrap 4 body items
 #'
 #' \link{tabItems} creates a wrapper for multiple \link{tabItem}.
@@ -46,7 +44,7 @@ bs4TabItems <- function(..., .list = NULL) {
 #'
 #' \link{tabItem} creates a body tab content.
 #'
-#' @param tabName The name of a tab. This must correspond to the \code{tabName}
+#' @param tabName The name of a tab. This must correspond to the `tabName`
 #'   of a sidebar \code{\link{menuItem}}.
 #' @param ... Contents of the tab.
 #'
@@ -54,7 +52,7 @@ bs4TabItems <- function(..., .list = NULL) {
 #' @export
 bs4TabItem <- function(tabName = NULL, ...) {
   if (is.null(tabName)) {
-    stop("Need tabName")
+    cli::cli_abort("Need tabName")
   }
 
   validateTabName(tabName)

@@ -33,7 +33,7 @@ Insert a \link[shiny]{tabPanel} in a \link{tabsetPanel}
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     header = dashboardHeader(),
@@ -52,7 +52,7 @@ if (interactive()) {
         title = "A card with tabs",
         selected = "Bar",
         status = "primary",
-        solidHeader = FALSE, 
+        solidHeader = FALSE,
         type = "tabs",
         tabPanel("Hello", "This is the hello tab"),
         tabPanel("Foo", "This is the foo tab"),
@@ -69,15 +69,15 @@ if (interactive()) {
         select = TRUE
       )
     })
-    
+
     observeEvent(input$remove, {
       removeTab(inputId = "tabs", target = "Foo")
     })
-    
+
     observeEvent(input$hideTab, {
       hideTab(inputId = "tabs", target = "Foo")
     })
-    
+
     observeEvent(input$showTab, {
       showTab(inputId = "tabs", target = "Foo")
     })

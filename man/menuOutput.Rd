@@ -22,7 +22,7 @@ present; for example, \code{\link{dropdownMenuOutput}} and
 }
 \seealso{
 \code{\link{renderMenu}} for the corresponding server side function
-  and examples.
+and examples.
 
 Other menu outputs: 
 \code{\link{dropdownMenuOutput}()},

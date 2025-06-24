@@ -14,27 +14,27 @@ dashboardBadge(..., color, position = c("left", "right"), rounded = FALSE)
 
 \item{color}{Badge color. Valid colors:
 \itemize{
-  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+\item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+\item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+\item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+\item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+\item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+\item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 }}
 
-\item{position}{Badge position: "left" or "right".}
+\item{position}{Badge position: \code{"left"} or \code{"right"}.}
 
 \item{rounded}{Whether the badge is rounded instead of square. FALSE by default.}
 }
 \description{
-\link{dashboardBadge} creates a badge. It may be inserted in any element like inside 
+\link{dashboardBadge} creates a badge. It may be inserted in any element like inside
 a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 }
 \examples{
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -42,10 +42,10 @@ if(interactive()){
     dashboardBody(
      dashboardBadge("Badge 1", color = "danger"),
      actionButton(
-      inputId = "badge", 
-      label = "Hello", 
-      icon = NULL, 
-      width = NULL, 
+      inputId = "badge",
+      label = "Hello",
+      icon = NULL,
+      width = NULL,
       dashboardBadge(1, color = "primary")
      )
     )

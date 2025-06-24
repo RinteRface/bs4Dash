@@ -121,8 +121,7 @@ Importantly, the sidebar contains `sidebarMenu()` as well as other items like `s
 
 ```{r sidebar-items, eval=FALSE} 
 sidebarUserPanel(
-    image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
-    name = "Welcome Onboard!"
+  name = "Welcome Onboard!"
 )
 
 sidebarMenu(
@@ -425,7 +424,6 @@ shinyApp(
       status = "primary",
       elevation = 3,
       sidebarUserPanel(
-        image = "https://image.flaticon.com/icons/svg/1149/1149168.svg",
         name = "Welcome Onboard!"
       ),
       sidebarMenu(

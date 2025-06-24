@@ -50,8 +50,8 @@ updateBoxSidebar(id, session = shiny::getDefaultReactiveDomain())
 
 \item{id}{Card sidebar id.}
 
-\item{width}{Sidebar opening width in percentage. 50\% by default, 
-means the card sidebar will take 50% of the card width, when opened. 
+\item{width}{Sidebar opening width in percentage. 50\% by default,
+means the card sidebar will take 50\% of the card width, when opened.
 A numeric value between 25 and 100.}
 
 \item{background}{Sidebar background color. Dark by default.}

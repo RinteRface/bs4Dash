@@ -27,19 +27,19 @@ of the tab that should be selected by default. If \code{NULL}, the first
 tab will be selected.}
 
 \item{type}{\describe{
-  \item{`"tabs"`}{Standard tab look}
-  \item{`"pills"`}{Selected tabs use the background fill color}
+\item{\code{"tabs"}}{Standard tab look}
+\item{\code{"pills"}}{Selected tabs use the background fill color}
 }}
 
 \item{vertical}{Whether to displays tabs vertically. Default to FALSE.}
 
-\item{side}{Tabs side: \code{"left" or "right"}.}
+\item{side}{Tabs side: \code{"left"} or \code{"right"}.}
 
 \item{.list}{In case of programmatically generated items. See example.}
 }
 \description{
 Imported by \link{bs4TabCard} but can be used alone. This is a modified shiny::tabsetPanel,
-to handle bootstrap 4. This function will be upgraded 
+to handle bootstrap 4. This function will be upgraded
 starting from shiny 1.7.0 (support Bootstrap 4 tabs).
 }
 \examples{
@@ -59,26 +59,26 @@ if(interactive()){
      tabsetPanel(
       id = "tabcard",
       tabPanel(
-       title = "Tab 1", 
+       title = "Tab 1",
        "Content 1"
       ),
       tabPanel(
-       title = "Tab 2", 
+       title = "Tab 2",
        "Content 2"
       ),
       tabPanel(
-       title = "Tab 3", 
+       title = "Tab 3",
        "Content 3"
       )
      ),
-     
+
      br(), br(),
      # programmatically inserted panels
      tabsetPanel(
        id = "tabset",
        .list = lapply(1:3, function(i) {
          tabPanel(
-           title = paste0("Tab", i), 
+           title = paste0("Tab", i),
            active = FALSE,
            paste("Content", i)
          )
@@ -88,7 +88,7 @@ if(interactive()){
    ),
    server = function(input, output) {}
  )
- 
+
  # update tabsetPanel
  shinyApp(
   ui = dashboardPage(
@@ -99,16 +99,16 @@ if(interactive()){
        id = "tabset1",
        selected = "Tab 2",
        tabPanel(
-         title = "Tab 1", 
+         title = "Tab 1",
          numericInput("val", "Value:", 10, min = 1, max = 100),
          verbatimTextOutput("value")
        ),
        tabPanel(
-         title = "Tab 2", 
+         title = "Tab 2",
          "Content 2"
        ),
        tabPanel(
-         title = "Tab 3", 
+         title = "Tab 3",
          checkboxGroupInput(
            inline = TRUE,
            "variable", "Variables to show:",
@@ -143,57 +143,57 @@ if(interactive()){
    footer = dashboardFooter()
  ),
  server = function(input, output, session) {
- 
+
    output$tabSetPanel2 <- renderUI({
     tabsetPanel(
       id = "tabset2",
       tabPanel(
-        title = "Tab 1", 
+        title = "Tab 1",
         p("Tab 1 ")
       ),
       tabPanel(
-        title = "Tab 2", 
+        title = "Tab 2",
         p("Tab 2")
       ),
       tabPanel(
-        title = "Tab 3", 
+        title = "Tab 3",
         p("Tab 3")
       )
     )
    })
-   
+
    # update tabset1
    observeEvent(input$controller, {
      updateTabsetPanel(
-       session, 
-       inputId = "tabset1", 
+       session,
+       inputId = "tabset1",
        selected = paste("Tab", input$controller)
      )
    }, ignoreInit = TRUE)
-   
+
    # update tabset 2
    observeEvent(input$controller2, {
      updateTabsetPanel(
-       session, 
-       inputId = "tabset2", 
+       session,
+       inputId = "tabset2",
        selected = paste("Tab", input$controller2)
      )
    }, ignoreInit = TRUE)
-   
+
    output$distPlot <- renderPlot({
      hist(rnorm(input$obs))
    })
-   
+
    output$data <- renderTable({
      mtcars[, c("mpg", input$variable), drop = FALSE]
    }, rownames = TRUE)
-   
+
    output$txt <- renderText({
      paste("You chose", input$rb)
    })
-   
+
    output$value <- renderText({ input$val })
-   
+
   }
  )
 }

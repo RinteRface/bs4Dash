@@ -1,7 +1,7 @@
 #' @title Launch the bs4Dash Gallery
 #'
 #' @description A gallery of all components available in bs4Dash.
-#' 
+#'
 #' @export
 #'
 #' @examples
@@ -11,17 +11,16 @@
 #'  bs4DashGallery()
 #'
 #' }
-bs4DashGallery <- function() { # nocov start
-  if (!requireNamespace(package = "thematic"))
-    message("Package 'thematic' is required to run this function")
-  if (!requireNamespace(package = "waiter"))
-    message("Package 'waiter' is required to run this function")
-  
+bs4DashGallery <- function() {
+  # nocov start
+  rlang::check_installed(c("thematic", "waiter"), "to run `bs4DashGallery()`.")
+
   shiny::shinyAppDir(
     system.file(
-      "examples/showcase", 
-      package = 'bs4Dash', 
+      "examples/showcase",
+      package = 'bs4Dash',
       mustWork = TRUE
     )
   )
+  # nocov end
 }

@@ -20,12 +20,12 @@ productListItem(..., image = NULL, title = NULL, subtitle = NULL, color = NULL)
 
 \item{color}{price color. Valid color are listed below:
 \itemize{
- \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+\item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+\item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+\item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+\item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+\item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+\item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 }}
 }
 \description{
@@ -40,7 +40,7 @@ Insert in a \link{box}.
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -51,16 +51,16 @@ if (interactive()) {
       status = "primary",
       productList(
         productListItem(
-          image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png", 
-          title = "Samsung TV", 
-          subtitle = "$1800", 
+          image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png",
+          title = "Samsung TV",
+          subtitle = "$1800",
           color = "warning",
           "This is an amazing TV, but I don't like TV!"
         ),
         productListItem(
-          image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg", 
-          title = "Imac 27", 
-          subtitle = "$4999", 
+          image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg",
+          title = "Imac 27",
+          subtitle = "$4999",
           color = "danger",
           "This is were I spend most of my time!"
         )

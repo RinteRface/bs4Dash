@@ -1,7 +1,6 @@
 pak::pak("parmsam/r-shinylive@feat/encode-decode-url")
 
 create_shinylive_links <- function(path) {
-
   dirs <- list.dirs(path)[-1]
 
   vapply(

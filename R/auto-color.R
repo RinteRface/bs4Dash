@@ -47,10 +47,14 @@
 #'     }
 #'   )
 #' }
-useAutoColor <- function(input, output, session = shiny::getDefaultReactiveDomain()) {
+useAutoColor <- function(
+  input,
+  output,
+  session = shiny::getDefaultReactiveDomain()
+) {
   input <- get("input", envir = parent.frame())
-  # Now we need to set up a initial theme so that 
-  # session$setCurrentTheme does not complain about 
+  # Now we need to set up a initial theme so that
+  # session$setCurrentTheme does not complain about
   # changing the bootstrap version
   theme <- bslib::bs_theme(version = 4)
   shiny::shinyOptions(bootstrapTheme = theme)

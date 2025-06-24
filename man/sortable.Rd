@@ -21,7 +21,7 @@ Create a sortable UI section
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     header = dashboardHeader(),
@@ -37,7 +37,7 @@ if (interactive()) {
            p(class = "text-center", paste("Column", i)),
            lapply(1:2, FUN = function(j) {
              box(
-               title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+               title = paste0("I am the ", j,"-th card of the ", i, "-th column"),
                width = 12,
                "Click on my header"
              )
@@ -49,7 +49,7 @@ if (interactive()) {
   ),
   server = function(input, output) {}
  )
-}  
+}
 
 }
 \author{

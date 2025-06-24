@@ -10,17 +10,17 @@ listed below:
 }
 \details{
 \itemize{
-  \item \code{indigo} Indigo
-  \item \code{lightblue} Light blue
-  \item \code{navy} Dark Grey/Blue
-  \item \code{purple} Purple
-  \item \code{fuchsia} Fuchsia
-  \item \code{pink} Pink
-  \item \code{maroon} Pink
-  \item \code{orange} Orange
-  \item \code{lime} Light green
-  \item \code{teal} Blue/Green
-  \item \code{olive} Pastel green
+\item \code{indigo} Indigo
+\item \code{lightblue} Light blue
+\item \code{navy} Dark Grey/Blue
+\item \code{purple} Purple
+\item \code{fuchsia} Fuchsia
+\item \code{pink} Pink
+\item \code{maroon} Pink
+\item \code{orange} Orange
+\item \code{lime} Light green
+\item \code{teal} Blue/Green
+\item \code{olive} Pastel green
 }
 }
 \keyword{internal}

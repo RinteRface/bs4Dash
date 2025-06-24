@@ -1,39 +1,51 @@
-Package: bs4Dash
 Type: Package
+Package: bs4Dash
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
 Version: 2.3.4
 Authors@R: c(
-  person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
-  person(family = "RinteRface", role = "cph"),
-  person(family = "Almasaeed Studio", role = c("ctb", "cph"), comment = "AdminLTE3 theme for Bootstrap 4"),
-  person("Winston", "Chang", role = c("ctb", "cph"), comment = "Utils functions from shinydashboard"))
+    person("David", "Granjon", , "dgranjon@ymail.com", role = c("aut", "cre")),
+    person(, "RinteRface", role = "cph"),
+    person(, "Almasaeed Studio", role = c("ctb", "cph"),
+           comment = "AdminLTE3 theme for Bootstrap 4"),
+    person("Winston", "Chang", role = c("ctb", "cph"),
+           comment = "Utils functions from shinydashboard")
+  )
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Make 'Bootstrap 4' Shiny dashboards. Use the full power
-    of 'AdminLTE3', a dashboard template built on top of 'Bootstrap 4' 
+Description: Make 'Bootstrap 4' Shiny dashboards. Use the full power of
+    'AdminLTE3', a dashboard template built on top of 'Bootstrap 4'
     <https://github.com/ColorlibHQ/AdminLTE>.
-URL: https://github.com/RinteRface/bs4Dash, https://bs4dash.rinterface.com/
-BugReports: https://github.com/RinteRface/bs4Dash/issues
 License: GPL (>= 2) | file LICENSE
+URL: https://github.com/RinteRface/bs4Dash,
+    https://bs4dash.rinterface.com/
+BugReports: https://github.com/RinteRface/bs4Dash/issues
+Depends: 
+    R (>= 2.10)
 Imports: 
-    shiny (>= 1.6.0),
-    htmltools (>= 0.5.1.1),
-    jsonlite (>= 0.9.16),
-    fresh,
-    waiter (>= 0.2.3),
-    httpuv (>= 1.5.2),
-    lifecycle,
     bslib (>= 0.2.4),
-    httr
+    cli,
+    fresh,
+    htmltools (>= 0.5.1.1),
+    httpuv (>= 1.5.2),
+    httr,
+    jsonlite (>= 0.9.16),
+    lifecycle,
+    rlang (>= 1.1.0),
+    shiny (>= 1.6.0),
+    waiter (>= 0.2.3)
 Suggests: 
+    DT,
+    golem,
     knitr,
     rmarkdown,
-    testthat (>= 2.1.0),
-    golem,
-    DT, 
+    testthat (>= 3.0.0),
     thematic (>= 0.1.2)
+VignetteBuilder: 
+    knitr
+RdMacros: 
+    lifecycle
 Encoding: UTF-8
-RoxygenNote: 7.3.2
-VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2.9000
 Collate: 
     'feedbacks.R'
     'useful-items.R'
@@ -52,9 +64,9 @@ Collate:
     'bs4DashGallery.R'
     'deps.R'
     'grid.R'
+    'import-standalone-obj-type.R'
+    'import-standalone-types-check.R'
     'inputs.R'
     'skinSelector.R'
     'utils.R'
-RdMacros: lifecycle
-Depends: 
-    R (>= 2.10)
+Config/testthat/edition: 3

@@ -15,7 +15,8 @@ shinyApp(
         ),
         actionButton("update_box", "Refresh"),
         "Some text here!",
-        br(), br(),
+        br(),
+        br(),
         tabsetPanel(
           tabPanel(
             "News",

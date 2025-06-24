@@ -27,7 +27,7 @@ userListItem(image, title, subtitle = NULL)
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
   ui = dashboardPage(
     dashboardHeader(),
@@ -38,18 +38,18 @@ if (interactive()) {
       status = "success",
       userList(
         userListItem(
-          image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg", 
-          title = "Shiny", 
+          image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
+          title = "Shiny",
           subtitle = "Package 1"
         ),
         userListItem(
-          image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg", 
-          title = "Tidyverse", 
+          image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg",
+          title = "Tidyverse",
           subtitle = "Package 2"
         ),
         userListItem(
-          image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg", 
-          title = "tidyr", 
+          image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg",
+          title = "tidyr",
           subtitle = "Package 3"
         )
       )

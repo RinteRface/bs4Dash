@@ -38,7 +38,11 @@
 #'     server = function(input, output) {}
 #'   )
 #' }
-tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right")) {
+tooltip <- function(
+  tag,
+  title,
+  placement = c("top", "bottom", "left", "right")
+) {
   placement <- match.arg(placement)
 
   tag <- shiny::tagAppendAttributes(
@@ -70,7 +74,6 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 }
 
 
-
 #' Create a Bootstrap 4 tooltip from the server side
 #'
 #' \link{addTooltip} adds a tooltip to the given target.
@@ -80,7 +83,7 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 #'
 #' @param id Tooltip target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param options List of options to pass to the tooltip. See \url{https://getbootstrap.com/docs/4.0/components/tooltips/}.
+#' @param options List of options to pass to the tooltip. See <https://getbootstrap.com/docs/4.0/components/tooltips/>.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -126,11 +129,18 @@ tooltip <- function(tag, title, placement = c("top", "bottom", "left", "right"))
 #'     }
 #'   )
 #' }
-addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+addTooltip <- function(
+  id = NULL,
+  selector = NULL,
+  options,
+  session = shiny::getDefaultReactiveDomain()
+) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
-  if (is.null(options$title)) stop("Please provide a tooltip title!")
+  if (is.null(options$title)) {
+    cli::cli_abort("Please provide a tooltip title!")
+  }
 
   message <- dropNulls(
     list(
@@ -141,8 +151,6 @@ addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::get
   )
   session$sendCustomMessage("create-tooltip", message)
 }
-
-
 
 
 #' Remove a Bootstrap 4 tooltip from the server side
@@ -156,9 +164,6 @@ addTooltip <- function(id = NULL, selector = NULL, options, session = shiny::get
 removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage("remove-tooltip", message = session$ns(id))
 }
-
-
-
 
 
 #' Create a Bootstrap 4 popover from the UI side
@@ -202,7 +207,12 @@ removeTooltip <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'     server = function(input, output) {}
 #'   )
 #' }
-popover <- function(tag, content, title, placement = c("top", "bottom", "left", "right")) {
+popover <- function(
+  tag,
+  content,
+  title,
+  placement = c("top", "bottom", "left", "right")
+) {
   placement <- match.arg(placement)
 
   tag <- shiny::tagAppendAttributes(
@@ -236,9 +246,6 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 }
 
 
-
-
-
 #' Create a Bootstrap 4 popover from the server side
 #'
 #' \link{addPopover} adds a popover to the given target.
@@ -248,7 +255,7 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 #'
 #' @param id Popover target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param options List of options to pass to the popover. See \url{https://getbootstrap.com/docs/4.0/components/popovers/}.
+#' @param options List of options to pass to the popover. See <https://getbootstrap.com/docs/4.0/components/popovers/>.
 #' @param session Shiny session object.
 #' @export
 #' @rdname popover
@@ -295,11 +302,18 @@ popover <- function(tag, content, title, placement = c("top", "bottom", "left", 
 #'     }
 #'   )
 #' }
-addPopover <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+addPopover <- function(
+  id = NULL,
+  selector = NULL,
+  options,
+  session = shiny::getDefaultReactiveDomain()
+) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
-  if (is.null(options$content)) stop("Please provide a popover content!")
+  if (is.null(options$content)) {
+    cli::cli_abort("Please provide a popover content!")
+  }
 
   message <- dropNulls(
     list(
@@ -310,7 +324,6 @@ addPopover <- function(id = NULL, selector = NULL, options, session = shiny::get
   )
   session$sendCustomMessage("create-popover", message)
 }
-
 
 
 #' Remove a Bootstrap 4 popover from the server side
@@ -326,9 +339,6 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 }
 
 
-
-
-
 #' Create an adminLTE toast
 #'
 #' Builtin AdminLTE3 toasts
@@ -336,7 +346,7 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #' @param title Toast title.
 #' @param body Body content.
 #' @param subtitle Toast subtitle.
-#' @param options Toasts options: a list. See \url{https://adminlte.io/docs/3.0/javascript/toasts.html}.
+#' @param options Toasts options: a list. See <https://adminlte.io/docs/3.0/javascript/toasts.html>.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -372,8 +382,13 @@ removePopover <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'   )
 #' }
 #' @importFrom jsonlite toJSON
-toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
-                  session = shiny::getDefaultReactiveDomain()) {
+toast <- function(
+  title,
+  body = NULL,
+  subtitle = NULL,
+  options = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   props <- dropNulls(
     list(
       title = title,
@@ -397,9 +412,6 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 
   session$sendCustomMessage("toast", message2)
 }
-
-
-
 
 
 #' Create a Bootstrap 4 alert on the server side
@@ -481,9 +493,14 @@ toast <- function(title, body = NULL, subtitle = NULL, options = NULL,
 #'   )
 #' }
 #' @rdname alert
-createAlert <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
+createAlert <- function(
+  id = NULL,
+  selector = NULL,
+  options,
+  session = shiny::getDefaultReactiveDomain()
+) {
   if (!is.null(id) && !is.null(selector)) {
-    stop("Please choose either target or selector!")
+    cli::cli_abort("Please choose either target or selector!")
   }
 
   message <- dropNulls(
@@ -496,9 +513,6 @@ createAlert <- function(id = NULL, selector = NULL, options, session = shiny::ge
 
   session$sendCustomMessage("create-alert", message)
 }
-
-
-
 
 
 #' Close AdminLTE3 alert

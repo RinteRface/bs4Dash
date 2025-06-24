@@ -21,3 +21,4 @@
 ^inst/examples/vignettes-demos/.*./rsconnect$
 ^index\.Rmd$
 ^CRAN-SUBMISSION$
+^[\.]?air\.toml$

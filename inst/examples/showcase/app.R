@@ -43,11 +43,11 @@ basic_cards_tab <- tabItem(
   tabName = "cards",
   fluidRow(
     box(
-      title = "Box with all widgets", 
-      closable = TRUE, 
+      title = "Box with all widgets",
+      closable = TRUE,
       width = 6,
-      status = "warning", 
-      solidHeader = FALSE, 
+      status = "warning",
+      solidHeader = FALSE,
       collapsible = TRUE,
       label = boxLabel(
         text = 1,
@@ -64,10 +64,10 @@ basic_cards_tab <- tabItem(
         id = "mycardsidebar",
         background = "#7f7f7f",
         sliderInput(
-          "obs", 
+          "obs",
           "Number of observations:",
-          min = 0, 
-          max = 1000, 
+          min = 0,
+          max = 1000,
           value = 500
         )
       ),
@@ -79,37 +79,41 @@ basic_cards_tab <- tabItem(
         text = "New",
         color = "orange"
       ),
-      title = "Closable card with gradient", 
+      title = "Closable card with gradient",
       width = 6,
       gradient = TRUE,
       background = "teal",
-      status = "teal", 
-      solidHeader = TRUE, 
+      status = "teal",
+      solidHeader = TRUE,
       collapsible = FALSE,
       "Empty card"
     )
   ),
   fluidRow(
     box(
-      title = "Card with solidHeader and elevation", 
+      title = "Card with solidHeader and elevation",
       elevation = 4,
-      closable = TRUE, 
+      closable = TRUE,
       width = 6,
-      solidHeader = TRUE, 
+      solidHeader = TRUE,
       status = "primary",
       collapsible = TRUE,
       "Empty card"
     ),
     box(
       id = "card4",
-      title = "Maximizable Card", 
+      title = "Maximizable Card",
       width = 6,
-      status = "danger", 
+      status = "danger",
       closable = FALSE,
-      maximizable = TRUE, 
+      maximizable = TRUE,
       collapsible = TRUE,
-      sliderInput("bigObs", "Number of observations:",
-                  min = 0, max = 1000, value = 500
+      sliderInput(
+        "bigObs",
+        "Number of observations:",
+        min = 0,
+        max = 1000,
+        value = 500
       ),
       plotOutput("bigPlot")
     )
@@ -122,8 +126,8 @@ cards_api_tab <- tabItem(
   actionButton(inputId = "triggerCard", label = "Trigger Card Action"),
   actionButton("update_box", "Update box"),
   selectInput(
-    inputId = "cardAction", 
-    label = "Card action", 
+    inputId = "cardAction",
+    label = "Card action",
     choices = c(
       "remove",
       "toggle",
@@ -131,18 +135,22 @@ cards_api_tab <- tabItem(
       "restore"
     )
   ),
-  
+
   box(
     id = "mycard",
-    title = "The plot is visible when you maximize the card", 
-    closable = TRUE, 
+    title = "The plot is visible when you maximize the card",
+    closable = TRUE,
     maximizable = TRUE,
     width = 12,
-    status = "warning", 
-    solidHeader = FALSE, 
+    status = "warning",
+    solidHeader = FALSE,
     collapsible = TRUE,
-    sliderInput("obsAPI", "Number of observations:",
-                min = 0, max = 1000, value = 500
+    sliderInput(
+      "obsAPI",
+      "Number of observations:",
+      min = 0,
+      max = 1000,
+      value = 500
     ),
     plotOutput("cardAPIPlot")
   )
@@ -239,7 +247,9 @@ social_cards_tab <- tabItem(
         image = "https://adminlte.io/themes/AdminLTE/dist/img/user6-128x128.jpg",
         author = "Adam Jones",
         description = "Shared publicly - 5 days ago",
-        userPostMedia(image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"),
+        userPostMedia(
+          image = "https://adminlte.io/themes/AdminLTE/dist/img/photo2.png"
+        ),
         userPostTagItems(
           userPostTagItem(dashboardBadge("item 1", color = "info")),
           userPostTagItem(dashboardBadge("item 2", color = "danger"))
@@ -274,7 +284,7 @@ social_cards_tab <- tabItem(
     box(
       title = "Card with messages",
       width = 9,
-      footer =  tagList(
+      footer = tagList(
         actionButton("remove_message", "Remove"),
         actionButton("add_message", "Add"),
         actionButton("update_message", "Update"),
@@ -318,7 +328,7 @@ tab_cards_tab <- tabItem(
         elevation = 2,
         id = "tabcard1",
         width = 12,
-        collapsible = FALSE, 
+        collapsible = FALSE,
         closable = FALSE,
         type = "tabs",
         status = "primary",
@@ -375,7 +385,7 @@ tab_cards_tab <- tabItem(
         width = 12,
         status = "warning",
         maximizable = TRUE,
-        collapsible = TRUE, 
+        collapsible = TRUE,
         closable = TRUE,
         selected = "Tab 6",
         tabPanel(
@@ -418,7 +428,8 @@ tab_cards_tab <- tabItem(
       )
     )
   ),
-  br(), br(),
+  br(),
+  br(),
   fluidRow(
     # manually inserted panels
     column(
@@ -440,7 +451,7 @@ tab_cards_tab <- tabItem(
         )
       )
     ),
-    
+
     # programmatically inserted panels
     column(
       width = 6,
@@ -456,7 +467,8 @@ tab_cards_tab <- tabItem(
       )
     )
   ),
-  br(), br(),
+  br(),
+  br(),
   # Vertical panels: TO DO
   tabsetPanel(
     id = "tabsetpanel3",
@@ -488,7 +500,7 @@ sortable_cards_tab <- tabItem(
         p(class = "text-center", paste("Column", i)),
         lapply(1:2, FUN = function(j) {
           box(
-            title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+            title = paste0("I am the ", j, "-th card of the ", i, "-th column"),
             width = 12,
             "Click on my header"
           )
@@ -513,11 +525,11 @@ statsboxes_tab <- tabItem(
         column(
           width = 6,
           descriptionBlock(
-            number = "17%", 
-            numberColor = "success", 
+            number = "17%",
+            numberColor = "success",
             numberIcon = icon("caret-up"),
-            header = "$35,210.43", 
-            text = "TOTAL REVENUE", 
+            header = "$35,210.43",
+            text = "TOTAL REVENUE",
             rightBorder = TRUE,
             marginBottom = FALSE
           )
@@ -525,11 +537,11 @@ statsboxes_tab <- tabItem(
         column(
           width = 6,
           descriptionBlock(
-            number = "18%", 
-            numberColor = "danger", 
+            number = "18%",
+            numberColor = "danger",
             numberIcon = icon("caret-down"),
-            header = "1200", 
-            text = "GOAL COMPLETION", 
+            header = "1200",
+            text = "GOAL COMPLETION",
             rightBorder = FALSE,
             marginBottom = FALSE
           )
@@ -546,20 +558,20 @@ statsboxes_tab <- tabItem(
           boxPad(
             color = "info",
             descriptionBlock(
-              header = "8390", 
-              text = "VISITS", 
+              header = "8390",
+              text = "VISITS",
               rightBorder = FALSE,
               marginBottom = TRUE
             ),
             descriptionBlock(
-              header = "30%", 
-              text = "REFERRALS", 
+              header = "30%",
+              text = "REFERRALS",
               rightBorder = FALSE,
               marginBottom = TRUE
             ),
             descriptionBlock(
-              header = "70%", 
-              text = "ORGANIC", 
+              header = "70%",
+              text = "ORGANIC",
               rightBorder = FALSE,
               marginBottom = FALSE
             )
@@ -569,7 +581,6 @@ statsboxes_tab <- tabItem(
     )
   )
 )
-
 
 
 # value_boxes_tab ----
@@ -646,7 +657,7 @@ gallery_1_tab <- tabItem(
         accordion(
           id = "accordion1",
           accordionItem(
-            title = "Item 1", 
+            title = "Item 1",
             status = "danger",
             "Anim pariatur cliche reprehenderit, enim 
             eiusmod high life accusamus terry richardson ad 
@@ -662,7 +673,7 @@ gallery_1_tab <- tabItem(
             heard of them accusamus labore sustainable VHS"
           ),
           accordionItem(
-            title = "Item 2", 
+            title = "Item 2",
             status = "warning",
             "Anim pariatur cliche reprehenderit, enim 
             eiusmod high life accusamus terry richardson ad 
@@ -845,15 +856,15 @@ gallery_1_tab <- tabItem(
       striped = TRUE,
       list(
         list(
-          income = "$2,500 USD", 
+          income = "$2,500 USD",
           status = dashboardBadge(
             "Pending",
             position = "right",
             color = "danger",
             rounded = TRUE
-          ), 
-          progress = progressBar(value = 50, status = "pink", size = "xxs"), 
-          text = "test", 
+          ),
+          progress = progressBar(value = 50, status = "pink", size = "xxs"),
+          text = "test",
           confirm = actionButton(
             "go",
             "Go"
@@ -879,9 +890,9 @@ gallery_2_tab <- tabItem(
     status = "primary",
     href = "https://www.google.fr"
   ),
-  
+
   br(),
-  
+
   fluidRow(
     box(
       title = "Badges",
@@ -889,9 +900,9 @@ gallery_2_tab <- tabItem(
       dashboardBadge(color = "info", "blabla", rounded = TRUE)
     )
   ),
-  
+
   br(),
-  
+
   h4("BS4 list group"),
   fluidRow(
     listGroup(
@@ -904,20 +915,20 @@ gallery_2_tab <- tabItem(
       type = "action",
       listGroupItem(
         "Cras justo odio",
-        active = TRUE, 
-        disabled = FALSE, 
+        active = TRUE,
+        disabled = FALSE,
         href = "https://www.google.com"
       ),
       listGroupItem(
-        active = FALSE, 
-        disabled = FALSE, 
+        active = FALSE,
+        disabled = FALSE,
         "Dapibus ac facilisis in",
         href = "https://www.google.com"
       ),
       listGroupItem(
         "Morbi leo risus",
-        active = FALSE, 
-        disabled = TRUE, 
+        active = FALSE,
+        disabled = TRUE,
         href = "https://www.google.com"
       )
     ),
@@ -926,19 +937,19 @@ gallery_2_tab <- tabItem(
       listGroupItem(
         "Donec id elit non mi porta gravida at eget metus. 
          Maecenas sed diam eget risus varius blandit.",
-        active = TRUE, 
-        disabled = FALSE, 
-        title = "List group item heading", 
-        subtitle = "3 days ago", 
+        active = TRUE,
+        disabled = FALSE,
+        title = "List group item heading",
+        subtitle = "3 days ago",
         footer = "Donec id elit non mi porta."
       ),
       listGroupItem(
         "Donec id elit non mi porta gravida at eget metus. 
          Maecenas sed diam eget risus varius blandit.",
-        active = FALSE, 
-        disabled = FALSE, 
-        title = "List group item heading", 
-        subtitle = "3 days ago", 
+        active = FALSE,
+        disabled = FALSE,
+        title = "List group item heading",
+        subtitle = "3 days ago",
         footer = "Donec id elit non mi porta."
       )
     )
@@ -951,7 +962,7 @@ colors_tab <- tabItem(
   lapply(seq_along(statusColors), function(i) {
     fluidRow(
       box(
-        status = statusColors[i], 
+        status = statusColors[i],
         title = paste(statusColors[i], "card"),
         solidHeader = TRUE,
         width = 12,
@@ -964,14 +975,20 @@ colors_tab <- tabItem(
 
 shinyApp(
   ui = dashboardPage(
-    preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#343a40"),
+    preloader = list(
+      html = tagList(spin_1(), "Loading ..."),
+      color = "#343a40"
+    ),
     dark = TRUE,
     help = FALSE,
     fullscreen = TRUE,
     scrollToTop = TRUE,
     header = dashboardHeader(
       title = dashboardBrand(
-        title = sprintf("bs4Dash v%s", as.character(utils::packageVersion("bs4Dash"))),
+        title = sprintf(
+          "bs4Dash v%s",
+          as.character(utils::packageVersion("bs4Dash"))
+        ),
         color = "primary",
         href = "https://divadnojnarg.github.io/outstanding-shiny-ui/",
         image = "https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg",
@@ -981,14 +998,22 @@ shinyApp(
       tooltip(
         title = "This toggles the right sidebar",
         placement = "bottom",
-        actionButton(inputId = "controlbarToggle", label = "Toggle Controlbar", class = "mx-2")
+        actionButton(
+          inputId = "controlbarToggle",
+          label = "Toggle Controlbar",
+          class = "mx-2"
+        )
       ),
       popover(
         title = "Toggle button",
         content = "This toggle the left sidebar",
         placement = "bottom",
         # `data-trigger` = "hover",
-        actionButton(inputId = "sidebarToggle", label = "Toggle left sidebar", class = "mx-2")
+        actionButton(
+          inputId = "sidebarToggle",
+          label = "Toggle left sidebar",
+          class = "mx-2"
+        )
       ),
       rightUi = tagList(
         dropdownMenu(
@@ -1185,7 +1210,8 @@ shinyApp(
       fixed = FALSE,
       left = a(
         href = "https://twitter.com/divadnojnarg",
-        target = "_blank", "@DivadNojnarg"
+        target = "_blank",
+        "@DivadNojnarg"
       ),
       right = "2022"
     ),
@@ -1252,8 +1278,6 @@ shinyApp(
 
     # plots -------------------------------------------------------------------
 
-
-
     output$bigPlot <- renderPlot({
       hist(rnorm(input$bigObs))
     })
@@ -1276,13 +1300,16 @@ shinyApp(
       }
     })
 
-
     # current theme info ---------------------------------------------------------
 
     observeEvent(input$dark_mode, {
       toast(
         title = if (input$dark_mode) "Dark theme on!" else "Light theme on",
-        options = list(position = "topRight", class = "bg-warning", autohide = TRUE)
+        options = list(
+          position = "topRight",
+          class = "bg-warning",
+          autohide = TRUE
+        )
       )
     })
 
@@ -1303,7 +1330,11 @@ shinyApp(
         "mycard",
         action = "update",
         options = list(
-          title = h3(class = "card-title", "hello", dashboardBadge(1, color = "primary")),
+          title = h3(
+            class = "card-title",
+            "hello",
+            dashboardBadge(1, color = "primary")
+          ),
           status = "warning",
           solidHeader = TRUE,
           width = 12,
@@ -1324,7 +1355,6 @@ shinyApp(
       )
     })
 
-
     # card sidebar API --------------------------------------------------------
 
     observeEvent(input$toggle_card_sidebar, {
@@ -1338,8 +1368,6 @@ shinyApp(
         options = toastOpts
       )
     })
-
-
 
     # tabBox API  -------------------------------------------------------------
 
@@ -1358,7 +1386,11 @@ shinyApp(
       )
       toastOpts$class <- if (input$controlbar) "bg-success" else "bg-danger"
       toast(
-        title = if (input$controlbar) "Controlbar opened!" else "Controlbar closed!",
+        title = if (input$controlbar) {
+          "Controlbar opened!"
+        } else {
+          "Controlbar closed!"
+        },
         options = toastOpts
       )
     })
@@ -1370,7 +1402,6 @@ shinyApp(
     observe({
       print(input$controlbar)
     })
-
 
     observeEvent(input$dropdown_item2, {
       toast(
@@ -1385,7 +1416,6 @@ shinyApp(
       )
     })
 
-
     # update sidebar ----------------------------------------------------------
 
     observeEvent(input$sidebarToggle, {
@@ -1395,7 +1425,11 @@ shinyApp(
     # user messages -----------------------------------------------------------
 
     observeEvent(input$remove_message, {
-      updateUserMessages("message", action = "remove", index = input$index_message)
+      updateUserMessages(
+        "message",
+        action = "remove",
+        index = input$index_message
+      )
     })
     observeEvent(input$add_message, {
       updateUserMessages(
@@ -1432,8 +1466,6 @@ shinyApp(
     observeEvent(input$reload, {
       showNotification("Yeah!", duration = 1, type = "default")
     })
-
-
 
     # user menu ---------------------------------------------------------------
 

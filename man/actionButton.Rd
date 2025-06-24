@@ -18,26 +18,26 @@ actionButton(
 )
 }
 \arguments{
-\item{inputId}{The `input` slot that will be used to access the value.}
+\item{inputId}{The \code{input} slot that will be used to access the value.}
 
 \item{label}{The contents of the button or link--usually a text label, but
 you could also use any other HTML, like an image.}
 
-\item{icon}{An optional [icon()] to appear on the button.}
+\item{icon}{An optional \code{\link[shiny:icon]{shiny::icon()}} to appear on the button.}
 
-\item{width}{The width of the input, e.g. `'400px'`, or `'100%'`;
-see [validateCssUnit()].}
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[htmltools:validateCssUnit]{htmltools::validateCssUnit()}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
 
 \item{status}{Button status color. Valid statuses are defined as follows:
 \itemize{
-  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-  \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-  \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-  \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-  \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-  \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+\item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+\item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+\item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+\item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+\item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+\item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 }}
 
 \item{gradient}{Whether to apply gradient to color. Default to FALSE.}
@@ -59,11 +59,13 @@ for the primary status for instance. Same thing for other styles like the size.
 }
 \section{Server value}{
 
-An integer of class `"shinyActionButtonValue"`. This class differs from
+An integer of class \code{"shinyActionButtonValue"}. This class differs from
 ordinary integers in that a value of 0 is considered "falsy".
 This implies two things:
-  * Event handlers (e.g., [observeEvent()], [eventReactive()]) won't execute on initial load.
-  * Input validation (e.g., [req()], [need()]) will fail on initial load.
+\itemize{
+\item Event handlers (e.g., \code{\link[shiny:observeEvent]{shiny::observeEvent()}}, \code{\link[shiny:observeEvent]{shiny::eventReactive()}}) won't execute on initial load.
+\item Input validation (e.g., \code{\link[shiny:req]{shiny::req()}}, \code{\link[shiny:validate]{shiny::need()}}) will fail on initial load.
+}
 }
 
 \examples{
@@ -86,10 +88,10 @@ if (interactive()) {
     body = dashboardBody(
       sliderInput("obs", "Number of observations", 0, 1000, 500),
       actionButton(
-       "goButton", "Go!", 
-       status = "danger", 
-       outline = TRUE, 
-       flat = TRUE, 
+       "goButton", "Go!",
+       status = "danger",
+       outline = TRUE,
+       flat = TRUE,
        size = "lg"
       ),
      plotOutput("distPlot")
@@ -117,6 +119,6 @@ actionButton("largeButton", "Large Primary Button", class = "btn-primary btn-lg"
 
 }
 \seealso{
-[observeEvent()] and [eventReactive()]
+\code{\link[shiny:observeEvent]{shiny::observeEvent()}} and \code{\link[shiny:observeEvent]{shiny::eventReactive()}}
 }
 \concept{input elements}

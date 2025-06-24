@@ -11,35 +11,35 @@
 #' for more evolved title.
 #' @param titleWidth This argument is deprecated; bs4Dash (AdminLTE3) title width
 #' is tightly related to the sidebar width, contrary to shinydashboard (AdminLTE2).
-#' @param disable If \code{TRUE}, don't display the header bar.
+#' @param disable If `TRUE`, don't display the header bar.
 #' @param .list An optional list containing items to put in the header. Same as
-#'   the \code{...} arguments, but in list format. This can be useful when
+#'   the `...` arguments, but in list format. This can be useful when
 #'   working with programmatically generated items.
 #' @param leftUi Custom left Ui content. Any element like \link{dropdownMenu}.
 #' @param rightUi Custom right Ui content. Any element like \link{dropdownMenu}.
 #' @param skin Navbar skin. "dark" or "light".
 #' @param status Navbar status. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param border Whether to separate the navbar and body by a border. TRUE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
@@ -50,15 +50,29 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
-                          .list = NULL, leftUi = NULL, rightUi = NULL, skin = "light", status = "white",
-                          border = TRUE, compact = FALSE, sidebarIcon = shiny::icon("bars"),
-                          controlbarIcon = shiny::icon("table-cells"), fixed = FALSE) {
+bs4DashNavbar <- function(
+  ...,
+  title = NULL,
+  titleWidth = NULL,
+  disable = FALSE,
+  .list = NULL,
+  leftUi = NULL,
+  rightUi = NULL,
+  skin = "light",
+  status = "white",
+  border = TRUE,
+  compact = FALSE,
+  sidebarIcon = shiny::icon("bars"),
+  controlbarIcon = shiny::icon("table-cells"),
+  fixed = FALSE
+) {
   items <- c(list(...), .list)
 
   # make sure default status for dark skin is gray-dark if status is not specified
   # by the end user.
-  if (skin == "dark" && is.null(status)) status <- "gray-dark"
+  if (skin == "dark" && is.null(status)) {
+    status <- "gray-dark"
+  }
 
   if (!is.null(leftUi)) {
     if (inherits(leftUi, "shiny.tag.list")) {
@@ -84,8 +98,11 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
     style = if (disable) "display: none;",
     `data-fixed` = tolower(fixed),
     class = paste0(
-      "main-header navbar navbar-expand", if (!is.null(status)) paste0(" navbar-", status),
-      " navbar-", skin, if (!border) " border-bottom-0" else NULL,
+      "main-header navbar navbar-expand",
+      if (!is.null(status)) paste0(" navbar-", status),
+      " navbar-",
+      skin,
+      if (!border) " border-bottom-0" else NULL,
       if (compact) " text-sm" else NULL
     ),
 
@@ -131,10 +148,10 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 }
 
 #' Navbar tab item
-#' 
+#'
 #' Similar to \link{menuItem} but for the
 #' \link{dashboardHeader}.
-#' 
+#'
 #' @param text Tab text.
 #' @param ... Slot for nested \link{navbarTab}. You can nest as many elements
 #' as you want.
@@ -142,12 +159,12 @@ bs4DashNavbar <- function(..., title = NULL, titleWidth = NULL, disable = FALSE,
 #' @param icon An icon tag, created by shiny::icon. If NULL, don't display an icon.
 #' @param .list Use this slot if you had to programmatically pass \link{navbarTab}
 #' like with \link{lapply}.
-#' 
+#'
 #' @note You can nest \link{navbarTab} so it does like
 #' \link{menuSubItem}. This is to avoid to create too many functions.
 #' @export
 #' @rdname navbar-menu
-navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
+navbarTab <- function(text, ..., tabName = NULL, icon = NULL, .list = NULL) {
   items <- c(list(...), .list)
   if (length(items) > 0) {
     do.call(navbarDropdown, list(text, items))
@@ -163,7 +180,7 @@ navbarTab <- function(text,  ..., tabName = NULL, icon = NULL, .list = NULL) {
         icon,
         shiny::tags$p(text)
       )
-    ) 
+    )
   }
 }
 
@@ -195,7 +212,7 @@ navbarDropdown <- function(text, ...) {
 }
 
 #' Dropdown header helper
-#' 
+#'
 #' Display header text within dropdown menu
 #'
 #' @param text Text to display.
@@ -215,15 +232,15 @@ dropdownHeader <- function(text) {
 #' server.
 #' @rdname navbar-menu
 #' @export
-#' @examples 
+#' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  tabs <- tabItems(.list = lapply(1:7, function(i) {
 #'   tabItem(tabName = sprintf("Tab%s", i), sprintf("Tab %s", i))
 #'  }))
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(
@@ -277,27 +294,25 @@ dropdownHeader <- function(text) {
 #'  )
 #' }
 navbarMenu <- function(..., id = NULL) {
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
-  
-  items <- list(...) 
-  items <- htmltools::tagQuery(items)$
-    find(".nav-item.dropdown")$
-    removeClass("nav-item dropdown")$
-    addClass("dropdown-submenu dropdown-hover")$
-    find("ul")$
-    removeAttrs("style")$
-    reset()$
-    selectedTags()
-  
+  if (is.null(id)) {
+    id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  }
+
+  items <- list(...)
+  items <- htmltools::tagQuery(items)$find(".nav-item.dropdown")$removeClass(
+    "nav-item dropdown"
+  )$addClass("dropdown-submenu dropdown-hover")$find("ul")$removeAttrs(
+    "style"
+  )$reset()$selectedTags()
+
   shiny::tags$ul(
-    class = "navbar-nav sidebar-menu", 
+    class = "navbar-nav sidebar-menu",
     role = "menu",
     items,
     shiny::div(
       id = id,
       class = "sidebarMenuSelectedTabItem",
       `data-value` = "null",
-      
     )
   )
 }
@@ -314,26 +329,26 @@ updateNavbarTabs <- updatebs4TabItems
 #' @param title Brand title.
 #' @param color Brand color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param href External link to point to.
 #' @param image External image location.
@@ -343,11 +358,23 @@ updateNavbarTabs <- updatebs4TabItems
 #'
 #' @return A title tag to be inserted in the title slot of \link{bs4DashNavbar}.
 #' @export
-bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity = .8) {
-  if (!is.null(color)) validateStatusPlus(color)
-  
+bs4DashBrand <- function(
+  title,
+  color = NULL,
+  href = NULL,
+  image = NULL,
+  opacity = .8
+) {
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
+
   shiny::tags$a(
-    class = if (!is.null(color)) paste0("brand-link bg-", color) else "brand-link",
+    class = if (!is.null(color)) {
+      paste0("brand-link bg-", color)
+    } else {
+      "brand-link"
+    },
     href = if (!is.null(href)) href else "#",
     target = if (!is.null(href)) "_blank",
     if (!is.null(image)) {
@@ -360,8 +387,6 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
     shiny::tags$span(class = "brand-text font-weight-light", title)
   )
 }
-
-
 
 
 #' Boostrap 4 dashboard dropdown menu
@@ -378,25 +403,25 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #' @param badgeStatus The status of the badge which displays the number of items
 #'   in the menu. This determines the badge's color. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }.
-#' A value of \code{NULL} means to not display a badge.
+#' A value of `NULL` means to not display a badge.
 #' @param icon An icon to display in the header. By default, the icon is
-#'   automatically selected depending on \code{type}, but it can be overriden
+#'   automatically selected depending on `type`, but it can be overriden
 #'   with this argument.
 #' @param headerText An optional text argument used for the header of the
 #'   dropdown menu (this is only visible when the menu is expanded). If none is
-#'   provided by the user, the default is "You have \code{x} messages," where
-#'   \code{x} is the number of items in the menu (if the \code{type} is
+#'   provided by the user, the default is "You have `x` messages," where
+#'   `x` is the number of items in the menu (if the `type` is
 #'   specified to be "notifications" or "tasks," the default text shows "You
-#'   have \code{x} notifications" or  "You have \code{x} tasks," respectively).
+#'   have `x` notifications" or  "You have `x` tasks," respectively).
 #' @param .list An optional list containing items to put in the menu Same as the
-#'   \code{...} arguments, but in list format. This can be useful when working
+#'   `...` arguments, but in list format. This can be useful when working
 #'   with programmatically generated items.
 #' @param href External link.
 #'
@@ -463,11 +488,19 @@ bs4DashBrand <- function(title, color = NULL, href = NULL, image = NULL, opacity
 #' @rdname dropdownMenu
 #'
 #' @export
-bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
-                            badgeStatus = "primary", icon = NULL, headerText = NULL,
-                            .list = NULL, href = NULL) {
+bs4DropdownMenu <- function(
+  ...,
+  type = c("messages", "notifications", "tasks"),
+  badgeStatus = "primary",
+  icon = NULL,
+  headerText = NULL,
+  .list = NULL,
+  href = NULL
+) {
   type <- match.arg(type)
-  if (!is.null(badgeStatus)) validateStatus(badgeStatus)
+  if (!is.null(badgeStatus)) {
+    validateStatus(badgeStatus)
+  }
   items <- c(list(...), .list)
 
   # Make sure the items are a tags
@@ -487,7 +520,10 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
   if (is.null(badgeStatus)) {
     badge <- NULL
   } else {
-    badge <- shiny::span(class = paste0("badge badge-", badgeStatus, " navbar-badge"), numItems)
+    badge <- shiny::span(
+      class = paste0("badge badge-", badgeStatus, " navbar-badge"),
+      numItems
+    )
   }
 
   if (is.null(headerText)) {
@@ -525,8 +561,6 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 }
 
 
-
-
 #' Bootstrap 4 message item
 #'
 #' \link{messageItem} creates a message item to place in a \link{dropdownMenu}.
@@ -542,26 +576,26 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #' @param image User image.
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' If not NULL, Indicate the message priority.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
@@ -569,14 +603,28 @@ bs4DropdownMenu <- function(..., type = c("messages", "notifications", "tasks"),
 #' @rdname dropdownMenu
 #'
 #' @export
-messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
-                        href = NULL, image = NULL, color = "secondary", inputId = NULL) {
+messageItem <- function(
+  from,
+  message,
+  icon = shiny::icon("user"),
+  time = NULL,
+  href = NULL,
+  image = NULL,
+  color = "secondary",
+  inputId = NULL
+) {
   tagAssert(icon, type = "i")
-  if (is.null(href)) href <- "#"
-  if (!is.null(color)) validateStatusPlus(color)
+  if (is.null(href)) {
+    href <- "#"
+  }
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   shiny::tagList(
     shiny::a(
@@ -635,26 +683,26 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @param status The status of the item. This determines the item's background
 #'   color. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param href An optional URL to link to. When inputId is set, href will be ignored.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
@@ -662,14 +710,25 @@ messageItem <- function(from, message, icon = shiny::icon("user"), time = NULL,
 #' @rdname dropdownMenu
 #'
 #' @export
-notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
-                             status = "success", href = NULL, inputId = NULL) {
+notificationItem <- function(
+  text,
+  icon = shiny::icon("triangle-exclamation"),
+  status = "success",
+  href = NULL,
+  inputId = NULL
+) {
   tagAssert(icon, type = "i")
-  if (is.null(href)) href <- "#"
-  if (!is.null(status)) validateStatusPlus(status)
+  if (is.null(href)) {
+    href <- "#"
+  }
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   if (!is.null(status)) {
     icon <- shiny::tagAppendAttributes(icon, class = paste0("text-", status))
@@ -696,7 +755,6 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
 }
 
 
-
 #' Bootstrap 4 task item
 #'
 #' \link{taskItem} creates a task item to place in a \link{dropdownMenu}.
@@ -705,26 +763,26 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
 #' @param value A percent value to use for the bar.
 #' @param color A color for the bar. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param href An optional URL to link to.
 #' @param inputId Whether to allow the item to act as a \link[shiny]{actionButton}.
@@ -735,12 +793,22 @@ notificationItem <- function(text, icon = shiny::icon("triangle-exclamation"),
 #' @rdname dropdownMenu
 #'
 #' @export
-taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NULL) {
+taskItem <- function(
+  text,
+  value = 0,
+  color = "info",
+  href = NULL,
+  inputId = NULL
+) {
   validateStatusPlus(color)
-  if (is.null(href)) href <- "#"
+  if (is.null(href)) {
+    href <- "#"
+  }
 
   itemCl <- "dropdown-item"
-  if (!is.null(inputId)) itemCl <- paste0(itemCl, " action-button")
+  if (!is.null(inputId)) {
+    itemCl <- paste0(itemCl, " action-button")
+  }
 
   shiny::tagList(
     shiny::tags$a(
@@ -771,8 +839,6 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 }
 
 
-
-
 #' Bootstrap 4 user profile.
 #'
 #' \link{dashboardUser} to insert in the rightUi or leftUi slot of
@@ -788,26 +854,26 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #' @param footer Footer is any.
 #' @param status Ribbon status. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #'
 #' @examples
@@ -846,9 +912,18 @@ taskItem <- function(text, value = 0, color = "info", href = NULL, inputId = NUL
 #'   )
 #' }
 #' @export
-bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
-                        subtitle = NULL, footer = NULL, status = NULL) {
-  if (!is.null(status)) validateStatusPlus(status)
+bs4UserMenu <- function(
+  ...,
+  name = NULL,
+  image = NULL,
+  title = NULL,
+  subtitle = NULL,
+  footer = NULL,
+  status = NULL
+) {
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
 
   # Create line 1 for menu
   if (!is.null(title)) {
@@ -864,7 +939,9 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     user_header_height <- NULL
   } else {
     user_text <- shiny::tags$p(line_1)
-    user_header_height <- shiny::tags$script(shiny::HTML('$(".user-header").css("height", "145px")'))
+    user_header_height <- shiny::tags$script(shiny::HTML(
+      '$(".user-header").css("height", "145px")'
+    ))
   }
 
   shiny::tagList(
@@ -893,7 +970,10 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
     shiny::tags$ul(
       class = "dropdown-menu dropdown-menu-lg dropdown-menu-right dashboard-user",
       shiny::tags$li(
-        class = paste0("user-header", if (!is.null(status)) paste0(" bg-", status)),
+        class = paste0(
+          "user-header",
+          if (!is.null(status)) paste0(" bg-", status)
+        ),
         shiny::tags$img(
           src = image,
           class = "img-circle elevation-2",
@@ -901,13 +981,13 @@ bs4UserMenu <- function(..., name = NULL, image = NULL, title = NULL,
         ),
         shiny::tags$p(title, shiny::tags$small(subtitle))
       ),
-      if (length(list(...)) > 0) shiny::tags$li(class = "user-body", shiny::fluidRow(...)),
+      if (length(list(...)) > 0) {
+        shiny::tags$li(class = "user-body", shiny::fluidRow(...))
+      },
       if (!is.null(footer)) shiny::tags$li(class = "user-footer", footer)
     )
   )
 }
-
-
 
 
 #' Create a dashboard user profile item
@@ -928,14 +1008,12 @@ dashboardUserItem <- function(item, width) {
 }
 
 
-
-
 #' Create a dynamic user output (client side)
 #'
 #' This can be used as a placeholder for dynamically-generated \code{\link{dashboardUser}}.
 #'
 #' @param id Output variable name.
-#' @param tag A tag function, like \code{tags$li} or \code{tags$ul}.
+#' @param tag A tag function, like `tags$li` or `tags$ul`.
 #'
 #' @seealso \code{\link{renderUser}} for the corresponding server side function
 #'   and examples.
@@ -943,7 +1021,11 @@ dashboardUserItem <- function(item, width) {
 #' @rdname dashboardUser
 #' @export
 userOutput <- function(id, tag = shiny::tags$li) {
-  shiny::uiOutput(outputId = id, container = tag, class = "nav-item dropdown user-menu")
+  shiny::uiOutput(
+    outputId = id,
+    container = tag,
+    class = "nav-item dropdown user-menu"
+  )
 }
 
 #' Create dynamic user output (server side)
@@ -955,7 +1037,12 @@ userOutput <- function(id, tag = shiny::tags$li) {
 #' @family user outputs
 #' @rdname dashboardUser
 #' @export
-renderUser <- function(expr, env = parent.frame(), quoted = FALSE, outputArgs = list()) {
+renderUser <- function(
+  expr,
+  env = parent.frame(),
+  quoted = FALSE,
+  outputArgs = list()
+) {
   if (!quoted) {
     expr <- substitute(expr)
     quoted <- TRUE

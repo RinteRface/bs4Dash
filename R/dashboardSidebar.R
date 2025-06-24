@@ -4,7 +4,7 @@
 #' insert in the sidebar slot of \link{dashboardPage}.
 #'
 #' @param ... Slot for \link{sidebarMenu}.
-#' @param disable If \code{TRUE}, the sidebar will be disabled.
+#' @param disable If `TRUE`, the sidebar will be disabled.
 #' @param width The width of the sidebar. This must either be a number which
 #'   specifies the width in pixels, or a string that specifies the width in CSS
 #'   units.
@@ -12,29 +12,29 @@
 #' value.
 #' @param status Sidebar status. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param elevation Sidebar elevation. 4 by default (until 5).
-#' @param collapsed If \code{TRUE}, the sidebar will be collapsed on app startup.
+#' @param collapsed If `TRUE`, the sidebar will be collapsed on app startup.
 #' @param minified Whether to slightly close the sidebar but still show item icons. Default
 #' to TRUE.
 #' @param expandOnHover Whether to expand the sidebar om hover. TRUE by default.
@@ -47,23 +47,35 @@
 #' @seealso \link{dashboardBody}
 #'
 #' @export
-bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
-                           skin = NULL, status = "primary",
-                           elevation = 4, collapsed = FALSE,
-                           minified = TRUE, expandOnHover = TRUE,
-                           fixed = TRUE, id = NULL, customArea = NULL) {
-  # When no skin is specified, sidebar color must match the dashboard skin color 
-  # by default which is set in the dashboardPage function. 
+bs4DashSidebar <- function(
+  ...,
+  disable = FALSE,
+  width = NULL,
+  skin = NULL,
+  status = "primary",
+  elevation = 4,
+  collapsed = FALSE,
+  minified = TRUE,
+  expandOnHover = TRUE,
+  fixed = TRUE,
+  id = NULL,
+  customArea = NULL
+) {
+  # When no skin is specified, sidebar color must match the dashboard skin color
+  # by default which is set in the dashboardPage function.
   skin <- set_sidebar_skin(skin)
-  
-  if (is.null(id)) id <- "sidebarId"
+
+  if (is.null(id)) {
+    id <- "sidebarId"
+  }
   # If we're restoring a bookmarked app, this holds the value of whether or not the
   # sidebar was collapsed. If this is not the case, the default is whatever the user
   # specified in the `collapsed` argument.
   dataValue <- shiny::restoreInput(id = id, default = collapsed)
-  if (disable) dataValue <- TRUE # this is a workaround to fix #209
+  if (disable) {
+    dataValue <- TRUE
+  } # this is a workaround to fix #209
   dataValueString <- if (dataValue) "true" else "false"
-
 
   # sidebar content
   contentTag <- shiny::tags$div(
@@ -86,16 +98,16 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
             width,
             fixed = TRUE,
             "@media (min-width: 768px) {
-              body:not(.sidebar-mini-md) .content-wrapper, 
-              body:not(.sidebar-mini-md) .main-footer, 
+              body:not(.sidebar-mini-md) .content-wrapper,
+              body:not(.sidebar-mini-md) .main-footer,
               body:not(.sidebar-mini-md) .main-header {
                 transition: margin-left .3s ease-in-out;
                 margin-left: _WIDTH_;
               }
             }
-            
+
             @media (min-width: 992px) {
-              .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused, 
+              .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused,
               .sidebar-mini.sidebar-collapse .main-sidebar:hover {
                 width: _WIDTH_;
               }
@@ -106,7 +118,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
                 width: _WIDTH_;
               }
             }
-    
+
             .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
               margin-left: -_WIDTH_;
             }
@@ -134,8 +146,12 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
     `data-collapsed` = collapsed,
     `data-disable` = disable,
     class = paste0(
-      "main-sidebar sidebar-", skin, "-",
-      status, " elevation-", elevation,
+      "main-sidebar sidebar-",
+      skin,
+      "-",
+      status,
+      " elevation-",
+      elevation,
       if (expandOnHover) NULL else " sidebar-no-expand",
       if (!is.null(customArea)) " main-sidebar-custom"
     ),
@@ -160,7 +176,7 @@ bs4DashSidebar <- function(..., disable = FALSE, width = NULL,
 set_sidebar_skin <- function(skin) {
   is_dark_skin <- get_parent_args()$dark
   if (is.null(skin)) {
-    skin <- if (is.null(is_dark_skin) || !is_dark_skin)  "light" else "dark"
+    skin <- if (is.null(is_dark_skin) || !is_dark_skin) "light" else "dark"
   }
   skin
 }
@@ -216,19 +232,17 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 }
 
 
-
-
 #' Dashboard main sidebar menu
 #'
 #' \link{sidebarMenu} creates a menu for \link{dashboardSidebar}.
 #'
 #' @param ... Slot for \link{menuItem} or \link{sidebarHeader}.
-#' @param id For \link{sidebarMenu}, if \code{id} is present, this id will be
+#' @param id For \link{sidebarMenu}, if `id` is present, this id will be
 #'   used for a Shiny input value, and it will report which tab is selected. For
-#'   example, if \code{id="tabs"}, then \code{input$tabs} will be the
-#'   \code{tabName} of the currently-selected \link{menuItem}.
+#'   example, if `id="tabs"`, then `input$tabs` will be the
+#'   `tabName` of the currently-selected \link{menuItem}.
 #' @param .list An optional list containing items to put in the menu Same as the
-#' \code{...} arguments, but in list format. This can be useful when working
+#' `...` arguments, but in list format. This can be useful when working
 #' with programmatically generated items.
 #' @param flat Whether sidebar items should have a flat design. FALSE by default.
 #' @param compact Whether items should be compacted. FALSE by default.
@@ -238,23 +252,51 @@ updatebs4Sidebar <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname dashboardSidebar
 #' @export
-bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
-                           compact = FALSE, childIndent = TRUE, legacy = FALSE) {
-  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+bs4SidebarMenu <- function(
+  ...,
+  id = NULL,
+  .list = NULL,
+  flat = FALSE,
+  compact = FALSE,
+  childIndent = TRUE,
+  legacy = FALSE
+) {
+  if (is.null(id)) {
+    id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  }
 
   # make sure only 1 item is selected at start
   items <- c(list(...), .list)
   nav_items <- findSidebarItem(items, "nav-item")
   selectedItems <- dropNulls(lapply(seq_along(nav_items), function(i) {
-    if (length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+    if (
+      length(nav_items[[i]]$children[[1]]$attribs$`data-start-selected`) > 0
+    ) {
+      TRUE
+    } else {
+      NULL
+    }
   }))
-  if (length(selectedItems) > 1) stop("Only 1 item may be selected at start!")
+  if (length(selectedItems) > 1) {
+    cli::cli_abort(c(
+      "Too many selected items.",
+      "i" = "Only 1 item may be selected at start."
+    ))
+  }
 
   menuCl <- "nav nav-pills nav-sidebar flex-column sidebar-menu"
-  if (flat) menuCl <- paste0(menuCl, " nav-flat")
-  if (compact) menuCl <- paste0(menuCl, " nav-compact")
-  if (childIndent) menuCl <- paste0(menuCl, " nav-child-indent")
-  if (legacy) menuCl <- paste0(menuCl, " nav-legacy")
+  if (flat) {
+    menuCl <- paste0(menuCl, " nav-flat")
+  }
+  if (compact) {
+    menuCl <- paste0(menuCl, " nav-compact")
+  }
+  if (childIndent) {
+    menuCl <- paste0(menuCl, " nav-child-indent")
+  }
+  if (legacy) {
+    menuCl <- paste0(menuCl, " nav-legacy")
+  }
 
   # menu Tag
   shiny::tags$ul(
@@ -275,7 +317,6 @@ bs4SidebarMenu <- function(..., id = NULL, .list = NULL, flat = FALSE,
 }
 
 
-
 #' Internally used by \link{sidebarMenu} to find treeview items
 #' and normal items.
 #' @param items List to search in.
@@ -289,8 +330,6 @@ findSidebarItem <- function(items, regex) {
 }
 
 
-
-
 #' Dashboard sidebar menu item
 #'
 #' \link{menuItem} creates an item to put in \link{sidebarMenu}.
@@ -298,34 +337,34 @@ findSidebarItem <- function(items, regex) {
 #' @param text Item name.
 #' @param ... \link{menuSubItem}.
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
-#'   \code{NULL}, don't display an icon.
+#'   `NULL`, don't display an icon.
 #' @param badgeLabel A label for an optional badge. Usually a number or a short
 #'   word like "new".
 #' @param badgeColor A color for the badge. Valid colors:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
-#' @param href An link address. Not compatible with \code{tabName}.
-#' @param newTab If \code{href} is supplied, should the link open in a new
+#' @param href An link address. Not compatible with `tabName`.
+#' @param newTab If `href` is supplied, should the link open in a new
 #'   browser tab?
-#' @param selected If \code{TRUE}, this \code{menuItem}
-#'  will start selected. If no item have \code{selected=TRUE}, then the first
-#'  \code{menuItem} will start selected.
-#' @param expandedName A unique name given to each \code{menuItem} that serves
+#' @param selected If `TRUE`, this `menuItem`
+#'  will start selected. If no item have `selected=TRUE`, then the first
+#'  `menuItem` will start selected.
+#' @param expandedName A unique name given to each `menuItem` that serves
 #'   to indicate which one (if any) is currently expanded. (This is only applicable
-#'   to \code{menuItem}s that have children and it is mostly only useful for
+#'   to `menuItem`s that have children and it is mostly only useful for
 #'   bookmarking state.)
 #' @param startExpanded Whether to expand the \link{menuItem} at start.
 #' @param condition When using \link{menuItem} with \link[shiny]{conditionalPanel},
-#' write the condition here (see \url{https://github.com/RinteRface/bs4Dash/issues/35}).
+#' write the condition here (see <https://github.com/RinteRface/bs4Dash/issues/35>).
 #' @param .list An optional list containing items to put in the menu Same as the
-#' \code{...} arguments, but in list format. This can be useful when working
+#' `...` arguments, but in list format. This can be useful when working
 #' with programmatically generated items.
 #'
 #' @rdname dashboardSidebar
@@ -372,11 +411,21 @@ findSidebarItem <- function(items, regex) {
 #'   server <- function(input, output) {}
 #'   shinyApp(ui = ui, server = server)
 #' }
-bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeColor = "success",
-                               tabName = NULL, href = NULL,
-                               newTab = TRUE, selected = NULL,
-                               expandedName = as.character(gsub("[[:space:]]", "", text)),
-                               startExpanded = FALSE, condition = NULL, .list = NULL) {
+bs4SidebarMenuItem <- function(
+  text,
+  ...,
+  icon = NULL,
+  badgeLabel = NULL,
+  badgeColor = "success",
+  tabName = NULL,
+  href = NULL,
+  newTab = TRUE,
+  selected = NULL,
+  expandedName = as.character(gsub("[[:space:]]", "", text)),
+  startExpanded = FALSE,
+  condition = NULL,
+  .list = NULL
+) {
   subItems <- c(list(...), .list)
   otherItems <- list()
 
@@ -386,17 +435,27 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
   }
 
   if (!is.null(href) + !is.null(tabName) + (length(subItems) > 0) != 1) {
-    stop("Must have either href, tabName, or sub-items (contained in ...).")
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "Must have exactly one of: {.arg href}, {.arg tabName}, or sub-items (contained in {.arg ...} or {.arg .list})."
+    ))
   }
 
   if (!is.null(badgeLabel) && length(subItems) != 0) {
-    stop("Can't have both badge and subItems")
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "Cannot use both {.arg badgeLabel} and sub-items (contained in {.arg ...} or {.arg .list}) at the same time."
+    ))
   }
 
   # Generate badge if needed
   if (!is.null(badgeLabel)) {
     validateStatus(badgeColor)
-    badgeTag <- dashboardBadge(badgeLabel, color = badgeColor, position = "right")
+    badgeTag <- dashboardBadge(
+      badgeLabel,
+      color = badgeColor,
+      position = "right"
+    )
   } else {
     badgeTag <- NULL
   }
@@ -416,7 +475,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
           `data-target` = if (is.null(href)) {
             if (!is.null(tabName)) {
               paste0("#shiny-tab-", tabName)
-            } 
+            }
           },
           target = if (!is.null(href)) {
             if (newTab) "_blank"
@@ -448,7 +507,7 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         } else {
           otherItems[[length(otherItems)]] <- subItems[[i]]
         }
-        
+
         subItems[[i]] <- NULL
       }
     }
@@ -459,7 +518,11 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
     # is NULL. However, we want to this input to get passed on (and not dropped), so we
     # do `%OR% ""` to assure this.
     default <- if (startExpanded) expandedName else ""
-    dataExpanded <- shiny::restoreInput(id = "sidebarItemExpanded", default) %OR% ""
+    dataExpanded <- shiny::restoreInput(
+      id = "sidebarItemExpanded",
+      default
+    ) %OR%
+      ""
 
     # If `dataExpanded` is not the empty string, we need to check that it is equal to the
     # this menuItem's `expandedName`
@@ -467,9 +530,20 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 
     # handle case of multiple selected subitems and raise an error if so...
     selectedItems <- dropNulls(lapply(seq_along(subItems), function(i) {
-      if (length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0) TRUE else NULL
+      if (
+        length(subItems[[i]]$children[[1]]$attribs$`data-start-selected`) > 0
+      ) {
+        TRUE
+      } else {
+        NULL
+      }
     }))
-    if (length(selectedItems) > 1) stop("Only 1 subitem may be selected!")
+    if (length(selectedItems) > 1) {
+      cli::cli_abort(c(
+        "Too many selected items.",
+        "i" = "Only 1 subitem may be selected."
+      ))
+    }
 
     item_link <- shiny::tags$a(
       href = "#",
@@ -481,8 +555,8 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
         shiny::tags$i(class = "right fas fa-angle-left")
       )
     )
-    
-    # Handle specific case when subItems are not real subItems. 
+
+    # Handle specific case when subItems are not real subItems.
     # The parent items needs to behave like a normal menuItem, with
     # the collapsible style.
     if (length(subItems) == 0) {
@@ -493,12 +567,12 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
       `data-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       }
       item_link$attribs$`data-target` <- if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       }
       item_link$attribs$target <- if (!is.null(href)) {
         if (newTab) "_blank"
@@ -506,9 +580,12 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
       item_link$attribs$`data-toggle` <- if (is.null(href)) "tab"
       item_link$attribs$`data-value` <- if (!is.null(tabName)) tabName
     }
-    
+
     shiny::tags$li(
-      class = paste0("nav-item has-treeview", if (isExpanded) " menu-open" else ""),
+      class = paste0(
+        "nav-item has-treeview",
+        if (isExpanded) " menu-open" else ""
+      ),
       item_link,
       shiny::tags$ul(
         class = "nav nav-treeview",
@@ -521,28 +598,31 @@ bs4SidebarMenuItem <- function(text, ..., icon = NULL, badgeLabel = NULL, badgeC
 }
 
 
-
-
-
 #' Dashboard sidebar menu sub-item
 #'
 #' \link{menuSubItem} creates an item to put in \link{menuItem}.
 #'
 #' @param text Item name.
 #' @param tabName Should correspond exactly to the tabName given in \code{\link{tabItem}}.
-#' @param href An link address. Not compatible with \code{tabName}.
-#' @param newTab If \code{href} is supplied, should the link open in a new
+#' @param href An link address. Not compatible with `tabName`.
+#' @param newTab If `href` is supplied, should the link open in a new
 #'   browser tab?
 #' @param icon An icon tag, created by \code{\link[shiny]{icon}}. If
-#'   \code{NULL}, don't display an icon.
-#' @param selected If \code{TRUE}, this \code{menuSubItem}
-#'   will start selected. If no item have \code{selected=TRUE}.
+#'   `NULL`, don't display an icon.
+#' @param selected If `TRUE`, this `menuSubItem`
+#'   will start selected. If no item have `selected=TRUE`.
 #'
 #' @rdname dashboardSidebar
 #'
 #' @export
-bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
-                                  newTab = NULL, icon = shiny::icon("angles-right"), selected = NULL) {
+bs4SidebarMenuSubItem <- function(
+  text,
+  tabName = NULL,
+  href = NULL,
+  newTab = NULL,
+  icon = shiny::icon("angles-right"),
+  selected = NULL
+) {
   if (!is.null(icon)) {
     tagAssert(icon, type = "i")
     icon$attribs$cl <- paste0(icon$attribs$cl, " nav-icon")
@@ -559,7 +639,7 @@ bs4SidebarMenuSubItem <- function(text, tabName = NULL, href = NULL,
       `data-target` = if (is.null(href)) {
         if (!is.null(tabName)) {
           paste0("#shiny-tab-", tabName)
-        } 
+        }
       },
       target = if (!is.null(href)) {
         if (newTab) "_blank"
@@ -589,7 +669,6 @@ bs4SidebarHeader <- function(title) {
 }
 
 
-
 #' Dashboard sidebar user panel
 #'
 #' \link{sidebarUserPanel} creates a user Panel to put in \link{dashboardSidebar}.
@@ -617,9 +696,6 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
     )
   )
 }
-
-
-
 
 
 #' Change the selected sidebar tab on the client
@@ -782,6 +858,10 @@ bs4SidebarUserPanel <- function(name, image = NULL) {
 #'   )
 #' }
 #' @export
-updatebs4TabItems <- function (session = shiny::getDefaultReactiveDomain(), inputId, selected = NULL) {
+updatebs4TabItems <- function(
+  session = shiny::getDefaultReactiveDomain(),
+  inputId,
+  selected = NULL
+) {
   shiny::updateTabsetPanel(session = session, inputId, selected = selected)
 }

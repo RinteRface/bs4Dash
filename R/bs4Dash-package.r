@@ -1,7 +1,8 @@
-#' bs4Dash
-#'
-#' @name bs4Dash
-#' @docType package
-#' @importFrom lifecycle deprecated
-#' @noRd
+#' @keywords internal
 "_PACKAGE"
+
+#' @import rlang
+## usethis namespace: start
+#' @importFrom lifecycle deprecated
+## usethis namespace: end
+NULL

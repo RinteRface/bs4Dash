@@ -77,7 +77,7 @@ if (interactive()) {
 
  shinyApp(
    ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
      pagination(
@@ -112,7 +112,7 @@ if (interactive()) {
 
  shinyApp(
    ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
      fluidRow(
@@ -143,23 +143,23 @@ if (interactive()) {
     )
    ),
    server = function(input, output, session) {
-    
+
      observeEvent(input$update,{
        updatePagination("mypagination", selected = "page4")
      })
-    
+
      observeEvent(input$disable,{
        updatePagination("mypagination", disabled = "page1")
      })
-    
+
      observeEvent(input$enable,{
        updatePagination("mypagination", selected = "page1")
      })
-    
+
      output$selected_page <- renderText({
        sprintf("Currently selected page: \%s", input$mypagination)
      })
-    
+
      output$distPlot <- renderPlot({
        hist(rnorm(input$obs))
      })

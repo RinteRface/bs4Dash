@@ -21,5 +21,5 @@ shinyApp(
     ),
     title = "Skin Selector"
   ),
-  server = function(input, output) { }
+  server = function(input, output) {}
 )

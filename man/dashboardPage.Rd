@@ -73,7 +73,7 @@ the toggle is shown but not enabled. If TRUE, all tooltips and popovers are enab
 Set to NULL if you want to hide the help icon.}
 
 \item{dark}{Whether to display toggle to switch between dark and light mode in the \link{dashboardHeader}.
-Default to FALSE, app starts in light mode, with possibility to switch to dark. 
+Default to FALSE, app starts in light mode, with possibility to switch to dark.
 If TRUE, the app starts in dark with possibility to switch back to light. If NULL,
 not toggle is shown and the app starts in light, as it has always been.}
 

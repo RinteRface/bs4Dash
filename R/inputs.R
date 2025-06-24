@@ -12,20 +12,20 @@
 #' @param ... Named attributes to be applied to the button or link.
 #' @param status Button status color. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
 #' @param gradient Whether to apply gradient to color. Default to FALSE.
 #' @param outline Whether to display an outline style. Status must not be NULL if TRUE. Default to
 #' FALSE.
-#' @param size Button size. Default to NULL. Possible choices: \code{c("lg", "sm", "xs")}.
+#' @param size Button size. Default to NULL. Possible choices: `c("lg", "sm", "xs")`.
 #' @param flat Whether to apply a flat style. Default to FALSE.
-#' 
-#' @note One may also pass the status directly via the ... parameter using \code{class = "btn-primary"},
+#'
+#' @note One may also pass the status directly via the ... parameter using `class = "btn-primary"`,
 #' for the primary status for instance. Same thing for other styles like the size.
 #'
 #' @family input elements
@@ -49,10 +49,10 @@
 #'     body = dashboardBody(
 #'       sliderInput("obs", "Number of observations", 0, 1000, 500),
 #'       actionButton(
-#'        "goButton", "Go!", 
-#'        status = "danger", 
-#'        outline = TRUE, 
-#'        flat = TRUE, 
+#'        "goButton", "Go!",
+#'        status = "danger",
+#'        outline = TRUE,
+#'        flat = TRUE,
 #'        size = "lg"
 #'       ),
 #'      plotOutput("distPlot")
@@ -87,15 +87,36 @@
 #'   * Event handlers (e.g., [observeEvent()], [eventReactive()]) won't execute on initial load.
 #'   * Input validation (e.g., [req()], [need()]) will fail on initial load.
 #' @export
-actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
-                         status = NULL, gradient = FALSE, outline = FALSE, size = NULL,
-                         flat = FALSE) {
-  if (is.null(status) & outline) stop("outline cannot be used when color is NULL.")
-  if (gradient && outline) stop("outline is not compatible with gradient.")
-  
-  if (!is.null(status)) validateStatus(status)
+actionButton <- function(
+  inputId,
+  label,
+  icon = NULL,
+  width = NULL,
+  ...,
+  status = NULL,
+  gradient = FALSE,
+  outline = FALSE,
+  size = NULL,
+  flat = FALSE
+) {
+  if (is.null(status) & outline) {
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "{.arg outline} cannot be used when {.arg status} is NULL."
+    ))
+  }
+  if (gradient && outline) {
+    cli::cli_abort(c(
+      "Invalid argument combination.",
+      "i" = "{.arg outline} is not compatible with {.arg gradient}."
+    ))
+  }
+
+  if (!is.null(status)) {
+    validateStatus(status)
+  }
   value <- shiny::restoreInput(id = inputId, default = NULL)
-  
+
   btnCl <- if (is.null(status)) {
     "btn btn-default action-button"
   } else {
@@ -112,13 +133,19 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
       }
     }
   }
-  
-  if (flat) btnCl <- paste0(btnCl, " btn-flat")
-  if (!is.null(size)) btnCl <- paste0(btnCl, " btn-", size)
-  
+
+  if (flat) {
+    btnCl <- paste0(btnCl, " btn-flat")
+  }
+  if (!is.null(size)) {
+    btnCl <- paste0(btnCl, " btn-", size)
+  }
+
   shiny::tags$button(
     id = inputId,
-    style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", shiny::validateCssUnit(width), ";")
+    },
     type = "button",
     class = btnCl,
     `data-val` = value,
@@ -126,9 +153,6 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
     ...
   )
 }
-
-
-
 
 
 #' @title AdminLTE2 special large button
@@ -139,26 +163,26 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #' @inheritParams shiny::actionButton
 #' @param color Button backgroun color. Valid statuses are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -167,7 +191,7 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -178,8 +202,8 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #'       status = NULL,
 #'       appButton(
 #'         inputId = "myAppButton",
-#'         label = "Users", 
-#'         icon = icon("users"), 
+#'         label = "Users",
+#'         icon = icon("users"),
 #'         color = "orange",
 #'         dashboardBadge(textOutput("btnVal"), color = "primary")
 #'       )
@@ -194,11 +218,21 @@ actionButton <- function(inputId, label, icon = NULL, width = NULL, ...,
 #' }
 #'
 #' @export
-appButton <- function(..., inputId, label, icon = NULL, width = NULL, color = NULL) {
-  
-  if (!is.null(icon)) tagAssert(icon, type = "i")
-  if (!is.null(color)) validateStatusPlus(color)
-  
+appButton <- function(
+  ...,
+  inputId,
+  label,
+  icon = NULL,
+  width = NULL,
+  color = NULL
+) {
+  if (!is.null(icon)) {
+    tagAssert(icon, type = "i")
+  }
+  if (!is.null(color)) {
+    validateStatusPlus(color)
+  }
+
   shiny::tagAppendAttributes(
     shiny::actionButton(inputId, label, icon = icon, width = width, ...),
     class = "btn-app",

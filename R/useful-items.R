@@ -1,28 +1,28 @@
 #' Create a Bootstrap 4 dashboard badge item
-#' 
-#' \link{dashboardBadge} creates a badge. It may be inserted in any element like inside 
+#'
+#' \link{dashboardBadge} creates a badge. It may be inserted in any element like inside
 #' a \link[shiny]{actionButton} or a \link{dashboardSidebar}.
 #'
 #' @param ... Badge content.
 #' @param color Badge color. Valid colors:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
-#' @param position Badge position: "left" or "right".
+#' @param position Badge position: `"left"` or `"right"`.
 #' @param rounded Whether the badge is rounded instead of square. FALSE by default.
-#' 
+#'
 #' @rdname badge
-#'  
-#' @examples 
+#'
+#' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -30,10 +30,10 @@
 #'     dashboardBody(
 #'      dashboardBadge("Badge 1", color = "danger"),
 #'      actionButton(
-#'       inputId = "badge", 
-#'       label = "Hello", 
-#'       icon = NULL, 
-#'       width = NULL, 
+#'       inputId = "badge",
+#'       label = "Hello",
+#'       icon = NULL,
+#'       width = NULL,
 #'       dashboardBadge(1, color = "primary")
 #'      )
 #'     )
@@ -41,28 +41,35 @@
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Badge <- function(..., color, position = c("left", "right"),
-                     rounded = FALSE) {
-  
+bs4Badge <- function(
+  ...,
+  color,
+  position = c("left", "right"),
+  rounded = FALSE
+) {
   validateStatus(color)
   position <- match.arg(position)
-  
+
   shiny::tags$span(
-    class = paste0(position, " badge", " badge-", color, if (rounded) " badge-pill"),
+    class = paste0(
+      position,
+      " badge",
+      " badge-",
+      color,
+      if (rounded) " badge-pill"
+    ),
     ...
   )
 }
 
 
-
-
 #' Bootstrap 4 accordion container
 #'
-#' \link{accordion} creates an accordion container. 
+#' \link{accordion} creates an accordion container.
 #' Accordions are part of collapsible elements.
 #'
 #' @param ... slot for \link{accordionItem}.
@@ -77,7 +84,7 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -141,18 +148,19 @@ bs4Badge <- function(..., color, position = c("left", "right"),
 #'
 #' @export
 bs4Accordion <- function(..., id, width = 12, .list = NULL) {
-  
   items <- c(list(...), .list)
-  
+
   # patch that enables a proper accordion behavior
   # we add the data-parent non standard attribute to each
   # item. Each accordion must have a unique id.
   lapply(seq_along(items), FUN = function(i) {
-    items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id) 
-    items[[i]]$children[[1]]$children[[1]]$children[[1]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
+    items[[i]]$children[[2]]$attribs[["data-parent"]] <<- paste0("#", id)
+    items[[i]]$children[[1]]$children[[1]]$children[[
+      1
+    ]]$attribs$`data-target` <<- paste0("#collapse_", id, "_", i)
     items[[i]]$children[[2]]$attribs[["id"]] <<- paste0("collapse_", id, "_", i)
   })
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     shiny::tags$div(
@@ -165,28 +173,34 @@ bs4Accordion <- function(..., id, width = 12, .list = NULL) {
 
 
 #' Bootstrap 4 accordion item
-#' 
+#'
 #' \link{accordionItem} is to be inserted in a \link{accordion}.
 #'
 #' @inheritParams bs4Card
-#' 
+#'
 #' @rdname accordion
 #'
 #' @export
-bs4AccordionItem <- function(..., title, status = NULL, 
-                             collapsed = TRUE, solidHeader = TRUE) {
-  
+bs4AccordionItem <- function(
+  ...,
+  title,
+  status = NULL,
+  collapsed = TRUE,
+  solidHeader = TRUE
+) {
   cl <- "card"
   if (!is.null(status)) {
     validateStatusPlus(status)
     cl <- paste0(cl, " card-", status)
   }
-  
-  if (!solidHeader) cl <- paste0(cl, " card-outline")
-  
+
+  if (!solidHeader) {
+    cl <- paste0(cl, " card-outline")
+  }
+
   shiny::tags$div(
     class = cl,
-    
+
     # box header
     shiny::tags$div(
       class = "card-header",
@@ -202,9 +216,9 @@ bs4AccordionItem <- function(..., title, status = NULL,
         )
       )
     ),
-    
+
     shiny::tags$div(
-      id = NULL,  
+      id = NULL,
       `data-parent` = NULL,
       class = if (collapsed) {
         "collapse"
@@ -219,11 +233,8 @@ bs4AccordionItem <- function(..., title, status = NULL,
 }
 
 
-
-
-
 #' Update an accordion on the client
-#' 
+#'
 #' \link{updateAccordion} toggles an \link{accordion} on the client.
 #'
 #' @param id Accordion to target.
@@ -233,12 +244,12 @@ bs4AccordionItem <- function(..., title, status = NULL,
 #' @export
 #' @rdname accordion
 #' @examples
-#' 
+#'
 #' # Update accordion
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -275,16 +286,17 @@ bs4AccordionItem <- function(..., title, status = NULL,
 #'   }
 #'  )
 #' }
-updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDomain()) {
+updateAccordion <- function(
+  id,
+  selected,
+  session = shiny::getDefaultReactiveDomain()
+) {
   session$sendInputMessage(id, selected)
 }
 
 
-
-
-
 #' Bootstrap 4 carousel
-#' 
+#'
 #' \link{carousel} creates a carousel container to display media content.
 #'
 #' @param ... Slot for \link{carouselItem}.
@@ -293,12 +305,12 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #' @param width Carousel width. Between 1 and 12.
 #' @param .list Should you need to pass \link{carouselItem} via \link{lapply} or similar,
 #' put these item here instead of passing them in ...
-#' 
-#' @examples 
+#'
+#' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -321,40 +333,41 @@ updateAccordion <- function(id, selected, session = shiny::getDefaultReactiveDom
 #'    server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname carousel
 #' @family boxWidgets
 #'
 #' @export
 bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
-  
   items <- c(list(...), .list)
-  
+
   generateCarouselNav <- function(items) {
     found_active <- FALSE
     navs <- lapply(seq_along(items), FUN = function(i) {
       # if we found an active item, all other active items are ignored.
       active <- if (found_active) {
-         FALSE
+        FALSE
       } else {
         sum(grep(x = items[[i]]$attribs$class, pattern = "active")) == 1
       }
       # if the item has active class and no item was found before, we found the active item
-      if (active && !found_active) found_active <- TRUE
-      
+      if (active && !found_active) {
+        found_active <<- TRUE
+      }
+
       shiny::tags$li(
         `data-target` = paste0("#", id),
         `data-slide-to` = i - 1,
         class = if (active) "active"
       )
     })
-    
+
     actives <- dropNulls(lapply(navs, function(nav) {
       nav$attribs$class
     }))
-    
+
     # Make sure at least the first item is active
     if (length(actives) == 0) {
       navs[[1]]$attribs$class <- "active"
@@ -363,27 +376,26 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
         " active"
       )
     }
-    
+
     navs
-    
   }
-  
+
   indicatorsTag <- shiny::tags$ol(
     class = "carousel-indicators",
     generateCarouselNav(items)
   )
-  
+
   bodyTag <- shiny::tags$div(
     class = "carousel-inner",
     items
   )
-  
+
   controlButtons <- if (indicators) {
     shiny::tagList(
       # previous
       shiny::tags$a(
         class = "carousel-control-prev",
-       `data-target` = paste0("#", id),
+        `data-target` = paste0("#", id),
         href = "#",
         role = "button",
         `data-slide` = "prev",
@@ -409,39 +421,42 @@ bs4Carousel <- function(..., id, indicators = TRUE, width = 12, .list = NULL) {
   } else {
     NULL
   }
-  
+
   carouselTag <- shiny::tags$div(
     class = "carousel slide",
     `data-ride` = "carousel",
     id = id
   )
-  
-  carouselTag <- shiny::tagAppendChildren(carouselTag, indicatorsTag, bodyTag, controlButtons)
-  
+
+  carouselTag <- shiny::tagAppendChildren(
+    carouselTag,
+    indicatorsTag,
+    bodyTag,
+    controlButtons
+  )
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     carouselTag
   )
-  
 }
 
 
-
 #' Bootstrap 4 carousel item
-#' 
+#'
 #' \link{carouselItem} creates a carousel item to insert in a \link{carousel}
-#' 
+#'
 #' @param ... Element such as images, iframe, ...
 #' @param caption Item caption.
 #' @param active Whether the item is active or not at start.
-#' 
+#'
 #' @rdname carousel
 #'
 #' @export
 bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
   shiny::tags$div(
     class = if (active) "carousel-item active" else "carousel-item",
-    ..., 
+    ...,
     if (!is.null(caption)) {
       shiny::tags$div(class = "carousel-caption", caption)
     }
@@ -449,10 +464,8 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 }
 
 
-
-
 #' AdminLTE3 progress bar
-#' 
+#'
 #' Create a Bootstrap 4 progress bar.
 #'
 #' @param value Progress bar value.
@@ -463,43 +476,43 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #' @param animated Whether to animate the progress bar. Default to FALSE.
 #' @param status Progress bar status. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @param size Progress bar size. NULL, "sm", "xs" or "xxs".
 #' @param label Progress label. NULL by default.
-#' 
+#'
 #' @md
 #' @details For `multiProgressBar()`, `value` can be a vector which
 #'   corresponds to the progress for each segment within the progress bar.
 #'   If supplied, `striped`, `animated`, `status`, and `label` must be the
 #'   same length as `value` or length 1, in which case vector recycling is
 #'   used.
-#' 
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -562,45 +575,60 @@ bs4CarouselItem <- function(..., caption = NULL, active = FALSE) {
 #'  )
 #' }
 
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname progress
 #'
 #' @export
-bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped = FALSE, 
-                            animated = FALSE, status = "primary", size = NULL, 
-                            label = NULL) {
-  
-  if (!is.null(status)) validateStatusPlus(status)
-  stopifnot(value >= min)
-  stopifnot(value <= max)
-  
+bs4ProgressBar <- function(
+  value,
+  min = 0,
+  max = 100,
+  vertical = FALSE,
+  striped = FALSE,
+  animated = FALSE,
+  status = "primary",
+  size = NULL,
+  label = NULL
+) {
+  if (!is.null(status)) {
+    validateStatusPlus(status)
+  }
+  check_number_whole(value, min = min, max = max)
+
   # wrapper class
   progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
-  if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
-  
+  if (!is.null(size)) {
+    progressCl <- paste0(progressCl, " progress-", size)
+  }
+
   # bar class
   barCl <- "progress-bar"
-  if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
-  if (striped) barCl <- paste0(barCl, " progress-bar-striped")
-  if (animated) barCl <- paste0(barCl, " progress-bar-animated")
-  
+  if (!is.null(status)) {
+    barCl <- paste0(barCl, " bg-", status)
+  }
+  if (striped) {
+    barCl <- paste0(barCl, " progress-bar-striped")
+  }
+  if (animated) {
+    barCl <- paste0(barCl, " progress-bar-animated")
+  }
+
   # wrapper
   barTag <- shiny::tags$div(
-    class = barCl, 
-    role = "progressbar", 
-    `aria-valuenow` = value, 
-    `aria-valuemin` = min, 
-    `aria-valuemax` = max, 
+    class = barCl,
+    role = "progressbar",
+    `aria-valuenow` = value,
+    `aria-valuemin` = min,
+    `aria-valuemax` = max,
     style = if (vertical) {
       paste0("height: ", paste0(value, "%"))
-    }
-    else {
+    } else {
       paste0("width: ", paste0(value, "%"))
-    }, 
-    if(!is.null(label)) label
+    },
+    if (!is.null(label)) label
   )
-  
+
   progressTag <- shiny::tags$div(class = progressCl)
   progressTag <- shiny::tagAppendChild(progressTag, barTag)
   progressTag
@@ -608,13 +636,13 @@ bs4ProgressBar <- function (value, min = 0, max = 100, vertical = FALSE, striped
 
 #' @rdname progress
 #' @export
-bs4MultiProgressBar <- 
+bs4MultiProgressBar <-
   function(
-    value, 
-    min = 0, 
-    max = 100, 
-    vertical = FALSE, 
-    striped = FALSE, 
+    value,
+    min = 0,
+    max = 100,
+    vertical = FALSE,
+    striped = FALSE,
     animated = FALSE,
     status = "primary",
     size = NULL,
@@ -623,40 +651,48 @@ bs4MultiProgressBar <-
     status <- verify_compatible_lengths(value, status)
     striped <- verify_compatible_lengths(value, striped)
     animated <- verify_compatible_lengths(value, animated)
-    if (!is.null(label)) label <- verify_compatible_lengths(value, label)
-    
-    if (!is.null(status)) lapply(status, function(x) validateStatusPlus(x))
-    stopifnot(all(value >= min))
-    stopifnot(all(value <= max))
-    stopifnot(sum(value) <= max)
-    
+    if (!is.null(label)) {
+      label <- verify_compatible_lengths(value, label)
+    }
+
+    if (!is.null(status)) {
+      lapply(status, function(x) validateStatusPlus(x))
+    }
+    check_number_whole(value, min = min, max = max)
+    check_number_whole(sum(value), max = max)
+
     bar_segment <- function(value, striped, animated, status, label) {
       # bar class
       barCl <- "progress-bar"
-      if (!is.null(status)) barCl <- paste0(barCl, " bg-", status)
-      if (striped) barCl <- paste0(barCl, " progress-bar-striped")
-      if (animated) barCl <- paste0(barCl, " progress-bar-animated")
-      
+      if (!is.null(status)) {
+        barCl <- paste0(barCl, " bg-", status)
+      }
+      if (striped) {
+        barCl <- paste0(barCl, " progress-bar-striped")
+      }
+      if (animated) {
+        barCl <- paste0(barCl, " progress-bar-animated")
+      }
+
       shiny::tags$div(
-        class = barCl, 
-        role = "progressbar", 
-        `aria-valuenow` = value, 
-        `aria-valuemin` = min, 
-        `aria-valuemax` = max, 
+        class = barCl,
+        role = "progressbar",
+        `aria-valuenow` = value,
+        `aria-valuemin` = min,
+        `aria-valuemax` = max,
         style = if (vertical) {
           paste0("height: ", paste0(value, "%"))
-        }
-        else {
+        } else {
           paste0("width: ", paste0(value, "%"))
-        }, 
-        if(!is.null(label)) label
+        },
+        if (!is.null(label)) label
       )
     }
-    
+
     barSegs <- list()
     # progress bar segments
     for (i in seq_along(value)) {
-      barSegs[[i]] <- 
+      barSegs[[i]] <-
         bar_segment(
           value[[i]],
           striped[[i]],
@@ -665,54 +701,57 @@ bs4MultiProgressBar <-
           label[[i]]
         )
     }
-    
+
     # wrapper class
     progressCl <- if (isTRUE(vertical)) "progress vertical" else "progress mb-3"
-    if (!is.null(size)) progressCl <- paste0(progressCl, " progress-", size)
+    if (!is.null(size)) {
+      progressCl <- paste0(progressCl, " progress-", size)
+    }
     progressTag <- shiny::tags$div(class = progressCl)
     progressTag <- shiny::tagAppendChild(progressTag, barSegs)
     progressTag
   }
 
 verify_compatible_lengths <- function(x, y) {
-  if (length(x) == length(y)) return(y)
-  else if (length(y) == 1) return(rep(y, length(x)))
-  else {
+  if (length(x) == length(y)) {
+    return(y)
+  } else if (length(y) == 1) {
+    return(rep(y, length(x)))
+  } else {
     name_x <- deparse(substitute(x))
     name_y <- deparse(substitute(y))
-    error_msg <-
-      paste0("`", name_x, "` and `", name_y, "` must have compatible sizes. `",
-             name_y, "` must be size ", length(x), " or 1.")
-    stop(error_msg)
+    cli::cli_abort(c(
+      "Size mismatch in arguments.",
+      "i" = "{.var {name_x}} and {.var {name_y}} must have compatible sizes.",
+      "i" = "{.var {name_y}} must be size {.val {length(x)}} or {.val 1}."
+    ))
   }
 }
 
 
-
-
 #' Create a Bootstrap 4 callout
-#' 
+#'
 #' AdminLTE3 callout
 #'
 #' @param ... Callout content.
 #' @param title Callout title.
 #' @param status Callout status. Valid statuses:
 #' \itemize{
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
 #' @param width Callout width. Between 1 and 12.
 #' @param elevation Callout elevation.
-#' 
+#'
 #' @rdname callout
-#' 
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -726,9 +765,9 @@ verify_compatible_lengths <- function(x, y) {
 #'         title = "I am a danger callout!",
 #'         elevation = 4,
 #'         status = "danger",
-#'         "There is a problem that we need to fix. 
-#'         A wonderful serenity has taken possession of 
-#'         my entire soul, like these sweet mornings of 
+#'         "There is a problem that we need to fix.
+#'         A wonderful serenity has taken possession of
+#'         my entire soul, like these sweet mornings of
 #'         spring which I enjoy with my whole heart."
 #'        ),
 #'        callout(
@@ -742,26 +781,34 @@ verify_compatible_lengths <- function(x, y) {
 #'  )
 #' }
 
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-bs4Callout <- function(..., title, status = c("warning", "danger", "info", "success"),
-                       width = 6, elevation = NULL) {
-  
+bs4Callout <- function(
+  ...,
+  title,
+  status = c("warning", "danger", "info", "success"),
+  width = 6,
+  elevation = NULL
+) {
   validateStatus(status)
   status <- match.arg(status)
-  
+
   calloutCl <- "callout"
-  if (!is.null(status)) calloutCl <- paste0(calloutCl, " callout-", status)
-  if (!is.null(elevation)) calloutCl <- paste0(calloutCl, " elevation-", elevation)
-  
+  if (!is.null(status)) {
+    calloutCl <- paste0(calloutCl, " callout-", status)
+  }
+  if (!is.null(elevation)) {
+    calloutCl <- paste0(calloutCl, " elevation-", elevation)
+  }
+
   calloutTag <- shiny::tags$div(
     class = calloutCl,
     shiny::tags$h5(title),
     ...
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     calloutTag
@@ -769,22 +816,21 @@ bs4Callout <- function(..., title, status = c("warning", "danger", "info", "succ
 }
 
 
-
 #' @title AdminLTE3 loading state element
 #'
 #' @description When a section is still work in progress or a computation is running
-#' 
+#'
 #' @note Loading state can be programmatically used when a conputation is running for instance.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname loading
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -810,8 +856,6 @@ bs4Loading <- function() {
 }
 
 
-
-
 #' AdminLTE3 timeline block
 #'
 #' \link{timelineBlock} creates a timeline block that may be inserted in a \link{box} or outside.
@@ -819,7 +863,7 @@ bs4Loading <- function() {
 #' @param ... slot for \link{bs4TimelineLabel} or \link{bs4TimelineItem}.
 #' @param reversed Whether the timeline is reversed or not.
 #' @param width Timeline width. Between 1 and 12.
-#' 
+#'
 #' @note reversed is useful when the user wants to use the timeline
 #' inside a box.
 #'
@@ -848,7 +892,7 @@ bs4Loading <- function() {
 #'        timelineEnd(color = "danger"),
 #'        timelineLabel("10 Feb. 2014", color = "pink"),
 #'        timelineItem(
-#'         elevation = 4, 
+#'         elevation = 4,
 #'         title = "Item 1",
 #'         icon = icon("gears"),
 #'         color = "olive",
@@ -880,20 +924,20 @@ bs4Loading <- function() {
 #'
 #' @export
 bs4Timeline <- function(..., reversed = TRUE, width = 6) {
-  
   cl <- "timeline"
-  if (isTRUE(reversed)) cl <- paste0(cl, " timeline-inverse")
-  
+  if (isTRUE(reversed)) {
+    cl <- paste0(cl, " timeline-inverse")
+  }
+
   timelineTag <- shiny::tags$div(
     class = cl,
     ...
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     timelineTag
   )
-  
 }
 
 
@@ -904,39 +948,38 @@ bs4Timeline <- function(..., reversed = TRUE, width = 6) {
 #' @param ... Any element.
 #' @param color Label color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineLabel <- function(..., color = NULL) {
-  
   cl <- NULL
   if (!is.null(color)) {
     validateStatusPlus(color)
     cl <- paste0("bg-", color)
   }
-  
+
   shiny::tags$div(
     class = "time-label",
     shiny::tags$span(
@@ -949,33 +992,33 @@ bs4TimelineLabel <- function(..., color = NULL) {
 
 #' AdminLTE3 timeline item
 #'
-#' \link{timelineItem} creates a timeline item that contains information for a 
+#' \link{timelineItem} creates a timeline item that contains information for a
 #' given event like the title, description, date, ...
 #'
 #' @param ... Any element such as \link{timelineItemMedia} ...
 #' @param icon Item icon. Expect \code{\link[shiny]{icon}}.
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param time Item date or time.
 #' @param title Item title.
@@ -984,40 +1027,47 @@ bs4TimelineLabel <- function(..., color = NULL) {
 #' @param elevation Timeline elevation (numeric). NULL by default.
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
-bs4TimelineItem <- function(..., icon = NULL, 
-                            color = NULL, time = NULL, title = NULL, 
-                            border = TRUE, footer = NULL, elevation = NULL) {
-  
+bs4TimelineItem <- function(
+  ...,
+  icon = NULL,
+  color = NULL,
+  time = NULL,
+  title = NULL,
+  border = TRUE,
+  footer = NULL,
+  elevation = NULL
+) {
   if (!is.null(color)) {
     validateStatusPlus(color)
     icon$attribs$class <- paste0(icon$attribs$class, " bg-", color)
   }
-  
+
   if (!is.null(elevation)) {
     icon$attribs$class <- paste0(icon$attribs$class, " elevation-", elevation)
   }
-  
+
   itemCl <- "timeline-header no-border"
-  if (isTRUE(border)) itemCl <- "timeline-header"
-  
+  if (isTRUE(border)) {
+    itemCl <- "timeline-header"
+  }
+
   shiny::tags$div(
-    
     # timelineItem icon and status
     icon,
-    
+
     # timelineItem container
     shiny::tags$div(
       class = "timeline-item",
-      
+
       #timelineItem time/date
       shiny::tags$span(
         class = "time",
         shiny::icon("clock"),
         time
       ),
-      
+
       # timelineItem title
       shiny::tags$h3(
         class = if (!is.null(elevation)) {
@@ -1027,13 +1077,13 @@ bs4TimelineItem <- function(..., icon = NULL,
         },
         title
       ),
-      
+
       # timelineItem body
       shiny::tags$div(
         class = "timeline-body",
         ...
       ),
-      
+
       # timelineItem footer
       shiny::tags$div(
         class = "timeline-footer",
@@ -1051,20 +1101,18 @@ bs4TimelineItem <- function(..., icon = NULL,
 #' @param image Media url or path.
 #' @param height Media height in pixels.
 #' @param width Media width in pixels.
-#' 
+#'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
   shiny::img(
-    class = "margin", 
-    src = image, 
+    class = "margin",
+    src = image,
     height = height,
     width = width
   )
 }
-
-
 
 
 #' AdminLTE3 timeline starting point
@@ -1074,39 +1122,38 @@ bs4TimelineItemMedia <- function(image = NULL, height = NULL, width = NULL) {
 #' @param icon Item icon such as "clock", "times", ...
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
-  
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
     iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
   }
-  
+
   shiny::tags$div(iconTag)
 }
 
@@ -1118,47 +1165,44 @@ bs4TimelineStart <- function(icon = shiny::icon("clock"), color = NULL) {
 #' @param icon Item icon such as "clock", "times", ...
 #' @param color Item color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #'
 #' @rdname timeline
-#' 
+#'
 #' @export
 bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
-  
   iconTag <- icon
   if (!is.null(color)) {
     validateStatusPlus(color)
     iconTag$attribs$class <- paste0(iconTag$attribs$class, " bg-", color)
   }
-  
+
   shiny::tagList(
     shiny::tags$div(iconTag),
-    shiny::br(), 
+    shiny::br(),
     shiny::br()
   )
 }
-
-
 
 
 #' @title AdminLTE3 stars
@@ -1169,37 +1213,37 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #' @param max Maximum number of stars by block.
 #' @param color Star color. Valid colors are listed below:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @rdname stars
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1221,13 +1265,10 @@ bs4TimelineEnd <- function(icon = shiny::icon("hourglass-end"), color = NULL) {
 #'
 #' @export
 bs4Stars <- function(value, max = 5, color = "warning") {
-  
   stopifnot(!is.null(color))
   validateStatusPlus(color)
-  stopifnot(!is.null(value))
-  stopifnot(value >= 0)
-  stopifnot(value <= max)
-  
+  check_number_whole(value, min = 0, max = max)
+
   shiny::tags$td(
     class = "mailbox-star",
     shiny::tags$a(
@@ -1248,8 +1289,6 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 }
 
 
-
-
 #' @title BS4 jumbotron for AdminLTE3
 #'
 #' @description Create a jumbotron
@@ -1268,7 +1307,7 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1279,10 +1318,10 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #'      body = dashboardBody(
 #'       jumbotron(
 #'       title = "Hello, world!",
-#'       lead = "This is a simple hero unit, a simple jumbotron-style 
-#'       component for calling extra attention to featured 
+#'       lead = "This is a simple hero unit, a simple jumbotron-style
+#'       component for calling extra attention to featured
 #'       content or information.",
-#'       "It uses utility classes for typography and spacing 
+#'       "It uses utility classes for typography and spacing
 #'       to space content out within the larger container.",
 #'       status = "primary",
 #'       href = "https://www.google.com"
@@ -1294,18 +1333,25 @@ bs4Stars <- function(value, max = 5, color = "warning") {
 #' }
 #'
 #' @export
-bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = "More",
-                         status = c("primary", "warning", "danger", "info", "success")) {
-  
+bs4Jumbotron <- function(
+  ...,
+  title = NULL,
+  lead = NULL,
+  href = NULL,
+  btnName = "More",
+  status = c("primary", "warning", "danger", "info", "success")
+) {
   status <- match.arg(status)
-  
+
   # uncomment below if more status are enabled
   #if (status == "dark") btnStatus <- "gray" else btnStatus <- "dark"
   btnStatus <- "secondary"
-  
+
   jumboCl <- "jumbotron"
-  if (!is.null(status)) jumboCl <- paste0(jumboCl, " bg-", status)
-  
+  if (!is.null(status)) {
+    jumboCl <- paste0(jumboCl, " bg-", status)
+  }
+
   # no need to wrap this tag in an external div to set a custom width
   # since the jumbotron will take the whole page width
   shiny::tags$div(
@@ -1327,16 +1373,15 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 }
 
 
-
 #' @title BS4 list group for AdminLTE3
 #'
 #' @description Create a list group
 #'
 #' @param ... Slot for \link{listGroupItem}.
-#' @param type List group type. 
+#' @param type List group type.
 #' @param width List group width. 4 by default. Between 1 and 12.
 #' @param .list Slot for programmatically generated items.
-#' 
+#'
 #' @rdname listgroup
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1345,7 +1390,7 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1365,41 +1410,41 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #'         type = "action",
 #'         listGroupItem(
 #'          "Cras justo odio",
-#'          active = TRUE, 
-#'          disabled = FALSE, 
+#'          active = TRUE,
+#'          disabled = FALSE,
 #'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
-#'          active = FALSE, 
-#'          disabled = FALSE, 
+#'          active = FALSE,
+#'          disabled = FALSE,
 #'          "Dapibus ac facilisis in",
 #'          href = "https://www.google.com"
 #'         ),
 #'         listGroupItem(
 #'          "Morbi leo risus",
-#'          active = FALSE, 
-#'          disabled = TRUE, 
+#'          active = FALSE,
+#'          disabled = TRUE,
 #'          href = "https://www.google.com"
 #'         )
 #'        ),
 #'        listGroup(
 #'         type = "heading",
 #'         listGroupItem(
-#'          "Donec id elit non mi porta gravida at eget metus. 
+#'          "Donec id elit non mi porta gravida at eget metus.
 #'          Maecenas sed diam eget risus varius blandit.",
-#'          active = TRUE, 
-#'          disabled = FALSE, 
-#'          title = "List group item heading", 
-#'          subtitle = "3 days ago", 
+#'          active = TRUE,
+#'          disabled = FALSE,
+#'          title = "List group item heading",
+#'          subtitle = "3 days ago",
 #'          footer = "Donec id elit non mi porta."
 #'         ),
 #'         listGroupItem(
-#'          "Donec id elit non mi porta gravida at eget metus. 
+#'          "Donec id elit non mi porta gravida at eget metus.
 #'          Maecenas sed diam eget risus varius blandit.",
-#'          active = FALSE, 
-#'          disabled = FALSE, 
-#'          title = "List group item heading", 
-#'          subtitle = "3 days ago", 
+#'          active = FALSE,
+#'          disabled = FALSE,
+#'          title = "List group item heading",
+#'          subtitle = "3 days ago",
 #'          footer = "Donec id elit non mi porta."
 #'         )
 #'        )
@@ -1411,12 +1456,15 @@ bs4Jumbotron <- function(..., title = NULL, lead = NULL, href = NULL, btnName = 
 #' }
 #'
 #' @export
-bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4, 
-                         .list = NULL) {
-  
+bs4ListGroup <- function(
+  ...,
+  type = c("basic", "action", "heading"),
+  width = 4,
+  .list = NULL
+) {
   items <- c(list(...), .list)
   type <- match.arg(type)
-  
+
   # item class depends on selected type
   itemCl <- switch(
     type,
@@ -1424,12 +1472,16 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
     "action" = "list-group-item list-group-item-action",
     "heading" = "list-group-item list-group-item-action flex-column align-items-start"
   )
-  
+
   # build items based on type and options passed
   itemsTag <- lapply(items, function(item) {
     names(item)[1] <- "body"
-    if (item$active) itemCl <- paste0(itemCl, " active")
-    if (item$disabled) itemCl <- paste0(itemCl, " disabled")
+    if (item$active) {
+      itemCl <- paste0(itemCl, " active")
+    }
+    if (item$disabled) {
+      itemCl <- paste0(itemCl, " disabled")
+    }
     # item tag
     if (type == "basic") {
       shiny::tags$li(
@@ -1457,26 +1509,25 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
         ),
         shiny::tags$p(class = "mb-1", item$body),
         if (!is.null(item$footer)) {
-          shiny::tags$small(class = if (item$active) NULL else "text-muted", item$footer)
+          shiny::tags$small(
+            class = if (item$active) NULL else "text-muted",
+            item$footer
+          )
         }
       )
     }
   })
-  
-  
+
   listGroupTag <- shiny::tags$ul(
     class = "list-group",
     itemsTag
   )
-  
+
   shiny::tags$div(
     class = if (!is.null(width)) paste0("col-sm-", width),
     listGroupTag
   )
-  
 }
-
-
 
 
 #' @title BS4 list group item for AdminLTE3
@@ -1487,22 +1538,30 @@ bs4ListGroup <- function(..., type = c("basic", "action", "heading"), width = 4,
 #' @param title Item title (only if type is "heading").
 #' @param subtitle Item subtitle (only if type is "heading").
 #' @param footer Item footer content (only if type is "heading").
-#' @param active Whether the item is active or not. FALSE by default. 
+#' @param active Whether the item is active or not. FALSE by default.
 #' Only if type is "action" or "heading".
-#' @param disabled Whether the item is disabled or not. FALSE by default. 
+#' @param disabled Whether the item is disabled or not. FALSE by default.
 #' Only if type is "action" or "heading".
 #' @param href Item external link.
-#' 
+#'
 #'
 #' @rdname listgroup
 #'
 #' @export
-bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL, 
-                             footer = NULL, active = FALSE, disabled = FALSE,
-                             href = NULL) {
-  
+bs4ListGroupItem <- function(
+  ...,
+  title = NULL,
+  subtitle = NULL,
+  footer = NULL,
+  active = FALSE,
+  disabled = FALSE,
+  href = NULL
+) {
   if (active && disabled) {
-    stop("active and disabled cannot be TRUE at the same time!")
+    cli::cli_abort(c(
+      "Incompatible arguments.",
+      "i" = "{.arg active} and {.arg disabled} cannot be TRUE at the same time."
+    ))
   }
 
   list(
@@ -1517,14 +1576,12 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 }
 
 
-
-
 #' @title BS4 ionicons
 #'
-#' @description Create a ionicon. 
+#' @description Create a ionicon.
 #'
-#' @param name Name of icon. See \url{https://ionic.io/ionicons/}.
-#' 
+#' @param name Name of icon. See <https://ionic.io/ionicons/>.
+#'
 #' @note Similar to the icon function from shiny.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1533,7 +1590,7 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #' if(interactive()){
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
 #'      header = dashboardHeader(),
@@ -1552,11 +1609,15 @@ bs4ListGroupItem <- function(..., title = NULL, subtitle = NULL,
 #'
 #' @export
 ionicon <- function(name) {
-  if (is.null(name)) stop("Missing icon name")
+  if (is.null(name)) {
+    cli::cli_abort(c(
+      "Missing required argument.",
+      "i" = "The {.arg name} parameter is required for icon creation."
+    ))
+  }
   cl <- paste0("icon ion-md-", name)
   shiny::tags$i(class = cl)
 }
-
 
 
 #' AdminLTE3 attachment container
@@ -1568,7 +1629,7 @@ ionicon <- function(name) {
 #' @param image url or path to the image.
 #' @param title Attachment title.
 #' @param href External link.
-#' 
+#'
 #' @family boxWidgets
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -1577,7 +1638,7 @@ ionicon <- function(name) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1623,7 +1684,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
             },
             title
           )
-        ) 
+        )
       },
       shiny::tags$div(
         class = "attachment-text",
@@ -1634,35 +1695,34 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 }
 
 
-
 #' AdminLTE3 description block
 #'
-#' \link{descriptionBlock} creates a description block, perfect for writing statistics 
+#' \link{descriptionBlock} creates a description block, perfect for writing statistics
 #' to insert in a \link{box}.
 #'
 #' @param number Any number.
 #' @param numberColor Number color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param numberIcon Number icon, if any. Expect \code{\link[shiny]{icon}}.
 #' @param header Bold text.
@@ -1671,7 +1731,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'   separate two blocks. The last block on the right should not have a right border.
 #' @param marginBottom FALSE by default. Set it to TRUE when the
 #'   descriptionBlock is used in a \link{boxPad} context.
-#'   
+#'
 #' @rdname box
 #' @family boxWidgets
 #'
@@ -1680,7 +1740,7 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1696,11 +1756,11 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'         column(
 #'           width = 6,
 #'           descriptionBlock(
-#'             number = "17%", 
-#'             numberColor = "pink", 
+#'             number = "17%",
+#'             numberColor = "pink",
 #'             numberIcon = icon("caret-up"),
-#'             header = "$35,210.43", 
-#'             text = "TOTAL REVENUE", 
+#'             header = "$35,210.43",
+#'             text = "TOTAL REVENUE",
 #'             rightBorder = TRUE,
 #'             marginBottom = FALSE
 #'           )
@@ -1708,11 +1768,11 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #'         column(
 #'           width = 6,
 #'           descriptionBlock(
-#'             number = "18%", 
-#'             numberColor = "secondary", 
+#'             number = "18%",
+#'             numberColor = "secondary",
 #'             numberIcon = icon("caret-down"),
-#'             header = "1200", 
-#'             text = "GOAL COMPLETION", 
+#'             header = "1200",
+#'             text = "GOAL COMPLETION",
 #'             rightBorder = FALSE,
 #'             marginBottom = FALSE
 #'           )
@@ -1727,24 +1787,33 @@ attachmentBlock <- function(..., image, title = NULL, href = NULL) {
 #' }
 #'
 #' @export
-descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NULL,
-                             header = NULL, text = NULL, rightBorder = TRUE,
-                             marginBottom = FALSE) {
-  
+descriptionBlock <- function(
+  number = NULL,
+  numberColor = NULL,
+  numberIcon = NULL,
+  header = NULL,
+  text = NULL,
+  rightBorder = TRUE,
+  marginBottom = FALSE
+) {
   cl <- "description-block"
-  if (rightBorder) cl <- paste0(cl, " border-right")
-  if (marginBottom) cl <- paste0(cl, " mb-4")
-  
+  if (rightBorder) {
+    cl <- paste0(cl, " border-right")
+  }
+  if (marginBottom) {
+    cl <- paste0(cl, " mb-4")
+  }
+
   numcl <- "description-percentage"
   if (!is.null(numberColor)) {
     validateStatusPlus(numberColor)
     numcl <- paste0(numcl, " text-", numberColor)
   }
-  
+
   shiny::tags$div(
     class = cl,
     shiny::tags$span(
-      class = numcl, 
+      class = numcl,
       number,
       if (!is.null(numberIcon)) numberIcon
     ),
@@ -1752,7 +1821,6 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
     shiny::tags$span(class = "description-text", text)
   )
 }
-
 
 
 #' AdminLTE3 vertical block container
@@ -1763,29 +1831,29 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' @param ... Any element such as \link{descriptionBlock}.
 #' @param color Background color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param style Custom CSS, if any.
-#' 
+#'
 #' @rdname box
 #' @family boxWidgets
 #'
@@ -1795,7 +1863,7 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1811,20 +1879,20 @@ descriptionBlock <- function(number = NULL, numberColor = NULL, numberIcon = NUL
 #'           boxPad(
 #'             color = "purple",
 #'             descriptionBlock(
-#'               header = "8390", 
-#'               text = "VISITS", 
+#'               header = "8390",
+#'               text = "VISITS",
 #'               rightBorder = FALSE,
 #'               marginBottom = TRUE
 #'             ),
 #'             descriptionBlock(
-#'               header = "30%", 
-#'               text = "REFERRALS", 
+#'               header = "30%",
+#'               text = "REFERRALS",
 #'               rightBorder = FALSE,
 #'               marginBottom = TRUE
 #'             ),
 #'             descriptionBlock(
-#'               header = "70%", 
-#'               text = "ORGANIC", 
+#'               header = "70%",
+#'               text = "ORGANIC",
 #'               rightBorder = FALSE,
 #'               marginBottom = FALSE
 #'             )
@@ -1846,17 +1914,13 @@ cardPad <- function(..., color = NULL, style = NULL) {
     validateStatusPlus(color)
     cl <- paste0(cl, " bg-", color)
   }
-  
+
   shiny::tags$div(
     class = cl,
     style = style,
     ...
   )
 }
-
-
-
-
 
 
 #' AdminLTE3 product list container
@@ -1870,12 +1934,12 @@ cardPad <- function(..., color = NULL, style = NULL) {
 #' @rdname productList
 #'
 #' @examples
-#' 
+#'
 #' # Box with productList
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1886,16 +1950,16 @@ cardPad <- function(..., color = NULL, style = NULL) {
 #'       status = "primary",
 #'       productList(
 #'         productListItem(
-#'           image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png", 
-#'           title = "Samsung TV", 
-#'           subtitle = "$1800", 
+#'           image = "https://www.pngmart.com/files/1/Haier-TV-PNG.png",
+#'           title = "Samsung TV",
+#'           subtitle = "$1800",
 #'           color = "warning",
 #'           "This is an amazing TV, but I don't like TV!"
 #'         ),
 #'         productListItem(
-#'           image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg", 
-#'           title = "Imac 27", 
-#'           subtitle = "$4999", 
+#'           image = "https://upload.wikimedia.org/wikipedia/commons/7/77/IMac_Pro.svg",
+#'           title = "Imac 27",
+#'           subtitle = "$4999",
 #'           color = "danger",
 #'           "This is were I spend most of my time!"
 #'         )
@@ -1917,8 +1981,6 @@ productList <- function(...) {
 }
 
 
-
-
 #' AdminLTE3 product item
 #'
 #' \link{productListItem} creates a product item to insert in \link{productList}.
@@ -1929,24 +1991,29 @@ productList <- function(...) {
 #' @param subtitle product price.
 #' @param color price color. Valid color are listed below:
 #' \itemize{
-#'  \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'  \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
 #' }
 #' @rdname productList
 #'
 #' @export
-productListItem <- function(..., image = NULL, title = NULL, 
-                            subtitle = NULL, color = NULL) {
+productListItem <- function(
+  ...,
+  image = NULL,
+  title = NULL,
+  subtitle = NULL,
+  color = NULL
+) {
   cl <- "badge float-right"
   if (!is.null(color)) {
     validateStatus(color)
     cl <- paste0(cl, " badge-", color)
   }
-  
+
   shiny::tags$li(
     class = "item",
     shiny::tags$div(
@@ -1956,7 +2023,7 @@ productListItem <- function(..., image = NULL, title = NULL,
     shiny::tags$div(
       class = "product-info",
       shiny::tags$a(
-        href = "javascript:void(0)", 
+        href = "javascript:void(0)",
         class = "product-title",
         title,
         if (!is.null(subtitle)) shiny::tags$span(class = cl, subtitle)
@@ -1968,9 +2035,6 @@ productListItem <- function(..., image = NULL, title = NULL,
     )
   )
 }
-
-
-
 
 
 #' AdminLTE3 user list container
@@ -1986,7 +2050,7 @@ productListItem <- function(..., image = NULL, title = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -1997,18 +2061,18 @@ productListItem <- function(..., image = NULL, title = NULL,
 #'       status = "success",
 #'       userList(
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg", 
-#'           title = "Shiny", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg",
+#'           title = "Shiny",
 #'           subtitle = "Package 1"
 #'         ),
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg", 
-#'           title = "Tidyverse", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg",
+#'           title = "Tidyverse",
 #'           subtitle = "Package 2"
 #'         ),
 #'         userListItem(
-#'           image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg", 
-#'           title = "tidyr", 
+#'           image = "https://adminlte.io/themes/v3/dist/img/user7-128x128.jpg",
+#'           title = "tidyr",
 #'           subtitle = "Package 3"
 #'         )
 #'       )
@@ -2043,7 +2107,7 @@ userList <- function(...) {
 userListItem <- function(image, title, subtitle = NULL) {
   shiny::tags$li(
     shiny::tags$img(
-      src = image, 
+      src = image,
       alt = "User Image",
       shiny::tags$a(class = "users-list-name", title),
       if (!is.null(subtitle)) {
@@ -2054,10 +2118,6 @@ userListItem <- function(image, title, subtitle = NULL) {
 }
 
 
-
-
-
-
 #' AdminLTE3 user message container
 #'
 #' \link{userMessages} creates a user message container. Maybe inserted in a \link{box}.
@@ -2066,29 +2126,29 @@ userListItem <- function(image, title, subtitle = NULL) {
 #' @param id Optional. To use with \link{updateUserMessages}.
 #' @param status Messages status. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @param width Container width: between 1 and 12.
-#' @param height Container height. 
+#' @param height Container height.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userMessage
@@ -2097,7 +2157,7 @@ userListItem <- function(image, title, subtitle = NULL) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2154,34 +2214,32 @@ userListItem <- function(image, title, subtitle = NULL) {
 #' @export
 userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
   cl <- "direct-chat-messages direct-chat"
-  if (!is.null(height)) shiny::validateCssUnit(height)
+  if (!is.null(height)) {
+    shiny::validateCssUnit(height)
+  }
   if (!is.null(status)) {
     validateStatusPlus(status)
     cl <- paste0(cl, " direct-chat-", status)
   }
   msgtag <- shiny::tags$div(
-    class = cl, 
-    ..., 
+    class = cl,
+    ...,
     style = if (!is.null(height)) {
       sprintf("height: %s; overflow-y: auto;", height)
     } else {
       "height: 100%;"
     }
   )
-  
+
   shiny::tags$div(
     id = id,
     class = if (!is.null(width)) paste0("col-sm-", width),
     msgtag
   )
-  
 }
 
 
-
-
-
-#' AdminLTE3 user message 
+#' AdminLTE3 user message
 #'
 #' \link{userMessage} creates a user message html element.
 #'
@@ -2189,18 +2247,24 @@ userMessages <- function(..., id = NULL, status, width = 4, height = NULL) {
 #' @param author Message author.
 #' @param date Message date.
 #' @param image Message author image path or url.
-#' @param type Message type: \code{c("sent", "received")}.
+#' @param type Message type: `c("sent", "received")`.
 #'
 #' @rdname userMessage
 #'
 #' @export
-userMessage <- function(..., author = NULL, date = NULL, 
-                        image = NULL, type = c("sent", "received")) {
-  
+userMessage <- function(
+  ...,
+  author = NULL,
+  date = NULL,
+  image = NULL,
+  type = c("sent", "received")
+) {
   type <- match.arg(type)
   messageCl <- "direct-chat-msg"
-  if (type == "sent") messageCl <- paste0(messageCl, " right")
-  
+  if (type == "sent") {
+    messageCl <- paste0(messageCl, " right")
+  }
+
   # message info
   messageInfo <- shiny::tags$div(
     class = "direct-chat-info clearfix",
@@ -2209,7 +2273,7 @@ userMessage <- function(..., author = NULL, date = NULL,
         "direct-chat-name float-right"
       } else {
         "direct-chat-name"
-      }, 
+      },
       author
     ),
     if (!is.null(date)) {
@@ -2218,31 +2282,29 @@ userMessage <- function(..., author = NULL, date = NULL,
           "direct-chat-timestamp float-right"
         } else {
           "direct-chat-timestamp"
-        }, 
+        },
         date
       )
     }
   )
-  
+
   # message Text
   messageTxt <- shiny::tags$div(class = "direct-chat-text", ...)
-  
+
   # message author image
   messageImg <- shiny::tags$img(class = "direct-chat-img", src = image)
-  
+
   shiny::tags$div(
     class = messageCl,
     messageInfo,
-    messageImg, 
+    messageImg,
     messageTxt
   )
 }
 
 
-
-
 #' Update a messages container in the server side
-#' 
+#'
 #' \link{updateUserMessages} allows to interact with a \link{userMessages} container,
 #' such as sending, removing or editing messages.
 #'
@@ -2258,7 +2320,7 @@ userMessage <- function(..., author = NULL, date = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2300,8 +2362,8 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'     })
 #'     observeEvent(input$add, {
 #'       updateUserMessages(
-#'         "message", 
-#'         action = "add", 
+#'         "message",
+#'         action = "add",
 #'         content = list(
 #'           author = "David",
 #'           date = "Now",
@@ -2309,10 +2371,10 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'           type = "received",
 #'           text = tagList(
 #'            sliderInput(
-#'             "obs", 
+#'             "obs",
 #'             "Number of observations:",
-#'             min = 0, 
-#'             max = 1000, 
+#'             min = 0,
+#'             max = 1000,
 #'             value = 500
 #'            ),
 #'            plotOutput("distPlot")
@@ -2320,40 +2382,44 @@ userMessage <- function(..., author = NULL, date = NULL,
 #'         )
 #'       )
 #'     })
-#'     
+#'
 #'     output$distPlot <- renderPlot({
 #'      hist(rnorm(input$obs))
 #'     })
-#'     
+#'
 #'     observeEvent(input$update, {
 #'       updateUserMessages(
-#'         "message", 
-#'         action = "update", 
+#'         "message",
+#'         action = "update",
 #'         index = input$index,
 #'         content = list(
 #'          text = tagList(
 #'           appButton(
 #'            inputId = "reload",
-#'            label = "Click me!", 
-#'            icon = icon("arrows-rotate"), 
+#'            label = "Click me!",
+#'            icon = icon("arrows-rotate"),
 #'            dashboardBadge(1, color = "primary")
 #'           )
 #'          )
 #'         )
 #'       )
 #'     })
-#'     
+#'
 #'     observeEvent(input$reload, {
 #'      showNotification("Yeah!", duration = 1, type = "default")
 #'     })
 #'   }
 #'  )
 #' }
-updateUserMessages <- function(id, action = c("add", "remove", "update"), 
-                               index = NULL, content = NULL, 
-                               session = shiny::getDefaultReactiveDomain()) {
+updateUserMessages <- function(
+  id,
+  action = c("add", "remove", "update"),
+  index = NULL,
+  content = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   action <- match.arg(action)
-  
+
   content <- lapply(content, function(c) {
     if (inherits(c, "shiny.tag") || inherits(c, "shiny.tag.list")) {
       # necessary if the user pass input/output with deps
@@ -2362,19 +2428,17 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
     }
     c
   })
-  
+
   session$sendCustomMessage(
-    "user-messages", 
+    "user-messages",
     list(
-      id = id, 
-      action = action, 
+      id = id,
+      action = action,
       index = index,
       body = content
     )
   )
 }
-
-
 
 
 #' AdminLTE3 user post
@@ -2386,18 +2450,18 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #' @param image Profile image, if any.
 #' @param author Post author.
 #' @param description Post description.
-#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment. 
+#' @param collapsible If TRUE, display a button in the upper right that allows the user to collapse the comment.
 #' @param collapsed Whether the comment is collapsed when the application starts, FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname userPost
 #' @family boxWidgets
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     dashboardHeader(),
@@ -2411,10 +2475,10 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'        image = "https://adminlte.io/themes/AdminLTE/dist/img/user1-128x128.jpg",
 #'        author = "Jonathan Burke Jr.",
 #'        description = "Shared publicly - 7:30 PM today",
-#'        "Lorem ipsum represents a long-held tradition for designers, 
-#'        typographers and the like. Some people hate it and argue for 
-#'        its demise, but others ignore the hate as they create awesome 
-#'        tools to help create filler text for everyone from bacon 
+#'        "Lorem ipsum represents a long-held tradition for designers,
+#'        typographers and the like. Some people hate it and argue for
+#'        its demise, but others ignore the hate as they create awesome
+#'        tools to help create filler text for everyone from bacon
 #'        lovers to Charlie Sheen fans.",
 #'        collapsible = FALSE,
 #'        userPostTagItems(
@@ -2439,17 +2503,21 @@ updateUserMessages <- function(id, action = c("add", "remove", "update"),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #' @export
-userPost <- function(..., id = NULL, image, author, 
-                     description = NULL, collapsible = TRUE, 
-                     collapsed = FALSE) {
-  
+userPost <- function(
+  ...,
+  id = NULL,
+  image,
+  author,
+  description = NULL,
+  collapsible = TRUE,
+  collapsed = FALSE
+) {
   id <- paste0("post-", id)
-  
+
   btnCl <- "btn-tool float-right"
-  
-  
+
   # if the input tag is an image, it is better to center it...
   items <- list(...)
   items <- lapply(seq_along(items), function(i) {
@@ -2468,16 +2536,15 @@ userPost <- function(..., id = NULL, image, author,
       items[[i]]
     }
   })
-  
-  
+
   shiny::tags$div(
     class = "post",
-    
+
     shiny::tags$div(
       class = "user-block",
       shiny::img(class = "img-circle img-bordered-sm", src = image),
       shiny::tags$span(
-        class = "username", 
+        class = "username",
         author,
         # box tool
         if (collapsible) {
@@ -2494,7 +2561,6 @@ userPost <- function(..., id = NULL, image, author,
             }
           )
         }
-        
       ),
       if (!is.null(description)) {
         shiny::tags$span(class = "description", description)
@@ -2509,13 +2575,10 @@ userPost <- function(..., id = NULL, image, author,
         }
       },
       id = id,
-      items 
+      items
     )
   )
-  
 }
-
-
 
 
 #' AdminLTE3 user post tool item container
@@ -2525,17 +2588,14 @@ userPost <- function(..., id = NULL, image, author,
 #' @param ... Slot for \link{userPostTagItem}.
 #'
 #' @rdname userPost
-#' 
+#'
 #' @export
-userPostTagItems<- function(...) {
-  
+userPostTagItems <- function(...) {
   shiny::tags$ul(
     class = "list-inline d-flex",
     ...
   )
 }
-
-
 
 
 #' AdminLTE3 user post tool item
@@ -2545,16 +2605,14 @@ userPostTagItems<- function(...) {
 #' @param ... Tool content such as label, button, ...
 #'
 #' @rdname userPost
-#' 
+#'
 #' @export
 userPostTagItem <- function(...) {
-  
   shiny::tags$li(
     class = "mx-2",
     ...
   )
 }
-
 
 
 #' AdminLTE3 user post media
@@ -2566,18 +2624,17 @@ userPostTagItem <- function(...) {
 #' @param width Media width in pixels.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' 
+#'
 #' @export
 userPostMedia <- function(image, height = NULL, width = NULL) {
   shiny::img(
     style = "margin: auto;",
-    class = "img-fluid", 
+    class = "img-fluid",
     src = image,
     height = height,
     width = width
   )
 }
-
 
 
 #' @title BS4 sortable section
@@ -2589,12 +2646,12 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname sortable
-#' 
-#' @examples 
+#'
+#' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
 #'     header = dashboardHeader(),
@@ -2610,7 +2667,7 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'            p(class = "text-center", paste("Column", i)),
 #'            lapply(1:2, FUN = function(j) {
 #'              box(
-#'                title = paste0("I am the ", j,"-th card of the ", i, "-th column"), 
+#'                title = paste0("I am the ", j,"-th card of the ", i, "-th column"),
 #'                width = 12,
 #'                "Click on my header"
 #'              )
@@ -2622,14 +2679,15 @@ userPostMedia <- function(image, height = NULL, width = NULL) {
 #'   ),
 #'   server = function(input, output) {}
 #'  )
-#' }  
-#' 
+#' }
+#'
 #' @export
 bs4Sortable <- function(..., width = 12) {
-  
   sectionCl <- "connectedSortable ui-sortable"
-  if (!is.null(width)) sectionCl <- paste0(sectionCl, " col-lg-", width)
-  
+  if (!is.null(width)) {
+    sectionCl <- paste0(sectionCl, " col-lg-", width)
+  }
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$head(
@@ -2652,34 +2710,30 @@ bs4Sortable <- function(..., width = 12) {
     shiny::tags$section(
       class = sectionCl,
       ...
-    ) 
+    )
   )
 }
-
-
-
-
 
 
 #' Boostrap 4 table container
 #'
 #' Build an Bootstrap 4 table container
 #'
-#' @param data Expect dataframe, tibble or list of shiny tags... See examples. 
+#' @param data Expect dataframe, tibble or list of shiny tags... See examples.
 #' @param cardWrap Whether to wrap the table in a card. FALSE by default.
 #' @param bordered Whether to display border between elements. FALSE by default.
 #' @param striped Whether to displayed striped in elements. FALSE by default.
 #' @param width Table width. 12 by default.
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  # width dataframe as input
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      bs4Table(
@@ -2688,16 +2742,16 @@ bs4Sortable <- function(..., width = 12) {
 #'       striped = TRUE,
 #'       iris
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
-#'  
+#'
 #'  # with shiny tags as input
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'       bs4Table(
@@ -2706,15 +2760,15 @@ bs4Sortable <- function(..., width = 12) {
 #'         striped = TRUE,
 #'         list(
 #'           list(
-#'             income = "$2,500 USD", 
+#'             income = "$2,500 USD",
 #'             status = dashboardBadge(
 #'               "Pending",
 #'               position = "right",
 #'               color = "danger",
 #'               rounded = TRUE
-#'             ), 
-#'             progress = progressBar(value = 50, status = "pink", size = "xxs"), 
-#'             text = "test", 
+#'             ),
+#'             progress = progressBar(value = 50, status = "pink", size = "xxs"),
+#'             text = "test",
 #'             confirm = actionButton(
 #'               "go",
 #'               "Go"
@@ -2723,42 +2777,54 @@ bs4Sortable <- function(..., width = 12) {
 #'           list("$2,500 USD", "NA", "NA", "test", "NA")
 #'         )
 #'       )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) {}
 #'  )
 #' }
-#' 
+#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname table
 #'
 #' @export
-bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE, 
-                     striped = FALSE, width = 12) {
-  
+bs4Table <- function(
+  data,
+  cardWrap = FALSE,
+  bordered = FALSE,
+  striped = FALSE,
+  width = 12
+) {
   # handle theme
   tableCl <- "table"
-  if (bordered) tableCl <- paste0(tableCl, " table-bordered")
-  if (striped) tableCl <- paste0(tableCl, " table-striped")
-  
-  if (!inherits(data, "list") && 
-      !inherits(data, "data.frame")) {
-    stop("data must be a dataframe, tibble or list")
+  if (bordered) {
+    tableCl <- paste0(tableCl, " table-bordered")
   }
-  
+  if (striped) {
+    tableCl <- paste0(tableCl, " table-striped")
+  }
+
+  if (
+    !inherits(data, "list") &&
+      !inherits(data, "data.frame")
+  ) {
+    cli::cli_abort(c(
+      "Invalid data type.",
+      "i" = "The {.arg data} must be a dataframe, tibble or list."
+    ))
+  }
+
   if (inherits(data, "data.frame")) {
-    
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
         lapply(
-          seq_along(colnames(data)), 
+          seq_along(colnames(data)),
           function(i) shiny::tags$th(colnames(data)[[i]])
-        ) 
+        )
       )
     )
-    
+
     table <- lapply(seq_len(nrow(data)), function(i) {
       bs4TableItems(
         lapply(seq_len(ncol(data)), function(j) {
@@ -2768,19 +2834,18 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
           )
         })
       )
-    }) 
+    })
   } else if (inherits(data, "list")) {
-    
     # column headers
     tableHead <- shiny::tags$thead(
       shiny::tags$tr(
         lapply(
-          seq_along(names(data[[1]])), 
+          seq_along(names(data[[1]])),
           function(i) shiny::tags$th(names(data[[1]])[[i]])
-        ) 
+        )
       )
     )
-    
+
     table <- lapply(seq_along(data), function(i) {
       bs4TableItems(
         lapply(seq_along(data[[i]]), function(j) {
@@ -2790,19 +2855,19 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
           )
         })
       )
-    }) 
+    })
   }
-  
+
   # body rows
   tableBody <- shiny::tags$tbody(table)
-  
+
   # table tag
   tableTag <- shiny::tags$table(
     class = tableCl,
     tableHead,
     tableBody
   )
-  
+
   # card wrapper or not
   if (cardWrap) {
     shiny::column(
@@ -2821,8 +2886,6 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 }
 
 
-
-
 #' Boostrap 4 table item row
 #'
 #' Build an bs4 table item row
@@ -2834,7 +2897,6 @@ bs4Table <- function(data, cardWrap = FALSE, bordered = FALSE,
 bs4TableItems <- function(...) {
   shiny::tags$tr(...)
 }
-
 
 
 #' Bootstrap 4 table item
@@ -2855,93 +2917,91 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 }
 
 
-
-
-# #' @title AdminLTE3 todo list container
-# #'
-# #' @description Create a todo list container
-# #'
-# #' @param ... slot for todoListItem.
-# #' @param sortable Whether the list elements are sortable or not.
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @examples
-# #' if (interactive()) {
-# #'  library(shiny)
-# #'  library(bs4Dash)
-# #'  shinyApp(
-# #'   ui = dashboardPage(
-# #'     dashboardHeader(),
-# #'     dashboardSidebar(),
-# #'     dashboardBody(
-# #'      box(
-# #'       "Sortable todo list demo",
-# #'       status = "warning",
-# #'       todoList(
-# #'         todoListItem(
-# #'           label = "Design a nice theme",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           label = "Make the theme responsive",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           checked = TRUE,
-# #'           label = "Let theme shine like a star"
-# #'         )
-# #'        )
-# #'       ),
-# #'       box(
-# #'       "Simple todo list demo",
-# #'       status = "warning",
-# #'       todoList(
-# #'       sortable = FALSE,
-# #'         todoListItem(
-# #'           label = "Design a nice theme",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           label = "Make the theme responsive",
-# #'           "Some text here"
-# #'         ),
-# #'         todoListItem(
-# #'           checked = TRUE,
-# #'           label = "Let theme shine like a star"
-# #'         )
-# #'        )
-# #'       )
-# #'     ),
-# #'     title = "Todo Lists"
-# #'   ),
-# #'   server = function(input, output) { }
-# #'  )
-# #' }
-# #'
-# #' @export
+#' @title AdminLTE3 todo list container
+#'
+#' @description Create a todo list container
+#'
+#' @param ... slot for todoListItem.
+#' @param sortable Whether the list elements are sortable or not.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(bs4Dash)
+#'  shinyApp(
+#'   ui = dashboardPage(
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
+#'     dashboardBody(
+#'      box(
+#'       "Sortable todo list demo",
+#'       status = "warning",
+#'       todoList(
+#'         todoListItem(
+#'           label = "Design a nice theme",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           label = "Make the theme responsive",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           checked = TRUE,
+#'           label = "Let theme shine like a star"
+#'         )
+#'        )
+#'       ),
+#'       box(
+#'       "Simple todo list demo",
+#'       status = "warning",
+#'       todoList(
+#'       sortable = FALSE,
+#'         todoListItem(
+#'           label = "Design a nice theme",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           label = "Make the theme responsive",
+#'           "Some text here"
+#'         ),
+#'         todoListItem(
+#'           checked = TRUE,
+#'           label = "Let theme shine like a star"
+#'         )
+#'        )
+#'       )
+#'     ),
+#'     title = "Todo Lists"
+#'   ),
+#'   server = function(input, output) { }
+#'  )
+#' }
+#'
+#' @export
 # todoList <- function(..., sortable = TRUE) {
-#   
+#
 #   items <- list(...)
-#   
+#
 #   if (sortable) {
 #     for (i in seq_along(items)) {
 #       items[[i]]$children[[1]]$attribs$class <- paste(items[[i]]$children[[1]]$attribs$class, "ui-sortable-handle")
 #     }
 #   }
-#   
+#
 #   todoListTag <- shiny::tags$ul(
 #     class = if (sortable) "todo-list ui-sortable" else "todo-list",
 #     `data-widget` = "todo-list",
 #     items
 #   )
-#   
+#
 #   todoListTag
-#   
+#
 # }
-# 
-# 
-# 
+#
+#
+#
 # #' @title AdminLTE2 todo list item
 # #'
 # #' @description Create a todo list item
@@ -2956,34 +3016,31 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 # todoListItem <- function(..., checked = FALSE, label = NULL) {
 #   cl <- NULL
 #   if (checked) cl <- "done"
-#   
+#
 #   shiny::tags$li(
 #     class = cl,
-#     
+#
 #     # sortable icon
 #     shiny::tags$span(
 #       class = "handle",
 #       shiny::tags$i(class = "fa fa-ellipsis-v"),
 #       shiny::tags$i(class = "fa fa-ellipsis-v")
 #     ),
-#     
+#
 #     # checkbox trigger
 #     # need to be implemented (custom binding js)
 #     #shiny::tags$input(type = "checkbox"),
-#     
+#
 #     # label
 #     shiny::tags$span(class = "text", label),
-#     
+#
 #     # any element
 #     shiny::tags$small(
 #       ...
 #     )
 #   )
-#   
-# }#
-
-
-
+#
+# }
 
 #' Boostrap 4 ribbon
 #'
@@ -2992,37 +3049,37 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #' @param text Ribbon text.
 #' @param color Ribbon color. Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
-#'     sidebar = dashboardSidebar(),
+#'     dashboardHeader(),
+#'     dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
 #'       box(
@@ -3050,13 +3107,13 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #'        )
 #'       )
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname ribbon
@@ -3064,15 +3121,13 @@ bs4TableItem <- function(..., dataCell = FALSE) {
 #' @export
 bs4Ribbon <- function(text, color) {
   validateStatusPlus(color)
-  ribbonCl <- paste0("ribbon bg-", color) 
+  ribbonCl <- paste0("ribbon bg-", color)
   ribbonWrapperCl <- "ribbon-wrapper"
   shiny::tags$div(
     class = ribbonWrapperCl,
     shiny::tags$div(class = ribbonCl, text)
   )
 }
-
-
 
 
 #' Boostrap 4 block quote
@@ -3082,37 +3137,37 @@ bs4Ribbon <- function(text, color) {
 #' @param ... Content.
 #' @param color Block color.  Valid colors are defined as follows:
 #' \itemize{
-#'   \item \code{primary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
-#'   \item \code{secondary}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
-#'   \item \code{info}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
-#'   \item \code{success}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
-#'   \item \code{warning}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
-#'   \item \code{danger}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
-#'   \item \code{gray-dark}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
-#'   \item \code{gray}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
-#'   \item \code{white}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
-#'   \item \code{indigo}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
-#'   \item \code{lightblue}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
-#'   \item \code{navy}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
-#'   \item \code{purple}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
-#'   \item \code{fuchsia}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
-#'   \item \code{pink}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
-#'   \item \code{maroon}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
-#'   \item \code{orange}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
-#'   \item \code{lime}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
-#'   \item \code{teal}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
-#'   \item \code{olive}: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
+#'   \item `primary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#007bff")}.
+#'   \item `secondary`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6c757d")}.
+#'   \item `info`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#17a2b8")}.
+#'   \item `success`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#28a745")}.
+#'   \item `warning`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ffc107")}.
+#'   \item `danger`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#dc3545")}.
+#'   \item `gray-dark`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#343a40")}.
+#'   \item `gray`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#adb5bd")}.
+#'   \item `white`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#fff")}.
+#'   \item `indigo`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#6610f2")}.
+#'   \item `lightblue`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3c8dbc")}.
+#'   \item `navy`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#001f3f")}.
+#'   \item `purple`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#605ca8")}.
+#'   \item `fuchsia`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#f012be")}.
+#'   \item `pink`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#e83e8c")}.
+#'   \item `maroon`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#d81b60")}.
+#'   \item `orange`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#ff851b")}.
+#'   \item `lime`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#01ff70")}.
+#'   \item `teal`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#39cccc")}.
+#'   \item `olive`: \Sexpr[results=rd, stage=render]{bs4Dash:::rd_color_tag("#3d9970")}.
 #' }
 #' @rdname quote
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#'  
+#'
 #'  shinyApp(
 #'   ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
@@ -3123,13 +3178,13 @@ bs4Ribbon <- function(text, color) {
 #'       blockQuote("Blablabla", color = "warning"),
 #'       blockQuote("Blablabla", color = "fuchsia")
 #'      )
-#'     ), 
+#'     ),
 #'     footer = dashboardFooter()
 #'   ),
 #'   server = function(input, output) { }
 #'  )
 #' }
-#' 
+#'
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -3143,7 +3198,6 @@ bs4Quote <- function(..., color) {
 }
 
 
-
 #' Get all AdminLTE colors.
 #' @export
 getAdminLTEColors <- function() {
@@ -3152,7 +3206,7 @@ getAdminLTEColors <- function() {
 
 #' Bootstrap 4 pagination widget
 #'
-#' See \url{https://getbootstrap.com/docs/4.0/components/pagination/}.
+#' See <https://getbootstrap.com/docs/4.0/components/pagination/>.
 #'
 #' @param ... Slot for \link{paginationItem}.
 #' @param id Unique widget id. For programmatic update.
@@ -3163,7 +3217,7 @@ getAdminLTEColors <- function() {
 #' @param previousBtn Previous button text.
 #' @param nextBtn Next button text.
 #' @param .list Programmatically generated \link{paginationItem}.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return An HTML pagination container
@@ -3172,10 +3226,10 @@ getAdminLTEColors <- function() {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#' 
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      pagination(
@@ -3204,11 +3258,20 @@ getAdminLTEColors <- function() {
 #'    }
 #'  )
 #' }
-pagination <- function(..., id = NULL, selected = NULL,
-                       align = c("center", "left", "right"),
-                       size = c("md", "sm", "lg"),
-                       previousBtn = "\u00ab", nextBtn = "\u00bb",
-                       .list = NULL) {
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname pagination
+#' @export
+pagination <- function(
+  ...,
+  id = NULL,
+  selected = NULL,
+  align = c("center", "left", "right"),
+  size = c("md", "sm", "lg"),
+  previousBtn = "\u00ab",
+  nextBtn = "\u00bb",
+  .list = NULL
+) {
   align <- match.arg(align)
   size <- match.arg(size)
   # Build temporary tag structure
@@ -3221,11 +3284,13 @@ pagination <- function(..., id = NULL, selected = NULL,
     side = "left",
     .list = .list
   )
-  
+
   # handle style
   pagination_cl <- "pagination"
   if (align %in% c("center", "right")) {
-    if (align == "right") align <- "end"
+    if (align == "right") {
+      align <- "end"
+    }
     pagination_cl <- paste(
       pagination_cl,
       sprintf("justify-content-%s", align)
@@ -3237,7 +3302,7 @@ pagination <- function(..., id = NULL, selected = NULL,
       sprintf("pagination-%s", size)
     )
   }
-  
+
   # Start and end navigation tags
   pagination_start <- shiny::tags$li(
     class = "page-item",
@@ -3245,74 +3310,57 @@ pagination <- function(..., id = NULL, selected = NULL,
       class = "page-link pagination-previous",
       href = "#",
       tabindex = "-1",
-      shiny::tags$span(`aria-hidden`="true", previousBtn),
+      shiny::tags$span(`aria-hidden` = "true", previousBtn),
       shiny::tags$span(class = "sr-only", "Previous")
     )
   )
-  
+
   pagination_end <- shiny::tags$li(
     class = "page-item",
     shiny::tags$a(
       class = "page-link pagination-next",
       href = "#",
-      shiny::tags$span(`aria-hidden`="true", nextBtn),
+      shiny::tags$span(`aria-hidden` = "true", nextBtn),
       shiny::tags$span(class = "sr-only", "Next")
     )
   )
-  
+
   # Modify tag on the fly to correspond to Bootstrap 4 pagination
-  temp_tag <- htmltools::tagQuery(temp_tag)$
-    find("ul")$ # remove old tabs class and add pagination class
-    addAttrs("style" = "margin-bottom: 16px")$
-    removeClass("nav-tabs")$ # we still need nav to behave like tabs
-    addClass(pagination_cl)$
-    resetSelected()$
-    find("li")$ # replace li class
-    removeClass("nav-item")$
-    addClass("page-item")$
-    resetSelected()$
-    find("a")$ # replace a class
-    removeClass("nav-link")$
-    addClass("page-link")$
-    resetSelected()$
-    find("a.active")$ # move active class to parent li
-    removeClass("active")$
-    parent()$
-    addClass("active")$
-    resetSelected()$
-    find("ul.pagination")$ # insert navigation
-    prepend(pagination_start)$
-    append(pagination_end)$
-    allTags()
-  
+  temp_tag <- htmltools::tagQuery(temp_tag)$find("ul")$addAttrs( # remove old tabs class and add pagination class
+    "style" = "margin-bottom: 16px"
+  )$removeClass("nav-tabs")$addClass(pagination_cl)$resetSelected()$find( # we still need nav to behave like tabs
+    "li"
+  )$removeClass("nav-item")$addClass("page-item")$resetSelected()$find( # replace li class
+    "a"
+  )$removeClass("nav-link")$addClass("page-link")$resetSelected()$find( # replace a class
+    "a.active"
+  )$removeClass("active")$parent()$addClass("active")$resetSelected()$find( # move active class to parent li
+    "ul.pagination"
+  )$prepend(pagination_start)$append(pagination_end)$allTags() # insert navigation
+
   # Handle disabled tags
   disabled_items_idx <- numeric(0)
-  
-  htmltools::tagQuery(temp_tag)$
-    find(".tab-pane")$
-    each(function(x, i) {
-      if (x$attribs$`data-disabled` == "true") {
-        disabled_items_idx <<- c(disabled_items_idx, i)
-      }
-    })
-  
-  temp_tag <- htmltools::tagQuery(temp_tag)$
-    find("li")$
-    each(function(x, i) {
-      if (i %in% (disabled_items_idx + 1)) {
-        x$attribs$class <- paste(x$attribs$class, "disabled")
-        # recommended by Bootstrap 4 doc
-        x$attribs$tabindex <- "-1"
-      }
-    })$
-    allTags()
-  
+
+  htmltools::tagQuery(temp_tag)$find(".tab-pane")$each(function(x, i) {
+    if (x$attribs$`data-disabled` == "true") {
+      disabled_items_idx <<- c(disabled_items_idx, i)
+    }
+  })
+
+  temp_tag <- htmltools::tagQuery(temp_tag)$find("li")$each(function(x, i) {
+    if (i %in% (disabled_items_idx + 1)) {
+      x$attribs$class <- paste(x$attribs$class, "disabled")
+      # recommended by Bootstrap 4 doc
+      x$attribs$tabindex <- "-1"
+    }
+  })$allTags()
+
   # Wrap ul by tags$nav
   temp_tag$children[[1]] <- shiny::tags$nav(
     `aria-label` = "Navigation stepper",
     temp_tag$children[[1]]
   )
-  
+
   temp_tag
 }
 
@@ -3322,13 +3370,18 @@ pagination <- function(..., id = NULL, selected = NULL,
 #'
 #' @inheritParams shiny::tabPanel
 #' @param disabled Whether to disable the item. Default to FALSE.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return An HTML tag.
 #' @export
-paginationItem <- function (title, ..., value = title,
-                            icon = NULL, disabled = FALSE) {
+paginationItem <- function(
+  title,
+  ...,
+  value = title,
+  icon = NULL,
+  disabled = FALSE
+) {
   shiny::tabPanel(
     title = title,
     ...,
@@ -3342,7 +3395,7 @@ paginationItem <- function (title, ..., value = title,
 #'
 #' @inheritParams pagination
 #' @param session Shiny session object.
-#' 
+#'
 #' @rdname pagination
 #'
 #' @return Send a message from R to JS so as to update
@@ -3352,10 +3405,10 @@ paginationItem <- function (title, ..., value = title,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(bs4Dash)
-#' 
+#'
 #'  shinyApp(
 #'    ui = dashboardPage(
-#'     header = dashboardHeader(), 
+#'     header = dashboardHeader(),
 #'     sidebar = dashboardSidebar(),
 #'     body = dashboardBody(
 #'      fluidRow(
@@ -3364,6 +3417,7 @@ paginationItem <- function (title, ..., value = title,
 #'        actionButton("enable", "Enable page 1", class = "mx-2"),
 #'        textOutput("selected_page")
 #'      ),
+#'      br(),
 #'      br(),
 #'      pagination(
 #'        id = "mypagination",
@@ -3386,43 +3440,52 @@ paginationItem <- function (title, ..., value = title,
 #'     )
 #'    ),
 #'    server = function(input, output, session) {
-#'     
+#'
 #'      observeEvent(input$update,{
 #'        updatePagination("mypagination", selected = "page4")
 #'      })
-#'     
+#'
 #'      observeEvent(input$disable,{
 #'        updatePagination("mypagination", disabled = "page1")
 #'      })
-#'     
+#'
 #'      observeEvent(input$enable,{
 #'        updatePagination("mypagination", selected = "page1")
 #'      })
-#'     
+#'
 #'      output$selected_page <- renderText({
 #'        sprintf("Currently selected page: %s", input$mypagination)
 #'      })
-#'     
+#'
 #'      output$distPlot <- renderPlot({
 #'        hist(rnorm(input$obs))
 #'      })
 #'    }
 #'  )
 #' }
-updatePagination <- function(id, selected = NULL,
-                             disabled = NULL,
-                             session = shiny::getDefaultReactiveDomain()) {
-  
+updatePagination <- function(
+  id,
+  selected = NULL,
+  disabled = NULL,
+  session = shiny::getDefaultReactiveDomain()
+) {
   if (length(selected) > 1) {
-    stop("Can't select more than one element ...")
+    cli::cli_abort(c(
+      "Multiple selection not allowed.",
+      "i" = "Can't select more than one element in {.arg selected}."
+    ))
   }
   # make sure we don't have selected and disabled item
   # with the same value ...
   common_elements <- intersect(selected, disabled)
   if (length(common_elements) > 0) {
-    stop("A selected item cannot be disabled ...")
+    cli::cli_abort(c(
+      "Incompatible argument values.",
+      "i" = "An item cannot be both selected and disabled.",
+      "i" = "Check for overlapping values in {.arg selected} and {.arg disabled}."
+    ))
   }
-  
+
   session$sendInputMessage(
     id,
     message = dropNulls(

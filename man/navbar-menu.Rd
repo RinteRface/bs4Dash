@@ -53,11 +53,11 @@ You can nest \link{navbarTab} so it does like
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  tabs <- tabItems(.list = lapply(1:7, function(i) {
   tabItem(tabName = sprintf("Tab\%s", i), sprintf("Tab \%s", i))
  }))
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(

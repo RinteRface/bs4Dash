@@ -25,7 +25,7 @@ bs4TableItem(..., dataCell = FALSE)
 
 \item{...}{Any HTML element.}
 
-\item{dataCell}{Whether the cell should be contain data or text. <td> by default.}
+\item{dataCell}{Whether the cell should be contain data or text. \if{html}{\out{<td>}} by default.}
 }
 \description{
 Build an Bootstrap 4 table container
@@ -38,11 +38,11 @@ Build an bs4 table item
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
- 
+
  # width dataframe as input
  shinyApp(
   ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
      bs4Table(
@@ -51,16 +51,16 @@ if (interactive()) {
       striped = TRUE,
       iris
      )
-    ), 
+    ),
     footer = dashboardFooter()
   ),
   server = function(input, output) { }
  )
- 
+
  # with shiny tags as input
  shinyApp(
   ui = dashboardPage(
-    header = dashboardHeader(), 
+    header = dashboardHeader(),
     sidebar = dashboardSidebar(),
     body = dashboardBody(
       bs4Table(
@@ -69,15 +69,15 @@ if (interactive()) {
         striped = TRUE,
         list(
           list(
-            income = "$2,500 USD", 
+            income = "$2,500 USD",
             status = dashboardBadge(
               "Pending",
               position = "right",
               color = "danger",
               rounded = TRUE
-            ), 
-            progress = progressBar(value = 50, status = "pink", size = "xxs"), 
-            text = "test", 
+            ),
+            progress = progressBar(value = 50, status = "pink", size = "xxs"),
+            text = "test",
             confirm = actionButton(
               "go",
               "Go"
@@ -86,7 +86,7 @@ if (interactive()) {
           list("$2,500 USD", "NA", "NA", "test", "NA")
         )
       )
-    ), 
+    ),
     footer = dashboardFooter()
   ),
   server = function(input, output) {}

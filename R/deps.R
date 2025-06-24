@@ -1,6 +1,5 @@
 # Add dashboard dependencies to a tag object
 add_bs4Dash_deps <- function(tag, options) {
-  
   # put all necessary ressources here
   adminLTE3_js <- "adminlte.min.js"
   adminLTE3_css <- "adminlte.min.css"
@@ -12,20 +11,20 @@ add_bs4Dash_deps <- function(tag, options) {
   fontawesome_css <- "https://use.fontawesome.com/releases/v5.0.13/css/"
   ionicons_css <- "https://unpkg.com/ionicons@4.4.2/dist/css/"
   google_fonts <- "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-  
+
   bs4Dash_version <- as.character(utils::packageVersion("bs4Dash"))
-  
+
   bs4Dash_deps <- list(
     # jquery UI deps for sortable elements
     htmltools::htmlDependency(
-      name = "jquery-ui", 
+      name = "jquery-ui",
       version = "1.13.2",
       src = c(file = system.file("jquery-ui-1.13.2", package = "bs4Dash")),
       script = jquery_ui_js
     ),
     # bootstrap deps
     htmltools::htmlDependency(
-      name = "bootstrap", 
+      name = "bootstrap",
       version = "4.5.2",
       src = c(file = "bootstrap-4.5.2"),
       script = bootstrap_js,
@@ -33,7 +32,7 @@ add_bs4Dash_deps <- function(tag, options) {
     ),
     # overlay scrollbars
     htmltools::htmlDependency(
-      name = "os", 
+      name = "os",
       version = "1.13.0",
       src = c(file = "os-1.13.0"),
       script = os_js,
@@ -48,9 +47,9 @@ add_bs4Dash_deps <- function(tag, options) {
         bs4Dash_version,
         src = c(file = sprintf("bs4Dash-%s", bs4Dash_version)),
         head = paste0(
-          "<script>var AdminLTEOptions = ", 
+          "<script>var AdminLTEOptions = ",
           jsonlite::toJSON(
-            options, 
+            options,
             auto_unbox = TRUE,
             pretty = TRUE
           ),
@@ -61,7 +60,7 @@ add_bs4Dash_deps <- function(tag, options) {
     },
     # adminLTE3 deps
     htmltools::htmlDependency(
-      name = "AdminLTE3", 
+      name = "AdminLTE3",
       version = "3.1.0",
       src = c(file = "AdminLTE3-3.1.0"),
       script = adminLTE3_js,
@@ -73,7 +72,11 @@ add_bs4Dash_deps <- function(tag, options) {
       name = "bs4Dash",
       version = bs4Dash_version,
       src = c(file = sprintf("bs4Dash-%s", bs4Dash_version)),
-      script = if (getOption("shiny.minified", TRUE)) "bs4Dash.min.js" else "bs4Dash.js" ,
+      script = if (getOption("shiny.minified", TRUE)) {
+        "bs4Dash.min.js"
+      } else {
+        "bs4Dash.js"
+      },
       stylesheet = bs4Dash_css,
       package = "bs4Dash"
     ),
@@ -107,6 +110,6 @@ add_bs4Dash_deps <- function(tag, options) {
       package = "bs4Dash"
     )
   )
-  
+
   shiny::tagList(tag, bs4Dash_deps)
 }

@@ -51,10 +51,10 @@ listGroupItem(
 
 \item{footer}{Item footer content (only if type is "heading").}
 
-\item{active}{Whether the item is active or not. FALSE by default. 
+\item{active}{Whether the item is active or not. FALSE by default.
 Only if type is "action" or "heading".}
 
-\item{disabled}{Whether the item is disabled or not. FALSE by default. 
+\item{disabled}{Whether the item is disabled or not. FALSE by default.
 Only if type is "action" or "heading".}
 
 \item{href}{Item external link.}
@@ -68,7 +68,7 @@ Create a list group item
 if(interactive()){
  library(shiny)
  library(bs4Dash)
- 
+
  shinyApp(
    ui = dashboardPage(
      header = dashboardHeader(),
@@ -88,41 +88,41 @@ if(interactive()){
         type = "action",
         listGroupItem(
          "Cras justo odio",
-         active = TRUE, 
-         disabled = FALSE, 
+         active = TRUE,
+         disabled = FALSE,
          href = "https://www.google.com"
         ),
         listGroupItem(
-         active = FALSE, 
-         disabled = FALSE, 
+         active = FALSE,
+         disabled = FALSE,
          "Dapibus ac facilisis in",
          href = "https://www.google.com"
         ),
         listGroupItem(
          "Morbi leo risus",
-         active = FALSE, 
-         disabled = TRUE, 
+         active = FALSE,
+         disabled = TRUE,
          href = "https://www.google.com"
         )
        ),
        listGroup(
         type = "heading",
         listGroupItem(
-         "Donec id elit non mi porta gravida at eget metus. 
+         "Donec id elit non mi porta gravida at eget metus.
          Maecenas sed diam eget risus varius blandit.",
-         active = TRUE, 
-         disabled = FALSE, 
-         title = "List group item heading", 
-         subtitle = "3 days ago", 
+         active = TRUE,
+         disabled = FALSE,
+         title = "List group item heading",
+         subtitle = "3 days ago",
          footer = "Donec id elit non mi porta."
         ),
         listGroupItem(
-         "Donec id elit non mi porta gravida at eget metus. 
+         "Donec id elit non mi porta gravida at eget metus.
          Maecenas sed diam eget risus varius blandit.",
-         active = FALSE, 
-         disabled = FALSE, 
-         title = "List group item heading", 
-         subtitle = "3 days ago", 
+         active = FALSE,
+         disabled = FALSE,
+         title = "List group item heading",
+         subtitle = "3 days ago",
          footer = "Donec id elit non mi porta."
         )
        )

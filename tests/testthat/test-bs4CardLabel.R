@@ -1,5 +1,3 @@
-context("bs4CardLabel")
-
 test_that("is shiny tag?", {
   golem::expect_shinytag(bs4CardLabel(text = 1, status = "warning"))
 })
@@ -28,6 +26,10 @@ test_that("no tooltip", {
 })
 
 test_that("tooltip", {
-  labelTagProps <- bs4CardLabel(text = 1, tooltip = "prout", status = "primary")$attribs
+  labelTagProps <- bs4CardLabel(
+    text = 1,
+    tooltip = "prout",
+    status = "primary"
+  )$attribs
   expect_length(labelTagProps, 3)
 })
