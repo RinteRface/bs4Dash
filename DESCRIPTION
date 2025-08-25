@@ -1,7 +1,7 @@
 Type: Package
 Package: bs4Dash
 Title: A 'Bootstrap 4' Version of 'shinydashboard'
-Version: 2.3.4
+Version: 2.3.5
 Authors@R: c(
     person("David", "Granjon", , "dgranjon@ymail.com", role = c("aut", "cre")),
     person(, "RinteRface", role = "cph"),
@@ -45,7 +45,7 @@ RdMacros:
     lifecycle
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.2
 Collate: 
     'feedbacks.R'
     'useful-items.R'
@@ -69,4 +69,5 @@ Collate:
     'inputs.R'
     'skinSelector.R'
     'utils.R'
+    'zzz.R'
 Config/testthat/edition: 3

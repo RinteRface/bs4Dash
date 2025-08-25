@@ -46,8 +46,8 @@ if (interactive()) {
 
  shinyApp(
   ui = dashboardPage(
-    header = dashboardHeader(),
-    sidebar = dashboardSidebar(),
+    dashboardHeader(),
+    dashboardSidebar(),
     body = dashboardBody(
      fluidRow(
       box(

@@ -697,13 +697,13 @@ gallery_1_tab <- tabItem(
         id = "mycarousel",
         width = 12,
         carouselItem(
-          tags$img(src = "https://via.placeholder.com/500")
+          tags$img(src = "placeholders/500x500.png")
         ),
         carouselItem(
-          tags$img(src = "https://via.placeholder.com/500")
+          tags$img(src = "placeholders/500x500.png")
         ),
         carouselItem(
-          tags$img(src = "https://via.placeholder.com/500")
+          tags$img(src = "placeholders/500x500.png")
         )
       )
     )
@@ -796,8 +796,8 @@ gallery_1_tab <- tabItem(
           title = "Item 3",
           icon = icon("paint-brush"),
           color = "warning",
-          timelineItemMedia(image = "https://via.placeholder.com/150"),
-          timelineItemMedia(image = "https://via.placeholder.com/150")
+          timelineItemMedia(image = "placeholders/150x150.png"),
+          timelineItemMedia(image = "placeholders/150x150.png")
         ),
         timelineStart(color = "danger")
       )
@@ -823,8 +823,8 @@ gallery_1_tab <- tabItem(
         title = "Item 3",
         icon = icon("paint-brush"),
         color = "warning",
-        timelineItemMedia(image = "https://via.placeholder.com/150"),
-        timelineItemMedia(image = "https://via.placeholder.com/150")
+        timelineItemMedia(image = "placeholders/150x150.png"),
+        timelineItemMedia(image = "placeholders/150x150.png")
       ),
       timelineStart(color = "danger")
     )

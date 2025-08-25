@@ -2080,7 +2080,9 @@ cardComment <- function(..., image, title = NULL, date = NULL) {
 #'               height = if (i %% 2 == 1) "200px",
 #'               status = if (i %% 2 == 0) "primary",
 #'               if (i %% 2 == 0) "Lorem ipsum is so fun!",
-#'               if (i == 1 | i == 7 | i == 12) img(src = "https://via.placeholder.com/290x160")
+#'               if (i == 1 | i == 7 | i == 12) {
+#'                 img(src = "placeholders/150x150.png")
+#'               }
 #'             )
 #'           })
 #'         )
