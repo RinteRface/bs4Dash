@@ -6,9 +6,9 @@
 #' @param inputId The `input` slot that will be used to access the value.
 #' @param label The contents of the button or link--usually a text label, but
 #'   you could also use any other HTML, like an image.
-#' @param icon An optional [icon()] to appear on the button.
+#' @param icon An optional [shiny::icon()] to appear on the button.
 #' @param width The width of the input, e.g. `'400px'`, or `'100%'`;
-#'   see [validateCssUnit()].
+#'   see [shiny::validateCssUnit()].
 #' @param ... Named attributes to be applied to the button or link.
 #' @param status Button status color. Valid statuses are defined as follows:
 #' \itemize{
@@ -78,14 +78,14 @@
 #' ## Example of adding extra class values
 #' actionButton("largeButton", "Large Primary Button", class = "btn-primary btn-lg")
 #'
-#' @seealso [observeEvent()] and [eventReactive()]
+#' @seealso [shiny::observeEvent()] and [shiny::eventReactive()]
 #'
 #' @section Server value:
 #' An integer of class `"shinyActionButtonValue"`. This class differs from
 #' ordinary integers in that a value of 0 is considered "falsy".
 #' This implies two things:
-#'   * Event handlers (e.g., [observeEvent()], [eventReactive()]) won't execute on initial load.
-#'   * Input validation (e.g., [req()], [need()]) will fail on initial load.
+#'   * Event handlers (e.g., [shiny::observeEvent()], [shiny::eventReactive()]) won't execute on initial load.
+#'   * Input validation (e.g., [shiny::req()], [shiny::need()]) will fail on initial load.
 #' @export
 actionButton <- function(
   inputId,

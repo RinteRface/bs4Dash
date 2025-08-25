@@ -161,8 +161,8 @@ if(interactive()){
         title = "Item 3",
         icon = icon("paint-brush"),
         status = "orange",
-        timelineItemMedia(image = "https://via.placeholder.com/150x100"),
-        timelineItemMedia(image = "https://via.placeholder.com/150x100")
+        timelineItemMedia(image = "placeholders/150x150.png"),
+        timelineItemMedia(image = "placeholders/150x150.png")
        ),
        timelineStart(color = "secondary")
       )

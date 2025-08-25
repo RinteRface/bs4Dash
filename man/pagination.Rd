@@ -106,6 +106,7 @@ if (interactive()) {
    }
  )
 }
+
 if (interactive()) {
  library(shiny)
  library(bs4Dash)
@@ -121,6 +122,7 @@ if (interactive()) {
        actionButton("enable", "Enable page 1", class = "mx-2"),
        textOutput("selected_page")
      ),
+     br(),
      br(),
      pagination(
        id = "mypagination",
@@ -166,4 +168,7 @@ if (interactive()) {
    }
  )
 }
+}
+\author{
+David Granjon, \email{dgranjon@ymail.com}
 }

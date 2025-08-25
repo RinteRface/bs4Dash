@@ -320,11 +320,11 @@ updateAccordion <- function(
 #'        id = "mycarousel",
 #'        carouselItem(
 #'         caption = "Item 1",
-#'         tags$img(src = "https://via.placeholder.com/500")
+#'         tags$img(src = "placeholders/500x500.png")
 #'        ),
 #'        carouselItem(
 #'         caption = "Item 2",
-#'         tags$img(src = "https://via.placeholder.com/500")
+#'         tags$img(src = "placeholders/500x500.png")
 #'        )
 #'       )
 #'      ),
@@ -910,8 +910,8 @@ bs4Loading <- function() {
 #'         title = "Item 3",
 #'         icon = icon("paint-brush"),
 #'         status = "orange",
-#'         timelineItemMedia(image = "https://via.placeholder.com/150x100"),
-#'         timelineItemMedia(image = "https://via.placeholder.com/150x100")
+#'         timelineItemMedia(image = "placeholders/150x150.png"),
+#'         timelineItemMedia(image = "placeholders/150x150.png")
 #'        ),
 #'        timelineStart(color = "secondary")
 #'       )
@@ -2904,7 +2904,7 @@ bs4TableItems <- function(...) {
 #' Build an bs4 table item
 #'
 #' @param ... Any HTML element.
-#' @param dataCell Whether the cell should be contain data or text. <td> by default.
+#' @param dataCell Whether the cell should be contain data or text. `<td>` by default.
 #'
 #' @rdname table
 #' @keywords internal
@@ -2915,132 +2915,6 @@ bs4TableItem <- function(..., dataCell = FALSE) {
     shiny::tags$th(...)
   }
 }
-
-
-#' @title AdminLTE3 todo list container
-#'
-#' @description Create a todo list container
-#'
-#' @param ... slot for todoListItem.
-#' @param sortable Whether the list elements are sortable or not.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(bs4Dash)
-#'  shinyApp(
-#'   ui = dashboardPage(
-#'     dashboardHeader(),
-#'     dashboardSidebar(),
-#'     dashboardBody(
-#'      box(
-#'       "Sortable todo list demo",
-#'       status = "warning",
-#'       todoList(
-#'         todoListItem(
-#'           label = "Design a nice theme",
-#'           "Some text here"
-#'         ),
-#'         todoListItem(
-#'           label = "Make the theme responsive",
-#'           "Some text here"
-#'         ),
-#'         todoListItem(
-#'           checked = TRUE,
-#'           label = "Let theme shine like a star"
-#'         )
-#'        )
-#'       ),
-#'       box(
-#'       "Simple todo list demo",
-#'       status = "warning",
-#'       todoList(
-#'       sortable = FALSE,
-#'         todoListItem(
-#'           label = "Design a nice theme",
-#'           "Some text here"
-#'         ),
-#'         todoListItem(
-#'           label = "Make the theme responsive",
-#'           "Some text here"
-#'         ),
-#'         todoListItem(
-#'           checked = TRUE,
-#'           label = "Let theme shine like a star"
-#'         )
-#'        )
-#'       )
-#'     ),
-#'     title = "Todo Lists"
-#'   ),
-#'   server = function(input, output) { }
-#'  )
-#' }
-#'
-#' @export
-# todoList <- function(..., sortable = TRUE) {
-#
-#   items <- list(...)
-#
-#   if (sortable) {
-#     for (i in seq_along(items)) {
-#       items[[i]]$children[[1]]$attribs$class <- paste(items[[i]]$children[[1]]$attribs$class, "ui-sortable-handle")
-#     }
-#   }
-#
-#   todoListTag <- shiny::tags$ul(
-#     class = if (sortable) "todo-list ui-sortable" else "todo-list",
-#     `data-widget` = "todo-list",
-#     items
-#   )
-#
-#   todoListTag
-#
-# }
-#
-#
-#
-# #' @title AdminLTE2 todo list item
-# #'
-# #' @description Create a todo list item
-# #'
-# #' @param ... any element such as labels, ...
-# #' @param checked Whether the list item is checked or not.
-# #' @param label item label.
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @export
-# todoListItem <- function(..., checked = FALSE, label = NULL) {
-#   cl <- NULL
-#   if (checked) cl <- "done"
-#
-#   shiny::tags$li(
-#     class = cl,
-#
-#     # sortable icon
-#     shiny::tags$span(
-#       class = "handle",
-#       shiny::tags$i(class = "fa fa-ellipsis-v"),
-#       shiny::tags$i(class = "fa fa-ellipsis-v")
-#     ),
-#
-#     # checkbox trigger
-#     # need to be implemented (custom binding js)
-#     #shiny::tags$input(type = "checkbox"),
-#
-#     # label
-#     shiny::tags$span(class = "text", label),
-#
-#     # any element
-#     shiny::tags$small(
-#       ...
-#     )
-#   )
-#
-# }
 
 #' Boostrap 4 ribbon
 #'
@@ -3260,7 +3134,6 @@ getAdminLTEColors <- function() {
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' @rdname pagination
 #' @export
 pagination <- function(
   ...,
@@ -3326,15 +3199,20 @@ pagination <- function(
   )
 
   # Modify tag on the fly to correspond to Bootstrap 4 pagination
-  temp_tag <- htmltools::tagQuery(temp_tag)$find("ul")$addAttrs( # remove old tabs class and add pagination class
+  temp_tag <- htmltools::tagQuery(temp_tag)$find("ul")$addAttrs(
+    # remove old tabs class and add pagination class
     "style" = "margin-bottom: 16px"
-  )$removeClass("nav-tabs")$addClass(pagination_cl)$resetSelected()$find( # we still need nav to behave like tabs
+  )$removeClass("nav-tabs")$addClass(pagination_cl)$resetSelected()$find(
+    # we still need nav to behave like tabs
     "li"
-  )$removeClass("nav-item")$addClass("page-item")$resetSelected()$find( # replace li class
+  )$removeClass("nav-item")$addClass("page-item")$resetSelected()$find(
+    # replace li class
     "a"
-  )$removeClass("nav-link")$addClass("page-link")$resetSelected()$find( # replace a class
+  )$removeClass("nav-link")$addClass("page-link")$resetSelected()$find(
+    # replace a class
     "a.active"
-  )$removeClass("active")$parent()$addClass("active")$resetSelected()$find( # move active class to parent li
+  )$removeClass("active")$parent()$addClass("active")$resetSelected()$find(
+    # move active class to parent li
     "ul.pagination"
   )$prepend(pagination_start)$append(pagination_end)$allTags() # insert navigation
 

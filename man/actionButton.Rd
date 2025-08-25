@@ -26,7 +26,7 @@ you could also use any other HTML, like an image.}
 \item{icon}{An optional \code{\link[shiny:icon]{shiny::icon()}} to appear on the button.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[htmltools:validateCssUnit]{htmltools::validateCssUnit()}}.}
+see \code{\link[shiny:reexports]{shiny::validateCssUnit()}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
 
