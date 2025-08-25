@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">bs4Dash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,10 @@
       <small>Source: <a href="https://github.com/RinteRface/bs4Dash/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.3.5" id="bs4dash-235">bs4Dash 2.3.5<a class="anchor" aria-label="anchor" href="#bs4dash-235"></a></h2>
+<ul><li>Fix CRAN notes.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.4" id="bs4dash-234">bs4Dash 2.3.4<a class="anchor" aria-label="anchor" href="#bs4dash-234"></a></h2><p class="text-muted">CRAN release: 2024-09-03</p>
 <ul><li>Added shinylive to support documentation examples.</li>
@@ -91,8 +95,10 @@
 <h2 class="pkg-version" data-toc-text="2.3.0" id="bs4dash-230">bs4Dash 2.3.0<a class="anchor" aria-label="anchor" href="#bs4dash-230"></a></h2><p class="text-muted">CRAN release: 2023-06-15</p>
 <div class="section level3">
 <h3 id="new-feature-2-3-0">New feature<a class="anchor" aria-label="anchor" href="#new-feature-2-3-0"></a></h3>
-<p>New navbar navigation menu. - <code><a href="../reference/navbar-menu.html">navbarTab()</a></code>, <code><a href="../reference/navbar-menu.html">navbarMenu()</a></code> and <code><a href="../reference/navbar-menu.html">updateNavbarTabs()</a></code> to create navbar navigation. This will close <a href="https://github.com/RinteRface/bs4Dash/issues/108" class="external-link">#108</a>.</p>
-</div>
+<p>New navbar navigation menu.</p>
+<ul><li>
+<code><a href="../reference/navbar-menu.html">navbarTab()</a></code>, <code><a href="../reference/navbar-menu.html">navbarMenu()</a></code> and <code><a href="../reference/navbar-menu.html">updateNavbarTabs()</a></code> to create navbar navigation. This will close <a href="https://github.com/RinteRface/bs4Dash/issues/108" class="external-link">#108</a>.</li>
+</ul></div>
 <div class="section level3">
 <h3 id="minor-change-2-3-0">Minor change<a class="anchor" aria-label="anchor" href="#minor-change-2-3-0"></a></h3>
 <ul><li>New <code><a href="../reference/dropdownHeader.html">dropdownHeader()</a></code> function to display Bootstrap 4 dropdown headers.</li>
@@ -176,7 +182,7 @@
 <h3 id="minor-changes-2-0-1">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-0-1"></a></h3>
 <ul><li>Simple patch to fix wrong .Rbuildignore <a href="https://github.com/DivadNojnarg/outstanding-shiny-ui/issues/52" class="external-link">rule</a>.</li>
 <li>Update internal file structure.</li>
-<li>Clean NOTE: <a href="https://cran.rstudio.com//web/checks/check_results_bs4Dash.html" class="external-link uri">https://cran.rstudio.com//web/checks/check_results_bs4Dash.html</a>
+<li>Clean NOTE: <a href="https://CRAN.R-project.org//web/checks/check_results_bs4Dash.html" class="external-link uri">https://CRAN.R-project.org//web/checks/check_results_bs4Dash.html</a>
 </li>
 </ul></div>
 <div class="section level3">
@@ -189,7 +195,16 @@
 <h2 class="pkg-version" data-toc-text="2.0.0" id="bs4dash-200">bs4Dash 2.0.0<a class="anchor" aria-label="anchor" href="#bs4dash-200"></a></h2><p class="text-muted">CRAN release: 2021-05-26</p>
 <div class="section level3">
 <h3 id="breaking-changes-2-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-2-0-0"></a></h3>
-<p>This is to align with shinydashboard and shinydashboardPlus. ### bs4DashPage/dashboardPage - <code>navbar</code> param becomes <code>header</code>. - Remove <code>old_school</code>, <code>sidebar_mini</code>, <code>sidebar_collapsed</code>, <code>controlbar_collapsed</code>, <code>controlbar_overlay</code>, <code>enable_preloader</code>, <code>loading_duration</code> and <code>loading_background</code>. These parameters move to dashboardSidebar, controlbar … - New <code>freshTheme</code> parameter to pass <a href="https://github.com/dreamRs/fresh" class="external-link">fresh</a> powered themes. - New <code>options</code> parameter to configure AdminLTE3. - New <code>preloader</code> to use <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> as a preloading engine.</p>
+<p>This is to align with shinydashboard and shinydashboardPlus.</p>
+<div class="section level4">
+<h4 id="bs4dashpagedashboardpage-2-0-0">bs4DashPage/dashboardPage<a class="anchor" aria-label="anchor" href="#bs4dashpagedashboardpage-2-0-0"></a></h4>
+<ul><li>
+<code>navbar</code> param becomes <code>header</code>.</li>
+<li>Remove <code>old_school</code>, <code>sidebar_mini</code>, <code>sidebar_collapsed</code>, <code>controlbar_collapsed</code>, <code>controlbar_overlay</code>, <code>enable_preloader</code>, <code>loading_duration</code> and <code>loading_background</code>. These parameters move to dashboardSidebar, controlbar …</li>
+<li>New <code>freshTheme</code> parameter to pass <a href="https://github.com/dreamRs/fresh" class="external-link">fresh</a> powered themes.</li>
+<li>New <code>options</code> parameter to configure AdminLTE3.</li>
+<li>New <code>preloader</code> to use <a href="https://waiter.john-coene.com/" class="external-link">waiter</a> as a preloading engine.</li>
+</ul></div>
 <div class="section level4">
 <h4 id="bs4dashfooter-2-0-0">bs4DashFooter<a class="anchor" aria-label="anchor" href="#bs4dashfooter-2-0-0"></a></h4>
 <ul><li>
