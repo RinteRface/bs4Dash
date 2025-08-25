@@ -434,7 +434,7 @@ toast <- function(
 #'
 #' @note Unlike shinyBS, there is no need to specify an anchorId and an alertId. id refers to the anchorId,
 #' and the alertId is simply "anchorId-alert". On the server side, one can access the alert status by
-#' input$<id>. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
+#' `input$<id>`. If TRUE, the alert has been created and is visible, if FALSE the alert has just been closed.
 #'
 #' @examples
 #' if (interactive()) {

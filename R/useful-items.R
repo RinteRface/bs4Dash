@@ -2904,7 +2904,7 @@ bs4TableItems <- function(...) {
 #' Build an bs4 table item
 #'
 #' @param ... Any HTML element.
-#' @param dataCell Whether the cell should be contain data or text. <td> by default.
+#' @param dataCell Whether the cell should be contain data or text. `<td>` by default.
 #'
 #' @rdname table
 #' @keywords internal

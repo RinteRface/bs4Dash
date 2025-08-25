@@ -23,10 +23,10 @@ actionButton(
 \item{label}{The contents of the button or link--usually a text label, but
 you could also use any other HTML, like an image.}
 
-\item{icon}{An optional \code{\link[=icon]{icon()}} to appear on the button.}
+\item{icon}{An optional \code{\link[shiny:icon]{shiny::icon()}} to appear on the button.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[=validateCssUnit]{validateCssUnit()}}.}
+see \code{\link[shiny:reexports]{shiny::validateCssUnit()}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
 
@@ -63,8 +63,8 @@ An integer of class \code{"shinyActionButtonValue"}. This class differs from
 ordinary integers in that a value of 0 is considered "falsy".
 This implies two things:
 \itemize{
-\item Event handlers (e.g., \code{\link[=observeEvent]{observeEvent()}}, \code{\link[=eventReactive]{eventReactive()}}) won't execute on initial load.
-\item Input validation (e.g., \code{\link[=req]{req()}}, \code{\link[=need]{need()}}) will fail on initial load.
+\item Event handlers (e.g., \code{\link[shiny:observeEvent]{shiny::observeEvent()}}, \code{\link[shiny:observeEvent]{shiny::eventReactive()}}) won't execute on initial load.
+\item Input validation (e.g., \code{\link[shiny:req]{shiny::req()}}, \code{\link[shiny:validate]{shiny::need()}}) will fail on initial load.
 }
 }
 
@@ -119,6 +119,6 @@ actionButton("largeButton", "Large Primary Button", class = "btn-primary btn-lg"
 
 }
 \seealso{
-\code{\link[=observeEvent]{observeEvent()}} and \code{\link[=eventReactive]{eventReactive()}}
+\code{\link[shiny:observeEvent]{shiny::observeEvent()}} and \code{\link[shiny:observeEvent]{shiny::eventReactive()}}
 }
 \concept{input elements}

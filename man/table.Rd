@@ -25,7 +25,7 @@ bs4TableItem(..., dataCell = FALSE)
 
 \item{...}{Any HTML element.}
 
-\item{dataCell}{Whether the cell should be contain data or text. \if{html}{\out{<td>}} by default.}
+\item{dataCell}{Whether the cell should be contain data or text. \verb{<td>} by default.}
 }
 \description{
 Build an Bootstrap 4 table container
